@@ -881,6 +881,11 @@ fn run() -> Result<()> {
             .current_dir(config_dir)
             .run()
             .context("Error running cargo fmt in crate directory")?;
+        Command::new("cargo")
+            .args(["clippy", "--no-deps", "--fix", "--allow-dirty"])
+            .current_dir(config_dir)
+            .run()
+            .context("Error running cargo fmt in crate directory")?;
 
         eprintln!(
             "🎉 Finished generating bindings for {provider}@{version}",
