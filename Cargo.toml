@@ -20,4 +20,5 @@ serde = "1"
 serde_json = "1"
 syn = { version = "2", features = ["full"] }
 tempfile = "3"
+terrars = "0.1.13"
 toml = "0.9"

@@ -7,6 +7,15 @@ readme = "README.md"
 license = "ISC"
 repository = "https://github.com/tracel-ai/tracel-terrars/crates/provider-hashicorp-aws"
 
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+
+[dependencies.terrars]
+workspace = true
+
 [features]
 accessanalyzer_analyzer = []
 accessanalyzer_archive_rule = []
