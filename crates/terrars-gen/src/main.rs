@@ -865,7 +865,7 @@ fn run() -> Result<()> {
             })?;
         }
 
-        eprintln!("️🧹 Formatting and cleaning...");
+        eprintln!("️🧹 Formatting and cleaning, please wait...");
         Command::new("cargo")
             .args(["fmt"])
             .current_dir(config_dir)
