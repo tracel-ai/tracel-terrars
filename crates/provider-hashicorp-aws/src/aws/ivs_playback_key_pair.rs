@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IvsPlaybackKeyPairData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct IvsPlaybackKeyPairData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<IvsPlaybackKeyPairTimeoutsEl>,
 }
-
 struct IvsPlaybackKeyPair_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IvsPlaybackKeyPairData>,
 }
-
 #[derive(Clone)]
 pub struct IvsPlaybackKeyPair(Rc<IvsPlaybackKeyPair_>);
-
 impl IvsPlaybackKeyPair {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl IvsPlaybackKeyPair {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl IvsPlaybackKeyPair {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,48 +95,40 @@ impl IvsPlaybackKeyPair {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<IvsPlaybackKeyPairTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,12 +136,10 @@ impl IvsPlaybackKeyPair {
             format!("{}.fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +147,6 @@ impl IvsPlaybackKeyPair {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +154,6 @@ impl IvsPlaybackKeyPair {
             format!("{}.public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +161,6 @@ impl IvsPlaybackKeyPair {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -193,7 +168,6 @@ impl IvsPlaybackKeyPair {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -201,7 +175,6 @@ impl IvsPlaybackKeyPair {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvsPlaybackKeyPairTimeoutsElRef {
         IvsPlaybackKeyPairTimeoutsElRef::new(
@@ -210,7 +183,6 @@ impl IvsPlaybackKeyPair {
         )
     }
 }
-
 impl Referable for IvsPlaybackKeyPair {
     fn extract_ref(&self) -> String {
         format!(
@@ -220,38 +192,30 @@ impl Referable for IvsPlaybackKeyPair {
         )
     }
 }
-
 impl Resource for IvsPlaybackKeyPair {}
-
 impl ToListMappable for IvsPlaybackKeyPair {
     type O = ListRef<IvsPlaybackKeyPairRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IvsPlaybackKeyPair_ {
     fn extract_resource_type(&self) -> String {
         "aws_ivs_playback_key_pair".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIvsPlaybackKeyPair {
     pub tf_id: String,
     #[doc = ""]
     pub public_key: PrimField<String>,
 }
-
 impl BuildIvsPlaybackKeyPair {
     pub fn build(self, stack: &mut Stack) -> IvsPlaybackKeyPair {
         let out = IvsPlaybackKeyPair(Rc::new(IvsPlaybackKeyPair_ {
@@ -275,32 +239,26 @@ impl BuildIvsPlaybackKeyPair {
         out
     }
 }
-
 pub struct IvsPlaybackKeyPairRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsPlaybackKeyPairRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IvsPlaybackKeyPairRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -308,12 +266,10 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +277,6 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +284,6 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +291,6 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -345,7 +298,6 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -353,7 +305,6 @@ impl IvsPlaybackKeyPairRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvsPlaybackKeyPairTimeoutsElRef {
         IvsPlaybackKeyPairTimeoutsElRef::new(
@@ -362,7 +313,6 @@ impl IvsPlaybackKeyPairRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IvsPlaybackKeyPairTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -370,24 +320,20 @@ pub struct IvsPlaybackKeyPairTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl IvsPlaybackKeyPairTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IvsPlaybackKeyPairTimeoutsEl {
     type O = BlockAssignable<IvsPlaybackKeyPairTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -396,9 +342,7 @@ impl ToListMappable for IvsPlaybackKeyPairTimeoutsEl {
         })
     }
 }
-
 pub struct BuildIvsPlaybackKeyPairTimeoutsEl {}
-
 impl BuildIvsPlaybackKeyPairTimeoutsEl {
     pub fn build(self) -> IvsPlaybackKeyPairTimeoutsEl {
         IvsPlaybackKeyPairTimeoutsEl {
@@ -407,12 +351,10 @@ impl BuildIvsPlaybackKeyPairTimeoutsEl {
         }
     }
 }
-
 pub struct IvsPlaybackKeyPairTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsPlaybackKeyPairTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> IvsPlaybackKeyPairTimeoutsElRef {
         IvsPlaybackKeyPairTimeoutsElRef {
@@ -421,17 +363,14 @@ impl Ref for IvsPlaybackKeyPairTimeoutsElRef {
         }
     }
 }
-
 impl IvsPlaybackKeyPairTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

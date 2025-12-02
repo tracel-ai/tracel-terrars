@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataOamLinkData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,59 +19,48 @@ struct DataOamLinkData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataOamLink_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataOamLinkData>,
 }
-
 #[derive(Clone)]
 pub struct DataOamLink(Rc<DataOamLink_>);
-
 impl DataOamLink {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `label` after provisioning.\n"]
     pub fn label(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -80,7 +68,6 @@ impl DataOamLink {
             format!("{}.label", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `label_template` after provisioning.\n"]
     pub fn label_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -88,7 +75,6 @@ impl DataOamLink {
             format!("{}.label_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_configuration` after provisioning.\n"]
     pub fn link_configuration(&self) -> ListRef<DataOamLinkLinkConfigurationElRef> {
         ListRef::new(
@@ -96,7 +82,6 @@ impl DataOamLink {
             format!("{}.link_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -104,7 +89,6 @@ impl DataOamLink {
             format!("{}.link_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_identifier` after provisioning.\n"]
     pub fn link_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -112,7 +96,6 @@ impl DataOamLink {
             format!("{}.link_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +103,6 @@ impl DataOamLink {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -128,7 +110,6 @@ impl DataOamLink {
             format!("{}.resource_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sink_arn` after provisioning.\n"]
     pub fn sink_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +117,6 @@ impl DataOamLink {
             format!("{}.sink_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -145,7 +125,6 @@ impl DataOamLink {
         )
     }
 }
-
 impl Referable for DataOamLink {
     fn extract_ref(&self) -> String {
         format!(
@@ -155,38 +134,30 @@ impl Referable for DataOamLink {
         )
     }
 }
-
 impl Datasource for DataOamLink {}
-
 impl ToListMappable for DataOamLink {
     type O = ListRef<DataOamLinkRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataOamLink_ {
     fn extract_datasource_type(&self) -> String {
         "aws_oam_link".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataOamLink {
     pub tf_id: String,
     #[doc = ""]
     pub link_identifier: PrimField<String>,
 }
-
 impl BuildDataOamLink {
     pub fn build(self, stack: &mut Stack) -> DataOamLink {
         let out = DataOamLink(Rc::new(DataOamLink_ {
@@ -206,37 +177,30 @@ impl BuildDataOamLink {
         out
     }
 }
-
 pub struct DataOamLinkRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOamLinkRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataOamLinkRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `label` after provisioning.\n"]
     pub fn label(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +208,6 @@ impl DataOamLinkRef {
             format!("{}.label", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `label_template` after provisioning.\n"]
     pub fn label_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +215,6 @@ impl DataOamLinkRef {
             format!("{}.label_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_configuration` after provisioning.\n"]
     pub fn link_configuration(&self) -> ListRef<DataOamLinkLinkConfigurationElRef> {
         ListRef::new(
@@ -260,7 +222,6 @@ impl DataOamLinkRef {
             format!("{}.link_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_id` after provisioning.\n"]
     pub fn link_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +229,6 @@ impl DataOamLinkRef {
             format!("{}.link_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `link_identifier` after provisioning.\n"]
     pub fn link_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +236,6 @@ impl DataOamLinkRef {
             format!("{}.link_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +243,6 @@ impl DataOamLinkRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -292,7 +250,6 @@ impl DataOamLinkRef {
             format!("{}.resource_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sink_arn` after provisioning.\n"]
     pub fn sink_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +257,6 @@ impl DataOamLinkRef {
             format!("{}.sink_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -309,13 +265,11 @@ impl DataOamLinkRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     filter: Option<PrimField<String>>,
 }
-
 impl DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -323,10 +277,8 @@ impl DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
     type O = BlockAssignable<DataOamLinkLinkConfigurationElLogGroupConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -335,9 +287,7 @@ impl ToListMappable for DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
         })
     }
 }
-
 pub struct BuildDataOamLinkLinkConfigurationElLogGroupConfigurationEl {}
-
 impl BuildDataOamLinkLinkConfigurationElLogGroupConfigurationEl {
     pub fn build(self) -> DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
         DataOamLinkLinkConfigurationElLogGroupConfigurationEl {
@@ -345,12 +295,10 @@ impl BuildDataOamLinkLinkConfigurationElLogGroupConfigurationEl {
         }
     }
 }
-
 pub struct DataOamLinkLinkConfigurationElLogGroupConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOamLinkLinkConfigurationElLogGroupConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -362,24 +310,20 @@ impl Ref for DataOamLinkLinkConfigurationElLogGroupConfigurationElRef {
         }
     }
 }
-
 impl DataOamLinkLinkConfigurationElLogGroupConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataOamLinkLinkConfigurationElMetricConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     filter: Option<PrimField<String>>,
 }
-
 impl DataOamLinkLinkConfigurationElMetricConfigurationEl {
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -387,10 +331,8 @@ impl DataOamLinkLinkConfigurationElMetricConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for DataOamLinkLinkConfigurationElMetricConfigurationEl {
     type O = BlockAssignable<DataOamLinkLinkConfigurationElMetricConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -399,9 +341,7 @@ impl ToListMappable for DataOamLinkLinkConfigurationElMetricConfigurationEl {
         })
     }
 }
-
 pub struct BuildDataOamLinkLinkConfigurationElMetricConfigurationEl {}
-
 impl BuildDataOamLinkLinkConfigurationElMetricConfigurationEl {
     pub fn build(self) -> DataOamLinkLinkConfigurationElMetricConfigurationEl {
         DataOamLinkLinkConfigurationElMetricConfigurationEl {
@@ -409,12 +349,10 @@ impl BuildDataOamLinkLinkConfigurationElMetricConfigurationEl {
         }
     }
 }
-
 pub struct DataOamLinkLinkConfigurationElMetricConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOamLinkLinkConfigurationElMetricConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -426,18 +364,15 @@ impl Ref for DataOamLinkLinkConfigurationElMetricConfigurationElRef {
         }
     }
 }
-
 impl DataOamLinkLinkConfigurationElMetricConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataOamLinkLinkConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -446,7 +381,6 @@ pub struct DataOamLinkLinkConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     metric_configuration: Option<ListField<DataOamLinkLinkConfigurationElMetricConfigurationEl>>,
 }
-
 impl DataOamLinkLinkConfigurationEl {
     #[doc = "Set the field `log_group_configuration`.\n"]
     pub fn set_log_group_configuration(
@@ -456,7 +390,6 @@ impl DataOamLinkLinkConfigurationEl {
         self.log_group_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `metric_configuration`.\n"]
     pub fn set_metric_configuration(
         mut self,
@@ -466,10 +399,8 @@ impl DataOamLinkLinkConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for DataOamLinkLinkConfigurationEl {
     type O = BlockAssignable<DataOamLinkLinkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -478,9 +409,7 @@ impl ToListMappable for DataOamLinkLinkConfigurationEl {
         })
     }
 }
-
 pub struct BuildDataOamLinkLinkConfigurationEl {}
-
 impl BuildDataOamLinkLinkConfigurationEl {
     pub fn build(self) -> DataOamLinkLinkConfigurationEl {
         DataOamLinkLinkConfigurationEl {
@@ -489,12 +418,10 @@ impl BuildDataOamLinkLinkConfigurationEl {
         }
     }
 }
-
 pub struct DataOamLinkLinkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOamLinkLinkConfigurationElRef {
     fn new(shared: StackShared, base: String) -> DataOamLinkLinkConfigurationElRef {
         DataOamLinkLinkConfigurationElRef {
@@ -503,12 +430,10 @@ impl Ref for DataOamLinkLinkConfigurationElRef {
         }
     }
 }
-
 impl DataOamLinkLinkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `log_group_configuration` after provisioning.\n"]
     pub fn log_group_configuration(
         &self,
@@ -518,7 +443,6 @@ impl DataOamLinkLinkConfigurationElRef {
             format!("{}.log_group_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metric_configuration` after provisioning.\n"]
     pub fn metric_configuration(
         &self,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataNatGatewaysData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,55 +25,45 @@ struct DataNatGatewaysData {
     timeouts: Option<DataNatGatewaysTimeoutsEl>,
     dynamic: DataNatGatewaysDynamic,
 }
-
 struct DataNatGateways_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataNatGatewaysData>,
 }
-
 #[derive(Clone)]
 pub struct DataNatGateways(Rc<DataNatGateways_>);
-
 impl DataNatGateways {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().vpc_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataNatGatewaysFilterEl>>) -> Self {
         match v.into() {
@@ -87,23 +76,19 @@ impl DataNatGateways {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataNatGatewaysTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ids` after provisioning.\n"]
     pub fn ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -111,7 +96,6 @@ impl DataNatGateways {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -119,7 +103,6 @@ impl DataNatGateways {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -127,7 +110,6 @@ impl DataNatGateways {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataNatGatewaysTimeoutsElRef {
         DataNatGatewaysTimeoutsElRef::new(
@@ -136,7 +118,6 @@ impl DataNatGateways {
         )
     }
 }
-
 impl Referable for DataNatGateways {
     fn extract_ref(&self) -> String {
         format!(
@@ -146,36 +127,28 @@ impl Referable for DataNatGateways {
         )
     }
 }
-
 impl Datasource for DataNatGateways {}
-
 impl ToListMappable for DataNatGateways {
     type O = ListRef<DataNatGatewaysRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataNatGateways_ {
     fn extract_datasource_type(&self) -> String {
         "aws_nat_gateways".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataNatGateways {
     pub tf_id: String,
 }
-
 impl BuildDataNatGateways {
     pub fn build(self, stack: &mut Stack) -> DataNatGateways {
         let out = DataNatGateways(Rc::new(DataNatGateways_ {
@@ -198,37 +171,30 @@ impl BuildDataNatGateways {
         out
     }
 }
-
 pub struct DataNatGatewaysRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNatGatewaysRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataNatGatewaysRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ids` after provisioning.\n"]
     pub fn ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.ids", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +202,6 @@ impl DataNatGatewaysRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -244,7 +209,6 @@ impl DataNatGatewaysRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +216,6 @@ impl DataNatGatewaysRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataNatGatewaysTimeoutsElRef {
         DataNatGatewaysTimeoutsElRef::new(
@@ -261,18 +224,14 @@ impl DataNatGatewaysRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNatGatewaysFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataNatGatewaysFilterEl {}
-
 impl ToListMappable for DataNatGatewaysFilterEl {
     type O = BlockAssignable<DataNatGatewaysFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -281,14 +240,12 @@ impl ToListMappable for DataNatGatewaysFilterEl {
         })
     }
 }
-
 pub struct BuildDataNatGatewaysFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataNatGatewaysFilterEl {
     pub fn build(self) -> DataNatGatewaysFilterEl {
         DataNatGatewaysFilterEl {
@@ -297,12 +254,10 @@ impl BuildDataNatGatewaysFilterEl {
         }
     }
 }
-
 pub struct DataNatGatewaysFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNatGatewaysFilterElRef {
     fn new(shared: StackShared, base: String) -> DataNatGatewaysFilterElRef {
         DataNatGatewaysFilterElRef {
@@ -311,29 +266,24 @@ impl Ref for DataNatGatewaysFilterElRef {
         }
     }
 }
-
 impl DataNatGatewaysFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNatGatewaysTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataNatGatewaysTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -341,10 +291,8 @@ impl DataNatGatewaysTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataNatGatewaysTimeoutsEl {
     type O = BlockAssignable<DataNatGatewaysTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -353,9 +301,7 @@ impl ToListMappable for DataNatGatewaysTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataNatGatewaysTimeoutsEl {}
-
 impl BuildDataNatGatewaysTimeoutsEl {
     pub fn build(self) -> DataNatGatewaysTimeoutsEl {
         DataNatGatewaysTimeoutsEl {
@@ -363,12 +309,10 @@ impl BuildDataNatGatewaysTimeoutsEl {
         }
     }
 }
-
 pub struct DataNatGatewaysTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNatGatewaysTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataNatGatewaysTimeoutsElRef {
         DataNatGatewaysTimeoutsElRef {
@@ -377,18 +321,15 @@ impl Ref for DataNatGatewaysTimeoutsElRef {
         }
     }
 }
-
 impl DataNatGatewaysTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNatGatewaysDynamic {
     filter: Option<DynamicBlock<DataNatGatewaysFilterEl>>,

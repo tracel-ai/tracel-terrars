@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataEc2TransitGatewayRouteTableData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,49 +23,40 @@ struct DataEc2TransitGatewayRouteTableData {
     timeouts: Option<DataEc2TransitGatewayRouteTableTimeoutsEl>,
     dynamic: DataEc2TransitGatewayRouteTableDynamic,
 }
-
 struct DataEc2TransitGatewayRouteTable_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataEc2TransitGatewayRouteTableData>,
 }
-
 #[derive(Clone)]
 pub struct DataEc2TransitGatewayRouteTable(Rc<DataEc2TransitGatewayRouteTable_>);
-
 impl DataEc2TransitGatewayRouteTable {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
         self,
@@ -82,18 +72,15 @@ impl DataEc2TransitGatewayRouteTable {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataEc2TransitGatewayRouteTableTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_association_route_table` after provisioning.\n"]
     pub fn default_association_route_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -101,7 +88,6 @@ impl DataEc2TransitGatewayRouteTable {
             format!("{}.default_association_route_table", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_propagation_route_table` after provisioning.\n"]
     pub fn default_propagation_route_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -109,12 +95,10 @@ impl DataEc2TransitGatewayRouteTable {
             format!("{}.default_propagation_route_table", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -122,7 +106,6 @@ impl DataEc2TransitGatewayRouteTable {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -130,7 +113,6 @@ impl DataEc2TransitGatewayRouteTable {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,7 +120,6 @@ impl DataEc2TransitGatewayRouteTable {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2TransitGatewayRouteTableTimeoutsElRef {
         DataEc2TransitGatewayRouteTableTimeoutsElRef::new(
@@ -147,7 +128,6 @@ impl DataEc2TransitGatewayRouteTable {
         )
     }
 }
-
 impl Referable for DataEc2TransitGatewayRouteTable {
     fn extract_ref(&self) -> String {
         format!(
@@ -157,36 +137,28 @@ impl Referable for DataEc2TransitGatewayRouteTable {
         )
     }
 }
-
 impl Datasource for DataEc2TransitGatewayRouteTable {}
-
 impl ToListMappable for DataEc2TransitGatewayRouteTable {
     type O = ListRef<DataEc2TransitGatewayRouteTableRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataEc2TransitGatewayRouteTable_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ec2_transit_gateway_route_table".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataEc2TransitGatewayRouteTable {
     pub tf_id: String,
 }
-
 impl BuildDataEc2TransitGatewayRouteTable {
     pub fn build(self, stack: &mut Stack) -> DataEc2TransitGatewayRouteTable {
         let out = DataEc2TransitGatewayRouteTable(Rc::new(DataEc2TransitGatewayRouteTable_ {
@@ -208,32 +180,26 @@ impl BuildDataEc2TransitGatewayRouteTable {
         out
     }
 }
-
 pub struct DataEc2TransitGatewayRouteTableRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEc2TransitGatewayRouteTableRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataEc2TransitGatewayRouteTableRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_association_route_table` after provisioning.\n"]
     pub fn default_association_route_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -241,7 +207,6 @@ impl DataEc2TransitGatewayRouteTableRef {
             format!("{}.default_association_route_table", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_propagation_route_table` after provisioning.\n"]
     pub fn default_propagation_route_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -249,12 +214,10 @@ impl DataEc2TransitGatewayRouteTableRef {
             format!("{}.default_propagation_route_table", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -262,7 +225,6 @@ impl DataEc2TransitGatewayRouteTableRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -270,7 +232,6 @@ impl DataEc2TransitGatewayRouteTableRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +239,6 @@ impl DataEc2TransitGatewayRouteTableRef {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataEc2TransitGatewayRouteTableTimeoutsElRef {
         DataEc2TransitGatewayRouteTableTimeoutsElRef::new(
@@ -287,18 +247,14 @@ impl DataEc2TransitGatewayRouteTableRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEc2TransitGatewayRouteTableFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataEc2TransitGatewayRouteTableFilterEl {}
-
 impl ToListMappable for DataEc2TransitGatewayRouteTableFilterEl {
     type O = BlockAssignable<DataEc2TransitGatewayRouteTableFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -307,14 +263,12 @@ impl ToListMappable for DataEc2TransitGatewayRouteTableFilterEl {
         })
     }
 }
-
 pub struct BuildDataEc2TransitGatewayRouteTableFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataEc2TransitGatewayRouteTableFilterEl {
     pub fn build(self) -> DataEc2TransitGatewayRouteTableFilterEl {
         DataEc2TransitGatewayRouteTableFilterEl {
@@ -323,12 +277,10 @@ impl BuildDataEc2TransitGatewayRouteTableFilterEl {
         }
     }
 }
-
 pub struct DataEc2TransitGatewayRouteTableFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEc2TransitGatewayRouteTableFilterElRef {
     fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayRouteTableFilterElRef {
         DataEc2TransitGatewayRouteTableFilterElRef {
@@ -337,29 +289,24 @@ impl Ref for DataEc2TransitGatewayRouteTableFilterElRef {
         }
     }
 }
-
 impl DataEc2TransitGatewayRouteTableFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEc2TransitGatewayRouteTableTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataEc2TransitGatewayRouteTableTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -367,10 +314,8 @@ impl DataEc2TransitGatewayRouteTableTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataEc2TransitGatewayRouteTableTimeoutsEl {
     type O = BlockAssignable<DataEc2TransitGatewayRouteTableTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -379,9 +324,7 @@ impl ToListMappable for DataEc2TransitGatewayRouteTableTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataEc2TransitGatewayRouteTableTimeoutsEl {}
-
 impl BuildDataEc2TransitGatewayRouteTableTimeoutsEl {
     pub fn build(self) -> DataEc2TransitGatewayRouteTableTimeoutsEl {
         DataEc2TransitGatewayRouteTableTimeoutsEl {
@@ -389,12 +332,10 @@ impl BuildDataEc2TransitGatewayRouteTableTimeoutsEl {
         }
     }
 }
-
 pub struct DataEc2TransitGatewayRouteTableTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEc2TransitGatewayRouteTableTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataEc2TransitGatewayRouteTableTimeoutsElRef {
         DataEc2TransitGatewayRouteTableTimeoutsElRef {
@@ -403,18 +344,15 @@ impl Ref for DataEc2TransitGatewayRouteTableTimeoutsElRef {
         }
     }
 }
-
 impl DataEc2TransitGatewayRouteTableTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEc2TransitGatewayRouteTableDynamic {
     filter: Option<DynamicBlock<DataEc2TransitGatewayRouteTableFilterEl>>,

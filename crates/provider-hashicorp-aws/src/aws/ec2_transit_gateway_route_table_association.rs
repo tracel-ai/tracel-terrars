@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Ec2TransitGatewayRouteTableAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct Ec2TransitGatewayRouteTableAssociationData {
     transit_gateway_attachment_id: PrimField<String>,
     transit_gateway_route_table_id: PrimField<String>,
 }
-
 struct Ec2TransitGatewayRouteTableAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Ec2TransitGatewayRouteTableAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct Ec2TransitGatewayRouteTableAssociation(Rc<Ec2TransitGatewayRouteTableAssociation_>);
-
 impl Ec2TransitGatewayRouteTableAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,30 +90,25 @@ impl Ec2TransitGatewayRouteTableAssociation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replace_existing_association`.\n"]
     pub fn set_replace_existing_association(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().replace_existing_association = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -133,7 +116,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replace_existing_association` after provisioning.\n"]
     pub fn replace_existing_association(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -141,7 +123,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             format!("{}.replace_existing_association", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -149,7 +130,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             format!("{}.resource_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -157,7 +137,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             format!("{}.resource_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -165,7 +144,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
             format!("{}.transit_gateway_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_id` after provisioning.\n"]
     pub fn transit_gateway_route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +152,6 @@ impl Ec2TransitGatewayRouteTableAssociation {
         )
     }
 }
-
 impl Referable for Ec2TransitGatewayRouteTableAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -184,32 +161,25 @@ impl Referable for Ec2TransitGatewayRouteTableAssociation {
         )
     }
 }
-
 impl Resource for Ec2TransitGatewayRouteTableAssociation {}
-
 impl ToListMappable for Ec2TransitGatewayRouteTableAssociation {
     type O = ListRef<Ec2TransitGatewayRouteTableAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Ec2TransitGatewayRouteTableAssociation_ {
     fn extract_resource_type(&self) -> String {
         "aws_ec2_transit_gateway_route_table_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEc2TransitGatewayRouteTableAssociation {
     pub tf_id: String,
     #[doc = ""]
@@ -217,7 +187,6 @@ pub struct BuildEc2TransitGatewayRouteTableAssociation {
     #[doc = ""]
     pub transit_gateway_route_table_id: PrimField<String>,
 }
-
 impl BuildEc2TransitGatewayRouteTableAssociation {
     pub fn build(self, stack: &mut Stack) -> Ec2TransitGatewayRouteTableAssociation {
         let out = Ec2TransitGatewayRouteTableAssociation(Rc::new(
@@ -241,32 +210,26 @@ impl BuildEc2TransitGatewayRouteTableAssociation {
         out
     }
 }
-
 pub struct Ec2TransitGatewayRouteTableAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Ec2TransitGatewayRouteTableAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Ec2TransitGatewayRouteTableAssociationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +237,6 @@ impl Ec2TransitGatewayRouteTableAssociationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replace_existing_association` after provisioning.\n"]
     pub fn replace_existing_association(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -282,7 +244,6 @@ impl Ec2TransitGatewayRouteTableAssociationRef {
             format!("{}.replace_existing_association", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +251,6 @@ impl Ec2TransitGatewayRouteTableAssociationRef {
             format!("{}.resource_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +258,6 @@ impl Ec2TransitGatewayRouteTableAssociationRef {
             format!("{}.resource_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +265,6 @@ impl Ec2TransitGatewayRouteTableAssociationRef {
             format!("{}.transit_gateway_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_route_table_id` after provisioning.\n"]
     pub fn transit_gateway_route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

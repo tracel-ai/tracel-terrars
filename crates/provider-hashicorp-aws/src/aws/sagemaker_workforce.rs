@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerWorkforceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct SagemakerWorkforceData {
     workforce_vpc_config: Option<Vec<SagemakerWorkforceWorkforceVpcConfigEl>>,
     dynamic: SagemakerWorkforceDynamic,
 }
-
 struct SagemakerWorkforce_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerWorkforceData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerWorkforce(Rc<SagemakerWorkforce_>);
-
 impl SagemakerWorkforce {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl SagemakerWorkforce {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl SagemakerWorkforce {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,19 +96,16 @@ impl SagemakerWorkforce {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cognito_config`.\n"]
     pub fn set_cognito_config(
         self,
@@ -136,7 +121,6 @@ impl SagemakerWorkforce {
         }
         self
     }
-
     #[doc = "Set the field `oidc_config`.\n"]
     pub fn set_oidc_config(
         self,
@@ -152,7 +136,6 @@ impl SagemakerWorkforce {
         }
         self
     }
-
     #[doc = "Set the field `source_ip_config`.\n"]
     pub fn set_source_ip_config(
         self,
@@ -168,7 +151,6 @@ impl SagemakerWorkforce {
         }
         self
     }
-
     #[doc = "Set the field `workforce_vpc_config`.\n"]
     pub fn set_workforce_vpc_config(
         self,
@@ -184,17 +166,14 @@ impl SagemakerWorkforce {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +181,6 @@ impl SagemakerWorkforce {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdomain` after provisioning.\n"]
     pub fn subdomain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +188,6 @@ impl SagemakerWorkforce {
             format!("{}.subdomain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workforce_name` after provisioning.\n"]
     pub fn workforce_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +195,6 @@ impl SagemakerWorkforce {
             format!("{}.workforce_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cognito_config` after provisioning.\n"]
     pub fn cognito_config(&self) -> ListRef<SagemakerWorkforceCognitoConfigElRef> {
         ListRef::new(
@@ -226,7 +202,6 @@ impl SagemakerWorkforce {
             format!("{}.cognito_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `oidc_config` after provisioning.\n"]
     pub fn oidc_config(&self) -> ListRef<SagemakerWorkforceOidcConfigElRef> {
         ListRef::new(
@@ -234,7 +209,6 @@ impl SagemakerWorkforce {
             format!("{}.oidc_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_ip_config` after provisioning.\n"]
     pub fn source_ip_config(&self) -> ListRef<SagemakerWorkforceSourceIpConfigElRef> {
         ListRef::new(
@@ -242,7 +216,6 @@ impl SagemakerWorkforce {
             format!("{}.source_ip_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workforce_vpc_config` after provisioning.\n"]
     pub fn workforce_vpc_config(&self) -> ListRef<SagemakerWorkforceWorkforceVpcConfigElRef> {
         ListRef::new(
@@ -251,7 +224,6 @@ impl SagemakerWorkforce {
         )
     }
 }
-
 impl Referable for SagemakerWorkforce {
     fn extract_ref(&self) -> String {
         format!(
@@ -261,38 +233,30 @@ impl Referable for SagemakerWorkforce {
         )
     }
 }
-
 impl Resource for SagemakerWorkforce {}
-
 impl ToListMappable for SagemakerWorkforce {
     type O = ListRef<SagemakerWorkforceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerWorkforce_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_workforce".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerWorkforce {
     pub tf_id: String,
     #[doc = ""]
     pub workforce_name: PrimField<String>,
 }
-
 impl BuildSagemakerWorkforce {
     pub fn build(self, stack: &mut Stack) -> SagemakerWorkforce {
         let out = SagemakerWorkforce(Rc::new(SagemakerWorkforce_ {
@@ -317,37 +281,30 @@ impl BuildSagemakerWorkforce {
         out
     }
 }
-
 pub struct SagemakerWorkforceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerWorkforceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerWorkforceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -355,7 +312,6 @@ impl SagemakerWorkforceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdomain` after provisioning.\n"]
     pub fn subdomain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +319,6 @@ impl SagemakerWorkforceRef {
             format!("{}.subdomain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workforce_name` after provisioning.\n"]
     pub fn workforce_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +326,6 @@ impl SagemakerWorkforceRef {
             format!("{}.workforce_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cognito_config` after provisioning.\n"]
     pub fn cognito_config(&self) -> ListRef<SagemakerWorkforceCognitoConfigElRef> {
         ListRef::new(
@@ -379,7 +333,6 @@ impl SagemakerWorkforceRef {
             format!("{}.cognito_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `oidc_config` after provisioning.\n"]
     pub fn oidc_config(&self) -> ListRef<SagemakerWorkforceOidcConfigElRef> {
         ListRef::new(
@@ -387,7 +340,6 @@ impl SagemakerWorkforceRef {
             format!("{}.oidc_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_ip_config` after provisioning.\n"]
     pub fn source_ip_config(&self) -> ListRef<SagemakerWorkforceSourceIpConfigElRef> {
         ListRef::new(
@@ -395,7 +347,6 @@ impl SagemakerWorkforceRef {
             format!("{}.source_ip_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workforce_vpc_config` after provisioning.\n"]
     pub fn workforce_vpc_config(&self) -> ListRef<SagemakerWorkforceWorkforceVpcConfigElRef> {
         ListRef::new(
@@ -404,18 +355,14 @@ impl SagemakerWorkforceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerWorkforceCognitoConfigEl {
     client_id: PrimField<String>,
     user_pool: PrimField<String>,
 }
-
 impl SagemakerWorkforceCognitoConfigEl {}
-
 impl ToListMappable for SagemakerWorkforceCognitoConfigEl {
     type O = BlockAssignable<SagemakerWorkforceCognitoConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -424,14 +371,12 @@ impl ToListMappable for SagemakerWorkforceCognitoConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerWorkforceCognitoConfigEl {
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
     pub user_pool: PrimField<String>,
 }
-
 impl BuildSagemakerWorkforceCognitoConfigEl {
     pub fn build(self) -> SagemakerWorkforceCognitoConfigEl {
         SagemakerWorkforceCognitoConfigEl {
@@ -440,12 +385,10 @@ impl BuildSagemakerWorkforceCognitoConfigEl {
         }
     }
 }
-
 pub struct SagemakerWorkforceCognitoConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerWorkforceCognitoConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerWorkforceCognitoConfigElRef {
         SagemakerWorkforceCognitoConfigElRef {
@@ -454,23 +397,19 @@ impl Ref for SagemakerWorkforceCognitoConfigElRef {
         }
     }
 }
-
 impl SagemakerWorkforceCognitoConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.client_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `user_pool` after provisioning.\n"]
     pub fn user_pool(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.user_pool", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerWorkforceOidcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -486,7 +425,6 @@ pub struct SagemakerWorkforceOidcConfigEl {
     token_endpoint: PrimField<String>,
     user_info_endpoint: PrimField<String>,
 }
-
 impl SagemakerWorkforceOidcConfigEl {
     #[doc = "Set the field `authentication_request_extra_params`.\n"]
     pub fn set_authentication_request_extra_params(
@@ -496,17 +434,14 @@ impl SagemakerWorkforceOidcConfigEl {
         self.authentication_request_extra_params = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scope`.\n"]
     pub fn set_scope(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.scope = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerWorkforceOidcConfigEl {
     type O = BlockAssignable<SagemakerWorkforceOidcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -515,7 +450,6 @@ impl ToListMappable for SagemakerWorkforceOidcConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerWorkforceOidcConfigEl {
     #[doc = ""]
     pub authorization_endpoint: PrimField<String>,
@@ -534,7 +468,6 @@ pub struct BuildSagemakerWorkforceOidcConfigEl {
     #[doc = ""]
     pub user_info_endpoint: PrimField<String>,
 }
-
 impl BuildSagemakerWorkforceOidcConfigEl {
     pub fn build(self) -> SagemakerWorkforceOidcConfigEl {
         SagemakerWorkforceOidcConfigEl {
@@ -551,12 +484,10 @@ impl BuildSagemakerWorkforceOidcConfigEl {
         }
     }
 }
-
 pub struct SagemakerWorkforceOidcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerWorkforceOidcConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerWorkforceOidcConfigElRef {
         SagemakerWorkforceOidcConfigElRef {
@@ -565,12 +496,10 @@ impl Ref for SagemakerWorkforceOidcConfigElRef {
         }
     }
 }
-
 impl SagemakerWorkforceOidcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `authentication_request_extra_params` after provisioning.\n"]
     pub fn authentication_request_extra_params(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -578,7 +507,6 @@ impl SagemakerWorkforceOidcConfigElRef {
             format!("{}.authentication_request_extra_params", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -586,12 +514,10 @@ impl SagemakerWorkforceOidcConfigElRef {
             format!("{}.authorization_endpoint", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.client_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -599,17 +525,14 @@ impl SagemakerWorkforceOidcConfigElRef {
             format!("{}.client_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))
     }
-
     #[doc = "Get a reference to the value of field `jwks_uri` after provisioning.\n"]
     pub fn jwks_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.jwks_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `logout_endpoint` after provisioning.\n"]
     pub fn logout_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -617,12 +540,10 @@ impl SagemakerWorkforceOidcConfigElRef {
             format!("{}.logout_endpoint", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.scope", self.base))
     }
-
     #[doc = "Get a reference to the value of field `token_endpoint` after provisioning.\n"]
     pub fn token_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -630,7 +551,6 @@ impl SagemakerWorkforceOidcConfigElRef {
             format!("{}.token_endpoint", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_info_endpoint` after provisioning.\n"]
     pub fn user_info_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -639,17 +559,13 @@ impl SagemakerWorkforceOidcConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerWorkforceSourceIpConfigEl {
     cidrs: SetField<PrimField<String>>,
 }
-
 impl SagemakerWorkforceSourceIpConfigEl {}
-
 impl ToListMappable for SagemakerWorkforceSourceIpConfigEl {
     type O = BlockAssignable<SagemakerWorkforceSourceIpConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -658,23 +574,19 @@ impl ToListMappable for SagemakerWorkforceSourceIpConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerWorkforceSourceIpConfigEl {
     #[doc = ""]
     pub cidrs: SetField<PrimField<String>>,
 }
-
 impl BuildSagemakerWorkforceSourceIpConfigEl {
     pub fn build(self) -> SagemakerWorkforceSourceIpConfigEl {
         SagemakerWorkforceSourceIpConfigEl { cidrs: self.cidrs }
     }
 }
-
 pub struct SagemakerWorkforceSourceIpConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerWorkforceSourceIpConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerWorkforceSourceIpConfigElRef {
         SagemakerWorkforceSourceIpConfigElRef {
@@ -683,18 +595,15 @@ impl Ref for SagemakerWorkforceSourceIpConfigElRef {
         }
     }
 }
-
 impl SagemakerWorkforceSourceIpConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidrs` after provisioning.\n"]
     pub fn cidrs(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.cidrs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerWorkforceWorkforceVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -704,30 +613,25 @@ pub struct SagemakerWorkforceWorkforceVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc_id: Option<PrimField<String>>,
 }
-
 impl SagemakerWorkforceWorkforceVpcConfigEl {
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnets`.\n"]
     pub fn set_subnets(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.subnets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.vpc_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerWorkforceWorkforceVpcConfigEl {
     type O = BlockAssignable<SagemakerWorkforceWorkforceVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -736,9 +640,7 @@ impl ToListMappable for SagemakerWorkforceWorkforceVpcConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerWorkforceWorkforceVpcConfigEl {}
-
 impl BuildSagemakerWorkforceWorkforceVpcConfigEl {
     pub fn build(self) -> SagemakerWorkforceWorkforceVpcConfigEl {
         SagemakerWorkforceWorkforceVpcConfigEl {
@@ -748,12 +650,10 @@ impl BuildSagemakerWorkforceWorkforceVpcConfigEl {
         }
     }
 }
-
 pub struct SagemakerWorkforceWorkforceVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerWorkforceWorkforceVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerWorkforceWorkforceVpcConfigElRef {
         SagemakerWorkforceWorkforceVpcConfigElRef {
@@ -762,12 +662,10 @@ impl Ref for SagemakerWorkforceWorkforceVpcConfigElRef {
         }
     }
 }
-
 impl SagemakerWorkforceWorkforceVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -775,12 +673,10 @@ impl SagemakerWorkforceWorkforceVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_endpoint_id` after provisioning.\n"]
     pub fn vpc_endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -788,13 +684,11 @@ impl SagemakerWorkforceWorkforceVpcConfigElRef {
             format!("{}.vpc_endpoint_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerWorkforceDynamic {
     cognito_config: Option<DynamicBlock<SagemakerWorkforceCognitoConfigEl>>,

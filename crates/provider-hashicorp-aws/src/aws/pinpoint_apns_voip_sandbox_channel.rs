@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct PinpointApnsVoipSandboxChannelData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -36,47 +35,38 @@ struct PinpointApnsVoipSandboxChannelData {
     #[serde(skip_serializing_if = "Option::is_none")]
     token_key_id: Option<PrimField<String>>,
 }
-
 struct PinpointApnsVoipSandboxChannel_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<PinpointApnsVoipSandboxChannelData>,
 }
-
 #[derive(Clone)]
 pub struct PinpointApnsVoipSandboxChannel(Rc<PinpointApnsVoipSandboxChannel_>);
-
 impl PinpointApnsVoipSandboxChannel {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -95,7 +85,6 @@ impl PinpointApnsVoipSandboxChannel {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -105,7 +94,6 @@ impl PinpointApnsVoipSandboxChannel {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -115,67 +103,56 @@ impl PinpointApnsVoipSandboxChannel {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `bundle_id`.\n"]
     pub fn set_bundle_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().bundle_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `certificate`.\n"]
     pub fn set_certificate(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().certificate = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_authentication_method`.\n"]
     pub fn set_default_authentication_method(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().default_authentication_method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `private_key`.\n"]
     pub fn set_private_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().private_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `team_id`.\n"]
     pub fn set_team_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().team_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `token_key`.\n"]
     pub fn set_token_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().token_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `token_key_id`.\n"]
     pub fn set_token_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().token_key_id = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +160,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.application_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +167,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +174,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.certificate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_authentication_method` after provisioning.\n"]
     pub fn default_authentication_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -207,7 +181,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.default_authentication_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -215,12 +188,10 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +199,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.private_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +206,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `team_id` after provisioning.\n"]
     pub fn team_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +213,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.team_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `token_key` after provisioning.\n"]
     pub fn token_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +220,6 @@ impl PinpointApnsVoipSandboxChannel {
             format!("{}.token_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `token_key_id` after provisioning.\n"]
     pub fn token_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +228,6 @@ impl PinpointApnsVoipSandboxChannel {
         )
     }
 }
-
 impl Referable for PinpointApnsVoipSandboxChannel {
     fn extract_ref(&self) -> String {
         format!(
@@ -271,38 +237,30 @@ impl Referable for PinpointApnsVoipSandboxChannel {
         )
     }
 }
-
 impl Resource for PinpointApnsVoipSandboxChannel {}
-
 impl ToListMappable for PinpointApnsVoipSandboxChannel {
     type O = ListRef<PinpointApnsVoipSandboxChannelRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for PinpointApnsVoipSandboxChannel_ {
     fn extract_resource_type(&self) -> String {
         "aws_pinpoint_apns_voip_sandbox_channel".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildPinpointApnsVoipSandboxChannel {
     pub tf_id: String,
     #[doc = ""]
     pub application_id: PrimField<String>,
 }
-
 impl BuildPinpointApnsVoipSandboxChannel {
     pub fn build(self, stack: &mut Stack) -> PinpointApnsVoipSandboxChannel {
         let out = PinpointApnsVoipSandboxChannel(Rc::new(PinpointApnsVoipSandboxChannel_ {
@@ -330,27 +288,22 @@ impl BuildPinpointApnsVoipSandboxChannel {
         out
     }
 }
-
 pub struct PinpointApnsVoipSandboxChannelRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PinpointApnsVoipSandboxChannelRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl PinpointApnsVoipSandboxChannelRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,7 +311,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.application_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -366,7 +318,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -374,7 +325,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.certificate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_authentication_method` after provisioning.\n"]
     pub fn default_authentication_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -382,7 +332,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.default_authentication_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -390,12 +339,10 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -403,7 +350,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.private_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -411,7 +357,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `team_id` after provisioning.\n"]
     pub fn team_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -419,7 +364,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.team_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `token_key` after provisioning.\n"]
     pub fn token_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,7 +371,6 @@ impl PinpointApnsVoipSandboxChannelRef {
             format!("{}.token_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `token_key_id` after provisioning.\n"]
     pub fn token_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

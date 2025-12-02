@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueSecurityConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct GlueSecurityConfigurationData {
     encryption_configuration: Option<Vec<GlueSecurityConfigurationEncryptionConfigurationEl>>,
     dynamic: GlueSecurityConfigurationDynamic,
 }
-
 struct GlueSecurityConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueSecurityConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct GlueSecurityConfiguration(Rc<GlueSecurityConfiguration_>);
-
 impl GlueSecurityConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl GlueSecurityConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl GlueSecurityConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,19 +90,16 @@ impl GlueSecurityConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         self,
@@ -130,12 +115,10 @@ impl GlueSecurityConfiguration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +126,6 @@ impl GlueSecurityConfiguration {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +133,6 @@ impl GlueSecurityConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -162,7 +143,6 @@ impl GlueSecurityConfiguration {
         )
     }
 }
-
 impl Referable for GlueSecurityConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -172,38 +152,30 @@ impl Referable for GlueSecurityConfiguration {
         )
     }
 }
-
 impl Resource for GlueSecurityConfiguration {}
-
 impl ToListMappable for GlueSecurityConfiguration {
     type O = ListRef<GlueSecurityConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueSecurityConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_security_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueSecurityConfiguration {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildGlueSecurityConfiguration {
     pub fn build(self, stack: &mut Stack) -> GlueSecurityConfiguration {
         let out = GlueSecurityConfiguration(Rc::new(GlueSecurityConfiguration_ {
@@ -225,32 +197,26 @@ impl BuildGlueSecurityConfiguration {
         out
     }
 }
-
 pub struct GlueSecurityConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueSecurityConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueSecurityConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +224,6 @@ impl GlueSecurityConfigurationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +231,6 @@ impl GlueSecurityConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -277,7 +241,6 @@ impl GlueSecurityConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -285,25 +248,21 @@ pub struct GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptio
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_arn: Option<PrimField<String>>,
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
     #[doc = "Set the field `cloudwatch_encryption_mode`.\n"]
     pub fn set_cloudwatch_encryption_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cloudwatch_encryption_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
     type O =
         BlockAssignable<GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -312,9 +271,7 @@ impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElCloudw
         })
     }
 }
-
 pub struct BuildGlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {}
-
 impl BuildGlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
     pub fn build(self) -> GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
         GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionEl {
@@ -323,12 +280,10 @@ impl BuildGlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryption
         }
     }
 }
-
 pub struct GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionElRef {
     fn new(
         shared: StackShared,
@@ -340,12 +295,10 @@ impl Ref for GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncrypt
         }
     }
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_encryption_mode` after provisioning.\n"]
     pub fn cloudwatch_encryption_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,13 +306,11 @@ impl GlueSecurityConfigurationEncryptionConfigurationElCloudwatchEncryptionElRef
             format!("{}.cloudwatch_encryption_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -367,25 +318,21 @@ pub struct GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncrypt
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_arn: Option<PrimField<String>>,
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl {
     #[doc = "Set the field `job_bookmarks_encryption_mode`.\n"]
     pub fn set_job_bookmarks_encryption_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.job_bookmarks_encryption_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl {
     type O =
         BlockAssignable<GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -394,9 +341,7 @@ impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElJobBoo
         })
     }
 }
-
 pub struct BuildGlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl {}
-
 impl BuildGlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionEl {
     pub fn build(
         self,
@@ -407,12 +352,10 @@ impl BuildGlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncrypti
         }
     }
 }
-
 pub struct GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionElRef {
     fn new(
         shared: StackShared,
@@ -424,12 +367,10 @@ impl Ref for GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncry
         }
     }
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `job_bookmarks_encryption_mode` after provisioning.\n"]
     pub fn job_bookmarks_encryption_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -437,13 +378,11 @@ impl GlueSecurityConfigurationEncryptionConfigurationElJobBookmarksEncryptionElR
             format!("{}.job_bookmarks_encryption_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -451,24 +390,20 @@ pub struct GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_encryption_mode: Option<PrimField<String>>,
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_encryption_mode`.\n"]
     pub fn set_s3_encryption_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_encryption_mode = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
     type O = BlockAssignable<GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -477,9 +412,7 @@ impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationElS3Encr
         })
     }
 }
-
 pub struct BuildGlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {}
-
 impl BuildGlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
     pub fn build(self) -> GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
         GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
@@ -488,12 +421,10 @@ impl BuildGlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl {
         }
     }
 }
-
 pub struct GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionElRef {
     fn new(
         shared: StackShared,
@@ -505,17 +436,14 @@ impl Ref for GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionElRef
         }
     }
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_encryption_mode` after provisioning.\n"]
     pub fn s3_encryption_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -524,7 +452,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueSecurityConfigurationEncryptionConfigurationElDynamic {
     cloudwatch_encryption: Option<
@@ -536,7 +463,6 @@ struct GlueSecurityConfigurationEncryptionConfigurationElDynamic {
     s3_encryption:
         Option<DynamicBlock<GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct GlueSecurityConfigurationEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -549,7 +475,6 @@ pub struct GlueSecurityConfigurationEncryptionConfigurationEl {
     s3_encryption: Option<Vec<GlueSecurityConfigurationEncryptionConfigurationElS3EncryptionEl>>,
     dynamic: GlueSecurityConfigurationEncryptionConfigurationElDynamic,
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationEl {
     #[doc = "Set the field `cloudwatch_encryption`.\n"]
     pub fn set_cloudwatch_encryption(
@@ -570,7 +495,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `job_bookmarks_encryption`.\n"]
     pub fn set_job_bookmarks_encryption(
         mut self,
@@ -590,7 +514,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `s3_encryption`.\n"]
     pub fn set_s3_encryption(
         mut self,
@@ -607,10 +530,8 @@ impl GlueSecurityConfigurationEncryptionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationEl {
     type O = BlockAssignable<GlueSecurityConfigurationEncryptionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -619,9 +540,7 @@ impl ToListMappable for GlueSecurityConfigurationEncryptionConfigurationEl {
         })
     }
 }
-
 pub struct BuildGlueSecurityConfigurationEncryptionConfigurationEl {}
-
 impl BuildGlueSecurityConfigurationEncryptionConfigurationEl {
     pub fn build(self) -> GlueSecurityConfigurationEncryptionConfigurationEl {
         GlueSecurityConfigurationEncryptionConfigurationEl {
@@ -632,12 +551,10 @@ impl BuildGlueSecurityConfigurationEncryptionConfigurationEl {
         }
     }
 }
-
 pub struct GlueSecurityConfigurationEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueSecurityConfigurationEncryptionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -649,12 +566,10 @@ impl Ref for GlueSecurityConfigurationEncryptionConfigurationElRef {
         }
     }
 }
-
 impl GlueSecurityConfigurationEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_encryption` after provisioning.\n"]
     pub fn cloudwatch_encryption(
         &self,
@@ -664,7 +579,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationElRef {
             format!("{}.cloudwatch_encryption", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_bookmarks_encryption` after provisioning.\n"]
     pub fn job_bookmarks_encryption(
         &self,
@@ -675,7 +589,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationElRef {
             format!("{}.job_bookmarks_encryption", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_encryption` after provisioning.\n"]
     pub fn s3_encryption(
         &self,
@@ -686,7 +599,6 @@ impl GlueSecurityConfigurationEncryptionConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueSecurityConfigurationDynamic {
     encryption_configuration:

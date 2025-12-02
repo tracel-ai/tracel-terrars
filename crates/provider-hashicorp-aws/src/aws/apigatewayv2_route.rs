@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Apigatewayv2RouteData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -42,47 +41,38 @@ struct Apigatewayv2RouteData {
     request_parameter: Option<Vec<Apigatewayv2RouteRequestParameterEl>>,
     dynamic: Apigatewayv2RouteDynamic,
 }
-
 struct Apigatewayv2Route_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Apigatewayv2RouteData>,
 }
-
 #[derive(Clone)]
 pub struct Apigatewayv2Route(Rc<Apigatewayv2Route_>);
-
 impl Apigatewayv2Route {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -101,7 +91,6 @@ impl Apigatewayv2Route {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -111,7 +100,6 @@ impl Apigatewayv2Route {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -121,73 +109,61 @@ impl Apigatewayv2Route {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `api_key_required`.\n"]
     pub fn set_api_key_required(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().api_key_required = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authorization_scopes`.\n"]
     pub fn set_authorization_scopes(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().authorization_scopes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authorization_type`.\n"]
     pub fn set_authorization_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().authorization_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authorizer_id`.\n"]
     pub fn set_authorizer_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().authorizer_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_selection_expression`.\n"]
     pub fn set_model_selection_expression(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().model_selection_expression = Some(v.into());
         self
     }
-
     #[doc = "Set the field `operation_name`.\n"]
     pub fn set_operation_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().operation_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_models`.\n"]
     pub fn set_request_models(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().request_models = Some(v.into());
         self
     }
-
     #[doc = "Set the field `route_response_selection_expression`.\n"]
     pub fn set_route_response_selection_expression(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().route_response_selection_expression = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target`.\n"]
     pub fn set_target(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().target = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_parameter`.\n"]
     pub fn set_request_parameter(
         self,
@@ -203,7 +179,6 @@ impl Apigatewayv2Route {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +186,6 @@ impl Apigatewayv2Route {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_required` after provisioning.\n"]
     pub fn api_key_required(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -219,7 +193,6 @@ impl Apigatewayv2Route {
             format!("{}.api_key_required", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorization_scopes` after provisioning.\n"]
     pub fn authorization_scopes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -227,7 +200,6 @@ impl Apigatewayv2Route {
             format!("{}.authorization_scopes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +207,6 @@ impl Apigatewayv2Route {
             format!("{}.authorization_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_id` after provisioning.\n"]
     pub fn authorizer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,12 +214,10 @@ impl Apigatewayv2Route {
             format!("{}.authorizer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `model_selection_expression` after provisioning.\n"]
     pub fn model_selection_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +225,6 @@ impl Apigatewayv2Route {
             format!("{}.model_selection_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `operation_name` after provisioning.\n"]
     pub fn operation_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +232,6 @@ impl Apigatewayv2Route {
             format!("{}.operation_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +239,6 @@ impl Apigatewayv2Route {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_models` after provisioning.\n"]
     pub fn request_models(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -280,7 +246,6 @@ impl Apigatewayv2Route {
             format!("{}.request_models", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_key` after provisioning.\n"]
     pub fn route_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +253,6 @@ impl Apigatewayv2Route {
             format!("{}.route_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_response_selection_expression` after provisioning.\n"]
     pub fn route_response_selection_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -296,7 +260,6 @@ impl Apigatewayv2Route {
             format!("{}.route_response_selection_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +268,6 @@ impl Apigatewayv2Route {
         )
     }
 }
-
 impl Referable for Apigatewayv2Route {
     fn extract_ref(&self) -> String {
         format!(
@@ -315,32 +277,25 @@ impl Referable for Apigatewayv2Route {
         )
     }
 }
-
 impl Resource for Apigatewayv2Route {}
-
 impl ToListMappable for Apigatewayv2Route {
     type O = ListRef<Apigatewayv2RouteRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Apigatewayv2Route_ {
     fn extract_resource_type(&self) -> String {
         "aws_apigatewayv2_route".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildApigatewayv2Route {
     pub tf_id: String,
     #[doc = ""]
@@ -348,7 +303,6 @@ pub struct BuildApigatewayv2Route {
     #[doc = ""]
     pub route_key: PrimField<String>,
 }
-
 impl BuildApigatewayv2Route {
     pub fn build(self, stack: &mut Stack) -> Apigatewayv2Route {
         let out = Apigatewayv2Route(Rc::new(Apigatewayv2Route_ {
@@ -380,27 +334,22 @@ impl BuildApigatewayv2Route {
         out
     }
 }
-
 pub struct Apigatewayv2RouteRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Apigatewayv2RouteRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Apigatewayv2RouteRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,7 +357,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_required` after provisioning.\n"]
     pub fn api_key_required(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -416,7 +364,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.api_key_required", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorization_scopes` after provisioning.\n"]
     pub fn authorization_scopes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -424,7 +371,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.authorization_scopes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -432,7 +378,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.authorization_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_id` after provisioning.\n"]
     pub fn authorizer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -440,12 +385,10 @@ impl Apigatewayv2RouteRef {
             format!("{}.authorizer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `model_selection_expression` after provisioning.\n"]
     pub fn model_selection_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -453,7 +396,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.model_selection_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `operation_name` after provisioning.\n"]
     pub fn operation_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -461,7 +403,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.operation_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -469,7 +410,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_models` after provisioning.\n"]
     pub fn request_models(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -477,7 +417,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.request_models", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_key` after provisioning.\n"]
     pub fn route_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -485,7 +424,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.route_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_response_selection_expression` after provisioning.\n"]
     pub fn route_response_selection_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -493,7 +431,6 @@ impl Apigatewayv2RouteRef {
             format!("{}.route_response_selection_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,18 +439,14 @@ impl Apigatewayv2RouteRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Apigatewayv2RouteRequestParameterEl {
     request_parameter_key: PrimField<String>,
     required: PrimField<bool>,
 }
-
 impl Apigatewayv2RouteRequestParameterEl {}
-
 impl ToListMappable for Apigatewayv2RouteRequestParameterEl {
     type O = BlockAssignable<Apigatewayv2RouteRequestParameterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -522,14 +455,12 @@ impl ToListMappable for Apigatewayv2RouteRequestParameterEl {
         })
     }
 }
-
 pub struct BuildApigatewayv2RouteRequestParameterEl {
     #[doc = ""]
     pub request_parameter_key: PrimField<String>,
     #[doc = ""]
     pub required: PrimField<bool>,
 }
-
 impl BuildApigatewayv2RouteRequestParameterEl {
     pub fn build(self) -> Apigatewayv2RouteRequestParameterEl {
         Apigatewayv2RouteRequestParameterEl {
@@ -538,12 +469,10 @@ impl BuildApigatewayv2RouteRequestParameterEl {
         }
     }
 }
-
 pub struct Apigatewayv2RouteRequestParameterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Apigatewayv2RouteRequestParameterElRef {
     fn new(shared: StackShared, base: String) -> Apigatewayv2RouteRequestParameterElRef {
         Apigatewayv2RouteRequestParameterElRef {
@@ -552,12 +481,10 @@ impl Ref for Apigatewayv2RouteRequestParameterElRef {
         }
     }
 }
-
 impl Apigatewayv2RouteRequestParameterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `request_parameter_key` after provisioning.\n"]
     pub fn request_parameter_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -565,13 +492,11 @@ impl Apigatewayv2RouteRequestParameterElRef {
             format!("{}.request_parameter_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `required` after provisioning.\n"]
     pub fn required(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.required", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct Apigatewayv2RouteDynamic {
     request_parameter: Option<DynamicBlock<Apigatewayv2RouteRequestParameterEl>>,

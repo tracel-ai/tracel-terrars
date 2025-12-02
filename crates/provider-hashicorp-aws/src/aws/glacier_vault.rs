@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlacierVaultData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct GlacierVaultData {
     notification: Option<Vec<GlacierVaultNotificationEl>>,
     dynamic: GlacierVaultDynamic,
 }
-
 struct GlacierVault_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlacierVaultData>,
 }
-
 #[derive(Clone)]
 pub struct GlacierVault(Rc<GlacierVault_>);
-
 impl GlacierVault {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl GlacierVault {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl GlacierVault {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,37 +96,31 @@ impl GlacierVault {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `access_policy`.\n"]
     pub fn set_access_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().access_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `notification`.\n"]
     pub fn set_notification(
         self,
@@ -154,7 +136,6 @@ impl GlacierVault {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `access_policy` after provisioning.\n"]
     pub fn access_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,17 +143,14 @@ impl GlacierVault {
             format!("{}.access_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +158,6 @@ impl GlacierVault {
             format!("{}.location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +165,6 @@ impl GlacierVault {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,7 +172,6 @@ impl GlacierVault {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -204,7 +179,6 @@ impl GlacierVault {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -212,7 +186,6 @@ impl GlacierVault {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification` after provisioning.\n"]
     pub fn notification(&self) -> ListRef<GlacierVaultNotificationElRef> {
         ListRef::new(
@@ -221,7 +194,6 @@ impl GlacierVault {
         )
     }
 }
-
 impl Referable for GlacierVault {
     fn extract_ref(&self) -> String {
         format!(
@@ -231,38 +203,30 @@ impl Referable for GlacierVault {
         )
     }
 }
-
 impl Resource for GlacierVault {}
-
 impl ToListMappable for GlacierVault {
     type O = ListRef<GlacierVaultRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlacierVault_ {
     fn extract_resource_type(&self) -> String {
         "aws_glacier_vault".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlacierVault {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildGlacierVault {
     pub fn build(self, stack: &mut Stack) -> GlacierVault {
         let out = GlacierVault(Rc::new(GlacierVault_ {
@@ -287,27 +251,22 @@ impl BuildGlacierVault {
         out
     }
 }
-
 pub struct GlacierVaultRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlacierVaultRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlacierVaultRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_policy` after provisioning.\n"]
     pub fn access_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,17 +274,14 @@ impl GlacierVaultRef {
             format!("{}.access_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +289,6 @@ impl GlacierVaultRef {
             format!("{}.location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,7 +296,6 @@ impl GlacierVaultRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -349,7 +303,6 @@ impl GlacierVaultRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -357,7 +310,6 @@ impl GlacierVaultRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -365,7 +317,6 @@ impl GlacierVaultRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification` after provisioning.\n"]
     pub fn notification(&self) -> ListRef<GlacierVaultNotificationElRef> {
         ListRef::new(
@@ -374,18 +325,14 @@ impl GlacierVaultRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlacierVaultNotificationEl {
     events: SetField<PrimField<String>>,
     sns_topic: PrimField<String>,
 }
-
 impl GlacierVaultNotificationEl {}
-
 impl ToListMappable for GlacierVaultNotificationEl {
     type O = BlockAssignable<GlacierVaultNotificationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -394,14 +341,12 @@ impl ToListMappable for GlacierVaultNotificationEl {
         })
     }
 }
-
 pub struct BuildGlacierVaultNotificationEl {
     #[doc = ""]
     pub events: SetField<PrimField<String>>,
     #[doc = ""]
     pub sns_topic: PrimField<String>,
 }
-
 impl BuildGlacierVaultNotificationEl {
     pub fn build(self) -> GlacierVaultNotificationEl {
         GlacierVaultNotificationEl {
@@ -410,12 +355,10 @@ impl BuildGlacierVaultNotificationEl {
         }
     }
 }
-
 pub struct GlacierVaultNotificationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlacierVaultNotificationElRef {
     fn new(shared: StackShared, base: String) -> GlacierVaultNotificationElRef {
         GlacierVaultNotificationElRef {
@@ -424,23 +367,19 @@ impl Ref for GlacierVaultNotificationElRef {
         }
     }
 }
-
 impl GlacierVaultNotificationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `events` after provisioning.\n"]
     pub fn events(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.events", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sns_topic` after provisioning.\n"]
     pub fn sns_topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.sns_topic", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlacierVaultDynamic {
     notification: Option<DynamicBlock<GlacierVaultNotificationEl>>,

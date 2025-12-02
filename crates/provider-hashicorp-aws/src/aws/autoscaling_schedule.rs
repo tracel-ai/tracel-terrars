@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AutoscalingScheduleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct AutoscalingScheduleData {
     #[serde(skip_serializing_if = "Option::is_none")]
     time_zone: Option<PrimField<String>>,
 }
-
 struct AutoscalingSchedule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AutoscalingScheduleData>,
 }
-
 #[derive(Clone)]
 pub struct AutoscalingSchedule(Rc<AutoscalingSchedule_>);
-
 impl AutoscalingSchedule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl AutoscalingSchedule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl AutoscalingSchedule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,66 +102,55 @@ impl AutoscalingSchedule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `desired_capacity`.\n"]
     pub fn set_desired_capacity(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().desired_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `end_time`.\n"]
     pub fn set_end_time(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().end_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_size`.\n"]
     pub fn set_max_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_size`.\n"]
     pub fn set_min_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().min_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recurrence`.\n"]
     pub fn set_recurrence(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().recurrence = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_time`.\n"]
     pub fn set_start_time(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().start_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `time_zone`.\n"]
     pub fn set_time_zone(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().time_zone = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +158,6 @@ impl AutoscalingSchedule {
             format!("{}.autoscaling_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -189,7 +165,6 @@ impl AutoscalingSchedule {
             format!("{}.desired_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,12 +172,10 @@ impl AutoscalingSchedule {
             format!("{}.end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -210,7 +183,6 @@ impl AutoscalingSchedule {
             format!("{}.max_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -218,7 +190,6 @@ impl AutoscalingSchedule {
             format!("{}.min_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recurrence` after provisioning.\n"]
     pub fn recurrence(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +197,6 @@ impl AutoscalingSchedule {
             format!("{}.recurrence", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +204,6 @@ impl AutoscalingSchedule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scheduled_action_name` after provisioning.\n"]
     pub fn scheduled_action_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +211,6 @@ impl AutoscalingSchedule {
             format!("{}.scheduled_action_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +218,6 @@ impl AutoscalingSchedule {
             format!("{}.start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -259,7 +226,6 @@ impl AutoscalingSchedule {
         )
     }
 }
-
 impl Referable for AutoscalingSchedule {
     fn extract_ref(&self) -> String {
         format!(
@@ -269,32 +235,25 @@ impl Referable for AutoscalingSchedule {
         )
     }
 }
-
 impl Resource for AutoscalingSchedule {}
-
 impl ToListMappable for AutoscalingSchedule {
     type O = ListRef<AutoscalingScheduleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AutoscalingSchedule_ {
     fn extract_resource_type(&self) -> String {
         "aws_autoscaling_schedule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAutoscalingSchedule {
     pub tf_id: String,
     #[doc = ""]
@@ -302,7 +261,6 @@ pub struct BuildAutoscalingSchedule {
     #[doc = ""]
     pub scheduled_action_name: PrimField<String>,
 }
-
 impl BuildAutoscalingSchedule {
     pub fn build(self, stack: &mut Stack) -> AutoscalingSchedule {
         let out = AutoscalingSchedule(Rc::new(AutoscalingSchedule_ {
@@ -330,32 +288,26 @@ impl BuildAutoscalingSchedule {
         out
     }
 }
-
 pub struct AutoscalingScheduleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AutoscalingScheduleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AutoscalingScheduleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +315,6 @@ impl AutoscalingScheduleRef {
             format!("{}.autoscaling_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -371,7 +322,6 @@ impl AutoscalingScheduleRef {
             format!("{}.desired_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,12 +329,10 @@ impl AutoscalingScheduleRef {
             format!("{}.end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_size` after provisioning.\n"]
     pub fn max_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -392,7 +340,6 @@ impl AutoscalingScheduleRef {
             format!("{}.max_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_size` after provisioning.\n"]
     pub fn min_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -400,7 +347,6 @@ impl AutoscalingScheduleRef {
             format!("{}.min_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recurrence` after provisioning.\n"]
     pub fn recurrence(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,7 +354,6 @@ impl AutoscalingScheduleRef {
             format!("{}.recurrence", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -416,7 +361,6 @@ impl AutoscalingScheduleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scheduled_action_name` after provisioning.\n"]
     pub fn scheduled_action_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -424,7 +368,6 @@ impl AutoscalingScheduleRef {
             format!("{}.scheduled_action_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -432,7 +375,6 @@ impl AutoscalingScheduleRef {
             format!("{}.start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(

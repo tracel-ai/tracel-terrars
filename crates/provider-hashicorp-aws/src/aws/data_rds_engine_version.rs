@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataRdsEngineVersionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -41,103 +40,85 @@ struct DataRdsEngineVersionData {
     filter: Option<Vec<DataRdsEngineVersionFilterEl>>,
     dynamic: DataRdsEngineVersionDynamic,
 }
-
 struct DataRdsEngineVersion_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataRdsEngineVersionData>,
 }
-
 #[derive(Clone)]
 pub struct DataRdsEngineVersion(Rc<DataRdsEngineVersion_>);
-
 impl DataRdsEngineVersion {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `default_only`.\n"]
     pub fn set_default_only(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().default_only = Some(v.into());
         self
     }
-
     #[doc = "Set the field `has_major_target`.\n"]
     pub fn set_has_major_target(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().has_major_target = Some(v.into());
         self
     }
-
     #[doc = "Set the field `has_minor_target`.\n"]
     pub fn set_has_minor_target(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().has_minor_target = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_all`.\n"]
     pub fn set_include_all(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().include_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `latest`.\n"]
     pub fn set_latest(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().latest = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter_group_family`.\n"]
     pub fn set_parameter_group_family(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().parameter_group_family = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preferred_major_targets`.\n"]
     pub fn set_preferred_major_targets(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().preferred_major_targets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preferred_upgrade_targets`.\n"]
     pub fn set_preferred_upgrade_targets(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().preferred_upgrade_targets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preferred_versions`.\n"]
     pub fn set_preferred_versions(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().preferred_versions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `version`.\n"]
     pub fn set_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataRdsEngineVersionFilterEl>>) -> Self {
         match v.into() {
@@ -150,7 +131,6 @@ impl DataRdsEngineVersion {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `default_character_set` after provisioning.\n"]
     pub fn default_character_set(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +138,6 @@ impl DataRdsEngineVersion {
             format!("{}.default_character_set", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_only` after provisioning.\n"]
     pub fn default_only(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -166,7 +145,6 @@ impl DataRdsEngineVersion {
             format!("{}.default_only", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +152,6 @@ impl DataRdsEngineVersion {
             format!("{}.engine", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_description` after provisioning.\n"]
     pub fn engine_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +159,6 @@ impl DataRdsEngineVersion {
             format!("{}.engine_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `exportable_log_types` after provisioning.\n"]
     pub fn exportable_log_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -190,7 +166,6 @@ impl DataRdsEngineVersion {
             format!("{}.exportable_log_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_major_target` after provisioning.\n"]
     pub fn has_major_target(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -198,7 +173,6 @@ impl DataRdsEngineVersion {
             format!("{}.has_major_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_minor_target` after provisioning.\n"]
     pub fn has_minor_target(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -206,12 +180,10 @@ impl DataRdsEngineVersion {
             format!("{}.has_minor_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_all` after provisioning.\n"]
     pub fn include_all(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -219,7 +191,6 @@ impl DataRdsEngineVersion {
             format!("{}.include_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `latest` after provisioning.\n"]
     pub fn latest(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -227,7 +198,6 @@ impl DataRdsEngineVersion {
             format!("{}.latest", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameter_group_family` after provisioning.\n"]
     pub fn parameter_group_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +205,6 @@ impl DataRdsEngineVersion {
             format!("{}.parameter_group_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_major_targets` after provisioning.\n"]
     pub fn preferred_major_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -243,7 +212,6 @@ impl DataRdsEngineVersion {
             format!("{}.preferred_major_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_upgrade_targets` after provisioning.\n"]
     pub fn preferred_upgrade_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -251,7 +219,6 @@ impl DataRdsEngineVersion {
             format!("{}.preferred_upgrade_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_versions` after provisioning.\n"]
     pub fn preferred_versions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -259,7 +226,6 @@ impl DataRdsEngineVersion {
             format!("{}.preferred_versions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +233,6 @@ impl DataRdsEngineVersion {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,7 +240,6 @@ impl DataRdsEngineVersion {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_character_sets` after provisioning.\n"]
     pub fn supported_character_sets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -283,7 +247,6 @@ impl DataRdsEngineVersion {
             format!("{}.supported_character_sets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_feature_names` after provisioning.\n"]
     pub fn supported_feature_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -291,7 +254,6 @@ impl DataRdsEngineVersion {
             format!("{}.supported_feature_names", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_modes` after provisioning.\n"]
     pub fn supported_modes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -299,7 +261,6 @@ impl DataRdsEngineVersion {
             format!("{}.supported_modes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_timezones` after provisioning.\n"]
     pub fn supported_timezones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -307,7 +268,6 @@ impl DataRdsEngineVersion {
             format!("{}.supported_timezones", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_certificate_rotation_without_restart` after provisioning.\n"]
     pub fn supports_certificate_rotation_without_restart(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -318,7 +278,6 @@ impl DataRdsEngineVersion {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_global_databases` after provisioning.\n"]
     pub fn supports_global_databases(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -326,7 +285,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_global_databases", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_integrations` after provisioning.\n"]
     pub fn supports_integrations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -334,7 +292,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_integrations", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_limitless_database` after provisioning.\n"]
     pub fn supports_limitless_database(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -342,7 +299,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_limitless_database", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_local_write_forwarding` after provisioning.\n"]
     pub fn supports_local_write_forwarding(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -350,7 +306,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_local_write_forwarding", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_log_exports_to_cloudwatch` after provisioning.\n"]
     pub fn supports_log_exports_to_cloudwatch(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -358,7 +313,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_parallel_query` after provisioning.\n"]
     pub fn supports_parallel_query(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -366,7 +320,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_parallel_query", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_read_replica` after provisioning.\n"]
     pub fn supports_read_replica(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -374,7 +327,6 @@ impl DataRdsEngineVersion {
             format!("{}.supports_read_replica", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_major_targets` after provisioning.\n"]
     pub fn valid_major_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -382,7 +334,6 @@ impl DataRdsEngineVersion {
             format!("{}.valid_major_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_minor_targets` after provisioning.\n"]
     pub fn valid_minor_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -390,7 +341,6 @@ impl DataRdsEngineVersion {
             format!("{}.valid_minor_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_upgrade_targets` after provisioning.\n"]
     pub fn valid_upgrade_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -398,7 +348,6 @@ impl DataRdsEngineVersion {
             format!("{}.valid_upgrade_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +355,6 @@ impl DataRdsEngineVersion {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_actual` after provisioning.\n"]
     pub fn version_actual(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +362,6 @@ impl DataRdsEngineVersion {
             format!("{}.version_actual", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -423,7 +370,6 @@ impl DataRdsEngineVersion {
         )
     }
 }
-
 impl Referable for DataRdsEngineVersion {
     fn extract_ref(&self) -> String {
         format!(
@@ -433,38 +379,30 @@ impl Referable for DataRdsEngineVersion {
         )
     }
 }
-
 impl Datasource for DataRdsEngineVersion {}
-
 impl ToListMappable for DataRdsEngineVersion {
     type O = ListRef<DataRdsEngineVersionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataRdsEngineVersion_ {
     fn extract_datasource_type(&self) -> String {
         "aws_rds_engine_version".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataRdsEngineVersion {
     pub tf_id: String,
     #[doc = ""]
     pub engine: PrimField<String>,
 }
-
 impl BuildDataRdsEngineVersion {
     pub fn build(self, stack: &mut Stack) -> DataRdsEngineVersion {
         let out = DataRdsEngineVersion(Rc::new(DataRdsEngineVersion_ {
@@ -495,27 +433,22 @@ impl BuildDataRdsEngineVersion {
         out
     }
 }
-
 pub struct DataRdsEngineVersionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRdsEngineVersionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataRdsEngineVersionRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `default_character_set` after provisioning.\n"]
     pub fn default_character_set(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +456,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.default_character_set", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_only` after provisioning.\n"]
     pub fn default_only(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -531,7 +463,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.default_only", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -539,7 +470,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.engine", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_description` after provisioning.\n"]
     pub fn engine_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +477,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.engine_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `exportable_log_types` after provisioning.\n"]
     pub fn exportable_log_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -555,7 +484,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.exportable_log_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_major_target` after provisioning.\n"]
     pub fn has_major_target(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -563,7 +491,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.has_major_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_minor_target` after provisioning.\n"]
     pub fn has_minor_target(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -571,12 +498,10 @@ impl DataRdsEngineVersionRef {
             format!("{}.has_minor_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_all` after provisioning.\n"]
     pub fn include_all(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -584,7 +509,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.include_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `latest` after provisioning.\n"]
     pub fn latest(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -592,7 +516,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.latest", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameter_group_family` after provisioning.\n"]
     pub fn parameter_group_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -600,7 +523,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.parameter_group_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_major_targets` after provisioning.\n"]
     pub fn preferred_major_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -608,7 +530,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.preferred_major_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_upgrade_targets` after provisioning.\n"]
     pub fn preferred_upgrade_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -616,7 +537,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.preferred_upgrade_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_versions` after provisioning.\n"]
     pub fn preferred_versions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -624,7 +544,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.preferred_versions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -632,7 +551,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -640,7 +558,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_character_sets` after provisioning.\n"]
     pub fn supported_character_sets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -648,7 +565,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supported_character_sets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_feature_names` after provisioning.\n"]
     pub fn supported_feature_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -656,7 +572,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supported_feature_names", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_modes` after provisioning.\n"]
     pub fn supported_modes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -664,7 +579,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supported_modes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_timezones` after provisioning.\n"]
     pub fn supported_timezones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -672,7 +586,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supported_timezones", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_certificate_rotation_without_restart` after provisioning.\n"]
     pub fn supports_certificate_rotation_without_restart(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -683,7 +596,6 @@ impl DataRdsEngineVersionRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_global_databases` after provisioning.\n"]
     pub fn supports_global_databases(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -691,7 +603,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_global_databases", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_integrations` after provisioning.\n"]
     pub fn supports_integrations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -699,7 +610,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_integrations", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_limitless_database` after provisioning.\n"]
     pub fn supports_limitless_database(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -707,7 +617,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_limitless_database", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_local_write_forwarding` after provisioning.\n"]
     pub fn supports_local_write_forwarding(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -715,7 +624,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_local_write_forwarding", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_log_exports_to_cloudwatch` after provisioning.\n"]
     pub fn supports_log_exports_to_cloudwatch(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -723,7 +631,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_log_exports_to_cloudwatch", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_parallel_query` after provisioning.\n"]
     pub fn supports_parallel_query(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -731,7 +638,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_parallel_query", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `supports_read_replica` after provisioning.\n"]
     pub fn supports_read_replica(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -739,7 +645,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.supports_read_replica", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_major_targets` after provisioning.\n"]
     pub fn valid_major_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -747,7 +652,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.valid_major_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_minor_targets` after provisioning.\n"]
     pub fn valid_minor_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -755,7 +659,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.valid_minor_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_upgrade_targets` after provisioning.\n"]
     pub fn valid_upgrade_targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -763,7 +666,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.valid_upgrade_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -771,7 +673,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_actual` after provisioning.\n"]
     pub fn version_actual(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -779,7 +680,6 @@ impl DataRdsEngineVersionRef {
             format!("{}.version_actual", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -788,18 +688,14 @@ impl DataRdsEngineVersionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataRdsEngineVersionFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataRdsEngineVersionFilterEl {}
-
 impl ToListMappable for DataRdsEngineVersionFilterEl {
     type O = BlockAssignable<DataRdsEngineVersionFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -808,14 +704,12 @@ impl ToListMappable for DataRdsEngineVersionFilterEl {
         })
     }
 }
-
 pub struct BuildDataRdsEngineVersionFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataRdsEngineVersionFilterEl {
     pub fn build(self) -> DataRdsEngineVersionFilterEl {
         DataRdsEngineVersionFilterEl {
@@ -824,12 +718,10 @@ impl BuildDataRdsEngineVersionFilterEl {
         }
     }
 }
-
 pub struct DataRdsEngineVersionFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRdsEngineVersionFilterElRef {
     fn new(shared: StackShared, base: String) -> DataRdsEngineVersionFilterElRef {
         DataRdsEngineVersionFilterElRef {
@@ -838,23 +730,19 @@ impl Ref for DataRdsEngineVersionFilterElRef {
         }
     }
 }
-
 impl DataRdsEngineVersionFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataRdsEngineVersionDynamic {
     filter: Option<DynamicBlock<DataRdsEngineVersionFilterEl>>,

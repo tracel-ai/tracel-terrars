@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct OsisPipelineData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct OsisPipelineData {
     vpc_options: Option<Vec<OsisPipelineVpcOptionsEl>>,
     dynamic: OsisPipelineDynamic,
 }
-
 struct OsisPipeline_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<OsisPipelineData>,
 }
-
 #[derive(Clone)]
 pub struct OsisPipeline(Rc<OsisPipeline_>);
-
 impl OsisPipeline {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl OsisPipeline {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl OsisPipeline {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,19 +101,16 @@ impl OsisPipeline {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `buffer_options`.\n"]
     pub fn set_buffer_options(
         self,
@@ -141,7 +126,6 @@ impl OsisPipeline {
         }
         self
     }
-
     #[doc = "Set the field `encryption_at_rest_options`.\n"]
     pub fn set_encryption_at_rest_options(
         self,
@@ -157,7 +141,6 @@ impl OsisPipeline {
         }
         self
     }
-
     #[doc = "Set the field `log_publishing_options`.\n"]
     pub fn set_log_publishing_options(
         self,
@@ -173,13 +156,11 @@ impl OsisPipeline {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<OsisPipelineTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_options`.\n"]
     pub fn set_vpc_options(self, v: impl Into<BlockAssignable<OsisPipelineVpcOptionsEl>>) -> Self {
         match v.into() {
@@ -192,12 +173,10 @@ impl OsisPipeline {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ingest_endpoint_urls` after provisioning.\n"]
     pub fn ingest_endpoint_urls(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -205,7 +184,6 @@ impl OsisPipeline {
             format!("{}.ingest_endpoint_urls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_units` after provisioning.\n"]
     pub fn max_units(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -213,7 +191,6 @@ impl OsisPipeline {
             format!("{}.max_units", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_units` after provisioning.\n"]
     pub fn min_units(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -221,7 +198,6 @@ impl OsisPipeline {
             format!("{}.min_units", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_arn` after provisioning.\n"]
     pub fn pipeline_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +205,6 @@ impl OsisPipeline {
             format!("{}.pipeline_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_configuration_body` after provisioning.\n"]
     pub fn pipeline_configuration_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +212,6 @@ impl OsisPipeline {
             format!("{}.pipeline_configuration_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_name` after provisioning.\n"]
     pub fn pipeline_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +219,6 @@ impl OsisPipeline {
             format!("{}.pipeline_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +226,6 @@ impl OsisPipeline {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -261,7 +233,6 @@ impl OsisPipeline {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -269,7 +240,6 @@ impl OsisPipeline {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `buffer_options` after provisioning.\n"]
     pub fn buffer_options(&self) -> ListRef<OsisPipelineBufferOptionsElRef> {
         ListRef::new(
@@ -277,7 +247,6 @@ impl OsisPipeline {
             format!("{}.buffer_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_at_rest_options` after provisioning.\n"]
     pub fn encryption_at_rest_options(&self) -> ListRef<OsisPipelineEncryptionAtRestOptionsElRef> {
         ListRef::new(
@@ -285,7 +254,6 @@ impl OsisPipeline {
             format!("{}.encryption_at_rest_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_publishing_options` after provisioning.\n"]
     pub fn log_publishing_options(&self) -> ListRef<OsisPipelineLogPublishingOptionsElRef> {
         ListRef::new(
@@ -293,7 +261,6 @@ impl OsisPipeline {
             format!("{}.log_publishing_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OsisPipelineTimeoutsElRef {
         OsisPipelineTimeoutsElRef::new(
@@ -301,7 +268,6 @@ impl OsisPipeline {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OsisPipelineVpcOptionsElRef> {
         ListRef::new(
@@ -310,7 +276,6 @@ impl OsisPipeline {
         )
     }
 }
-
 impl Referable for OsisPipeline {
     fn extract_ref(&self) -> String {
         format!(
@@ -320,32 +285,25 @@ impl Referable for OsisPipeline {
         )
     }
 }
-
 impl Resource for OsisPipeline {}
-
 impl ToListMappable for OsisPipeline {
     type O = ListRef<OsisPipelineRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for OsisPipeline_ {
     fn extract_resource_type(&self) -> String {
         "aws_osis_pipeline".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildOsisPipeline {
     pub tf_id: String,
     #[doc = ""]
@@ -357,7 +315,6 @@ pub struct BuildOsisPipeline {
     #[doc = ""]
     pub pipeline_name: PrimField<String>,
 }
-
 impl BuildOsisPipeline {
     pub fn build(self, stack: &mut Stack) -> OsisPipeline {
         let out = OsisPipeline(Rc::new(OsisPipeline_ {
@@ -386,32 +343,26 @@ impl BuildOsisPipeline {
         out
     }
 }
-
 pub struct OsisPipelineRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl OsisPipelineRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ingest_endpoint_urls` after provisioning.\n"]
     pub fn ingest_endpoint_urls(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -419,7 +370,6 @@ impl OsisPipelineRef {
             format!("{}.ingest_endpoint_urls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_units` after provisioning.\n"]
     pub fn max_units(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -427,7 +377,6 @@ impl OsisPipelineRef {
             format!("{}.max_units", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_units` after provisioning.\n"]
     pub fn min_units(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -435,7 +384,6 @@ impl OsisPipelineRef {
             format!("{}.min_units", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_arn` after provisioning.\n"]
     pub fn pipeline_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +391,6 @@ impl OsisPipelineRef {
             format!("{}.pipeline_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_configuration_body` after provisioning.\n"]
     pub fn pipeline_configuration_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +398,6 @@ impl OsisPipelineRef {
             format!("{}.pipeline_configuration_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_name` after provisioning.\n"]
     pub fn pipeline_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,7 +405,6 @@ impl OsisPipelineRef {
             format!("{}.pipeline_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -467,7 +412,6 @@ impl OsisPipelineRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -475,7 +419,6 @@ impl OsisPipelineRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -483,7 +426,6 @@ impl OsisPipelineRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `buffer_options` after provisioning.\n"]
     pub fn buffer_options(&self) -> ListRef<OsisPipelineBufferOptionsElRef> {
         ListRef::new(
@@ -491,7 +433,6 @@ impl OsisPipelineRef {
             format!("{}.buffer_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_at_rest_options` after provisioning.\n"]
     pub fn encryption_at_rest_options(&self) -> ListRef<OsisPipelineEncryptionAtRestOptionsElRef> {
         ListRef::new(
@@ -499,7 +440,6 @@ impl OsisPipelineRef {
             format!("{}.encryption_at_rest_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_publishing_options` after provisioning.\n"]
     pub fn log_publishing_options(&self) -> ListRef<OsisPipelineLogPublishingOptionsElRef> {
         ListRef::new(
@@ -507,7 +447,6 @@ impl OsisPipelineRef {
             format!("{}.log_publishing_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OsisPipelineTimeoutsElRef {
         OsisPipelineTimeoutsElRef::new(
@@ -515,7 +454,6 @@ impl OsisPipelineRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OsisPipelineVpcOptionsElRef> {
         ListRef::new(
@@ -524,17 +462,13 @@ impl OsisPipelineRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineBufferOptionsEl {
     persistent_buffer_enabled: PrimField<bool>,
 }
-
 impl OsisPipelineBufferOptionsEl {}
-
 impl ToListMappable for OsisPipelineBufferOptionsEl {
     type O = BlockAssignable<OsisPipelineBufferOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -543,12 +477,10 @@ impl ToListMappable for OsisPipelineBufferOptionsEl {
         })
     }
 }
-
 pub struct BuildOsisPipelineBufferOptionsEl {
     #[doc = ""]
     pub persistent_buffer_enabled: PrimField<bool>,
 }
-
 impl BuildOsisPipelineBufferOptionsEl {
     pub fn build(self) -> OsisPipelineBufferOptionsEl {
         OsisPipelineBufferOptionsEl {
@@ -556,12 +488,10 @@ impl BuildOsisPipelineBufferOptionsEl {
         }
     }
 }
-
 pub struct OsisPipelineBufferOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineBufferOptionsElRef {
     fn new(shared: StackShared, base: String) -> OsisPipelineBufferOptionsElRef {
         OsisPipelineBufferOptionsElRef {
@@ -570,12 +500,10 @@ impl Ref for OsisPipelineBufferOptionsElRef {
         }
     }
 }
-
 impl OsisPipelineBufferOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `persistent_buffer_enabled` after provisioning.\n"]
     pub fn persistent_buffer_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -584,17 +512,13 @@ impl OsisPipelineBufferOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineEncryptionAtRestOptionsEl {
     kms_key_arn: PrimField<String>,
 }
-
 impl OsisPipelineEncryptionAtRestOptionsEl {}
-
 impl ToListMappable for OsisPipelineEncryptionAtRestOptionsEl {
     type O = BlockAssignable<OsisPipelineEncryptionAtRestOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -603,12 +527,10 @@ impl ToListMappable for OsisPipelineEncryptionAtRestOptionsEl {
         })
     }
 }
-
 pub struct BuildOsisPipelineEncryptionAtRestOptionsEl {
     #[doc = ""]
     pub kms_key_arn: PrimField<String>,
 }
-
 impl BuildOsisPipelineEncryptionAtRestOptionsEl {
     pub fn build(self) -> OsisPipelineEncryptionAtRestOptionsEl {
         OsisPipelineEncryptionAtRestOptionsEl {
@@ -616,12 +538,10 @@ impl BuildOsisPipelineEncryptionAtRestOptionsEl {
         }
     }
 }
-
 pub struct OsisPipelineEncryptionAtRestOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineEncryptionAtRestOptionsElRef {
     fn new(shared: StackShared, base: String) -> OsisPipelineEncryptionAtRestOptionsElRef {
         OsisPipelineEncryptionAtRestOptionsElRef {
@@ -630,28 +550,22 @@ impl Ref for OsisPipelineEncryptionAtRestOptionsElRef {
         }
     }
 }
-
 impl OsisPipelineEncryptionAtRestOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
     log_group: PrimField<String>,
 }
-
 impl OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {}
-
 impl ToListMappable for OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
     type O = BlockAssignable<OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -660,12 +574,10 @@ impl ToListMappable for OsisPipelineLogPublishingOptionsElCloudwatchLogDestinati
         })
     }
 }
-
 pub struct BuildOsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
     #[doc = ""]
     pub log_group: PrimField<String>,
 }
-
 impl BuildOsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
     pub fn build(self) -> OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
         OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
@@ -673,12 +585,10 @@ impl BuildOsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl {
         }
     }
 }
-
 pub struct OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationElRef {
     fn new(
         shared: StackShared,
@@ -690,24 +600,20 @@ impl Ref for OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationElRef {
         }
     }
 }
-
 impl OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `log_group` after provisioning.\n"]
     pub fn log_group(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_group", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OsisPipelineLogPublishingOptionsElDynamic {
     cloudwatch_log_destination:
         Option<DynamicBlock<OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineLogPublishingOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -717,14 +623,12 @@ pub struct OsisPipelineLogPublishingOptionsEl {
         Option<Vec<OsisPipelineLogPublishingOptionsElCloudwatchLogDestinationEl>>,
     dynamic: OsisPipelineLogPublishingOptionsElDynamic,
 }
-
 impl OsisPipelineLogPublishingOptionsEl {
     #[doc = "Set the field `is_logging_enabled`.\n"]
     pub fn set_is_logging_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_logging_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloudwatch_log_destination`.\n"]
     pub fn set_cloudwatch_log_destination(
         mut self,
@@ -741,10 +645,8 @@ impl OsisPipelineLogPublishingOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OsisPipelineLogPublishingOptionsEl {
     type O = BlockAssignable<OsisPipelineLogPublishingOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -753,9 +655,7 @@ impl ToListMappable for OsisPipelineLogPublishingOptionsEl {
         })
     }
 }
-
 pub struct BuildOsisPipelineLogPublishingOptionsEl {}
-
 impl BuildOsisPipelineLogPublishingOptionsEl {
     pub fn build(self) -> OsisPipelineLogPublishingOptionsEl {
         OsisPipelineLogPublishingOptionsEl {
@@ -765,12 +665,10 @@ impl BuildOsisPipelineLogPublishingOptionsEl {
         }
     }
 }
-
 pub struct OsisPipelineLogPublishingOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineLogPublishingOptionsElRef {
     fn new(shared: StackShared, base: String) -> OsisPipelineLogPublishingOptionsElRef {
         OsisPipelineLogPublishingOptionsElRef {
@@ -779,12 +677,10 @@ impl Ref for OsisPipelineLogPublishingOptionsElRef {
         }
     }
 }
-
 impl OsisPipelineLogPublishingOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_logging_enabled` after provisioning.\n"]
     pub fn is_logging_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -792,7 +688,6 @@ impl OsisPipelineLogPublishingOptionsElRef {
             format!("{}.is_logging_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_log_destination` after provisioning.\n"]
     pub fn cloudwatch_log_destination(
         &self,
@@ -803,7 +698,6 @@ impl OsisPipelineLogPublishingOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -813,30 +707,25 @@ pub struct OsisPipelineTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl OsisPipelineTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OsisPipelineTimeoutsEl {
     type O = BlockAssignable<OsisPipelineTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -845,9 +734,7 @@ impl ToListMappable for OsisPipelineTimeoutsEl {
         })
     }
 }
-
 pub struct BuildOsisPipelineTimeoutsEl {}
-
 impl BuildOsisPipelineTimeoutsEl {
     pub fn build(self) -> OsisPipelineTimeoutsEl {
         OsisPipelineTimeoutsEl {
@@ -857,12 +744,10 @@ impl BuildOsisPipelineTimeoutsEl {
         }
     }
 }
-
 pub struct OsisPipelineTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> OsisPipelineTimeoutsElRef {
         OsisPipelineTimeoutsElRef {
@@ -871,28 +756,23 @@ impl Ref for OsisPipelineTimeoutsElRef {
         }
     }
 }
-
 impl OsisPipelineTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OsisPipelineVpcOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -901,24 +781,20 @@ pub struct OsisPipelineVpcOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc_endpoint_management: Option<PrimField<String>>,
 }
-
 impl OsisPipelineVpcOptionsEl {
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_endpoint_management`.\n"]
     pub fn set_vpc_endpoint_management(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.vpc_endpoint_management = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OsisPipelineVpcOptionsEl {
     type O = BlockAssignable<OsisPipelineVpcOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -927,12 +803,10 @@ impl ToListMappable for OsisPipelineVpcOptionsEl {
         })
     }
 }
-
 pub struct BuildOsisPipelineVpcOptionsEl {
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildOsisPipelineVpcOptionsEl {
     pub fn build(self) -> OsisPipelineVpcOptionsEl {
         OsisPipelineVpcOptionsEl {
@@ -942,12 +816,10 @@ impl BuildOsisPipelineVpcOptionsEl {
         }
     }
 }
-
 pub struct OsisPipelineVpcOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OsisPipelineVpcOptionsElRef {
     fn new(shared: StackShared, base: String) -> OsisPipelineVpcOptionsElRef {
         OsisPipelineVpcOptionsElRef {
@@ -956,12 +828,10 @@ impl Ref for OsisPipelineVpcOptionsElRef {
         }
     }
 }
-
 impl OsisPipelineVpcOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -969,12 +839,10 @@ impl OsisPipelineVpcOptionsElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_endpoint_management` after provisioning.\n"]
     pub fn vpc_endpoint_management(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -983,7 +851,6 @@ impl OsisPipelineVpcOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct OsisPipelineDynamic {
     buffer_options: Option<DynamicBlock<OsisPipelineBufferOptionsEl>>,

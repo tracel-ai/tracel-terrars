@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Inspector2FilterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct Inspector2FilterData {
     filter_criteria: Option<Vec<Inspector2FilterFilterCriteriaEl>>,
     dynamic: Inspector2FilterDynamic,
 }
-
 struct Inspector2Filter_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Inspector2FilterData>,
 }
-
 #[derive(Clone)]
 pub struct Inspector2Filter(Rc<Inspector2Filter_>);
-
 impl Inspector2Filter {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl Inspector2Filter {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl Inspector2Filter {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,31 +95,26 @@ impl Inspector2Filter {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `reason`.\n"]
     pub fn set_reason(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().reason = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter_criteria`.\n"]
     pub fn set_filter_criteria(
         self,
@@ -147,7 +130,6 @@ impl Inspector2Filter {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -155,12 +137,10 @@ impl Inspector2Filter {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +148,6 @@ impl Inspector2Filter {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +155,6 @@ impl Inspector2Filter {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reason` after provisioning.\n"]
     pub fn reason(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +162,6 @@ impl Inspector2Filter {
             format!("{}.reason", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,7 +169,6 @@ impl Inspector2Filter {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -200,7 +176,6 @@ impl Inspector2Filter {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -208,7 +183,6 @@ impl Inspector2Filter {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<Inspector2FilterFilterCriteriaElRef> {
         ListRef::new(
@@ -217,7 +191,6 @@ impl Inspector2Filter {
         )
     }
 }
-
 impl Referable for Inspector2Filter {
     fn extract_ref(&self) -> String {
         format!(
@@ -227,32 +200,25 @@ impl Referable for Inspector2Filter {
         )
     }
 }
-
 impl Resource for Inspector2Filter {}
-
 impl ToListMappable for Inspector2Filter {
     type O = ListRef<Inspector2FilterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Inspector2Filter_ {
     fn extract_resource_type(&self) -> String {
         "aws_inspector2_filter".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildInspector2Filter {
     pub tf_id: String,
     #[doc = ""]
@@ -260,7 +226,6 @@ pub struct BuildInspector2Filter {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildInspector2Filter {
     pub fn build(self, stack: &mut Stack) -> Inspector2Filter {
         let out = Inspector2Filter(Rc::new(Inspector2Filter_ {
@@ -285,27 +250,22 @@ impl BuildInspector2Filter {
         out
     }
 }
-
 pub struct Inspector2FilterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Inspector2FilterRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,12 +273,10 @@ impl Inspector2FilterRef {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -326,7 +284,6 @@ impl Inspector2FilterRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -334,7 +291,6 @@ impl Inspector2FilterRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reason` after provisioning.\n"]
     pub fn reason(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -342,7 +298,6 @@ impl Inspector2FilterRef {
             format!("{}.reason", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +305,6 @@ impl Inspector2FilterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -358,7 +312,6 @@ impl Inspector2FilterRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -366,7 +319,6 @@ impl Inspector2FilterRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter_criteria` after provisioning.\n"]
     pub fn filter_criteria(&self) -> ListRef<Inspector2FilterFilterCriteriaElRef> {
         ListRef::new(
@@ -375,18 +327,14 @@ impl Inspector2FilterRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElAwsAccountIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElAwsAccountIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElAwsAccountIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElAwsAccountIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -395,14 +343,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElAwsAccountIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElAwsAccountIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElAwsAccountIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElAwsAccountIdEl {
         Inspector2FilterFilterCriteriaElAwsAccountIdEl {
@@ -411,12 +357,10 @@ impl BuildInspector2FilterFilterCriteriaElAwsAccountIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
         Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
@@ -425,34 +369,27 @@ impl Ref for Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElAwsAccountIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -461,14 +398,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNam
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
         Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
@@ -477,12 +412,10 @@ impl BuildInspector2FilterFilterCriteriaElCodeRepositoryProjectNameEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
     fn new(
         shared: StackShared,
@@ -494,34 +427,27 @@ impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElCodeRepositoryProjectNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -530,14 +456,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTy
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
         Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
@@ -546,12 +470,10 @@ impl BuildInspector2FilterFilterCriteriaElCodeRepositoryProviderTypeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
     fn new(
         shared: StackShared,
@@ -563,34 +485,27 @@ impl Ref for Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElCodeRepositoryProviderTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -599,14 +514,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetecto
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
@@ -615,12 +528,10 @@ impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
     fn new(
         shared: StackShared,
@@ -632,34 +543,27 @@ impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef 
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -668,14 +572,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetecto
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
@@ -684,12 +586,10 @@ impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
     fn new(
         shared: StackShared,
@@ -701,34 +601,27 @@ impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef 
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityDetectorTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -737,14 +630,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePat
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
         Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
@@ -753,12 +644,10 @@ impl BuildInspector2FilterFilterCriteriaElCodeVulnerabilityFilePathEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
     fn new(
         shared: StackShared,
@@ -770,34 +659,27 @@ impl Ref for Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElCodeVulnerabilityFilePathElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElComponentIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElComponentIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElComponentIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElComponentIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -806,14 +688,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElComponentIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElComponentIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElComponentIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElComponentIdEl {
         Inspector2FilterFilterCriteriaElComponentIdEl {
@@ -822,12 +702,10 @@ impl BuildInspector2FilterFilterCriteriaElComponentIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElComponentIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElComponentIdElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElComponentIdElRef {
         Inspector2FilterFilterCriteriaElComponentIdElRef {
@@ -836,34 +714,27 @@ impl Ref for Inspector2FilterFilterCriteriaElComponentIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElComponentIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElComponentTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElComponentTypeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElComponentTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElComponentTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -872,14 +743,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElComponentTypeEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElComponentTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElComponentTypeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElComponentTypeEl {
         Inspector2FilterFilterCriteriaElComponentTypeEl {
@@ -888,12 +757,10 @@ impl BuildInspector2FilterFilterCriteriaElComponentTypeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElComponentTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElComponentTypeElRef {
     fn new(
         shared: StackShared,
@@ -905,34 +772,27 @@ impl Ref for Inspector2FilterFilterCriteriaElComponentTypeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElComponentTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -941,14 +801,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
         Inspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
@@ -957,12 +815,10 @@ impl BuildInspector2FilterFilterCriteriaElEc2InstanceImageIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
     fn new(
         shared: StackShared,
@@ -974,34 +830,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceImageIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1010,14 +859,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
         Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
@@ -1026,12 +873,10 @@ impl BuildInspector2FilterFilterCriteriaElEc2InstanceSubnetIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
     fn new(
         shared: StackShared,
@@ -1043,34 +888,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceSubnetIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1079,14 +917,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
         Inspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
@@ -1095,12 +931,10 @@ impl BuildInspector2FilterFilterCriteriaElEc2InstanceVpcIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
     fn new(
         shared: StackShared,
@@ -1112,34 +946,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEc2InstanceVpcIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageArchitectureEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1148,14 +975,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageArchitectureEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
         Inspector2FilterFilterCriteriaElEcrImageArchitectureEl {
@@ -1164,12 +989,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageArchitectureEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
     fn new(
         shared: StackShared,
@@ -1181,34 +1004,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageArchitectureElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageHashEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageHashEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageHashEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageHashEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1217,14 +1033,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageHashEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageHashEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageHashEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageHashEl {
         Inspector2FilterFilterCriteriaElEcrImageHashEl {
@@ -1233,12 +1047,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageHashEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageHashElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageHashElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageHashElRef {
         Inspector2FilterFilterCriteriaElEcrImageHashElRef {
@@ -1247,34 +1059,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageHashElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageHashElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     lower_inclusive: PrimField<f64>,
     upper_inclusive: PrimField<f64>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageInUseCountEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1283,14 +1088,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     #[doc = ""]
     pub lower_inclusive: PrimField<f64>,
     #[doc = ""]
     pub upper_inclusive: PrimField<f64>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageInUseCountEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
         Inspector2FilterFilterCriteriaElEcrImageInUseCountEl {
@@ -1299,12 +1102,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageInUseCountEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
     fn new(
         shared: StackShared,
@@ -1316,12 +1117,10 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1329,7 +1128,6 @@ impl Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
             format!("{}.lower_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1338,7 +1136,6 @@ impl Inspector2FilterFilterCriteriaElEcrImageInUseCountElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1346,24 +1143,20 @@ pub struct Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1372,9 +1165,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
         Inspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
@@ -1383,12 +1174,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageLastInUseAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
     fn new(
         shared: StackShared,
@@ -1400,12 +1189,10 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1413,7 +1200,6 @@ impl Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1422,7 +1208,6 @@ impl Inspector2FilterFilterCriteriaElEcrImageLastInUseAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1430,24 +1215,20 @@ pub struct Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImagePushedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1456,9 +1237,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImagePushedAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElEcrImagePushedAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
         Inspector2FilterFilterCriteriaElEcrImagePushedAtEl {
@@ -1467,12 +1246,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImagePushedAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
     fn new(
         shared: StackShared,
@@ -1484,12 +1261,10 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1497,7 +1272,6 @@ impl Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1506,18 +1280,14 @@ impl Inspector2FilterFilterCriteriaElEcrImagePushedAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageRegistryEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageRegistryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1526,14 +1296,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageRegistryEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageRegistryEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
         Inspector2FilterFilterCriteriaElEcrImageRegistryEl {
@@ -1542,12 +1310,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageRegistryEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
     fn new(
         shared: StackShared,
@@ -1559,34 +1325,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageRegistryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1595,14 +1354,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
         Inspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
@@ -1611,12 +1368,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageRepositoryNameEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
     fn new(
         shared: StackShared,
@@ -1628,34 +1383,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageRepositoryNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEcrImageTagsEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageTagsEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEcrImageTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1664,14 +1412,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEcrImageTagsEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEcrImageTagsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEcrImageTagsEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEcrImageTagsEl {
         Inspector2FilterFilterCriteriaElEcrImageTagsEl {
@@ -1680,12 +1426,10 @@ impl BuildInspector2FilterFilterCriteriaElEcrImageTagsEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
         Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
@@ -1694,34 +1438,27 @@ impl Ref for Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEcrImageTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElEpssScoreEl {
     lower_inclusive: PrimField<f64>,
     upper_inclusive: PrimField<f64>,
 }
-
 impl Inspector2FilterFilterCriteriaElEpssScoreEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElEpssScoreEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElEpssScoreEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1730,14 +1467,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElEpssScoreEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElEpssScoreEl {
     #[doc = ""]
     pub lower_inclusive: PrimField<f64>,
     #[doc = ""]
     pub upper_inclusive: PrimField<f64>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElEpssScoreEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElEpssScoreEl {
         Inspector2FilterFilterCriteriaElEpssScoreEl {
@@ -1746,12 +1481,10 @@ impl BuildInspector2FilterFilterCriteriaElEpssScoreEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElEpssScoreElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElEpssScoreElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElEpssScoreElRef {
         Inspector2FilterFilterCriteriaElEpssScoreElRef {
@@ -1760,12 +1493,10 @@ impl Ref for Inspector2FilterFilterCriteriaElEpssScoreElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElEpssScoreElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1773,7 +1504,6 @@ impl Inspector2FilterFilterCriteriaElEpssScoreElRef {
             format!("{}.lower_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1782,18 +1512,14 @@ impl Inspector2FilterFilterCriteriaElEpssScoreElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElExploitAvailableEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElExploitAvailableEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElExploitAvailableEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElExploitAvailableEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1802,14 +1528,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElExploitAvailableEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElExploitAvailableEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElExploitAvailableEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElExploitAvailableEl {
         Inspector2FilterFilterCriteriaElExploitAvailableEl {
@@ -1818,12 +1542,10 @@ impl BuildInspector2FilterFilterCriteriaElExploitAvailableEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElExploitAvailableElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElExploitAvailableElRef {
     fn new(
         shared: StackShared,
@@ -1835,34 +1557,27 @@ impl Ref for Inspector2FilterFilterCriteriaElExploitAvailableElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElExploitAvailableElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElFindingArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElFindingArnEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingArnEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1871,14 +1586,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElFindingArnEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElFindingArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElFindingArnEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElFindingArnEl {
         Inspector2FilterFilterCriteriaElFindingArnEl {
@@ -1887,12 +1600,10 @@ impl BuildInspector2FilterFilterCriteriaElFindingArnEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElFindingArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElFindingArnElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElFindingArnElRef {
         Inspector2FilterFilterCriteriaElFindingArnElRef {
@@ -1901,34 +1612,27 @@ impl Ref for Inspector2FilterFilterCriteriaElFindingArnElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElFindingArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElFindingStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElFindingStatusEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingStatusEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1937,14 +1641,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElFindingStatusEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElFindingStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElFindingStatusEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElFindingStatusEl {
         Inspector2FilterFilterCriteriaElFindingStatusEl {
@@ -1953,12 +1655,10 @@ impl BuildInspector2FilterFilterCriteriaElFindingStatusEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElFindingStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElFindingStatusElRef {
     fn new(
         shared: StackShared,
@@ -1970,34 +1670,27 @@ impl Ref for Inspector2FilterFilterCriteriaElFindingStatusElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElFindingStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElFindingTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElFindingTypeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElFindingTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFindingTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2006,14 +1699,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElFindingTypeEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElFindingTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElFindingTypeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElFindingTypeEl {
         Inspector2FilterFilterCriteriaElFindingTypeEl {
@@ -2022,12 +1713,10 @@ impl BuildInspector2FilterFilterCriteriaElFindingTypeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElFindingTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElFindingTypeElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElFindingTypeElRef {
         Inspector2FilterFilterCriteriaElFindingTypeElRef {
@@ -2036,23 +1725,19 @@ impl Ref for Inspector2FilterFilterCriteriaElFindingTypeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElFindingTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElFirstObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2060,24 +1745,20 @@ pub struct Inspector2FilterFilterCriteriaElFirstObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElFirstObservedAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElFirstObservedAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFirstObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2086,9 +1767,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElFirstObservedAtEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElFirstObservedAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElFirstObservedAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElFirstObservedAtEl {
         Inspector2FilterFilterCriteriaElFirstObservedAtEl {
@@ -2097,12 +1776,10 @@ impl BuildInspector2FilterFilterCriteriaElFirstObservedAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
     fn new(
         shared: StackShared,
@@ -2114,12 +1791,10 @@ impl Ref for Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2127,7 +1802,6 @@ impl Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2136,18 +1810,14 @@ impl Inspector2FilterFilterCriteriaElFirstObservedAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElFixAvailableEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElFixAvailableEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElFixAvailableEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElFixAvailableEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2156,14 +1826,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElFixAvailableEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElFixAvailableEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElFixAvailableEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElFixAvailableEl {
         Inspector2FilterFilterCriteriaElFixAvailableEl {
@@ -2172,12 +1840,10 @@ impl BuildInspector2FilterFilterCriteriaElFixAvailableEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElFixAvailableElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElFixAvailableElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElFixAvailableElRef {
         Inspector2FilterFilterCriteriaElFixAvailableElRef {
@@ -2186,34 +1852,27 @@ impl Ref for Inspector2FilterFilterCriteriaElFixAvailableElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElFixAvailableElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElInspectorScoreEl {
     lower_inclusive: PrimField<f64>,
     upper_inclusive: PrimField<f64>,
 }
-
 impl Inspector2FilterFilterCriteriaElInspectorScoreEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElInspectorScoreEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElInspectorScoreEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2222,14 +1881,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElInspectorScoreEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElInspectorScoreEl {
     #[doc = ""]
     pub lower_inclusive: PrimField<f64>,
     #[doc = ""]
     pub upper_inclusive: PrimField<f64>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElInspectorScoreEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElInspectorScoreEl {
         Inspector2FilterFilterCriteriaElInspectorScoreEl {
@@ -2238,12 +1895,10 @@ impl BuildInspector2FilterFilterCriteriaElInspectorScoreEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElInspectorScoreElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElInspectorScoreElRef {
     fn new(
         shared: StackShared,
@@ -2255,12 +1910,10 @@ impl Ref for Inspector2FilterFilterCriteriaElInspectorScoreElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElInspectorScoreElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2268,7 +1921,6 @@ impl Inspector2FilterFilterCriteriaElInspectorScoreElRef {
             format!("{}.lower_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2277,18 +1929,14 @@ impl Inspector2FilterFilterCriteriaElInspectorScoreElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2297,14 +1945,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionR
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
         Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
@@ -2313,12 +1959,10 @@ impl BuildInspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
     fn new(
         shared: StackShared,
@@ -2330,23 +1974,19 @@ impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionExecutionRoleArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2354,24 +1994,20 @@ pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2380,9 +2016,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionLastModifi
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
         Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
@@ -2391,12 +2025,10 @@ impl BuildInspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
     fn new(
         shared: StackShared,
@@ -2408,12 +2040,10 @@ impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2421,7 +2051,6 @@ impl Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2430,18 +2059,14 @@ impl Inspector2FilterFilterCriteriaElLambdaFunctionLastModifiedAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2450,14 +2075,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
         Inspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
@@ -2466,12 +2089,10 @@ impl BuildInspector2FilterFilterCriteriaElLambdaFunctionLayersEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
     fn new(
         shared: StackShared,
@@ -2483,34 +2104,27 @@ impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionLayersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2519,14 +2133,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElLambdaFunctionNameEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
         Inspector2FilterFilterCriteriaElLambdaFunctionNameEl {
@@ -2535,12 +2147,10 @@ impl BuildInspector2FilterFilterCriteriaElLambdaFunctionNameEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
     fn new(
         shared: StackShared,
@@ -2552,34 +2162,27 @@ impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2588,14 +2191,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl 
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
         Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
@@ -2604,12 +2205,10 @@ impl BuildInspector2FilterFilterCriteriaElLambdaFunctionRuntimeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
     fn new(
         shared: StackShared,
@@ -2621,23 +2220,19 @@ impl Ref for Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLambdaFunctionRuntimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2645,24 +2240,20 @@ pub struct Inspector2FilterFilterCriteriaElLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElLastObservedAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElLastObservedAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElLastObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2671,9 +2262,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElLastObservedAtEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElLastObservedAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElLastObservedAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElLastObservedAtEl {
         Inspector2FilterFilterCriteriaElLastObservedAtEl {
@@ -2682,12 +2271,10 @@ impl BuildInspector2FilterFilterCriteriaElLastObservedAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElLastObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElLastObservedAtElRef {
     fn new(
         shared: StackShared,
@@ -2699,12 +2286,10 @@ impl Ref for Inspector2FilterFilterCriteriaElLastObservedAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElLastObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2712,7 +2297,6 @@ impl Inspector2FilterFilterCriteriaElLastObservedAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2721,18 +2305,14 @@ impl Inspector2FilterFilterCriteriaElLastObservedAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElNetworkProtocolEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElNetworkProtocolEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElNetworkProtocolEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElNetworkProtocolEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2741,14 +2321,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElNetworkProtocolEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElNetworkProtocolEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElNetworkProtocolEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElNetworkProtocolEl {
         Inspector2FilterFilterCriteriaElNetworkProtocolEl {
@@ -2757,12 +2335,10 @@ impl BuildInspector2FilterFilterCriteriaElNetworkProtocolEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
     fn new(
         shared: StackShared,
@@ -2774,34 +2350,27 @@ impl Ref for Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElNetworkProtocolElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElPortRangeEl {
     begin_inclusive: PrimField<f64>,
     end_inclusive: PrimField<f64>,
 }
-
 impl Inspector2FilterFilterCriteriaElPortRangeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElPortRangeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElPortRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2810,14 +2379,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElPortRangeEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElPortRangeEl {
     #[doc = ""]
     pub begin_inclusive: PrimField<f64>,
     #[doc = ""]
     pub end_inclusive: PrimField<f64>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElPortRangeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElPortRangeEl {
         Inspector2FilterFilterCriteriaElPortRangeEl {
@@ -2826,12 +2393,10 @@ impl BuildInspector2FilterFilterCriteriaElPortRangeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElPortRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElPortRangeElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElPortRangeElRef {
         Inspector2FilterFilterCriteriaElPortRangeElRef {
@@ -2840,12 +2405,10 @@ impl Ref for Inspector2FilterFilterCriteriaElPortRangeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElPortRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `begin_inclusive` after provisioning.\n"]
     pub fn begin_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2853,7 +2416,6 @@ impl Inspector2FilterFilterCriteriaElPortRangeElRef {
             format!("{}.begin_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2862,18 +2424,14 @@ impl Inspector2FilterFilterCriteriaElPortRangeElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2882,14 +2440,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
         Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
@@ -2898,12 +2454,10 @@ impl BuildInspector2FilterFilterCriteriaElRelatedVulnerabilitiesEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
     fn new(
         shared: StackShared,
@@ -2915,34 +2469,27 @@ impl Ref for Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElRelatedVulnerabilitiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElResourceIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElResourceIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2951,14 +2498,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElResourceIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElResourceIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElResourceIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElResourceIdEl {
         Inspector2FilterFilterCriteriaElResourceIdEl {
@@ -2967,12 +2512,10 @@ impl BuildInspector2FilterFilterCriteriaElResourceIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElResourceIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElResourceIdElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElResourceIdElRef {
         Inspector2FilterFilterCriteriaElResourceIdElRef {
@@ -2981,35 +2524,28 @@ impl Ref for Inspector2FilterFilterCriteriaElResourceIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElResourceIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElResourceTagsEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElResourceTagsEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTagsEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3018,7 +2554,6 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTagsEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElResourceTagsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -3027,7 +2562,6 @@ pub struct BuildInspector2FilterFilterCriteriaElResourceTagsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElResourceTagsEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElResourceTagsEl {
         Inspector2FilterFilterCriteriaElResourceTagsEl {
@@ -3037,12 +2571,10 @@ impl BuildInspector2FilterFilterCriteriaElResourceTagsEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElResourceTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElResourceTagsElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElResourceTagsElRef {
         Inspector2FilterFilterCriteriaElResourceTagsElRef {
@@ -3051,39 +2583,31 @@ impl Ref for Inspector2FilterFilterCriteriaElResourceTagsElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElResourceTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElResourceTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElResourceTypeEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTypeEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElResourceTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3092,14 +2616,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElResourceTypeEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElResourceTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElResourceTypeEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElResourceTypeEl {
         Inspector2FilterFilterCriteriaElResourceTypeEl {
@@ -3108,12 +2630,10 @@ impl BuildInspector2FilterFilterCriteriaElResourceTypeEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElResourceTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElResourceTypeElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElResourceTypeElRef {
         Inspector2FilterFilterCriteriaElResourceTypeElRef {
@@ -3122,34 +2642,27 @@ impl Ref for Inspector2FilterFilterCriteriaElResourceTypeElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElResourceTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElSeverityEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElSeverityEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElSeverityEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElSeverityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3158,14 +2671,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElSeverityEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElSeverityEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElSeverityEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElSeverityEl {
         Inspector2FilterFilterCriteriaElSeverityEl {
@@ -3174,12 +2685,10 @@ impl BuildInspector2FilterFilterCriteriaElSeverityEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElSeverityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElSeverityElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElSeverityElRef {
         Inspector2FilterFilterCriteriaElSeverityElRef {
@@ -3188,34 +2697,27 @@ impl Ref for Inspector2FilterFilterCriteriaElSeverityElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElSeverityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElTitleEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElTitleEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElTitleEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElTitleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3224,14 +2726,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElTitleEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElTitleEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElTitleEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElTitleEl {
         Inspector2FilterFilterCriteriaElTitleEl {
@@ -3240,12 +2740,10 @@ impl BuildInspector2FilterFilterCriteriaElTitleEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElTitleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElTitleElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElTitleElRef {
         Inspector2FilterFilterCriteriaElTitleElRef {
@@ -3254,23 +2752,19 @@ impl Ref for Inspector2FilterFilterCriteriaElTitleElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElTitleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3278,24 +2772,20 @@ pub struct Inspector2FilterFilterCriteriaElUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_inclusive: Option<PrimField<String>>,
 }
-
 impl Inspector2FilterFilterCriteriaElUpdatedAtEl {
     #[doc = "Set the field `end_inclusive`.\n"]
     pub fn set_end_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end_inclusive = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_inclusive`.\n"]
     pub fn set_start_inclusive(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start_inclusive = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElUpdatedAtEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElUpdatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3304,9 +2794,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElUpdatedAtEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElUpdatedAtEl {}
-
 impl BuildInspector2FilterFilterCriteriaElUpdatedAtEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElUpdatedAtEl {
         Inspector2FilterFilterCriteriaElUpdatedAtEl {
@@ -3315,12 +2803,10 @@ impl BuildInspector2FilterFilterCriteriaElUpdatedAtEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElUpdatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElUpdatedAtElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElUpdatedAtElRef {
         Inspector2FilterFilterCriteriaElUpdatedAtElRef {
@@ -3329,12 +2815,10 @@ impl Ref for Inspector2FilterFilterCriteriaElUpdatedAtElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElUpdatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end_inclusive` after provisioning.\n"]
     pub fn end_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3342,7 +2826,6 @@ impl Inspector2FilterFilterCriteriaElUpdatedAtElRef {
             format!("{}.end_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_inclusive` after provisioning.\n"]
     pub fn start_inclusive(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3351,18 +2834,14 @@ impl Inspector2FilterFilterCriteriaElUpdatedAtElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVendorSeverityEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVendorSeverityEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVendorSeverityEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVendorSeverityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3371,14 +2850,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVendorSeverityEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVendorSeverityEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVendorSeverityEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVendorSeverityEl {
         Inspector2FilterFilterCriteriaElVendorSeverityEl {
@@ -3387,12 +2864,10 @@ impl BuildInspector2FilterFilterCriteriaElVendorSeverityEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVendorSeverityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVendorSeverityElRef {
     fn new(
         shared: StackShared,
@@ -3404,34 +2879,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVendorSeverityElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVendorSeverityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerabilityIdEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerabilityIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3440,14 +2908,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerabilityIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerabilityIdEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
         Inspector2FilterFilterCriteriaElVulnerabilityIdEl {
@@ -3456,12 +2922,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerabilityIdEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
     fn new(
         shared: StackShared,
@@ -3473,34 +2937,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerabilityIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerabilitySourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3509,14 +2966,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerabilitySourceEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
         Inspector2FilterFilterCriteriaElVulnerabilitySourceEl {
@@ -3525,12 +2980,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerabilitySourceEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
     fn new(
         shared: StackShared,
@@ -3542,34 +2995,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerabilitySourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3578,14 +3024,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElArch
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
@@ -3594,12 +3038,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef {
     fn new(
         shared: StackShared,
@@ -3611,34 +3053,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElR
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     lower_inclusive: PrimField<f64>,
     upper_inclusive: PrimField<f64>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3647,14 +3082,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpoc
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     #[doc = ""]
     pub lower_inclusive: PrimField<f64>,
     #[doc = ""]
     pub upper_inclusive: PrimField<f64>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
@@ -3663,12 +3096,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElEpochEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
     fn new(
         shared: StackShared,
@@ -3680,12 +3111,10 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lower_inclusive` after provisioning.\n"]
     pub fn lower_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -3693,7 +3122,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
             format!("{}.lower_inclusive", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `upper_inclusive` after provisioning.\n"]
     pub fn upper_inclusive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -3702,18 +3130,14 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3722,14 +3146,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElFile
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
@@ -3738,12 +3160,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElFilePathEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
     fn new(
         shared: StackShared,
@@ -3755,34 +3175,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3791,14 +3204,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElName
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
@@ -3807,12 +3218,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElNameEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
     fn new(
         shared: StackShared,
@@ -3824,34 +3233,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3860,14 +3262,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElRele
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
@@ -3876,12 +3276,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElReleaseEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
     fn new(
         shared: StackShared,
@@ -3893,35 +3291,28 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
     type O =
         BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3930,14 +3321,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSour
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnEl {
     pub fn build(
         self,
@@ -3948,12 +3337,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerA
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnElRef {
     fn new(
         shared: StackShared,
@@ -3965,34 +3352,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLay
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLambdaLayerArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4001,14 +3381,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElSour
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl {
@@ -4017,12 +3395,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl 
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashElRef {
     fn new(
         shared: StackShared,
@@ -4034,34 +3410,27 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHash
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {}
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4070,14 +3439,12 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesElVers
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
@@ -4086,12 +3453,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
     fn new(
         shared: StackShared,
@@ -4103,23 +3468,19 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic {
     architecture:
@@ -4135,7 +3496,6 @@ struct Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic {
         Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElSourceLayerHashEl>>,
     version: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4158,7 +3518,6 @@ pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     version: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesElVersionEl>>,
     dynamic: Inspector2FilterFilterCriteriaElVulnerablePackagesElDynamic,
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     #[doc = "Set the field `architecture`.\n"]
     pub fn set_architecture(
@@ -4177,7 +3536,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `epoch`.\n"]
     pub fn set_epoch(
         mut self,
@@ -4193,7 +3551,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `file_path`.\n"]
     pub fn set_file_path(
         mut self,
@@ -4209,7 +3566,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(
         mut self,
@@ -4225,7 +3581,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `release`.\n"]
     pub fn set_release(
         mut self,
@@ -4241,7 +3596,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `source_lambda_layer_arn`.\n"]
     pub fn set_source_lambda_layer_arn(
         mut self,
@@ -4261,7 +3615,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `source_layer_hash`.\n"]
     pub fn set_source_layer_hash(
         mut self,
@@ -4279,7 +3632,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
         self
     }
-
     #[doc = "Set the field `version`.\n"]
     pub fn set_version(
         mut self,
@@ -4296,10 +3648,8 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaElVulnerablePackagesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4308,9 +3658,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaElVulnerablePackagesEl {}
-
 impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
         Inspector2FilterFilterCriteriaElVulnerablePackagesEl {
@@ -4326,12 +3674,10 @@ impl BuildInspector2FilterFilterCriteriaElVulnerablePackagesEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     fn new(
         shared: StackShared,
@@ -4343,43 +3689,36 @@ impl Ref for Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `architecture` after provisioning.\n"]
     pub fn architecture(
         &self,
     ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElArchitectureElRef> {
         ListRef::new(self.shared().clone(), format!("{}.architecture", self.base))
     }
-
     #[doc = "Get a reference to the value of field `epoch` after provisioning.\n"]
     pub fn epoch(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElEpochElRef> {
         ListRef::new(self.shared().clone(), format!("{}.epoch", self.base))
     }
-
     #[doc = "Get a reference to the value of field `file_path` after provisioning.\n"]
     pub fn file_path(
         &self,
     ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElFilePathElRef> {
         ListRef::new(self.shared().clone(), format!("{}.file_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElNameElRef> {
         ListRef::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `release` after provisioning.\n"]
     pub fn release(
         &self,
     ) -> ListRef<Inspector2FilterFilterCriteriaElVulnerablePackagesElReleaseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.release", self.base))
     }
-
     #[doc = "Get a reference to the value of field `source_lambda_layer_arn` after provisioning.\n"]
     pub fn source_lambda_layer_arn(
         &self,
@@ -4390,7 +3729,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
             format!("{}.source_lambda_layer_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_layer_hash` after provisioning.\n"]
     pub fn source_layer_hash(
         &self,
@@ -4400,7 +3738,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
             format!("{}.source_layer_hash", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(
         &self,
@@ -4408,7 +3745,6 @@ impl Inspector2FilterFilterCriteriaElVulnerablePackagesElRef {
         ListRef::new(self.shared().clone(), format!("{}.version", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct Inspector2FilterFilterCriteriaElDynamic {
     aws_account_id: Option<DynamicBlock<Inspector2FilterFilterCriteriaElAwsAccountIdEl>>,
@@ -4476,7 +3812,6 @@ struct Inspector2FilterFilterCriteriaElDynamic {
         Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerabilitySourceEl>>,
     vulnerable_packages: Option<DynamicBlock<Inspector2FilterFilterCriteriaElVulnerablePackagesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct Inspector2FilterFilterCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4581,7 +3916,6 @@ pub struct Inspector2FilterFilterCriteriaEl {
     vulnerable_packages: Option<Vec<Inspector2FilterFilterCriteriaElVulnerablePackagesEl>>,
     dynamic: Inspector2FilterFilterCriteriaElDynamic,
 }
-
 impl Inspector2FilterFilterCriteriaEl {
     #[doc = "Set the field `aws_account_id`.\n"]
     pub fn set_aws_account_id(
@@ -4598,7 +3932,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `code_repository_project_name`.\n"]
     pub fn set_code_repository_project_name(
         mut self,
@@ -4614,7 +3947,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `code_repository_provider_type`.\n"]
     pub fn set_code_repository_provider_type(
         mut self,
@@ -4630,7 +3962,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `code_vulnerability_detector_name`.\n"]
     pub fn set_code_vulnerability_detector_name(
         mut self,
@@ -4646,7 +3977,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `code_vulnerability_detector_tags`.\n"]
     pub fn set_code_vulnerability_detector_tags(
         mut self,
@@ -4662,7 +3992,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `code_vulnerability_file_path`.\n"]
     pub fn set_code_vulnerability_file_path(
         mut self,
@@ -4678,7 +4007,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `component_id`.\n"]
     pub fn set_component_id(
         mut self,
@@ -4694,7 +4022,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `component_type`.\n"]
     pub fn set_component_type(
         mut self,
@@ -4710,7 +4037,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ec2_instance_image_id`.\n"]
     pub fn set_ec2_instance_image_id(
         mut self,
@@ -4726,7 +4052,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ec2_instance_subnet_id`.\n"]
     pub fn set_ec2_instance_subnet_id(
         mut self,
@@ -4742,7 +4067,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ec2_instance_vpc_id`.\n"]
     pub fn set_ec2_instance_vpc_id(
         mut self,
@@ -4758,7 +4082,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_architecture`.\n"]
     pub fn set_ecr_image_architecture(
         mut self,
@@ -4774,7 +4097,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_hash`.\n"]
     pub fn set_ecr_image_hash(
         mut self,
@@ -4790,7 +4112,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_in_use_count`.\n"]
     pub fn set_ecr_image_in_use_count(
         mut self,
@@ -4806,7 +4127,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_last_in_use_at`.\n"]
     pub fn set_ecr_image_last_in_use_at(
         mut self,
@@ -4822,7 +4142,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_pushed_at`.\n"]
     pub fn set_ecr_image_pushed_at(
         mut self,
@@ -4838,7 +4157,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_registry`.\n"]
     pub fn set_ecr_image_registry(
         mut self,
@@ -4854,7 +4172,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_repository_name`.\n"]
     pub fn set_ecr_image_repository_name(
         mut self,
@@ -4870,7 +4187,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `ecr_image_tags`.\n"]
     pub fn set_ecr_image_tags(
         mut self,
@@ -4886,7 +4202,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `epss_score`.\n"]
     pub fn set_epss_score(
         mut self,
@@ -4902,7 +4217,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `exploit_available`.\n"]
     pub fn set_exploit_available(
         mut self,
@@ -4918,7 +4232,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_arn`.\n"]
     pub fn set_finding_arn(
         mut self,
@@ -4934,7 +4247,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_status`.\n"]
     pub fn set_finding_status(
         mut self,
@@ -4950,7 +4262,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_type`.\n"]
     pub fn set_finding_type(
         mut self,
@@ -4966,7 +4277,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `first_observed_at`.\n"]
     pub fn set_first_observed_at(
         mut self,
@@ -4982,7 +4292,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `fix_available`.\n"]
     pub fn set_fix_available(
         mut self,
@@ -4998,7 +4307,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `inspector_score`.\n"]
     pub fn set_inspector_score(
         mut self,
@@ -5014,7 +4322,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda_function_execution_role_arn`.\n"]
     pub fn set_lambda_function_execution_role_arn(
         mut self,
@@ -5030,7 +4337,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda_function_last_modified_at`.\n"]
     pub fn set_lambda_function_last_modified_at(
         mut self,
@@ -5046,7 +4352,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda_function_layers`.\n"]
     pub fn set_lambda_function_layers(
         mut self,
@@ -5062,7 +4367,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda_function_name`.\n"]
     pub fn set_lambda_function_name(
         mut self,
@@ -5078,7 +4382,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda_function_runtime`.\n"]
     pub fn set_lambda_function_runtime(
         mut self,
@@ -5094,7 +4397,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `last_observed_at`.\n"]
     pub fn set_last_observed_at(
         mut self,
@@ -5110,7 +4412,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `network_protocol`.\n"]
     pub fn set_network_protocol(
         mut self,
@@ -5126,7 +4427,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `port_range`.\n"]
     pub fn set_port_range(
         mut self,
@@ -5142,7 +4442,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `related_vulnerabilities`.\n"]
     pub fn set_related_vulnerabilities(
         mut self,
@@ -5158,7 +4457,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_id`.\n"]
     pub fn set_resource_id(
         mut self,
@@ -5174,7 +4472,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_tags`.\n"]
     pub fn set_resource_tags(
         mut self,
@@ -5190,7 +4487,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_type`.\n"]
     pub fn set_resource_type(
         mut self,
@@ -5206,7 +4502,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `severity`.\n"]
     pub fn set_severity(
         mut self,
@@ -5222,7 +4517,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `title`.\n"]
     pub fn set_title(
         mut self,
@@ -5238,7 +4532,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `updated_at`.\n"]
     pub fn set_updated_at(
         mut self,
@@ -5254,7 +4547,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `vendor_severity`.\n"]
     pub fn set_vendor_severity(
         mut self,
@@ -5270,7 +4562,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `vulnerability_id`.\n"]
     pub fn set_vulnerability_id(
         mut self,
@@ -5286,7 +4577,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `vulnerability_source`.\n"]
     pub fn set_vulnerability_source(
         mut self,
@@ -5302,7 +4592,6 @@ impl Inspector2FilterFilterCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `vulnerable_packages`.\n"]
     pub fn set_vulnerable_packages(
         mut self,
@@ -5319,10 +4608,8 @@ impl Inspector2FilterFilterCriteriaEl {
         self
     }
 }
-
 impl ToListMappable for Inspector2FilterFilterCriteriaEl {
     type O = BlockAssignable<Inspector2FilterFilterCriteriaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5331,9 +4618,7 @@ impl ToListMappable for Inspector2FilterFilterCriteriaEl {
         })
     }
 }
-
 pub struct BuildInspector2FilterFilterCriteriaEl {}
-
 impl BuildInspector2FilterFilterCriteriaEl {
     pub fn build(self) -> Inspector2FilterFilterCriteriaEl {
         Inspector2FilterFilterCriteriaEl {
@@ -5387,12 +4672,10 @@ impl BuildInspector2FilterFilterCriteriaEl {
         }
     }
 }
-
 pub struct Inspector2FilterFilterCriteriaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2FilterFilterCriteriaElRef {
     fn new(shared: StackShared, base: String) -> Inspector2FilterFilterCriteriaElRef {
         Inspector2FilterFilterCriteriaElRef {
@@ -5401,13 +4684,11 @@ impl Ref for Inspector2FilterFilterCriteriaElRef {
         }
     }
 }
-
 impl Inspector2FilterFilterCriteriaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize, Default)]
 struct Inspector2FilterDynamic {
     filter_criteria: Option<DynamicBlock<Inspector2FilterFilterCriteriaEl>>,

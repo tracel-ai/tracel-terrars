@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueCatalogTableOptimizerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct GlueCatalogTableOptimizerData {
     configuration: Option<Vec<GlueCatalogTableOptimizerConfigurationEl>>,
     dynamic: GlueCatalogTableOptimizerDynamic,
 }
-
 struct GlueCatalogTableOptimizer_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueCatalogTableOptimizerData>,
 }
-
 #[derive(Clone)]
 pub struct GlueCatalogTableOptimizer(Rc<GlueCatalogTableOptimizer_>);
-
 impl GlueCatalogTableOptimizer {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl GlueCatalogTableOptimizer {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl GlueCatalogTableOptimizer {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,13 +92,11 @@ impl GlueCatalogTableOptimizer {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -126,7 +112,6 @@ impl GlueCatalogTableOptimizer {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -134,7 +119,6 @@ impl GlueCatalogTableOptimizer {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -142,7 +126,6 @@ impl GlueCatalogTableOptimizer {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +133,6 @@ impl GlueCatalogTableOptimizer {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +140,6 @@ impl GlueCatalogTableOptimizer {
             format!("{}.table_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +147,6 @@ impl GlueCatalogTableOptimizer {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<GlueCatalogTableOptimizerConfigurationElRef> {
         ListRef::new(
@@ -175,7 +155,6 @@ impl GlueCatalogTableOptimizer {
         )
     }
 }
-
 impl Referable for GlueCatalogTableOptimizer {
     fn extract_ref(&self) -> String {
         format!(
@@ -185,32 +164,25 @@ impl Referable for GlueCatalogTableOptimizer {
         )
     }
 }
-
 impl Resource for GlueCatalogTableOptimizer {}
-
 impl ToListMappable for GlueCatalogTableOptimizer {
     type O = ListRef<GlueCatalogTableOptimizerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueCatalogTableOptimizer_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_catalog_table_optimizer".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueCatalogTableOptimizer {
     pub tf_id: String,
     #[doc = ""]
@@ -222,7 +194,6 @@ pub struct BuildGlueCatalogTableOptimizer {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildGlueCatalogTableOptimizer {
     pub fn build(self, stack: &mut Stack) -> GlueCatalogTableOptimizer {
         let out = GlueCatalogTableOptimizer(Rc::new(GlueCatalogTableOptimizer_ {
@@ -246,27 +217,22 @@ impl BuildGlueCatalogTableOptimizer {
         out
     }
 }
-
 pub struct GlueCatalogTableOptimizerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCatalogTableOptimizerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueCatalogTableOptimizerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +240,6 @@ impl GlueCatalogTableOptimizerRef {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,7 +247,6 @@ impl GlueCatalogTableOptimizerRef {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +254,6 @@ impl GlueCatalogTableOptimizerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +261,6 @@ impl GlueCatalogTableOptimizerRef {
             format!("{}.table_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +268,6 @@ impl GlueCatalogTableOptimizerRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<GlueCatalogTableOptimizerConfigurationElRef> {
         ListRef::new(
@@ -315,7 +276,6 @@ impl GlueCatalogTableOptimizerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl
 {
@@ -326,7 +286,6 @@ pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurati
     #[serde(skip_serializing_if = "Option::is_none")]
     run_rate_in_hours: Option<PrimField<f64>>,
 }
-
 impl
     GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl
 {
@@ -335,7 +294,6 @@ impl
         self.location = Some(v.into());
         self
     }
-
     #[doc = "Set the field `orphan_file_retention_period_in_days`.\n"]
     pub fn set_orphan_file_retention_period_in_days(
         mut self,
@@ -344,111 +302,32 @@ impl
         self.orphan_file_retention_period_in_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `run_rate_in_hours`.\n"]
     pub fn set_run_rate_in_hours(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.run_rate_in_hours = Some(v.into());
         self
     }
 }
-
-impl ToListMappable for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl {
-    type O =
-        BlockAssignable<
-            GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl { type O = BlockAssignable < GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl
 {}
-
-impl BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl {
-    pub fn build(
-        self,
-    ) -> GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl {
-        GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl {
-            location: core::default::Default::default(),
-            orphan_file_retention_period_in_days: core::default::Default::default(),
-            run_rate_in_hours: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl { pub fn build (self) -> GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl { GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl { location : core :: default :: Default :: default () , orphan_file_retention_period_in_days : core :: default :: Default :: default () , run_rate_in_hours : core :: default :: Default :: default () , } } }
 pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef {
-        GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
-    pub fn location(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.location", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `orphan_file_retention_period_in_days` after provisioning.\n"]
-    pub fn orphan_file_retention_period_in_days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.orphan_file_retention_period_in_days", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `run_rate_in_hours` after provisioning.\n"]
-    pub fn run_rate_in_hours(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.run_rate_in_hours", self.base))
-    }
-}
-
+impl Ref for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef { fn new (shared : StackShared , base : String) -> GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef { GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `location` after provisioning.\n"] pub fn location (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.location" , self . base)) } # [doc = "Get a reference to the value of field `orphan_file_retention_period_in_days` after provisioning.\n"] pub fn orphan_file_retention_period_in_days (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.orphan_file_retention_period_in_days" , self . base)) } # [doc = "Get a reference to the value of field `run_rate_in_hours` after provisioning.\n"] pub fn run_rate_in_hours (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.run_rate_in_hours" , self . base)) } }
 #[derive(Serialize, Default)]
-struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElDynamic {
-    iceberg_configuration: Option<
-        DynamicBlock<GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl>,
-    >,
-}
-
+struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElDynamic { iceberg_configuration : Option < DynamicBlock < GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    iceberg_configuration: Option<
-        Vec<GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl>,
-    >,
-    dynamic: GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElDynamic,
-}
-
+pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] iceberg_configuration : Option < Vec < GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl > > , dynamic : GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElDynamic , }
 impl GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {
     #[doc = "Set the field `iceberg_configuration`.\n"]
     pub fn set_iceberg_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -461,11 +340,9 @@ impl GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {
     type O =
         BlockAssignable<GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -474,9 +351,7 @@ impl ToListMappable for GlueCatalogTableOptimizerConfigurationElOrphanFileDeleti
         })
     }
 }
-
 pub struct BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {}
-
 impl BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationEl {
     pub fn build(
         self,
@@ -487,12 +362,10 @@ impl BuildGlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfiguratio
         }
     }
 }
-
 pub struct GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -504,23 +377,17 @@ impl Ref for GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigura
         }
     }
 }
-
 impl GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `iceberg_configuration` after provisioning.\n"]
-    pub fn iceberg_configuration(
-        &self,
-    ) -> ListRef<GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef>{
+    #[doc = "Get a reference to the value of field `iceberg_configuration` after provisioning.\n"]    pub fn iceberg_configuration (& self) -> ListRef < GlueCatalogTableOptimizerConfigurationElOrphanFileDeletionConfigurationElIcebergConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.iceberg_configuration", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -532,40 +399,34 @@ pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebe
     #[serde(skip_serializing_if = "Option::is_none")]
     snapshot_retention_period_in_days: Option<PrimField<f64>>,
 }
-
 impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl {
     #[doc = "Set the field `clean_expired_files`.\n"]
     pub fn set_clean_expired_files(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.clean_expired_files = Some(v.into());
         self
     }
-
     #[doc = "Set the field `number_of_snapshots_to_retain`.\n"]
     pub fn set_number_of_snapshots_to_retain(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.number_of_snapshots_to_retain = Some(v.into());
         self
     }
-
     #[doc = "Set the field `run_rate_in_hours`.\n"]
     pub fn set_run_rate_in_hours(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.run_rate_in_hours = Some(v.into());
         self
     }
-
     #[doc = "Set the field `snapshot_retention_period_in_days`.\n"]
     pub fn set_snapshot_retention_period_in_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.snapshot_retention_period_in_days = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl
 {
     type O = BlockAssignable<
         GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -574,10 +435,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl
 {}
-
 impl BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl {
     pub fn build(
         self,
@@ -591,13 +450,11 @@ impl BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIceber
         }
     }
 }
-
 pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationElRef
 {
@@ -612,12 +469,10 @@ impl Ref
         }
     }
 }
-
 impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `clean_expired_files` after provisioning.\n"]
     pub fn clean_expired_files(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -625,7 +480,6 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConf
             format!("{}.clean_expired_files", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `number_of_snapshots_to_retain` after provisioning.\n"]
     pub fn number_of_snapshots_to_retain(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -633,7 +487,6 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConf
             format!("{}.number_of_snapshots_to_retain", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `run_rate_in_hours` after provisioning.\n"]
     pub fn run_rate_in_hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -641,7 +494,6 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConf
             format!("{}.run_rate_in_hours", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_retention_period_in_days` after provisioning.\n"]
     pub fn snapshot_retention_period_in_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -650,7 +502,6 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConf
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElDynamic {
     iceberg_configuration: Option<
@@ -659,7 +510,6 @@ struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -668,19 +518,11 @@ pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
     >,
     dynamic: GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElDynamic,
 }
-
 impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
     #[doc = "Set the field `iceberg_configuration`.\n"]
     pub fn set_iceberg_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElIcebergConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -693,10 +535,8 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
     type O = BlockAssignable<GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -705,9 +545,7 @@ impl ToListMappable for GlueCatalogTableOptimizerConfigurationElRetentionConfigu
         })
     }
 }
-
 pub struct BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {}
-
 impl BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
     pub fn build(self) -> GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
         GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
@@ -716,12 +554,10 @@ impl BuildGlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl {
         }
     }
 }
-
 pub struct GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -733,12 +569,10 @@ impl Ref for GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElRef
         }
     }
 }
-
 impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `iceberg_configuration` after provisioning.\n"]
     pub fn iceberg_configuration(
         &self,
@@ -751,7 +585,6 @@ impl GlueCatalogTableOptimizerConfigurationElRetentionConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueCatalogTableOptimizerConfigurationElDynamic {
     orphan_file_deletion_configuration: Option<
@@ -760,7 +593,6 @@ struct GlueCatalogTableOptimizerConfigurationElDynamic {
     retention_configuration:
         Option<DynamicBlock<GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct GlueCatalogTableOptimizerConfigurationEl {
     enabled: PrimField<bool>,
@@ -773,7 +605,6 @@ pub struct GlueCatalogTableOptimizerConfigurationEl {
         Option<Vec<GlueCatalogTableOptimizerConfigurationElRetentionConfigurationEl>>,
     dynamic: GlueCatalogTableOptimizerConfigurationElDynamic,
 }
-
 impl GlueCatalogTableOptimizerConfigurationEl {
     #[doc = "Set the field `orphan_file_deletion_configuration`.\n"]
     pub fn set_orphan_file_deletion_configuration(
@@ -794,7 +625,6 @@ impl GlueCatalogTableOptimizerConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `retention_configuration`.\n"]
     pub fn set_retention_configuration(
         mut self,
@@ -811,10 +641,8 @@ impl GlueCatalogTableOptimizerConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for GlueCatalogTableOptimizerConfigurationEl {
     type O = BlockAssignable<GlueCatalogTableOptimizerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -823,14 +651,12 @@ impl ToListMappable for GlueCatalogTableOptimizerConfigurationEl {
         })
     }
 }
-
 pub struct BuildGlueCatalogTableOptimizerConfigurationEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildGlueCatalogTableOptimizerConfigurationEl {
     pub fn build(self) -> GlueCatalogTableOptimizerConfigurationEl {
         GlueCatalogTableOptimizerConfigurationEl {
@@ -842,12 +668,10 @@ impl BuildGlueCatalogTableOptimizerConfigurationEl {
         }
     }
 }
-
 pub struct GlueCatalogTableOptimizerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCatalogTableOptimizerConfigurationElRef {
     fn new(shared: StackShared, base: String) -> GlueCatalogTableOptimizerConfigurationElRef {
         GlueCatalogTableOptimizerConfigurationElRef {
@@ -856,22 +680,18 @@ impl Ref for GlueCatalogTableOptimizerConfigurationElRef {
         }
     }
 }
-
 impl GlueCatalogTableOptimizerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `orphan_file_deletion_configuration` after provisioning.\n"]
     pub fn orphan_file_deletion_configuration(
         &self,
@@ -881,7 +701,6 @@ impl GlueCatalogTableOptimizerConfigurationElRef {
             format!("{}.orphan_file_deletion_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retention_configuration` after provisioning.\n"]
     pub fn retention_configuration(
         &self,
@@ -892,7 +711,6 @@ impl GlueCatalogTableOptimizerConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueCatalogTableOptimizerDynamic {
     configuration: Option<DynamicBlock<GlueCatalogTableOptimizerConfigurationEl>>,

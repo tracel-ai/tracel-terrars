@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SecuritylakeDataLakeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct SecuritylakeDataLakeData {
     timeouts: Option<SecuritylakeDataLakeTimeoutsEl>,
     dynamic: SecuritylakeDataLakeDynamic,
 }
-
 struct SecuritylakeDataLake_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SecuritylakeDataLakeData>,
 }
-
 #[derive(Clone)]
 pub struct SecuritylakeDataLake(Rc<SecuritylakeDataLake_>);
-
 impl SecuritylakeDataLake {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl SecuritylakeDataLake {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl SecuritylakeDataLake {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl SecuritylakeDataLake {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -132,23 +117,19 @@ impl SecuritylakeDataLake {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<SecuritylakeDataLakeTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `meta_store_manager_role_arn` after provisioning.\n"]
     pub fn meta_store_manager_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,7 +137,6 @@ impl SecuritylakeDataLake {
             format!("{}.meta_store_manager_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -164,7 +144,6 @@ impl SecuritylakeDataLake {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +151,6 @@ impl SecuritylakeDataLake {
             format!("{}.s3_bucket_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -180,7 +158,6 @@ impl SecuritylakeDataLake {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -188,7 +165,6 @@ impl SecuritylakeDataLake {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeDataLakeConfigurationElRef> {
         ListRef::new(
@@ -196,7 +172,6 @@ impl SecuritylakeDataLake {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecuritylakeDataLakeTimeoutsElRef {
         SecuritylakeDataLakeTimeoutsElRef::new(
@@ -205,7 +180,6 @@ impl SecuritylakeDataLake {
         )
     }
 }
-
 impl Referable for SecuritylakeDataLake {
     fn extract_ref(&self) -> String {
         format!(
@@ -215,38 +189,30 @@ impl Referable for SecuritylakeDataLake {
         )
     }
 }
-
 impl Resource for SecuritylakeDataLake {}
-
 impl ToListMappable for SecuritylakeDataLake {
     type O = ListRef<SecuritylakeDataLakeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SecuritylakeDataLake_ {
     fn extract_resource_type(&self) -> String {
         "aws_securitylake_data_lake".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSecuritylakeDataLake {
     pub tf_id: String,
     #[doc = ""]
     pub meta_store_manager_role_arn: PrimField<String>,
 }
-
 impl BuildSecuritylakeDataLake {
     pub fn build(self, stack: &mut Stack) -> SecuritylakeDataLake {
         let out = SecuritylakeDataLake(Rc::new(SecuritylakeDataLake_ {
@@ -269,37 +235,30 @@ impl BuildSecuritylakeDataLake {
         out
     }
 }
-
 pub struct SecuritylakeDataLakeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SecuritylakeDataLakeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `meta_store_manager_role_arn` after provisioning.\n"]
     pub fn meta_store_manager_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +266,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.meta_store_manager_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +273,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +280,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.s3_bucket_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -331,7 +287,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -339,7 +294,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<SecuritylakeDataLakeConfigurationElRef> {
         ListRef::new(
@@ -347,7 +301,6 @@ impl SecuritylakeDataLakeRef {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecuritylakeDataLakeTimeoutsElRef {
         SecuritylakeDataLakeTimeoutsElRef::new(
@@ -356,13 +309,11 @@ impl SecuritylakeDataLakeRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_id: Option<PrimField<String>>,
 }
-
 impl SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -370,10 +321,8 @@ impl SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
     type O = BlockAssignable<SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -382,9 +331,7 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationElEncryptionConfigurati
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {}
-
 impl BuildSecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
         SecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
@@ -392,12 +339,10 @@ impl BuildSecuritylakeDataLakeConfigurationElEncryptionConfigurationEl {
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElEncryptionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -409,24 +354,20 @@ impl Ref for SecuritylakeDataLakeConfigurationElEncryptionConfigurationElRef {
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     days: Option<PrimField<f64>>,
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -434,11 +375,9 @@ impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
     type O =
         BlockAssignable<SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -447,9 +386,7 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfiguratio
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {}
-
 impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
         SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationEl {
@@ -457,12 +394,10 @@ impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationE
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationElRef {
     fn new(
         shared: StackShared,
@@ -474,18 +409,15 @@ impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirati
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElExpirationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -493,25 +425,21 @@ pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransition
     #[serde(skip_serializing_if = "Option::is_none")]
     storage_class: Option<PrimField<String>>,
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `storage_class`.\n"]
     pub fn set_storage_class(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.storage_class = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
     type O =
         BlockAssignable<SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -520,9 +448,7 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfiguratio
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {}
-
 impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
         SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl {
@@ -531,12 +457,10 @@ impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionE
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionElRef {
     fn new(
         shared: StackShared,
@@ -548,17 +472,14 @@ impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransiti
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
-
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -567,7 +488,6 @@ impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionElRef 
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElDynamic {
     expiration: Option<
@@ -577,7 +497,6 @@ struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElDynamic {
         DynamicBlock<SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -588,7 +507,6 @@ pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
         Option<Vec<SecuritylakeDataLakeConfigurationElLifecycleConfigurationElTransitionEl>>,
     dynamic: SecuritylakeDataLakeConfigurationElLifecycleConfigurationElDynamic,
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
     #[doc = "Set the field `expiration`.\n"]
     pub fn set_expiration(
@@ -609,7 +527,6 @@ impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `transition`.\n"]
     pub fn set_transition(
         mut self,
@@ -630,10 +547,8 @@ impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
     type O = BlockAssignable<SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -642,9 +557,7 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationElLifecycleConfiguratio
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {}
-
 impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
         SecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
@@ -654,12 +567,10 @@ impl BuildSecuritylakeDataLakeConfigurationElLifecycleConfigurationEl {
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElLifecycleConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -671,12 +582,10 @@ impl Ref for SecuritylakeDataLakeConfigurationElLifecycleConfigurationElRef {
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
     pub fn expiration(
         &self,
@@ -684,7 +593,6 @@ impl SecuritylakeDataLakeConfigurationElLifecycleConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.expiration", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -692,24 +600,20 @@ pub struct SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     role_arn: Option<PrimField<String>>,
 }
-
 impl SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
     #[doc = "Set the field `regions`.\n"]
     pub fn set_regions(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.regions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
     type O = BlockAssignable<SecuritylakeDataLakeConfigurationElReplicationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -718,9 +622,7 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationElReplicationConfigurat
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationElReplicationConfigurationEl {}
-
 impl BuildSecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
         SecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
@@ -729,12 +631,10 @@ impl BuildSecuritylakeDataLakeConfigurationElReplicationConfigurationEl {
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElReplicationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElReplicationConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -746,23 +646,19 @@ impl Ref for SecuritylakeDataLakeConfigurationElReplicationConfigurationElRef {
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElReplicationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.regions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecuritylakeDataLakeConfigurationElDynamic {
     lifecycle_configuration:
@@ -770,7 +666,6 @@ struct SecuritylakeDataLakeConfigurationElDynamic {
     replication_configuration:
         Option<DynamicBlock<SecuritylakeDataLakeConfigurationElReplicationConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -785,7 +680,6 @@ pub struct SecuritylakeDataLakeConfigurationEl {
         Option<Vec<SecuritylakeDataLakeConfigurationElReplicationConfigurationEl>>,
     dynamic: SecuritylakeDataLakeConfigurationElDynamic,
 }
-
 impl SecuritylakeDataLakeConfigurationEl {
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
@@ -795,7 +689,6 @@ impl SecuritylakeDataLakeConfigurationEl {
         self.encryption_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lifecycle_configuration`.\n"]
     pub fn set_lifecycle_configuration(
         mut self,
@@ -811,7 +704,6 @@ impl SecuritylakeDataLakeConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `replication_configuration`.\n"]
     pub fn set_replication_configuration(
         mut self,
@@ -828,10 +720,8 @@ impl SecuritylakeDataLakeConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeConfigurationEl {
     type O = BlockAssignable<SecuritylakeDataLakeConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -840,12 +730,10 @@ impl ToListMappable for SecuritylakeDataLakeConfigurationEl {
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeConfigurationEl {
     #[doc = ""]
     pub region: PrimField<String>,
 }
-
 impl BuildSecuritylakeDataLakeConfigurationEl {
     pub fn build(self) -> SecuritylakeDataLakeConfigurationEl {
         SecuritylakeDataLakeConfigurationEl {
@@ -857,12 +745,10 @@ impl BuildSecuritylakeDataLakeConfigurationEl {
         }
     }
 }
-
 pub struct SecuritylakeDataLakeConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeConfigurationElRef {
     fn new(shared: StackShared, base: String) -> SecuritylakeDataLakeConfigurationElRef {
         SecuritylakeDataLakeConfigurationElRef {
@@ -871,12 +757,10 @@ impl Ref for SecuritylakeDataLakeConfigurationElRef {
         }
     }
 }
-
 impl SecuritylakeDataLakeConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -886,12 +770,10 @@ impl SecuritylakeDataLakeConfigurationElRef {
             format!("{}.encryption_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_configuration` after provisioning.\n"]
     pub fn lifecycle_configuration(
         &self,
@@ -901,7 +783,6 @@ impl SecuritylakeDataLakeConfigurationElRef {
             format!("{}.lifecycle_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_configuration` after provisioning.\n"]
     pub fn replication_configuration(
         &self,
@@ -912,7 +793,6 @@ impl SecuritylakeDataLakeConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecuritylakeDataLakeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -922,30 +802,25 @@ pub struct SecuritylakeDataLakeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl SecuritylakeDataLakeTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecuritylakeDataLakeTimeoutsEl {
     type O = BlockAssignable<SecuritylakeDataLakeTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -954,9 +829,7 @@ impl ToListMappable for SecuritylakeDataLakeTimeoutsEl {
         })
     }
 }
-
 pub struct BuildSecuritylakeDataLakeTimeoutsEl {}
-
 impl BuildSecuritylakeDataLakeTimeoutsEl {
     pub fn build(self) -> SecuritylakeDataLakeTimeoutsEl {
         SecuritylakeDataLakeTimeoutsEl {
@@ -966,12 +839,10 @@ impl BuildSecuritylakeDataLakeTimeoutsEl {
         }
     }
 }
-
 pub struct SecuritylakeDataLakeTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecuritylakeDataLakeTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> SecuritylakeDataLakeTimeoutsElRef {
         SecuritylakeDataLakeTimeoutsElRef {
@@ -980,28 +851,23 @@ impl Ref for SecuritylakeDataLakeTimeoutsElRef {
         }
     }
 }
-
 impl SecuritylakeDataLakeTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecuritylakeDataLakeDynamic {
     configuration: Option<DynamicBlock<SecuritylakeDataLakeConfigurationEl>>,

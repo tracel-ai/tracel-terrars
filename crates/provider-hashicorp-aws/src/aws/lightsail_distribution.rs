@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LightsailDistributionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -42,47 +41,38 @@ struct LightsailDistributionData {
     timeouts: Option<LightsailDistributionTimeoutsEl>,
     dynamic: LightsailDistributionDynamic,
 }
-
 struct LightsailDistribution_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LightsailDistributionData>,
 }
-
 #[derive(Clone)]
 pub struct LightsailDistribution(Rc<LightsailDistribution_>);
-
 impl LightsailDistribution {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -101,7 +91,6 @@ impl LightsailDistribution {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -111,7 +100,6 @@ impl LightsailDistribution {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -121,49 +109,41 @@ impl LightsailDistribution {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `certificate_name`.\nThe name of the SSL/TLS certificate attached to the distribution, if any."]
     pub fn set_certificate_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().certificate_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_address_type`.\nThe IP address type of the distribution."]
     pub fn set_ip_address_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ip_address_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `is_enabled`.\nIndicates whether the distribution is enabled."]
     pub fn set_is_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().is_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cache_behavior`.\n"]
     pub fn set_cache_behavior(
         self,
@@ -179,7 +159,6 @@ impl LightsailDistribution {
         }
         self
     }
-
     #[doc = "Set the field `cache_behavior_settings`.\n"]
     pub fn set_cache_behavior_settings(
         self,
@@ -195,7 +174,6 @@ impl LightsailDistribution {
         }
         self
     }
-
     #[doc = "Set the field `default_cache_behavior`.\n"]
     pub fn set_default_cache_behavior(
         self,
@@ -211,7 +189,6 @@ impl LightsailDistribution {
         }
         self
     }
-
     #[doc = "Set the field `origin`.\n"]
     pub fn set_origin(self, v: impl Into<BlockAssignable<LightsailDistributionOriginEl>>) -> Self {
         match v.into() {
@@ -224,13 +201,11 @@ impl LightsailDistribution {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<LightsailDistributionTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `alternative_domain_names` after provisioning.\nThe alternate domain names of the distribution."]
     pub fn alternative_domain_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -238,12 +213,10 @@ impl LightsailDistribution {
             format!("{}.alternative_domain_names", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\nThe Amazon Resource Name (ARN) of the distribution."]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\nThe bundle ID to use for the distribution."]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,7 +224,6 @@ impl LightsailDistribution {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_name` after provisioning.\nThe name of the SSL/TLS certificate attached to the distribution, if any."]
     pub fn certificate_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -259,7 +231,6 @@ impl LightsailDistribution {
             format!("{}.certificate_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe timestamp when the distribution was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +238,6 @@ impl LightsailDistribution {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\nThe domain name of the distribution."]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,12 +245,10 @@ impl LightsailDistribution {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\nThe IP address type of the distribution."]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +256,6 @@ impl LightsailDistribution {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_enabled` after provisioning.\nIndicates whether the distribution is enabled."]
     pub fn is_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -296,7 +263,6 @@ impl LightsailDistribution {
             format!("{}.is_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\nAn object that describes the location of the distribution, such as the AWS Region and Availability Zone."]
     pub fn location(&self) -> ListRef<LightsailDistributionLocationElRef> {
         ListRef::new(
@@ -304,7 +270,6 @@ impl LightsailDistribution {
             format!("{}.location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the distribution."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -312,7 +277,6 @@ impl LightsailDistribution {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `origin_public_dns` after provisioning.\nThe public DNS of the origin."]
     pub fn origin_public_dns(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -320,7 +284,6 @@ impl LightsailDistribution {
             format!("{}.origin_public_dns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -328,7 +291,6 @@ impl LightsailDistribution {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\nThe Lightsail resource type (e.g., Distribution)."]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +298,6 @@ impl LightsailDistribution {
             format!("{}.resource_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the distribution."]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -344,7 +305,6 @@ impl LightsailDistribution {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_code` after provisioning.\nThe support code. Include this code in your email to support when you have questions about your Lightsail distribution. This code enables our support team to look up your Lightsail information more easily."]
     pub fn support_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -352,7 +312,6 @@ impl LightsailDistribution {
             format!("{}.support_code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -360,7 +319,6 @@ impl LightsailDistribution {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -368,7 +326,6 @@ impl LightsailDistribution {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cache_behavior_settings` after provisioning.\n"]
     pub fn cache_behavior_settings(
         &self,
@@ -378,7 +335,6 @@ impl LightsailDistribution {
             format!("{}.cache_behavior_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_cache_behavior` after provisioning.\n"]
     pub fn default_cache_behavior(
         &self,
@@ -388,7 +344,6 @@ impl LightsailDistribution {
             format!("{}.default_cache_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
     pub fn origin(&self) -> ListRef<LightsailDistributionOriginElRef> {
         ListRef::new(
@@ -396,7 +351,6 @@ impl LightsailDistribution {
             format!("{}.origin", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LightsailDistributionTimeoutsElRef {
         LightsailDistributionTimeoutsElRef::new(
@@ -405,7 +359,6 @@ impl LightsailDistribution {
         )
     }
 }
-
 impl Referable for LightsailDistribution {
     fn extract_ref(&self) -> String {
         format!(
@@ -415,32 +368,25 @@ impl Referable for LightsailDistribution {
         )
     }
 }
-
 impl Resource for LightsailDistribution {}
-
 impl ToListMappable for LightsailDistribution {
     type O = ListRef<LightsailDistributionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LightsailDistribution_ {
     fn extract_resource_type(&self) -> String {
         "aws_lightsail_distribution".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLightsailDistribution {
     pub tf_id: String,
     #[doc = "The bundle ID to use for the distribution."]
@@ -448,7 +394,6 @@ pub struct BuildLightsailDistribution {
     #[doc = "The name of the distribution."]
     pub name: PrimField<String>,
 }
-
 impl BuildLightsailDistribution {
     pub fn build(self, stack: &mut Stack) -> LightsailDistribution {
         let out = LightsailDistribution(Rc::new(LightsailDistribution_ {
@@ -480,27 +425,22 @@ impl BuildLightsailDistribution {
         out
     }
 }
-
 pub struct LightsailDistributionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LightsailDistributionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alternative_domain_names` after provisioning.\nThe alternate domain names of the distribution."]
     pub fn alternative_domain_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -508,12 +448,10 @@ impl LightsailDistributionRef {
             format!("{}.alternative_domain_names", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\nThe Amazon Resource Name (ARN) of the distribution."]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\nThe bundle ID to use for the distribution."]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -521,7 +459,6 @@ impl LightsailDistributionRef {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_name` after provisioning.\nThe name of the SSL/TLS certificate attached to the distribution, if any."]
     pub fn certificate_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -529,7 +466,6 @@ impl LightsailDistributionRef {
             format!("{}.certificate_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\nThe timestamp when the distribution was created."]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -537,7 +473,6 @@ impl LightsailDistributionRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\nThe domain name of the distribution."]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -545,12 +480,10 @@ impl LightsailDistributionRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\nThe IP address type of the distribution."]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -558,7 +491,6 @@ impl LightsailDistributionRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_enabled` after provisioning.\nIndicates whether the distribution is enabled."]
     pub fn is_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -566,7 +498,6 @@ impl LightsailDistributionRef {
             format!("{}.is_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\nAn object that describes the location of the distribution, such as the AWS Region and Availability Zone."]
     pub fn location(&self) -> ListRef<LightsailDistributionLocationElRef> {
         ListRef::new(
@@ -574,7 +505,6 @@ impl LightsailDistributionRef {
             format!("{}.location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the distribution."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -582,7 +512,6 @@ impl LightsailDistributionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `origin_public_dns` after provisioning.\nThe public DNS of the origin."]
     pub fn origin_public_dns(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -590,7 +519,6 @@ impl LightsailDistributionRef {
             format!("{}.origin_public_dns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -598,7 +526,6 @@ impl LightsailDistributionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\nThe Lightsail resource type (e.g., Distribution)."]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -606,7 +533,6 @@ impl LightsailDistributionRef {
             format!("{}.resource_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\nThe status of the distribution."]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -614,7 +540,6 @@ impl LightsailDistributionRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_code` after provisioning.\nThe support code. Include this code in your email to support when you have questions about your Lightsail distribution. This code enables our support team to look up your Lightsail information more easily."]
     pub fn support_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -622,7 +547,6 @@ impl LightsailDistributionRef {
             format!("{}.support_code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -630,7 +554,6 @@ impl LightsailDistributionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -638,7 +561,6 @@ impl LightsailDistributionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cache_behavior_settings` after provisioning.\n"]
     pub fn cache_behavior_settings(
         &self,
@@ -648,7 +570,6 @@ impl LightsailDistributionRef {
             format!("{}.cache_behavior_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_cache_behavior` after provisioning.\n"]
     pub fn default_cache_behavior(
         &self,
@@ -658,7 +579,6 @@ impl LightsailDistributionRef {
             format!("{}.default_cache_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `origin` after provisioning.\n"]
     pub fn origin(&self) -> ListRef<LightsailDistributionOriginElRef> {
         ListRef::new(
@@ -666,7 +586,6 @@ impl LightsailDistributionRef {
             format!("{}.origin", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LightsailDistributionTimeoutsElRef {
         LightsailDistributionTimeoutsElRef::new(
@@ -675,7 +594,6 @@ impl LightsailDistributionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -683,24 +601,20 @@ pub struct LightsailDistributionLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     region_name: Option<PrimField<String>>,
 }
-
 impl LightsailDistributionLocationEl {
     #[doc = "Set the field `availability_zone`.\n"]
     pub fn set_availability_zone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.availability_zone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region_name`.\n"]
     pub fn set_region_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.region_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionLocationEl {
     type O = BlockAssignable<LightsailDistributionLocationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -709,9 +623,7 @@ impl ToListMappable for LightsailDistributionLocationEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionLocationEl {}
-
 impl BuildLightsailDistributionLocationEl {
     pub fn build(self) -> LightsailDistributionLocationEl {
         LightsailDistributionLocationEl {
@@ -720,12 +632,10 @@ impl BuildLightsailDistributionLocationEl {
         }
     }
 }
-
 pub struct LightsailDistributionLocationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionLocationElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionLocationElRef {
         LightsailDistributionLocationElRef {
@@ -734,12 +644,10 @@ impl Ref for LightsailDistributionLocationElRef {
         }
     }
 }
-
 impl LightsailDistributionLocationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -747,24 +655,19 @@ impl LightsailDistributionLocationElRef {
             format!("{}.availability_zone", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region_name` after provisioning.\n"]
     pub fn region_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionCacheBehaviorEl {
     behavior: PrimField<String>,
     path: PrimField<String>,
 }
-
 impl LightsailDistributionCacheBehaviorEl {}
-
 impl ToListMappable for LightsailDistributionCacheBehaviorEl {
     type O = BlockAssignable<LightsailDistributionCacheBehaviorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -773,14 +676,12 @@ impl ToListMappable for LightsailDistributionCacheBehaviorEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionCacheBehaviorEl {
     #[doc = "The cache behavior for the specified path."]
     pub behavior: PrimField<String>,
     #[doc = "The path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (path/to/assets/*), and file types (*.html, *jpg, *js). Directories and file paths are case-sensitive."]
     pub path: PrimField<String>,
 }
-
 impl BuildLightsailDistributionCacheBehaviorEl {
     pub fn build(self) -> LightsailDistributionCacheBehaviorEl {
         LightsailDistributionCacheBehaviorEl {
@@ -789,12 +690,10 @@ impl BuildLightsailDistributionCacheBehaviorEl {
         }
     }
 }
-
 pub struct LightsailDistributionCacheBehaviorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionCacheBehaviorElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionCacheBehaviorElRef {
         LightsailDistributionCacheBehaviorElRef {
@@ -803,23 +702,19 @@ impl Ref for LightsailDistributionCacheBehaviorElRef {
         }
     }
 }
-
 impl LightsailDistributionCacheBehaviorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `behavior` after provisioning.\nThe cache behavior for the specified path."]
     pub fn behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.behavior", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\nThe path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (path/to/assets/*), and file types (*.html, *jpg, *js). Directories and file paths are case-sensitive."]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -827,24 +722,20 @@ pub struct LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     option: Option<PrimField<String>>,
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
     #[doc = "Set the field `cookies_allow_list`.\nThe specific cookies to forward to your distribution's origin."]
     pub fn set_cookies_allow_list(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.cookies_allow_list = Some(v.into());
         self
     }
-
     #[doc = "Set the field `option`.\nSpecifies which cookies to forward to the distribution's origin for a cache behavior: all, none, or allow-list to forward only the cookies specified in the cookiesAllowList parameter."]
     pub fn set_option(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.option = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
     type O = BlockAssignable<LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -853,9 +744,7 @@ impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedCoo
         })
     }
 }
-
 pub struct BuildLightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {}
-
 impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
     pub fn build(self) -> LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
         LightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
@@ -864,12 +753,10 @@ impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedCookiesEl {
         }
     }
 }
-
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedCookiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedCookiesElRef {
     fn new(
         shared: StackShared,
@@ -881,12 +768,10 @@ impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedCookiesElRef {
         }
     }
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedCookiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cookies_allow_list` after provisioning.\nThe specific cookies to forward to your distribution's origin."]
     pub fn cookies_allow_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -894,13 +779,11 @@ impl LightsailDistributionCacheBehaviorSettingsElForwardedCookiesElRef {
             format!("{}.cookies_allow_list", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `option` after provisioning.\nSpecifies which cookies to forward to the distribution's origin for a cache behavior: all, none, or allow-list to forward only the cookies specified in the cookiesAllowList parameter."]
     pub fn option(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.option", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -908,24 +791,20 @@ pub struct LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     option: Option<PrimField<String>>,
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
     #[doc = "Set the field `headers_allow_list`.\nThe specific headers to forward to your distribution's origin."]
     pub fn set_headers_allow_list(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.headers_allow_list = Some(v.into());
         self
     }
-
     #[doc = "Set the field `option`.\nThe headers that you want your distribution to forward to your origin and base caching on."]
     pub fn set_option(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.option = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
     type O = BlockAssignable<LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -934,9 +813,7 @@ impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedHea
         })
     }
 }
-
 pub struct BuildLightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {}
-
 impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
     pub fn build(self) -> LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
         LightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
@@ -945,12 +822,10 @@ impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedHeadersEl {
         }
     }
 }
-
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedHeadersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedHeadersElRef {
     fn new(
         shared: StackShared,
@@ -962,12 +837,10 @@ impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedHeadersElRef {
         }
     }
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedHeadersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `headers_allow_list` after provisioning.\nThe specific headers to forward to your distribution's origin."]
     pub fn headers_allow_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -975,13 +848,11 @@ impl LightsailDistributionCacheBehaviorSettingsElForwardedHeadersElRef {
             format!("{}.headers_allow_list", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `option` after provisioning.\nThe headers that you want your distribution to forward to your origin and base caching on."]
     pub fn option(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.option", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -989,14 +860,12 @@ pub struct LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     query_strings_allowed_list: Option<SetField<PrimField<String>>>,
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
     #[doc = "Set the field `option`.\nIndicates whether the distribution forwards and caches based on query strings."]
     pub fn set_option(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.option = Some(v.into());
         self
     }
-
     #[doc = "Set the field `query_strings_allowed_list`.\nThe specific query strings that the distribution forwards to the origin."]
     pub fn set_query_strings_allowed_list(
         mut self,
@@ -1006,10 +875,8 @@ impl LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
     type O = BlockAssignable<LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1018,9 +885,7 @@ impl ToListMappable for LightsailDistributionCacheBehaviorSettingsElForwardedQue
         })
     }
 }
-
 pub struct BuildLightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {}
-
 impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
     pub fn build(self) -> LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
         LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
@@ -1029,12 +894,10 @@ impl BuildLightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl {
         }
     }
 }
-
 pub struct LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsElRef {
     fn new(
         shared: StackShared,
@@ -1046,17 +909,14 @@ impl Ref for LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl
         }
     }
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `option` after provisioning.\nIndicates whether the distribution forwards and caches based on query strings."]
     pub fn option(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.option", self.base))
     }
-
     #[doc = "Get a reference to the value of field `query_strings_allowed_list` after provisioning.\nThe specific query strings that the distribution forwards to the origin."]
     pub fn query_strings_allowed_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1065,7 +925,6 @@ impl LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LightsailDistributionCacheBehaviorSettingsElDynamic {
     forwarded_cookies:
@@ -1075,7 +934,6 @@ struct LightsailDistributionCacheBehaviorSettingsElDynamic {
     forwarded_query_strings:
         Option<DynamicBlock<LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionCacheBehaviorSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1097,38 +955,32 @@ pub struct LightsailDistributionCacheBehaviorSettingsEl {
         Option<Vec<LightsailDistributionCacheBehaviorSettingsElForwardedQueryStringsEl>>,
     dynamic: LightsailDistributionCacheBehaviorSettingsElDynamic,
 }
-
 impl LightsailDistributionCacheBehaviorSettingsEl {
     #[doc = "Set the field `allowed_http_methods`.\nThe HTTP methods that are processed and forwarded to the distribution's origin."]
     pub fn set_allowed_http_methods(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.allowed_http_methods = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cached_http_methods`.\nThe HTTP method responses that are cached by your distribution."]
     pub fn set_cached_http_methods(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cached_http_methods = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_ttl`.\nThe default amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the content has been updated."]
     pub fn set_default_ttl(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.default_ttl = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maximum_ttl`.\nThe maximum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated."]
     pub fn set_maximum_ttl(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.maximum_ttl = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minimum_ttl`.\nThe minimum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated."]
     pub fn set_minimum_ttl(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minimum_ttl = Some(v.into());
         self
     }
-
     #[doc = "Set the field `forwarded_cookies`.\n"]
     pub fn set_forwarded_cookies(
         mut self,
@@ -1144,7 +996,6 @@ impl LightsailDistributionCacheBehaviorSettingsEl {
         }
         self
     }
-
     #[doc = "Set the field `forwarded_headers`.\n"]
     pub fn set_forwarded_headers(
         mut self,
@@ -1160,7 +1011,6 @@ impl LightsailDistributionCacheBehaviorSettingsEl {
         }
         self
     }
-
     #[doc = "Set the field `forwarded_query_strings`.\n"]
     pub fn set_forwarded_query_strings(
         mut self,
@@ -1179,10 +1029,8 @@ impl LightsailDistributionCacheBehaviorSettingsEl {
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionCacheBehaviorSettingsEl {
     type O = BlockAssignable<LightsailDistributionCacheBehaviorSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1191,9 +1039,7 @@ impl ToListMappable for LightsailDistributionCacheBehaviorSettingsEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionCacheBehaviorSettingsEl {}
-
 impl BuildLightsailDistributionCacheBehaviorSettingsEl {
     pub fn build(self) -> LightsailDistributionCacheBehaviorSettingsEl {
         LightsailDistributionCacheBehaviorSettingsEl {
@@ -1209,12 +1055,10 @@ impl BuildLightsailDistributionCacheBehaviorSettingsEl {
         }
     }
 }
-
 pub struct LightsailDistributionCacheBehaviorSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionCacheBehaviorSettingsElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionCacheBehaviorSettingsElRef {
         LightsailDistributionCacheBehaviorSettingsElRef {
@@ -1223,12 +1067,10 @@ impl Ref for LightsailDistributionCacheBehaviorSettingsElRef {
         }
     }
 }
-
 impl LightsailDistributionCacheBehaviorSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_http_methods` after provisioning.\nThe HTTP methods that are processed and forwarded to the distribution's origin."]
     pub fn allowed_http_methods(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1236,7 +1078,6 @@ impl LightsailDistributionCacheBehaviorSettingsElRef {
             format!("{}.allowed_http_methods", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cached_http_methods` after provisioning.\nThe HTTP method responses that are cached by your distribution."]
     pub fn cached_http_methods(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1244,22 +1085,18 @@ impl LightsailDistributionCacheBehaviorSettingsElRef {
             format!("{}.cached_http_methods", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_ttl` after provisioning.\nThe default amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the content has been updated."]
     pub fn default_ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.default_ttl", self.base))
     }
-
     #[doc = "Get a reference to the value of field `maximum_ttl` after provisioning.\nThe maximum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated."]
     pub fn maximum_ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.maximum_ttl", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minimum_ttl` after provisioning.\nThe minimum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated."]
     pub fn minimum_ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minimum_ttl", self.base))
     }
-
     #[doc = "Get a reference to the value of field `forwarded_cookies` after provisioning.\n"]
     pub fn forwarded_cookies(
         &self,
@@ -1269,7 +1106,6 @@ impl LightsailDistributionCacheBehaviorSettingsElRef {
             format!("{}.forwarded_cookies", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `forwarded_headers` after provisioning.\n"]
     pub fn forwarded_headers(
         &self,
@@ -1279,7 +1115,6 @@ impl LightsailDistributionCacheBehaviorSettingsElRef {
             format!("{}.forwarded_headers", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `forwarded_query_strings` after provisioning.\n"]
     pub fn forwarded_query_strings(
         &self,
@@ -1290,17 +1125,13 @@ impl LightsailDistributionCacheBehaviorSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionDefaultCacheBehaviorEl {
     behavior: PrimField<String>,
 }
-
 impl LightsailDistributionDefaultCacheBehaviorEl {}
-
 impl ToListMappable for LightsailDistributionDefaultCacheBehaviorEl {
     type O = BlockAssignable<LightsailDistributionDefaultCacheBehaviorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1309,12 +1140,10 @@ impl ToListMappable for LightsailDistributionDefaultCacheBehaviorEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionDefaultCacheBehaviorEl {
     #[doc = "The cache behavior of the distribution."]
     pub behavior: PrimField<String>,
 }
-
 impl BuildLightsailDistributionDefaultCacheBehaviorEl {
     pub fn build(self) -> LightsailDistributionDefaultCacheBehaviorEl {
         LightsailDistributionDefaultCacheBehaviorEl {
@@ -1322,12 +1151,10 @@ impl BuildLightsailDistributionDefaultCacheBehaviorEl {
         }
     }
 }
-
 pub struct LightsailDistributionDefaultCacheBehaviorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionDefaultCacheBehaviorElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionDefaultCacheBehaviorElRef {
         LightsailDistributionDefaultCacheBehaviorElRef {
@@ -1336,18 +1163,15 @@ impl Ref for LightsailDistributionDefaultCacheBehaviorElRef {
         }
     }
 }
-
 impl LightsailDistributionDefaultCacheBehaviorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `behavior` after provisioning.\nThe cache behavior of the distribution."]
     pub fn behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.behavior", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionOriginEl {
     name: PrimField<String>,
@@ -1355,7 +1179,6 @@ pub struct LightsailDistributionOriginEl {
     protocol_policy: Option<PrimField<String>>,
     region_name: PrimField<String>,
 }
-
 impl LightsailDistributionOriginEl {
     #[doc = "Set the field `protocol_policy`.\nThe protocol that your Amazon Lightsail distribution uses when establishing a connection with your origin to pull content."]
     pub fn set_protocol_policy(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1363,10 +1186,8 @@ impl LightsailDistributionOriginEl {
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionOriginEl {
     type O = BlockAssignable<LightsailDistributionOriginEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1375,14 +1196,12 @@ impl ToListMappable for LightsailDistributionOriginEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionOriginEl {
     #[doc = "The name of the origin resource."]
     pub name: PrimField<String>,
     #[doc = "The AWS Region name of the origin resource."]
     pub region_name: PrimField<String>,
 }
-
 impl BuildLightsailDistributionOriginEl {
     pub fn build(self) -> LightsailDistributionOriginEl {
         LightsailDistributionOriginEl {
@@ -1392,12 +1211,10 @@ impl BuildLightsailDistributionOriginEl {
         }
     }
 }
-
 pub struct LightsailDistributionOriginElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionOriginElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionOriginElRef {
         LightsailDistributionOriginElRef {
@@ -1406,17 +1223,14 @@ impl Ref for LightsailDistributionOriginElRef {
         }
     }
 }
-
 impl LightsailDistributionOriginElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the origin resource."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `protocol_policy` after provisioning.\nThe protocol that your Amazon Lightsail distribution uses when establishing a connection with your origin to pull content."]
     pub fn protocol_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1424,12 +1238,10 @@ impl LightsailDistributionOriginElRef {
             format!("{}.protocol_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region_name` after provisioning.\nThe AWS Region name of the origin resource."]
     pub fn region_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\nThe resource type of the origin resource (e.g., Instance)."]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1438,7 +1250,6 @@ impl LightsailDistributionOriginElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailDistributionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1448,30 +1259,25 @@ pub struct LightsailDistributionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl LightsailDistributionTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LightsailDistributionTimeoutsEl {
     type O = BlockAssignable<LightsailDistributionTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1480,9 +1286,7 @@ impl ToListMappable for LightsailDistributionTimeoutsEl {
         })
     }
 }
-
 pub struct BuildLightsailDistributionTimeoutsEl {}
-
 impl BuildLightsailDistributionTimeoutsEl {
     pub fn build(self) -> LightsailDistributionTimeoutsEl {
         LightsailDistributionTimeoutsEl {
@@ -1492,12 +1296,10 @@ impl BuildLightsailDistributionTimeoutsEl {
         }
     }
 }
-
 pub struct LightsailDistributionTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDistributionTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> LightsailDistributionTimeoutsElRef {
         LightsailDistributionTimeoutsElRef {
@@ -1506,28 +1308,23 @@ impl Ref for LightsailDistributionTimeoutsElRef {
         }
     }
 }
-
 impl LightsailDistributionTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct LightsailDistributionDynamic {
     cache_behavior: Option<DynamicBlock<LightsailDistributionCacheBehaviorEl>>,

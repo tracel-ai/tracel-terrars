@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct NetworkfirewallFirewallData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -50,47 +49,38 @@ struct NetworkfirewallFirewallData {
     timeouts: Option<NetworkfirewallFirewallTimeoutsEl>,
     dynamic: NetworkfirewallFirewallDynamic,
 }
-
 struct NetworkfirewallFirewall_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<NetworkfirewallFirewallData>,
 }
-
 #[derive(Clone)]
 pub struct NetworkfirewallFirewall(Rc<NetworkfirewallFirewall_>);
-
 impl NetworkfirewallFirewall {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -109,7 +99,6 @@ impl NetworkfirewallFirewall {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -119,7 +108,6 @@ impl NetworkfirewallFirewall {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -129,79 +117,66 @@ impl NetworkfirewallFirewall {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `availability_zone_change_protection`.\n"]
     pub fn set_availability_zone_change_protection(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().availability_zone_change_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete_protection`.\n"]
     pub fn set_delete_protection(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().delete_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled_analysis_types`.\n"]
     pub fn set_enabled_analysis_types(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().enabled_analysis_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `firewall_policy_change_protection`.\n"]
     pub fn set_firewall_policy_change_protection(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().firewall_policy_change_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_change_protection`.\n"]
     pub fn set_subnet_change_protection(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().subnet_change_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transit_gateway_id`.\n"]
     pub fn set_transit_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().transit_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().vpc_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `availability_zone_mapping`.\n"]
     pub fn set_availability_zone_mapping(
         self,
@@ -217,7 +192,6 @@ impl NetworkfirewallFirewall {
         }
         self
     }
-
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         self,
@@ -233,7 +207,6 @@ impl NetworkfirewallFirewall {
         }
         self
     }
-
     #[doc = "Set the field `subnet_mapping`.\n"]
     pub fn set_subnet_mapping(
         self,
@@ -249,18 +222,15 @@ impl NetworkfirewallFirewall {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<NetworkfirewallFirewallTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone_change_protection` after provisioning.\n"]
     pub fn availability_zone_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -268,7 +238,6 @@ impl NetworkfirewallFirewall {
             format!("{}.availability_zone_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delete_protection` after provisioning.\n"]
     pub fn delete_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -276,7 +245,6 @@ impl NetworkfirewallFirewall {
             format!("{}.delete_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +252,6 @@ impl NetworkfirewallFirewall {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled_analysis_types` after provisioning.\n"]
     pub fn enabled_analysis_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -292,7 +259,6 @@ impl NetworkfirewallFirewall {
             format!("{}.enabled_analysis_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_policy_arn` after provisioning.\n"]
     pub fn firewall_policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +266,6 @@ impl NetworkfirewallFirewall {
             format!("{}.firewall_policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_policy_change_protection` after provisioning.\n"]
     pub fn firewall_policy_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -308,7 +273,6 @@ impl NetworkfirewallFirewall {
             format!("{}.firewall_policy_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_status` after provisioning.\n"]
     pub fn firewall_status(&self) -> ListRef<NetworkfirewallFirewallFirewallStatusElRef> {
         ListRef::new(
@@ -316,12 +280,10 @@ impl NetworkfirewallFirewall {
             format!("{}.firewall_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +291,6 @@ impl NetworkfirewallFirewall {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +298,6 @@ impl NetworkfirewallFirewall {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_change_protection` after provisioning.\n"]
     pub fn subnet_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -345,7 +305,6 @@ impl NetworkfirewallFirewall {
             format!("{}.subnet_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -353,7 +312,6 @@ impl NetworkfirewallFirewall {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -361,7 +319,6 @@ impl NetworkfirewallFirewall {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +326,6 @@ impl NetworkfirewallFirewall {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_owner_account_id` after provisioning.\n"]
     pub fn transit_gateway_owner_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,7 +333,6 @@ impl NetworkfirewallFirewall {
             format!("{}.transit_gateway_owner_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +340,6 @@ impl NetworkfirewallFirewall {
             format!("{}.update_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,7 +347,6 @@ impl NetworkfirewallFirewall {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -403,7 +356,6 @@ impl NetworkfirewallFirewall {
             format!("{}.encryption_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NetworkfirewallFirewallTimeoutsElRef {
         NetworkfirewallFirewallTimeoutsElRef::new(
@@ -412,7 +364,6 @@ impl NetworkfirewallFirewall {
         )
     }
 }
-
 impl Referable for NetworkfirewallFirewall {
     fn extract_ref(&self) -> String {
         format!(
@@ -422,32 +373,25 @@ impl Referable for NetworkfirewallFirewall {
         )
     }
 }
-
 impl Resource for NetworkfirewallFirewall {}
-
 impl ToListMappable for NetworkfirewallFirewall {
     type O = ListRef<NetworkfirewallFirewallRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for NetworkfirewallFirewall_ {
     fn extract_resource_type(&self) -> String {
         "aws_networkfirewall_firewall".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildNetworkfirewallFirewall {
     pub tf_id: String,
     #[doc = ""]
@@ -455,7 +399,6 @@ pub struct BuildNetworkfirewallFirewall {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildNetworkfirewallFirewall {
     pub fn build(self, stack: &mut Stack) -> NetworkfirewallFirewall {
         let out = NetworkfirewallFirewall(Rc::new(NetworkfirewallFirewall_ {
@@ -491,32 +434,26 @@ impl BuildNetworkfirewallFirewall {
         out
     }
 }
-
 pub struct NetworkfirewallFirewallRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl NetworkfirewallFirewallRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone_change_protection` after provisioning.\n"]
     pub fn availability_zone_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -524,7 +461,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.availability_zone_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delete_protection` after provisioning.\n"]
     pub fn delete_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -532,7 +468,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.delete_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -540,7 +475,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled_analysis_types` after provisioning.\n"]
     pub fn enabled_analysis_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -548,7 +482,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.enabled_analysis_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_policy_arn` after provisioning.\n"]
     pub fn firewall_policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -556,7 +489,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.firewall_policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_policy_change_protection` after provisioning.\n"]
     pub fn firewall_policy_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -564,7 +496,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.firewall_policy_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firewall_status` after provisioning.\n"]
     pub fn firewall_status(&self) -> ListRef<NetworkfirewallFirewallFirewallStatusElRef> {
         ListRef::new(
@@ -572,12 +503,10 @@ impl NetworkfirewallFirewallRef {
             format!("{}.firewall_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -585,7 +514,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -593,7 +521,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_change_protection` after provisioning.\n"]
     pub fn subnet_change_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -601,7 +528,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.subnet_change_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -609,7 +535,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -617,7 +542,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -625,7 +549,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_owner_account_id` after provisioning.\n"]
     pub fn transit_gateway_owner_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -633,7 +556,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.transit_gateway_owner_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_token` after provisioning.\n"]
     pub fn update_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -641,7 +563,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.update_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -649,7 +570,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -659,7 +579,6 @@ impl NetworkfirewallFirewallRef {
             format!("{}.encryption_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NetworkfirewallFirewallTimeoutsElRef {
         NetworkfirewallFirewallTimeoutsElRef::new(
@@ -668,7 +587,6 @@ impl NetworkfirewallFirewallRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -676,24 +594,20 @@ pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet_id: Option<PrimField<String>>,
 }
-
 impl NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
     #[doc = "Set the field `endpoint_id`.\n"]
     pub fn set_endpoint_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.endpoint_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_id`.\n"]
     pub fn set_subnet_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.subnet_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
     type O = BlockAssignable<NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -702,9 +616,7 @@ impl ToListMappable for NetworkfirewallFirewallFirewallStatusElSyncStatesElAttac
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {}
-
 impl BuildNetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
     pub fn build(self) -> NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
         NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
@@ -713,12 +625,10 @@ impl BuildNetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentElRef {
     fn new(
         shared: StackShared,
@@ -730,23 +640,19 @@ impl Ref for NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentElRef 
         }
     }
 }
-
 impl NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
     pub fn endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -754,7 +660,6 @@ pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     availability_zone: Option<PrimField<String>>,
 }
-
 impl NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
     #[doc = "Set the field `attachment`.\n"]
     pub fn set_attachment(
@@ -764,17 +669,14 @@ impl NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
         self.attachment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `availability_zone`.\n"]
     pub fn set_availability_zone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.availability_zone = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
     type O = BlockAssignable<NetworkfirewallFirewallFirewallStatusElSyncStatesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -783,9 +685,7 @@ impl ToListMappable for NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallFirewallStatusElSyncStatesEl {}
-
 impl BuildNetworkfirewallFirewallFirewallStatusElSyncStatesEl {
     pub fn build(self) -> NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
         NetworkfirewallFirewallFirewallStatusElSyncStatesEl {
@@ -794,12 +694,10 @@ impl BuildNetworkfirewallFirewallFirewallStatusElSyncStatesEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallFirewallStatusElSyncStatesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallFirewallStatusElSyncStatesElRef {
     fn new(
         shared: StackShared,
@@ -811,19 +709,16 @@ impl Ref for NetworkfirewallFirewallFirewallStatusElSyncStatesElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallFirewallStatusElSyncStatesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `attachment` after provisioning.\n"]
     pub fn attachment(
         &self,
     ) -> ListRef<NetworkfirewallFirewallFirewallStatusElSyncStatesElAttachmentElRef> {
         ListRef::new(self.shared().clone(), format!("{}.attachment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -832,13 +727,11 @@ impl NetworkfirewallFirewallFirewallStatusElSyncStatesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     attachment_id: Option<PrimField<String>>,
 }
-
 impl NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl {
     #[doc = "Set the field `attachment_id`.\n"]
     pub fn set_attachment_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -846,14 +739,12 @@ impl NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl
         self
     }
 }
-
 impl ToListMappable
     for NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl
 {
     type O = BlockAssignable<
         NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -862,9 +753,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl {}
-
 impl BuildNetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl {
     pub fn build(
         self,
@@ -874,12 +763,10 @@ impl BuildNetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncSta
         }
     }
 }
-
 pub struct NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesElRef {
     fn new(
         shared: StackShared,
@@ -891,12 +778,10 @@ impl Ref for NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSync
         }
     }
 }
-
 impl NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `attachment_id` after provisioning.\n"]
     pub fn attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -905,7 +790,6 @@ impl NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallFirewallStatusEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -915,7 +799,6 @@ pub struct NetworkfirewallFirewallFirewallStatusEl {
         ListField<NetworkfirewallFirewallFirewallStatusElTransitGatewayAttachmentSyncStatesEl>,
     >,
 }
-
 impl NetworkfirewallFirewallFirewallStatusEl {
     #[doc = "Set the field `sync_states`.\n"]
     pub fn set_sync_states(
@@ -925,7 +808,6 @@ impl NetworkfirewallFirewallFirewallStatusEl {
         self.sync_states = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transit_gateway_attachment_sync_states`.\n"]
     pub fn set_transit_gateway_attachment_sync_states(
         mut self,
@@ -937,10 +819,8 @@ impl NetworkfirewallFirewallFirewallStatusEl {
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallFirewallStatusEl {
     type O = BlockAssignable<NetworkfirewallFirewallFirewallStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -949,9 +829,7 @@ impl ToListMappable for NetworkfirewallFirewallFirewallStatusEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallFirewallStatusEl {}
-
 impl BuildNetworkfirewallFirewallFirewallStatusEl {
     pub fn build(self) -> NetworkfirewallFirewallFirewallStatusEl {
         NetworkfirewallFirewallFirewallStatusEl {
@@ -960,12 +838,10 @@ impl BuildNetworkfirewallFirewallFirewallStatusEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallFirewallStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallFirewallStatusElRef {
     fn new(shared: StackShared, base: String) -> NetworkfirewallFirewallFirewallStatusElRef {
         NetworkfirewallFirewallFirewallStatusElRef {
@@ -974,17 +850,14 @@ impl Ref for NetworkfirewallFirewallFirewallStatusElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallFirewallStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `sync_states` after provisioning.\n"]
     pub fn sync_states(&self) -> SetRef<NetworkfirewallFirewallFirewallStatusElSyncStatesElRef> {
         SetRef::new(self.shared().clone(), format!("{}.sync_states", self.base))
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_sync_states` after provisioning.\n"]
     pub fn transit_gateway_attachment_sync_states(
         &self,
@@ -996,17 +869,13 @@ impl NetworkfirewallFirewallFirewallStatusElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallAvailabilityZoneMappingEl {
     availability_zone_id: PrimField<String>,
 }
-
 impl NetworkfirewallFirewallAvailabilityZoneMappingEl {}
-
 impl ToListMappable for NetworkfirewallFirewallAvailabilityZoneMappingEl {
     type O = BlockAssignable<NetworkfirewallFirewallAvailabilityZoneMappingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1015,12 +884,10 @@ impl ToListMappable for NetworkfirewallFirewallAvailabilityZoneMappingEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallAvailabilityZoneMappingEl {
     #[doc = ""]
     pub availability_zone_id: PrimField<String>,
 }
-
 impl BuildNetworkfirewallFirewallAvailabilityZoneMappingEl {
     pub fn build(self) -> NetworkfirewallFirewallAvailabilityZoneMappingEl {
         NetworkfirewallFirewallAvailabilityZoneMappingEl {
@@ -1028,12 +895,10 @@ impl BuildNetworkfirewallFirewallAvailabilityZoneMappingEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallAvailabilityZoneMappingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallAvailabilityZoneMappingElRef {
     fn new(
         shared: StackShared,
@@ -1045,12 +910,10 @@ impl Ref for NetworkfirewallFirewallAvailabilityZoneMappingElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallAvailabilityZoneMappingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zone_id` after provisioning.\n"]
     pub fn availability_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1059,7 +922,6 @@ impl NetworkfirewallFirewallAvailabilityZoneMappingElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1067,7 +929,6 @@ pub struct NetworkfirewallFirewallEncryptionConfigurationEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl NetworkfirewallFirewallEncryptionConfigurationEl {
     #[doc = "Set the field `key_id`.\n"]
     pub fn set_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1075,10 +936,8 @@ impl NetworkfirewallFirewallEncryptionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallEncryptionConfigurationEl {
     type O = BlockAssignable<NetworkfirewallFirewallEncryptionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1087,12 +946,10 @@ impl ToListMappable for NetworkfirewallFirewallEncryptionConfigurationEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallEncryptionConfigurationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildNetworkfirewallFirewallEncryptionConfigurationEl {
     pub fn build(self) -> NetworkfirewallFirewallEncryptionConfigurationEl {
         NetworkfirewallFirewallEncryptionConfigurationEl {
@@ -1101,12 +958,10 @@ impl BuildNetworkfirewallFirewallEncryptionConfigurationEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallEncryptionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1118,30 +973,25 @@ impl Ref for NetworkfirewallFirewallEncryptionConfigurationElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallSubnetMappingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ip_address_type: Option<PrimField<String>>,
     subnet_id: PrimField<String>,
 }
-
 impl NetworkfirewallFirewallSubnetMappingEl {
     #[doc = "Set the field `ip_address_type`.\n"]
     pub fn set_ip_address_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1149,10 +999,8 @@ impl NetworkfirewallFirewallSubnetMappingEl {
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallSubnetMappingEl {
     type O = BlockAssignable<NetworkfirewallFirewallSubnetMappingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1161,12 +1009,10 @@ impl ToListMappable for NetworkfirewallFirewallSubnetMappingEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallSubnetMappingEl {
     #[doc = ""]
     pub subnet_id: PrimField<String>,
 }
-
 impl BuildNetworkfirewallFirewallSubnetMappingEl {
     pub fn build(self) -> NetworkfirewallFirewallSubnetMappingEl {
         NetworkfirewallFirewallSubnetMappingEl {
@@ -1175,12 +1021,10 @@ impl BuildNetworkfirewallFirewallSubnetMappingEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallSubnetMappingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallSubnetMappingElRef {
     fn new(shared: StackShared, base: String) -> NetworkfirewallFirewallSubnetMappingElRef {
         NetworkfirewallFirewallSubnetMappingElRef {
@@ -1189,12 +1033,10 @@ impl Ref for NetworkfirewallFirewallSubnetMappingElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallSubnetMappingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1202,13 +1044,11 @@ impl NetworkfirewallFirewallSubnetMappingElRef {
             format!("{}.ip_address_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkfirewallFirewallTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1218,30 +1058,25 @@ pub struct NetworkfirewallFirewallTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl NetworkfirewallFirewallTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkfirewallFirewallTimeoutsEl {
     type O = BlockAssignable<NetworkfirewallFirewallTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1250,9 +1085,7 @@ impl ToListMappable for NetworkfirewallFirewallTimeoutsEl {
         })
     }
 }
-
 pub struct BuildNetworkfirewallFirewallTimeoutsEl {}
-
 impl BuildNetworkfirewallFirewallTimeoutsEl {
     pub fn build(self) -> NetworkfirewallFirewallTimeoutsEl {
         NetworkfirewallFirewallTimeoutsEl {
@@ -1262,12 +1095,10 @@ impl BuildNetworkfirewallFirewallTimeoutsEl {
         }
     }
 }
-
 pub struct NetworkfirewallFirewallTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkfirewallFirewallTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> NetworkfirewallFirewallTimeoutsElRef {
         NetworkfirewallFirewallTimeoutsElRef {
@@ -1276,28 +1107,23 @@ impl Ref for NetworkfirewallFirewallTimeoutsElRef {
         }
     }
 }
-
 impl NetworkfirewallFirewallTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct NetworkfirewallFirewallDynamic {
     availability_zone_mapping:

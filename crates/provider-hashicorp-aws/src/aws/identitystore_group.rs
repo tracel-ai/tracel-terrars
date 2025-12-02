@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IdentitystoreGroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct IdentitystoreGroupData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct IdentitystoreGroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IdentitystoreGroupData>,
 }
-
 #[derive(Clone)]
 pub struct IdentitystoreGroup(Rc<IdentitystoreGroup_>);
-
 impl IdentitystoreGroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl IdentitystoreGroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl IdentitystoreGroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,30 +90,25 @@ impl IdentitystoreGroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -133,7 +116,6 @@ impl IdentitystoreGroup {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,7 +123,6 @@ impl IdentitystoreGroup {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<IdentitystoreGroupExternalIdsElRef> {
         ListRef::new(
@@ -149,7 +130,6 @@ impl IdentitystoreGroup {
             format!("{}.external_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -157,12 +137,10 @@ impl IdentitystoreGroup {
             format!("{}.group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,7 +148,6 @@ impl IdentitystoreGroup {
             format!("{}.identity_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +156,6 @@ impl IdentitystoreGroup {
         )
     }
 }
-
 impl Referable for IdentitystoreGroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -189,32 +165,25 @@ impl Referable for IdentitystoreGroup {
         )
     }
 }
-
 impl Resource for IdentitystoreGroup {}
-
 impl ToListMappable for IdentitystoreGroup {
     type O = ListRef<IdentitystoreGroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IdentitystoreGroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_identitystore_group".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIdentitystoreGroup {
     pub tf_id: String,
     #[doc = ""]
@@ -222,7 +191,6 @@ pub struct BuildIdentitystoreGroup {
     #[doc = ""]
     pub identity_store_id: PrimField<String>,
 }
-
 impl BuildIdentitystoreGroup {
     pub fn build(self, stack: &mut Stack) -> IdentitystoreGroup {
         let out = IdentitystoreGroup(Rc::new(IdentitystoreGroup_ {
@@ -244,32 +212,26 @@ impl BuildIdentitystoreGroup {
         out
     }
 }
-
 pub struct IdentitystoreGroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IdentitystoreGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IdentitystoreGroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +239,6 @@ impl IdentitystoreGroupRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -285,7 +246,6 @@ impl IdentitystoreGroupRef {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<IdentitystoreGroupExternalIdsElRef> {
         ListRef::new(
@@ -293,7 +253,6 @@ impl IdentitystoreGroupRef {
             format!("{}.external_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group_id` after provisioning.\n"]
     pub fn group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,12 +260,10 @@ impl IdentitystoreGroupRef {
             format!("{}.group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +271,6 @@ impl IdentitystoreGroupRef {
             format!("{}.identity_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +279,6 @@ impl IdentitystoreGroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IdentitystoreGroupExternalIdsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -331,24 +286,20 @@ pub struct IdentitystoreGroupExternalIdsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     issuer: Option<PrimField<String>>,
 }
-
 impl IdentitystoreGroupExternalIdsEl {
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `issuer`.\n"]
     pub fn set_issuer(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.issuer = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IdentitystoreGroupExternalIdsEl {
     type O = BlockAssignable<IdentitystoreGroupExternalIdsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -357,9 +308,7 @@ impl ToListMappable for IdentitystoreGroupExternalIdsEl {
         })
     }
 }
-
 pub struct BuildIdentitystoreGroupExternalIdsEl {}
-
 impl BuildIdentitystoreGroupExternalIdsEl {
     pub fn build(self) -> IdentitystoreGroupExternalIdsEl {
         IdentitystoreGroupExternalIdsEl {
@@ -368,12 +317,10 @@ impl BuildIdentitystoreGroupExternalIdsEl {
         }
     }
 }
-
 pub struct IdentitystoreGroupExternalIdsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IdentitystoreGroupExternalIdsElRef {
     fn new(shared: StackShared, base: String) -> IdentitystoreGroupExternalIdsElRef {
         IdentitystoreGroupExternalIdsElRef {
@@ -382,17 +329,14 @@ impl Ref for IdentitystoreGroupExternalIdsElRef {
         }
     }
 }
-
 impl IdentitystoreGroupExternalIdsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))

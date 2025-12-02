@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VpclatticeTargetGroupAttachmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct VpclatticeTargetGroupAttachmentData {
     timeouts: Option<VpclatticeTargetGroupAttachmentTimeoutsEl>,
     dynamic: VpclatticeTargetGroupAttachmentDynamic,
 }
-
 struct VpclatticeTargetGroupAttachment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VpclatticeTargetGroupAttachmentData>,
 }
-
 #[derive(Clone)]
 pub struct VpclatticeTargetGroupAttachment(Rc<VpclatticeTargetGroupAttachment_>);
-
 impl VpclatticeTargetGroupAttachment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl VpclatticeTargetGroupAttachment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl VpclatticeTargetGroupAttachment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl VpclatticeTargetGroupAttachment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target`.\n"]
     pub fn set_target(
         self,
@@ -132,18 +117,15 @@ impl VpclatticeTargetGroupAttachment {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<VpclatticeTargetGroupAttachmentTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +133,6 @@ impl VpclatticeTargetGroupAttachment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_group_identifier` after provisioning.\n"]
     pub fn target_group_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +140,6 @@ impl VpclatticeTargetGroupAttachment {
             format!("{}.target_group_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> ListRef<VpclatticeTargetGroupAttachmentTargetElRef> {
         ListRef::new(
@@ -167,7 +147,6 @@ impl VpclatticeTargetGroupAttachment {
             format!("{}.target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeTargetGroupAttachmentTimeoutsElRef {
         VpclatticeTargetGroupAttachmentTimeoutsElRef::new(
@@ -176,7 +155,6 @@ impl VpclatticeTargetGroupAttachment {
         )
     }
 }
-
 impl Referable for VpclatticeTargetGroupAttachment {
     fn extract_ref(&self) -> String {
         format!(
@@ -186,38 +164,30 @@ impl Referable for VpclatticeTargetGroupAttachment {
         )
     }
 }
-
 impl Resource for VpclatticeTargetGroupAttachment {}
-
 impl ToListMappable for VpclatticeTargetGroupAttachment {
     type O = ListRef<VpclatticeTargetGroupAttachmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VpclatticeTargetGroupAttachment_ {
     fn extract_resource_type(&self) -> String {
         "aws_vpclattice_target_group_attachment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVpclatticeTargetGroupAttachment {
     pub tf_id: String,
     #[doc = ""]
     pub target_group_identifier: PrimField<String>,
 }
-
 impl BuildVpclatticeTargetGroupAttachment {
     pub fn build(self, stack: &mut Stack) -> VpclatticeTargetGroupAttachment {
         let out = VpclatticeTargetGroupAttachment(Rc::new(VpclatticeTargetGroupAttachment_ {
@@ -240,32 +210,26 @@ impl BuildVpclatticeTargetGroupAttachment {
         out
     }
 }
-
 pub struct VpclatticeTargetGroupAttachmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeTargetGroupAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VpclatticeTargetGroupAttachmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +237,6 @@ impl VpclatticeTargetGroupAttachmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_group_identifier` after provisioning.\n"]
     pub fn target_group_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +244,6 @@ impl VpclatticeTargetGroupAttachmentRef {
             format!("{}.target_group_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> ListRef<VpclatticeTargetGroupAttachmentTargetElRef> {
         ListRef::new(
@@ -289,7 +251,6 @@ impl VpclatticeTargetGroupAttachmentRef {
             format!("{}.target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeTargetGroupAttachmentTimeoutsElRef {
         VpclatticeTargetGroupAttachmentTimeoutsElRef::new(
@@ -298,14 +259,12 @@ impl VpclatticeTargetGroupAttachmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeTargetGroupAttachmentTargetEl {
     id: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
 }
-
 impl VpclatticeTargetGroupAttachmentTargetEl {
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -313,10 +272,8 @@ impl VpclatticeTargetGroupAttachmentTargetEl {
         self
     }
 }
-
 impl ToListMappable for VpclatticeTargetGroupAttachmentTargetEl {
     type O = BlockAssignable<VpclatticeTargetGroupAttachmentTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -325,12 +282,10 @@ impl ToListMappable for VpclatticeTargetGroupAttachmentTargetEl {
         })
     }
 }
-
 pub struct BuildVpclatticeTargetGroupAttachmentTargetEl {
     #[doc = ""]
     pub id: PrimField<String>,
 }
-
 impl BuildVpclatticeTargetGroupAttachmentTargetEl {
     pub fn build(self) -> VpclatticeTargetGroupAttachmentTargetEl {
         VpclatticeTargetGroupAttachmentTargetEl {
@@ -339,12 +294,10 @@ impl BuildVpclatticeTargetGroupAttachmentTargetEl {
         }
     }
 }
-
 pub struct VpclatticeTargetGroupAttachmentTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeTargetGroupAttachmentTargetElRef {
     fn new(shared: StackShared, base: String) -> VpclatticeTargetGroupAttachmentTargetElRef {
         VpclatticeTargetGroupAttachmentTargetElRef {
@@ -353,23 +306,19 @@ impl Ref for VpclatticeTargetGroupAttachmentTargetElRef {
         }
     }
 }
-
 impl VpclatticeTargetGroupAttachmentTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeTargetGroupAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -377,24 +326,20 @@ pub struct VpclatticeTargetGroupAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl VpclatticeTargetGroupAttachmentTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for VpclatticeTargetGroupAttachmentTimeoutsEl {
     type O = BlockAssignable<VpclatticeTargetGroupAttachmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -403,9 +348,7 @@ impl ToListMappable for VpclatticeTargetGroupAttachmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildVpclatticeTargetGroupAttachmentTimeoutsEl {}
-
 impl BuildVpclatticeTargetGroupAttachmentTimeoutsEl {
     pub fn build(self) -> VpclatticeTargetGroupAttachmentTimeoutsEl {
         VpclatticeTargetGroupAttachmentTimeoutsEl {
@@ -414,12 +357,10 @@ impl BuildVpclatticeTargetGroupAttachmentTimeoutsEl {
         }
     }
 }
-
 pub struct VpclatticeTargetGroupAttachmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeTargetGroupAttachmentTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> VpclatticeTargetGroupAttachmentTimeoutsElRef {
         VpclatticeTargetGroupAttachmentTimeoutsElRef {
@@ -428,23 +369,19 @@ impl Ref for VpclatticeTargetGroupAttachmentTimeoutsElRef {
         }
     }
 }
-
 impl VpclatticeTargetGroupAttachmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VpclatticeTargetGroupAttachmentDynamic {
     target: Option<DynamicBlock<VpclatticeTargetGroupAttachmentTargetEl>>,

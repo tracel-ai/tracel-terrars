@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Ec2TrafficMirrorTargetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct Ec2TrafficMirrorTargetData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
 }
-
 struct Ec2TrafficMirrorTarget_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Ec2TrafficMirrorTargetData>,
 }
-
 #[derive(Clone)]
 pub struct Ec2TrafficMirrorTarget(Rc<Ec2TrafficMirrorTarget_>);
-
 impl Ec2TrafficMirrorTarget {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl Ec2TrafficMirrorTarget {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl Ec2TrafficMirrorTarget {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,60 +98,50 @@ impl Ec2TrafficMirrorTarget {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gateway_load_balancer_endpoint_id`.\n"]
     pub fn set_gateway_load_balancer_endpoint_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().gateway_load_balancer_endpoint_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `network_interface_id`.\n"]
     pub fn set_network_interface_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().network_interface_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `network_load_balancer_arn`.\n"]
     pub fn set_network_load_balancer_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().network_load_balancer_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -171,7 +149,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_load_balancer_endpoint_id` after provisioning.\n"]
     pub fn gateway_load_balancer_endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,12 +156,10 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.gateway_load_balancer_endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,7 +167,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_load_balancer_arn` after provisioning.\n"]
     pub fn network_load_balancer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +174,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.network_load_balancer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +181,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +188,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -224,7 +195,6 @@ impl Ec2TrafficMirrorTarget {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -233,7 +203,6 @@ impl Ec2TrafficMirrorTarget {
         )
     }
 }
-
 impl Referable for Ec2TrafficMirrorTarget {
     fn extract_ref(&self) -> String {
         format!(
@@ -243,36 +212,28 @@ impl Referable for Ec2TrafficMirrorTarget {
         )
     }
 }
-
 impl Resource for Ec2TrafficMirrorTarget {}
-
 impl ToListMappable for Ec2TrafficMirrorTarget {
     type O = ListRef<Ec2TrafficMirrorTargetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Ec2TrafficMirrorTarget_ {
     fn extract_resource_type(&self) -> String {
         "aws_ec2_traffic_mirror_target".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEc2TrafficMirrorTarget {
     pub tf_id: String,
 }
-
 impl BuildEc2TrafficMirrorTarget {
     pub fn build(self, stack: &mut Stack) -> Ec2TrafficMirrorTarget {
         let out = Ec2TrafficMirrorTarget(Rc::new(Ec2TrafficMirrorTarget_ {
@@ -297,32 +258,26 @@ impl BuildEc2TrafficMirrorTarget {
         out
     }
 }
-
 pub struct Ec2TrafficMirrorTargetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Ec2TrafficMirrorTargetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Ec2TrafficMirrorTargetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +285,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_load_balancer_endpoint_id` after provisioning.\n"]
     pub fn gateway_load_balancer_endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -338,12 +292,10 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.gateway_load_balancer_endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -351,7 +303,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_load_balancer_arn` after provisioning.\n"]
     pub fn network_load_balancer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -359,7 +310,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.network_load_balancer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +317,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -375,7 +324,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -383,7 +331,6 @@ impl Ec2TrafficMirrorTargetRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

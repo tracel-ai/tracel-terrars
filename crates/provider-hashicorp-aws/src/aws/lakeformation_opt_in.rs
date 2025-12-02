@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LakeformationOptInData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct LakeformationOptInData {
     resource_data: Option<Vec<LakeformationOptInResourceDataEl>>,
     dynamic: LakeformationOptInDynamic,
 }
-
 struct LakeformationOptIn_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LakeformationOptInData>,
 }
-
 #[derive(Clone)]
 pub struct LakeformationOptIn(Rc<LakeformationOptIn_>);
-
 impl LakeformationOptIn {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl LakeformationOptIn {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl LakeformationOptIn {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,13 +91,11 @@ impl LakeformationOptIn {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `condition`.\n"]
     pub fn set_condition(
         self,
@@ -125,7 +111,6 @@ impl LakeformationOptIn {
         }
         self
     }
-
     #[doc = "Set the field `principal`.\n"]
     pub fn set_principal(
         self,
@@ -141,7 +126,6 @@ impl LakeformationOptIn {
         }
         self
     }
-
     #[doc = "Set the field `resource_data`.\n"]
     pub fn set_resource_data(
         self,
@@ -157,7 +141,6 @@ impl LakeformationOptIn {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -165,7 +148,6 @@ impl LakeformationOptIn {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_updated_by` after provisioning.\n"]
     pub fn last_updated_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -173,7 +155,6 @@ impl LakeformationOptIn {
             format!("{}.last_updated_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +162,6 @@ impl LakeformationOptIn {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
     pub fn condition(&self) -> ListRef<LakeformationOptInConditionElRef> {
         ListRef::new(
@@ -189,7 +169,6 @@ impl LakeformationOptIn {
             format!("{}.condition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> ListRef<LakeformationOptInPrincipalElRef> {
         ListRef::new(
@@ -197,7 +176,6 @@ impl LakeformationOptIn {
             format!("{}.principal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_data` after provisioning.\n"]
     pub fn resource_data(&self) -> ListRef<LakeformationOptInResourceDataElRef> {
         ListRef::new(
@@ -206,7 +184,6 @@ impl LakeformationOptIn {
         )
     }
 }
-
 impl Referable for LakeformationOptIn {
     fn extract_ref(&self) -> String {
         format!(
@@ -216,36 +193,28 @@ impl Referable for LakeformationOptIn {
         )
     }
 }
-
 impl Resource for LakeformationOptIn {}
-
 impl ToListMappable for LakeformationOptIn {
     type O = ListRef<LakeformationOptInRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LakeformationOptIn_ {
     fn extract_resource_type(&self) -> String {
         "aws_lakeformation_opt_in".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLakeformationOptIn {
     pub tf_id: String,
 }
-
 impl BuildLakeformationOptIn {
     pub fn build(self, stack: &mut Stack) -> LakeformationOptIn {
         let out = LakeformationOptIn(Rc::new(LakeformationOptIn_ {
@@ -267,27 +236,22 @@ impl BuildLakeformationOptIn {
         out
     }
 }
-
 pub struct LakeformationOptInRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LakeformationOptInRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +259,6 @@ impl LakeformationOptInRef {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_updated_by` after provisioning.\n"]
     pub fn last_updated_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,7 +266,6 @@ impl LakeformationOptInRef {
             format!("{}.last_updated_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -311,7 +273,6 @@ impl LakeformationOptInRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
     pub fn condition(&self) -> ListRef<LakeformationOptInConditionElRef> {
         ListRef::new(
@@ -319,7 +280,6 @@ impl LakeformationOptInRef {
             format!("{}.condition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(&self) -> ListRef<LakeformationOptInPrincipalElRef> {
         ListRef::new(
@@ -327,7 +287,6 @@ impl LakeformationOptInRef {
             format!("{}.principal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_data` after provisioning.\n"]
     pub fn resource_data(&self) -> ListRef<LakeformationOptInResourceDataElRef> {
         ListRef::new(
@@ -336,15 +295,11 @@ impl LakeformationOptInRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInConditionEl {}
-
 impl LakeformationOptInConditionEl {}
-
 impl ToListMappable for LakeformationOptInConditionEl {
     type O = BlockAssignable<LakeformationOptInConditionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -353,20 +308,16 @@ impl ToListMappable for LakeformationOptInConditionEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInConditionEl {}
-
 impl BuildLakeformationOptInConditionEl {
     pub fn build(self) -> LakeformationOptInConditionEl {
         LakeformationOptInConditionEl {}
     }
 }
-
 pub struct LakeformationOptInConditionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInConditionElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInConditionElRef {
         LakeformationOptInConditionElRef {
@@ -375,28 +326,22 @@ impl Ref for LakeformationOptInConditionElRef {
         }
     }
 }
-
 impl LakeformationOptInConditionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `expression` after provisioning.\n"]
     pub fn expression(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.expression", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInPrincipalEl {
     data_lake_principal_identifier: PrimField<String>,
 }
-
 impl LakeformationOptInPrincipalEl {}
-
 impl ToListMappable for LakeformationOptInPrincipalEl {
     type O = BlockAssignable<LakeformationOptInPrincipalEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -405,12 +350,10 @@ impl ToListMappable for LakeformationOptInPrincipalEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInPrincipalEl {
     #[doc = ""]
     pub data_lake_principal_identifier: PrimField<String>,
 }
-
 impl BuildLakeformationOptInPrincipalEl {
     pub fn build(self) -> LakeformationOptInPrincipalEl {
         LakeformationOptInPrincipalEl {
@@ -418,12 +361,10 @@ impl BuildLakeformationOptInPrincipalEl {
         }
     }
 }
-
 pub struct LakeformationOptInPrincipalElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInPrincipalElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInPrincipalElRef {
         LakeformationOptInPrincipalElRef {
@@ -432,12 +373,10 @@ impl Ref for LakeformationOptInPrincipalElRef {
         }
     }
 }
-
 impl LakeformationOptInPrincipalElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_lake_principal_identifier` after provisioning.\n"]
     pub fn data_lake_principal_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -446,13 +385,11 @@ impl LakeformationOptInPrincipalElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElCatalogEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     id: Option<PrimField<String>>,
 }
-
 impl LakeformationOptInResourceDataElCatalogEl {
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -460,10 +397,8 @@ impl LakeformationOptInResourceDataElCatalogEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElCatalogEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElCatalogEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -472,9 +407,7 @@ impl ToListMappable for LakeformationOptInResourceDataElCatalogEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElCatalogEl {}
-
 impl BuildLakeformationOptInResourceDataElCatalogEl {
     pub fn build(self) -> LakeformationOptInResourceDataElCatalogEl {
         LakeformationOptInResourceDataElCatalogEl {
@@ -482,12 +415,10 @@ impl BuildLakeformationOptInResourceDataElCatalogEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElCatalogElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElCatalogElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElCatalogElRef {
         LakeformationOptInResourceDataElCatalogElRef {
@@ -496,18 +427,15 @@ impl Ref for LakeformationOptInResourceDataElCatalogElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElCatalogElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElDataCellsFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -519,36 +447,30 @@ pub struct LakeformationOptInResourceDataElDataCellsFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     table_name: Option<PrimField<String>>,
 }
-
 impl LakeformationOptInResourceDataElDataCellsFilterEl {
     #[doc = "Set the field `database_name`.\n"]
     pub fn set_database_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.database_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_catalog_id`.\n"]
     pub fn set_table_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.table_catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_name`.\n"]
     pub fn set_table_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.table_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElDataCellsFilterEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElDataCellsFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -557,9 +479,7 @@ impl ToListMappable for LakeformationOptInResourceDataElDataCellsFilterEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElDataCellsFilterEl {}
-
 impl BuildLakeformationOptInResourceDataElDataCellsFilterEl {
     pub fn build(self) -> LakeformationOptInResourceDataElDataCellsFilterEl {
         LakeformationOptInResourceDataElDataCellsFilterEl {
@@ -570,12 +490,10 @@ impl BuildLakeformationOptInResourceDataElDataCellsFilterEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElDataCellsFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElDataCellsFilterElRef {
     fn new(
         shared: StackShared,
@@ -587,12 +505,10 @@ impl Ref for LakeformationOptInResourceDataElDataCellsFilterElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElDataCellsFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -600,12 +516,10 @@ impl LakeformationOptInResourceDataElDataCellsFilterElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_catalog_id` after provisioning.\n"]
     pub fn table_catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -613,20 +527,17 @@ impl LakeformationOptInResourceDataElDataCellsFilterElRef {
             format!("{}.table_catalog_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElDataLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     catalog_id: Option<PrimField<String>>,
     resource_arn: PrimField<String>,
 }
-
 impl LakeformationOptInResourceDataElDataLocationEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -634,10 +545,8 @@ impl LakeformationOptInResourceDataElDataLocationEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElDataLocationEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElDataLocationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -646,12 +555,10 @@ impl ToListMappable for LakeformationOptInResourceDataElDataLocationEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElDataLocationEl {
     #[doc = ""]
     pub resource_arn: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElDataLocationEl {
     pub fn build(self) -> LakeformationOptInResourceDataElDataLocationEl {
         LakeformationOptInResourceDataElDataLocationEl {
@@ -660,12 +567,10 @@ impl BuildLakeformationOptInResourceDataElDataLocationEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElDataLocationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElDataLocationElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElDataLocationElRef {
         LakeformationOptInResourceDataElDataLocationElRef {
@@ -674,30 +579,25 @@ impl Ref for LakeformationOptInResourceDataElDataLocationElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElDataLocationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElDatabaseEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     catalog_id: Option<PrimField<String>>,
     name: PrimField<String>,
 }
-
 impl LakeformationOptInResourceDataElDatabaseEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -705,10 +605,8 @@ impl LakeformationOptInResourceDataElDatabaseEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElDatabaseEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElDatabaseEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -717,12 +615,10 @@ impl ToListMappable for LakeformationOptInResourceDataElDatabaseEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElDatabaseEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElDatabaseEl {
     pub fn build(self) -> LakeformationOptInResourceDataElDatabaseEl {
         LakeformationOptInResourceDataElDatabaseEl {
@@ -731,12 +627,10 @@ impl BuildLakeformationOptInResourceDataElDatabaseEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElDatabaseElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElDatabaseElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElDatabaseElRef {
         LakeformationOptInResourceDataElDatabaseElRef {
@@ -745,23 +639,19 @@ impl Ref for LakeformationOptInResourceDataElDatabaseElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElDatabaseElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElLfTagEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -769,7 +659,6 @@ pub struct LakeformationOptInResourceDataElLfTagEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl LakeformationOptInResourceDataElLfTagEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -777,10 +666,8 @@ impl LakeformationOptInResourceDataElLfTagEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElLfTagEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElLfTagEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -789,14 +676,12 @@ impl ToListMappable for LakeformationOptInResourceDataElLfTagEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElLfTagEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElLfTagEl {
     pub fn build(self) -> LakeformationOptInResourceDataElLfTagEl {
         LakeformationOptInResourceDataElLfTagEl {
@@ -806,12 +691,10 @@ impl BuildLakeformationOptInResourceDataElLfTagEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElLfTagElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElLfTagElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElLfTagElRef {
         LakeformationOptInResourceDataElLfTagElRef {
@@ -820,35 +703,29 @@ impl Ref for LakeformationOptInResourceDataElLfTagElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElLfTagElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElLfTagExpressionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     catalog_id: Option<PrimField<String>>,
     name: PrimField<String>,
 }
-
 impl LakeformationOptInResourceDataElLfTagExpressionEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -856,10 +733,8 @@ impl LakeformationOptInResourceDataElLfTagExpressionEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElLfTagExpressionEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElLfTagExpressionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -868,12 +743,10 @@ impl ToListMappable for LakeformationOptInResourceDataElLfTagExpressionEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElLfTagExpressionEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElLfTagExpressionEl {
     pub fn build(self) -> LakeformationOptInResourceDataElLfTagExpressionEl {
         LakeformationOptInResourceDataElLfTagExpressionEl {
@@ -882,12 +755,10 @@ impl BuildLakeformationOptInResourceDataElLfTagExpressionEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElLfTagExpressionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElLfTagExpressionElRef {
     fn new(
         shared: StackShared,
@@ -899,23 +770,19 @@ impl Ref for LakeformationOptInResourceDataElLfTagExpressionElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElLfTagExpressionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElLfTagPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -926,30 +793,25 @@ pub struct LakeformationOptInResourceDataElLfTagPolicyEl {
     expression_name: Option<PrimField<String>>,
     resource_type: PrimField<String>,
 }
-
 impl LakeformationOptInResourceDataElLfTagPolicyEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expression`.\n"]
     pub fn set_expression(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.expression = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expression_name`.\n"]
     pub fn set_expression_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.expression_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElLfTagPolicyEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElLfTagPolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -958,12 +820,10 @@ impl ToListMappable for LakeformationOptInResourceDataElLfTagPolicyEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElLfTagPolicyEl {
     #[doc = ""]
     pub resource_type: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElLfTagPolicyEl {
     pub fn build(self) -> LakeformationOptInResourceDataElLfTagPolicyEl {
         LakeformationOptInResourceDataElLfTagPolicyEl {
@@ -974,12 +834,10 @@ impl BuildLakeformationOptInResourceDataElLfTagPolicyEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElLfTagPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElLfTagPolicyElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElLfTagPolicyElRef {
         LakeformationOptInResourceDataElLfTagPolicyElRef {
@@ -988,22 +846,18 @@ impl Ref for LakeformationOptInResourceDataElLfTagPolicyElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElLfTagPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `expression` after provisioning.\n"]
     pub fn expression(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.expression", self.base))
     }
-
     #[doc = "Get a reference to the value of field `expression_name` after provisioning.\n"]
     pub fn expression_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1011,7 +865,6 @@ impl LakeformationOptInResourceDataElLfTagPolicyElRef {
             format!("{}.expression_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1020,7 +873,6 @@ impl LakeformationOptInResourceDataElLfTagPolicyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElTableEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1031,30 +883,25 @@ pub struct LakeformationOptInResourceDataElTableEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     wildcard: Option<PrimField<bool>>,
 }
-
 impl LakeformationOptInResourceDataElTableEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `wildcard`.\n"]
     pub fn set_wildcard(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.wildcard = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElTableEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElTableEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1063,12 +910,10 @@ impl ToListMappable for LakeformationOptInResourceDataElTableEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElTableEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElTableEl {
     pub fn build(self) -> LakeformationOptInResourceDataElTableEl {
         LakeformationOptInResourceDataElTableEl {
@@ -1079,12 +924,10 @@ impl BuildLakeformationOptInResourceDataElTableEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElTableElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElTableElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElTableElRef {
         LakeformationOptInResourceDataElTableElRef {
@@ -1093,17 +936,14 @@ impl Ref for LakeformationOptInResourceDataElTableElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElTableElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1111,24 +951,20 @@ impl LakeformationOptInResourceDataElTableElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `wildcard` after provisioning.\n"]
     pub fn wildcard(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.wildcard", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     excluded_column_names: Option<SetField<PrimField<String>>>,
 }
-
 impl LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
     #[doc = "Set the field `excluded_column_names`.\n"]
     pub fn set_excluded_column_names(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -1136,10 +972,8 @@ impl LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1148,9 +982,7 @@ impl ToListMappable for LakeformationOptInResourceDataElTableWithColumnsElColumn
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {}
-
 impl BuildLakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
     pub fn build(self) -> LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
         LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
@@ -1158,12 +990,10 @@ impl BuildLakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardElRef {
     fn new(
         shared: StackShared,
@@ -1175,12 +1005,10 @@ impl Ref for LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardElR
         }
     }
 }
-
 impl LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `excluded_column_names` after provisioning.\n"]
     pub fn excluded_column_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1189,13 +1017,11 @@ impl LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LakeformationOptInResourceDataElTableWithColumnsElDynamic {
     column_wildcard:
         Option<DynamicBlock<LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl>>,
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataElTableWithColumnsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1209,20 +1035,17 @@ pub struct LakeformationOptInResourceDataElTableWithColumnsEl {
         Option<Vec<LakeformationOptInResourceDataElTableWithColumnsElColumnWildcardEl>>,
     dynamic: LakeformationOptInResourceDataElTableWithColumnsElDynamic,
 }
-
 impl LakeformationOptInResourceDataElTableWithColumnsEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `column_names`.\n"]
     pub fn set_column_names(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.column_names = Some(v.into());
         self
     }
-
     #[doc = "Set the field `column_wildcard`.\n"]
     pub fn set_column_wildcard(
         mut self,
@@ -1241,10 +1064,8 @@ impl LakeformationOptInResourceDataElTableWithColumnsEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataElTableWithColumnsEl {
     type O = BlockAssignable<LakeformationOptInResourceDataElTableWithColumnsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1253,14 +1074,12 @@ impl ToListMappable for LakeformationOptInResourceDataElTableWithColumnsEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataElTableWithColumnsEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildLakeformationOptInResourceDataElTableWithColumnsEl {
     pub fn build(self) -> LakeformationOptInResourceDataElTableWithColumnsEl {
         LakeformationOptInResourceDataElTableWithColumnsEl {
@@ -1273,12 +1092,10 @@ impl BuildLakeformationOptInResourceDataElTableWithColumnsEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElTableWithColumnsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElTableWithColumnsElRef {
     fn new(
         shared: StackShared,
@@ -1290,22 +1107,18 @@ impl Ref for LakeformationOptInResourceDataElTableWithColumnsElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElTableWithColumnsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `column_names` after provisioning.\n"]
     pub fn column_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.column_names", self.base))
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1313,12 +1126,10 @@ impl LakeformationOptInResourceDataElTableWithColumnsElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `column_wildcard` after provisioning.\n"]
     pub fn column_wildcard(
         &self,
@@ -1329,7 +1140,6 @@ impl LakeformationOptInResourceDataElTableWithColumnsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LakeformationOptInResourceDataElDynamic {
     catalog: Option<DynamicBlock<LakeformationOptInResourceDataElCatalogEl>>,
@@ -1342,7 +1152,6 @@ struct LakeformationOptInResourceDataElDynamic {
     table: Option<DynamicBlock<LakeformationOptInResourceDataElTableEl>>,
     table_with_columns: Option<DynamicBlock<LakeformationOptInResourceDataElTableWithColumnsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct LakeformationOptInResourceDataEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1365,7 +1174,6 @@ pub struct LakeformationOptInResourceDataEl {
     table_with_columns: Option<Vec<LakeformationOptInResourceDataElTableWithColumnsEl>>,
     dynamic: LakeformationOptInResourceDataElDynamic,
 }
-
 impl LakeformationOptInResourceDataEl {
     #[doc = "Set the field `catalog`.\n"]
     pub fn set_catalog(
@@ -1382,7 +1190,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `data_cells_filter`.\n"]
     pub fn set_data_cells_filter(
         mut self,
@@ -1398,7 +1205,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `data_location`.\n"]
     pub fn set_data_location(
         mut self,
@@ -1414,7 +1220,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `database`.\n"]
     pub fn set_database(
         mut self,
@@ -1430,7 +1235,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `lf_tag`.\n"]
     pub fn set_lf_tag(
         mut self,
@@ -1446,7 +1250,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `lf_tag_expression`.\n"]
     pub fn set_lf_tag_expression(
         mut self,
@@ -1462,7 +1265,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `lf_tag_policy`.\n"]
     pub fn set_lf_tag_policy(
         mut self,
@@ -1478,7 +1280,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `table`.\n"]
     pub fn set_table(
         mut self,
@@ -1494,7 +1295,6 @@ impl LakeformationOptInResourceDataEl {
         }
         self
     }
-
     #[doc = "Set the field `table_with_columns`.\n"]
     pub fn set_table_with_columns(
         mut self,
@@ -1511,10 +1311,8 @@ impl LakeformationOptInResourceDataEl {
         self
     }
 }
-
 impl ToListMappable for LakeformationOptInResourceDataEl {
     type O = BlockAssignable<LakeformationOptInResourceDataEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1523,9 +1321,7 @@ impl ToListMappable for LakeformationOptInResourceDataEl {
         })
     }
 }
-
 pub struct BuildLakeformationOptInResourceDataEl {}
-
 impl BuildLakeformationOptInResourceDataEl {
     pub fn build(self) -> LakeformationOptInResourceDataEl {
         LakeformationOptInResourceDataEl {
@@ -1542,12 +1338,10 @@ impl BuildLakeformationOptInResourceDataEl {
         }
     }
 }
-
 pub struct LakeformationOptInResourceDataElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationOptInResourceDataElRef {
     fn new(shared: StackShared, base: String) -> LakeformationOptInResourceDataElRef {
         LakeformationOptInResourceDataElRef {
@@ -1556,17 +1350,14 @@ impl Ref for LakeformationOptInResourceDataElRef {
         }
     }
 }
-
 impl LakeformationOptInResourceDataElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog` after provisioning.\n"]
     pub fn catalog(&self) -> ListRef<LakeformationOptInResourceDataElCatalogElRef> {
         ListRef::new(self.shared().clone(), format!("{}.catalog", self.base))
     }
-
     #[doc = "Get a reference to the value of field `data_cells_filter` after provisioning.\n"]
     pub fn data_cells_filter(
         &self,
@@ -1576,7 +1367,6 @@ impl LakeformationOptInResourceDataElRef {
             format!("{}.data_cells_filter", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_location` after provisioning.\n"]
     pub fn data_location(&self) -> ListRef<LakeformationOptInResourceDataElDataLocationElRef> {
         ListRef::new(
@@ -1584,17 +1374,14 @@ impl LakeformationOptInResourceDataElRef {
             format!("{}.data_location", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `database` after provisioning.\n"]
     pub fn database(&self) -> ListRef<LakeformationOptInResourceDataElDatabaseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.database", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lf_tag` after provisioning.\n"]
     pub fn lf_tag(&self) -> ListRef<LakeformationOptInResourceDataElLfTagElRef> {
         ListRef::new(self.shared().clone(), format!("{}.lf_tag", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lf_tag_expression` after provisioning.\n"]
     pub fn lf_tag_expression(
         &self,
@@ -1604,7 +1391,6 @@ impl LakeformationOptInResourceDataElRef {
             format!("{}.lf_tag_expression", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `lf_tag_policy` after provisioning.\n"]
     pub fn lf_tag_policy(&self) -> ListRef<LakeformationOptInResourceDataElLfTagPolicyElRef> {
         ListRef::new(
@@ -1612,12 +1398,10 @@ impl LakeformationOptInResourceDataElRef {
             format!("{}.lf_tag_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table` after provisioning.\n"]
     pub fn table(&self) -> ListRef<LakeformationOptInResourceDataElTableElRef> {
         ListRef::new(self.shared().clone(), format!("{}.table", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_with_columns` after provisioning.\n"]
     pub fn table_with_columns(
         &self,
@@ -1628,7 +1412,6 @@ impl LakeformationOptInResourceDataElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LakeformationOptInDynamic {
     condition: Option<DynamicBlock<LakeformationOptInConditionEl>>,

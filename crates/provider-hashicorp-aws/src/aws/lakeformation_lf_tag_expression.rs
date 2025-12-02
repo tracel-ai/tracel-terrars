@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LakeformationLfTagExpressionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct LakeformationLfTagExpressionData {
     expression: Option<Vec<LakeformationLfTagExpressionExpressionEl>>,
     dynamic: LakeformationLfTagExpressionDynamic,
 }
-
 struct LakeformationLfTagExpression_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LakeformationLfTagExpressionData>,
 }
-
 #[derive(Clone)]
 pub struct LakeformationLfTagExpression(Rc<LakeformationLfTagExpression_>);
-
 impl LakeformationLfTagExpression {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl LakeformationLfTagExpression {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl LakeformationLfTagExpression {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,25 +92,21 @@ impl LakeformationLfTagExpression {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `catalog_id`.\nThe ID of the Data Catalog."]
     pub fn set_catalog_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\nA description of the LF-Tag Expression."]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expression`.\n"]
     pub fn set_expression(
         self,
@@ -138,7 +122,6 @@ impl LakeformationLfTagExpression {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\nThe ID of the Data Catalog."]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,7 +129,6 @@ impl LakeformationLfTagExpression {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nA description of the LF-Tag Expression."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,7 +136,6 @@ impl LakeformationLfTagExpression {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the LF-Tag Expression."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,7 +143,6 @@ impl LakeformationLfTagExpression {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -171,7 +151,6 @@ impl LakeformationLfTagExpression {
         )
     }
 }
-
 impl Referable for LakeformationLfTagExpression {
     fn extract_ref(&self) -> String {
         format!(
@@ -181,38 +160,30 @@ impl Referable for LakeformationLfTagExpression {
         )
     }
 }
-
 impl Resource for LakeformationLfTagExpression {}
-
 impl ToListMappable for LakeformationLfTagExpression {
     type O = ListRef<LakeformationLfTagExpressionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LakeformationLfTagExpression_ {
     fn extract_resource_type(&self) -> String {
         "aws_lakeformation_lf_tag_expression".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLakeformationLfTagExpression {
     pub tf_id: String,
     #[doc = "The name of the LF-Tag Expression."]
     pub name: PrimField<String>,
 }
-
 impl BuildLakeformationLfTagExpression {
     pub fn build(self, stack: &mut Stack) -> LakeformationLfTagExpression {
         let out = LakeformationLfTagExpression(Rc::new(LakeformationLfTagExpression_ {
@@ -235,27 +206,22 @@ impl BuildLakeformationLfTagExpression {
         out
     }
 }
-
 pub struct LakeformationLfTagExpressionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationLfTagExpressionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LakeformationLfTagExpressionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\nThe ID of the Data Catalog."]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +229,6 @@ impl LakeformationLfTagExpressionRef {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nA description of the LF-Tag Expression."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,7 +236,6 @@ impl LakeformationLfTagExpressionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nThe name of the LF-Tag Expression."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +243,6 @@ impl LakeformationLfTagExpressionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,18 +251,14 @@ impl LakeformationLfTagExpressionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LakeformationLfTagExpressionExpressionEl {
     tag_key: PrimField<String>,
     tag_values: SetField<PrimField<String>>,
 }
-
 impl LakeformationLfTagExpressionExpressionEl {}
-
 impl ToListMappable for LakeformationLfTagExpressionExpressionEl {
     type O = BlockAssignable<LakeformationLfTagExpressionExpressionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -308,14 +267,12 @@ impl ToListMappable for LakeformationLfTagExpressionExpressionEl {
         })
     }
 }
-
 pub struct BuildLakeformationLfTagExpressionExpressionEl {
     #[doc = ""]
     pub tag_key: PrimField<String>,
     #[doc = ""]
     pub tag_values: SetField<PrimField<String>>,
 }
-
 impl BuildLakeformationLfTagExpressionExpressionEl {
     pub fn build(self) -> LakeformationLfTagExpressionExpressionEl {
         LakeformationLfTagExpressionExpressionEl {
@@ -324,12 +281,10 @@ impl BuildLakeformationLfTagExpressionExpressionEl {
         }
     }
 }
-
 pub struct LakeformationLfTagExpressionExpressionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LakeformationLfTagExpressionExpressionElRef {
     fn new(shared: StackShared, base: String) -> LakeformationLfTagExpressionExpressionElRef {
         LakeformationLfTagExpressionExpressionElRef {
@@ -338,23 +293,19 @@ impl Ref for LakeformationLfTagExpressionExpressionElRef {
         }
     }
 }
-
 impl LakeformationLfTagExpressionExpressionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `tag_key` after provisioning.\n"]
     pub fn tag_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.tag_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tag_values` after provisioning.\n"]
     pub fn tag_values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.tag_values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct LakeformationLfTagExpressionDynamic {
     expression: Option<DynamicBlock<LakeformationLfTagExpressionExpressionEl>>,

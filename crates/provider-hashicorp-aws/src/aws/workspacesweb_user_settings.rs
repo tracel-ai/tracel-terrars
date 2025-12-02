@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WorkspaceswebUserSettingsData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -40,47 +39,38 @@ struct WorkspaceswebUserSettingsData {
     toolbar_configuration: Option<Vec<WorkspaceswebUserSettingsToolbarConfigurationEl>>,
     dynamic: WorkspaceswebUserSettingsDynamic,
 }
-
 struct WorkspaceswebUserSettings_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WorkspaceswebUserSettingsData>,
 }
-
 #[derive(Clone)]
 pub struct WorkspaceswebUserSettings(Rc<WorkspaceswebUserSettings_>);
-
 impl WorkspaceswebUserSettings {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -99,7 +89,6 @@ impl WorkspaceswebUserSettings {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -109,7 +98,6 @@ impl WorkspaceswebUserSettings {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -119,7 +107,6 @@ impl WorkspaceswebUserSettings {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `additional_encryption_context`.\n"]
     pub fn set_additional_encryption_context(
         self,
@@ -128,43 +115,36 @@ impl WorkspaceswebUserSettings {
         self.0.data.borrow_mut().additional_encryption_context = Some(v.into());
         self
     }
-
     #[doc = "Set the field `customer_managed_key`.\n"]
     pub fn set_customer_managed_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().customer_managed_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deep_link_allowed`.\n"]
     pub fn set_deep_link_allowed(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().deep_link_allowed = Some(v.into());
         self
     }
-
     #[doc = "Set the field `disconnect_timeout_in_minutes`.\n"]
     pub fn set_disconnect_timeout_in_minutes(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().disconnect_timeout_in_minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `idle_disconnect_timeout_in_minutes`.\n"]
     pub fn set_idle_disconnect_timeout_in_minutes(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().idle_disconnect_timeout_in_minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cookie_synchronization_configuration`.\n"]
     pub fn set_cookie_synchronization_configuration(
         self,
@@ -187,7 +167,6 @@ impl WorkspaceswebUserSettings {
         }
         self
     }
-
     #[doc = "Set the field `toolbar_configuration`.\n"]
     pub fn set_toolbar_configuration(
         self,
@@ -203,7 +182,6 @@ impl WorkspaceswebUserSettings {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -211,7 +189,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -219,7 +196,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.associated_portal_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `copy_allowed` after provisioning.\n"]
     pub fn copy_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +203,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.copy_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +210,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.customer_managed_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deep_link_allowed` after provisioning.\n"]
     pub fn deep_link_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +217,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.deep_link_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disconnect_timeout_in_minutes` after provisioning.\n"]
     pub fn disconnect_timeout_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -251,7 +224,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.disconnect_timeout_in_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `download_allowed` after provisioning.\n"]
     pub fn download_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -259,7 +231,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.download_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `idle_disconnect_timeout_in_minutes` after provisioning.\n"]
     pub fn idle_disconnect_timeout_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -267,7 +238,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.idle_disconnect_timeout_in_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `paste_allowed` after provisioning.\n"]
     pub fn paste_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,7 +245,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.paste_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `print_allowed` after provisioning.\n"]
     pub fn print_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -283,7 +252,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.print_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +259,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -299,7 +266,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -307,7 +273,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upload_allowed` after provisioning.\n"]
     pub fn upload_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +280,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.upload_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_settings_arn` after provisioning.\n"]
     pub fn user_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +287,6 @@ impl WorkspaceswebUserSettings {
             format!("{}.user_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookie_synchronization_configuration` after provisioning.\n"]
     pub fn cookie_synchronization_configuration(
         &self,
@@ -336,7 +299,6 @@ impl WorkspaceswebUserSettings {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `toolbar_configuration` after provisioning.\n"]
     pub fn toolbar_configuration(
         &self,
@@ -347,7 +309,6 @@ impl WorkspaceswebUserSettings {
         )
     }
 }
-
 impl Referable for WorkspaceswebUserSettings {
     fn extract_ref(&self) -> String {
         format!(
@@ -357,32 +318,25 @@ impl Referable for WorkspaceswebUserSettings {
         )
     }
 }
-
 impl Resource for WorkspaceswebUserSettings {}
-
 impl ToListMappable for WorkspaceswebUserSettings {
     type O = ListRef<WorkspaceswebUserSettingsRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WorkspaceswebUserSettings_ {
     fn extract_resource_type(&self) -> String {
         "aws_workspacesweb_user_settings".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWorkspaceswebUserSettings {
     pub tf_id: String,
     #[doc = ""]
@@ -396,7 +350,6 @@ pub struct BuildWorkspaceswebUserSettings {
     #[doc = ""]
     pub upload_allowed: PrimField<String>,
 }
-
 impl BuildWorkspaceswebUserSettings {
     pub fn build(self, stack: &mut Stack) -> WorkspaceswebUserSettings {
         let out = WorkspaceswebUserSettings(Rc::new(WorkspaceswebUserSettings_ {
@@ -428,27 +381,22 @@ impl BuildWorkspaceswebUserSettings {
         out
     }
 }
-
 pub struct WorkspaceswebUserSettingsRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebUserSettingsRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WorkspaceswebUserSettingsRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -456,7 +404,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -464,7 +411,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.associated_portal_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `copy_allowed` after provisioning.\n"]
     pub fn copy_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +418,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.copy_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +425,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.customer_managed_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deep_link_allowed` after provisioning.\n"]
     pub fn deep_link_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +432,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.deep_link_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disconnect_timeout_in_minutes` after provisioning.\n"]
     pub fn disconnect_timeout_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -496,7 +439,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.disconnect_timeout_in_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `download_allowed` after provisioning.\n"]
     pub fn download_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +446,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.download_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `idle_disconnect_timeout_in_minutes` after provisioning.\n"]
     pub fn idle_disconnect_timeout_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -512,7 +453,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.idle_disconnect_timeout_in_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `paste_allowed` after provisioning.\n"]
     pub fn paste_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,7 +460,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.paste_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `print_allowed` after provisioning.\n"]
     pub fn print_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -528,7 +467,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.print_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,7 +474,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -544,7 +481,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -552,7 +488,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upload_allowed` after provisioning.\n"]
     pub fn upload_allowed(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -560,7 +495,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.upload_allowed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_settings_arn` after provisioning.\n"]
     pub fn user_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -568,7 +502,6 @@ impl WorkspaceswebUserSettingsRef {
             format!("{}.user_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookie_synchronization_configuration` after provisioning.\n"]
     pub fn cookie_synchronization_configuration(
         &self,
@@ -581,7 +514,6 @@ impl WorkspaceswebUserSettingsRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `toolbar_configuration` after provisioning.\n"]
     pub fn toolbar_configuration(
         &self,
@@ -592,7 +524,6 @@ impl WorkspaceswebUserSettingsRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
     domain: PrimField<String>,
@@ -601,25 +532,21 @@ pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlis
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<PrimField<String>>,
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.path = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
     type O =
         BlockAssignable<WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -628,12 +555,10 @@ impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurat
         })
     }
 }
-
 pub struct BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
     #[doc = ""]
     pub domain: PrimField<String>,
 }
-
 impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
     pub fn build(self) -> WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
         WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistEl {
@@ -643,12 +568,10 @@ impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlist
         }
     }
 }
-
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistElRef {
     fn new(
         shared: StackShared,
@@ -660,28 +583,23 @@ impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowl
         }
     }
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.domain", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
     domain: PrimField<String>,
@@ -690,25 +608,21 @@ pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklis
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<PrimField<String>>,
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.path = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
     type O =
         BlockAssignable<WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -717,12 +631,10 @@ impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurat
         })
     }
 }
-
 pub struct BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
     #[doc = ""]
     pub domain: PrimField<String>,
 }
-
 impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
     pub fn build(self) -> WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
         WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl {
@@ -732,12 +644,10 @@ impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklist
         }
     }
 }
-
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistElRef {
     fn new(
         shared: StackShared,
@@ -749,28 +659,23 @@ impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlockl
         }
     }
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.domain", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElDynamic {
     allowlist: Option<
@@ -780,7 +685,6 @@ struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElDynamic {
         DynamicBlock<WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -791,7 +695,6 @@ pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
         Option<Vec<WorkspaceswebUserSettingsCookieSynchronizationConfigurationElBlocklistEl>>,
     dynamic: WorkspaceswebUserSettingsCookieSynchronizationConfigurationElDynamic,
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
     #[doc = "Set the field `allowlist`.\n"]
     pub fn set_allowlist(
@@ -812,7 +715,6 @@ impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `blocklist`.\n"]
     pub fn set_blocklist(
         mut self,
@@ -833,10 +735,8 @@ impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
     type O = BlockAssignable<WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -845,9 +745,7 @@ impl ToListMappable for WorkspaceswebUserSettingsCookieSynchronizationConfigurat
         })
     }
 }
-
 pub struct BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {}
-
 impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
     pub fn build(self) -> WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
         WorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
@@ -857,12 +755,10 @@ impl BuildWorkspaceswebUserSettingsCookieSynchronizationConfigurationEl {
         }
     }
 }
-
 pub struct WorkspaceswebUserSettingsCookieSynchronizationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -874,19 +770,16 @@ impl Ref for WorkspaceswebUserSettingsCookieSynchronizationConfigurationElRef {
         }
     }
 }
-
 impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowlist` after provisioning.\n"]
     pub fn allowlist(
         &self,
     ) -> ListRef<WorkspaceswebUserSettingsCookieSynchronizationConfigurationElAllowlistElRef> {
         ListRef::new(self.shared().clone(), format!("{}.allowlist", self.base))
     }
-
     #[doc = "Get a reference to the value of field `blocklist` after provisioning.\n"]
     pub fn blocklist(
         &self,
@@ -894,7 +787,6 @@ impl WorkspaceswebUserSettingsCookieSynchronizationConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.blocklist", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebUserSettingsToolbarConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -906,36 +798,30 @@ pub struct WorkspaceswebUserSettingsToolbarConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     visual_mode: Option<PrimField<String>>,
 }
-
 impl WorkspaceswebUserSettingsToolbarConfigurationEl {
     #[doc = "Set the field `hidden_toolbar_items`.\n"]
     pub fn set_hidden_toolbar_items(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.hidden_toolbar_items = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_display_resolution`.\n"]
     pub fn set_max_display_resolution(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.max_display_resolution = Some(v.into());
         self
     }
-
     #[doc = "Set the field `toolbar_type`.\n"]
     pub fn set_toolbar_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.toolbar_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `visual_mode`.\n"]
     pub fn set_visual_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.visual_mode = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for WorkspaceswebUserSettingsToolbarConfigurationEl {
     type O = BlockAssignable<WorkspaceswebUserSettingsToolbarConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -944,9 +830,7 @@ impl ToListMappable for WorkspaceswebUserSettingsToolbarConfigurationEl {
         })
     }
 }
-
 pub struct BuildWorkspaceswebUserSettingsToolbarConfigurationEl {}
-
 impl BuildWorkspaceswebUserSettingsToolbarConfigurationEl {
     pub fn build(self) -> WorkspaceswebUserSettingsToolbarConfigurationEl {
         WorkspaceswebUserSettingsToolbarConfigurationEl {
@@ -957,12 +841,10 @@ impl BuildWorkspaceswebUserSettingsToolbarConfigurationEl {
         }
     }
 }
-
 pub struct WorkspaceswebUserSettingsToolbarConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebUserSettingsToolbarConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -974,12 +856,10 @@ impl Ref for WorkspaceswebUserSettingsToolbarConfigurationElRef {
         }
     }
 }
-
 impl WorkspaceswebUserSettingsToolbarConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hidden_toolbar_items` after provisioning.\n"]
     pub fn hidden_toolbar_items(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -987,7 +867,6 @@ impl WorkspaceswebUserSettingsToolbarConfigurationElRef {
             format!("{}.hidden_toolbar_items", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_display_resolution` after provisioning.\n"]
     pub fn max_display_resolution(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -995,18 +874,15 @@ impl WorkspaceswebUserSettingsToolbarConfigurationElRef {
             format!("{}.max_display_resolution", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `toolbar_type` after provisioning.\n"]
     pub fn toolbar_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.toolbar_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `visual_mode` after provisioning.\n"]
     pub fn visual_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.visual_mode", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WorkspaceswebUserSettingsDynamic {
     cookie_synchronization_configuration:

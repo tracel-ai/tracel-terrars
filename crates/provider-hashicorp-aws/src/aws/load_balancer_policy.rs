@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LoadBalancerPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct LoadBalancerPolicyData {
     policy_attribute: Option<Vec<LoadBalancerPolicyPolicyAttributeEl>>,
     dynamic: LoadBalancerPolicyDynamic,
 }
-
 struct LoadBalancerPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LoadBalancerPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct LoadBalancerPolicy(Rc<LoadBalancerPolicy_>);
-
 impl LoadBalancerPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl LoadBalancerPolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl LoadBalancerPolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl LoadBalancerPolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy_attribute`.\n"]
     pub fn set_policy_attribute(
         self,
@@ -132,12 +117,10 @@ impl LoadBalancerPolicy {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_name` after provisioning.\n"]
     pub fn load_balancer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -145,7 +128,6 @@ impl LoadBalancerPolicy {
             format!("{}.load_balancer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_name` after provisioning.\n"]
     pub fn policy_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +135,6 @@ impl LoadBalancerPolicy {
             format!("{}.policy_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_type_name` after provisioning.\n"]
     pub fn policy_type_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -161,7 +142,6 @@ impl LoadBalancerPolicy {
             format!("{}.policy_type_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,7 +150,6 @@ impl LoadBalancerPolicy {
         )
     }
 }
-
 impl Referable for LoadBalancerPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -180,32 +159,25 @@ impl Referable for LoadBalancerPolicy {
         )
     }
 }
-
 impl Resource for LoadBalancerPolicy {}
-
 impl ToListMappable for LoadBalancerPolicy {
     type O = ListRef<LoadBalancerPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LoadBalancerPolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_load_balancer_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLoadBalancerPolicy {
     pub tf_id: String,
     #[doc = ""]
@@ -215,7 +187,6 @@ pub struct BuildLoadBalancerPolicy {
     #[doc = ""]
     pub policy_type_name: PrimField<String>,
 }
-
 impl BuildLoadBalancerPolicy {
     pub fn build(self, stack: &mut Stack) -> LoadBalancerPolicy {
         let out = LoadBalancerPolicy(Rc::new(LoadBalancerPolicy_ {
@@ -239,32 +210,26 @@ impl BuildLoadBalancerPolicy {
         out
     }
 }
-
 pub struct LoadBalancerPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LoadBalancerPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LoadBalancerPolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_name` after provisioning.\n"]
     pub fn load_balancer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +237,6 @@ impl LoadBalancerPolicyRef {
             format!("{}.load_balancer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_name` after provisioning.\n"]
     pub fn policy_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,7 +244,6 @@ impl LoadBalancerPolicyRef {
             format!("{}.policy_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_type_name` after provisioning.\n"]
     pub fn policy_type_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +251,6 @@ impl LoadBalancerPolicyRef {
             format!("{}.policy_type_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +259,6 @@ impl LoadBalancerPolicyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LoadBalancerPolicyPolicyAttributeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -305,24 +266,20 @@ pub struct LoadBalancerPolicyPolicyAttributeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl LoadBalancerPolicyPolicyAttributeEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LoadBalancerPolicyPolicyAttributeEl {
     type O = BlockAssignable<LoadBalancerPolicyPolicyAttributeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -331,9 +288,7 @@ impl ToListMappable for LoadBalancerPolicyPolicyAttributeEl {
         })
     }
 }
-
 pub struct BuildLoadBalancerPolicyPolicyAttributeEl {}
-
 impl BuildLoadBalancerPolicyPolicyAttributeEl {
     pub fn build(self) -> LoadBalancerPolicyPolicyAttributeEl {
         LoadBalancerPolicyPolicyAttributeEl {
@@ -342,12 +297,10 @@ impl BuildLoadBalancerPolicyPolicyAttributeEl {
         }
     }
 }
-
 pub struct LoadBalancerPolicyPolicyAttributeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LoadBalancerPolicyPolicyAttributeElRef {
     fn new(shared: StackShared, base: String) -> LoadBalancerPolicyPolicyAttributeElRef {
         LoadBalancerPolicyPolicyAttributeElRef {
@@ -356,23 +309,19 @@ impl Ref for LoadBalancerPolicyPolicyAttributeElRef {
         }
     }
 }
-
 impl LoadBalancerPolicyPolicyAttributeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct LoadBalancerPolicyDynamic {
     policy_attribute: Option<DynamicBlock<LoadBalancerPolicyPolicyAttributeEl>>,

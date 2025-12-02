@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsoadminTrustedTokenIssuerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct SsoadminTrustedTokenIssuerData {
         Option<Vec<SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl>>,
     dynamic: SsoadminTrustedTokenIssuerDynamic,
 }
-
 struct SsoadminTrustedTokenIssuer_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsoadminTrustedTokenIssuerData>,
 }
-
 #[derive(Clone)]
 pub struct SsoadminTrustedTokenIssuer(Rc<SsoadminTrustedTokenIssuer_>);
-
 impl SsoadminTrustedTokenIssuer {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl SsoadminTrustedTokenIssuer {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl SsoadminTrustedTokenIssuer {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,25 +95,21 @@ impl SsoadminTrustedTokenIssuer {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `client_token`.\n"]
     pub fn set_client_token(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().client_token = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `trusted_token_issuer_configuration`.\n"]
     pub fn set_trusted_token_issuer_configuration(
         self,
@@ -145,12 +129,10 @@ impl SsoadminTrustedTokenIssuer {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,12 +140,10 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.client_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -171,7 +151,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +158,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,7 +165,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -195,7 +172,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -203,7 +179,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trusted_token_issuer_type` after provisioning.\n"]
     pub fn trusted_token_issuer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +186,6 @@ impl SsoadminTrustedTokenIssuer {
             format!("{}.trusted_token_issuer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trusted_token_issuer_configuration` after provisioning.\n"]
     pub fn trusted_token_issuer_configuration(
         &self,
@@ -222,7 +196,6 @@ impl SsoadminTrustedTokenIssuer {
         )
     }
 }
-
 impl Referable for SsoadminTrustedTokenIssuer {
     fn extract_ref(&self) -> String {
         format!(
@@ -232,32 +205,25 @@ impl Referable for SsoadminTrustedTokenIssuer {
         )
     }
 }
-
 impl Resource for SsoadminTrustedTokenIssuer {}
-
 impl ToListMappable for SsoadminTrustedTokenIssuer {
     type O = ListRef<SsoadminTrustedTokenIssuerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsoadminTrustedTokenIssuer_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssoadmin_trusted_token_issuer".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsoadminTrustedTokenIssuer {
     pub tf_id: String,
     #[doc = ""]
@@ -267,7 +233,6 @@ pub struct BuildSsoadminTrustedTokenIssuer {
     #[doc = ""]
     pub trusted_token_issuer_type: PrimField<String>,
 }
-
 impl BuildSsoadminTrustedTokenIssuer {
     pub fn build(self, stack: &mut Stack) -> SsoadminTrustedTokenIssuer {
         let out = SsoadminTrustedTokenIssuer(Rc::new(SsoadminTrustedTokenIssuer_ {
@@ -292,32 +257,26 @@ impl BuildSsoadminTrustedTokenIssuer {
         out
     }
 }
-
 pub struct SsoadminTrustedTokenIssuerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminTrustedTokenIssuerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsoadminTrustedTokenIssuerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -325,12 +284,10 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.client_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -338,7 +295,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +302,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,7 +309,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -362,7 +316,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -370,7 +323,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trusted_token_issuer_type` after provisioning.\n"]
     pub fn trusted_token_issuer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +330,6 @@ impl SsoadminTrustedTokenIssuerRef {
             format!("{}.trusted_token_issuer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trusted_token_issuer_configuration` after provisioning.\n"]
     pub fn trusted_token_issuer_configuration(
         &self,
@@ -389,7 +340,6 @@ impl SsoadminTrustedTokenIssuerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl {
     claim_attribute_path: PrimField<String>,
@@ -397,16 +347,13 @@ pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtCon
     issuer_url: PrimField<String>,
     jwks_retrieval_option: PrimField<String>,
 }
-
 impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl {}
-
 impl ToListMappable
     for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl
 {
     type O = BlockAssignable<
         SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -415,7 +362,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl {
     #[doc = ""]
     pub claim_attribute_path: PrimField<String>,
@@ -426,7 +372,6 @@ pub struct BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJ
     #[doc = ""]
     pub jwks_retrieval_option: PrimField<String>,
 }
-
 impl BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationEl {
     pub fn build(
         self,
@@ -439,12 +384,10 @@ impl BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConf
         }
     }
 }
-
 pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -456,12 +399,10 @@ impl Ref for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtC
         }
     }
 }
-
 impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `claim_attribute_path` after provisioning.\n"]
     pub fn claim_attribute_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -469,7 +410,6 @@ impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigura
             format!("{}.claim_attribute_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_store_attribute_path` after provisioning.\n"]
     pub fn identity_store_attribute_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -477,12 +417,10 @@ impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigura
             format!("{}.identity_store_attribute_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer_url` after provisioning.\n"]
     pub fn issuer_url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer_url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `jwks_retrieval_option` after provisioning.\n"]
     pub fn jwks_retrieval_option(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -491,7 +429,6 @@ impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElOidcJwtConfigura
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElDynamic {
     oidc_jwt_configuration: Option<
@@ -500,7 +437,6 @@ struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -509,7 +445,6 @@ pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
     >,
     dynamic: SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElDynamic,
 }
-
 impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
     #[doc = "Set the field `oidc_jwt_configuration`.\n"]
     pub fn set_oidc_jwt_configuration(
@@ -531,10 +466,8 @@ impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
     type O = BlockAssignable<SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -543,9 +476,7 @@ impl ToListMappable for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfiguratio
         })
     }
 }
-
 pub struct BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {}
-
 impl BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
     pub fn build(self) -> SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
         SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
@@ -554,12 +485,10 @@ impl BuildSsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationEl {
         }
     }
 }
-
 pub struct SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -571,12 +500,10 @@ impl Ref for SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElRef {
         }
     }
 }
-
 impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `oidc_jwt_configuration` after provisioning.\n"]
     pub fn oidc_jwt_configuration(
         &self,
@@ -588,7 +515,6 @@ impl SsoadminTrustedTokenIssuerTrustedTokenIssuerConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsoadminTrustedTokenIssuerDynamic {
     trusted_token_issuer_configuration:

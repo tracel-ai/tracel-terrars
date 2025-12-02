@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Inspector2EnablerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct Inspector2EnablerData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<Inspector2EnablerTimeoutsEl>,
 }
-
 struct Inspector2Enabler_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Inspector2EnablerData>,
 }
-
 #[derive(Clone)]
 pub struct Inspector2Enabler(Rc<Inspector2Enabler_>);
-
 impl Inspector2Enabler {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl Inspector2Enabler {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl Inspector2Enabler {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,25 +90,21 @@ impl Inspector2Enabler {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<Inspector2EnablerTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `account_ids` after provisioning.\n"]
     pub fn account_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -128,12 +112,10 @@ impl Inspector2Enabler {
             format!("{}.account_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,7 +123,6 @@ impl Inspector2Enabler {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -149,7 +130,6 @@ impl Inspector2Enabler {
             format!("{}.resource_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Inspector2EnablerTimeoutsElRef {
         Inspector2EnablerTimeoutsElRef::new(
@@ -158,7 +138,6 @@ impl Inspector2Enabler {
         )
     }
 }
-
 impl Referable for Inspector2Enabler {
     fn extract_ref(&self) -> String {
         format!(
@@ -168,32 +147,25 @@ impl Referable for Inspector2Enabler {
         )
     }
 }
-
 impl Resource for Inspector2Enabler {}
-
 impl ToListMappable for Inspector2Enabler {
     type O = ListRef<Inspector2EnablerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Inspector2Enabler_ {
     fn extract_resource_type(&self) -> String {
         "aws_inspector2_enabler".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildInspector2Enabler {
     pub tf_id: String,
     #[doc = ""]
@@ -201,7 +173,6 @@ pub struct BuildInspector2Enabler {
     #[doc = ""]
     pub resource_types: SetField<PrimField<String>>,
 }
-
 impl BuildInspector2Enabler {
     pub fn build(self, stack: &mut Stack) -> Inspector2Enabler {
         let out = Inspector2Enabler(Rc::new(Inspector2Enabler_ {
@@ -223,27 +194,22 @@ impl BuildInspector2Enabler {
         out
     }
 }
-
 pub struct Inspector2EnablerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2EnablerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Inspector2EnablerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_ids` after provisioning.\n"]
     pub fn account_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -251,12 +217,10 @@ impl Inspector2EnablerRef {
             format!("{}.account_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +228,6 @@ impl Inspector2EnablerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -272,7 +235,6 @@ impl Inspector2EnablerRef {
             format!("{}.resource_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Inspector2EnablerTimeoutsElRef {
         Inspector2EnablerTimeoutsElRef::new(
@@ -281,7 +243,6 @@ impl Inspector2EnablerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Inspector2EnablerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -291,30 +252,25 @@ pub struct Inspector2EnablerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl Inspector2EnablerTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Inspector2EnablerTimeoutsEl {
     type O = BlockAssignable<Inspector2EnablerTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -323,9 +279,7 @@ impl ToListMappable for Inspector2EnablerTimeoutsEl {
         })
     }
 }
-
 pub struct BuildInspector2EnablerTimeoutsEl {}
-
 impl BuildInspector2EnablerTimeoutsEl {
     pub fn build(self) -> Inspector2EnablerTimeoutsEl {
         Inspector2EnablerTimeoutsEl {
@@ -335,12 +289,10 @@ impl BuildInspector2EnablerTimeoutsEl {
         }
     }
 }
-
 pub struct Inspector2EnablerTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Inspector2EnablerTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> Inspector2EnablerTimeoutsElRef {
         Inspector2EnablerTimeoutsElRef {
@@ -349,22 +301,18 @@ impl Ref for Inspector2EnablerTimeoutsElRef {
         }
     }
 }
-
 impl Inspector2EnablerTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EksFargateProfileData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct EksFargateProfileData {
     timeouts: Option<EksFargateProfileTimeoutsEl>,
     dynamic: EksFargateProfileDynamic,
 }
-
 struct EksFargateProfile_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EksFargateProfileData>,
 }
-
 #[derive(Clone)]
 pub struct EksFargateProfile(Rc<EksFargateProfile_>);
-
 impl EksFargateProfile {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl EksFargateProfile {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl EksFargateProfile {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,37 +100,31 @@ impl EksFargateProfile {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_ids`.\n"]
     pub fn set_subnet_ids(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().subnet_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `selector`.\n"]
     pub fn set_selector(self, v: impl Into<BlockAssignable<EksFargateProfileSelectorEl>>) -> Self {
         match v.into() {
@@ -155,18 +137,15 @@ impl EksFargateProfile {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<EksFargateProfileTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +153,6 @@ impl EksFargateProfile {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fargate_profile_name` after provisioning.\n"]
     pub fn fargate_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,12 +160,10 @@ impl EksFargateProfile {
             format!("{}.fargate_profile_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pod_execution_role_arn` after provisioning.\n"]
     pub fn pod_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -195,7 +171,6 @@ impl EksFargateProfile {
             format!("{}.pod_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -203,7 +178,6 @@ impl EksFargateProfile {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +185,6 @@ impl EksFargateProfile {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -219,7 +192,6 @@ impl EksFargateProfile {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -227,7 +199,6 @@ impl EksFargateProfile {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -235,7 +206,6 @@ impl EksFargateProfile {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksFargateProfileTimeoutsElRef {
         EksFargateProfileTimeoutsElRef::new(
@@ -244,7 +214,6 @@ impl EksFargateProfile {
         )
     }
 }
-
 impl Referable for EksFargateProfile {
     fn extract_ref(&self) -> String {
         format!(
@@ -254,32 +223,25 @@ impl Referable for EksFargateProfile {
         )
     }
 }
-
 impl Resource for EksFargateProfile {}
-
 impl ToListMappable for EksFargateProfile {
     type O = ListRef<EksFargateProfileRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EksFargateProfile_ {
     fn extract_resource_type(&self) -> String {
         "aws_eks_fargate_profile".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEksFargateProfile {
     pub tf_id: String,
     #[doc = ""]
@@ -289,7 +251,6 @@ pub struct BuildEksFargateProfile {
     #[doc = ""]
     pub pod_execution_role_arn: PrimField<String>,
 }
-
 impl BuildEksFargateProfile {
     pub fn build(self, stack: &mut Stack) -> EksFargateProfile {
         let out = EksFargateProfile(Rc::new(EksFargateProfile_ {
@@ -317,32 +278,26 @@ impl BuildEksFargateProfile {
         out
     }
 }
-
 pub struct EksFargateProfileRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksFargateProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EksFargateProfileRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +305,6 @@ impl EksFargateProfileRef {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fargate_profile_name` after provisioning.\n"]
     pub fn fargate_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,12 +312,10 @@ impl EksFargateProfileRef {
             format!("{}.fargate_profile_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pod_execution_role_arn` after provisioning.\n"]
     pub fn pod_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +323,6 @@ impl EksFargateProfileRef {
             format!("{}.pod_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,7 +330,6 @@ impl EksFargateProfileRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -387,7 +337,6 @@ impl EksFargateProfileRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -395,7 +344,6 @@ impl EksFargateProfileRef {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -403,7 +351,6 @@ impl EksFargateProfileRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -411,7 +358,6 @@ impl EksFargateProfileRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksFargateProfileTimeoutsElRef {
         EksFargateProfileTimeoutsElRef::new(
@@ -420,14 +366,12 @@ impl EksFargateProfileRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EksFargateProfileSelectorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     labels: Option<RecField<PrimField<String>>>,
     namespace: PrimField<String>,
 }
-
 impl EksFargateProfileSelectorEl {
     #[doc = "Set the field `labels`.\n"]
     pub fn set_labels(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
@@ -435,10 +379,8 @@ impl EksFargateProfileSelectorEl {
         self
     }
 }
-
 impl ToListMappable for EksFargateProfileSelectorEl {
     type O = BlockAssignable<EksFargateProfileSelectorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -447,12 +389,10 @@ impl ToListMappable for EksFargateProfileSelectorEl {
         })
     }
 }
-
 pub struct BuildEksFargateProfileSelectorEl {
     #[doc = ""]
     pub namespace: PrimField<String>,
 }
-
 impl BuildEksFargateProfileSelectorEl {
     pub fn build(self) -> EksFargateProfileSelectorEl {
         EksFargateProfileSelectorEl {
@@ -461,12 +401,10 @@ impl BuildEksFargateProfileSelectorEl {
         }
     }
 }
-
 pub struct EksFargateProfileSelectorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksFargateProfileSelectorElRef {
     fn new(shared: StackShared, base: String) -> EksFargateProfileSelectorElRef {
         EksFargateProfileSelectorElRef {
@@ -475,23 +413,19 @@ impl Ref for EksFargateProfileSelectorElRef {
         }
     }
 }
-
 impl EksFargateProfileSelectorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `labels` after provisioning.\n"]
     pub fn labels(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.labels", self.base))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct EksFargateProfileTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -499,24 +433,20 @@ pub struct EksFargateProfileTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl EksFargateProfileTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for EksFargateProfileTimeoutsEl {
     type O = BlockAssignable<EksFargateProfileTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -525,9 +455,7 @@ impl ToListMappable for EksFargateProfileTimeoutsEl {
         })
     }
 }
-
 pub struct BuildEksFargateProfileTimeoutsEl {}
-
 impl BuildEksFargateProfileTimeoutsEl {
     pub fn build(self) -> EksFargateProfileTimeoutsEl {
         EksFargateProfileTimeoutsEl {
@@ -536,12 +464,10 @@ impl BuildEksFargateProfileTimeoutsEl {
         }
     }
 }
-
 pub struct EksFargateProfileTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksFargateProfileTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> EksFargateProfileTimeoutsElRef {
         EksFargateProfileTimeoutsElRef {
@@ -550,23 +476,19 @@ impl Ref for EksFargateProfileTimeoutsElRef {
         }
     }
 }
-
 impl EksFargateProfileTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct EksFargateProfileDynamic {
     selector: Option<DynamicBlock<EksFargateProfileSelectorEl>>,

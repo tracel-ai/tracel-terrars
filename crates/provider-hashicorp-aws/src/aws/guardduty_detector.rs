@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GuarddutyDetectorData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct GuarddutyDetectorData {
     datasources: Option<Vec<GuarddutyDetectorDatasourcesEl>>,
     dynamic: GuarddutyDetectorDynamic,
 }
-
 struct GuarddutyDetector_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GuarddutyDetectorData>,
 }
-
 #[derive(Clone)]
 pub struct GuarddutyDetector(Rc<GuarddutyDetector_>);
-
 impl GuarddutyDetector {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl GuarddutyDetector {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl GuarddutyDetector {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,43 +97,36 @@ impl GuarddutyDetector {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `enable`.\n"]
     pub fn set_enable(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enable = Some(v.into());
         self
     }
-
     #[doc = "Set the field `finding_publishing_frequency`.\n"]
     pub fn set_finding_publishing_frequency(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().finding_publishing_frequency = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `datasources`.\n"]
     pub fn set_datasources(
         self,
@@ -161,7 +142,6 @@ impl GuarddutyDetector {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,12 +149,10 @@ impl GuarddutyDetector {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -182,7 +160,6 @@ impl GuarddutyDetector {
             format!("{}.enable", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `finding_publishing_frequency` after provisioning.\n"]
     pub fn finding_publishing_frequency(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,12 +167,10 @@ impl GuarddutyDetector {
             format!("{}.finding_publishing_frequency", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -203,7 +178,6 @@ impl GuarddutyDetector {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -211,7 +185,6 @@ impl GuarddutyDetector {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -219,7 +192,6 @@ impl GuarddutyDetector {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `datasources` after provisioning.\n"]
     pub fn datasources(&self) -> ListRef<GuarddutyDetectorDatasourcesElRef> {
         ListRef::new(
@@ -228,7 +200,6 @@ impl GuarddutyDetector {
         )
     }
 }
-
 impl Referable for GuarddutyDetector {
     fn extract_ref(&self) -> String {
         format!(
@@ -238,36 +209,28 @@ impl Referable for GuarddutyDetector {
         )
     }
 }
-
 impl Resource for GuarddutyDetector {}
-
 impl ToListMappable for GuarddutyDetector {
     type O = ListRef<GuarddutyDetectorRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GuarddutyDetector_ {
     fn extract_resource_type(&self) -> String {
         "aws_guardduty_detector".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGuarddutyDetector {
     pub tf_id: String,
 }
-
 impl BuildGuarddutyDetector {
     pub fn build(self, stack: &mut Stack) -> GuarddutyDetector {
         let out = GuarddutyDetector(Rc::new(GuarddutyDetector_ {
@@ -292,27 +255,22 @@ impl BuildGuarddutyDetector {
         out
     }
 }
-
 pub struct GuarddutyDetectorRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GuarddutyDetectorRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -320,12 +278,10 @@ impl GuarddutyDetectorRef {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -333,7 +289,6 @@ impl GuarddutyDetectorRef {
             format!("{}.enable", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `finding_publishing_frequency` after provisioning.\n"]
     pub fn finding_publishing_frequency(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,12 +296,10 @@ impl GuarddutyDetectorRef {
             format!("{}.finding_publishing_frequency", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,7 +307,6 @@ impl GuarddutyDetectorRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -362,7 +314,6 @@ impl GuarddutyDetectorRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -370,7 +321,6 @@ impl GuarddutyDetectorRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `datasources` after provisioning.\n"]
     pub fn datasources(&self) -> ListRef<GuarddutyDetectorDatasourcesElRef> {
         ListRef::new(
@@ -379,17 +329,13 @@ impl GuarddutyDetectorRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
     enable: PrimField<bool>,
 }
-
 impl GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {}
-
 impl ToListMappable for GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
     type O = BlockAssignable<GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -398,12 +344,10 @@ impl ToListMappable for GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
     #[doc = ""]
     pub enable: PrimField<bool>,
 }
-
 impl BuildGuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
     pub fn build(self) -> GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
         GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
@@ -411,12 +355,10 @@ impl BuildGuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl {
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElKubernetesElAuditLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElKubernetesElAuditLogsElRef {
     fn new(
         shared: StackShared,
@@ -428,30 +370,25 @@ impl Ref for GuarddutyDetectorDatasourcesElKubernetesElAuditLogsElRef {
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElKubernetesElAuditLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enable", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GuarddutyDetectorDatasourcesElKubernetesElDynamic {
     audit_logs: Option<DynamicBlock<GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesElKubernetesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     audit_logs: Option<Vec<GuarddutyDetectorDatasourcesElKubernetesElAuditLogsEl>>,
     dynamic: GuarddutyDetectorDatasourcesElKubernetesElDynamic,
 }
-
 impl GuarddutyDetectorDatasourcesElKubernetesEl {
     #[doc = "Set the field `audit_logs`.\n"]
     pub fn set_audit_logs(
@@ -469,10 +406,8 @@ impl GuarddutyDetectorDatasourcesElKubernetesEl {
         self
     }
 }
-
 impl ToListMappable for GuarddutyDetectorDatasourcesElKubernetesEl {
     type O = BlockAssignable<GuarddutyDetectorDatasourcesElKubernetesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -481,9 +416,7 @@ impl ToListMappable for GuarddutyDetectorDatasourcesElKubernetesEl {
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElKubernetesEl {}
-
 impl BuildGuarddutyDetectorDatasourcesElKubernetesEl {
     pub fn build(self) -> GuarddutyDetectorDatasourcesElKubernetesEl {
         GuarddutyDetectorDatasourcesElKubernetesEl {
@@ -492,12 +425,10 @@ impl BuildGuarddutyDetectorDatasourcesElKubernetesEl {
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElKubernetesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElKubernetesElRef {
     fn new(shared: StackShared, base: String) -> GuarddutyDetectorDatasourcesElKubernetesElRef {
         GuarddutyDetectorDatasourcesElKubernetesElRef {
@@ -506,33 +437,27 @@ impl Ref for GuarddutyDetectorDatasourcesElKubernetesElRef {
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElKubernetesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `audit_logs` after provisioning.\n"]
     pub fn audit_logs(&self) -> ListRef<GuarddutyDetectorDatasourcesElKubernetesElAuditLogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.audit_logs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
 {
     enable: PrimField<bool>,
 }
-
 impl GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl {}
-
 impl ToListMappable
     for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
 {
     type O = BlockAssignable<
         GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -541,13 +466,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
 {
     #[doc = ""]
     pub enable: PrimField<bool>,
 }
-
 impl
     BuildGuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl
 {
@@ -560,62 +483,30 @@ impl
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef {
-        GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef { fn new (shared : StackShared , base : String) -> GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef { GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef { shared : shared , base : base . to_string () , } } }
 impl GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enable", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
-struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElDynamic {
-    ebs_volumes: Option<
-        DynamicBlock<GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl>,
-    >,
-}
-
+struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElDynamic { ebs_volumes : Option < DynamicBlock < GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl >> , }
 #[derive(Serialize)]
-pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    ebs_volumes: Option<Vec<GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl>>,
-    dynamic: GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElDynamic,
-}
-
+pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl { # [serde (skip_serializing_if = "Option::is_none")] ebs_volumes : Option < Vec < GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl > > , dynamic : GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElDynamic , }
 impl GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {
     #[doc = "Set the field `ebs_volumes`.\n"]
     pub fn set_ebs_volumes(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -628,14 +519,12 @@ impl GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFinding
         self
     }
 }
-
 impl ToListMappable
     for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl
 {
     type O = BlockAssignable<
         GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -644,9 +533,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {}
-
 impl BuildGuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl {
     pub fn build(
         self,
@@ -657,12 +544,10 @@ impl BuildGuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFi
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef {
     fn new(
         shared: StackShared,
@@ -674,20 +559,14 @@ impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWit
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `ebs_volumes` after provisioning.\n"]
-    pub fn ebs_volumes(
-        &self,
-    ) -> ListRef<GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef>{
+    #[doc = "Get a reference to the value of field `ebs_volumes` after provisioning.\n"]    pub fn ebs_volumes (& self) -> ListRef < GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsElEbsVolumesElRef >{
         ListRef::new(self.shared().clone(), format!("{}.ebs_volumes", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GuarddutyDetectorDatasourcesElMalwareProtectionElDynamic {
     scan_ec2_instance_with_findings: Option<
@@ -696,7 +575,6 @@ struct GuarddutyDetectorDatasourcesElMalwareProtectionElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesElMalwareProtectionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -704,7 +582,6 @@ pub struct GuarddutyDetectorDatasourcesElMalwareProtectionEl {
         Option<Vec<GuarddutyDetectorDatasourcesElMalwareProtectionElScanEc2InstanceWithFindingsEl>>,
     dynamic: GuarddutyDetectorDatasourcesElMalwareProtectionElDynamic,
 }
-
 impl GuarddutyDetectorDatasourcesElMalwareProtectionEl {
     #[doc = "Set the field `scan_ec2_instance_with_findings`.\n"]
     pub fn set_scan_ec2_instance_with_findings(
@@ -726,10 +603,8 @@ impl GuarddutyDetectorDatasourcesElMalwareProtectionEl {
         self
     }
 }
-
 impl ToListMappable for GuarddutyDetectorDatasourcesElMalwareProtectionEl {
     type O = BlockAssignable<GuarddutyDetectorDatasourcesElMalwareProtectionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -738,9 +613,7 @@ impl ToListMappable for GuarddutyDetectorDatasourcesElMalwareProtectionEl {
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElMalwareProtectionEl {}
-
 impl BuildGuarddutyDetectorDatasourcesElMalwareProtectionEl {
     pub fn build(self) -> GuarddutyDetectorDatasourcesElMalwareProtectionEl {
         GuarddutyDetectorDatasourcesElMalwareProtectionEl {
@@ -749,12 +622,10 @@ impl BuildGuarddutyDetectorDatasourcesElMalwareProtectionEl {
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElMalwareProtectionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElRef {
     fn new(
         shared: StackShared,
@@ -766,12 +637,10 @@ impl Ref for GuarddutyDetectorDatasourcesElMalwareProtectionElRef {
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElMalwareProtectionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `scan_ec2_instance_with_findings` after provisioning.\n"]
     pub fn scan_ec2_instance_with_findings(
         &self,
@@ -783,17 +652,13 @@ impl GuarddutyDetectorDatasourcesElMalwareProtectionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesElS3LogsEl {
     enable: PrimField<bool>,
 }
-
 impl GuarddutyDetectorDatasourcesElS3LogsEl {}
-
 impl ToListMappable for GuarddutyDetectorDatasourcesElS3LogsEl {
     type O = BlockAssignable<GuarddutyDetectorDatasourcesElS3LogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -802,12 +667,10 @@ impl ToListMappable for GuarddutyDetectorDatasourcesElS3LogsEl {
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesElS3LogsEl {
     #[doc = ""]
     pub enable: PrimField<bool>,
 }
-
 impl BuildGuarddutyDetectorDatasourcesElS3LogsEl {
     pub fn build(self) -> GuarddutyDetectorDatasourcesElS3LogsEl {
         GuarddutyDetectorDatasourcesElS3LogsEl {
@@ -815,12 +678,10 @@ impl BuildGuarddutyDetectorDatasourcesElS3LogsEl {
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElS3LogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElS3LogsElRef {
     fn new(shared: StackShared, base: String) -> GuarddutyDetectorDatasourcesElS3LogsElRef {
         GuarddutyDetectorDatasourcesElS3LogsElRef {
@@ -829,25 +690,21 @@ impl Ref for GuarddutyDetectorDatasourcesElS3LogsElRef {
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElS3LogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable` after provisioning.\n"]
     pub fn enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enable", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GuarddutyDetectorDatasourcesElDynamic {
     kubernetes: Option<DynamicBlock<GuarddutyDetectorDatasourcesElKubernetesEl>>,
     malware_protection: Option<DynamicBlock<GuarddutyDetectorDatasourcesElMalwareProtectionEl>>,
     s3_logs: Option<DynamicBlock<GuarddutyDetectorDatasourcesElS3LogsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct GuarddutyDetectorDatasourcesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -858,7 +715,6 @@ pub struct GuarddutyDetectorDatasourcesEl {
     s3_logs: Option<Vec<GuarddutyDetectorDatasourcesElS3LogsEl>>,
     dynamic: GuarddutyDetectorDatasourcesElDynamic,
 }
-
 impl GuarddutyDetectorDatasourcesEl {
     #[doc = "Set the field `kubernetes`.\n"]
     pub fn set_kubernetes(
@@ -875,7 +731,6 @@ impl GuarddutyDetectorDatasourcesEl {
         }
         self
     }
-
     #[doc = "Set the field `malware_protection`.\n"]
     pub fn set_malware_protection(
         mut self,
@@ -891,7 +746,6 @@ impl GuarddutyDetectorDatasourcesEl {
         }
         self
     }
-
     #[doc = "Set the field `s3_logs`.\n"]
     pub fn set_s3_logs(
         mut self,
@@ -908,10 +762,8 @@ impl GuarddutyDetectorDatasourcesEl {
         self
     }
 }
-
 impl ToListMappable for GuarddutyDetectorDatasourcesEl {
     type O = BlockAssignable<GuarddutyDetectorDatasourcesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -920,9 +772,7 @@ impl ToListMappable for GuarddutyDetectorDatasourcesEl {
         })
     }
 }
-
 pub struct BuildGuarddutyDetectorDatasourcesEl {}
-
 impl BuildGuarddutyDetectorDatasourcesEl {
     pub fn build(self) -> GuarddutyDetectorDatasourcesEl {
         GuarddutyDetectorDatasourcesEl {
@@ -933,12 +783,10 @@ impl BuildGuarddutyDetectorDatasourcesEl {
         }
     }
 }
-
 pub struct GuarddutyDetectorDatasourcesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GuarddutyDetectorDatasourcesElRef {
     fn new(shared: StackShared, base: String) -> GuarddutyDetectorDatasourcesElRef {
         GuarddutyDetectorDatasourcesElRef {
@@ -947,17 +795,14 @@ impl Ref for GuarddutyDetectorDatasourcesElRef {
         }
     }
 }
-
 impl GuarddutyDetectorDatasourcesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kubernetes` after provisioning.\n"]
     pub fn kubernetes(&self) -> ListRef<GuarddutyDetectorDatasourcesElKubernetesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.kubernetes", self.base))
     }
-
     #[doc = "Get a reference to the value of field `malware_protection` after provisioning.\n"]
     pub fn malware_protection(
         &self,
@@ -967,13 +812,11 @@ impl GuarddutyDetectorDatasourcesElRef {
             format!("{}.malware_protection", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_logs` after provisioning.\n"]
     pub fn s3_logs(&self) -> ListRef<GuarddutyDetectorDatasourcesElS3LogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3_logs", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GuarddutyDetectorDynamic {
     datasources: Option<DynamicBlock<GuarddutyDetectorDatasourcesEl>>,

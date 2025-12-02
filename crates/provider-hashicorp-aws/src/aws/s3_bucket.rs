@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3BucketData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -60,47 +59,38 @@ struct S3BucketData {
     website: Option<Vec<S3BucketWebsiteEl>>,
     dynamic: S3BucketDynamic,
 }
-
 struct S3Bucket_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3BucketData>,
 }
-
 #[derive(Clone)]
 pub struct S3Bucket(Rc<S3Bucket_>);
-
 impl S3Bucket {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -119,7 +109,6 @@ impl S3Bucket {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -129,7 +118,6 @@ impl S3Bucket {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -139,79 +127,66 @@ impl S3Bucket {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `acceleration_status`.\n"]
     pub fn set_acceleration_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().acceleration_status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `acl`.\n"]
     pub fn set_acl(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().acl = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket`.\n"]
     pub fn set_bucket(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().bucket = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `force_destroy`.\n"]
     pub fn set_force_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().force_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `object_lock_enabled`.\n"]
     pub fn set_object_lock_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().object_lock_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy`.\n"]
     pub fn set_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_payer`.\n"]
     pub fn set_request_payer(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().request_payer = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cors_rule`.\n"]
     pub fn set_cors_rule(self, v: impl Into<BlockAssignable<S3BucketCorsRuleEl>>) -> Self {
         match v.into() {
@@ -224,7 +199,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `grant`.\n"]
     pub fn set_grant(self, v: impl Into<BlockAssignable<S3BucketGrantEl>>) -> Self {
         match v.into() {
@@ -237,7 +211,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `lifecycle_rule`.\n"]
     pub fn set_lifecycle_rule(
         self,
@@ -253,7 +226,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `logging`.\n"]
     pub fn set_logging(self, v: impl Into<BlockAssignable<S3BucketLoggingEl>>) -> Self {
         match v.into() {
@@ -266,7 +238,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `object_lock_configuration`.\n"]
     pub fn set_object_lock_configuration(
         self,
@@ -282,7 +253,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `replication_configuration`.\n"]
     pub fn set_replication_configuration(
         self,
@@ -298,7 +268,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `server_side_encryption_configuration`.\n"]
     pub fn set_server_side_encryption_configuration(
         self,
@@ -321,13 +290,11 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<S3BucketTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `versioning`.\n"]
     pub fn set_versioning(self, v: impl Into<BlockAssignable<S3BucketVersioningEl>>) -> Self {
         match v.into() {
@@ -340,7 +307,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Set the field `website`.\n"]
     pub fn set_website(self, v: impl Into<BlockAssignable<S3BucketWebsiteEl>>) -> Self {
         match v.into() {
@@ -353,7 +319,6 @@ impl S3Bucket {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `acceleration_status` after provisioning.\n"]
     pub fn acceleration_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -361,17 +326,14 @@ impl S3Bucket {
             format!("{}.acceleration_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `acl` after provisioning.\n"]
     pub fn acl(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.acl", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,7 +341,6 @@ impl S3Bucket {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_domain_name` after provisioning.\n"]
     pub fn bucket_domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -387,7 +348,6 @@ impl S3Bucket {
             format!("{}.bucket_domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -395,7 +355,6 @@ impl S3Bucket {
             format!("{}.bucket_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_region` after provisioning.\n"]
     pub fn bucket_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -403,7 +362,6 @@ impl S3Bucket {
             format!("{}.bucket_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_regional_domain_name` after provisioning.\n"]
     pub fn bucket_regional_domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -411,7 +369,6 @@ impl S3Bucket {
             format!("{}.bucket_regional_domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -419,7 +376,6 @@ impl S3Bucket {
             format!("{}.force_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,12 +383,10 @@ impl S3Bucket {
             format!("{}.hosted_zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `object_lock_enabled` after provisioning.\n"]
     pub fn object_lock_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -440,7 +394,6 @@ impl S3Bucket {
             format!("{}.object_lock_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -448,7 +401,6 @@ impl S3Bucket {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -456,7 +408,6 @@ impl S3Bucket {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_payer` after provisioning.\n"]
     pub fn request_payer(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +415,6 @@ impl S3Bucket {
             format!("{}.request_payer", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -472,7 +422,6 @@ impl S3Bucket {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -480,7 +429,6 @@ impl S3Bucket {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website_domain` after provisioning.\n"]
     pub fn website_domain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +436,6 @@ impl S3Bucket {
             format!("{}.website_domain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website_endpoint` after provisioning.\n"]
     pub fn website_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +443,6 @@ impl S3Bucket {
             format!("{}.website_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cors_rule` after provisioning.\n"]
     pub fn cors_rule(&self) -> ListRef<S3BucketCorsRuleElRef> {
         ListRef::new(
@@ -504,7 +450,6 @@ impl S3Bucket {
             format!("{}.cors_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_rule` after provisioning.\n"]
     pub fn lifecycle_rule(&self) -> ListRef<S3BucketLifecycleRuleElRef> {
         ListRef::new(
@@ -512,7 +457,6 @@ impl S3Bucket {
             format!("{}.lifecycle_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<S3BucketLoggingElRef> {
         ListRef::new(
@@ -520,7 +464,6 @@ impl S3Bucket {
             format!("{}.logging", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `object_lock_configuration` after provisioning.\n"]
     pub fn object_lock_configuration(&self) -> ListRef<S3BucketObjectLockConfigurationElRef> {
         ListRef::new(
@@ -528,7 +471,6 @@ impl S3Bucket {
             format!("{}.object_lock_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_configuration` after provisioning.\n"]
     pub fn replication_configuration(&self) -> ListRef<S3BucketReplicationConfigurationElRef> {
         ListRef::new(
@@ -536,7 +478,6 @@ impl S3Bucket {
             format!("{}.replication_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
@@ -549,7 +490,6 @@ impl S3Bucket {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3BucketTimeoutsElRef {
         S3BucketTimeoutsElRef::new(
@@ -557,7 +497,6 @@ impl S3Bucket {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `versioning` after provisioning.\n"]
     pub fn versioning(&self) -> ListRef<S3BucketVersioningElRef> {
         ListRef::new(
@@ -565,7 +504,6 @@ impl S3Bucket {
             format!("{}.versioning", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website` after provisioning.\n"]
     pub fn website(&self) -> ListRef<S3BucketWebsiteElRef> {
         ListRef::new(
@@ -574,7 +512,6 @@ impl S3Bucket {
         )
     }
 }
-
 impl Referable for S3Bucket {
     fn extract_ref(&self) -> String {
         format!(
@@ -584,36 +521,28 @@ impl Referable for S3Bucket {
         )
     }
 }
-
 impl Resource for S3Bucket {}
-
 impl ToListMappable for S3Bucket {
     type O = ListRef<S3BucketRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3Bucket_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3_bucket".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3Bucket {
     pub tf_id: String,
 }
-
 impl BuildS3Bucket {
     pub fn build(self, stack: &mut Stack) -> S3Bucket {
         let out = S3Bucket(Rc::new(S3Bucket_ {
@@ -653,27 +582,22 @@ impl BuildS3Bucket {
         out
     }
 }
-
 pub struct S3BucketRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3BucketRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `acceleration_status` after provisioning.\n"]
     pub fn acceleration_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -681,17 +605,14 @@ impl S3BucketRef {
             format!("{}.acceleration_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `acl` after provisioning.\n"]
     pub fn acl(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.acl", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -699,7 +620,6 @@ impl S3BucketRef {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_domain_name` after provisioning.\n"]
     pub fn bucket_domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -707,7 +627,6 @@ impl S3BucketRef {
             format!("{}.bucket_domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -715,7 +634,6 @@ impl S3BucketRef {
             format!("{}.bucket_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_region` after provisioning.\n"]
     pub fn bucket_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -723,7 +641,6 @@ impl S3BucketRef {
             format!("{}.bucket_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_regional_domain_name` after provisioning.\n"]
     pub fn bucket_regional_domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -731,7 +648,6 @@ impl S3BucketRef {
             format!("{}.bucket_regional_domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -739,7 +655,6 @@ impl S3BucketRef {
             format!("{}.force_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -747,12 +662,10 @@ impl S3BucketRef {
             format!("{}.hosted_zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `object_lock_enabled` after provisioning.\n"]
     pub fn object_lock_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -760,7 +673,6 @@ impl S3BucketRef {
             format!("{}.object_lock_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -768,7 +680,6 @@ impl S3BucketRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -776,7 +687,6 @@ impl S3BucketRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_payer` after provisioning.\n"]
     pub fn request_payer(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -784,7 +694,6 @@ impl S3BucketRef {
             format!("{}.request_payer", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -792,7 +701,6 @@ impl S3BucketRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -800,7 +708,6 @@ impl S3BucketRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website_domain` after provisioning.\n"]
     pub fn website_domain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -808,7 +715,6 @@ impl S3BucketRef {
             format!("{}.website_domain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website_endpoint` after provisioning.\n"]
     pub fn website_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -816,7 +722,6 @@ impl S3BucketRef {
             format!("{}.website_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cors_rule` after provisioning.\n"]
     pub fn cors_rule(&self) -> ListRef<S3BucketCorsRuleElRef> {
         ListRef::new(
@@ -824,7 +729,6 @@ impl S3BucketRef {
             format!("{}.cors_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_rule` after provisioning.\n"]
     pub fn lifecycle_rule(&self) -> ListRef<S3BucketLifecycleRuleElRef> {
         ListRef::new(
@@ -832,7 +736,6 @@ impl S3BucketRef {
             format!("{}.lifecycle_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<S3BucketLoggingElRef> {
         ListRef::new(
@@ -840,7 +743,6 @@ impl S3BucketRef {
             format!("{}.logging", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `object_lock_configuration` after provisioning.\n"]
     pub fn object_lock_configuration(&self) -> ListRef<S3BucketObjectLockConfigurationElRef> {
         ListRef::new(
@@ -848,7 +750,6 @@ impl S3BucketRef {
             format!("{}.object_lock_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_configuration` after provisioning.\n"]
     pub fn replication_configuration(&self) -> ListRef<S3BucketReplicationConfigurationElRef> {
         ListRef::new(
@@ -856,7 +757,6 @@ impl S3BucketRef {
             format!("{}.replication_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption_configuration` after provisioning.\n"]
     pub fn server_side_encryption_configuration(
         &self,
@@ -869,7 +769,6 @@ impl S3BucketRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3BucketTimeoutsElRef {
         S3BucketTimeoutsElRef::new(
@@ -877,7 +776,6 @@ impl S3BucketRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `versioning` after provisioning.\n"]
     pub fn versioning(&self) -> ListRef<S3BucketVersioningElRef> {
         ListRef::new(
@@ -885,7 +783,6 @@ impl S3BucketRef {
             format!("{}.versioning", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `website` after provisioning.\n"]
     pub fn website(&self) -> ListRef<S3BucketWebsiteElRef> {
         ListRef::new(
@@ -894,7 +791,6 @@ impl S3BucketRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketCorsRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -906,30 +802,25 @@ pub struct S3BucketCorsRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_age_seconds: Option<PrimField<f64>>,
 }
-
 impl S3BucketCorsRuleEl {
     #[doc = "Set the field `allowed_headers`.\n"]
     pub fn set_allowed_headers(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.allowed_headers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expose_headers`.\n"]
     pub fn set_expose_headers(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.expose_headers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_age_seconds`.\n"]
     pub fn set_max_age_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_age_seconds = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketCorsRuleEl {
     type O = BlockAssignable<S3BucketCorsRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -938,14 +829,12 @@ impl ToListMappable for S3BucketCorsRuleEl {
         })
     }
 }
-
 pub struct BuildS3BucketCorsRuleEl {
     #[doc = ""]
     pub allowed_methods: ListField<PrimField<String>>,
     #[doc = ""]
     pub allowed_origins: ListField<PrimField<String>>,
 }
-
 impl BuildS3BucketCorsRuleEl {
     pub fn build(self) -> S3BucketCorsRuleEl {
         S3BucketCorsRuleEl {
@@ -957,12 +846,10 @@ impl BuildS3BucketCorsRuleEl {
         }
     }
 }
-
 pub struct S3BucketCorsRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketCorsRuleElRef {
     fn new(shared: StackShared, base: String) -> S3BucketCorsRuleElRef {
         S3BucketCorsRuleElRef {
@@ -971,12 +858,10 @@ impl Ref for S3BucketCorsRuleElRef {
         }
     }
 }
-
 impl S3BucketCorsRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_headers` after provisioning.\n"]
     pub fn allowed_headers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -984,7 +869,6 @@ impl S3BucketCorsRuleElRef {
             format!("{}.allowed_headers", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_methods` after provisioning.\n"]
     pub fn allowed_methods(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -992,7 +876,6 @@ impl S3BucketCorsRuleElRef {
             format!("{}.allowed_methods", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_origins` after provisioning.\n"]
     pub fn allowed_origins(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1000,7 +883,6 @@ impl S3BucketCorsRuleElRef {
             format!("{}.allowed_origins", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `expose_headers` after provisioning.\n"]
     pub fn expose_headers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1008,7 +890,6 @@ impl S3BucketCorsRuleElRef {
             format!("{}.expose_headers", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_age_seconds` after provisioning.\n"]
     pub fn max_age_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1017,7 +898,6 @@ impl S3BucketCorsRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketGrantEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1028,24 +908,20 @@ pub struct S3BucketGrantEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     uri: Option<PrimField<String>>,
 }
-
 impl S3BucketGrantEl {
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `uri`.\n"]
     pub fn set_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.uri = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketGrantEl {
     type O = BlockAssignable<S3BucketGrantEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1054,14 +930,12 @@ impl ToListMappable for S3BucketGrantEl {
         })
     }
 }
-
 pub struct BuildS3BucketGrantEl {
     #[doc = ""]
     pub permissions: SetField<PrimField<String>>,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildS3BucketGrantEl {
     pub fn build(self) -> S3BucketGrantEl {
         S3BucketGrantEl {
@@ -1072,12 +946,10 @@ impl BuildS3BucketGrantEl {
         }
     }
 }
-
 pub struct S3BucketGrantElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketGrantElRef {
     fn new(shared: StackShared, base: String) -> S3BucketGrantElRef {
         S3BucketGrantElRef {
@@ -1086,33 +958,27 @@ impl Ref for S3BucketGrantElRef {
         }
     }
 }
-
 impl S3BucketGrantElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `permissions` after provisioning.\n"]
     pub fn permissions(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.permissions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLifecycleRuleElExpirationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1122,30 +988,25 @@ pub struct S3BucketLifecycleRuleElExpirationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     expired_object_delete_marker: Option<PrimField<bool>>,
 }
-
 impl S3BucketLifecycleRuleElExpirationEl {
     #[doc = "Set the field `date`.\n"]
     pub fn set_date(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.date = Some(v.into());
         self
     }
-
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expired_object_delete_marker`.\n"]
     pub fn set_expired_object_delete_marker(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.expired_object_delete_marker = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketLifecycleRuleElExpirationEl {
     type O = BlockAssignable<S3BucketLifecycleRuleElExpirationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1154,9 +1015,7 @@ impl ToListMappable for S3BucketLifecycleRuleElExpirationEl {
         })
     }
 }
-
 pub struct BuildS3BucketLifecycleRuleElExpirationEl {}
-
 impl BuildS3BucketLifecycleRuleElExpirationEl {
     pub fn build(self) -> S3BucketLifecycleRuleElExpirationEl {
         S3BucketLifecycleRuleElExpirationEl {
@@ -1166,12 +1025,10 @@ impl BuildS3BucketLifecycleRuleElExpirationEl {
         }
     }
 }
-
 pub struct S3BucketLifecycleRuleElExpirationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLifecycleRuleElExpirationElRef {
     fn new(shared: StackShared, base: String) -> S3BucketLifecycleRuleElExpirationElRef {
         S3BucketLifecycleRuleElExpirationElRef {
@@ -1180,22 +1037,18 @@ impl Ref for S3BucketLifecycleRuleElExpirationElRef {
         }
     }
 }
-
 impl S3BucketLifecycleRuleElExpirationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `date` after provisioning.\n"]
     pub fn date(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.date", self.base))
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
-
     #[doc = "Get a reference to the value of field `expired_object_delete_marker` after provisioning.\n"]
     pub fn expired_object_delete_marker(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1204,13 +1057,11 @@ impl S3BucketLifecycleRuleElExpirationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     days: Option<PrimField<f64>>,
 }
-
 impl S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1218,10 +1069,8 @@ impl S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
     type O = BlockAssignable<S3BucketLifecycleRuleElNoncurrentVersionExpirationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1230,9 +1079,7 @@ impl ToListMappable for S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
         })
     }
 }
-
 pub struct BuildS3BucketLifecycleRuleElNoncurrentVersionExpirationEl {}
-
 impl BuildS3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
     pub fn build(self) -> S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
         S3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
@@ -1240,12 +1087,10 @@ impl BuildS3BucketLifecycleRuleElNoncurrentVersionExpirationEl {
         }
     }
 }
-
 pub struct S3BucketLifecycleRuleElNoncurrentVersionExpirationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLifecycleRuleElNoncurrentVersionExpirationElRef {
     fn new(
         shared: StackShared,
@@ -1257,25 +1102,21 @@ impl Ref for S3BucketLifecycleRuleElNoncurrentVersionExpirationElRef {
         }
     }
 }
-
 impl S3BucketLifecycleRuleElNoncurrentVersionExpirationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     days: Option<PrimField<f64>>,
     storage_class: PrimField<String>,
 }
-
 impl S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1283,10 +1124,8 @@ impl S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
     type O = BlockAssignable<S3BucketLifecycleRuleElNoncurrentVersionTransitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1295,12 +1134,10 @@ impl ToListMappable for S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
         })
     }
 }
-
 pub struct BuildS3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
     #[doc = ""]
     pub storage_class: PrimField<String>,
 }
-
 impl BuildS3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
     pub fn build(self) -> S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
         S3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
@@ -1309,12 +1146,10 @@ impl BuildS3BucketLifecycleRuleElNoncurrentVersionTransitionEl {
         }
     }
 }
-
 pub struct S3BucketLifecycleRuleElNoncurrentVersionTransitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLifecycleRuleElNoncurrentVersionTransitionElRef {
     fn new(
         shared: StackShared,
@@ -1326,17 +1161,14 @@ impl Ref for S3BucketLifecycleRuleElNoncurrentVersionTransitionElRef {
         }
     }
 }
-
 impl S3BucketLifecycleRuleElNoncurrentVersionTransitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
-
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1345,7 +1177,6 @@ impl S3BucketLifecycleRuleElNoncurrentVersionTransitionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLifecycleRuleElTransitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1354,24 +1185,20 @@ pub struct S3BucketLifecycleRuleElTransitionEl {
     days: Option<PrimField<f64>>,
     storage_class: PrimField<String>,
 }
-
 impl S3BucketLifecycleRuleElTransitionEl {
     #[doc = "Set the field `date`.\n"]
     pub fn set_date(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.date = Some(v.into());
         self
     }
-
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.days = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketLifecycleRuleElTransitionEl {
     type O = BlockAssignable<S3BucketLifecycleRuleElTransitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1380,12 +1207,10 @@ impl ToListMappable for S3BucketLifecycleRuleElTransitionEl {
         })
     }
 }
-
 pub struct BuildS3BucketLifecycleRuleElTransitionEl {
     #[doc = ""]
     pub storage_class: PrimField<String>,
 }
-
 impl BuildS3BucketLifecycleRuleElTransitionEl {
     pub fn build(self) -> S3BucketLifecycleRuleElTransitionEl {
         S3BucketLifecycleRuleElTransitionEl {
@@ -1395,12 +1220,10 @@ impl BuildS3BucketLifecycleRuleElTransitionEl {
         }
     }
 }
-
 pub struct S3BucketLifecycleRuleElTransitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLifecycleRuleElTransitionElRef {
     fn new(shared: StackShared, base: String) -> S3BucketLifecycleRuleElTransitionElRef {
         S3BucketLifecycleRuleElTransitionElRef {
@@ -1409,22 +1232,18 @@ impl Ref for S3BucketLifecycleRuleElTransitionElRef {
         }
     }
 }
-
 impl S3BucketLifecycleRuleElTransitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `date` after provisioning.\n"]
     pub fn date(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.date", self.base))
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
-
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1433,7 +1252,6 @@ impl S3BucketLifecycleRuleElTransitionElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketLifecycleRuleElDynamic {
     expiration: Option<DynamicBlock<S3BucketLifecycleRuleElExpirationEl>>,
@@ -1443,7 +1261,6 @@ struct S3BucketLifecycleRuleElDynamic {
         Option<DynamicBlock<S3BucketLifecycleRuleElNoncurrentVersionTransitionEl>>,
     transition: Option<DynamicBlock<S3BucketLifecycleRuleElTransitionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLifecycleRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1467,7 +1284,6 @@ pub struct S3BucketLifecycleRuleEl {
     transition: Option<Vec<S3BucketLifecycleRuleElTransitionEl>>,
     dynamic: S3BucketLifecycleRuleElDynamic,
 }
-
 impl S3BucketLifecycleRuleEl {
     #[doc = "Set the field `abort_incomplete_multipart_upload_days`.\n"]
     pub fn set_abort_incomplete_multipart_upload_days(
@@ -1477,25 +1293,21 @@ impl S3BucketLifecycleRuleEl {
         self.abort_incomplete_multipart_upload_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix`.\n"]
     pub fn set_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `expiration`.\n"]
     pub fn set_expiration(
         mut self,
@@ -1511,7 +1323,6 @@ impl S3BucketLifecycleRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `noncurrent_version_expiration`.\n"]
     pub fn set_noncurrent_version_expiration(
         mut self,
@@ -1527,7 +1338,6 @@ impl S3BucketLifecycleRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `noncurrent_version_transition`.\n"]
     pub fn set_noncurrent_version_transition(
         mut self,
@@ -1543,7 +1353,6 @@ impl S3BucketLifecycleRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `transition`.\n"]
     pub fn set_transition(
         mut self,
@@ -1560,10 +1369,8 @@ impl S3BucketLifecycleRuleEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketLifecycleRuleEl {
     type O = BlockAssignable<S3BucketLifecycleRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1572,12 +1379,10 @@ impl ToListMappable for S3BucketLifecycleRuleEl {
         })
     }
 }
-
 pub struct BuildS3BucketLifecycleRuleEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildS3BucketLifecycleRuleEl {
     pub fn build(self) -> S3BucketLifecycleRuleEl {
         S3BucketLifecycleRuleEl {
@@ -1594,12 +1399,10 @@ impl BuildS3BucketLifecycleRuleEl {
         }
     }
 }
-
 pub struct S3BucketLifecycleRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLifecycleRuleElRef {
     fn new(shared: StackShared, base: String) -> S3BucketLifecycleRuleElRef {
         S3BucketLifecycleRuleElRef {
@@ -1608,12 +1411,10 @@ impl Ref for S3BucketLifecycleRuleElRef {
         }
     }
 }
-
 impl S3BucketLifecycleRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `abort_incomplete_multipart_upload_days` after provisioning.\n"]
     pub fn abort_incomplete_multipart_upload_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1621,32 +1422,26 @@ impl S3BucketLifecycleRuleElRef {
             format!("{}.abort_incomplete_multipart_upload_days", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
     pub fn expiration(&self) -> ListRef<S3BucketLifecycleRuleElExpirationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.expiration", self.base))
     }
-
     #[doc = "Get a reference to the value of field `noncurrent_version_expiration` after provisioning.\n"]
     pub fn noncurrent_version_expiration(
         &self,
@@ -1657,14 +1452,12 @@ impl S3BucketLifecycleRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketLoggingEl {
     target_bucket: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     target_prefix: Option<PrimField<String>>,
 }
-
 impl S3BucketLoggingEl {
     #[doc = "Set the field `target_prefix`.\n"]
     pub fn set_target_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1672,10 +1465,8 @@ impl S3BucketLoggingEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketLoggingEl {
     type O = BlockAssignable<S3BucketLoggingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1684,12 +1475,10 @@ impl ToListMappable for S3BucketLoggingEl {
         })
     }
 }
-
 pub struct BuildS3BucketLoggingEl {
     #[doc = ""]
     pub target_bucket: PrimField<String>,
 }
-
 impl BuildS3BucketLoggingEl {
     pub fn build(self) -> S3BucketLoggingEl {
         S3BucketLoggingEl {
@@ -1698,12 +1487,10 @@ impl BuildS3BucketLoggingEl {
         }
     }
 }
-
 pub struct S3BucketLoggingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketLoggingElRef {
     fn new(shared: StackShared, base: String) -> S3BucketLoggingElRef {
         S3BucketLoggingElRef {
@@ -1712,12 +1499,10 @@ impl Ref for S3BucketLoggingElRef {
         }
     }
 }
-
 impl S3BucketLoggingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_bucket` after provisioning.\n"]
     pub fn target_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1725,7 +1510,6 @@ impl S3BucketLoggingElRef {
             format!("{}.target_bucket", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_prefix` after provisioning.\n"]
     pub fn target_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1734,7 +1518,6 @@ impl S3BucketLoggingElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1743,24 +1526,20 @@ pub struct S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     years: Option<PrimField<f64>>,
 }
-
 impl S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     #[doc = "Set the field `days`.\n"]
     pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `years`.\n"]
     pub fn set_years(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.years = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     type O = BlockAssignable<S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1769,12 +1548,10 @@ impl ToListMappable for S3BucketObjectLockConfigurationElRuleElDefaultRetentionE
         })
     }
 }
-
 pub struct BuildS3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     #[doc = ""]
     pub mode: PrimField<String>,
 }
-
 impl BuildS3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
     pub fn build(self) -> S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
         S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
@@ -1784,12 +1561,10 @@ impl BuildS3BucketObjectLockConfigurationElRuleElDefaultRetentionEl {
         }
     }
 }
-
 pub struct S3BucketObjectLockConfigurationElRuleElDefaultRetentionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketObjectLockConfigurationElRuleElDefaultRetentionElRef {
     fn new(
         shared: StackShared,
@@ -1801,41 +1576,34 @@ impl Ref for S3BucketObjectLockConfigurationElRuleElDefaultRetentionElRef {
         }
     }
 }
-
 impl S3BucketObjectLockConfigurationElRuleElDefaultRetentionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
     pub fn days(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `years` after provisioning.\n"]
     pub fn years(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.years", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketObjectLockConfigurationElRuleElDynamic {
     default_retention:
         Option<DynamicBlock<S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketObjectLockConfigurationElRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     default_retention: Option<Vec<S3BucketObjectLockConfigurationElRuleElDefaultRetentionEl>>,
     dynamic: S3BucketObjectLockConfigurationElRuleElDynamic,
 }
-
 impl S3BucketObjectLockConfigurationElRuleEl {
     #[doc = "Set the field `default_retention`.\n"]
     pub fn set_default_retention(
@@ -1853,10 +1621,8 @@ impl S3BucketObjectLockConfigurationElRuleEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketObjectLockConfigurationElRuleEl {
     type O = BlockAssignable<S3BucketObjectLockConfigurationElRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1865,9 +1631,7 @@ impl ToListMappable for S3BucketObjectLockConfigurationElRuleEl {
         })
     }
 }
-
 pub struct BuildS3BucketObjectLockConfigurationElRuleEl {}
-
 impl BuildS3BucketObjectLockConfigurationElRuleEl {
     pub fn build(self) -> S3BucketObjectLockConfigurationElRuleEl {
         S3BucketObjectLockConfigurationElRuleEl {
@@ -1876,12 +1640,10 @@ impl BuildS3BucketObjectLockConfigurationElRuleEl {
         }
     }
 }
-
 pub struct S3BucketObjectLockConfigurationElRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketObjectLockConfigurationElRuleElRef {
     fn new(shared: StackShared, base: String) -> S3BucketObjectLockConfigurationElRuleElRef {
         S3BucketObjectLockConfigurationElRuleElRef {
@@ -1890,12 +1652,10 @@ impl Ref for S3BucketObjectLockConfigurationElRuleElRef {
         }
     }
 }
-
 impl S3BucketObjectLockConfigurationElRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `default_retention` after provisioning.\n"]
     pub fn default_retention(
         &self,
@@ -1906,12 +1666,10 @@ impl S3BucketObjectLockConfigurationElRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketObjectLockConfigurationElDynamic {
     rule: Option<DynamicBlock<S3BucketObjectLockConfigurationElRuleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketObjectLockConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1920,14 +1678,12 @@ pub struct S3BucketObjectLockConfigurationEl {
     rule: Option<Vec<S3BucketObjectLockConfigurationElRuleEl>>,
     dynamic: S3BucketObjectLockConfigurationElDynamic,
 }
-
 impl S3BucketObjectLockConfigurationEl {
     #[doc = "Set the field `object_lock_enabled`.\n"]
     pub fn set_object_lock_enabled(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.object_lock_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(
         mut self,
@@ -1944,10 +1700,8 @@ impl S3BucketObjectLockConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketObjectLockConfigurationEl {
     type O = BlockAssignable<S3BucketObjectLockConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1956,9 +1710,7 @@ impl ToListMappable for S3BucketObjectLockConfigurationEl {
         })
     }
 }
-
 pub struct BuildS3BucketObjectLockConfigurationEl {}
-
 impl BuildS3BucketObjectLockConfigurationEl {
     pub fn build(self) -> S3BucketObjectLockConfigurationEl {
         S3BucketObjectLockConfigurationEl {
@@ -1968,12 +1720,10 @@ impl BuildS3BucketObjectLockConfigurationEl {
         }
     }
 }
-
 pub struct S3BucketObjectLockConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketObjectLockConfigurationElRef {
     fn new(shared: StackShared, base: String) -> S3BucketObjectLockConfigurationElRef {
         S3BucketObjectLockConfigurationElRef {
@@ -1982,12 +1732,10 @@ impl Ref for S3BucketObjectLockConfigurationElRef {
         }
     }
 }
-
 impl S3BucketObjectLockConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object_lock_enabled` after provisioning.\n"]
     pub fn object_lock_enabled(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1995,27 +1743,22 @@ impl S3BucketObjectLockConfigurationElRef {
             format!("{}.object_lock_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketObjectLockConfigurationElRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl {
     owner: PrimField<String>,
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl {}
-
 impl ToListMappable
     for S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl
 {
     type O = BlockAssignable<
         S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2024,12 +1767,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl {
     #[doc = ""]
     pub owner: PrimField<String>,
 }
-
 impl BuildS3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationEl {
     pub fn build(
         self,
@@ -2039,12 +1780,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElDestinationElAccessControlTra
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationElRef {
     fn new(
         shared: StackShared,
@@ -2056,18 +1795,15 @@ impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElAccessControl
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElAccessControlTranslationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.owner", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2075,24 +1811,20 @@ pub struct S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
     #[doc = "Set the field `minutes`.\n"]
     pub fn set_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2101,9 +1833,7 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationElMe
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {}
-
 impl BuildS3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
         S3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
@@ -2112,12 +1842,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElDestinationElMetricsEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElMetricsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElMetricsElRef {
     fn new(
         shared: StackShared,
@@ -2129,23 +1857,19 @@ impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElMetricsElRef 
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElMetricsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2153,25 +1877,21 @@ pub struct S3BucketReplicationConfigurationElRulesElDestinationElReplicationTime
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
     #[doc = "Set the field `minutes`.\n"]
     pub fn set_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
     type O =
         BlockAssignable<S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2180,9 +1900,7 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationElRe
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {}
-
 impl BuildS3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
         S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl {
@@ -2191,12 +1909,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeE
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeElRef {
     fn new(
         shared: StackShared,
@@ -2208,23 +1924,19 @@ impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElReplicationTi
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationElRulesElDestinationElDynamic {
     access_control_translation: Option<
@@ -2237,7 +1949,6 @@ struct S3BucketReplicationConfigurationElRulesElDestinationElDynamic {
         DynamicBlock<S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2258,26 +1969,22 @@ pub struct S3BucketReplicationConfigurationElRulesElDestinationEl {
         Option<Vec<S3BucketReplicationConfigurationElRulesElDestinationElReplicationTimeEl>>,
     dynamic: S3BucketReplicationConfigurationElRulesElDestinationElDynamic,
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationEl {
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replica_kms_key_id`.\n"]
     pub fn set_replica_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.replica_kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `storage_class`.\n"]
     pub fn set_storage_class(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.storage_class = Some(v.into());
         self
     }
-
     #[doc = "Set the field `access_control_translation`.\n"]
     pub fn set_access_control_translation(
         mut self,
@@ -2297,7 +2004,6 @@ impl S3BucketReplicationConfigurationElRulesElDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `metrics`.\n"]
     pub fn set_metrics(
         mut self,
@@ -2313,7 +2019,6 @@ impl S3BucketReplicationConfigurationElRulesElDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `replication_time`.\n"]
     pub fn set_replication_time(
         mut self,
@@ -2334,10 +2039,8 @@ impl S3BucketReplicationConfigurationElRulesElDestinationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationElRulesElDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2346,12 +2049,10 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesElDestinationEl {
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElDestinationEl {
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
-
 impl BuildS3BucketReplicationConfigurationElRulesElDestinationEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesElDestinationEl {
         S3BucketReplicationConfigurationElRulesElDestinationEl {
@@ -2366,12 +2067,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElDestinationEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElRef {
     fn new(
         shared: StackShared,
@@ -2383,22 +2082,18 @@ impl Ref for S3BucketReplicationConfigurationElRulesElDestinationElRef {
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `replica_kms_key_id` after provisioning.\n"]
     pub fn replica_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2406,7 +2101,6 @@ impl S3BucketReplicationConfigurationElRulesElDestinationElRef {
             format!("{}.replica_kms_key_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_class` after provisioning.\n"]
     pub fn storage_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2414,7 +2108,6 @@ impl S3BucketReplicationConfigurationElRulesElDestinationElRef {
             format!("{}.storage_class", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_translation` after provisioning.\n"]
     pub fn access_control_translation(
         &self,
@@ -2425,14 +2118,12 @@ impl S3BucketReplicationConfigurationElRulesElDestinationElRef {
             format!("{}.access_control_translation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metrics` after provisioning.\n"]
     pub fn metrics(
         &self,
     ) -> ListRef<S3BucketReplicationConfigurationElRulesElDestinationElMetricsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.metrics", self.base))
     }
-
     #[doc = "Get a reference to the value of field `replication_time` after provisioning.\n"]
     pub fn replication_time(
         &self,
@@ -2443,7 +2134,6 @@ impl S3BucketReplicationConfigurationElRulesElDestinationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2451,24 +2141,20 @@ pub struct S3BucketReplicationConfigurationElRulesElFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 impl S3BucketReplicationConfigurationElRulesElFilterEl {
     #[doc = "Set the field `prefix`.\n"]
     pub fn set_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.tags = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesElFilterEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationElRulesElFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2477,9 +2163,7 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesElFilterEl {
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElFilterEl {}
-
 impl BuildS3BucketReplicationConfigurationElRulesElFilterEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesElFilterEl {
         S3BucketReplicationConfigurationElRulesElFilterEl {
@@ -2488,12 +2172,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElFilterEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElFilterElRef {
     fn new(
         shared: StackShared,
@@ -2505,38 +2187,31 @@ impl Ref for S3BucketReplicationConfigurationElRulesElFilterElRef {
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
 {
     enabled: PrimField<bool>,
 }
-
 impl S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl {}
-
 impl ToListMappable
     for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
 {
     type O = BlockAssignable<
         S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2545,13 +2220,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
 {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl
     BuildS3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl
 {
@@ -2564,64 +2237,30 @@ impl
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
-        S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef { fn new (shared : StackShared , base : String) -> S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef { S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef { shared : shared , base : base . to_string () , } } }
 impl S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
-struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElDynamic {
-    sse_kms_encrypted_objects: Option<
-        DynamicBlock<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl>,
-    >,
-}
-
+struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElDynamic { sse_kms_encrypted_objects : Option < DynamicBlock < S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl >> , }
 #[derive(Serialize)]
-pub struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    sse_kms_encrypted_objects: Option<
-        Vec<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl>,
-    >,
-    dynamic: S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElDynamic,
-}
-
+pub struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl { # [serde (skip_serializing_if = "Option::is_none")] sse_kms_encrypted_objects : Option < Vec < S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl > > , dynamic : S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElDynamic , }
 impl S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
     #[doc = "Set the field `sse_kms_encrypted_objects`.\n"]
     pub fn set_sse_kms_encrypted_objects(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2634,10 +2273,8 @@ impl S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2646,9 +2283,7 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesElSourceSelection
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {}
-
 impl BuildS3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
         S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
@@ -2657,12 +2292,10 @@ impl BuildS3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElRef {
     fn new(
         shared: StackShared,
@@ -2674,23 +2307,17 @@ impl Ref for S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElR
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `sse_kms_encrypted_objects` after provisioning.\n"]
-    pub fn sse_kms_encrypted_objects(
-        &self,
-    ) -> ListRef<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef>{
+    #[doc = "Get a reference to the value of field `sse_kms_encrypted_objects` after provisioning.\n"]    pub fn sse_kms_encrypted_objects (& self) -> ListRef < S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaElSseKmsEncryptedObjectsElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.sse_kms_encrypted_objects", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationElRulesElDynamic {
     destination: Option<DynamicBlock<S3BucketReplicationConfigurationElRulesElDestinationEl>>,
@@ -2698,7 +2325,6 @@ struct S3BucketReplicationConfigurationElRulesElDynamic {
     source_selection_criteria:
         Option<DynamicBlock<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationElRulesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2719,32 +2345,27 @@ pub struct S3BucketReplicationConfigurationElRulesEl {
         Option<Vec<S3BucketReplicationConfigurationElRulesElSourceSelectionCriteriaEl>>,
     dynamic: S3BucketReplicationConfigurationElRulesElDynamic,
 }
-
 impl S3BucketReplicationConfigurationElRulesEl {
     #[doc = "Set the field `delete_marker_replication_status`.\n"]
     pub fn set_delete_marker_replication_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete_marker_replication_status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix`.\n"]
     pub fn set_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `priority`.\n"]
     pub fn set_priority(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.priority = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(
         mut self,
@@ -2760,7 +2381,6 @@ impl S3BucketReplicationConfigurationElRulesEl {
         }
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
         mut self,
@@ -2776,7 +2396,6 @@ impl S3BucketReplicationConfigurationElRulesEl {
         }
         self
     }
-
     #[doc = "Set the field `source_selection_criteria`.\n"]
     pub fn set_source_selection_criteria(
         mut self,
@@ -2795,10 +2414,8 @@ impl S3BucketReplicationConfigurationElRulesEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationElRulesEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationElRulesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2807,12 +2424,10 @@ impl ToListMappable for S3BucketReplicationConfigurationElRulesEl {
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationElRulesEl {
     #[doc = ""]
     pub status: PrimField<String>,
 }
-
 impl BuildS3BucketReplicationConfigurationElRulesEl {
     pub fn build(self) -> S3BucketReplicationConfigurationElRulesEl {
         S3BucketReplicationConfigurationElRulesEl {
@@ -2828,12 +2443,10 @@ impl BuildS3BucketReplicationConfigurationElRulesEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRulesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRulesElRef {
     fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationElRulesElRef {
         S3BucketReplicationConfigurationElRulesElRef {
@@ -2842,12 +2455,10 @@ impl Ref for S3BucketReplicationConfigurationElRulesElRef {
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRulesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delete_marker_replication_status` after provisioning.\n"]
     pub fn delete_marker_replication_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2855,39 +2466,32 @@ impl S3BucketReplicationConfigurationElRulesElRef {
             format!("{}.delete_marker_replication_status", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.priority", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(
         &self,
     ) -> ListRef<S3BucketReplicationConfigurationElRulesElDestinationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.destination", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<S3BucketReplicationConfigurationElRulesElFilterElRef> {
         ListRef::new(self.shared().clone(), format!("{}.filter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `source_selection_criteria` after provisioning.\n"]
     pub fn source_selection_criteria(
         &self,
@@ -2898,12 +2502,10 @@ impl S3BucketReplicationConfigurationElRulesElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketReplicationConfigurationElDynamic {
     rules: Option<DynamicBlock<S3BucketReplicationConfigurationElRulesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketReplicationConfigurationEl {
     role: PrimField<String>,
@@ -2911,7 +2513,6 @@ pub struct S3BucketReplicationConfigurationEl {
     rules: Option<Vec<S3BucketReplicationConfigurationElRulesEl>>,
     dynamic: S3BucketReplicationConfigurationElDynamic,
 }
-
 impl S3BucketReplicationConfigurationEl {
     #[doc = "Set the field `rules`.\n"]
     pub fn set_rules(
@@ -2929,10 +2530,8 @@ impl S3BucketReplicationConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketReplicationConfigurationEl {
     type O = BlockAssignable<S3BucketReplicationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2941,12 +2540,10 @@ impl ToListMappable for S3BucketReplicationConfigurationEl {
         })
     }
 }
-
 pub struct BuildS3BucketReplicationConfigurationEl {
     #[doc = ""]
     pub role: PrimField<String>,
 }
-
 impl BuildS3BucketReplicationConfigurationEl {
     pub fn build(self) -> S3BucketReplicationConfigurationEl {
         S3BucketReplicationConfigurationEl {
@@ -2956,12 +2553,10 @@ impl BuildS3BucketReplicationConfigurationEl {
         }
     }
 }
-
 pub struct S3BucketReplicationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketReplicationConfigurationElRef {
     fn new(shared: StackShared, base: String) -> S3BucketReplicationConfigurationElRef {
         S3BucketReplicationConfigurationElRef {
@@ -2970,25 +2565,21 @@ impl Ref for S3BucketReplicationConfigurationElRef {
         }
     }
 }
-
 impl S3BucketReplicationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_master_key_id: Option<PrimField<String>>,
     sse_algorithm: PrimField<String>,
 }
-
 impl S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl {
     #[doc = "Set the field `kms_master_key_id`.\n"]
     pub fn set_kms_master_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -2996,14 +2587,12 @@ impl S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionB
         self
     }
 }
-
 impl ToListMappable
     for S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl
 {
     type O = BlockAssignable<
         S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3012,13 +2601,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildS3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl
 {
     #[doc = ""]
     pub sse_algorithm: PrimField<String>,
 }
-
 impl BuildS3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl {
     pub fn build(
         self,
@@ -3029,13 +2616,11 @@ impl BuildS3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryp
         }
     }
 }
-
 pub struct S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultElRef
 {
@@ -3050,12 +2635,10 @@ impl Ref
         }
     }
 }
-
 impl S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_master_key_id` after provisioning.\n"]
     pub fn kms_master_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3063,7 +2646,6 @@ impl S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionB
             format!("{}.kms_master_key_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"]
     pub fn sse_algorithm(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3072,7 +2654,6 @@ impl S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionB
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketServerSideEncryptionConfigurationElRuleElDynamic {
     apply_server_side_encryption_by_default: Option<
@@ -3081,7 +2662,6 @@ struct S3BucketServerSideEncryptionConfigurationElRuleElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketServerSideEncryptionConfigurationElRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3092,25 +2672,16 @@ pub struct S3BucketServerSideEncryptionConfigurationElRuleEl {
     >,
     dynamic: S3BucketServerSideEncryptionConfigurationElRuleElDynamic,
 }
-
 impl S3BucketServerSideEncryptionConfigurationElRuleEl {
     #[doc = "Set the field `bucket_key_enabled`.\n"]
     pub fn set_bucket_key_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.bucket_key_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `apply_server_side_encryption_by_default`.\n"]
     pub fn set_apply_server_side_encryption_by_default(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < S3BucketServerSideEncryptionConfigurationElRuleElApplyServerSideEncryptionByDefaultEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3123,10 +2694,8 @@ impl S3BucketServerSideEncryptionConfigurationElRuleEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketServerSideEncryptionConfigurationElRuleEl {
     type O = BlockAssignable<S3BucketServerSideEncryptionConfigurationElRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3135,9 +2704,7 @@ impl ToListMappable for S3BucketServerSideEncryptionConfigurationElRuleEl {
         })
     }
 }
-
 pub struct BuildS3BucketServerSideEncryptionConfigurationElRuleEl {}
-
 impl BuildS3BucketServerSideEncryptionConfigurationElRuleEl {
     pub fn build(self) -> S3BucketServerSideEncryptionConfigurationElRuleEl {
         S3BucketServerSideEncryptionConfigurationElRuleEl {
@@ -3147,12 +2714,10 @@ impl BuildS3BucketServerSideEncryptionConfigurationElRuleEl {
         }
     }
 }
-
 pub struct S3BucketServerSideEncryptionConfigurationElRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketServerSideEncryptionConfigurationElRuleElRef {
     fn new(
         shared: StackShared,
@@ -3164,12 +2729,10 @@ impl Ref for S3BucketServerSideEncryptionConfigurationElRuleElRef {
         }
     }
 }
-
 impl S3BucketServerSideEncryptionConfigurationElRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_key_enabled` after provisioning.\n"]
     pub fn bucket_key_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -3177,7 +2740,6 @@ impl S3BucketServerSideEncryptionConfigurationElRuleElRef {
             format!("{}.bucket_key_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `apply_server_side_encryption_by_default` after provisioning.\n"]
     pub fn apply_server_side_encryption_by_default(
         &self,
@@ -3190,19 +2752,16 @@ impl S3BucketServerSideEncryptionConfigurationElRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketServerSideEncryptionConfigurationElDynamic {
     rule: Option<DynamicBlock<S3BucketServerSideEncryptionConfigurationElRuleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketServerSideEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     rule: Option<Vec<S3BucketServerSideEncryptionConfigurationElRuleEl>>,
     dynamic: S3BucketServerSideEncryptionConfigurationElDynamic,
 }
-
 impl S3BucketServerSideEncryptionConfigurationEl {
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(
@@ -3220,10 +2779,8 @@ impl S3BucketServerSideEncryptionConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketServerSideEncryptionConfigurationEl {
     type O = BlockAssignable<S3BucketServerSideEncryptionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3232,9 +2789,7 @@ impl ToListMappable for S3BucketServerSideEncryptionConfigurationEl {
         })
     }
 }
-
 pub struct BuildS3BucketServerSideEncryptionConfigurationEl {}
-
 impl BuildS3BucketServerSideEncryptionConfigurationEl {
     pub fn build(self) -> S3BucketServerSideEncryptionConfigurationEl {
         S3BucketServerSideEncryptionConfigurationEl {
@@ -3243,12 +2798,10 @@ impl BuildS3BucketServerSideEncryptionConfigurationEl {
         }
     }
 }
-
 pub struct S3BucketServerSideEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketServerSideEncryptionConfigurationElRef {
     fn new(shared: StackShared, base: String) -> S3BucketServerSideEncryptionConfigurationElRef {
         S3BucketServerSideEncryptionConfigurationElRef {
@@ -3257,18 +2810,15 @@ impl Ref for S3BucketServerSideEncryptionConfigurationElRef {
         }
     }
 }
-
 impl S3BucketServerSideEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<S3BucketServerSideEncryptionConfigurationElRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3280,36 +2830,30 @@ pub struct S3BucketTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl S3BucketTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.read = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketTimeoutsEl {
     type O = BlockAssignable<S3BucketTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3318,9 +2862,7 @@ impl ToListMappable for S3BucketTimeoutsEl {
         })
     }
 }
-
 pub struct BuildS3BucketTimeoutsEl {}
-
 impl BuildS3BucketTimeoutsEl {
     pub fn build(self) -> S3BucketTimeoutsEl {
         S3BucketTimeoutsEl {
@@ -3331,12 +2873,10 @@ impl BuildS3BucketTimeoutsEl {
         }
     }
 }
-
 pub struct S3BucketTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> S3BucketTimeoutsElRef {
         S3BucketTimeoutsElRef {
@@ -3345,33 +2885,27 @@ impl Ref for S3BucketTimeoutsElRef {
         }
     }
 }
-
 impl S3BucketTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketVersioningEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3379,24 +2913,20 @@ pub struct S3BucketVersioningEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     mfa_delete: Option<PrimField<bool>>,
 }
-
 impl S3BucketVersioningEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mfa_delete`.\n"]
     pub fn set_mfa_delete(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.mfa_delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketVersioningEl {
     type O = BlockAssignable<S3BucketVersioningEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3405,9 +2935,7 @@ impl ToListMappable for S3BucketVersioningEl {
         })
     }
 }
-
 pub struct BuildS3BucketVersioningEl {}
-
 impl BuildS3BucketVersioningEl {
     pub fn build(self) -> S3BucketVersioningEl {
         S3BucketVersioningEl {
@@ -3416,12 +2944,10 @@ impl BuildS3BucketVersioningEl {
         }
     }
 }
-
 pub struct S3BucketVersioningElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketVersioningElRef {
     fn new(shared: StackShared, base: String) -> S3BucketVersioningElRef {
         S3BucketVersioningElRef {
@@ -3430,23 +2956,19 @@ impl Ref for S3BucketVersioningElRef {
         }
     }
 }
-
 impl S3BucketVersioningElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `mfa_delete` after provisioning.\n"]
     pub fn mfa_delete(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.mfa_delete", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketWebsiteEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3458,36 +2980,30 @@ pub struct S3BucketWebsiteEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     routing_rules: Option<PrimField<String>>,
 }
-
 impl S3BucketWebsiteEl {
     #[doc = "Set the field `error_document`.\n"]
     pub fn set_error_document(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.error_document = Some(v.into());
         self
     }
-
     #[doc = "Set the field `index_document`.\n"]
     pub fn set_index_document(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.index_document = Some(v.into());
         self
     }
-
     #[doc = "Set the field `redirect_all_requests_to`.\n"]
     pub fn set_redirect_all_requests_to(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.redirect_all_requests_to = Some(v.into());
         self
     }
-
     #[doc = "Set the field `routing_rules`.\n"]
     pub fn set_routing_rules(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.routing_rules = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketWebsiteEl {
     type O = BlockAssignable<S3BucketWebsiteEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3496,9 +3012,7 @@ impl ToListMappable for S3BucketWebsiteEl {
         })
     }
 }
-
 pub struct BuildS3BucketWebsiteEl {}
-
 impl BuildS3BucketWebsiteEl {
     pub fn build(self) -> S3BucketWebsiteEl {
         S3BucketWebsiteEl {
@@ -3509,12 +3023,10 @@ impl BuildS3BucketWebsiteEl {
         }
     }
 }
-
 pub struct S3BucketWebsiteElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketWebsiteElRef {
     fn new(shared: StackShared, base: String) -> S3BucketWebsiteElRef {
         S3BucketWebsiteElRef {
@@ -3523,12 +3035,10 @@ impl Ref for S3BucketWebsiteElRef {
         }
     }
 }
-
 impl S3BucketWebsiteElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `error_document` after provisioning.\n"]
     pub fn error_document(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3536,7 +3046,6 @@ impl S3BucketWebsiteElRef {
             format!("{}.error_document", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `index_document` after provisioning.\n"]
     pub fn index_document(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3544,7 +3053,6 @@ impl S3BucketWebsiteElRef {
             format!("{}.index_document", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `redirect_all_requests_to` after provisioning.\n"]
     pub fn redirect_all_requests_to(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3552,7 +3060,6 @@ impl S3BucketWebsiteElRef {
             format!("{}.redirect_all_requests_to", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_rules` after provisioning.\n"]
     pub fn routing_rules(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3561,7 +3068,6 @@ impl S3BucketWebsiteElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketDynamic {
     cors_rule: Option<DynamicBlock<S3BucketCorsRuleEl>>,

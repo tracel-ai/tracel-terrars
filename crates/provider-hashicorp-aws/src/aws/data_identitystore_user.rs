@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataIdentitystoreUserData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,49 +22,40 @@ struct DataIdentitystoreUserData {
     alternate_identifier: Option<Vec<DataIdentitystoreUserAlternateIdentifierEl>>,
     dynamic: DataIdentitystoreUserDynamic,
 }
-
 struct DataIdentitystoreUser_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataIdentitystoreUserData>,
 }
-
 #[derive(Clone)]
 pub struct DataIdentitystoreUser(Rc<DataIdentitystoreUser_>);
-
 impl DataIdentitystoreUser {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `user_id`.\n"]
     pub fn set_user_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().user_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `alternate_identifier`.\n"]
     pub fn set_alternate_identifier(
         self,
@@ -81,7 +71,6 @@ impl DataIdentitystoreUser {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `addresses` after provisioning.\n"]
     pub fn addresses(&self) -> ListRef<DataIdentitystoreUserAddressesElRef> {
         ListRef::new(
@@ -89,7 +78,6 @@ impl DataIdentitystoreUser {
             format!("{}.addresses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -97,7 +85,6 @@ impl DataIdentitystoreUser {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `emails` after provisioning.\n"]
     pub fn emails(&self) -> ListRef<DataIdentitystoreUserEmailsElRef> {
         ListRef::new(
@@ -105,7 +92,6 @@ impl DataIdentitystoreUser {
             format!("{}.emails", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<DataIdentitystoreUserExternalIdsElRef> {
         ListRef::new(
@@ -113,12 +99,10 @@ impl DataIdentitystoreUser {
             format!("{}.external_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -126,7 +110,6 @@ impl DataIdentitystoreUser {
             format!("{}.identity_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
     pub fn locale(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -134,7 +117,6 @@ impl DataIdentitystoreUser {
             format!("{}.locale", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> ListRef<DataIdentitystoreUserNameElRef> {
         ListRef::new(
@@ -142,7 +124,6 @@ impl DataIdentitystoreUser {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nickname` after provisioning.\n"]
     pub fn nickname(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +131,6 @@ impl DataIdentitystoreUser {
             format!("{}.nickname", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_numbers` after provisioning.\n"]
     pub fn phone_numbers(&self) -> ListRef<DataIdentitystoreUserPhoneNumbersElRef> {
         ListRef::new(
@@ -158,7 +138,6 @@ impl DataIdentitystoreUser {
             format!("{}.phone_numbers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_language` after provisioning.\n"]
     pub fn preferred_language(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +145,6 @@ impl DataIdentitystoreUser {
             format!("{}.preferred_language", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `profile_url` after provisioning.\n"]
     pub fn profile_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +152,6 @@ impl DataIdentitystoreUser {
             format!("{}.profile_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +159,6 @@ impl DataIdentitystoreUser {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\n"]
     pub fn timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +166,6 @@ impl DataIdentitystoreUser {
             format!("{}.timezone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `title` after provisioning.\n"]
     pub fn title(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +173,6 @@ impl DataIdentitystoreUser {
             format!("{}.title", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +180,6 @@ impl DataIdentitystoreUser {
             format!("{}.user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +187,6 @@ impl DataIdentitystoreUser {
             format!("{}.user_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_type` after provisioning.\n"]
     pub fn user_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +194,6 @@ impl DataIdentitystoreUser {
             format!("{}.user_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alternate_identifier` after provisioning.\n"]
     pub fn alternate_identifier(&self) -> ListRef<DataIdentitystoreUserAlternateIdentifierElRef> {
         ListRef::new(
@@ -231,7 +202,6 @@ impl DataIdentitystoreUser {
         )
     }
 }
-
 impl Referable for DataIdentitystoreUser {
     fn extract_ref(&self) -> String {
         format!(
@@ -241,38 +211,30 @@ impl Referable for DataIdentitystoreUser {
         )
     }
 }
-
 impl Datasource for DataIdentitystoreUser {}
-
 impl ToListMappable for DataIdentitystoreUser {
     type O = ListRef<DataIdentitystoreUserRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataIdentitystoreUser_ {
     fn extract_datasource_type(&self) -> String {
         "aws_identitystore_user".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataIdentitystoreUser {
     pub tf_id: String,
     #[doc = ""]
     pub identity_store_id: PrimField<String>,
 }
-
 impl BuildDataIdentitystoreUser {
     pub fn build(self, stack: &mut Stack) -> DataIdentitystoreUser {
         let out = DataIdentitystoreUser(Rc::new(DataIdentitystoreUser_ {
@@ -294,27 +256,22 @@ impl BuildDataIdentitystoreUser {
         out
     }
 }
-
 pub struct DataIdentitystoreUserRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataIdentitystoreUserRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `addresses` after provisioning.\n"]
     pub fn addresses(&self) -> ListRef<DataIdentitystoreUserAddressesElRef> {
         ListRef::new(
@@ -322,7 +279,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.addresses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +286,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `emails` after provisioning.\n"]
     pub fn emails(&self) -> ListRef<DataIdentitystoreUserEmailsElRef> {
         ListRef::new(
@@ -338,7 +293,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.emails", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_ids` after provisioning.\n"]
     pub fn external_ids(&self) -> ListRef<DataIdentitystoreUserExternalIdsElRef> {
         ListRef::new(
@@ -346,12 +300,10 @@ impl DataIdentitystoreUserRef {
             format!("{}.external_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity_store_id` after provisioning.\n"]
     pub fn identity_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -359,7 +311,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.identity_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `locale` after provisioning.\n"]
     pub fn locale(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +318,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.locale", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> ListRef<DataIdentitystoreUserNameElRef> {
         ListRef::new(
@@ -375,7 +325,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nickname` after provisioning.\n"]
     pub fn nickname(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +332,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.nickname", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_numbers` after provisioning.\n"]
     pub fn phone_numbers(&self) -> ListRef<DataIdentitystoreUserPhoneNumbersElRef> {
         ListRef::new(
@@ -391,7 +339,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.phone_numbers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_language` after provisioning.\n"]
     pub fn preferred_language(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +346,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.preferred_language", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `profile_url` after provisioning.\n"]
     pub fn profile_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,7 +353,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.profile_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -415,7 +360,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\n"]
     pub fn timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -423,7 +367,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.timezone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `title` after provisioning.\n"]
     pub fn title(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -431,7 +374,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.title", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -439,7 +381,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -447,7 +388,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.user_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_type` after provisioning.\n"]
     pub fn user_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -455,7 +395,6 @@ impl DataIdentitystoreUserRef {
             format!("{}.user_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alternate_identifier` after provisioning.\n"]
     pub fn alternate_identifier(&self) -> ListRef<DataIdentitystoreUserAlternateIdentifierElRef> {
         ListRef::new(
@@ -464,7 +403,6 @@ impl DataIdentitystoreUserRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserAddressesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -484,60 +422,50 @@ pub struct DataIdentitystoreUserAddressesEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl DataIdentitystoreUserAddressesEl {
     #[doc = "Set the field `country`.\n"]
     pub fn set_country(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.country = Some(v.into());
         self
     }
-
     #[doc = "Set the field `formatted`.\n"]
     pub fn set_formatted(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.formatted = Some(v.into());
         self
     }
-
     #[doc = "Set the field `locality`.\n"]
     pub fn set_locality(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.locality = Some(v.into());
         self
     }
-
     #[doc = "Set the field `postal_code`.\n"]
     pub fn set_postal_code(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.postal_code = Some(v.into());
         self
     }
-
     #[doc = "Set the field `primary`.\n"]
     pub fn set_primary(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.primary = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `street_address`.\n"]
     pub fn set_street_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.street_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserAddressesEl {
     type O = BlockAssignable<DataIdentitystoreUserAddressesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -546,9 +474,7 @@ impl ToListMappable for DataIdentitystoreUserAddressesEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserAddressesEl {}
-
 impl BuildDataIdentitystoreUserAddressesEl {
     pub fn build(self) -> DataIdentitystoreUserAddressesEl {
         DataIdentitystoreUserAddressesEl {
@@ -563,12 +489,10 @@ impl BuildDataIdentitystoreUserAddressesEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserAddressesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserAddressesElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserAddressesElRef {
         DataIdentitystoreUserAddressesElRef {
@@ -577,42 +501,34 @@ impl Ref for DataIdentitystoreUserAddressesElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserAddressesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `country` after provisioning.\n"]
     pub fn country(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.country", self.base))
     }
-
     #[doc = "Get a reference to the value of field `formatted` after provisioning.\n"]
     pub fn formatted(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.formatted", self.base))
     }
-
     #[doc = "Get a reference to the value of field `locality` after provisioning.\n"]
     pub fn locality(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.locality", self.base))
     }
-
     #[doc = "Get a reference to the value of field `postal_code` after provisioning.\n"]
     pub fn postal_code(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.postal_code", self.base))
     }
-
     #[doc = "Get a reference to the value of field `primary` after provisioning.\n"]
     pub fn primary(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.primary", self.base))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `street_address` after provisioning.\n"]
     pub fn street_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -620,13 +536,11 @@ impl DataIdentitystoreUserAddressesElRef {
             format!("{}.street_address", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserEmailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -636,30 +550,25 @@ pub struct DataIdentitystoreUserEmailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DataIdentitystoreUserEmailsEl {
     #[doc = "Set the field `primary`.\n"]
     pub fn set_primary(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.primary = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserEmailsEl {
     type O = BlockAssignable<DataIdentitystoreUserEmailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -668,9 +577,7 @@ impl ToListMappable for DataIdentitystoreUserEmailsEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserEmailsEl {}
-
 impl BuildDataIdentitystoreUserEmailsEl {
     pub fn build(self) -> DataIdentitystoreUserEmailsEl {
         DataIdentitystoreUserEmailsEl {
@@ -680,12 +587,10 @@ impl BuildDataIdentitystoreUserEmailsEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserEmailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserEmailsElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserEmailsElRef {
         DataIdentitystoreUserEmailsElRef {
@@ -694,28 +599,23 @@ impl Ref for DataIdentitystoreUserEmailsElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserEmailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `primary` after provisioning.\n"]
     pub fn primary(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.primary", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserExternalIdsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -723,24 +623,20 @@ pub struct DataIdentitystoreUserExternalIdsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     issuer: Option<PrimField<String>>,
 }
-
 impl DataIdentitystoreUserExternalIdsEl {
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `issuer`.\n"]
     pub fn set_issuer(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.issuer = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserExternalIdsEl {
     type O = BlockAssignable<DataIdentitystoreUserExternalIdsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -749,9 +645,7 @@ impl ToListMappable for DataIdentitystoreUserExternalIdsEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserExternalIdsEl {}
-
 impl BuildDataIdentitystoreUserExternalIdsEl {
     pub fn build(self) -> DataIdentitystoreUserExternalIdsEl {
         DataIdentitystoreUserExternalIdsEl {
@@ -760,12 +654,10 @@ impl BuildDataIdentitystoreUserExternalIdsEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserExternalIdsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserExternalIdsElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserExternalIdsElRef {
         DataIdentitystoreUserExternalIdsElRef {
@@ -774,23 +666,19 @@ impl Ref for DataIdentitystoreUserExternalIdsElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserExternalIdsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserNameEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -806,48 +694,40 @@ pub struct DataIdentitystoreUserNameEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     middle_name: Option<PrimField<String>>,
 }
-
 impl DataIdentitystoreUserNameEl {
     #[doc = "Set the field `family_name`.\n"]
     pub fn set_family_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.family_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `formatted`.\n"]
     pub fn set_formatted(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.formatted = Some(v.into());
         self
     }
-
     #[doc = "Set the field `given_name`.\n"]
     pub fn set_given_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.given_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `honorific_prefix`.\n"]
     pub fn set_honorific_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.honorific_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `honorific_suffix`.\n"]
     pub fn set_honorific_suffix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.honorific_suffix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `middle_name`.\n"]
     pub fn set_middle_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.middle_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserNameEl {
     type O = BlockAssignable<DataIdentitystoreUserNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -856,9 +736,7 @@ impl ToListMappable for DataIdentitystoreUserNameEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserNameEl {}
-
 impl BuildDataIdentitystoreUserNameEl {
     pub fn build(self) -> DataIdentitystoreUserNameEl {
         DataIdentitystoreUserNameEl {
@@ -871,12 +749,10 @@ impl BuildDataIdentitystoreUserNameEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserNameElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserNameElRef {
         DataIdentitystoreUserNameElRef {
@@ -885,27 +761,22 @@ impl Ref for DataIdentitystoreUserNameElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `family_name` after provisioning.\n"]
     pub fn family_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.family_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `formatted` after provisioning.\n"]
     pub fn formatted(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.formatted", self.base))
     }
-
     #[doc = "Get a reference to the value of field `given_name` after provisioning.\n"]
     pub fn given_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.given_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `honorific_prefix` after provisioning.\n"]
     pub fn honorific_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -913,7 +784,6 @@ impl DataIdentitystoreUserNameElRef {
             format!("{}.honorific_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `honorific_suffix` after provisioning.\n"]
     pub fn honorific_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -921,13 +791,11 @@ impl DataIdentitystoreUserNameElRef {
             format!("{}.honorific_suffix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `middle_name` after provisioning.\n"]
     pub fn middle_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.middle_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserPhoneNumbersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -937,30 +805,25 @@ pub struct DataIdentitystoreUserPhoneNumbersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DataIdentitystoreUserPhoneNumbersEl {
     #[doc = "Set the field `primary`.\n"]
     pub fn set_primary(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.primary = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserPhoneNumbersEl {
     type O = BlockAssignable<DataIdentitystoreUserPhoneNumbersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -969,9 +832,7 @@ impl ToListMappable for DataIdentitystoreUserPhoneNumbersEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserPhoneNumbersEl {}
-
 impl BuildDataIdentitystoreUserPhoneNumbersEl {
     pub fn build(self) -> DataIdentitystoreUserPhoneNumbersEl {
         DataIdentitystoreUserPhoneNumbersEl {
@@ -981,12 +842,10 @@ impl BuildDataIdentitystoreUserPhoneNumbersEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserPhoneNumbersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserPhoneNumbersElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserPhoneNumbersElRef {
         DataIdentitystoreUserPhoneNumbersElRef {
@@ -995,39 +854,31 @@ impl Ref for DataIdentitystoreUserPhoneNumbersElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserPhoneNumbersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `primary` after provisioning.\n"]
     pub fn primary(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.primary", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserAlternateIdentifierElExternalIdEl {
     id: PrimField<String>,
     issuer: PrimField<String>,
 }
-
 impl DataIdentitystoreUserAlternateIdentifierElExternalIdEl {}
-
 impl ToListMappable for DataIdentitystoreUserAlternateIdentifierElExternalIdEl {
     type O = BlockAssignable<DataIdentitystoreUserAlternateIdentifierElExternalIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1036,14 +887,12 @@ impl ToListMappable for DataIdentitystoreUserAlternateIdentifierElExternalIdEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserAlternateIdentifierElExternalIdEl {
     #[doc = ""]
     pub id: PrimField<String>,
     #[doc = ""]
     pub issuer: PrimField<String>,
 }
-
 impl BuildDataIdentitystoreUserAlternateIdentifierElExternalIdEl {
     pub fn build(self) -> DataIdentitystoreUserAlternateIdentifierElExternalIdEl {
         DataIdentitystoreUserAlternateIdentifierElExternalIdEl {
@@ -1052,12 +901,10 @@ impl BuildDataIdentitystoreUserAlternateIdentifierElExternalIdEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserAlternateIdentifierElExternalIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserAlternateIdentifierElExternalIdElRef {
     fn new(
         shared: StackShared,
@@ -1069,34 +916,27 @@ impl Ref for DataIdentitystoreUserAlternateIdentifierElExternalIdElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserAlternateIdentifierElExternalIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
     attribute_path: PrimField<String>,
     attribute_value: PrimField<String>,
 }
-
 impl DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {}
-
 impl ToListMappable for DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
     type O = BlockAssignable<DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1105,14 +945,12 @@ impl ToListMappable for DataIdentitystoreUserAlternateIdentifierElUniqueAttribut
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
     #[doc = ""]
     pub attribute_path: PrimField<String>,
     #[doc = ""]
     pub attribute_value: PrimField<String>,
 }
-
 impl BuildDataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
     pub fn build(self) -> DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
         DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
@@ -1121,12 +959,10 @@ impl BuildDataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
     fn new(
         shared: StackShared,
@@ -1138,12 +974,10 @@ impl Ref for DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `attribute_path` after provisioning.\n"]
     pub fn attribute_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1151,7 +985,6 @@ impl DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
             format!("{}.attribute_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `attribute_value` after provisioning.\n"]
     pub fn attribute_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1160,14 +993,12 @@ impl DataIdentitystoreUserAlternateIdentifierElUniqueAttributeElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataIdentitystoreUserAlternateIdentifierElDynamic {
     external_id: Option<DynamicBlock<DataIdentitystoreUserAlternateIdentifierElExternalIdEl>>,
     unique_attribute:
         Option<DynamicBlock<DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DataIdentitystoreUserAlternateIdentifierEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1176,7 +1007,6 @@ pub struct DataIdentitystoreUserAlternateIdentifierEl {
     unique_attribute: Option<Vec<DataIdentitystoreUserAlternateIdentifierElUniqueAttributeEl>>,
     dynamic: DataIdentitystoreUserAlternateIdentifierElDynamic,
 }
-
 impl DataIdentitystoreUserAlternateIdentifierEl {
     #[doc = "Set the field `external_id`.\n"]
     pub fn set_external_id(
@@ -1193,7 +1023,6 @@ impl DataIdentitystoreUserAlternateIdentifierEl {
         }
         self
     }
-
     #[doc = "Set the field `unique_attribute`.\n"]
     pub fn set_unique_attribute(
         mut self,
@@ -1210,10 +1039,8 @@ impl DataIdentitystoreUserAlternateIdentifierEl {
         self
     }
 }
-
 impl ToListMappable for DataIdentitystoreUserAlternateIdentifierEl {
     type O = BlockAssignable<DataIdentitystoreUserAlternateIdentifierEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1222,9 +1049,7 @@ impl ToListMappable for DataIdentitystoreUserAlternateIdentifierEl {
         })
     }
 }
-
 pub struct BuildDataIdentitystoreUserAlternateIdentifierEl {}
-
 impl BuildDataIdentitystoreUserAlternateIdentifierEl {
     pub fn build(self) -> DataIdentitystoreUserAlternateIdentifierEl {
         DataIdentitystoreUserAlternateIdentifierEl {
@@ -1234,12 +1059,10 @@ impl BuildDataIdentitystoreUserAlternateIdentifierEl {
         }
     }
 }
-
 pub struct DataIdentitystoreUserAlternateIdentifierElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIdentitystoreUserAlternateIdentifierElRef {
     fn new(shared: StackShared, base: String) -> DataIdentitystoreUserAlternateIdentifierElRef {
         DataIdentitystoreUserAlternateIdentifierElRef {
@@ -1248,19 +1071,16 @@ impl Ref for DataIdentitystoreUserAlternateIdentifierElRef {
         }
     }
 }
-
 impl DataIdentitystoreUserAlternateIdentifierElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
     pub fn external_id(
         &self,
     ) -> ListRef<DataIdentitystoreUserAlternateIdentifierElExternalIdElRef> {
         ListRef::new(self.shared().clone(), format!("{}.external_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `unique_attribute` after provisioning.\n"]
     pub fn unique_attribute(
         &self,
@@ -1271,7 +1091,6 @@ impl DataIdentitystoreUserAlternateIdentifierElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataIdentitystoreUserDynamic {
     alternate_identifier: Option<DynamicBlock<DataIdentitystoreUserAlternateIdentifierEl>>,

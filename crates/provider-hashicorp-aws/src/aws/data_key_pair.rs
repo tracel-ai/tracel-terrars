@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataKeyPairData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,67 +29,55 @@ struct DataKeyPairData {
     timeouts: Option<DataKeyPairTimeoutsEl>,
     dynamic: DataKeyPairDynamic,
 }
-
 struct DataKeyPair_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataKeyPairData>,
 }
-
 #[derive(Clone)]
 pub struct DataKeyPair(Rc<DataKeyPair_>);
-
 impl DataKeyPair {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_public_key`.\n"]
     pub fn set_include_public_key(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().include_public_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key_name`.\n"]
     pub fn set_key_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().key_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key_pair_id`.\n"]
     pub fn set_key_pair_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().key_pair_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataKeyPairFilterEl>>) -> Self {
         match v.into() {
@@ -103,18 +90,15 @@ impl DataKeyPair {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataKeyPairTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -122,7 +106,6 @@ impl DataKeyPair {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,12 +113,10 @@ impl DataKeyPair {
             format!("{}.fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_public_key` after provisioning.\n"]
     pub fn include_public_key(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -143,7 +124,6 @@ impl DataKeyPair {
             format!("{}.include_public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
     pub fn key_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +131,6 @@ impl DataKeyPair {
             format!("{}.key_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair_id` after provisioning.\n"]
     pub fn key_pair_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +138,6 @@ impl DataKeyPair {
             format!("{}.key_pair_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_type` after provisioning.\n"]
     pub fn key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +145,6 @@ impl DataKeyPair {
             format!("{}.key_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -175,7 +152,6 @@ impl DataKeyPair {
             format!("{}.public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +159,6 @@ impl DataKeyPair {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -191,7 +166,6 @@ impl DataKeyPair {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataKeyPairTimeoutsElRef {
         DataKeyPairTimeoutsElRef::new(
@@ -200,7 +174,6 @@ impl DataKeyPair {
         )
     }
 }
-
 impl Referable for DataKeyPair {
     fn extract_ref(&self) -> String {
         format!(
@@ -210,36 +183,28 @@ impl Referable for DataKeyPair {
         )
     }
 }
-
 impl Datasource for DataKeyPair {}
-
 impl ToListMappable for DataKeyPair {
     type O = ListRef<DataKeyPairRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataKeyPair_ {
     fn extract_datasource_type(&self) -> String {
         "aws_key_pair".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataKeyPair {
     pub tf_id: String,
 }
-
 impl BuildDataKeyPair {
     pub fn build(self, stack: &mut Stack) -> DataKeyPair {
         let out = DataKeyPair(Rc::new(DataKeyPair_ {
@@ -264,32 +229,26 @@ impl BuildDataKeyPair {
         out
     }
 }
-
 pub struct DataKeyPairRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataKeyPairRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataKeyPairRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +256,6 @@ impl DataKeyPairRef {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fingerprint` after provisioning.\n"]
     pub fn fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,12 +263,10 @@ impl DataKeyPairRef {
             format!("{}.fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_public_key` after provisioning.\n"]
     pub fn include_public_key(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -318,7 +274,6 @@ impl DataKeyPairRef {
             format!("{}.include_public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_name` after provisioning.\n"]
     pub fn key_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -326,7 +281,6 @@ impl DataKeyPairRef {
             format!("{}.key_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair_id` after provisioning.\n"]
     pub fn key_pair_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -334,7 +288,6 @@ impl DataKeyPairRef {
             format!("{}.key_pair_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_type` after provisioning.\n"]
     pub fn key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -342,7 +295,6 @@ impl DataKeyPairRef {
             format!("{}.key_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_key` after provisioning.\n"]
     pub fn public_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +302,6 @@ impl DataKeyPairRef {
             format!("{}.public_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,7 +309,6 @@ impl DataKeyPairRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -366,7 +316,6 @@ impl DataKeyPairRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataKeyPairTimeoutsElRef {
         DataKeyPairTimeoutsElRef::new(
@@ -375,18 +324,14 @@ impl DataKeyPairRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataKeyPairFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataKeyPairFilterEl {}
-
 impl ToListMappable for DataKeyPairFilterEl {
     type O = BlockAssignable<DataKeyPairFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -395,14 +340,12 @@ impl ToListMappable for DataKeyPairFilterEl {
         })
     }
 }
-
 pub struct BuildDataKeyPairFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataKeyPairFilterEl {
     pub fn build(self) -> DataKeyPairFilterEl {
         DataKeyPairFilterEl {
@@ -411,12 +354,10 @@ impl BuildDataKeyPairFilterEl {
         }
     }
 }
-
 pub struct DataKeyPairFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataKeyPairFilterElRef {
     fn new(shared: StackShared, base: String) -> DataKeyPairFilterElRef {
         DataKeyPairFilterElRef {
@@ -425,29 +366,24 @@ impl Ref for DataKeyPairFilterElRef {
         }
     }
 }
-
 impl DataKeyPairFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataKeyPairTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataKeyPairTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -455,10 +391,8 @@ impl DataKeyPairTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataKeyPairTimeoutsEl {
     type O = BlockAssignable<DataKeyPairTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -467,9 +401,7 @@ impl ToListMappable for DataKeyPairTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataKeyPairTimeoutsEl {}
-
 impl BuildDataKeyPairTimeoutsEl {
     pub fn build(self) -> DataKeyPairTimeoutsEl {
         DataKeyPairTimeoutsEl {
@@ -477,12 +409,10 @@ impl BuildDataKeyPairTimeoutsEl {
         }
     }
 }
-
 pub struct DataKeyPairTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataKeyPairTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataKeyPairTimeoutsElRef {
         DataKeyPairTimeoutsElRef {
@@ -491,18 +421,15 @@ impl Ref for DataKeyPairTimeoutsElRef {
         }
     }
 }
-
 impl DataKeyPairTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataKeyPairDynamic {
     filter: Option<DynamicBlock<DataKeyPairFilterEl>>,

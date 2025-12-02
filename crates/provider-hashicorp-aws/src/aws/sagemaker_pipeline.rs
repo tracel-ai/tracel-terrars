@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerPipelineData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -36,47 +35,38 @@ struct SagemakerPipelineData {
     pipeline_definition_s3_location: Option<Vec<SagemakerPipelinePipelineDefinitionS3LocationEl>>,
     dynamic: SagemakerPipelineDynamic,
 }
-
 struct SagemakerPipeline_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerPipelineData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerPipeline(Rc<SagemakerPipeline_>);
-
 impl SagemakerPipeline {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -95,7 +85,6 @@ impl SagemakerPipeline {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -105,7 +94,6 @@ impl SagemakerPipeline {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -115,49 +103,41 @@ impl SagemakerPipeline {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `pipeline_definition`.\n"]
     pub fn set_pipeline_definition(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().pipeline_definition = Some(v.into());
         self
     }
-
     #[doc = "Set the field `pipeline_description`.\n"]
     pub fn set_pipeline_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().pipeline_description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parallelism_configuration`.\n"]
     pub fn set_parallelism_configuration(
         self,
@@ -173,7 +153,6 @@ impl SagemakerPipeline {
         }
         self
     }
-
     #[doc = "Set the field `pipeline_definition_s3_location`.\n"]
     pub fn set_pipeline_definition_s3_location(
         self,
@@ -193,17 +172,14 @@ impl SagemakerPipeline {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pipeline_definition` after provisioning.\n"]
     pub fn pipeline_definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +187,6 @@ impl SagemakerPipeline {
             format!("{}.pipeline_definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_description` after provisioning.\n"]
     pub fn pipeline_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -219,7 +194,6 @@ impl SagemakerPipeline {
             format!("{}.pipeline_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_display_name` after provisioning.\n"]
     pub fn pipeline_display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +201,6 @@ impl SagemakerPipeline {
             format!("{}.pipeline_display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_name` after provisioning.\n"]
     pub fn pipeline_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +208,6 @@ impl SagemakerPipeline {
             format!("{}.pipeline_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +215,6 @@ impl SagemakerPipeline {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,7 +222,6 @@ impl SagemakerPipeline {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -259,7 +229,6 @@ impl SagemakerPipeline {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -267,7 +236,6 @@ impl SagemakerPipeline {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parallelism_configuration` after provisioning.\n"]
     pub fn parallelism_configuration(
         &self,
@@ -277,7 +245,6 @@ impl SagemakerPipeline {
             format!("{}.parallelism_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_definition_s3_location` after provisioning.\n"]
     pub fn pipeline_definition_s3_location(
         &self,
@@ -288,7 +255,6 @@ impl SagemakerPipeline {
         )
     }
 }
-
 impl Referable for SagemakerPipeline {
     fn extract_ref(&self) -> String {
         format!(
@@ -298,32 +264,25 @@ impl Referable for SagemakerPipeline {
         )
     }
 }
-
 impl Resource for SagemakerPipeline {}
-
 impl ToListMappable for SagemakerPipeline {
     type O = ListRef<SagemakerPipelineRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerPipeline_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_pipeline".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerPipeline {
     pub tf_id: String,
     #[doc = ""]
@@ -331,7 +290,6 @@ pub struct BuildSagemakerPipeline {
     #[doc = ""]
     pub pipeline_name: PrimField<String>,
 }
-
 impl BuildSagemakerPipeline {
     pub fn build(self, stack: &mut Stack) -> SagemakerPipeline {
         let out = SagemakerPipeline(Rc::new(SagemakerPipeline_ {
@@ -360,37 +318,30 @@ impl BuildSagemakerPipeline {
         out
     }
 }
-
 pub struct SagemakerPipelineRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerPipelineRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerPipelineRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pipeline_definition` after provisioning.\n"]
     pub fn pipeline_definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -398,7 +349,6 @@ impl SagemakerPipelineRef {
             format!("{}.pipeline_definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_description` after provisioning.\n"]
     pub fn pipeline_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +356,6 @@ impl SagemakerPipelineRef {
             format!("{}.pipeline_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_display_name` after provisioning.\n"]
     pub fn pipeline_display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +363,6 @@ impl SagemakerPipelineRef {
             format!("{}.pipeline_display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_name` after provisioning.\n"]
     pub fn pipeline_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,7 +370,6 @@ impl SagemakerPipelineRef {
             format!("{}.pipeline_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -430,7 +377,6 @@ impl SagemakerPipelineRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -438,7 +384,6 @@ impl SagemakerPipelineRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -446,7 +391,6 @@ impl SagemakerPipelineRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -454,7 +398,6 @@ impl SagemakerPipelineRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parallelism_configuration` after provisioning.\n"]
     pub fn parallelism_configuration(
         &self,
@@ -464,7 +407,6 @@ impl SagemakerPipelineRef {
             format!("{}.parallelism_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pipeline_definition_s3_location` after provisioning.\n"]
     pub fn pipeline_definition_s3_location(
         &self,
@@ -475,17 +417,13 @@ impl SagemakerPipelineRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerPipelineParallelismConfigurationEl {
     max_parallel_execution_steps: PrimField<f64>,
 }
-
 impl SagemakerPipelineParallelismConfigurationEl {}
-
 impl ToListMappable for SagemakerPipelineParallelismConfigurationEl {
     type O = BlockAssignable<SagemakerPipelineParallelismConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -494,12 +432,10 @@ impl ToListMappable for SagemakerPipelineParallelismConfigurationEl {
         })
     }
 }
-
 pub struct BuildSagemakerPipelineParallelismConfigurationEl {
     #[doc = ""]
     pub max_parallel_execution_steps: PrimField<f64>,
 }
-
 impl BuildSagemakerPipelineParallelismConfigurationEl {
     pub fn build(self) -> SagemakerPipelineParallelismConfigurationEl {
         SagemakerPipelineParallelismConfigurationEl {
@@ -507,12 +443,10 @@ impl BuildSagemakerPipelineParallelismConfigurationEl {
         }
     }
 }
-
 pub struct SagemakerPipelineParallelismConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerPipelineParallelismConfigurationElRef {
     fn new(shared: StackShared, base: String) -> SagemakerPipelineParallelismConfigurationElRef {
         SagemakerPipelineParallelismConfigurationElRef {
@@ -521,12 +455,10 @@ impl Ref for SagemakerPipelineParallelismConfigurationElRef {
         }
     }
 }
-
 impl SagemakerPipelineParallelismConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_parallel_execution_steps` after provisioning.\n"]
     pub fn max_parallel_execution_steps(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -535,7 +467,6 @@ impl SagemakerPipelineParallelismConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerPipelinePipelineDefinitionS3LocationEl {
     bucket: PrimField<String>,
@@ -543,7 +474,6 @@ pub struct SagemakerPipelinePipelineDefinitionS3LocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     version_id: Option<PrimField<String>>,
 }
-
 impl SagemakerPipelinePipelineDefinitionS3LocationEl {
     #[doc = "Set the field `version_id`.\n"]
     pub fn set_version_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -551,10 +481,8 @@ impl SagemakerPipelinePipelineDefinitionS3LocationEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerPipelinePipelineDefinitionS3LocationEl {
     type O = BlockAssignable<SagemakerPipelinePipelineDefinitionS3LocationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -563,14 +491,12 @@ impl ToListMappable for SagemakerPipelinePipelineDefinitionS3LocationEl {
         })
     }
 }
-
 pub struct BuildSagemakerPipelinePipelineDefinitionS3LocationEl {
     #[doc = ""]
     pub bucket: PrimField<String>,
     #[doc = ""]
     pub object_key: PrimField<String>,
 }
-
 impl BuildSagemakerPipelinePipelineDefinitionS3LocationEl {
     pub fn build(self) -> SagemakerPipelinePipelineDefinitionS3LocationEl {
         SagemakerPipelinePipelineDefinitionS3LocationEl {
@@ -580,12 +506,10 @@ impl BuildSagemakerPipelinePipelineDefinitionS3LocationEl {
         }
     }
 }
-
 pub struct SagemakerPipelinePipelineDefinitionS3LocationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerPipelinePipelineDefinitionS3LocationElRef {
     fn new(
         shared: StackShared,
@@ -597,28 +521,23 @@ impl Ref for SagemakerPipelinePipelineDefinitionS3LocationElRef {
         }
     }
 }
-
 impl SagemakerPipelinePipelineDefinitionS3LocationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `object_key` after provisioning.\n"]
     pub fn object_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerPipelineDynamic {
     parallelism_configuration: Option<DynamicBlock<SagemakerPipelineParallelismConfigurationEl>>,

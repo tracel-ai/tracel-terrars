@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct NeptunegraphGraphData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -37,47 +36,38 @@ struct NeptunegraphGraphData {
     vector_search_configuration: Option<Vec<NeptunegraphGraphVectorSearchConfigurationEl>>,
     dynamic: NeptunegraphGraphDynamic,
 }
-
 struct NeptunegraphGraph_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<NeptunegraphGraphData>,
 }
-
 #[derive(Clone)]
 pub struct NeptunegraphGraph(Rc<NeptunegraphGraph_>);
-
 impl NeptunegraphGraph {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -96,7 +86,6 @@ impl NeptunegraphGraph {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -106,7 +95,6 @@ impl NeptunegraphGraph {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -116,61 +104,51 @@ impl NeptunegraphGraph {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `deletion_protection`.\nA value that indicates whether the graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled."]
     pub fn set_deletion_protection(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().deletion_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `graph_name`.\nThe graph name. For example: my-graph-1.\n\t\t\t\t\t\t\t\tThe name must contain from 1 to 63 letters, numbers, or hyphens, \n\t\t\t\t\t\t\t\tand its first character must be a letter. It cannot end with a hyphen or contain two consecutive hyphens.\n\t\t\t\t\t\t\t\tIf you don't specify a graph name, a unique graph name is generated for you using the prefix graph-for, \n\t\t\t\t\t\t\t\tfollowed by a combination of Stack Name and a UUID."]
     pub fn set_graph_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().graph_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `graph_name_prefix`.\nAllows user to specify name prefix and have remainder of name automatically generated."]
     pub fn set_graph_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().graph_name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_identifier`.\nSpecifies a KMS key to use to encrypt data in the new graph.  Value must be ARN of KMS Key."]
     pub fn set_kms_key_identifier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `public_connectivity`.\nSpecifies whether or not the graph can be reachable over the internet. \n\t\t\t\t\t\t\t\tAll access to graphs is IAM authenticated.\n\t\t\t\t\t\t\t\tWhen the graph is publicly available, its domain name system (DNS) endpoint resolves to \n\t\t\t\t\t\t\t\tthe public IP address from the internet. When the graph isn't publicly available, you need \n\t\t\t\t\t\t\t\tto create a PrivateGraphEndpoint in a given VPC to ensure the DNS name resolves to a private \n\t\t\t\t\t\t\t\tIP address that is reachable from the VPC."]
     pub fn set_public_connectivity(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().public_connectivity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replica_count`.\nThe number of replicas in other AZs.  Value must be between 0 and 2."]
     pub fn set_replica_count(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().replica_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<NeptunegraphGraphTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vector_search_configuration`.\n"]
     pub fn set_vector_search_configuration(
         self,
@@ -186,12 +164,10 @@ impl NeptunegraphGraph {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\nA value that indicates whether the graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled."]
     pub fn deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -199,7 +175,6 @@ impl NeptunegraphGraph {
             format!("{}.deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -207,7 +182,6 @@ impl NeptunegraphGraph {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `graph_name` after provisioning.\nThe graph name. For example: my-graph-1.\n\t\t\t\t\t\t\t\tThe name must contain from 1 to 63 letters, numbers, or hyphens, \n\t\t\t\t\t\t\t\tand its first character must be a letter. It cannot end with a hyphen or contain two consecutive hyphens.\n\t\t\t\t\t\t\t\tIf you don't specify a graph name, a unique graph name is generated for you using the prefix graph-for, \n\t\t\t\t\t\t\t\tfollowed by a combination of Stack Name and a UUID."]
     pub fn graph_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,7 +189,6 @@ impl NeptunegraphGraph {
             format!("{}.graph_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `graph_name_prefix` after provisioning.\nAllows user to specify name prefix and have remainder of name automatically generated."]
     pub fn graph_name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -223,12 +196,10 @@ impl NeptunegraphGraph {
             format!("{}.graph_name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\nSpecifies a KMS key to use to encrypt data in the new graph.  Value must be ARN of KMS Key."]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +207,6 @@ impl NeptunegraphGraph {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_memory` after provisioning.\nThe provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph."]
     pub fn provisioned_memory(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -244,7 +214,6 @@ impl NeptunegraphGraph {
             format!("{}.provisioned_memory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_connectivity` after provisioning.\nSpecifies whether or not the graph can be reachable over the internet. \n\t\t\t\t\t\t\t\tAll access to graphs is IAM authenticated.\n\t\t\t\t\t\t\t\tWhen the graph is publicly available, its domain name system (DNS) endpoint resolves to \n\t\t\t\t\t\t\t\tthe public IP address from the internet. When the graph isn't publicly available, you need \n\t\t\t\t\t\t\t\tto create a PrivateGraphEndpoint in a given VPC to ensure the DNS name resolves to a private \n\t\t\t\t\t\t\t\tIP address that is reachable from the VPC."]
     pub fn public_connectivity(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -252,7 +221,6 @@ impl NeptunegraphGraph {
             format!("{}.public_connectivity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +228,6 @@ impl NeptunegraphGraph {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replica_count` after provisioning.\nThe number of replicas in other AZs.  Value must be between 0 and 2."]
     pub fn replica_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -268,7 +235,6 @@ impl NeptunegraphGraph {
             format!("{}.replica_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -276,7 +242,6 @@ impl NeptunegraphGraph {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -284,7 +249,6 @@ impl NeptunegraphGraph {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NeptunegraphGraphTimeoutsElRef {
         NeptunegraphGraphTimeoutsElRef::new(
@@ -292,7 +256,6 @@ impl NeptunegraphGraph {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vector_search_configuration` after provisioning.\n"]
     pub fn vector_search_configuration(
         &self,
@@ -303,7 +266,6 @@ impl NeptunegraphGraph {
         )
     }
 }
-
 impl Referable for NeptunegraphGraph {
     fn extract_ref(&self) -> String {
         format!(
@@ -313,38 +275,30 @@ impl Referable for NeptunegraphGraph {
         )
     }
 }
-
 impl Resource for NeptunegraphGraph {}
-
 impl ToListMappable for NeptunegraphGraph {
     type O = ListRef<NeptunegraphGraphRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for NeptunegraphGraph_ {
     fn extract_resource_type(&self) -> String {
         "aws_neptunegraph_graph".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildNeptunegraphGraph {
     pub tf_id: String,
     #[doc = "The provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph."]
     pub provisioned_memory: PrimField<f64>,
 }
-
 impl BuildNeptunegraphGraph {
     pub fn build(self, stack: &mut Stack) -> NeptunegraphGraph {
         let out = NeptunegraphGraph(Rc::new(NeptunegraphGraph_ {
@@ -373,32 +327,26 @@ impl BuildNeptunegraphGraph {
         out
     }
 }
-
 pub struct NeptunegraphGraphRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NeptunegraphGraphRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl NeptunegraphGraphRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\nA value that indicates whether the graph has deletion protection enabled. The graph can't be deleted when deletion protection is enabled."]
     pub fn deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -406,7 +354,6 @@ impl NeptunegraphGraphRef {
             format!("{}.deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +361,6 @@ impl NeptunegraphGraphRef {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `graph_name` after provisioning.\nThe graph name. For example: my-graph-1.\n\t\t\t\t\t\t\t\tThe name must contain from 1 to 63 letters, numbers, or hyphens, \n\t\t\t\t\t\t\t\tand its first character must be a letter. It cannot end with a hyphen or contain two consecutive hyphens.\n\t\t\t\t\t\t\t\tIf you don't specify a graph name, a unique graph name is generated for you using the prefix graph-for, \n\t\t\t\t\t\t\t\tfollowed by a combination of Stack Name and a UUID."]
     pub fn graph_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,7 +368,6 @@ impl NeptunegraphGraphRef {
             format!("{}.graph_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `graph_name_prefix` after provisioning.\nAllows user to specify name prefix and have remainder of name automatically generated."]
     pub fn graph_name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -430,12 +375,10 @@ impl NeptunegraphGraphRef {
             format!("{}.graph_name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\nSpecifies a KMS key to use to encrypt data in the new graph.  Value must be ARN of KMS Key."]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +386,6 @@ impl NeptunegraphGraphRef {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_memory` after provisioning.\nThe provisioned memory-optimized Neptune Capacity Units (m-NCUs) to use for the graph."]
     pub fn provisioned_memory(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -451,7 +393,6 @@ impl NeptunegraphGraphRef {
             format!("{}.provisioned_memory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_connectivity` after provisioning.\nSpecifies whether or not the graph can be reachable over the internet. \n\t\t\t\t\t\t\t\tAll access to graphs is IAM authenticated.\n\t\t\t\t\t\t\t\tWhen the graph is publicly available, its domain name system (DNS) endpoint resolves to \n\t\t\t\t\t\t\t\tthe public IP address from the internet. When the graph isn't publicly available, you need \n\t\t\t\t\t\t\t\tto create a PrivateGraphEndpoint in a given VPC to ensure the DNS name resolves to a private \n\t\t\t\t\t\t\t\tIP address that is reachable from the VPC."]
     pub fn public_connectivity(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -459,7 +400,6 @@ impl NeptunegraphGraphRef {
             format!("{}.public_connectivity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -467,7 +407,6 @@ impl NeptunegraphGraphRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replica_count` after provisioning.\nThe number of replicas in other AZs.  Value must be between 0 and 2."]
     pub fn replica_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -475,7 +414,6 @@ impl NeptunegraphGraphRef {
             format!("{}.replica_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -483,7 +421,6 @@ impl NeptunegraphGraphRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -491,7 +428,6 @@ impl NeptunegraphGraphRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NeptunegraphGraphTimeoutsElRef {
         NeptunegraphGraphTimeoutsElRef::new(
@@ -499,7 +435,6 @@ impl NeptunegraphGraphRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vector_search_configuration` after provisioning.\n"]
     pub fn vector_search_configuration(
         &self,
@@ -510,7 +445,6 @@ impl NeptunegraphGraphRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NeptunegraphGraphTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -520,30 +454,25 @@ pub struct NeptunegraphGraphTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl NeptunegraphGraphTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NeptunegraphGraphTimeoutsEl {
     type O = BlockAssignable<NeptunegraphGraphTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -552,9 +481,7 @@ impl ToListMappable for NeptunegraphGraphTimeoutsEl {
         })
     }
 }
-
 pub struct BuildNeptunegraphGraphTimeoutsEl {}
-
 impl BuildNeptunegraphGraphTimeoutsEl {
     pub fn build(self) -> NeptunegraphGraphTimeoutsEl {
         NeptunegraphGraphTimeoutsEl {
@@ -564,12 +491,10 @@ impl BuildNeptunegraphGraphTimeoutsEl {
         }
     }
 }
-
 pub struct NeptunegraphGraphTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NeptunegraphGraphTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> NeptunegraphGraphTimeoutsElRef {
         NeptunegraphGraphTimeoutsElRef {
@@ -578,34 +503,28 @@ impl Ref for NeptunegraphGraphTimeoutsElRef {
         }
     }
 }
-
 impl NeptunegraphGraphTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NeptunegraphGraphVectorSearchConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     vector_search_dimension: Option<PrimField<f64>>,
 }
-
 impl NeptunegraphGraphVectorSearchConfigurationEl {
     #[doc = "Set the field `vector_search_dimension`.\nSpecifies the number of dimensions for vector embeddings.  Value must be between 1 and 65,535."]
     pub fn set_vector_search_dimension(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -613,10 +532,8 @@ impl NeptunegraphGraphVectorSearchConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for NeptunegraphGraphVectorSearchConfigurationEl {
     type O = BlockAssignable<NeptunegraphGraphVectorSearchConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -625,9 +542,7 @@ impl ToListMappable for NeptunegraphGraphVectorSearchConfigurationEl {
         })
     }
 }
-
 pub struct BuildNeptunegraphGraphVectorSearchConfigurationEl {}
-
 impl BuildNeptunegraphGraphVectorSearchConfigurationEl {
     pub fn build(self) -> NeptunegraphGraphVectorSearchConfigurationEl {
         NeptunegraphGraphVectorSearchConfigurationEl {
@@ -635,12 +550,10 @@ impl BuildNeptunegraphGraphVectorSearchConfigurationEl {
         }
     }
 }
-
 pub struct NeptunegraphGraphVectorSearchConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NeptunegraphGraphVectorSearchConfigurationElRef {
     fn new(shared: StackShared, base: String) -> NeptunegraphGraphVectorSearchConfigurationElRef {
         NeptunegraphGraphVectorSearchConfigurationElRef {
@@ -649,12 +562,10 @@ impl Ref for NeptunegraphGraphVectorSearchConfigurationElRef {
         }
     }
 }
-
 impl NeptunegraphGraphVectorSearchConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `vector_search_dimension` after provisioning.\nSpecifies the number of dimensions for vector embeddings.  Value must be between 1 and 65,535."]
     pub fn vector_search_dimension(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -663,7 +574,6 @@ impl NeptunegraphGraphVectorSearchConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct NeptunegraphGraphDynamic {
     vector_search_configuration: Option<DynamicBlock<NeptunegraphGraphVectorSearchConfigurationEl>>,

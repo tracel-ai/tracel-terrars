@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DsqlClusterPeeringData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -22,47 +21,38 @@ struct DsqlClusterPeeringData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<DsqlClusterPeeringTimeoutsEl>,
 }
-
 struct DsqlClusterPeering_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DsqlClusterPeeringData>,
 }
-
 #[derive(Clone)]
 pub struct DsqlClusterPeering(Rc<DsqlClusterPeering_>);
-
 impl DsqlClusterPeering {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -81,7 +71,6 @@ impl DsqlClusterPeering {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -91,7 +80,6 @@ impl DsqlClusterPeering {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -101,19 +89,16 @@ impl DsqlClusterPeering {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DsqlClusterPeeringTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `clusters` after provisioning.\n"]
     pub fn clusters(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -121,7 +106,6 @@ impl DsqlClusterPeering {
             format!("{}.clusters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identifier` after provisioning.\n"]
     pub fn identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -129,7 +113,6 @@ impl DsqlClusterPeering {
             format!("{}.identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -137,7 +120,6 @@ impl DsqlClusterPeering {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `witness_region` after provisioning.\n"]
     pub fn witness_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -145,7 +127,6 @@ impl DsqlClusterPeering {
             format!("{}.witness_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DsqlClusterPeeringTimeoutsElRef {
         DsqlClusterPeeringTimeoutsElRef::new(
@@ -154,7 +135,6 @@ impl DsqlClusterPeering {
         )
     }
 }
-
 impl Referable for DsqlClusterPeering {
     fn extract_ref(&self) -> String {
         format!(
@@ -164,32 +144,25 @@ impl Referable for DsqlClusterPeering {
         )
     }
 }
-
 impl Resource for DsqlClusterPeering {}
-
 impl ToListMappable for DsqlClusterPeering {
     type O = ListRef<DsqlClusterPeeringRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DsqlClusterPeering_ {
     fn extract_resource_type(&self) -> String {
         "aws_dsql_cluster_peering".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDsqlClusterPeering {
     pub tf_id: String,
     #[doc = ""]
@@ -199,7 +172,6 @@ pub struct BuildDsqlClusterPeering {
     #[doc = ""]
     pub witness_region: PrimField<String>,
 }
-
 impl BuildDsqlClusterPeering {
     pub fn build(self, stack: &mut Stack) -> DsqlClusterPeering {
         let out = DsqlClusterPeering(Rc::new(DsqlClusterPeering_ {
@@ -221,27 +193,22 @@ impl BuildDsqlClusterPeering {
         out
     }
 }
-
 pub struct DsqlClusterPeeringRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DsqlClusterPeeringRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DsqlClusterPeeringRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `clusters` after provisioning.\n"]
     pub fn clusters(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -249,7 +216,6 @@ impl DsqlClusterPeeringRef {
             format!("{}.clusters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identifier` after provisioning.\n"]
     pub fn identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +223,6 @@ impl DsqlClusterPeeringRef {
             format!("{}.identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +230,6 @@ impl DsqlClusterPeeringRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `witness_region` after provisioning.\n"]
     pub fn witness_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +237,6 @@ impl DsqlClusterPeeringRef {
             format!("{}.witness_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DsqlClusterPeeringTimeoutsElRef {
         DsqlClusterPeeringTimeoutsElRef::new(
@@ -282,13 +245,11 @@ impl DsqlClusterPeeringRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DsqlClusterPeeringTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     create: Option<PrimField<String>>,
 }
-
 impl DsqlClusterPeeringTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -296,10 +257,8 @@ impl DsqlClusterPeeringTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DsqlClusterPeeringTimeoutsEl {
     type O = BlockAssignable<DsqlClusterPeeringTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -308,9 +267,7 @@ impl ToListMappable for DsqlClusterPeeringTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDsqlClusterPeeringTimeoutsEl {}
-
 impl BuildDsqlClusterPeeringTimeoutsEl {
     pub fn build(self) -> DsqlClusterPeeringTimeoutsEl {
         DsqlClusterPeeringTimeoutsEl {
@@ -318,12 +275,10 @@ impl BuildDsqlClusterPeeringTimeoutsEl {
         }
     }
 }
-
 pub struct DsqlClusterPeeringTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DsqlClusterPeeringTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DsqlClusterPeeringTimeoutsElRef {
         DsqlClusterPeeringTimeoutsElRef {
@@ -332,12 +287,10 @@ impl Ref for DsqlClusterPeeringTimeoutsElRef {
         }
     }
 }
-
 impl DsqlClusterPeeringTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))

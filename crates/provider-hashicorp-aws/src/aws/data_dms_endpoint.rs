@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataDmsEndpointData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,49 +19,40 @@ struct DataDmsEndpointData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataDmsEndpoint_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataDmsEndpointData>,
 }
-
 #[derive(Clone)]
 pub struct DataDmsEndpoint(Rc<DataDmsEndpoint_>);
-
 impl DataDmsEndpoint {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -70,7 +60,6 @@ impl DataDmsEndpoint {
             format!("{}.certificate_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -78,7 +67,6 @@ impl DataDmsEndpoint {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `elasticsearch_settings` after provisioning.\n"]
     pub fn elasticsearch_settings(&self) -> ListRef<DataDmsEndpointElasticsearchSettingsElRef> {
         ListRef::new(
@@ -86,7 +74,6 @@ impl DataDmsEndpoint {
             format!("{}.elasticsearch_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_arn` after provisioning.\n"]
     pub fn endpoint_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -94,7 +81,6 @@ impl DataDmsEndpoint {
             format!("{}.endpoint_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
     pub fn endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -102,7 +88,6 @@ impl DataDmsEndpoint {
             format!("{}.endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_type` after provisioning.\n"]
     pub fn endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -110,7 +95,6 @@ impl DataDmsEndpoint {
             format!("{}.endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_name` after provisioning.\n"]
     pub fn engine_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -118,7 +102,6 @@ impl DataDmsEndpoint {
             format!("{}.engine_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `extra_connection_attributes` after provisioning.\n"]
     pub fn extra_connection_attributes(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -126,12 +109,10 @@ impl DataDmsEndpoint {
             format!("{}.extra_connection_attributes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kafka_settings` after provisioning.\n"]
     pub fn kafka_settings(&self) -> ListRef<DataDmsEndpointKafkaSettingsElRef> {
         ListRef::new(
@@ -139,7 +120,6 @@ impl DataDmsEndpoint {
             format!("{}.kafka_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_settings` after provisioning.\n"]
     pub fn kinesis_settings(&self) -> ListRef<DataDmsEndpointKinesisSettingsElRef> {
         ListRef::new(
@@ -147,7 +127,6 @@ impl DataDmsEndpoint {
             format!("{}.kinesis_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -155,7 +134,6 @@ impl DataDmsEndpoint {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mongodb_settings` after provisioning.\n"]
     pub fn mongodb_settings(&self) -> ListRef<DataDmsEndpointMongodbSettingsElRef> {
         ListRef::new(
@@ -163,7 +141,6 @@ impl DataDmsEndpoint {
             format!("{}.mongodb_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mysql_settings` after provisioning.\n"]
     pub fn mysql_settings(&self) -> ListRef<DataDmsEndpointMysqlSettingsElRef> {
         ListRef::new(
@@ -171,7 +148,6 @@ impl DataDmsEndpoint {
             format!("{}.mysql_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +155,6 @@ impl DataDmsEndpoint {
             format!("{}.password", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -187,7 +162,6 @@ impl DataDmsEndpoint {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `postgres_settings` after provisioning.\n"]
     pub fn postgres_settings(&self) -> ListRef<DataDmsEndpointPostgresSettingsElRef> {
         ListRef::new(
@@ -195,7 +169,6 @@ impl DataDmsEndpoint {
             format!("{}.postgres_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redis_settings` after provisioning.\n"]
     pub fn redis_settings(&self) -> ListRef<DataDmsEndpointRedisSettingsElRef> {
         ListRef::new(
@@ -203,7 +176,6 @@ impl DataDmsEndpoint {
             format!("{}.redis_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redshift_settings` after provisioning.\n"]
     pub fn redshift_settings(&self) -> ListRef<DataDmsEndpointRedshiftSettingsElRef> {
         ListRef::new(
@@ -211,7 +183,6 @@ impl DataDmsEndpoint {
             format!("{}.redshift_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -219,7 +190,6 @@ impl DataDmsEndpoint {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_settings` after provisioning.\n"]
     pub fn s3_settings(&self) -> ListRef<DataDmsEndpointS3SettingsElRef> {
         ListRef::new(
@@ -227,7 +197,6 @@ impl DataDmsEndpoint {
             format!("{}.s3_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secrets_manager_access_role_arn` after provisioning.\n"]
     pub fn secrets_manager_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +204,6 @@ impl DataDmsEndpoint {
             format!("{}.secrets_manager_access_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secrets_manager_arn` after provisioning.\n"]
     pub fn secrets_manager_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +211,6 @@ impl DataDmsEndpoint {
             format!("{}.secrets_manager_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_name` after provisioning.\n"]
     pub fn server_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,7 +218,6 @@ impl DataDmsEndpoint {
             format!("{}.server_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role` after provisioning.\n"]
     pub fn service_access_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -259,7 +225,6 @@ impl DataDmsEndpoint {
             format!("{}.service_access_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_mode` after provisioning.\n"]
     pub fn ssl_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +232,6 @@ impl DataDmsEndpoint {
             format!("{}.ssl_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -275,7 +239,6 @@ impl DataDmsEndpoint {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +247,6 @@ impl DataDmsEndpoint {
         )
     }
 }
-
 impl Referable for DataDmsEndpoint {
     fn extract_ref(&self) -> String {
         format!(
@@ -294,38 +256,30 @@ impl Referable for DataDmsEndpoint {
         )
     }
 }
-
 impl Datasource for DataDmsEndpoint {}
-
 impl ToListMappable for DataDmsEndpoint {
     type O = ListRef<DataDmsEndpointRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataDmsEndpoint_ {
     fn extract_datasource_type(&self) -> String {
         "aws_dms_endpoint".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataDmsEndpoint {
     pub tf_id: String,
     #[doc = ""]
     pub endpoint_id: PrimField<String>,
 }
-
 impl BuildDataDmsEndpoint {
     pub fn build(self, stack: &mut Stack) -> DataDmsEndpoint {
         let out = DataDmsEndpoint(Rc::new(DataDmsEndpoint_ {
@@ -345,27 +299,22 @@ impl BuildDataDmsEndpoint {
         out
     }
 }
-
 pub struct DataDmsEndpointRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataDmsEndpointRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,7 +322,6 @@ impl DataDmsEndpointRef {
             format!("{}.certificate_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -381,7 +329,6 @@ impl DataDmsEndpointRef {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `elasticsearch_settings` after provisioning.\n"]
     pub fn elasticsearch_settings(&self) -> ListRef<DataDmsEndpointElasticsearchSettingsElRef> {
         ListRef::new(
@@ -389,7 +336,6 @@ impl DataDmsEndpointRef {
             format!("{}.elasticsearch_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_arn` after provisioning.\n"]
     pub fn endpoint_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -397,7 +343,6 @@ impl DataDmsEndpointRef {
             format!("{}.endpoint_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_id` after provisioning.\n"]
     pub fn endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -405,7 +350,6 @@ impl DataDmsEndpointRef {
             format!("{}.endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_type` after provisioning.\n"]
     pub fn endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -413,7 +357,6 @@ impl DataDmsEndpointRef {
             format!("{}.endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_name` after provisioning.\n"]
     pub fn engine_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -421,7 +364,6 @@ impl DataDmsEndpointRef {
             format!("{}.engine_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `extra_connection_attributes` after provisioning.\n"]
     pub fn extra_connection_attributes(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,12 +371,10 @@ impl DataDmsEndpointRef {
             format!("{}.extra_connection_attributes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kafka_settings` after provisioning.\n"]
     pub fn kafka_settings(&self) -> ListRef<DataDmsEndpointKafkaSettingsElRef> {
         ListRef::new(
@@ -442,7 +382,6 @@ impl DataDmsEndpointRef {
             format!("{}.kafka_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_settings` after provisioning.\n"]
     pub fn kinesis_settings(&self) -> ListRef<DataDmsEndpointKinesisSettingsElRef> {
         ListRef::new(
@@ -450,7 +389,6 @@ impl DataDmsEndpointRef {
             format!("{}.kinesis_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -458,7 +396,6 @@ impl DataDmsEndpointRef {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mongodb_settings` after provisioning.\n"]
     pub fn mongodb_settings(&self) -> ListRef<DataDmsEndpointMongodbSettingsElRef> {
         ListRef::new(
@@ -466,7 +403,6 @@ impl DataDmsEndpointRef {
             format!("{}.mongodb_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mysql_settings` after provisioning.\n"]
     pub fn mysql_settings(&self) -> ListRef<DataDmsEndpointMysqlSettingsElRef> {
         ListRef::new(
@@ -474,7 +410,6 @@ impl DataDmsEndpointRef {
             format!("{}.mysql_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -482,7 +417,6 @@ impl DataDmsEndpointRef {
             format!("{}.password", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -490,7 +424,6 @@ impl DataDmsEndpointRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `postgres_settings` after provisioning.\n"]
     pub fn postgres_settings(&self) -> ListRef<DataDmsEndpointPostgresSettingsElRef> {
         ListRef::new(
@@ -498,7 +431,6 @@ impl DataDmsEndpointRef {
             format!("{}.postgres_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redis_settings` after provisioning.\n"]
     pub fn redis_settings(&self) -> ListRef<DataDmsEndpointRedisSettingsElRef> {
         ListRef::new(
@@ -506,7 +438,6 @@ impl DataDmsEndpointRef {
             format!("{}.redis_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redshift_settings` after provisioning.\n"]
     pub fn redshift_settings(&self) -> ListRef<DataDmsEndpointRedshiftSettingsElRef> {
         ListRef::new(
@@ -514,7 +445,6 @@ impl DataDmsEndpointRef {
             format!("{}.redshift_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -522,7 +452,6 @@ impl DataDmsEndpointRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_settings` after provisioning.\n"]
     pub fn s3_settings(&self) -> ListRef<DataDmsEndpointS3SettingsElRef> {
         ListRef::new(
@@ -530,7 +459,6 @@ impl DataDmsEndpointRef {
             format!("{}.s3_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secrets_manager_access_role_arn` after provisioning.\n"]
     pub fn secrets_manager_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -538,7 +466,6 @@ impl DataDmsEndpointRef {
             format!("{}.secrets_manager_access_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secrets_manager_arn` after provisioning.\n"]
     pub fn secrets_manager_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -546,7 +473,6 @@ impl DataDmsEndpointRef {
             format!("{}.secrets_manager_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_name` after provisioning.\n"]
     pub fn server_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -554,7 +480,6 @@ impl DataDmsEndpointRef {
             format!("{}.server_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role` after provisioning.\n"]
     pub fn service_access_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -562,7 +487,6 @@ impl DataDmsEndpointRef {
             format!("{}.service_access_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_mode` after provisioning.\n"]
     pub fn ssl_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -570,7 +494,6 @@ impl DataDmsEndpointRef {
             format!("{}.ssl_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -578,7 +501,6 @@ impl DataDmsEndpointRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +509,6 @@ impl DataDmsEndpointRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointElasticsearchSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -599,36 +520,30 @@ pub struct DataDmsEndpointElasticsearchSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     service_access_role_arn: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointElasticsearchSettingsEl {
     #[doc = "Set the field `endpoint_uri`.\n"]
     pub fn set_endpoint_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.endpoint_uri = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_retry_duration`.\n"]
     pub fn set_error_retry_duration(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.error_retry_duration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `full_load_error_percentage`.\n"]
     pub fn set_full_load_error_percentage(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.full_load_error_percentage = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointElasticsearchSettingsEl {
     type O = BlockAssignable<DataDmsEndpointElasticsearchSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -637,9 +552,7 @@ impl ToListMappable for DataDmsEndpointElasticsearchSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointElasticsearchSettingsEl {}
-
 impl BuildDataDmsEndpointElasticsearchSettingsEl {
     pub fn build(self) -> DataDmsEndpointElasticsearchSettingsEl {
         DataDmsEndpointElasticsearchSettingsEl {
@@ -650,12 +563,10 @@ impl BuildDataDmsEndpointElasticsearchSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointElasticsearchSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointElasticsearchSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointElasticsearchSettingsElRef {
         DataDmsEndpointElasticsearchSettingsElRef {
@@ -664,17 +575,14 @@ impl Ref for DataDmsEndpointElasticsearchSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointElasticsearchSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint_uri` after provisioning.\n"]
     pub fn endpoint_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `error_retry_duration` after provisioning.\n"]
     pub fn error_retry_duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -682,7 +590,6 @@ impl DataDmsEndpointElasticsearchSettingsElRef {
             format!("{}.error_retry_duration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `full_load_error_percentage` after provisioning.\n"]
     pub fn full_load_error_percentage(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -690,7 +597,6 @@ impl DataDmsEndpointElasticsearchSettingsElRef {
             format!("{}.full_load_error_percentage", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -699,7 +605,6 @@ impl DataDmsEndpointElasticsearchSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointKafkaSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -741,126 +646,105 @@ pub struct DataDmsEndpointKafkaSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointKafkaSettingsEl {
     #[doc = "Set the field `broker`.\n"]
     pub fn set_broker(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.broker = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_control_details`.\n"]
     pub fn set_include_control_details(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_control_details = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_null_and_empty`.\n"]
     pub fn set_include_null_and_empty(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_null_and_empty = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_partition_value`.\n"]
     pub fn set_include_partition_value(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_partition_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_table_alter_operations`.\n"]
     pub fn set_include_table_alter_operations(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_table_alter_operations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_transaction_details`.\n"]
     pub fn set_include_transaction_details(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_transaction_details = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message_format`.\n"]
     pub fn set_message_format(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.message_format = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message_max_bytes`.\n"]
     pub fn set_message_max_bytes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.message_max_bytes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `no_hex_prefix`.\n"]
     pub fn set_no_hex_prefix(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.no_hex_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `partition_include_schema_table`.\n"]
     pub fn set_partition_include_schema_table(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.partition_include_schema_table = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sasl_mechanism`.\n"]
     pub fn set_sasl_mechanism(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.sasl_mechanism = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sasl_password`.\n"]
     pub fn set_sasl_password(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.sasl_password = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sasl_username`.\n"]
     pub fn set_sasl_username(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.sasl_username = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_protocol`.\n"]
     pub fn set_security_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.security_protocol = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_ca_certificate_arn`.\n"]
     pub fn set_ssl_ca_certificate_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_ca_certificate_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_client_certificate_arn`.\n"]
     pub fn set_ssl_client_certificate_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_client_certificate_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_client_key_arn`.\n"]
     pub fn set_ssl_client_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_client_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_client_key_password`.\n"]
     pub fn set_ssl_client_key_password(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_client_key_password = Some(v.into());
         self
     }
-
     #[doc = "Set the field `topic`.\n"]
     pub fn set_topic(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.topic = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointKafkaSettingsEl {
     type O = BlockAssignable<DataDmsEndpointKafkaSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -869,9 +753,7 @@ impl ToListMappable for DataDmsEndpointKafkaSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointKafkaSettingsEl {}
-
 impl BuildDataDmsEndpointKafkaSettingsEl {
     pub fn build(self) -> DataDmsEndpointKafkaSettingsEl {
         DataDmsEndpointKafkaSettingsEl {
@@ -897,12 +779,10 @@ impl BuildDataDmsEndpointKafkaSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointKafkaSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointKafkaSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointKafkaSettingsElRef {
         DataDmsEndpointKafkaSettingsElRef {
@@ -911,17 +791,14 @@ impl Ref for DataDmsEndpointKafkaSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointKafkaSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `broker` after provisioning.\n"]
     pub fn broker(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.broker", self.base))
     }
-
     #[doc = "Get a reference to the value of field `include_control_details` after provisioning.\n"]
     pub fn include_control_details(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -929,7 +806,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.include_control_details", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_null_and_empty` after provisioning.\n"]
     pub fn include_null_and_empty(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -937,7 +813,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.include_null_and_empty", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_partition_value` after provisioning.\n"]
     pub fn include_partition_value(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -945,7 +820,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.include_partition_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_table_alter_operations` after provisioning.\n"]
     pub fn include_table_alter_operations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -953,7 +827,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.include_table_alter_operations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_transaction_details` after provisioning.\n"]
     pub fn include_transaction_details(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -961,7 +834,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.include_transaction_details", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -969,7 +841,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.message_format", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `message_max_bytes` after provisioning.\n"]
     pub fn message_max_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -977,7 +848,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.message_max_bytes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `no_hex_prefix` after provisioning.\n"]
     pub fn no_hex_prefix(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -985,7 +855,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.no_hex_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `partition_include_schema_table` after provisioning.\n"]
     pub fn partition_include_schema_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -993,7 +862,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.partition_include_schema_table", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `sasl_mechanism` after provisioning.\n"]
     pub fn sasl_mechanism(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1001,7 +869,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.sasl_mechanism", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `sasl_password` after provisioning.\n"]
     pub fn sasl_password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1009,7 +876,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.sasl_password", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `sasl_username` after provisioning.\n"]
     pub fn sasl_username(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1017,7 +883,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.sasl_username", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_protocol` after provisioning.\n"]
     pub fn security_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1025,7 +890,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.security_protocol", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_ca_certificate_arn` after provisioning.\n"]
     pub fn ssl_ca_certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1033,7 +897,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.ssl_ca_certificate_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_client_certificate_arn` after provisioning.\n"]
     pub fn ssl_client_certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1041,7 +904,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.ssl_client_certificate_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_client_key_arn` after provisioning.\n"]
     pub fn ssl_client_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1049,7 +911,6 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.ssl_client_key_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_client_key_password` after provisioning.\n"]
     pub fn ssl_client_key_password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1057,13 +918,11 @@ impl DataDmsEndpointKafkaSettingsElRef {
             format!("{}.ssl_client_key_password", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointKinesisSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1087,72 +946,60 @@ pub struct DataDmsEndpointKinesisSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     use_large_integer_value: Option<PrimField<bool>>,
 }
-
 impl DataDmsEndpointKinesisSettingsEl {
     #[doc = "Set the field `include_control_details`.\n"]
     pub fn set_include_control_details(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_control_details = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_null_and_empty`.\n"]
     pub fn set_include_null_and_empty(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_null_and_empty = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_partition_value`.\n"]
     pub fn set_include_partition_value(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_partition_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_table_alter_operations`.\n"]
     pub fn set_include_table_alter_operations(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_table_alter_operations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_transaction_details`.\n"]
     pub fn set_include_transaction_details(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_transaction_details = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message_format`.\n"]
     pub fn set_message_format(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.message_format = Some(v.into());
         self
     }
-
     #[doc = "Set the field `partition_include_schema_table`.\n"]
     pub fn set_partition_include_schema_table(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.partition_include_schema_table = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `stream_arn`.\n"]
     pub fn set_stream_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.stream_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_large_integer_value`.\n"]
     pub fn set_use_large_integer_value(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.use_large_integer_value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointKinesisSettingsEl {
     type O = BlockAssignable<DataDmsEndpointKinesisSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1161,9 +1008,7 @@ impl ToListMappable for DataDmsEndpointKinesisSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointKinesisSettingsEl {}
-
 impl BuildDataDmsEndpointKinesisSettingsEl {
     pub fn build(self) -> DataDmsEndpointKinesisSettingsEl {
         DataDmsEndpointKinesisSettingsEl {
@@ -1180,12 +1025,10 @@ impl BuildDataDmsEndpointKinesisSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointKinesisSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointKinesisSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointKinesisSettingsElRef {
         DataDmsEndpointKinesisSettingsElRef {
@@ -1194,12 +1037,10 @@ impl Ref for DataDmsEndpointKinesisSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointKinesisSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `include_control_details` after provisioning.\n"]
     pub fn include_control_details(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1207,7 +1048,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.include_control_details", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_null_and_empty` after provisioning.\n"]
     pub fn include_null_and_empty(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1215,7 +1055,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.include_null_and_empty", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_partition_value` after provisioning.\n"]
     pub fn include_partition_value(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1223,7 +1062,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.include_partition_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_table_alter_operations` after provisioning.\n"]
     pub fn include_table_alter_operations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1231,7 +1069,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.include_table_alter_operations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_transaction_details` after provisioning.\n"]
     pub fn include_transaction_details(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1239,7 +1076,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.include_transaction_details", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1247,7 +1083,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.message_format", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `partition_include_schema_table` after provisioning.\n"]
     pub fn partition_include_schema_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1255,7 +1090,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.partition_include_schema_table", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1263,12 +1097,10 @@ impl DataDmsEndpointKinesisSettingsElRef {
             format!("{}.service_access_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `stream_arn` after provisioning.\n"]
     pub fn stream_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.stream_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_large_integer_value` after provisioning.\n"]
     pub fn use_large_integer_value(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1277,7 +1109,6 @@ impl DataDmsEndpointKinesisSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointMongodbSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1293,48 +1124,40 @@ pub struct DataDmsEndpointMongodbSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     nesting_level: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointMongodbSettingsEl {
     #[doc = "Set the field `auth_mechanism`.\n"]
     pub fn set_auth_mechanism(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_mechanism = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_source`.\n"]
     pub fn set_auth_source(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_source = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_type`.\n"]
     pub fn set_auth_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `docs_to_investigate`.\n"]
     pub fn set_docs_to_investigate(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.docs_to_investigate = Some(v.into());
         self
     }
-
     #[doc = "Set the field `extract_doc_id`.\n"]
     pub fn set_extract_doc_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.extract_doc_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `nesting_level`.\n"]
     pub fn set_nesting_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.nesting_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointMongodbSettingsEl {
     type O = BlockAssignable<DataDmsEndpointMongodbSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1343,9 +1166,7 @@ impl ToListMappable for DataDmsEndpointMongodbSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointMongodbSettingsEl {}
-
 impl BuildDataDmsEndpointMongodbSettingsEl {
     pub fn build(self) -> DataDmsEndpointMongodbSettingsEl {
         DataDmsEndpointMongodbSettingsEl {
@@ -1358,12 +1179,10 @@ impl BuildDataDmsEndpointMongodbSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointMongodbSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointMongodbSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointMongodbSettingsElRef {
         DataDmsEndpointMongodbSettingsElRef {
@@ -1372,12 +1191,10 @@ impl Ref for DataDmsEndpointMongodbSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointMongodbSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `auth_mechanism` after provisioning.\n"]
     pub fn auth_mechanism(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1385,17 +1202,14 @@ impl DataDmsEndpointMongodbSettingsElRef {
             format!("{}.auth_mechanism", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `auth_source` after provisioning.\n"]
     pub fn auth_source(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.auth_source", self.base))
     }
-
     #[doc = "Get a reference to the value of field `auth_type` after provisioning.\n"]
     pub fn auth_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.auth_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `docs_to_investigate` after provisioning.\n"]
     pub fn docs_to_investigate(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1403,7 +1217,6 @@ impl DataDmsEndpointMongodbSettingsElRef {
             format!("{}.docs_to_investigate", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `extract_doc_id` after provisioning.\n"]
     pub fn extract_doc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1411,7 +1224,6 @@ impl DataDmsEndpointMongodbSettingsElRef {
             format!("{}.extract_doc_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `nesting_level` after provisioning.\n"]
     pub fn nesting_level(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1420,7 +1232,6 @@ impl DataDmsEndpointMongodbSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointMysqlSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1444,72 +1255,60 @@ pub struct DataDmsEndpointMysqlSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_db_type: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointMysqlSettingsEl {
     #[doc = "Set the field `after_connect_script`.\n"]
     pub fn set_after_connect_script(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.after_connect_script = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authentication_method`.\n"]
     pub fn set_authentication_method(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.authentication_method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `clean_source_metadata_on_mismatch`.\n"]
     pub fn set_clean_source_metadata_on_mismatch(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.clean_source_metadata_on_mismatch = Some(v.into());
         self
     }
-
     #[doc = "Set the field `events_poll_interval`.\n"]
     pub fn set_events_poll_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.events_poll_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execute_timeout`.\n"]
     pub fn set_execute_timeout(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.execute_timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_file_size`.\n"]
     pub fn set_max_file_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_file_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parallel_load_threads`.\n"]
     pub fn set_parallel_load_threads(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.parallel_load_threads = Some(v.into());
         self
     }
-
     #[doc = "Set the field `server_timezone`.\n"]
     pub fn set_server_timezone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.server_timezone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_db_type`.\n"]
     pub fn set_target_db_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_db_type = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointMysqlSettingsEl {
     type O = BlockAssignable<DataDmsEndpointMysqlSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1518,9 +1317,7 @@ impl ToListMappable for DataDmsEndpointMysqlSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointMysqlSettingsEl {}
-
 impl BuildDataDmsEndpointMysqlSettingsEl {
     pub fn build(self) -> DataDmsEndpointMysqlSettingsEl {
         DataDmsEndpointMysqlSettingsEl {
@@ -1537,12 +1334,10 @@ impl BuildDataDmsEndpointMysqlSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointMysqlSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointMysqlSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointMysqlSettingsElRef {
         DataDmsEndpointMysqlSettingsElRef {
@@ -1551,12 +1346,10 @@ impl Ref for DataDmsEndpointMysqlSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointMysqlSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `after_connect_script` after provisioning.\n"]
     pub fn after_connect_script(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1564,7 +1357,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.after_connect_script", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `authentication_method` after provisioning.\n"]
     pub fn authentication_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1572,7 +1364,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.authentication_method", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `clean_source_metadata_on_mismatch` after provisioning.\n"]
     pub fn clean_source_metadata_on_mismatch(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1580,7 +1371,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.clean_source_metadata_on_mismatch", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `events_poll_interval` after provisioning.\n"]
     pub fn events_poll_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1588,7 +1378,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.events_poll_interval", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execute_timeout` after provisioning.\n"]
     pub fn execute_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1596,7 +1385,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.execute_timeout", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_file_size` after provisioning.\n"]
     pub fn max_file_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1604,7 +1392,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.max_file_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `parallel_load_threads` after provisioning.\n"]
     pub fn parallel_load_threads(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1612,7 +1399,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.parallel_load_threads", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_timezone` after provisioning.\n"]
     pub fn server_timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1620,7 +1406,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.server_timezone", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1628,7 +1413,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
             format!("{}.service_access_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_db_type` after provisioning.\n"]
     pub fn target_db_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1637,7 +1421,6 @@ impl DataDmsEndpointMysqlSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointPostgresSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1677,120 +1460,100 @@ pub struct DataDmsEndpointPostgresSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     slot_name: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointPostgresSettingsEl {
     #[doc = "Set the field `after_connect_script`.\n"]
     pub fn set_after_connect_script(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.after_connect_script = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authentication_method`.\n"]
     pub fn set_authentication_method(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.authentication_method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `babelfish_database_name`.\n"]
     pub fn set_babelfish_database_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.babelfish_database_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `capture_ddls`.\n"]
     pub fn set_capture_ddls(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.capture_ddls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `database_mode`.\n"]
     pub fn set_database_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.database_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ddl_artifacts_schema`.\n"]
     pub fn set_ddl_artifacts_schema(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ddl_artifacts_schema = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execute_timeout`.\n"]
     pub fn set_execute_timeout(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.execute_timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `fail_tasks_on_lob_truncation`.\n"]
     pub fn set_fail_tasks_on_lob_truncation(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.fail_tasks_on_lob_truncation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `heartbeat_enable`.\n"]
     pub fn set_heartbeat_enable(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.heartbeat_enable = Some(v.into());
         self
     }
-
     #[doc = "Set the field `heartbeat_frequency`.\n"]
     pub fn set_heartbeat_frequency(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.heartbeat_frequency = Some(v.into());
         self
     }
-
     #[doc = "Set the field `heartbeat_schema`.\n"]
     pub fn set_heartbeat_schema(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.heartbeat_schema = Some(v.into());
         self
     }
-
     #[doc = "Set the field `map_boolean_as_boolean`.\n"]
     pub fn set_map_boolean_as_boolean(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.map_boolean_as_boolean = Some(v.into());
         self
     }
-
     #[doc = "Set the field `map_jsonb_as_clob`.\n"]
     pub fn set_map_jsonb_as_clob(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.map_jsonb_as_clob = Some(v.into());
         self
     }
-
     #[doc = "Set the field `map_long_varchar_as`.\n"]
     pub fn set_map_long_varchar_as(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.map_long_varchar_as = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_file_size`.\n"]
     pub fn set_max_file_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_file_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `plugin_name`.\n"]
     pub fn set_plugin_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.plugin_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `slot_name`.\n"]
     pub fn set_slot_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.slot_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointPostgresSettingsEl {
     type O = BlockAssignable<DataDmsEndpointPostgresSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1799,9 +1562,7 @@ impl ToListMappable for DataDmsEndpointPostgresSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointPostgresSettingsEl {}
-
 impl BuildDataDmsEndpointPostgresSettingsEl {
     pub fn build(self) -> DataDmsEndpointPostgresSettingsEl {
         DataDmsEndpointPostgresSettingsEl {
@@ -1826,12 +1587,10 @@ impl BuildDataDmsEndpointPostgresSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointPostgresSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointPostgresSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointPostgresSettingsElRef {
         DataDmsEndpointPostgresSettingsElRef {
@@ -1840,12 +1599,10 @@ impl Ref for DataDmsEndpointPostgresSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointPostgresSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `after_connect_script` after provisioning.\n"]
     pub fn after_connect_script(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1853,7 +1610,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.after_connect_script", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `authentication_method` after provisioning.\n"]
     pub fn authentication_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1861,7 +1617,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.authentication_method", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `babelfish_database_name` after provisioning.\n"]
     pub fn babelfish_database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1869,12 +1624,10 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.babelfish_database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `capture_ddls` after provisioning.\n"]
     pub fn capture_ddls(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.capture_ddls", self.base))
     }
-
     #[doc = "Get a reference to the value of field `database_mode` after provisioning.\n"]
     pub fn database_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1882,7 +1635,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.database_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ddl_artifacts_schema` after provisioning.\n"]
     pub fn ddl_artifacts_schema(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1890,7 +1642,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.ddl_artifacts_schema", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execute_timeout` after provisioning.\n"]
     pub fn execute_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1898,7 +1649,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.execute_timeout", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `fail_tasks_on_lob_truncation` after provisioning.\n"]
     pub fn fail_tasks_on_lob_truncation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1906,7 +1656,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.fail_tasks_on_lob_truncation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `heartbeat_enable` after provisioning.\n"]
     pub fn heartbeat_enable(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1914,7 +1663,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.heartbeat_enable", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `heartbeat_frequency` after provisioning.\n"]
     pub fn heartbeat_frequency(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1922,7 +1670,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.heartbeat_frequency", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `heartbeat_schema` after provisioning.\n"]
     pub fn heartbeat_schema(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1930,7 +1677,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.heartbeat_schema", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `map_boolean_as_boolean` after provisioning.\n"]
     pub fn map_boolean_as_boolean(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1938,7 +1684,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.map_boolean_as_boolean", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `map_jsonb_as_clob` after provisioning.\n"]
     pub fn map_jsonb_as_clob(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1946,7 +1691,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.map_jsonb_as_clob", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `map_long_varchar_as` after provisioning.\n"]
     pub fn map_long_varchar_as(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1954,7 +1698,6 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.map_long_varchar_as", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_file_size` after provisioning.\n"]
     pub fn max_file_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1962,12 +1705,10 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.max_file_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `plugin_name` after provisioning.\n"]
     pub fn plugin_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.plugin_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1975,13 +1716,11 @@ impl DataDmsEndpointPostgresSettingsElRef {
             format!("{}.service_access_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `slot_name` after provisioning.\n"]
     pub fn slot_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.slot_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointRedisSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1999,54 +1738,45 @@ pub struct DataDmsEndpointRedisSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ssl_security_protocol: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointRedisSettingsEl {
     #[doc = "Set the field `auth_password`.\n"]
     pub fn set_auth_password(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_password = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_type`.\n"]
     pub fn set_auth_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_user_name`.\n"]
     pub fn set_auth_user_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_user_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `server_name`.\n"]
     pub fn set_server_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.server_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_ca_certificate_arn`.\n"]
     pub fn set_ssl_ca_certificate_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_ca_certificate_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ssl_security_protocol`.\n"]
     pub fn set_ssl_security_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ssl_security_protocol = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointRedisSettingsEl {
     type O = BlockAssignable<DataDmsEndpointRedisSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2055,9 +1785,7 @@ impl ToListMappable for DataDmsEndpointRedisSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointRedisSettingsEl {}
-
 impl BuildDataDmsEndpointRedisSettingsEl {
     pub fn build(self) -> DataDmsEndpointRedisSettingsEl {
         DataDmsEndpointRedisSettingsEl {
@@ -2071,12 +1799,10 @@ impl BuildDataDmsEndpointRedisSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointRedisSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointRedisSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointRedisSettingsElRef {
         DataDmsEndpointRedisSettingsElRef {
@@ -2085,12 +1811,10 @@ impl Ref for DataDmsEndpointRedisSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointRedisSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `auth_password` after provisioning.\n"]
     pub fn auth_password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2098,12 +1822,10 @@ impl DataDmsEndpointRedisSettingsElRef {
             format!("{}.auth_password", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `auth_type` after provisioning.\n"]
     pub fn auth_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.auth_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `auth_user_name` after provisioning.\n"]
     pub fn auth_user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2111,17 +1833,14 @@ impl DataDmsEndpointRedisSettingsElRef {
             format!("{}.auth_user_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
     }
-
     #[doc = "Get a reference to the value of field `server_name` after provisioning.\n"]
     pub fn server_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.server_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `ssl_ca_certificate_arn` after provisioning.\n"]
     pub fn ssl_ca_certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2129,7 +1848,6 @@ impl DataDmsEndpointRedisSettingsElRef {
             format!("{}.ssl_ca_certificate_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssl_security_protocol` after provisioning.\n"]
     pub fn ssl_security_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2138,7 +1856,6 @@ impl DataDmsEndpointRedisSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointRedshiftSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2152,26 +1869,22 @@ pub struct DataDmsEndpointRedshiftSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     service_access_role_arn: Option<PrimField<String>>,
 }
-
 impl DataDmsEndpointRedshiftSettingsEl {
     #[doc = "Set the field `bucket_folder`.\n"]
     pub fn set_bucket_folder(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_folder = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_name`.\n"]
     pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encryption_mode`.\n"]
     pub fn set_encryption_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.encryption_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `server_side_encryption_kms_key_id`.\n"]
     pub fn set_server_side_encryption_kms_key_id(
         mut self,
@@ -2180,17 +1893,14 @@ impl DataDmsEndpointRedshiftSettingsEl {
         self.server_side_encryption_kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointRedshiftSettingsEl {
     type O = BlockAssignable<DataDmsEndpointRedshiftSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2199,9 +1909,7 @@ impl ToListMappable for DataDmsEndpointRedshiftSettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointRedshiftSettingsEl {}
-
 impl BuildDataDmsEndpointRedshiftSettingsEl {
     pub fn build(self) -> DataDmsEndpointRedshiftSettingsEl {
         DataDmsEndpointRedshiftSettingsEl {
@@ -2213,12 +1921,10 @@ impl BuildDataDmsEndpointRedshiftSettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointRedshiftSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointRedshiftSettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointRedshiftSettingsElRef {
         DataDmsEndpointRedshiftSettingsElRef {
@@ -2227,12 +1933,10 @@ impl Ref for DataDmsEndpointRedshiftSettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointRedshiftSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_folder` after provisioning.\n"]
     pub fn bucket_folder(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2240,12 +1944,10 @@ impl DataDmsEndpointRedshiftSettingsElRef {
             format!("{}.bucket_folder", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `encryption_mode` after provisioning.\n"]
     pub fn encryption_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2253,7 +1955,6 @@ impl DataDmsEndpointRedshiftSettingsElRef {
             format!("{}.encryption_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption_kms_key_id` after provisioning.\n"]
     pub fn server_side_encryption_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2261,7 +1962,6 @@ impl DataDmsEndpointRedshiftSettingsElRef {
             format!("{}.server_side_encryption_kms_key_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2270,7 +1970,6 @@ impl DataDmsEndpointRedshiftSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataDmsEndpointS3SettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2352,212 +2051,177 @@ pub struct DataDmsEndpointS3SettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     use_task_start_time_for_full_load_timestamp: Option<PrimField<bool>>,
 }
-
 impl DataDmsEndpointS3SettingsEl {
     #[doc = "Set the field `add_column_name`.\n"]
     pub fn set_add_column_name(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.add_column_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_folder`.\n"]
     pub fn set_bucket_folder(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_folder = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_name`.\n"]
     pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `canned_acl_for_objects`.\n"]
     pub fn set_canned_acl_for_objects(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.canned_acl_for_objects = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cdc_inserts_and_updates`.\n"]
     pub fn set_cdc_inserts_and_updates(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.cdc_inserts_and_updates = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cdc_inserts_only`.\n"]
     pub fn set_cdc_inserts_only(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.cdc_inserts_only = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cdc_max_batch_interval`.\n"]
     pub fn set_cdc_max_batch_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.cdc_max_batch_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cdc_min_file_size`.\n"]
     pub fn set_cdc_min_file_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.cdc_min_file_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cdc_path`.\n"]
     pub fn set_cdc_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cdc_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `compression_type`.\n"]
     pub fn set_compression_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.compression_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `csv_delimiter`.\n"]
     pub fn set_csv_delimiter(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.csv_delimiter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `csv_no_sup_value`.\n"]
     pub fn set_csv_no_sup_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.csv_no_sup_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `csv_null_value`.\n"]
     pub fn set_csv_null_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.csv_null_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `csv_row_delimiter`.\n"]
     pub fn set_csv_row_delimiter(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.csv_row_delimiter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `data_format`.\n"]
     pub fn set_data_format(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_format = Some(v.into());
         self
     }
-
     #[doc = "Set the field `data_page_size`.\n"]
     pub fn set_data_page_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.data_page_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_partition_delimiter`.\n"]
     pub fn set_date_partition_delimiter(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.date_partition_delimiter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_partition_enabled`.\n"]
     pub fn set_date_partition_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.date_partition_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_partition_sequence`.\n"]
     pub fn set_date_partition_sequence(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.date_partition_sequence = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dict_page_size_limit`.\n"]
     pub fn set_dict_page_size_limit(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.dict_page_size_limit = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_statistics`.\n"]
     pub fn set_enable_statistics(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_statistics = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encoding_type`.\n"]
     pub fn set_encoding_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.encoding_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encryption_mode`.\n"]
     pub fn set_encryption_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.encryption_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `external_table_definition`.\n"]
     pub fn set_external_table_definition(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.external_table_definition = Some(v.into());
         self
     }
-
     #[doc = "Set the field `glue_catalog_generation`.\n"]
     pub fn set_glue_catalog_generation(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.glue_catalog_generation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ignore_header_rows`.\n"]
     pub fn set_ignore_header_rows(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.ignore_header_rows = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ignore_headers_row`.\n"]
     pub fn set_ignore_headers_row(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.ignore_headers_row = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_op_for_full_load`.\n"]
     pub fn set_include_op_for_full_load(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_op_for_full_load = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_file_size`.\n"]
     pub fn set_max_file_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_file_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parquet_timestamp_in_millisecond`.\n"]
     pub fn set_parquet_timestamp_in_millisecond(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.parquet_timestamp_in_millisecond = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parquet_version`.\n"]
     pub fn set_parquet_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.parquet_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preserve_transactions`.\n"]
     pub fn set_preserve_transactions(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.preserve_transactions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rfc_4180`.\n"]
     pub fn set_rfc_4180(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.rfc_4180 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `row_group_length`.\n"]
     pub fn set_row_group_length(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.row_group_length = Some(v.into());
         self
     }
-
     #[doc = "Set the field `server_side_encryption_kms_key_id`.\n"]
     pub fn set_server_side_encryption_kms_key_id(
         mut self,
@@ -2566,25 +2230,21 @@ impl DataDmsEndpointS3SettingsEl {
         self.server_side_encryption_kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_access_role_arn`.\n"]
     pub fn set_service_access_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_access_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timestamp_column_name`.\n"]
     pub fn set_timestamp_column_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.timestamp_column_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_csv_no_sup_value`.\n"]
     pub fn set_use_csv_no_sup_value(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.use_csv_no_sup_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_task_start_time_for_full_load_timestamp`.\n"]
     pub fn set_use_task_start_time_for_full_load_timestamp(
         mut self,
@@ -2594,10 +2254,8 @@ impl DataDmsEndpointS3SettingsEl {
         self
     }
 }
-
 impl ToListMappable for DataDmsEndpointS3SettingsEl {
     type O = BlockAssignable<DataDmsEndpointS3SettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2606,9 +2264,7 @@ impl ToListMappable for DataDmsEndpointS3SettingsEl {
         })
     }
 }
-
 pub struct BuildDataDmsEndpointS3SettingsEl {}
-
 impl BuildDataDmsEndpointS3SettingsEl {
     pub fn build(self) -> DataDmsEndpointS3SettingsEl {
         DataDmsEndpointS3SettingsEl {
@@ -2654,12 +2310,10 @@ impl BuildDataDmsEndpointS3SettingsEl {
         }
     }
 }
-
 pub struct DataDmsEndpointS3SettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataDmsEndpointS3SettingsElRef {
     fn new(shared: StackShared, base: String) -> DataDmsEndpointS3SettingsElRef {
         DataDmsEndpointS3SettingsElRef {
@@ -2668,12 +2322,10 @@ impl Ref for DataDmsEndpointS3SettingsElRef {
         }
     }
 }
-
 impl DataDmsEndpointS3SettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `add_column_name` after provisioning.\n"]
     pub fn add_column_name(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2681,7 +2333,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.add_column_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_folder` after provisioning.\n"]
     pub fn bucket_folder(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2689,12 +2340,10 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.bucket_folder", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `canned_acl_for_objects` after provisioning.\n"]
     pub fn canned_acl_for_objects(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2702,7 +2351,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.canned_acl_for_objects", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cdc_inserts_and_updates` after provisioning.\n"]
     pub fn cdc_inserts_and_updates(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2710,7 +2358,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.cdc_inserts_and_updates", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cdc_inserts_only` after provisioning.\n"]
     pub fn cdc_inserts_only(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2718,7 +2365,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.cdc_inserts_only", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cdc_max_batch_interval` after provisioning.\n"]
     pub fn cdc_max_batch_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2726,7 +2372,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.cdc_max_batch_interval", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cdc_min_file_size` after provisioning.\n"]
     pub fn cdc_min_file_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2734,12 +2379,10 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.cdc_min_file_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cdc_path` after provisioning.\n"]
     pub fn cdc_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cdc_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `compression_type` after provisioning.\n"]
     pub fn compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2747,7 +2390,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_delimiter` after provisioning.\n"]
     pub fn csv_delimiter(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2755,7 +2397,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.csv_delimiter", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_no_sup_value` after provisioning.\n"]
     pub fn csv_no_sup_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2763,7 +2404,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.csv_no_sup_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_null_value` after provisioning.\n"]
     pub fn csv_null_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2771,7 +2411,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.csv_null_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_row_delimiter` after provisioning.\n"]
     pub fn csv_row_delimiter(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2779,12 +2418,10 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.csv_row_delimiter", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_format` after provisioning.\n"]
     pub fn data_format(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data_format", self.base))
     }
-
     #[doc = "Get a reference to the value of field `data_page_size` after provisioning.\n"]
     pub fn data_page_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2792,7 +2429,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.data_page_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_partition_delimiter` after provisioning.\n"]
     pub fn date_partition_delimiter(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2800,7 +2436,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.date_partition_delimiter", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_partition_enabled` after provisioning.\n"]
     pub fn date_partition_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2808,7 +2443,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.date_partition_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_partition_sequence` after provisioning.\n"]
     pub fn date_partition_sequence(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2816,7 +2450,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.date_partition_sequence", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dict_page_size_limit` after provisioning.\n"]
     pub fn dict_page_size_limit(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2824,7 +2457,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.dict_page_size_limit", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_statistics` after provisioning.\n"]
     pub fn enable_statistics(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2832,7 +2464,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.enable_statistics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `encoding_type` after provisioning.\n"]
     pub fn encoding_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2840,7 +2471,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.encoding_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_mode` after provisioning.\n"]
     pub fn encryption_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2848,7 +2478,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.encryption_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_table_definition` after provisioning.\n"]
     pub fn external_table_definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2856,7 +2485,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.external_table_definition", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `glue_catalog_generation` after provisioning.\n"]
     pub fn glue_catalog_generation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2864,7 +2492,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.glue_catalog_generation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ignore_header_rows` after provisioning.\n"]
     pub fn ignore_header_rows(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2872,7 +2499,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.ignore_header_rows", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ignore_headers_row` after provisioning.\n"]
     pub fn ignore_headers_row(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2880,7 +2506,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.ignore_headers_row", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_op_for_full_load` after provisioning.\n"]
     pub fn include_op_for_full_load(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2888,7 +2513,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.include_op_for_full_load", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_file_size` after provisioning.\n"]
     pub fn max_file_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2896,7 +2520,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.max_file_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `parquet_timestamp_in_millisecond` after provisioning.\n"]
     pub fn parquet_timestamp_in_millisecond(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2904,7 +2527,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.parquet_timestamp_in_millisecond", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `parquet_version` after provisioning.\n"]
     pub fn parquet_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2912,7 +2534,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.parquet_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_transactions` after provisioning.\n"]
     pub fn preserve_transactions(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2920,12 +2541,10 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.preserve_transactions", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rfc_4180` after provisioning.\n"]
     pub fn rfc_4180(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.rfc_4180", self.base))
     }
-
     #[doc = "Get a reference to the value of field `row_group_length` after provisioning.\n"]
     pub fn row_group_length(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2933,7 +2552,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.row_group_length", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption_kms_key_id` after provisioning.\n"]
     pub fn server_side_encryption_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2941,7 +2559,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.server_side_encryption_kms_key_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_access_role_arn` after provisioning.\n"]
     pub fn service_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2949,7 +2566,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.service_access_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timestamp_column_name` after provisioning.\n"]
     pub fn timestamp_column_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2957,7 +2573,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.timestamp_column_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `use_csv_no_sup_value` after provisioning.\n"]
     pub fn use_csv_no_sup_value(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2965,7 +2580,6 @@ impl DataDmsEndpointS3SettingsElRef {
             format!("{}.use_csv_no_sup_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `use_task_start_time_for_full_load_timestamp` after provisioning.\n"]
     pub fn use_task_start_time_for_full_load_timestamp(&self) -> PrimExpr<bool> {
         PrimExpr::new(

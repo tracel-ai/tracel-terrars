@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct InvoicingInvoiceUnitData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct InvoicingInvoiceUnitData {
     timeouts: Option<InvoicingInvoiceUnitTimeoutsEl>,
     dynamic: InvoicingInvoiceUnitDynamic,
 }
-
 struct InvoicingInvoiceUnit_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<InvoicingInvoiceUnitData>,
 }
-
 #[derive(Clone)]
 pub struct InvoicingInvoiceUnit(Rc<InvoicingInvoiceUnit_>);
-
 impl InvoicingInvoiceUnit {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl InvoicingInvoiceUnit {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl InvoicingInvoiceUnit {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,31 +97,26 @@ impl InvoicingInvoiceUnit {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tax_inheritance_disabled`.\n"]
     pub fn set_tax_inheritance_disabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().tax_inheritance_disabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(self, v: impl Into<BlockAssignable<InvoicingInvoiceUnitRuleEl>>) -> Self {
         match v.into() {
@@ -146,18 +129,15 @@ impl InvoicingInvoiceUnit {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<InvoicingInvoiceUnitTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -165,7 +145,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invoice_receiver` after provisioning.\n"]
     pub fn invoice_receiver(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -173,7 +152,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.invoice_receiver", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +159,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +166,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +173,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -205,7 +180,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -213,7 +187,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tax_inheritance_disabled` after provisioning.\n"]
     pub fn tax_inheritance_disabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -221,7 +194,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.tax_inheritance_disabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<InvoicingInvoiceUnitRuleElRef> {
         ListRef::new(
@@ -229,7 +201,6 @@ impl InvoicingInvoiceUnit {
             format!("{}.rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> InvoicingInvoiceUnitTimeoutsElRef {
         InvoicingInvoiceUnitTimeoutsElRef::new(
@@ -238,7 +209,6 @@ impl InvoicingInvoiceUnit {
         )
     }
 }
-
 impl Referable for InvoicingInvoiceUnit {
     fn extract_ref(&self) -> String {
         format!(
@@ -248,32 +218,25 @@ impl Referable for InvoicingInvoiceUnit {
         )
     }
 }
-
 impl Resource for InvoicingInvoiceUnit {}
-
 impl ToListMappable for InvoicingInvoiceUnit {
     type O = ListRef<InvoicingInvoiceUnitRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for InvoicingInvoiceUnit_ {
     fn extract_resource_type(&self) -> String {
         "aws_invoicing_invoice_unit".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildInvoicingInvoiceUnit {
     pub tf_id: String,
     #[doc = ""]
@@ -281,7 +244,6 @@ pub struct BuildInvoicingInvoiceUnit {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildInvoicingInvoiceUnit {
     pub fn build(self, stack: &mut Stack) -> InvoicingInvoiceUnit {
         let out = InvoicingInvoiceUnit(Rc::new(InvoicingInvoiceUnit_ {
@@ -307,32 +269,26 @@ impl BuildInvoicingInvoiceUnit {
         out
     }
 }
-
 pub struct InvoicingInvoiceUnitRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InvoicingInvoiceUnitRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl InvoicingInvoiceUnitRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -340,7 +296,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invoice_receiver` after provisioning.\n"]
     pub fn invoice_receiver(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,7 +303,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.invoice_receiver", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -356,7 +310,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -364,7 +317,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -372,7 +324,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -380,7 +331,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -388,7 +338,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tax_inheritance_disabled` after provisioning.\n"]
     pub fn tax_inheritance_disabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -396,7 +345,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.tax_inheritance_disabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<InvoicingInvoiceUnitRuleElRef> {
         ListRef::new(
@@ -404,7 +352,6 @@ impl InvoicingInvoiceUnitRef {
             format!("{}.rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> InvoicingInvoiceUnitTimeoutsElRef {
         InvoicingInvoiceUnitTimeoutsElRef::new(
@@ -413,17 +360,13 @@ impl InvoicingInvoiceUnitRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct InvoicingInvoiceUnitRuleEl {
     linked_accounts: SetField<PrimField<String>>,
 }
-
 impl InvoicingInvoiceUnitRuleEl {}
-
 impl ToListMappable for InvoicingInvoiceUnitRuleEl {
     type O = BlockAssignable<InvoicingInvoiceUnitRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -432,12 +375,10 @@ impl ToListMappable for InvoicingInvoiceUnitRuleEl {
         })
     }
 }
-
 pub struct BuildInvoicingInvoiceUnitRuleEl {
     #[doc = ""]
     pub linked_accounts: SetField<PrimField<String>>,
 }
-
 impl BuildInvoicingInvoiceUnitRuleEl {
     pub fn build(self) -> InvoicingInvoiceUnitRuleEl {
         InvoicingInvoiceUnitRuleEl {
@@ -445,12 +386,10 @@ impl BuildInvoicingInvoiceUnitRuleEl {
         }
     }
 }
-
 pub struct InvoicingInvoiceUnitRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InvoicingInvoiceUnitRuleElRef {
     fn new(shared: StackShared, base: String) -> InvoicingInvoiceUnitRuleElRef {
         InvoicingInvoiceUnitRuleElRef {
@@ -459,12 +398,10 @@ impl Ref for InvoicingInvoiceUnitRuleElRef {
         }
     }
 }
-
 impl InvoicingInvoiceUnitRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `linked_accounts` after provisioning.\n"]
     pub fn linked_accounts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -473,7 +410,6 @@ impl InvoicingInvoiceUnitRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct InvoicingInvoiceUnitTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -483,30 +419,25 @@ pub struct InvoicingInvoiceUnitTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl InvoicingInvoiceUnitTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for InvoicingInvoiceUnitTimeoutsEl {
     type O = BlockAssignable<InvoicingInvoiceUnitTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -515,9 +446,7 @@ impl ToListMappable for InvoicingInvoiceUnitTimeoutsEl {
         })
     }
 }
-
 pub struct BuildInvoicingInvoiceUnitTimeoutsEl {}
-
 impl BuildInvoicingInvoiceUnitTimeoutsEl {
     pub fn build(self) -> InvoicingInvoiceUnitTimeoutsEl {
         InvoicingInvoiceUnitTimeoutsEl {
@@ -527,12 +456,10 @@ impl BuildInvoicingInvoiceUnitTimeoutsEl {
         }
     }
 }
-
 pub struct InvoicingInvoiceUnitTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InvoicingInvoiceUnitTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> InvoicingInvoiceUnitTimeoutsElRef {
         InvoicingInvoiceUnitTimeoutsElRef {
@@ -541,28 +468,23 @@ impl Ref for InvoicingInvoiceUnitTimeoutsElRef {
         }
     }
 }
-
 impl InvoicingInvoiceUnitTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct InvoicingInvoiceUnitDynamic {
     rule: Option<DynamicBlock<InvoicingInvoiceUnitRuleEl>>,

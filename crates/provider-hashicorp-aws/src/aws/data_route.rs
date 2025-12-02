@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataRouteData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -46,127 +45,105 @@ struct DataRouteData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<DataRouteTimeoutsEl>,
 }
-
 struct DataRoute_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataRouteData>,
 }
-
 #[derive(Clone)]
 pub struct DataRoute(Rc<DataRoute_>);
-
 impl DataRoute {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `carrier_gateway_id`.\n"]
     pub fn set_carrier_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().carrier_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `core_network_arn`.\n"]
     pub fn set_core_network_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().core_network_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_cidr_block`.\n"]
     pub fn set_destination_cidr_block(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().destination_cidr_block = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_ipv6_cidr_block`.\n"]
     pub fn set_destination_ipv6_cidr_block(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().destination_ipv6_cidr_block = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_prefix_list_id`.\n"]
     pub fn set_destination_prefix_list_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().destination_prefix_list_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `egress_only_gateway_id`.\n"]
     pub fn set_egress_only_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().egress_only_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gateway_id`.\n"]
     pub fn set_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_id`.\n"]
     pub fn set_instance_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().instance_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `local_gateway_id`.\n"]
     pub fn set_local_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().local_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `nat_gateway_id`.\n"]
     pub fn set_nat_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().nat_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `network_interface_id`.\n"]
     pub fn set_network_interface_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().network_interface_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transit_gateway_id`.\n"]
     pub fn set_transit_gateway_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().transit_gateway_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_peering_connection_id`.\n"]
     pub fn set_vpc_peering_connection_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().vpc_peering_connection_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataRouteTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `carrier_gateway_id` after provisioning.\n"]
     pub fn carrier_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +151,6 @@ impl DataRoute {
             format!("{}.carrier_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +158,6 @@ impl DataRoute {
             format!("{}.core_network_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_cidr_block` after provisioning.\n"]
     pub fn destination_cidr_block(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +165,6 @@ impl DataRoute {
             format!("{}.destination_cidr_block", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_ipv6_cidr_block` after provisioning.\n"]
     pub fn destination_ipv6_cidr_block(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +172,6 @@ impl DataRoute {
             format!("{}.destination_ipv6_cidr_block", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_prefix_list_id` after provisioning.\n"]
     pub fn destination_prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +179,6 @@ impl DataRoute {
             format!("{}.destination_prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `egress_only_gateway_id` after provisioning.\n"]
     pub fn egress_only_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +186,6 @@ impl DataRoute {
             format!("{}.egress_only_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,12 +193,10 @@ impl DataRoute {
             format!("{}.gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +204,6 @@ impl DataRoute {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `local_gateway_id` after provisioning.\n"]
     pub fn local_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +211,6 @@ impl DataRoute {
             format!("{}.local_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nat_gateway_id` after provisioning.\n"]
     pub fn nat_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,7 +218,6 @@ impl DataRoute {
             format!("{}.nat_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -259,7 +225,6 @@ impl DataRoute {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +232,6 @@ impl DataRoute {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_id` after provisioning.\n"]
     pub fn route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,7 +239,6 @@ impl DataRoute {
             format!("{}.route_table_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -283,7 +246,6 @@ impl DataRoute {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_peering_connection_id` after provisioning.\n"]
     pub fn vpc_peering_connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +253,6 @@ impl DataRoute {
             format!("{}.vpc_peering_connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataRouteTimeoutsElRef {
         DataRouteTimeoutsElRef::new(
@@ -300,7 +261,6 @@ impl DataRoute {
         )
     }
 }
-
 impl Referable for DataRoute {
     fn extract_ref(&self) -> String {
         format!(
@@ -310,38 +270,30 @@ impl Referable for DataRoute {
         )
     }
 }
-
 impl Datasource for DataRoute {}
-
 impl ToListMappable for DataRoute {
     type O = ListRef<DataRouteRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataRoute_ {
     fn extract_datasource_type(&self) -> String {
         "aws_route".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataRoute {
     pub tf_id: String,
     #[doc = ""]
     pub route_table_id: PrimField<String>,
 }
-
 impl BuildDataRoute {
     pub fn build(self, stack: &mut Stack) -> DataRoute {
         let out = DataRoute(Rc::new(DataRoute_ {
@@ -374,27 +326,22 @@ impl BuildDataRoute {
         out
     }
 }
-
 pub struct DataRouteRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRouteRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataRouteRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `carrier_gateway_id` after provisioning.\n"]
     pub fn carrier_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +349,6 @@ impl DataRouteRef {
             format!("{}.carrier_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_arn` after provisioning.\n"]
     pub fn core_network_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +356,6 @@ impl DataRouteRef {
             format!("{}.core_network_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_cidr_block` after provisioning.\n"]
     pub fn destination_cidr_block(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -418,7 +363,6 @@ impl DataRouteRef {
             format!("{}.destination_cidr_block", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_ipv6_cidr_block` after provisioning.\n"]
     pub fn destination_ipv6_cidr_block(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -426,7 +370,6 @@ impl DataRouteRef {
             format!("{}.destination_ipv6_cidr_block", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_prefix_list_id` after provisioning.\n"]
     pub fn destination_prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -434,7 +377,6 @@ impl DataRouteRef {
             format!("{}.destination_prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `egress_only_gateway_id` after provisioning.\n"]
     pub fn egress_only_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -442,7 +384,6 @@ impl DataRouteRef {
             format!("{}.egress_only_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -450,12 +391,10 @@ impl DataRouteRef {
             format!("{}.gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +402,6 @@ impl DataRouteRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `local_gateway_id` after provisioning.\n"]
     pub fn local_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +409,6 @@ impl DataRouteRef {
             format!("{}.local_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nat_gateway_id` after provisioning.\n"]
     pub fn nat_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +416,6 @@ impl DataRouteRef {
             format!("{}.nat_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -487,7 +423,6 @@ impl DataRouteRef {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -495,7 +430,6 @@ impl DataRouteRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_id` after provisioning.\n"]
     pub fn route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -503,7 +437,6 @@ impl DataRouteRef {
             format!("{}.route_table_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -511,7 +444,6 @@ impl DataRouteRef {
             format!("{}.transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_peering_connection_id` after provisioning.\n"]
     pub fn vpc_peering_connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -519,7 +451,6 @@ impl DataRouteRef {
             format!("{}.vpc_peering_connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataRouteTimeoutsElRef {
         DataRouteTimeoutsElRef::new(
@@ -528,13 +459,11 @@ impl DataRouteRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataRouteTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataRouteTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -542,10 +471,8 @@ impl DataRouteTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataRouteTimeoutsEl {
     type O = BlockAssignable<DataRouteTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -554,9 +481,7 @@ impl ToListMappable for DataRouteTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataRouteTimeoutsEl {}
-
 impl BuildDataRouteTimeoutsEl {
     pub fn build(self) -> DataRouteTimeoutsEl {
         DataRouteTimeoutsEl {
@@ -564,12 +489,10 @@ impl BuildDataRouteTimeoutsEl {
         }
     }
 }
-
 pub struct DataRouteTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRouteTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataRouteTimeoutsElRef {
         DataRouteTimeoutsElRef {
@@ -578,12 +501,10 @@ impl Ref for DataRouteTimeoutsElRef {
         }
     }
 }
-
 impl DataRouteTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))

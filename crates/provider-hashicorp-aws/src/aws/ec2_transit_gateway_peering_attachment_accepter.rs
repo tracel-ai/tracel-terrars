@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Ec2TransitGatewayPeeringAttachmentAccepterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,49 +23,40 @@ struct Ec2TransitGatewayPeeringAttachmentAccepterData {
     tags_all: Option<RecField<PrimField<String>>>,
     transit_gateway_attachment_id: PrimField<String>,
 }
-
 struct Ec2TransitGatewayPeeringAttachmentAccepter_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Ec2TransitGatewayPeeringAttachmentAccepterData>,
 }
-
 #[derive(Clone)]
 pub struct Ec2TransitGatewayPeeringAttachmentAccepter(
     Rc<Ec2TransitGatewayPeeringAttachmentAccepter_>,
 );
-
 impl Ec2TransitGatewayPeeringAttachmentAccepter {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,36 +93,30 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `peer_account_id` after provisioning.\n"]
     pub fn peer_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -142,7 +124,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.peer_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +131,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.peer_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_transit_gateway_id` after provisioning.\n"]
     pub fn peer_transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +138,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.peer_transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +145,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -174,7 +152,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -182,7 +159,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +166,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
             format!("{}.transit_gateway_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +174,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepter {
         )
     }
 }
-
 impl Referable for Ec2TransitGatewayPeeringAttachmentAccepter {
     fn extract_ref(&self) -> String {
         format!(
@@ -209,38 +183,30 @@ impl Referable for Ec2TransitGatewayPeeringAttachmentAccepter {
         )
     }
 }
-
 impl Resource for Ec2TransitGatewayPeeringAttachmentAccepter {}
-
 impl ToListMappable for Ec2TransitGatewayPeeringAttachmentAccepter {
     type O = ListRef<Ec2TransitGatewayPeeringAttachmentAccepterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Ec2TransitGatewayPeeringAttachmentAccepter_ {
     fn extract_resource_type(&self) -> String {
         "aws_ec2_transit_gateway_peering_attachment_accepter".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEc2TransitGatewayPeeringAttachmentAccepter {
     pub tf_id: String,
     #[doc = ""]
     pub transit_gateway_attachment_id: PrimField<String>,
 }
-
 impl BuildEc2TransitGatewayPeeringAttachmentAccepter {
     pub fn build(self, stack: &mut Stack) -> Ec2TransitGatewayPeeringAttachmentAccepter {
         let out = Ec2TransitGatewayPeeringAttachmentAccepter(Rc::new(
@@ -264,32 +230,26 @@ impl BuildEc2TransitGatewayPeeringAttachmentAccepter {
         out
     }
 }
-
 pub struct Ec2TransitGatewayPeeringAttachmentAccepterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Ec2TransitGatewayPeeringAttachmentAccepterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `peer_account_id` after provisioning.\n"]
     pub fn peer_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +257,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.peer_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_region` after provisioning.\n"]
     pub fn peer_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +264,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.peer_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_transit_gateway_id` after provisioning.\n"]
     pub fn peer_transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +271,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.peer_transit_gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +278,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -329,7 +285,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -337,7 +292,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_attachment_id` after provisioning.\n"]
     pub fn transit_gateway_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +299,6 @@ impl Ec2TransitGatewayPeeringAttachmentAccepterRef {
             format!("{}.transit_gateway_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_gateway_id` after provisioning.\n"]
     pub fn transit_gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

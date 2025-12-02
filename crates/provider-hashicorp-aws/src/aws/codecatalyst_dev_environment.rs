@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CodecatalystDevEnvironmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct CodecatalystDevEnvironmentData {
     timeouts: Option<CodecatalystDevEnvironmentTimeoutsEl>,
     dynamic: CodecatalystDevEnvironmentDynamic,
 }
-
 struct CodecatalystDevEnvironment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CodecatalystDevEnvironmentData>,
 }
-
 #[derive(Clone)]
 pub struct CodecatalystDevEnvironment(Rc<CodecatalystDevEnvironment_>);
-
 impl CodecatalystDevEnvironment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl CodecatalystDevEnvironment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl CodecatalystDevEnvironment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,31 +102,26 @@ impl CodecatalystDevEnvironment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `alias`.\n"]
     pub fn set_alias(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().alias = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inactivity_timeout_minutes`.\n"]
     pub fn set_inactivity_timeout_minutes(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().inactivity_timeout_minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ides`.\n"]
     pub fn set_ides(self, v: impl Into<BlockAssignable<CodecatalystDevEnvironmentIdesEl>>) -> Self {
         match v.into() {
@@ -151,7 +134,6 @@ impl CodecatalystDevEnvironment {
         }
         self
     }
-
     #[doc = "Set the field `persistent_storage`.\n"]
     pub fn set_persistent_storage(
         self,
@@ -167,7 +149,6 @@ impl CodecatalystDevEnvironment {
         }
         self
     }
-
     #[doc = "Set the field `repositories`.\n"]
     pub fn set_repositories(
         self,
@@ -183,13 +164,11 @@ impl CodecatalystDevEnvironment {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<CodecatalystDevEnvironmentTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,12 +176,10 @@ impl CodecatalystDevEnvironment {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inactivity_timeout_minutes` after provisioning.\n"]
     pub fn inactivity_timeout_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -210,7 +187,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.inactivity_timeout_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +194,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +201,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.project_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +208,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `space_name` after provisioning.\n"]
     pub fn space_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +215,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.space_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ides` after provisioning.\n"]
     pub fn ides(&self) -> ListRef<CodecatalystDevEnvironmentIdesElRef> {
         ListRef::new(
@@ -250,7 +222,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.ides", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `persistent_storage` after provisioning.\n"]
     pub fn persistent_storage(&self) -> ListRef<CodecatalystDevEnvironmentPersistentStorageElRef> {
         ListRef::new(
@@ -258,7 +229,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.persistent_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `repositories` after provisioning.\n"]
     pub fn repositories(&self) -> ListRef<CodecatalystDevEnvironmentRepositoriesElRef> {
         ListRef::new(
@@ -266,7 +236,6 @@ impl CodecatalystDevEnvironment {
             format!("{}.repositories", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CodecatalystDevEnvironmentTimeoutsElRef {
         CodecatalystDevEnvironmentTimeoutsElRef::new(
@@ -275,7 +244,6 @@ impl CodecatalystDevEnvironment {
         )
     }
 }
-
 impl Referable for CodecatalystDevEnvironment {
     fn extract_ref(&self) -> String {
         format!(
@@ -285,32 +253,25 @@ impl Referable for CodecatalystDevEnvironment {
         )
     }
 }
-
 impl Resource for CodecatalystDevEnvironment {}
-
 impl ToListMappable for CodecatalystDevEnvironment {
     type O = ListRef<CodecatalystDevEnvironmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CodecatalystDevEnvironment_ {
     fn extract_resource_type(&self) -> String {
         "aws_codecatalyst_dev_environment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCodecatalystDevEnvironment {
     pub tf_id: String,
     #[doc = ""]
@@ -320,7 +281,6 @@ pub struct BuildCodecatalystDevEnvironment {
     #[doc = ""]
     pub space_name: PrimField<String>,
 }
-
 impl BuildCodecatalystDevEnvironment {
     pub fn build(self, stack: &mut Stack) -> CodecatalystDevEnvironment {
         let out = CodecatalystDevEnvironment(Rc::new(CodecatalystDevEnvironment_ {
@@ -349,27 +309,22 @@ impl BuildCodecatalystDevEnvironment {
         out
     }
 }
-
 pub struct CodecatalystDevEnvironmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodecatalystDevEnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CodecatalystDevEnvironmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,12 +332,10 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inactivity_timeout_minutes` after provisioning.\n"]
     pub fn inactivity_timeout_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -390,7 +343,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.inactivity_timeout_minutes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -398,7 +350,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +357,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.project_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +364,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `space_name` after provisioning.\n"]
     pub fn space_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,7 +371,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.space_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ides` after provisioning.\n"]
     pub fn ides(&self) -> ListRef<CodecatalystDevEnvironmentIdesElRef> {
         ListRef::new(
@@ -430,7 +378,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.ides", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `persistent_storage` after provisioning.\n"]
     pub fn persistent_storage(&self) -> ListRef<CodecatalystDevEnvironmentPersistentStorageElRef> {
         ListRef::new(
@@ -438,7 +385,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.persistent_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `repositories` after provisioning.\n"]
     pub fn repositories(&self) -> ListRef<CodecatalystDevEnvironmentRepositoriesElRef> {
         ListRef::new(
@@ -446,7 +392,6 @@ impl CodecatalystDevEnvironmentRef {
             format!("{}.repositories", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CodecatalystDevEnvironmentTimeoutsElRef {
         CodecatalystDevEnvironmentTimeoutsElRef::new(
@@ -455,7 +400,6 @@ impl CodecatalystDevEnvironmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodecatalystDevEnvironmentIdesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -463,24 +407,20 @@ pub struct CodecatalystDevEnvironmentIdesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     runtime: Option<PrimField<String>>,
 }
-
 impl CodecatalystDevEnvironmentIdesEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `runtime`.\n"]
     pub fn set_runtime(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.runtime = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CodecatalystDevEnvironmentIdesEl {
     type O = BlockAssignable<CodecatalystDevEnvironmentIdesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -489,9 +429,7 @@ impl ToListMappable for CodecatalystDevEnvironmentIdesEl {
         })
     }
 }
-
 pub struct BuildCodecatalystDevEnvironmentIdesEl {}
-
 impl BuildCodecatalystDevEnvironmentIdesEl {
     pub fn build(self) -> CodecatalystDevEnvironmentIdesEl {
         CodecatalystDevEnvironmentIdesEl {
@@ -500,12 +438,10 @@ impl BuildCodecatalystDevEnvironmentIdesEl {
         }
     }
 }
-
 pub struct CodecatalystDevEnvironmentIdesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodecatalystDevEnvironmentIdesElRef {
     fn new(shared: StackShared, base: String) -> CodecatalystDevEnvironmentIdesElRef {
         CodecatalystDevEnvironmentIdesElRef {
@@ -514,33 +450,26 @@ impl Ref for CodecatalystDevEnvironmentIdesElRef {
         }
     }
 }
-
 impl CodecatalystDevEnvironmentIdesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.runtime", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CodecatalystDevEnvironmentPersistentStorageEl {
     size: PrimField<f64>,
 }
-
 impl CodecatalystDevEnvironmentPersistentStorageEl {}
-
 impl ToListMappable for CodecatalystDevEnvironmentPersistentStorageEl {
     type O = BlockAssignable<CodecatalystDevEnvironmentPersistentStorageEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -549,23 +478,19 @@ impl ToListMappable for CodecatalystDevEnvironmentPersistentStorageEl {
         })
     }
 }
-
 pub struct BuildCodecatalystDevEnvironmentPersistentStorageEl {
     #[doc = ""]
     pub size: PrimField<f64>,
 }
-
 impl BuildCodecatalystDevEnvironmentPersistentStorageEl {
     pub fn build(self) -> CodecatalystDevEnvironmentPersistentStorageEl {
         CodecatalystDevEnvironmentPersistentStorageEl { size: self.size }
     }
 }
-
 pub struct CodecatalystDevEnvironmentPersistentStorageElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodecatalystDevEnvironmentPersistentStorageElRef {
     fn new(shared: StackShared, base: String) -> CodecatalystDevEnvironmentPersistentStorageElRef {
         CodecatalystDevEnvironmentPersistentStorageElRef {
@@ -574,25 +499,21 @@ impl Ref for CodecatalystDevEnvironmentPersistentStorageElRef {
         }
     }
 }
-
 impl CodecatalystDevEnvironmentPersistentStorageElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.size", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CodecatalystDevEnvironmentRepositoriesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     branch_name: Option<PrimField<String>>,
     repository_name: PrimField<String>,
 }
-
 impl CodecatalystDevEnvironmentRepositoriesEl {
     #[doc = "Set the field `branch_name`.\n"]
     pub fn set_branch_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -600,10 +521,8 @@ impl CodecatalystDevEnvironmentRepositoriesEl {
         self
     }
 }
-
 impl ToListMappable for CodecatalystDevEnvironmentRepositoriesEl {
     type O = BlockAssignable<CodecatalystDevEnvironmentRepositoriesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -612,12 +531,10 @@ impl ToListMappable for CodecatalystDevEnvironmentRepositoriesEl {
         })
     }
 }
-
 pub struct BuildCodecatalystDevEnvironmentRepositoriesEl {
     #[doc = ""]
     pub repository_name: PrimField<String>,
 }
-
 impl BuildCodecatalystDevEnvironmentRepositoriesEl {
     pub fn build(self) -> CodecatalystDevEnvironmentRepositoriesEl {
         CodecatalystDevEnvironmentRepositoriesEl {
@@ -626,12 +543,10 @@ impl BuildCodecatalystDevEnvironmentRepositoriesEl {
         }
     }
 }
-
 pub struct CodecatalystDevEnvironmentRepositoriesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodecatalystDevEnvironmentRepositoriesElRef {
     fn new(shared: StackShared, base: String) -> CodecatalystDevEnvironmentRepositoriesElRef {
         CodecatalystDevEnvironmentRepositoriesElRef {
@@ -640,17 +555,14 @@ impl Ref for CodecatalystDevEnvironmentRepositoriesElRef {
         }
     }
 }
-
 impl CodecatalystDevEnvironmentRepositoriesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `branch_name` after provisioning.\n"]
     pub fn branch_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.branch_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -659,7 +571,6 @@ impl CodecatalystDevEnvironmentRepositoriesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodecatalystDevEnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -669,30 +580,25 @@ pub struct CodecatalystDevEnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl CodecatalystDevEnvironmentTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CodecatalystDevEnvironmentTimeoutsEl {
     type O = BlockAssignable<CodecatalystDevEnvironmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -701,9 +607,7 @@ impl ToListMappable for CodecatalystDevEnvironmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildCodecatalystDevEnvironmentTimeoutsEl {}
-
 impl BuildCodecatalystDevEnvironmentTimeoutsEl {
     pub fn build(self) -> CodecatalystDevEnvironmentTimeoutsEl {
         CodecatalystDevEnvironmentTimeoutsEl {
@@ -713,12 +617,10 @@ impl BuildCodecatalystDevEnvironmentTimeoutsEl {
         }
     }
 }
-
 pub struct CodecatalystDevEnvironmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodecatalystDevEnvironmentTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> CodecatalystDevEnvironmentTimeoutsElRef {
         CodecatalystDevEnvironmentTimeoutsElRef {
@@ -727,28 +629,23 @@ impl Ref for CodecatalystDevEnvironmentTimeoutsElRef {
         }
     }
 }
-
 impl CodecatalystDevEnvironmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CodecatalystDevEnvironmentDynamic {
     ides: Option<DynamicBlock<CodecatalystDevEnvironmentIdesEl>>,

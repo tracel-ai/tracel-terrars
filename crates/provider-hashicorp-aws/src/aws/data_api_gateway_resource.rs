@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataApiGatewayResourceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -19,48 +18,39 @@ struct DataApiGatewayResourceData {
     region: Option<PrimField<String>>,
     rest_api_id: PrimField<String>,
 }
-
 struct DataApiGatewayResource_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataApiGatewayResourceData>,
 }
-
 #[derive(Clone)]
 pub struct DataApiGatewayResource(Rc<DataApiGatewayResource_>);
-
 impl DataApiGatewayResource {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -68,7 +58,6 @@ impl DataApiGatewayResource {
             format!("{}.parent_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -76,7 +65,6 @@ impl DataApiGatewayResource {
             format!("{}.path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path_part` after provisioning.\n"]
     pub fn path_part(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -84,7 +72,6 @@ impl DataApiGatewayResource {
             format!("{}.path_part", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -92,7 +79,6 @@ impl DataApiGatewayResource {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -101,7 +87,6 @@ impl DataApiGatewayResource {
         )
     }
 }
-
 impl Referable for DataApiGatewayResource {
     fn extract_ref(&self) -> String {
         format!(
@@ -111,32 +96,25 @@ impl Referable for DataApiGatewayResource {
         )
     }
 }
-
 impl Datasource for DataApiGatewayResource {}
-
 impl ToListMappable for DataApiGatewayResource {
     type O = ListRef<DataApiGatewayResourceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataApiGatewayResource_ {
     fn extract_datasource_type(&self) -> String {
         "aws_api_gateway_resource".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataApiGatewayResource {
     pub tf_id: String,
     #[doc = ""]
@@ -144,7 +122,6 @@ pub struct BuildDataApiGatewayResource {
     #[doc = ""]
     pub rest_api_id: PrimField<String>,
 }
-
 impl BuildDataApiGatewayResource {
     pub fn build(self, stack: &mut Stack) -> DataApiGatewayResource {
         let out = DataApiGatewayResource(Rc::new(DataApiGatewayResource_ {
@@ -164,32 +141,26 @@ impl BuildDataApiGatewayResource {
         out
     }
 }
-
 pub struct DataApiGatewayResourceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataApiGatewayResourceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataApiGatewayResourceRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `parent_id` after provisioning.\n"]
     pub fn parent_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +168,6 @@ impl DataApiGatewayResourceRef {
             format!("{}.parent_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +175,6 @@ impl DataApiGatewayResourceRef {
             format!("{}.path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path_part` after provisioning.\n"]
     pub fn path_part(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +182,6 @@ impl DataApiGatewayResourceRef {
             format!("{}.path_part", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +189,6 @@ impl DataApiGatewayResourceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

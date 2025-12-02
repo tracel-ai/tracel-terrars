@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Ec2DefaultCreditSpecificationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct Ec2DefaultCreditSpecificationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<Ec2DefaultCreditSpecificationTimeoutsEl>,
 }
-
 struct Ec2DefaultCreditSpecification_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Ec2DefaultCreditSpecificationData>,
 }
-
 #[derive(Clone)]
 pub struct Ec2DefaultCreditSpecification(Rc<Ec2DefaultCreditSpecification_>);
-
 impl Ec2DefaultCreditSpecification {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl Ec2DefaultCreditSpecification {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl Ec2DefaultCreditSpecification {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,19 +88,16 @@ impl Ec2DefaultCreditSpecification {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<Ec2DefaultCreditSpecificationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `cpu_credits` after provisioning.\n"]
     pub fn cpu_credits(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +105,6 @@ impl Ec2DefaultCreditSpecification {
             format!("{}.cpu_credits", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_family` after provisioning.\n"]
     pub fn instance_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +112,6 @@ impl Ec2DefaultCreditSpecification {
             format!("{}.instance_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +119,6 @@ impl Ec2DefaultCreditSpecification {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Ec2DefaultCreditSpecificationTimeoutsElRef {
         Ec2DefaultCreditSpecificationTimeoutsElRef::new(
@@ -145,7 +127,6 @@ impl Ec2DefaultCreditSpecification {
         )
     }
 }
-
 impl Referable for Ec2DefaultCreditSpecification {
     fn extract_ref(&self) -> String {
         format!(
@@ -155,32 +136,25 @@ impl Referable for Ec2DefaultCreditSpecification {
         )
     }
 }
-
 impl Resource for Ec2DefaultCreditSpecification {}
-
 impl ToListMappable for Ec2DefaultCreditSpecification {
     type O = ListRef<Ec2DefaultCreditSpecificationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Ec2DefaultCreditSpecification_ {
     fn extract_resource_type(&self) -> String {
         "aws_ec2_default_credit_specification".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEc2DefaultCreditSpecification {
     pub tf_id: String,
     #[doc = ""]
@@ -188,7 +162,6 @@ pub struct BuildEc2DefaultCreditSpecification {
     #[doc = ""]
     pub instance_family: PrimField<String>,
 }
-
 impl BuildEc2DefaultCreditSpecification {
     pub fn build(self, stack: &mut Stack) -> Ec2DefaultCreditSpecification {
         let out = Ec2DefaultCreditSpecification(Rc::new(Ec2DefaultCreditSpecification_ {
@@ -209,27 +182,22 @@ impl BuildEc2DefaultCreditSpecification {
         out
     }
 }
-
 pub struct Ec2DefaultCreditSpecificationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Ec2DefaultCreditSpecificationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Ec2DefaultCreditSpecificationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cpu_credits` after provisioning.\n"]
     pub fn cpu_credits(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +205,6 @@ impl Ec2DefaultCreditSpecificationRef {
             format!("{}.cpu_credits", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_family` after provisioning.\n"]
     pub fn instance_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +212,6 @@ impl Ec2DefaultCreditSpecificationRef {
             format!("{}.instance_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +219,6 @@ impl Ec2DefaultCreditSpecificationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> Ec2DefaultCreditSpecificationTimeoutsElRef {
         Ec2DefaultCreditSpecificationTimeoutsElRef::new(
@@ -262,7 +227,6 @@ impl Ec2DefaultCreditSpecificationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Ec2DefaultCreditSpecificationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -270,24 +234,20 @@ pub struct Ec2DefaultCreditSpecificationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl Ec2DefaultCreditSpecificationTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for Ec2DefaultCreditSpecificationTimeoutsEl {
     type O = BlockAssignable<Ec2DefaultCreditSpecificationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -296,9 +256,7 @@ impl ToListMappable for Ec2DefaultCreditSpecificationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildEc2DefaultCreditSpecificationTimeoutsEl {}
-
 impl BuildEc2DefaultCreditSpecificationTimeoutsEl {
     pub fn build(self) -> Ec2DefaultCreditSpecificationTimeoutsEl {
         Ec2DefaultCreditSpecificationTimeoutsEl {
@@ -307,12 +265,10 @@ impl BuildEc2DefaultCreditSpecificationTimeoutsEl {
         }
     }
 }
-
 pub struct Ec2DefaultCreditSpecificationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Ec2DefaultCreditSpecificationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> Ec2DefaultCreditSpecificationTimeoutsElRef {
         Ec2DefaultCreditSpecificationTimeoutsElRef {
@@ -321,17 +277,14 @@ impl Ref for Ec2DefaultCreditSpecificationTimeoutsElRef {
         }
     }
 }
-
 impl Ec2DefaultCreditSpecificationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

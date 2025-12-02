@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsmincidentsResponsePlanData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -37,47 +36,38 @@ struct SsmincidentsResponsePlanData {
     integration: Option<Vec<SsmincidentsResponsePlanIntegrationEl>>,
     dynamic: SsmincidentsResponsePlanDynamic,
 }
-
 struct SsmincidentsResponsePlan_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsmincidentsResponsePlanData>,
 }
-
 #[derive(Clone)]
 pub struct SsmincidentsResponsePlan(Rc<SsmincidentsResponsePlan_>);
-
 impl SsmincidentsResponsePlan {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -96,7 +86,6 @@ impl SsmincidentsResponsePlan {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -106,7 +95,6 @@ impl SsmincidentsResponsePlan {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -116,49 +104,41 @@ impl SsmincidentsResponsePlan {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `chat_channel`.\n"]
     pub fn set_chat_channel(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().chat_channel = Some(v.into());
         self
     }
-
     #[doc = "Set the field `display_name`.\n"]
     pub fn set_display_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().display_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `engagements`.\n"]
     pub fn set_engagements(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().engagements = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         self,
@@ -174,7 +154,6 @@ impl SsmincidentsResponsePlan {
         }
         self
     }
-
     #[doc = "Set the field `incident_template`.\n"]
     pub fn set_incident_template(
         self,
@@ -190,7 +169,6 @@ impl SsmincidentsResponsePlan {
         }
         self
     }
-
     #[doc = "Set the field `integration`.\n"]
     pub fn set_integration(
         self,
@@ -206,12 +184,10 @@ impl SsmincidentsResponsePlan {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `chat_channel` after provisioning.\n"]
     pub fn chat_channel(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -219,7 +195,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.chat_channel", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +202,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engagements` after provisioning.\n"]
     pub fn engagements(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -235,12 +209,10 @@ impl SsmincidentsResponsePlan {
             format!("{}.engagements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +220,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +227,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -264,7 +234,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -272,7 +241,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<SsmincidentsResponsePlanActionElRef> {
         ListRef::new(
@@ -280,7 +248,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `incident_template` after provisioning.\n"]
     pub fn incident_template(&self) -> ListRef<SsmincidentsResponsePlanIncidentTemplateElRef> {
         ListRef::new(
@@ -288,7 +255,6 @@ impl SsmincidentsResponsePlan {
             format!("{}.incident_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
     pub fn integration(&self) -> ListRef<SsmincidentsResponsePlanIntegrationElRef> {
         ListRef::new(
@@ -297,7 +263,6 @@ impl SsmincidentsResponsePlan {
         )
     }
 }
-
 impl Referable for SsmincidentsResponsePlan {
     fn extract_ref(&self) -> String {
         format!(
@@ -307,38 +272,30 @@ impl Referable for SsmincidentsResponsePlan {
         )
     }
 }
-
 impl Resource for SsmincidentsResponsePlan {}
-
 impl ToListMappable for SsmincidentsResponsePlan {
     type O = ListRef<SsmincidentsResponsePlanRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsmincidentsResponsePlan_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssmincidents_response_plan".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsmincidentsResponsePlan {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildSsmincidentsResponsePlan {
     pub fn build(self, stack: &mut Stack) -> SsmincidentsResponsePlan {
         let out = SsmincidentsResponsePlan(Rc::new(SsmincidentsResponsePlan_ {
@@ -367,32 +324,26 @@ impl BuildSsmincidentsResponsePlan {
         out
     }
 }
-
 pub struct SsmincidentsResponsePlanRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsmincidentsResponsePlanRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `chat_channel` after provisioning.\n"]
     pub fn chat_channel(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -400,7 +351,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.chat_channel", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,7 +358,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engagements` after provisioning.\n"]
     pub fn engagements(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -416,12 +365,10 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.engagements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,7 +376,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -437,7 +383,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -445,7 +390,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -453,7 +397,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<SsmincidentsResponsePlanActionElRef> {
         ListRef::new(
@@ -461,7 +404,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `incident_template` after provisioning.\n"]
     pub fn incident_template(&self) -> ListRef<SsmincidentsResponsePlanIncidentTemplateElRef> {
         ListRef::new(
@@ -469,7 +411,6 @@ impl SsmincidentsResponsePlanRef {
             format!("{}.incident_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `integration` after provisioning.\n"]
     pub fn integration(&self) -> ListRef<SsmincidentsResponsePlanIntegrationElRef> {
         ListRef::new(
@@ -478,18 +419,14 @@ impl SsmincidentsResponsePlanRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl SsmincidentsResponsePlanActionElSsmAutomationElParameterEl {}
-
 impl ToListMappable for SsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
     type O = BlockAssignable<SsmincidentsResponsePlanActionElSsmAutomationElParameterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -498,14 +435,12 @@ impl ToListMappable for SsmincidentsResponsePlanActionElSsmAutomationElParameter
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildSsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
     pub fn build(self) -> SsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
         SsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
@@ -514,12 +449,10 @@ impl BuildSsmincidentsResponsePlanActionElSsmAutomationElParameterEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
     fn new(
         shared: StackShared,
@@ -531,28 +464,23 @@ impl Ref for SsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanActionElSsmAutomationElParameterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmincidentsResponsePlanActionElSsmAutomationElDynamic {
     parameter: Option<DynamicBlock<SsmincidentsResponsePlanActionElSsmAutomationElParameterEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanActionElSsmAutomationEl {
     document_name: PrimField<String>,
@@ -567,26 +495,22 @@ pub struct SsmincidentsResponsePlanActionElSsmAutomationEl {
     parameter: Option<Vec<SsmincidentsResponsePlanActionElSsmAutomationElParameterEl>>,
     dynamic: SsmincidentsResponsePlanActionElSsmAutomationElDynamic,
 }
-
 impl SsmincidentsResponsePlanActionElSsmAutomationEl {
     #[doc = "Set the field `document_version`.\n"]
     pub fn set_document_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.document_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dynamic_parameters`.\n"]
     pub fn set_dynamic_parameters(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.dynamic_parameters = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_account`.\n"]
     pub fn set_target_account(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_account = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(
         mut self,
@@ -603,10 +527,8 @@ impl SsmincidentsResponsePlanActionElSsmAutomationEl {
         self
     }
 }
-
 impl ToListMappable for SsmincidentsResponsePlanActionElSsmAutomationEl {
     type O = BlockAssignable<SsmincidentsResponsePlanActionElSsmAutomationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -615,14 +537,12 @@ impl ToListMappable for SsmincidentsResponsePlanActionElSsmAutomationEl {
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanActionElSsmAutomationEl {
     #[doc = ""]
     pub document_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildSsmincidentsResponsePlanActionElSsmAutomationEl {
     pub fn build(self) -> SsmincidentsResponsePlanActionElSsmAutomationEl {
         SsmincidentsResponsePlanActionElSsmAutomationEl {
@@ -636,12 +556,10 @@ impl BuildSsmincidentsResponsePlanActionElSsmAutomationEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanActionElSsmAutomationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanActionElSsmAutomationElRef {
     fn new(
         shared: StackShared,
@@ -653,12 +571,10 @@ impl Ref for SsmincidentsResponsePlanActionElSsmAutomationElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanActionElSsmAutomationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `document_name` after provisioning.\n"]
     pub fn document_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -666,7 +582,6 @@ impl SsmincidentsResponsePlanActionElSsmAutomationElRef {
             format!("{}.document_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `document_version` after provisioning.\n"]
     pub fn document_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -674,7 +589,6 @@ impl SsmincidentsResponsePlanActionElSsmAutomationElRef {
             format!("{}.document_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamic_parameters` after provisioning.\n"]
     pub fn dynamic_parameters(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -682,12 +596,10 @@ impl SsmincidentsResponsePlanActionElSsmAutomationElRef {
             format!("{}.dynamic_parameters", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_account` after provisioning.\n"]
     pub fn target_account(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -696,19 +608,16 @@ impl SsmincidentsResponsePlanActionElSsmAutomationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmincidentsResponsePlanActionElDynamic {
     ssm_automation: Option<DynamicBlock<SsmincidentsResponsePlanActionElSsmAutomationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ssm_automation: Option<Vec<SsmincidentsResponsePlanActionElSsmAutomationEl>>,
     dynamic: SsmincidentsResponsePlanActionElDynamic,
 }
-
 impl SsmincidentsResponsePlanActionEl {
     #[doc = "Set the field `ssm_automation`.\n"]
     pub fn set_ssm_automation(
@@ -726,10 +635,8 @@ impl SsmincidentsResponsePlanActionEl {
         self
     }
 }
-
 impl ToListMappable for SsmincidentsResponsePlanActionEl {
     type O = BlockAssignable<SsmincidentsResponsePlanActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -738,9 +645,7 @@ impl ToListMappable for SsmincidentsResponsePlanActionEl {
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanActionEl {}
-
 impl BuildSsmincidentsResponsePlanActionEl {
     pub fn build(self) -> SsmincidentsResponsePlanActionEl {
         SsmincidentsResponsePlanActionEl {
@@ -749,12 +654,10 @@ impl BuildSsmincidentsResponsePlanActionEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanActionElRef {
     fn new(shared: StackShared, base: String) -> SsmincidentsResponsePlanActionElRef {
         SsmincidentsResponsePlanActionElRef {
@@ -763,12 +666,10 @@ impl Ref for SsmincidentsResponsePlanActionElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ssm_automation` after provisioning.\n"]
     pub fn ssm_automation(&self) -> ListRef<SsmincidentsResponsePlanActionElSsmAutomationElRef> {
         ListRef::new(
@@ -777,17 +678,13 @@ impl SsmincidentsResponsePlanActionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
     sns_topic_arn: PrimField<String>,
 }
-
 impl SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {}
-
 impl ToListMappable for SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
     type O = BlockAssignable<SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -796,12 +693,10 @@ impl ToListMappable for SsmincidentsResponsePlanIncidentTemplateElNotificationTa
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
     #[doc = ""]
     pub sns_topic_arn: PrimField<String>,
 }
-
 impl BuildSsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
     pub fn build(self) -> SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
         SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
@@ -809,12 +704,10 @@ impl BuildSsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
     fn new(
         shared: StackShared,
@@ -826,12 +719,10 @@ impl Ref for SsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -840,13 +731,11 @@ impl SsmincidentsResponsePlanIncidentTemplateElNotificationTargetElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmincidentsResponsePlanIncidentTemplateElDynamic {
     notification_target:
         Option<DynamicBlock<SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanIncidentTemplateEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -862,26 +751,22 @@ pub struct SsmincidentsResponsePlanIncidentTemplateEl {
         Option<Vec<SsmincidentsResponsePlanIncidentTemplateElNotificationTargetEl>>,
     dynamic: SsmincidentsResponsePlanIncidentTemplateElDynamic,
 }
-
 impl SsmincidentsResponsePlanIncidentTemplateEl {
     #[doc = "Set the field `dedupe_string`.\n"]
     pub fn set_dedupe_string(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dedupe_string = Some(v.into());
         self
     }
-
     #[doc = "Set the field `incident_tags`.\n"]
     pub fn set_incident_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.incident_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `summary`.\n"]
     pub fn set_summary(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.summary = Some(v.into());
         self
     }
-
     #[doc = "Set the field `notification_target`.\n"]
     pub fn set_notification_target(
         mut self,
@@ -898,10 +783,8 @@ impl SsmincidentsResponsePlanIncidentTemplateEl {
         self
     }
 }
-
 impl ToListMappable for SsmincidentsResponsePlanIncidentTemplateEl {
     type O = BlockAssignable<SsmincidentsResponsePlanIncidentTemplateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -910,14 +793,12 @@ impl ToListMappable for SsmincidentsResponsePlanIncidentTemplateEl {
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanIncidentTemplateEl {
     #[doc = ""]
     pub impact: PrimField<f64>,
     #[doc = ""]
     pub title: PrimField<String>,
 }
-
 impl BuildSsmincidentsResponsePlanIncidentTemplateEl {
     pub fn build(self) -> SsmincidentsResponsePlanIncidentTemplateEl {
         SsmincidentsResponsePlanIncidentTemplateEl {
@@ -931,12 +812,10 @@ impl BuildSsmincidentsResponsePlanIncidentTemplateEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanIncidentTemplateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanIncidentTemplateElRef {
     fn new(shared: StackShared, base: String) -> SsmincidentsResponsePlanIncidentTemplateElRef {
         SsmincidentsResponsePlanIncidentTemplateElRef {
@@ -945,12 +824,10 @@ impl Ref for SsmincidentsResponsePlanIncidentTemplateElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanIncidentTemplateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dedupe_string` after provisioning.\n"]
     pub fn dedupe_string(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -958,12 +835,10 @@ impl SsmincidentsResponsePlanIncidentTemplateElRef {
             format!("{}.dedupe_string", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `impact` after provisioning.\n"]
     pub fn impact(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.impact", self.base))
     }
-
     #[doc = "Get a reference to the value of field `incident_tags` after provisioning.\n"]
     pub fn incident_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -971,30 +846,24 @@ impl SsmincidentsResponsePlanIncidentTemplateElRef {
             format!("{}.incident_tags", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `summary` after provisioning.\n"]
     pub fn summary(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.summary", self.base))
     }
-
     #[doc = "Get a reference to the value of field `title` after provisioning.\n"]
     pub fn title(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.title", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanIntegrationElPagerdutyEl {
     name: PrimField<String>,
     secret_id: PrimField<String>,
     service_id: PrimField<String>,
 }
-
 impl SsmincidentsResponsePlanIntegrationElPagerdutyEl {}
-
 impl ToListMappable for SsmincidentsResponsePlanIntegrationElPagerdutyEl {
     type O = BlockAssignable<SsmincidentsResponsePlanIntegrationElPagerdutyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1003,7 +872,6 @@ impl ToListMappable for SsmincidentsResponsePlanIntegrationElPagerdutyEl {
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanIntegrationElPagerdutyEl {
     #[doc = ""]
     pub name: PrimField<String>,
@@ -1012,7 +880,6 @@ pub struct BuildSsmincidentsResponsePlanIntegrationElPagerdutyEl {
     #[doc = ""]
     pub service_id: PrimField<String>,
 }
-
 impl BuildSsmincidentsResponsePlanIntegrationElPagerdutyEl {
     pub fn build(self) -> SsmincidentsResponsePlanIntegrationElPagerdutyEl {
         SsmincidentsResponsePlanIntegrationElPagerdutyEl {
@@ -1022,12 +889,10 @@ impl BuildSsmincidentsResponsePlanIntegrationElPagerdutyEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanIntegrationElPagerdutyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanIntegrationElPagerdutyElRef {
     fn new(
         shared: StackShared,
@@ -1039,40 +904,33 @@ impl Ref for SsmincidentsResponsePlanIntegrationElPagerdutyElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanIntegrationElPagerdutyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `secret_id` after provisioning.\n"]
     pub fn secret_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.secret_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `service_id` after provisioning.\n"]
     pub fn service_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.service_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmincidentsResponsePlanIntegrationElDynamic {
     pagerduty: Option<DynamicBlock<SsmincidentsResponsePlanIntegrationElPagerdutyEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SsmincidentsResponsePlanIntegrationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     pagerduty: Option<Vec<SsmincidentsResponsePlanIntegrationElPagerdutyEl>>,
     dynamic: SsmincidentsResponsePlanIntegrationElDynamic,
 }
-
 impl SsmincidentsResponsePlanIntegrationEl {
     #[doc = "Set the field `pagerduty`.\n"]
     pub fn set_pagerduty(
@@ -1090,10 +948,8 @@ impl SsmincidentsResponsePlanIntegrationEl {
         self
     }
 }
-
 impl ToListMappable for SsmincidentsResponsePlanIntegrationEl {
     type O = BlockAssignable<SsmincidentsResponsePlanIntegrationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1102,9 +958,7 @@ impl ToListMappable for SsmincidentsResponsePlanIntegrationEl {
         })
     }
 }
-
 pub struct BuildSsmincidentsResponsePlanIntegrationEl {}
-
 impl BuildSsmincidentsResponsePlanIntegrationEl {
     pub fn build(self) -> SsmincidentsResponsePlanIntegrationEl {
         SsmincidentsResponsePlanIntegrationEl {
@@ -1113,12 +967,10 @@ impl BuildSsmincidentsResponsePlanIntegrationEl {
         }
     }
 }
-
 pub struct SsmincidentsResponsePlanIntegrationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmincidentsResponsePlanIntegrationElRef {
     fn new(shared: StackShared, base: String) -> SsmincidentsResponsePlanIntegrationElRef {
         SsmincidentsResponsePlanIntegrationElRef {
@@ -1127,18 +979,15 @@ impl Ref for SsmincidentsResponsePlanIntegrationElRef {
         }
     }
 }
-
 impl SsmincidentsResponsePlanIntegrationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `pagerduty` after provisioning.\n"]
     pub fn pagerduty(&self) -> ListRef<SsmincidentsResponsePlanIntegrationElPagerdutyElRef> {
         ListRef::new(self.shared().clone(), format!("{}.pagerduty", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmincidentsResponsePlanDynamic {
     action: Option<DynamicBlock<SsmincidentsResponsePlanActionEl>>,

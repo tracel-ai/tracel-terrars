@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerNotebookInstanceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -50,47 +49,38 @@ struct SagemakerNotebookInstanceData {
         Option<Vec<SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl>>,
     dynamic: SagemakerNotebookInstanceDynamic,
 }
-
 struct SagemakerNotebookInstance_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerNotebookInstanceData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerNotebookInstance(Rc<SagemakerNotebookInstance_>);
-
 impl SagemakerNotebookInstance {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -109,7 +99,6 @@ impl SagemakerNotebookInstance {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -119,7 +108,6 @@ impl SagemakerNotebookInstance {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -129,7 +117,6 @@ impl SagemakerNotebookInstance {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `additional_code_repositories`.\n"]
     pub fn set_additional_code_repositories(
         self,
@@ -138,85 +125,71 @@ impl SagemakerNotebookInstance {
         self.0.data.borrow_mut().additional_code_repositories = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_code_repository`.\n"]
     pub fn set_default_code_repository(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().default_code_repository = Some(v.into());
         self
     }
-
     #[doc = "Set the field `direct_internet_access`.\n"]
     pub fn set_direct_internet_access(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().direct_internet_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lifecycle_config_name`.\n"]
     pub fn set_lifecycle_config_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().lifecycle_config_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `platform_identifier`.\n"]
     pub fn set_platform_identifier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().platform_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `root_access`.\n"]
     pub fn set_root_access(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().root_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_groups`.\n"]
     pub fn set_security_groups(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().security_groups = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_id`.\n"]
     pub fn set_subnet_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().subnet_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_size`.\n"]
     pub fn set_volume_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().volume_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_metadata_service_configuration`.\n"]
     pub fn set_instance_metadata_service_configuration(
         self,
@@ -239,7 +212,6 @@ impl SagemakerNotebookInstance {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `additional_code_repositories` after provisioning.\n"]
     pub fn additional_code_repositories(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -247,12 +219,10 @@ impl SagemakerNotebookInstance {
             format!("{}.additional_code_repositories", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_code_repository` after provisioning.\n"]
     pub fn default_code_repository(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +230,6 @@ impl SagemakerNotebookInstance {
             format!("{}.default_code_repository", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `direct_internet_access` after provisioning.\n"]
     pub fn direct_internet_access(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,12 +237,10 @@ impl SagemakerNotebookInstance {
             format!("{}.direct_internet_access", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +248,6 @@ impl SagemakerNotebookInstance {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +255,6 @@ impl SagemakerNotebookInstance {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_config_name` after provisioning.\n"]
     pub fn lifecycle_config_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +262,6 @@ impl SagemakerNotebookInstance {
             format!("{}.lifecycle_config_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +269,6 @@ impl SagemakerNotebookInstance {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +276,6 @@ impl SagemakerNotebookInstance {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_identifier` after provisioning.\n"]
     pub fn platform_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +283,6 @@ impl SagemakerNotebookInstance {
             format!("{}.platform_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +290,6 @@ impl SagemakerNotebookInstance {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +297,6 @@ impl SagemakerNotebookInstance {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `root_access` after provisioning.\n"]
     pub fn root_access(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +304,6 @@ impl SagemakerNotebookInstance {
             format!("{}.root_access", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -353,7 +311,6 @@ impl SagemakerNotebookInstance {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -361,7 +318,6 @@ impl SagemakerNotebookInstance {
             format!("{}.subnet_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -369,7 +325,6 @@ impl SagemakerNotebookInstance {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -377,12 +332,10 @@ impl SagemakerNotebookInstance {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `volume_size` after provisioning.\n"]
     pub fn volume_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -390,7 +343,6 @@ impl SagemakerNotebookInstance {
             format!("{}.volume_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_metadata_service_configuration` after provisioning.\n"]
     pub fn instance_metadata_service_configuration(
         &self,
@@ -404,7 +356,6 @@ impl SagemakerNotebookInstance {
         )
     }
 }
-
 impl Referable for SagemakerNotebookInstance {
     fn extract_ref(&self) -> String {
         format!(
@@ -414,32 +365,25 @@ impl Referable for SagemakerNotebookInstance {
         )
     }
 }
-
 impl Resource for SagemakerNotebookInstance {}
-
 impl ToListMappable for SagemakerNotebookInstance {
     type O = ListRef<SagemakerNotebookInstanceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerNotebookInstance_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_notebook_instance".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerNotebookInstance {
     pub tf_id: String,
     #[doc = ""]
@@ -449,7 +393,6 @@ pub struct BuildSagemakerNotebookInstance {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildSagemakerNotebookInstance {
     pub fn build(self, stack: &mut Stack) -> SagemakerNotebookInstance {
         let out = SagemakerNotebookInstance(Rc::new(SagemakerNotebookInstance_ {
@@ -485,27 +428,22 @@ impl BuildSagemakerNotebookInstance {
         out
     }
 }
-
 pub struct SagemakerNotebookInstanceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerNotebookInstanceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerNotebookInstanceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_code_repositories` after provisioning.\n"]
     pub fn additional_code_repositories(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -513,12 +451,10 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.additional_code_repositories", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_code_repository` after provisioning.\n"]
     pub fn default_code_repository(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -526,7 +462,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.default_code_repository", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `direct_internet_access` after provisioning.\n"]
     pub fn direct_internet_access(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -534,12 +469,10 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.direct_internet_access", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +480,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -555,7 +487,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_config_name` after provisioning.\n"]
     pub fn lifecycle_config_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -563,7 +494,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.lifecycle_config_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -571,7 +501,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -579,7 +508,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_identifier` after provisioning.\n"]
     pub fn platform_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +515,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.platform_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -595,7 +522,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -603,7 +529,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `root_access` after provisioning.\n"]
     pub fn root_access(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -611,7 +536,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.root_access", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -619,7 +543,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -627,7 +550,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.subnet_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -635,7 +557,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -643,12 +564,10 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `volume_size` after provisioning.\n"]
     pub fn volume_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -656,7 +575,6 @@ impl SagemakerNotebookInstanceRef {
             format!("{}.volume_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_metadata_service_configuration` after provisioning.\n"]
     pub fn instance_metadata_service_configuration(
         &self,
@@ -670,13 +588,11 @@ impl SagemakerNotebookInstanceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     minimum_instance_metadata_service_version: Option<PrimField<String>>,
 }
-
 impl SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
     #[doc = "Set the field `minimum_instance_metadata_service_version`.\n"]
     pub fn set_minimum_instance_metadata_service_version(
@@ -687,10 +603,8 @@ impl SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
     type O = BlockAssignable<SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -699,9 +613,7 @@ impl ToListMappable for SagemakerNotebookInstanceInstanceMetadataServiceConfigur
         })
     }
 }
-
 pub struct BuildSagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {}
-
 impl BuildSagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
     pub fn build(self) -> SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
         SagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
@@ -709,12 +621,10 @@ impl BuildSagemakerNotebookInstanceInstanceMetadataServiceConfigurationEl {
         }
     }
 }
-
 pub struct SagemakerNotebookInstanceInstanceMetadataServiceConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerNotebookInstanceInstanceMetadataServiceConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -726,12 +636,10 @@ impl Ref for SagemakerNotebookInstanceInstanceMetadataServiceConfigurationElRef 
         }
     }
 }
-
 impl SagemakerNotebookInstanceInstanceMetadataServiceConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `minimum_instance_metadata_service_version` after provisioning.\n"]
     pub fn minimum_instance_metadata_service_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -740,7 +648,6 @@ impl SagemakerNotebookInstanceInstanceMetadataServiceConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerNotebookInstanceDynamic {
     instance_metadata_service_configuration:

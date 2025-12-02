@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SesEventDestinationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct SesEventDestinationData {
     sns_destination: Option<Vec<SesEventDestinationSnsDestinationEl>>,
     dynamic: SesEventDestinationDynamic,
 }
-
 struct SesEventDestination_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SesEventDestinationData>,
 }
-
 #[derive(Clone)]
 pub struct SesEventDestination(Rc<SesEventDestination_>);
-
 impl SesEventDestination {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl SesEventDestination {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl SesEventDestination {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl SesEventDestination {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloudwatch_destination`.\n"]
     pub fn set_cloudwatch_destination(
         self,
@@ -144,7 +128,6 @@ impl SesEventDestination {
         }
         self
     }
-
     #[doc = "Set the field `kinesis_destination`.\n"]
     pub fn set_kinesis_destination(
         self,
@@ -160,7 +143,6 @@ impl SesEventDestination {
         }
         self
     }
-
     #[doc = "Set the field `sns_destination`.\n"]
     pub fn set_sns_destination(
         self,
@@ -176,12 +158,10 @@ impl SesEventDestination {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +169,6 @@ impl SesEventDestination {
             format!("{}.configuration_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -197,12 +176,10 @@ impl SesEventDestination {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `matching_types` after provisioning.\n"]
     pub fn matching_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -210,7 +187,6 @@ impl SesEventDestination {
             format!("{}.matching_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +194,6 @@ impl SesEventDestination {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +201,6 @@ impl SesEventDestination {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_destination` after provisioning.\n"]
     pub fn kinesis_destination(&self) -> ListRef<SesEventDestinationKinesisDestinationElRef> {
         ListRef::new(
@@ -234,7 +208,6 @@ impl SesEventDestination {
             format!("{}.kinesis_destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sns_destination` after provisioning.\n"]
     pub fn sns_destination(&self) -> ListRef<SesEventDestinationSnsDestinationElRef> {
         ListRef::new(
@@ -243,7 +216,6 @@ impl SesEventDestination {
         )
     }
 }
-
 impl Referable for SesEventDestination {
     fn extract_ref(&self) -> String {
         format!(
@@ -253,32 +225,25 @@ impl Referable for SesEventDestination {
         )
     }
 }
-
 impl Resource for SesEventDestination {}
-
 impl ToListMappable for SesEventDestination {
     type O = ListRef<SesEventDestinationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SesEventDestination_ {
     fn extract_resource_type(&self) -> String {
         "aws_ses_event_destination".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSesEventDestination {
     pub tf_id: String,
     #[doc = ""]
@@ -288,7 +253,6 @@ pub struct BuildSesEventDestination {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildSesEventDestination {
     pub fn build(self, stack: &mut Stack) -> SesEventDestination {
         let out = SesEventDestination(Rc::new(SesEventDestination_ {
@@ -315,32 +279,26 @@ impl BuildSesEventDestination {
         out
     }
 }
-
 pub struct SesEventDestinationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesEventDestinationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SesEventDestinationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,7 +306,6 @@ impl SesEventDestinationRef {
             format!("{}.configuration_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -356,12 +313,10 @@ impl SesEventDestinationRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `matching_types` after provisioning.\n"]
     pub fn matching_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -369,7 +324,6 @@ impl SesEventDestinationRef {
             format!("{}.matching_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,7 +331,6 @@ impl SesEventDestinationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +338,6 @@ impl SesEventDestinationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_destination` after provisioning.\n"]
     pub fn kinesis_destination(&self) -> ListRef<SesEventDestinationKinesisDestinationElRef> {
         ListRef::new(
@@ -393,7 +345,6 @@ impl SesEventDestinationRef {
             format!("{}.kinesis_destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sns_destination` after provisioning.\n"]
     pub fn sns_destination(&self) -> ListRef<SesEventDestinationSnsDestinationElRef> {
         ListRef::new(
@@ -402,19 +353,15 @@ impl SesEventDestinationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SesEventDestinationCloudwatchDestinationEl {
     default_value: PrimField<String>,
     dimension_name: PrimField<String>,
     value_source: PrimField<String>,
 }
-
 impl SesEventDestinationCloudwatchDestinationEl {}
-
 impl ToListMappable for SesEventDestinationCloudwatchDestinationEl {
     type O = BlockAssignable<SesEventDestinationCloudwatchDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -423,7 +370,6 @@ impl ToListMappable for SesEventDestinationCloudwatchDestinationEl {
         })
     }
 }
-
 pub struct BuildSesEventDestinationCloudwatchDestinationEl {
     #[doc = ""]
     pub default_value: PrimField<String>,
@@ -432,7 +378,6 @@ pub struct BuildSesEventDestinationCloudwatchDestinationEl {
     #[doc = ""]
     pub value_source: PrimField<String>,
 }
-
 impl BuildSesEventDestinationCloudwatchDestinationEl {
     pub fn build(self) -> SesEventDestinationCloudwatchDestinationEl {
         SesEventDestinationCloudwatchDestinationEl {
@@ -442,12 +387,10 @@ impl BuildSesEventDestinationCloudwatchDestinationEl {
         }
     }
 }
-
 pub struct SesEventDestinationCloudwatchDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesEventDestinationCloudwatchDestinationElRef {
     fn new(shared: StackShared, base: String) -> SesEventDestinationCloudwatchDestinationElRef {
         SesEventDestinationCloudwatchDestinationElRef {
@@ -456,12 +399,10 @@ impl Ref for SesEventDestinationCloudwatchDestinationElRef {
         }
     }
 }
-
 impl SesEventDestinationCloudwatchDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -469,7 +410,6 @@ impl SesEventDestinationCloudwatchDestinationElRef {
             format!("{}.default_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension_name` after provisioning.\n"]
     pub fn dimension_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -477,24 +417,19 @@ impl SesEventDestinationCloudwatchDestinationElRef {
             format!("{}.dimension_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `value_source` after provisioning.\n"]
     pub fn value_source(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value_source", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesEventDestinationKinesisDestinationEl {
     role_arn: PrimField<String>,
     stream_arn: PrimField<String>,
 }
-
 impl SesEventDestinationKinesisDestinationEl {}
-
 impl ToListMappable for SesEventDestinationKinesisDestinationEl {
     type O = BlockAssignable<SesEventDestinationKinesisDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -503,14 +438,12 @@ impl ToListMappable for SesEventDestinationKinesisDestinationEl {
         })
     }
 }
-
 pub struct BuildSesEventDestinationKinesisDestinationEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub stream_arn: PrimField<String>,
 }
-
 impl BuildSesEventDestinationKinesisDestinationEl {
     pub fn build(self) -> SesEventDestinationKinesisDestinationEl {
         SesEventDestinationKinesisDestinationEl {
@@ -519,12 +452,10 @@ impl BuildSesEventDestinationKinesisDestinationEl {
         }
     }
 }
-
 pub struct SesEventDestinationKinesisDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesEventDestinationKinesisDestinationElRef {
     fn new(shared: StackShared, base: String) -> SesEventDestinationKinesisDestinationElRef {
         SesEventDestinationKinesisDestinationElRef {
@@ -533,33 +464,26 @@ impl Ref for SesEventDestinationKinesisDestinationElRef {
         }
     }
 }
-
 impl SesEventDestinationKinesisDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `stream_arn` after provisioning.\n"]
     pub fn stream_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.stream_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesEventDestinationSnsDestinationEl {
     topic_arn: PrimField<String>,
 }
-
 impl SesEventDestinationSnsDestinationEl {}
-
 impl ToListMappable for SesEventDestinationSnsDestinationEl {
     type O = BlockAssignable<SesEventDestinationSnsDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -568,12 +492,10 @@ impl ToListMappable for SesEventDestinationSnsDestinationEl {
         })
     }
 }
-
 pub struct BuildSesEventDestinationSnsDestinationEl {
     #[doc = ""]
     pub topic_arn: PrimField<String>,
 }
-
 impl BuildSesEventDestinationSnsDestinationEl {
     pub fn build(self) -> SesEventDestinationSnsDestinationEl {
         SesEventDestinationSnsDestinationEl {
@@ -581,12 +503,10 @@ impl BuildSesEventDestinationSnsDestinationEl {
         }
     }
 }
-
 pub struct SesEventDestinationSnsDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesEventDestinationSnsDestinationElRef {
     fn new(shared: StackShared, base: String) -> SesEventDestinationSnsDestinationElRef {
         SesEventDestinationSnsDestinationElRef {
@@ -595,18 +515,15 @@ impl Ref for SesEventDestinationSnsDestinationElRef {
         }
     }
 }
-
 impl SesEventDestinationSnsDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SesEventDestinationDynamic {
     cloudwatch_destination: Option<DynamicBlock<SesEventDestinationCloudwatchDestinationEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BackupVaultLockConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct BackupVaultLockConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct BackupVaultLockConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BackupVaultLockConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct BackupVaultLockConfiguration(Rc<BackupVaultLockConfiguration_>);
-
 impl BackupVaultLockConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl BackupVaultLockConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl BackupVaultLockConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,37 +93,31 @@ impl BackupVaultLockConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `changeable_for_days`.\n"]
     pub fn set_changeable_for_days(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().changeable_for_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_retention_days`.\n"]
     pub fn set_max_retention_days(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_retention_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_retention_days`.\n"]
     pub fn set_min_retention_days(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().min_retention_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `backup_vault_arn` after provisioning.\n"]
     pub fn backup_vault_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +125,6 @@ impl BackupVaultLockConfiguration {
             format!("{}.backup_vault_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `backup_vault_name` after provisioning.\n"]
     pub fn backup_vault_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +132,6 @@ impl BackupVaultLockConfiguration {
             format!("{}.backup_vault_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `changeable_for_days` after provisioning.\n"]
     pub fn changeable_for_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -159,12 +139,10 @@ impl BackupVaultLockConfiguration {
             format!("{}.changeable_for_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_retention_days` after provisioning.\n"]
     pub fn max_retention_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -172,7 +150,6 @@ impl BackupVaultLockConfiguration {
             format!("{}.max_retention_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_retention_days` after provisioning.\n"]
     pub fn min_retention_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -180,7 +157,6 @@ impl BackupVaultLockConfiguration {
             format!("{}.min_retention_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +165,6 @@ impl BackupVaultLockConfiguration {
         )
     }
 }
-
 impl Referable for BackupVaultLockConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -199,38 +174,30 @@ impl Referable for BackupVaultLockConfiguration {
         )
     }
 }
-
 impl Resource for BackupVaultLockConfiguration {}
-
 impl ToListMappable for BackupVaultLockConfiguration {
     type O = ListRef<BackupVaultLockConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BackupVaultLockConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_backup_vault_lock_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBackupVaultLockConfiguration {
     pub tf_id: String,
     #[doc = ""]
     pub backup_vault_name: PrimField<String>,
 }
-
 impl BuildBackupVaultLockConfiguration {
     pub fn build(self, stack: &mut Stack) -> BackupVaultLockConfiguration {
         let out = BackupVaultLockConfiguration(Rc::new(BackupVaultLockConfiguration_ {
@@ -253,27 +220,22 @@ impl BuildBackupVaultLockConfiguration {
         out
     }
 }
-
 pub struct BackupVaultLockConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupVaultLockConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BackupVaultLockConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `backup_vault_arn` after provisioning.\n"]
     pub fn backup_vault_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +243,6 @@ impl BackupVaultLockConfigurationRef {
             format!("{}.backup_vault_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `backup_vault_name` after provisioning.\n"]
     pub fn backup_vault_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +250,6 @@ impl BackupVaultLockConfigurationRef {
             format!("{}.backup_vault_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `changeable_for_days` after provisioning.\n"]
     pub fn changeable_for_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -297,12 +257,10 @@ impl BackupVaultLockConfigurationRef {
             format!("{}.changeable_for_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_retention_days` after provisioning.\n"]
     pub fn max_retention_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -310,7 +268,6 @@ impl BackupVaultLockConfigurationRef {
             format!("{}.max_retention_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_retention_days` after provisioning.\n"]
     pub fn min_retention_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -318,7 +275,6 @@ impl BackupVaultLockConfigurationRef {
             format!("{}.min_retention_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(

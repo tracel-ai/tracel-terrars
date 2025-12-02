@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AccountAlternateContactData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct AccountAlternateContactData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<AccountAlternateContactTimeoutsEl>,
 }
-
 struct AccountAlternateContact_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AccountAlternateContactData>,
 }
-
 #[derive(Clone)]
 pub struct AccountAlternateContact(Rc<AccountAlternateContact_>);
-
 impl AccountAlternateContact {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl AccountAlternateContact {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl AccountAlternateContact {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,25 +93,21 @@ impl AccountAlternateContact {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<AccountAlternateContactTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -131,7 +115,6 @@ impl AccountAlternateContact {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alternate_contact_type` after provisioning.\n"]
     pub fn alternate_contact_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,7 +122,6 @@ impl AccountAlternateContact {
             format!("{}.alternate_contact_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `email_address` after provisioning.\n"]
     pub fn email_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -147,12 +129,10 @@ impl AccountAlternateContact {
             format!("{}.email_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +140,6 @@ impl AccountAlternateContact {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
     pub fn phone_number(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +147,6 @@ impl AccountAlternateContact {
             format!("{}.phone_number", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `title` after provisioning.\n"]
     pub fn title(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +154,6 @@ impl AccountAlternateContact {
             format!("{}.title", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AccountAlternateContactTimeoutsElRef {
         AccountAlternateContactTimeoutsElRef::new(
@@ -185,7 +162,6 @@ impl AccountAlternateContact {
         )
     }
 }
-
 impl Referable for AccountAlternateContact {
     fn extract_ref(&self) -> String {
         format!(
@@ -195,32 +171,25 @@ impl Referable for AccountAlternateContact {
         )
     }
 }
-
 impl Resource for AccountAlternateContact {}
-
 impl ToListMappable for AccountAlternateContact {
     type O = ListRef<AccountAlternateContactRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AccountAlternateContact_ {
     fn extract_resource_type(&self) -> String {
         "aws_account_alternate_contact".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAccountAlternateContact {
     pub tf_id: String,
     #[doc = ""]
@@ -234,7 +203,6 @@ pub struct BuildAccountAlternateContact {
     #[doc = ""]
     pub title: PrimField<String>,
 }
-
 impl BuildAccountAlternateContact {
     pub fn build(self, stack: &mut Stack) -> AccountAlternateContact {
         let out = AccountAlternateContact(Rc::new(AccountAlternateContact_ {
@@ -259,27 +227,22 @@ impl BuildAccountAlternateContact {
         out
     }
 }
-
 pub struct AccountAlternateContactRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AccountAlternateContactRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AccountAlternateContactRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -287,7 +250,6 @@ impl AccountAlternateContactRef {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alternate_contact_type` after provisioning.\n"]
     pub fn alternate_contact_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +257,6 @@ impl AccountAlternateContactRef {
             format!("{}.alternate_contact_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `email_address` after provisioning.\n"]
     pub fn email_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,12 +264,10 @@ impl AccountAlternateContactRef {
             format!("{}.email_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,7 +275,6 @@ impl AccountAlternateContactRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
     pub fn phone_number(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -324,7 +282,6 @@ impl AccountAlternateContactRef {
             format!("{}.phone_number", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `title` after provisioning.\n"]
     pub fn title(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -332,7 +289,6 @@ impl AccountAlternateContactRef {
             format!("{}.title", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AccountAlternateContactTimeoutsElRef {
         AccountAlternateContactTimeoutsElRef::new(
@@ -341,7 +297,6 @@ impl AccountAlternateContactRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AccountAlternateContactTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -351,30 +306,25 @@ pub struct AccountAlternateContactTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl AccountAlternateContactTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AccountAlternateContactTimeoutsEl {
     type O = BlockAssignable<AccountAlternateContactTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -383,9 +333,7 @@ impl ToListMappable for AccountAlternateContactTimeoutsEl {
         })
     }
 }
-
 pub struct BuildAccountAlternateContactTimeoutsEl {}
-
 impl BuildAccountAlternateContactTimeoutsEl {
     pub fn build(self) -> AccountAlternateContactTimeoutsEl {
         AccountAlternateContactTimeoutsEl {
@@ -395,12 +343,10 @@ impl BuildAccountAlternateContactTimeoutsEl {
         }
     }
 }
-
 pub struct AccountAlternateContactTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AccountAlternateContactTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> AccountAlternateContactTimeoutsElRef {
         AccountAlternateContactTimeoutsElRef {
@@ -409,22 +355,18 @@ impl Ref for AccountAlternateContactTimeoutsElRef {
         }
     }
 }
-
 impl AccountAlternateContactTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

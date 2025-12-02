@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ApiGatewayIntegrationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -51,47 +50,38 @@ struct ApiGatewayIntegrationData {
     tls_config: Option<Vec<ApiGatewayIntegrationTlsConfigEl>>,
     dynamic: ApiGatewayIntegrationDynamic,
 }
-
 struct ApiGatewayIntegration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ApiGatewayIntegrationData>,
 }
-
 #[derive(Clone)]
 pub struct ApiGatewayIntegration(Rc<ApiGatewayIntegration_>);
-
 impl ApiGatewayIntegration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -110,7 +100,6 @@ impl ApiGatewayIntegration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -120,7 +109,6 @@ impl ApiGatewayIntegration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -130,91 +118,76 @@ impl ApiGatewayIntegration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `cache_key_parameters`.\n"]
     pub fn set_cache_key_parameters(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().cache_key_parameters = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cache_namespace`.\n"]
     pub fn set_cache_namespace(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cache_namespace = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connection_id`.\n"]
     pub fn set_connection_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().connection_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connection_type`.\n"]
     pub fn set_connection_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().connection_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `content_handling`.\n"]
     pub fn set_content_handling(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().content_handling = Some(v.into());
         self
     }
-
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().credentials = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `integration_http_method`.\n"]
     pub fn set_integration_http_method(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().integration_http_method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `passthrough_behavior`.\n"]
     pub fn set_passthrough_behavior(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().passthrough_behavior = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_parameters`.\n"]
     pub fn set_request_parameters(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().request_parameters = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_templates`.\n"]
     pub fn set_request_templates(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().request_templates = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout_milliseconds`.\n"]
     pub fn set_timeout_milliseconds(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().timeout_milliseconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `uri`.\n"]
     pub fn set_uri(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().uri = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tls_config`.\n"]
     pub fn set_tls_config(
         self,
@@ -230,7 +203,6 @@ impl ApiGatewayIntegration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `cache_key_parameters` after provisioning.\n"]
     pub fn cache_key_parameters(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -238,7 +210,6 @@ impl ApiGatewayIntegration {
             format!("{}.cache_key_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cache_namespace` after provisioning.\n"]
     pub fn cache_namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -246,7 +217,6 @@ impl ApiGatewayIntegration {
             format!("{}.cache_namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_id` after provisioning.\n"]
     pub fn connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -254,7 +224,6 @@ impl ApiGatewayIntegration {
             format!("{}.connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_type` after provisioning.\n"]
     pub fn connection_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -262,7 +231,6 @@ impl ApiGatewayIntegration {
             format!("{}.connection_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `content_handling` after provisioning.\n"]
     pub fn content_handling(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -270,7 +238,6 @@ impl ApiGatewayIntegration {
             format!("{}.content_handling", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
     pub fn credentials(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +245,6 @@ impl ApiGatewayIntegration {
             format!("{}.credentials", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_method` after provisioning.\n"]
     pub fn http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,12 +252,10 @@ impl ApiGatewayIntegration {
             format!("{}.http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `integration_http_method` after provisioning.\n"]
     pub fn integration_http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -299,7 +263,6 @@ impl ApiGatewayIntegration {
             format!("{}.integration_http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `passthrough_behavior` after provisioning.\n"]
     pub fn passthrough_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +270,6 @@ impl ApiGatewayIntegration {
             format!("{}.passthrough_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +277,6 @@ impl ApiGatewayIntegration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_parameters` after provisioning.\n"]
     pub fn request_parameters(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -323,7 +284,6 @@ impl ApiGatewayIntegration {
             format!("{}.request_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_templates` after provisioning.\n"]
     pub fn request_templates(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -331,7 +291,6 @@ impl ApiGatewayIntegration {
             format!("{}.request_templates", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -339,7 +298,6 @@ impl ApiGatewayIntegration {
             format!("{}.resource_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -347,7 +305,6 @@ impl ApiGatewayIntegration {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout_milliseconds` after provisioning.\n"]
     pub fn timeout_milliseconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -355,7 +312,6 @@ impl ApiGatewayIntegration {
             format!("{}.timeout_milliseconds", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,12 +319,10 @@ impl ApiGatewayIntegration {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `tls_config` after provisioning.\n"]
     pub fn tls_config(&self) -> ListRef<ApiGatewayIntegrationTlsConfigElRef> {
         ListRef::new(
@@ -377,7 +331,6 @@ impl ApiGatewayIntegration {
         )
     }
 }
-
 impl Referable for ApiGatewayIntegration {
     fn extract_ref(&self) -> String {
         format!(
@@ -387,32 +340,25 @@ impl Referable for ApiGatewayIntegration {
         )
     }
 }
-
 impl Resource for ApiGatewayIntegration {}
-
 impl ToListMappable for ApiGatewayIntegration {
     type O = ListRef<ApiGatewayIntegrationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ApiGatewayIntegration_ {
     fn extract_resource_type(&self) -> String {
         "aws_api_gateway_integration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildApiGatewayIntegration {
     pub tf_id: String,
     #[doc = ""]
@@ -424,7 +370,6 @@ pub struct BuildApiGatewayIntegration {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildApiGatewayIntegration {
     pub fn build(self, stack: &mut Stack) -> ApiGatewayIntegration {
         let out = ApiGatewayIntegration(Rc::new(ApiGatewayIntegration_ {
@@ -461,27 +406,22 @@ impl BuildApiGatewayIntegration {
         out
     }
 }
-
 pub struct ApiGatewayIntegrationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ApiGatewayIntegrationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ApiGatewayIntegrationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cache_key_parameters` after provisioning.\n"]
     pub fn cache_key_parameters(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -489,7 +429,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.cache_key_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cache_namespace` after provisioning.\n"]
     pub fn cache_namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -497,7 +436,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.cache_namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_id` after provisioning.\n"]
     pub fn connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -505,7 +443,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_type` after provisioning.\n"]
     pub fn connection_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -513,7 +450,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.connection_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `content_handling` after provisioning.\n"]
     pub fn content_handling(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -521,7 +457,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.content_handling", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
     pub fn credentials(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -529,7 +464,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.credentials", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_method` after provisioning.\n"]
     pub fn http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -537,12 +471,10 @@ impl ApiGatewayIntegrationRef {
             format!("{}.http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `integration_http_method` after provisioning.\n"]
     pub fn integration_http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -550,7 +482,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.integration_http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `passthrough_behavior` after provisioning.\n"]
     pub fn passthrough_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -558,7 +489,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.passthrough_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -566,7 +496,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_parameters` after provisioning.\n"]
     pub fn request_parameters(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -574,7 +503,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.request_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_templates` after provisioning.\n"]
     pub fn request_templates(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -582,7 +510,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.request_templates", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_id` after provisioning.\n"]
     pub fn resource_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -590,7 +517,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.resource_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -598,7 +524,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout_milliseconds` after provisioning.\n"]
     pub fn timeout_milliseconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -606,7 +531,6 @@ impl ApiGatewayIntegrationRef {
             format!("{}.timeout_milliseconds", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -614,12 +538,10 @@ impl ApiGatewayIntegrationRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `tls_config` after provisioning.\n"]
     pub fn tls_config(&self) -> ListRef<ApiGatewayIntegrationTlsConfigElRef> {
         ListRef::new(
@@ -628,13 +550,11 @@ impl ApiGatewayIntegrationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ApiGatewayIntegrationTlsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     insecure_skip_verification: Option<PrimField<bool>>,
 }
-
 impl ApiGatewayIntegrationTlsConfigEl {
     #[doc = "Set the field `insecure_skip_verification`.\n"]
     pub fn set_insecure_skip_verification(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -642,10 +562,8 @@ impl ApiGatewayIntegrationTlsConfigEl {
         self
     }
 }
-
 impl ToListMappable for ApiGatewayIntegrationTlsConfigEl {
     type O = BlockAssignable<ApiGatewayIntegrationTlsConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -654,9 +572,7 @@ impl ToListMappable for ApiGatewayIntegrationTlsConfigEl {
         })
     }
 }
-
 pub struct BuildApiGatewayIntegrationTlsConfigEl {}
-
 impl BuildApiGatewayIntegrationTlsConfigEl {
     pub fn build(self) -> ApiGatewayIntegrationTlsConfigEl {
         ApiGatewayIntegrationTlsConfigEl {
@@ -664,12 +580,10 @@ impl BuildApiGatewayIntegrationTlsConfigEl {
         }
     }
 }
-
 pub struct ApiGatewayIntegrationTlsConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ApiGatewayIntegrationTlsConfigElRef {
     fn new(shared: StackShared, base: String) -> ApiGatewayIntegrationTlsConfigElRef {
         ApiGatewayIntegrationTlsConfigElRef {
@@ -678,12 +592,10 @@ impl Ref for ApiGatewayIntegrationTlsConfigElRef {
         }
     }
 }
-
 impl ApiGatewayIntegrationTlsConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `insecure_skip_verification` after provisioning.\n"]
     pub fn insecure_skip_verification(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -692,7 +604,6 @@ impl ApiGatewayIntegrationTlsConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ApiGatewayIntegrationDynamic {
     tls_config: Option<DynamicBlock<ApiGatewayIntegrationTlsConfigEl>>,

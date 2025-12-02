@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataAcmCertificateData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,84 +28,69 @@ struct DataAcmCertificateData {
     #[serde(skip_serializing_if = "Option::is_none")]
     types: Option<ListField<PrimField<String>>>,
 }
-
 struct DataAcmCertificate_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataAcmCertificateData>,
 }
-
 #[derive(Clone)]
 pub struct DataAcmCertificate(Rc<DataAcmCertificate_>);
-
 impl DataAcmCertificate {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `domain`.\n"]
     pub fn set_domain(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().domain = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key_types`.\n"]
     pub fn set_key_types(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().key_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `most_recent`.\n"]
     pub fn set_most_recent(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().most_recent = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `statuses`.\n"]
     pub fn set_statuses(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().statuses = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `types`.\n"]
     pub fn set_types(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().types = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -114,7 +98,6 @@ impl DataAcmCertificate {
             format!("{}.certificate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -122,7 +105,6 @@ impl DataAcmCertificate {
             format!("{}.certificate_chain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,12 +112,10 @@ impl DataAcmCertificate {
             format!("{}.domain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key_types` after provisioning.\n"]
     pub fn key_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -143,7 +123,6 @@ impl DataAcmCertificate {
             format!("{}.key_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -151,7 +130,6 @@ impl DataAcmCertificate {
             format!("{}.most_recent", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +137,6 @@ impl DataAcmCertificate {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +144,6 @@ impl DataAcmCertificate {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `statuses` after provisioning.\n"]
     pub fn statuses(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -175,7 +151,6 @@ impl DataAcmCertificate {
             format!("{}.statuses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -183,7 +158,6 @@ impl DataAcmCertificate {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `types` after provisioning.\n"]
     pub fn types(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -192,7 +166,6 @@ impl DataAcmCertificate {
         )
     }
 }
-
 impl Referable for DataAcmCertificate {
     fn extract_ref(&self) -> String {
         format!(
@@ -202,36 +175,28 @@ impl Referable for DataAcmCertificate {
         )
     }
 }
-
 impl Datasource for DataAcmCertificate {}
-
 impl ToListMappable for DataAcmCertificate {
     type O = ListRef<DataAcmCertificateRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataAcmCertificate_ {
     fn extract_datasource_type(&self) -> String {
         "aws_acm_certificate".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataAcmCertificate {
     pub tf_id: String,
 }
-
 impl BuildDataAcmCertificate {
     pub fn build(self, stack: &mut Stack) -> DataAcmCertificate {
         let out = DataAcmCertificate(Rc::new(DataAcmCertificate_ {
@@ -255,32 +220,26 @@ impl BuildDataAcmCertificate {
         out
     }
 }
-
 pub struct DataAcmCertificateRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAcmCertificateRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataAcmCertificateRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate` after provisioning.\n"]
     pub fn certificate(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +247,6 @@ impl DataAcmCertificateRef {
             format!("{}.certificate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -296,7 +254,6 @@ impl DataAcmCertificateRef {
             format!("{}.certificate_chain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -304,12 +261,10 @@ impl DataAcmCertificateRef {
             format!("{}.domain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key_types` after provisioning.\n"]
     pub fn key_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -317,7 +272,6 @@ impl DataAcmCertificateRef {
             format!("{}.key_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `most_recent` after provisioning.\n"]
     pub fn most_recent(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -325,7 +279,6 @@ impl DataAcmCertificateRef {
             format!("{}.most_recent", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +286,6 @@ impl DataAcmCertificateRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,7 +293,6 @@ impl DataAcmCertificateRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `statuses` after provisioning.\n"]
     pub fn statuses(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -349,7 +300,6 @@ impl DataAcmCertificateRef {
             format!("{}.statuses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -357,7 +307,6 @@ impl DataAcmCertificateRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `types` after provisioning.\n"]
     pub fn types(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(

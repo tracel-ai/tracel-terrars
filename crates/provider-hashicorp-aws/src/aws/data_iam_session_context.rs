@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataIamSessionContextData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -16,47 +15,38 @@ struct DataIamSessionContextData {
     #[serde(skip_serializing_if = "Option::is_none")]
     id: Option<PrimField<String>>,
 }
-
 struct DataIamSessionContext_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataIamSessionContextData>,
 }
-
 #[derive(Clone)]
 pub struct DataIamSessionContext(Rc<DataIamSessionContext_>);
-
 impl DataIamSessionContext {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `issuer_arn` after provisioning.\n"]
     pub fn issuer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -64,7 +54,6 @@ impl DataIamSessionContext {
             format!("{}.issuer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer_id` after provisioning.\n"]
     pub fn issuer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -72,7 +61,6 @@ impl DataIamSessionContext {
             format!("{}.issuer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer_name` after provisioning.\n"]
     pub fn issuer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -80,7 +68,6 @@ impl DataIamSessionContext {
             format!("{}.issuer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_name` after provisioning.\n"]
     pub fn session_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -89,7 +76,6 @@ impl DataIamSessionContext {
         )
     }
 }
-
 impl Referable for DataIamSessionContext {
     fn extract_ref(&self) -> String {
         format!(
@@ -99,38 +85,30 @@ impl Referable for DataIamSessionContext {
         )
     }
 }
-
 impl Datasource for DataIamSessionContext {}
-
 impl ToListMappable for DataIamSessionContext {
     type O = ListRef<DataIamSessionContextRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataIamSessionContext_ {
     fn extract_datasource_type(&self) -> String {
         "aws_iam_session_context".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataIamSessionContext {
     pub tf_id: String,
     #[doc = ""]
     pub arn: PrimField<String>,
 }
-
 impl BuildDataIamSessionContext {
     pub fn build(self, stack: &mut Stack) -> DataIamSessionContext {
         let out = DataIamSessionContext(Rc::new(DataIamSessionContext_ {
@@ -148,37 +126,30 @@ impl BuildDataIamSessionContext {
         out
     }
 }
-
 pub struct DataIamSessionContextRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataIamSessionContextRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataIamSessionContextRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `issuer_arn` after provisioning.\n"]
     pub fn issuer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -186,7 +157,6 @@ impl DataIamSessionContextRef {
             format!("{}.issuer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer_id` after provisioning.\n"]
     pub fn issuer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -194,7 +164,6 @@ impl DataIamSessionContextRef {
             format!("{}.issuer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `issuer_name` after provisioning.\n"]
     pub fn issuer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +171,6 @@ impl DataIamSessionContextRef {
             format!("{}.issuer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_name` after provisioning.\n"]
     pub fn session_name(&self) -> PrimExpr<String> {
         PrimExpr::new(

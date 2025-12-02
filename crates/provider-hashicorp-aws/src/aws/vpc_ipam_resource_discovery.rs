@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VpcIpamResourceDiscoveryData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct VpcIpamResourceDiscoveryData {
     timeouts: Option<VpcIpamResourceDiscoveryTimeoutsEl>,
     dynamic: VpcIpamResourceDiscoveryDynamic,
 }
-
 struct VpcIpamResourceDiscovery_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VpcIpamResourceDiscoveryData>,
 }
-
 #[derive(Clone)]
 pub struct VpcIpamResourceDiscovery(Rc<VpcIpamResourceDiscovery_>);
-
 impl VpcIpamResourceDiscovery {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl VpcIpamResourceDiscovery {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl VpcIpamResourceDiscovery {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,37 +97,31 @@ impl VpcIpamResourceDiscovery {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `operating_regions`.\n"]
     pub fn set_operating_regions(
         self,
@@ -155,18 +137,15 @@ impl VpcIpamResourceDiscovery {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<VpcIpamResourceDiscoveryTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,12 +153,10 @@ impl VpcIpamResourceDiscovery {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ipam_resource_discovery_region` after provisioning.\n"]
     pub fn ipam_resource_discovery_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,7 +164,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.ipam_resource_discovery_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_default` after provisioning.\n"]
     pub fn is_default(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -195,7 +171,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.is_default", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -203,7 +178,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +185,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -219,7 +192,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -227,7 +199,6 @@ impl VpcIpamResourceDiscovery {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamResourceDiscoveryTimeoutsElRef {
         VpcIpamResourceDiscoveryTimeoutsElRef::new(
@@ -236,7 +207,6 @@ impl VpcIpamResourceDiscovery {
         )
     }
 }
-
 impl Referable for VpcIpamResourceDiscovery {
     fn extract_ref(&self) -> String {
         format!(
@@ -246,36 +216,28 @@ impl Referable for VpcIpamResourceDiscovery {
         )
     }
 }
-
 impl Resource for VpcIpamResourceDiscovery {}
-
 impl ToListMappable for VpcIpamResourceDiscovery {
     type O = ListRef<VpcIpamResourceDiscoveryRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VpcIpamResourceDiscovery_ {
     fn extract_resource_type(&self) -> String {
         "aws_vpc_ipam_resource_discovery".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVpcIpamResourceDiscovery {
     pub tf_id: String,
 }
-
 impl BuildVpcIpamResourceDiscovery {
     pub fn build(self, stack: &mut Stack) -> VpcIpamResourceDiscovery {
         let out = VpcIpamResourceDiscovery(Rc::new(VpcIpamResourceDiscovery_ {
@@ -300,32 +262,26 @@ impl BuildVpcIpamResourceDiscovery {
         out
     }
 }
-
 pub struct VpcIpamResourceDiscoveryRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcIpamResourceDiscoveryRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VpcIpamResourceDiscoveryRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,12 +289,10 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ipam_resource_discovery_region` after provisioning.\n"]
     pub fn ipam_resource_discovery_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +300,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.ipam_resource_discovery_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_default` after provisioning.\n"]
     pub fn is_default(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -354,7 +307,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.is_default", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -362,7 +314,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +321,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -378,7 +328,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -386,7 +335,6 @@ impl VpcIpamResourceDiscoveryRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcIpamResourceDiscoveryTimeoutsElRef {
         VpcIpamResourceDiscoveryTimeoutsElRef::new(
@@ -395,17 +343,13 @@ impl VpcIpamResourceDiscoveryRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct VpcIpamResourceDiscoveryOperatingRegionsEl {
     region_name: PrimField<String>,
 }
-
 impl VpcIpamResourceDiscoveryOperatingRegionsEl {}
-
 impl ToListMappable for VpcIpamResourceDiscoveryOperatingRegionsEl {
     type O = BlockAssignable<VpcIpamResourceDiscoveryOperatingRegionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -414,12 +358,10 @@ impl ToListMappable for VpcIpamResourceDiscoveryOperatingRegionsEl {
         })
     }
 }
-
 pub struct BuildVpcIpamResourceDiscoveryOperatingRegionsEl {
     #[doc = ""]
     pub region_name: PrimField<String>,
 }
-
 impl BuildVpcIpamResourceDiscoveryOperatingRegionsEl {
     pub fn build(self) -> VpcIpamResourceDiscoveryOperatingRegionsEl {
         VpcIpamResourceDiscoveryOperatingRegionsEl {
@@ -427,12 +369,10 @@ impl BuildVpcIpamResourceDiscoveryOperatingRegionsEl {
         }
     }
 }
-
 pub struct VpcIpamResourceDiscoveryOperatingRegionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcIpamResourceDiscoveryOperatingRegionsElRef {
     fn new(shared: StackShared, base: String) -> VpcIpamResourceDiscoveryOperatingRegionsElRef {
         VpcIpamResourceDiscoveryOperatingRegionsElRef {
@@ -441,18 +381,15 @@ impl Ref for VpcIpamResourceDiscoveryOperatingRegionsElRef {
         }
     }
 }
-
 impl VpcIpamResourceDiscoveryOperatingRegionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `region_name` after provisioning.\n"]
     pub fn region_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VpcIpamResourceDiscoveryTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -462,30 +399,25 @@ pub struct VpcIpamResourceDiscoveryTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl VpcIpamResourceDiscoveryTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for VpcIpamResourceDiscoveryTimeoutsEl {
     type O = BlockAssignable<VpcIpamResourceDiscoveryTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -494,9 +426,7 @@ impl ToListMappable for VpcIpamResourceDiscoveryTimeoutsEl {
         })
     }
 }
-
 pub struct BuildVpcIpamResourceDiscoveryTimeoutsEl {}
-
 impl BuildVpcIpamResourceDiscoveryTimeoutsEl {
     pub fn build(self) -> VpcIpamResourceDiscoveryTimeoutsEl {
         VpcIpamResourceDiscoveryTimeoutsEl {
@@ -506,12 +436,10 @@ impl BuildVpcIpamResourceDiscoveryTimeoutsEl {
         }
     }
 }
-
 pub struct VpcIpamResourceDiscoveryTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcIpamResourceDiscoveryTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> VpcIpamResourceDiscoveryTimeoutsElRef {
         VpcIpamResourceDiscoveryTimeoutsElRef {
@@ -520,28 +448,23 @@ impl Ref for VpcIpamResourceDiscoveryTimeoutsElRef {
         }
     }
 }
-
 impl VpcIpamResourceDiscoveryTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VpcIpamResourceDiscoveryDynamic {
     operating_regions: Option<DynamicBlock<VpcIpamResourceDiscoveryOperatingRegionsEl>>,

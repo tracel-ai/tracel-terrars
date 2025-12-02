@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Route53HealthCheckData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -63,47 +62,38 @@ struct Route53HealthCheckData {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 struct Route53HealthCheck_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Route53HealthCheckData>,
 }
-
 #[derive(Clone)]
 pub struct Route53HealthCheck(Rc<Route53HealthCheck_>);
-
 impl Route53HealthCheck {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -122,7 +112,6 @@ impl Route53HealthCheck {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -132,7 +121,6 @@ impl Route53HealthCheck {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -142,150 +130,125 @@ impl Route53HealthCheck {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `child_health_threshold`.\n"]
     pub fn set_child_health_threshold(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().child_health_threshold = Some(v.into());
         self
     }
-
     #[doc = "Set the field `child_healthchecks`.\n"]
     pub fn set_child_healthchecks(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().child_healthchecks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloudwatch_alarm_name`.\n"]
     pub fn set_cloudwatch_alarm_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cloudwatch_alarm_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloudwatch_alarm_region`.\n"]
     pub fn set_cloudwatch_alarm_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cloudwatch_alarm_region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `disabled`.\n"]
     pub fn set_disabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().disabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_sni`.\n"]
     pub fn set_enable_sni(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enable_sni = Some(v.into());
         self
     }
-
     #[doc = "Set the field `failure_threshold`.\n"]
     pub fn set_failure_threshold(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().failure_threshold = Some(v.into());
         self
     }
-
     #[doc = "Set the field `fqdn`.\n"]
     pub fn set_fqdn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().fqdn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `insufficient_data_health_status`.\n"]
     pub fn set_insufficient_data_health_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().insufficient_data_health_status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `invert_healthcheck`.\n"]
     pub fn set_invert_healthcheck(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().invert_healthcheck = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_address`.\n"]
     pub fn set_ip_address(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ip_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `measure_latency`.\n"]
     pub fn set_measure_latency(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().measure_latency = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `reference_name`.\n"]
     pub fn set_reference_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().reference_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `regions`.\n"]
     pub fn set_regions(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().regions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_interval`.\n"]
     pub fn set_request_interval(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().request_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_path`.\n"]
     pub fn set_resource_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resource_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `routing_control_arn`.\n"]
     pub fn set_routing_control_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().routing_control_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `search_string`.\n"]
     pub fn set_search_string(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().search_string = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `triggers`.\n"]
     pub fn set_triggers(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().triggers = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `child_health_threshold` after provisioning.\n"]
     pub fn child_health_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -293,7 +256,6 @@ impl Route53HealthCheck {
             format!("{}.child_health_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `child_healthchecks` after provisioning.\n"]
     pub fn child_healthchecks(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -301,7 +263,6 @@ impl Route53HealthCheck {
             format!("{}.child_healthchecks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_alarm_name` after provisioning.\n"]
     pub fn cloudwatch_alarm_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -309,7 +270,6 @@ impl Route53HealthCheck {
             format!("{}.cloudwatch_alarm_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_alarm_region` after provisioning.\n"]
     pub fn cloudwatch_alarm_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -317,7 +277,6 @@ impl Route53HealthCheck {
             format!("{}.cloudwatch_alarm_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disabled` after provisioning.\n"]
     pub fn disabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -325,7 +284,6 @@ impl Route53HealthCheck {
             format!("{}.disabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_sni` after provisioning.\n"]
     pub fn enable_sni(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -333,7 +291,6 @@ impl Route53HealthCheck {
             format!("{}.enable_sni", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `failure_threshold` after provisioning.\n"]
     pub fn failure_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -341,7 +298,6 @@ impl Route53HealthCheck {
             format!("{}.failure_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fqdn` after provisioning.\n"]
     pub fn fqdn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -349,12 +305,10 @@ impl Route53HealthCheck {
             format!("{}.fqdn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `insufficient_data_health_status` after provisioning.\n"]
     pub fn insufficient_data_health_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -362,7 +316,6 @@ impl Route53HealthCheck {
             format!("{}.insufficient_data_health_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invert_healthcheck` after provisioning.\n"]
     pub fn invert_healthcheck(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -370,7 +323,6 @@ impl Route53HealthCheck {
             format!("{}.invert_healthcheck", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_address` after provisioning.\n"]
     pub fn ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +330,6 @@ impl Route53HealthCheck {
             format!("{}.ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `measure_latency` after provisioning.\n"]
     pub fn measure_latency(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -386,7 +337,6 @@ impl Route53HealthCheck {
             format!("{}.measure_latency", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -394,7 +344,6 @@ impl Route53HealthCheck {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reference_name` after provisioning.\n"]
     pub fn reference_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +351,6 @@ impl Route53HealthCheck {
             format!("{}.reference_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -410,7 +358,6 @@ impl Route53HealthCheck {
             format!("{}.regions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_interval` after provisioning.\n"]
     pub fn request_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -418,7 +365,6 @@ impl Route53HealthCheck {
             format!("{}.request_interval", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_path` after provisioning.\n"]
     pub fn resource_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -426,7 +372,6 @@ impl Route53HealthCheck {
             format!("{}.resource_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_control_arn` after provisioning.\n"]
     pub fn routing_control_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -434,7 +379,6 @@ impl Route53HealthCheck {
             format!("{}.routing_control_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `search_string` after provisioning.\n"]
     pub fn search_string(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -442,7 +386,6 @@ impl Route53HealthCheck {
             format!("{}.search_string", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -450,7 +393,6 @@ impl Route53HealthCheck {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -458,7 +400,6 @@ impl Route53HealthCheck {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `triggers` after provisioning.\n"]
     pub fn triggers(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -466,7 +407,6 @@ impl Route53HealthCheck {
             format!("{}.triggers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,7 +415,6 @@ impl Route53HealthCheck {
         )
     }
 }
-
 impl Referable for Route53HealthCheck {
     fn extract_ref(&self) -> String {
         format!(
@@ -485,38 +424,30 @@ impl Referable for Route53HealthCheck {
         )
     }
 }
-
 impl Resource for Route53HealthCheck {}
-
 impl ToListMappable for Route53HealthCheck {
     type O = ListRef<Route53HealthCheckRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Route53HealthCheck_ {
     fn extract_resource_type(&self) -> String {
         "aws_route53_health_check".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildRoute53HealthCheck {
     pub tf_id: String,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildRoute53HealthCheck {
     pub fn build(self, stack: &mut Stack) -> Route53HealthCheck {
         let out = Route53HealthCheck(Rc::new(Route53HealthCheck_ {
@@ -557,32 +488,26 @@ impl BuildRoute53HealthCheck {
         out
     }
 }
-
 pub struct Route53HealthCheckRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Route53HealthCheckRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Route53HealthCheckRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `child_health_threshold` after provisioning.\n"]
     pub fn child_health_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -590,7 +515,6 @@ impl Route53HealthCheckRef {
             format!("{}.child_health_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `child_healthchecks` after provisioning.\n"]
     pub fn child_healthchecks(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -598,7 +522,6 @@ impl Route53HealthCheckRef {
             format!("{}.child_healthchecks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_alarm_name` after provisioning.\n"]
     pub fn cloudwatch_alarm_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -606,7 +529,6 @@ impl Route53HealthCheckRef {
             format!("{}.cloudwatch_alarm_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_alarm_region` after provisioning.\n"]
     pub fn cloudwatch_alarm_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -614,7 +536,6 @@ impl Route53HealthCheckRef {
             format!("{}.cloudwatch_alarm_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disabled` after provisioning.\n"]
     pub fn disabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -622,7 +543,6 @@ impl Route53HealthCheckRef {
             format!("{}.disabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_sni` after provisioning.\n"]
     pub fn enable_sni(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -630,7 +550,6 @@ impl Route53HealthCheckRef {
             format!("{}.enable_sni", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `failure_threshold` after provisioning.\n"]
     pub fn failure_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -638,7 +557,6 @@ impl Route53HealthCheckRef {
             format!("{}.failure_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fqdn` after provisioning.\n"]
     pub fn fqdn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -646,12 +564,10 @@ impl Route53HealthCheckRef {
             format!("{}.fqdn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `insufficient_data_health_status` after provisioning.\n"]
     pub fn insufficient_data_health_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -659,7 +575,6 @@ impl Route53HealthCheckRef {
             format!("{}.insufficient_data_health_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invert_healthcheck` after provisioning.\n"]
     pub fn invert_healthcheck(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -667,7 +582,6 @@ impl Route53HealthCheckRef {
             format!("{}.invert_healthcheck", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_address` after provisioning.\n"]
     pub fn ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -675,7 +589,6 @@ impl Route53HealthCheckRef {
             format!("{}.ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `measure_latency` after provisioning.\n"]
     pub fn measure_latency(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -683,7 +596,6 @@ impl Route53HealthCheckRef {
             format!("{}.measure_latency", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -691,7 +603,6 @@ impl Route53HealthCheckRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reference_name` after provisioning.\n"]
     pub fn reference_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -699,7 +610,6 @@ impl Route53HealthCheckRef {
             format!("{}.reference_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `regions` after provisioning.\n"]
     pub fn regions(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -707,7 +617,6 @@ impl Route53HealthCheckRef {
             format!("{}.regions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_interval` after provisioning.\n"]
     pub fn request_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -715,7 +624,6 @@ impl Route53HealthCheckRef {
             format!("{}.request_interval", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_path` after provisioning.\n"]
     pub fn resource_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -723,7 +631,6 @@ impl Route53HealthCheckRef {
             format!("{}.resource_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_control_arn` after provisioning.\n"]
     pub fn routing_control_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -731,7 +638,6 @@ impl Route53HealthCheckRef {
             format!("{}.routing_control_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `search_string` after provisioning.\n"]
     pub fn search_string(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -739,7 +645,6 @@ impl Route53HealthCheckRef {
             format!("{}.search_string", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -747,7 +652,6 @@ impl Route53HealthCheckRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -755,7 +659,6 @@ impl Route53HealthCheckRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `triggers` after provisioning.\n"]
     pub fn triggers(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -763,7 +666,6 @@ impl Route53HealthCheckRef {
             format!("{}.triggers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(

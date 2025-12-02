@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Sesv2ConfigurationSetEventDestinationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct Sesv2ConfigurationSetEventDestinationData {
     event_destination: Option<Vec<Sesv2ConfigurationSetEventDestinationEventDestinationEl>>,
     dynamic: Sesv2ConfigurationSetEventDestinationDynamic,
 }
-
 struct Sesv2ConfigurationSetEventDestination_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Sesv2ConfigurationSetEventDestinationData>,
 }
-
 #[derive(Clone)]
 pub struct Sesv2ConfigurationSetEventDestination(Rc<Sesv2ConfigurationSetEventDestination_>);
-
 impl Sesv2ConfigurationSetEventDestination {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl Sesv2ConfigurationSetEventDestination {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl Sesv2ConfigurationSetEventDestination {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,19 +91,16 @@ impl Sesv2ConfigurationSetEventDestination {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_destination`.\n"]
     pub fn set_event_destination(
         self,
@@ -131,7 +116,6 @@ impl Sesv2ConfigurationSetEventDestination {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,7 +123,6 @@ impl Sesv2ConfigurationSetEventDestination {
             format!("{}.configuration_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_destination_name` after provisioning.\n"]
     pub fn event_destination_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -147,12 +130,10 @@ impl Sesv2ConfigurationSetEventDestination {
             format!("{}.event_destination_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +141,6 @@ impl Sesv2ConfigurationSetEventDestination {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_destination` after provisioning.\n"]
     pub fn event_destination(
         &self,
@@ -171,7 +151,6 @@ impl Sesv2ConfigurationSetEventDestination {
         )
     }
 }
-
 impl Referable for Sesv2ConfigurationSetEventDestination {
     fn extract_ref(&self) -> String {
         format!(
@@ -181,32 +160,25 @@ impl Referable for Sesv2ConfigurationSetEventDestination {
         )
     }
 }
-
 impl Resource for Sesv2ConfigurationSetEventDestination {}
-
 impl ToListMappable for Sesv2ConfigurationSetEventDestination {
     type O = ListRef<Sesv2ConfigurationSetEventDestinationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Sesv2ConfigurationSetEventDestination_ {
     fn extract_resource_type(&self) -> String {
         "aws_sesv2_configuration_set_event_destination".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestination {
     pub tf_id: String,
     #[doc = ""]
@@ -214,7 +186,6 @@ pub struct BuildSesv2ConfigurationSetEventDestination {
     #[doc = ""]
     pub event_destination_name: PrimField<String>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestination {
     pub fn build(self, stack: &mut Stack) -> Sesv2ConfigurationSetEventDestination {
         let out = Sesv2ConfigurationSetEventDestination(Rc::new(
@@ -239,27 +210,22 @@ impl BuildSesv2ConfigurationSetEventDestination {
         out
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `configuration_set_name` after provisioning.\n"]
     pub fn configuration_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +233,6 @@ impl Sesv2ConfigurationSetEventDestinationRef {
             format!("{}.configuration_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_destination_name` after provisioning.\n"]
     pub fn event_destination_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,12 +240,10 @@ impl Sesv2ConfigurationSetEventDestinationRef {
             format!("{}.event_destination_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +251,6 @@ impl Sesv2ConfigurationSetEventDestinationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_destination` after provisioning.\n"]
     pub fn event_destination(
         &self,
@@ -299,7 +261,6 @@ impl Sesv2ConfigurationSetEventDestinationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl
 {
@@ -307,24 +268,8 @@ pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDest
     dimension_name: PrimField<String>,
     dimension_value_source: PrimField<String>,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl { }
-
-impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl {
-    type O =
-        BlockAssignable<
-            Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl { type O = BlockAssignable < Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl
 {
     #[doc = ""]
@@ -334,88 +279,23 @@ pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatc
     #[doc = ""]
     pub dimension_value_source: PrimField<String>,
 }
-
-impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl {
-    pub fn build(
-        self,
-    ) -> Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl {
-        Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl {
-            default_dimension_value: self.default_dimension_value,
-            dimension_name: self.dimension_name,
-            dimension_value_source: self.dimension_value_source,
-        }
-    }
-}
-
+impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl { pub fn build (self) -> Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl { Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl { default_dimension_value : self . default_dimension_value , dimension_name : self . dimension_name , dimension_value_source : self . dimension_value_source , } } }
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef {
-        Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `default_dimension_value` after provisioning.\n"]
-    pub fn default_dimension_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.default_dimension_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `dimension_name` after provisioning.\n"]
-    pub fn dimension_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dimension_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `dimension_value_source` after provisioning.\n"]
-    pub fn dimension_value_source(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dimension_value_source", self.base))
-    }
-}
-
+impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef { fn new (shared : StackShared , base : String) -> Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef { Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `default_dimension_value` after provisioning.\n"] pub fn default_dimension_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.default_dimension_value" , self . base)) } # [doc = "Get a reference to the value of field `dimension_name` after provisioning.\n"] pub fn dimension_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.dimension_name" , self . base)) } # [doc = "Get a reference to the value of field `dimension_value_source` after provisioning.\n"] pub fn dimension_value_source (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.dimension_value_source" , self . base)) } }
 #[derive(Serialize, Default)]
-struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDynamic {
-    dimension_configuration: Option<
-        DynamicBlock<
-            Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl,
-        >,
-    >,
-}
-
+struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDynamic { dimension_configuration : Option < DynamicBlock < Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    dimension_configuration: Option<
-        Vec<Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl>,
-    >,
-    dynamic: Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDynamic,
-}
-
+pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl { # [serde (skip_serializing_if = "Option::is_none")] dimension_configuration : Option < Vec < Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl > > , dynamic : Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDynamic , }
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl {
     #[doc = "Set the field `dimension_configuration`.\n"]
     pub fn set_dimension_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -428,14 +308,12 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinatio
         self
     }
 }
-
 impl ToListMappable
     for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl
 {
     type O = BlockAssignable<
         Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -444,9 +322,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl {}
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationEl {
     pub fn build(
         self,
@@ -457,12 +333,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDesti
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElRef {
     fn new(
         shared: StackShared,
@@ -474,39 +348,28 @@ impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDe
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `dimension_configuration` after provisioning.\n"]
-    pub fn dimension_configuration(
-        &self,
-    ) -> ListRef<
-        Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `dimension_configuration` after provisioning.\n"]    pub fn dimension_configuration (& self) -> ListRef < Sesv2ConfigurationSetEventDestinationEventDestinationElCloudWatchDestinationElDimensionConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.dimension_configuration", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl {
     event_bus_arn: PrimField<String>,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl {}
-
 impl ToListMappable
     for Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl
 {
     type O = BlockAssignable<
         Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -515,12 +378,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl {
     #[doc = ""]
     pub event_bus_arn: PrimField<String>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationEl {
     pub fn build(
         self,
@@ -530,12 +391,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDest
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationElRef {
     fn new(
         shared: StackShared,
@@ -547,12 +406,10 @@ impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeD
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `event_bus_arn` after provisioning.\n"]
     pub fn event_bus_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -561,22 +418,18 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElEventBridgeDestinati
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl {
     delivery_stream_arn: PrimField<String>,
     iam_role_arn: PrimField<String>,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl {}
-
 impl ToListMappable
     for Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl
 {
     type O = BlockAssignable<
         Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -585,7 +438,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl
 {
     #[doc = ""]
@@ -593,7 +445,6 @@ pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElKinesisFi
     #[doc = ""]
     pub iam_role_arn: PrimField<String>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationEl {
     pub fn build(
         self,
@@ -604,12 +455,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehose
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationElRef
 {
@@ -624,12 +473,10 @@ impl Ref
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delivery_stream_arn` after provisioning.\n"]
     pub fn delivery_stream_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -637,27 +484,22 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElKinesisFirehoseDesti
             format!("{}.delivery_stream_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl {
     application_arn: PrimField<String>,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl {}
-
 impl ToListMappable
     for Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl
 {
     type O = BlockAssignable<
         Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -666,12 +508,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl {
     #[doc = ""]
     pub application_arn: PrimField<String>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationEl {
     pub fn build(
         self,
@@ -681,12 +521,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestina
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationElRef {
     fn new(
         shared: StackShared,
@@ -698,12 +536,10 @@ impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDest
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -712,18 +548,14 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElPinpointDestinationE
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
     topic_arn: PrimField<String>,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {}
-
 impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
     type O =
         BlockAssignable<Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -732,12 +564,10 @@ impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationElS
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
     #[doc = ""]
     pub topic_arn: PrimField<String>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
     pub fn build(self) -> Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
         Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl {
@@ -745,12 +575,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationE
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationElRef {
     fn new(
         shared: StackShared,
@@ -762,18 +590,15 @@ impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinati
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct Sesv2ConfigurationSetEventDestinationEventDestinationElDynamic {
     cloud_watch_destination: Option<
@@ -798,7 +623,6 @@ struct Sesv2ConfigurationSetEventDestinationEventDestinationElDynamic {
         DynamicBlock<Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -823,14 +647,12 @@ pub struct Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         Option<Vec<Sesv2ConfigurationSetEventDestinationEventDestinationElSnsDestinationEl>>,
     dynamic: Sesv2ConfigurationSetEventDestinationEventDestinationElDynamic,
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloud_watch_destination`.\n"]
     pub fn set_cloud_watch_destination(
         mut self,
@@ -850,7 +672,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `event_bridge_destination`.\n"]
     pub fn set_event_bridge_destination(
         mut self,
@@ -870,7 +691,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `kinesis_firehose_destination`.\n"]
     pub fn set_kinesis_firehose_destination(
         mut self,
@@ -890,7 +710,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `pinpoint_destination`.\n"]
     pub fn set_pinpoint_destination(
         mut self,
@@ -910,7 +729,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         }
         self
     }
-
     #[doc = "Set the field `sns_destination`.\n"]
     pub fn set_sns_destination(
         mut self,
@@ -931,10 +749,8 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         self
     }
 }
-
 impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationEl {
     type O = BlockAssignable<Sesv2ConfigurationSetEventDestinationEventDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -943,12 +759,10 @@ impl ToListMappable for Sesv2ConfigurationSetEventDestinationEventDestinationEl 
         })
     }
 }
-
 pub struct BuildSesv2ConfigurationSetEventDestinationEventDestinationEl {
     #[doc = ""]
     pub matching_event_types: SetField<PrimField<String>>,
 }
-
 impl BuildSesv2ConfigurationSetEventDestinationEventDestinationEl {
     pub fn build(self) -> Sesv2ConfigurationSetEventDestinationEventDestinationEl {
         Sesv2ConfigurationSetEventDestinationEventDestinationEl {
@@ -963,12 +777,10 @@ impl BuildSesv2ConfigurationSetEventDestinationEventDestinationEl {
         }
     }
 }
-
 pub struct Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
     fn new(
         shared: StackShared,
@@ -980,17 +792,14 @@ impl Ref for Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
         }
     }
 }
-
 impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `matching_event_types` after provisioning.\n"]
     pub fn matching_event_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -998,7 +807,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
             format!("{}.matching_event_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_destination` after provisioning.\n"]
     pub fn cloud_watch_destination(
         &self,
@@ -1009,7 +817,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
             format!("{}.cloud_watch_destination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_bridge_destination` after provisioning.\n"]
     pub fn event_bridge_destination(
         &self,
@@ -1020,7 +827,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
             format!("{}.event_bridge_destination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_firehose_destination` after provisioning.\n"]
     pub fn kinesis_firehose_destination(
         &self,
@@ -1032,7 +838,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
             format!("{}.kinesis_firehose_destination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `pinpoint_destination` after provisioning.\n"]
     pub fn pinpoint_destination(
         &self,
@@ -1043,7 +848,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
             format!("{}.pinpoint_destination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `sns_destination` after provisioning.\n"]
     pub fn sns_destination(
         &self,
@@ -1054,7 +858,6 @@ impl Sesv2ConfigurationSetEventDestinationEventDestinationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct Sesv2ConfigurationSetEventDestinationDynamic {
     event_destination:

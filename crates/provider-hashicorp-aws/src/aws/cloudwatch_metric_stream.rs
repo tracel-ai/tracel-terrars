@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudwatchMetricStreamData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -41,47 +40,38 @@ struct CloudwatchMetricStreamData {
     timeouts: Option<CloudwatchMetricStreamTimeoutsEl>,
     dynamic: CloudwatchMetricStreamDynamic,
 }
-
 struct CloudwatchMetricStream_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudwatchMetricStreamData>,
 }
-
 #[derive(Clone)]
 pub struct CloudwatchMetricStream(Rc<CloudwatchMetricStream_>);
-
 impl CloudwatchMetricStream {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -100,7 +90,6 @@ impl CloudwatchMetricStream {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -110,7 +99,6 @@ impl CloudwatchMetricStream {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -120,49 +108,41 @@ impl CloudwatchMetricStream {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_linked_accounts_metrics`.\n"]
     pub fn set_include_linked_accounts_metrics(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().include_linked_accounts_metrics = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclude_filter`.\n"]
     pub fn set_exclude_filter(
         self,
@@ -178,7 +158,6 @@ impl CloudwatchMetricStream {
         }
         self
     }
-
     #[doc = "Set the field `include_filter`.\n"]
     pub fn set_include_filter(
         self,
@@ -194,7 +173,6 @@ impl CloudwatchMetricStream {
         }
         self
     }
-
     #[doc = "Set the field `statistics_configuration`.\n"]
     pub fn set_statistics_configuration(
         self,
@@ -210,18 +188,15 @@ impl CloudwatchMetricStream {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<CloudwatchMetricStreamTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +204,6 @@ impl CloudwatchMetricStream {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firehose_arn` after provisioning.\n"]
     pub fn firehose_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,12 +211,10 @@ impl CloudwatchMetricStream {
             format!("{}.firehose_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_linked_accounts_metrics` after provisioning.\n"]
     pub fn include_linked_accounts_metrics(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -250,7 +222,6 @@ impl CloudwatchMetricStream {
             format!("{}.include_linked_accounts_metrics", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_update_date` after provisioning.\n"]
     pub fn last_update_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +229,6 @@ impl CloudwatchMetricStream {
             format!("{}.last_update_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +236,6 @@ impl CloudwatchMetricStream {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +243,6 @@ impl CloudwatchMetricStream {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,7 +250,6 @@ impl CloudwatchMetricStream {
             format!("{}.output_format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +257,6 @@ impl CloudwatchMetricStream {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +264,6 @@ impl CloudwatchMetricStream {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +271,6 @@ impl CloudwatchMetricStream {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -314,7 +278,6 @@ impl CloudwatchMetricStream {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -322,7 +285,6 @@ impl CloudwatchMetricStream {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudwatchMetricStreamTimeoutsElRef {
         CloudwatchMetricStreamTimeoutsElRef::new(
@@ -331,7 +293,6 @@ impl CloudwatchMetricStream {
         )
     }
 }
-
 impl Referable for CloudwatchMetricStream {
     fn extract_ref(&self) -> String {
         format!(
@@ -341,32 +302,25 @@ impl Referable for CloudwatchMetricStream {
         )
     }
 }
-
 impl Resource for CloudwatchMetricStream {}
-
 impl ToListMappable for CloudwatchMetricStream {
     type O = ListRef<CloudwatchMetricStreamRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudwatchMetricStream_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudwatch_metric_stream".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudwatchMetricStream {
     pub tf_id: String,
     #[doc = ""]
@@ -376,7 +330,6 @@ pub struct BuildCloudwatchMetricStream {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildCloudwatchMetricStream {
     pub fn build(self, stack: &mut Stack) -> CloudwatchMetricStream {
         let out = CloudwatchMetricStream(Rc::new(CloudwatchMetricStream_ {
@@ -408,32 +361,26 @@ impl BuildCloudwatchMetricStream {
         out
     }
 }
-
 pub struct CloudwatchMetricStreamRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudwatchMetricStreamRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -441,7 +388,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `firehose_arn` after provisioning.\n"]
     pub fn firehose_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -449,12 +395,10 @@ impl CloudwatchMetricStreamRef {
             format!("{}.firehose_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `include_linked_accounts_metrics` after provisioning.\n"]
     pub fn include_linked_accounts_metrics(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -462,7 +406,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.include_linked_accounts_metrics", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_update_date` after provisioning.\n"]
     pub fn last_update_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -470,7 +413,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.last_update_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -478,7 +420,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +427,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `output_format` after provisioning.\n"]
     pub fn output_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +434,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.output_format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,7 +441,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -510,7 +448,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -518,7 +455,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -526,7 +462,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -534,7 +469,6 @@ impl CloudwatchMetricStreamRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudwatchMetricStreamTimeoutsElRef {
         CloudwatchMetricStreamTimeoutsElRef::new(
@@ -543,14 +477,12 @@ impl CloudwatchMetricStreamRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchMetricStreamExcludeFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     metric_names: Option<SetField<PrimField<String>>>,
     namespace: PrimField<String>,
 }
-
 impl CloudwatchMetricStreamExcludeFilterEl {
     #[doc = "Set the field `metric_names`.\n"]
     pub fn set_metric_names(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -558,10 +490,8 @@ impl CloudwatchMetricStreamExcludeFilterEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchMetricStreamExcludeFilterEl {
     type O = BlockAssignable<CloudwatchMetricStreamExcludeFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -570,12 +500,10 @@ impl ToListMappable for CloudwatchMetricStreamExcludeFilterEl {
         })
     }
 }
-
 pub struct BuildCloudwatchMetricStreamExcludeFilterEl {
     #[doc = ""]
     pub namespace: PrimField<String>,
 }
-
 impl BuildCloudwatchMetricStreamExcludeFilterEl {
     pub fn build(self) -> CloudwatchMetricStreamExcludeFilterEl {
         CloudwatchMetricStreamExcludeFilterEl {
@@ -584,12 +512,10 @@ impl BuildCloudwatchMetricStreamExcludeFilterEl {
         }
     }
 }
-
 pub struct CloudwatchMetricStreamExcludeFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamExcludeFilterElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchMetricStreamExcludeFilterElRef {
         CloudwatchMetricStreamExcludeFilterElRef {
@@ -598,30 +524,25 @@ impl Ref for CloudwatchMetricStreamExcludeFilterElRef {
         }
     }
 }
-
 impl CloudwatchMetricStreamExcludeFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_names` after provisioning.\n"]
     pub fn metric_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.metric_names", self.base))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchMetricStreamIncludeFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     metric_names: Option<SetField<PrimField<String>>>,
     namespace: PrimField<String>,
 }
-
 impl CloudwatchMetricStreamIncludeFilterEl {
     #[doc = "Set the field `metric_names`.\n"]
     pub fn set_metric_names(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -629,10 +550,8 @@ impl CloudwatchMetricStreamIncludeFilterEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchMetricStreamIncludeFilterEl {
     type O = BlockAssignable<CloudwatchMetricStreamIncludeFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -641,12 +560,10 @@ impl ToListMappable for CloudwatchMetricStreamIncludeFilterEl {
         })
     }
 }
-
 pub struct BuildCloudwatchMetricStreamIncludeFilterEl {
     #[doc = ""]
     pub namespace: PrimField<String>,
 }
-
 impl BuildCloudwatchMetricStreamIncludeFilterEl {
     pub fn build(self) -> CloudwatchMetricStreamIncludeFilterEl {
         CloudwatchMetricStreamIncludeFilterEl {
@@ -655,12 +572,10 @@ impl BuildCloudwatchMetricStreamIncludeFilterEl {
         }
     }
 }
-
 pub struct CloudwatchMetricStreamIncludeFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamIncludeFilterElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchMetricStreamIncludeFilterElRef {
         CloudwatchMetricStreamIncludeFilterElRef {
@@ -669,34 +584,27 @@ impl Ref for CloudwatchMetricStreamIncludeFilterElRef {
         }
     }
 }
-
 impl CloudwatchMetricStreamIncludeFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_names` after provisioning.\n"]
     pub fn metric_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.metric_names", self.base))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
     metric_name: PrimField<String>,
     namespace: PrimField<String>,
 }
-
 impl CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {}
-
 impl ToListMappable for CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
     type O = BlockAssignable<CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -705,14 +613,12 @@ impl ToListMappable for CloudwatchMetricStreamStatisticsConfigurationElIncludeMe
         })
     }
 }
-
 pub struct BuildCloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
     #[doc = ""]
     pub metric_name: PrimField<String>,
     #[doc = ""]
     pub namespace: PrimField<String>,
 }
-
 impl BuildCloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
     pub fn build(self) -> CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
         CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
@@ -721,12 +627,10 @@ impl BuildCloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl {
         }
     }
 }
-
 pub struct CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricElRef {
     fn new(
         shared: StackShared,
@@ -738,29 +642,24 @@ impl Ref for CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricElRef {
         }
     }
 }
-
 impl CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchMetricStreamStatisticsConfigurationElDynamic {
     include_metric:
         Option<DynamicBlock<CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchMetricStreamStatisticsConfigurationEl {
     additional_statistics: SetField<PrimField<String>>,
@@ -768,7 +667,6 @@ pub struct CloudwatchMetricStreamStatisticsConfigurationEl {
     include_metric: Option<Vec<CloudwatchMetricStreamStatisticsConfigurationElIncludeMetricEl>>,
     dynamic: CloudwatchMetricStreamStatisticsConfigurationElDynamic,
 }
-
 impl CloudwatchMetricStreamStatisticsConfigurationEl {
     #[doc = "Set the field `include_metric`.\n"]
     pub fn set_include_metric(
@@ -786,10 +684,8 @@ impl CloudwatchMetricStreamStatisticsConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchMetricStreamStatisticsConfigurationEl {
     type O = BlockAssignable<CloudwatchMetricStreamStatisticsConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -798,12 +694,10 @@ impl ToListMappable for CloudwatchMetricStreamStatisticsConfigurationEl {
         })
     }
 }
-
 pub struct BuildCloudwatchMetricStreamStatisticsConfigurationEl {
     #[doc = ""]
     pub additional_statistics: SetField<PrimField<String>>,
 }
-
 impl BuildCloudwatchMetricStreamStatisticsConfigurationEl {
     pub fn build(self) -> CloudwatchMetricStreamStatisticsConfigurationEl {
         CloudwatchMetricStreamStatisticsConfigurationEl {
@@ -813,12 +707,10 @@ impl BuildCloudwatchMetricStreamStatisticsConfigurationEl {
         }
     }
 }
-
 pub struct CloudwatchMetricStreamStatisticsConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamStatisticsConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -830,12 +722,10 @@ impl Ref for CloudwatchMetricStreamStatisticsConfigurationElRef {
         }
     }
 }
-
 impl CloudwatchMetricStreamStatisticsConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_statistics` after provisioning.\n"]
     pub fn additional_statistics(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -844,7 +734,6 @@ impl CloudwatchMetricStreamStatisticsConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchMetricStreamTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -854,30 +743,25 @@ pub struct CloudwatchMetricStreamTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl CloudwatchMetricStreamTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudwatchMetricStreamTimeoutsEl {
     type O = BlockAssignable<CloudwatchMetricStreamTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -886,9 +770,7 @@ impl ToListMappable for CloudwatchMetricStreamTimeoutsEl {
         })
     }
 }
-
 pub struct BuildCloudwatchMetricStreamTimeoutsEl {}
-
 impl BuildCloudwatchMetricStreamTimeoutsEl {
     pub fn build(self) -> CloudwatchMetricStreamTimeoutsEl {
         CloudwatchMetricStreamTimeoutsEl {
@@ -898,12 +780,10 @@ impl BuildCloudwatchMetricStreamTimeoutsEl {
         }
     }
 }
-
 pub struct CloudwatchMetricStreamTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchMetricStreamTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchMetricStreamTimeoutsElRef {
         CloudwatchMetricStreamTimeoutsElRef {
@@ -912,28 +792,23 @@ impl Ref for CloudwatchMetricStreamTimeoutsElRef {
         }
     }
 }
-
 impl CloudwatchMetricStreamTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchMetricStreamDynamic {
     exclude_filter: Option<DynamicBlock<CloudwatchMetricStreamExcludeFilterEl>>,

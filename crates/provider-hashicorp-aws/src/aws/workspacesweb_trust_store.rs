@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WorkspaceswebTrustStoreData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -22,47 +21,38 @@ struct WorkspaceswebTrustStoreData {
     certificate: Option<Vec<WorkspaceswebTrustStoreCertificateEl>>,
     dynamic: WorkspaceswebTrustStoreDynamic,
 }
-
 struct WorkspaceswebTrustStore_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WorkspaceswebTrustStoreData>,
 }
-
 #[derive(Clone)]
 pub struct WorkspaceswebTrustStore(Rc<WorkspaceswebTrustStore_>);
-
 impl WorkspaceswebTrustStore {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -81,7 +71,6 @@ impl WorkspaceswebTrustStore {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -91,7 +80,6 @@ impl WorkspaceswebTrustStore {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -101,19 +89,16 @@ impl WorkspaceswebTrustStore {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `certificate`.\n"]
     pub fn set_certificate(
         self,
@@ -129,7 +114,6 @@ impl WorkspaceswebTrustStore {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -137,7 +121,6 @@ impl WorkspaceswebTrustStore {
             format!("{}.associated_portal_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -145,7 +128,6 @@ impl WorkspaceswebTrustStore {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -153,7 +135,6 @@ impl WorkspaceswebTrustStore {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -161,7 +142,6 @@ impl WorkspaceswebTrustStore {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,7 +150,6 @@ impl WorkspaceswebTrustStore {
         )
     }
 }
-
 impl Referable for WorkspaceswebTrustStore {
     fn extract_ref(&self) -> String {
         format!(
@@ -180,36 +159,28 @@ impl Referable for WorkspaceswebTrustStore {
         )
     }
 }
-
 impl Resource for WorkspaceswebTrustStore {}
-
 impl ToListMappable for WorkspaceswebTrustStore {
     type O = ListRef<WorkspaceswebTrustStoreRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WorkspaceswebTrustStore_ {
     fn extract_resource_type(&self) -> String {
         "aws_workspacesweb_trust_store".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWorkspaceswebTrustStore {
     pub tf_id: String,
 }
-
 impl BuildWorkspaceswebTrustStore {
     pub fn build(self, stack: &mut Stack) -> WorkspaceswebTrustStore {
         let out = WorkspaceswebTrustStore(Rc::new(WorkspaceswebTrustStore_ {
@@ -230,27 +201,22 @@ impl BuildWorkspaceswebTrustStore {
         out
     }
 }
-
 pub struct WorkspaceswebTrustStoreRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebTrustStoreRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WorkspaceswebTrustStoreRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `associated_portal_arns` after provisioning.\n"]
     pub fn associated_portal_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -258,7 +224,6 @@ impl WorkspaceswebTrustStoreRef {
             format!("{}.associated_portal_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +231,6 @@ impl WorkspaceswebTrustStoreRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -274,7 +238,6 @@ impl WorkspaceswebTrustStoreRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -282,7 +245,6 @@ impl WorkspaceswebTrustStoreRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,17 +253,13 @@ impl WorkspaceswebTrustStoreRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebTrustStoreCertificateEl {
     body: PrimField<String>,
 }
-
 impl WorkspaceswebTrustStoreCertificateEl {}
-
 impl ToListMappable for WorkspaceswebTrustStoreCertificateEl {
     type O = BlockAssignable<WorkspaceswebTrustStoreCertificateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -310,23 +268,19 @@ impl ToListMappable for WorkspaceswebTrustStoreCertificateEl {
         })
     }
 }
-
 pub struct BuildWorkspaceswebTrustStoreCertificateEl {
     #[doc = ""]
     pub body: PrimField<String>,
 }
-
 impl BuildWorkspaceswebTrustStoreCertificateEl {
     pub fn build(self) -> WorkspaceswebTrustStoreCertificateEl {
         WorkspaceswebTrustStoreCertificateEl { body: self.body }
     }
 }
-
 pub struct WorkspaceswebTrustStoreCertificateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebTrustStoreCertificateElRef {
     fn new(shared: StackShared, base: String) -> WorkspaceswebTrustStoreCertificateElRef {
         WorkspaceswebTrustStoreCertificateElRef {
@@ -335,22 +289,18 @@ impl Ref for WorkspaceswebTrustStoreCertificateElRef {
         }
     }
 }
-
 impl WorkspaceswebTrustStoreCertificateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `body` after provisioning.\n"]
     pub fn body(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.body", self.base))
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not_valid_after` after provisioning.\n"]
     pub fn not_valid_after(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,7 +308,6 @@ impl WorkspaceswebTrustStoreCertificateElRef {
             format!("{}.not_valid_after", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `not_valid_before` after provisioning.\n"]
     pub fn not_valid_before(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -366,18 +315,15 @@ impl WorkspaceswebTrustStoreCertificateElRef {
             format!("{}.not_valid_before", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subject` after provisioning.\n"]
     pub fn subject(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subject", self.base))
     }
-
     #[doc = "Get a reference to the value of field `thumbprint` after provisioning.\n"]
     pub fn thumbprint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.thumbprint", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WorkspaceswebTrustStoreDynamic {
     certificate: Option<DynamicBlock<WorkspaceswebTrustStoreCertificateEl>>,

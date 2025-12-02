@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct StoragegatewayCachedIscsiVolumeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct StoragegatewayCachedIscsiVolumeData {
     target_name: PrimField<String>,
     volume_size_in_bytes: PrimField<f64>,
 }
-
 struct StoragegatewayCachedIscsiVolume_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<StoragegatewayCachedIscsiVolumeData>,
 }
-
 #[derive(Clone)]
 pub struct StoragegatewayCachedIscsiVolume(Rc<StoragegatewayCachedIscsiVolume_>);
-
 impl StoragegatewayCachedIscsiVolume {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl StoragegatewayCachedIscsiVolume {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl StoragegatewayCachedIscsiVolume {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,60 +102,50 @@ impl StoragegatewayCachedIscsiVolume {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_encrypted`.\n"]
     pub fn set_kms_encrypted(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().kms_encrypted = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key`.\n"]
     pub fn set_kms_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `snapshot_id`.\n"]
     pub fn set_snapshot_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().snapshot_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_volume_arn`.\n"]
     pub fn set_source_volume_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().source_volume_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `chap_enabled` after provisioning.\n"]
     pub fn chap_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -175,7 +153,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.chap_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,12 +160,10 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.gateway_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_encrypted` after provisioning.\n"]
     pub fn kms_encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -196,7 +171,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.kms_encrypted", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key` after provisioning.\n"]
     pub fn kms_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -204,7 +178,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.kms_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lun_number` after provisioning.\n"]
     pub fn lun_number(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -212,7 +185,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.lun_number", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +192,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_port` after provisioning.\n"]
     pub fn network_interface_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -228,7 +199,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.network_interface_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +206,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_id` after provisioning.\n"]
     pub fn snapshot_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +213,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.snapshot_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_volume_arn` after provisioning.\n"]
     pub fn source_volume_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +220,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.source_volume_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -260,7 +227,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -268,7 +234,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +241,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.target_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_name` after provisioning.\n"]
     pub fn target_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +248,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.target_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_arn` after provisioning.\n"]
     pub fn volume_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -292,7 +255,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.volume_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_id` after provisioning.\n"]
     pub fn volume_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +262,6 @@ impl StoragegatewayCachedIscsiVolume {
             format!("{}.volume_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_size_in_bytes` after provisioning.\n"]
     pub fn volume_size_in_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -309,7 +270,6 @@ impl StoragegatewayCachedIscsiVolume {
         )
     }
 }
-
 impl Referable for StoragegatewayCachedIscsiVolume {
     fn extract_ref(&self) -> String {
         format!(
@@ -319,32 +279,25 @@ impl Referable for StoragegatewayCachedIscsiVolume {
         )
     }
 }
-
 impl Resource for StoragegatewayCachedIscsiVolume {}
-
 impl ToListMappable for StoragegatewayCachedIscsiVolume {
     type O = ListRef<StoragegatewayCachedIscsiVolumeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for StoragegatewayCachedIscsiVolume_ {
     fn extract_resource_type(&self) -> String {
         "aws_storagegateway_cached_iscsi_volume".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildStoragegatewayCachedIscsiVolume {
     pub tf_id: String,
     #[doc = ""]
@@ -356,7 +309,6 @@ pub struct BuildStoragegatewayCachedIscsiVolume {
     #[doc = ""]
     pub volume_size_in_bytes: PrimField<f64>,
 }
-
 impl BuildStoragegatewayCachedIscsiVolume {
     pub fn build(self, stack: &mut Stack) -> StoragegatewayCachedIscsiVolume {
         let out = StoragegatewayCachedIscsiVolume(Rc::new(StoragegatewayCachedIscsiVolume_ {
@@ -385,32 +337,26 @@ impl BuildStoragegatewayCachedIscsiVolume {
         out
     }
 }
-
 pub struct StoragegatewayCachedIscsiVolumeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for StoragegatewayCachedIscsiVolumeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl StoragegatewayCachedIscsiVolumeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `chap_enabled` after provisioning.\n"]
     pub fn chap_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -418,7 +364,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.chap_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -426,12 +371,10 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.gateway_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_encrypted` after provisioning.\n"]
     pub fn kms_encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -439,7 +382,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.kms_encrypted", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key` after provisioning.\n"]
     pub fn kms_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -447,7 +389,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.kms_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lun_number` after provisioning.\n"]
     pub fn lun_number(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -455,7 +396,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.lun_number", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_id` after provisioning.\n"]
     pub fn network_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +403,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.network_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_port` after provisioning.\n"]
     pub fn network_interface_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -471,7 +410,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.network_interface_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +417,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_id` after provisioning.\n"]
     pub fn snapshot_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -487,7 +424,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.snapshot_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_volume_arn` after provisioning.\n"]
     pub fn source_volume_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -495,7 +431,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.source_volume_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -503,7 +438,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -511,7 +445,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -519,7 +452,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.target_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_name` after provisioning.\n"]
     pub fn target_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -527,7 +459,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.target_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_arn` after provisioning.\n"]
     pub fn volume_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -535,7 +466,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.volume_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_id` after provisioning.\n"]
     pub fn volume_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -543,7 +473,6 @@ impl StoragegatewayCachedIscsiVolumeRef {
             format!("{}.volume_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_size_in_bytes` after provisioning.\n"]
     pub fn volume_size_in_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(

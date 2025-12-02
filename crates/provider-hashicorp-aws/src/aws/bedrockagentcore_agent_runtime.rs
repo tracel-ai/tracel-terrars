@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreAgentRuntimeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -42,47 +41,38 @@ struct BedrockagentcoreAgentRuntimeData {
     timeouts: Option<BedrockagentcoreAgentRuntimeTimeoutsEl>,
     dynamic: BedrockagentcoreAgentRuntimeDynamic,
 }
-
 struct BedrockagentcoreAgentRuntime_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreAgentRuntimeData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreAgentRuntime(Rc<BedrockagentcoreAgentRuntime_>);
-
 impl BedrockagentcoreAgentRuntime {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -101,7 +91,6 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -111,7 +100,6 @@ impl BedrockagentcoreAgentRuntime {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -121,19 +109,16 @@ impl BedrockagentcoreAgentRuntime {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `environment_variables`.\n"]
     pub fn set_environment_variables(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().environment_variables = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lifecycle_configuration`.\n"]
     pub fn set_lifecycle_configuration(
         self,
@@ -142,19 +127,16 @@ impl BedrockagentcoreAgentRuntime {
         self.0.data.borrow_mut().lifecycle_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `agent_runtime_artifact`.\n"]
     pub fn set_agent_runtime_artifact(
         self,
@@ -170,7 +152,6 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     #[doc = "Set the field `authorizer_configuration`.\n"]
     pub fn set_authorizer_configuration(
         self,
@@ -186,7 +167,6 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     #[doc = "Set the field `network_configuration`.\n"]
     pub fn set_network_configuration(
         self,
@@ -202,7 +182,6 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     #[doc = "Set the field `protocol_configuration`.\n"]
     pub fn set_protocol_configuration(
         self,
@@ -218,7 +197,6 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     #[doc = "Set the field `request_header_configuration`.\n"]
     pub fn set_request_header_configuration(
         self,
@@ -238,13 +216,11 @@ impl BedrockagentcoreAgentRuntime {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BedrockagentcoreAgentRuntimeTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_arn` after provisioning.\n"]
     pub fn agent_runtime_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +228,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.agent_runtime_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_id` after provisioning.\n"]
     pub fn agent_runtime_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +235,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.agent_runtime_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_name` after provisioning.\n"]
     pub fn agent_runtime_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +242,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.agent_runtime_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_version` after provisioning.\n"]
     pub fn agent_runtime_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +249,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.agent_runtime_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +256,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_variables` after provisioning.\n"]
     pub fn environment_variables(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -292,7 +263,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.environment_variables", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_configuration` after provisioning.\n"]
     pub fn lifecycle_configuration(
         &self,
@@ -302,7 +272,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.lifecycle_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -310,7 +279,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -318,7 +286,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -326,7 +293,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -334,7 +300,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
     pub fn workload_identity_details(
         &self,
@@ -344,7 +309,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.workload_identity_details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_artifact` after provisioning.\n"]
     pub fn agent_runtime_artifact(
         &self,
@@ -354,7 +318,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.agent_runtime_artifact", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
     pub fn authorizer_configuration(
         &self,
@@ -364,7 +327,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.authorizer_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
@@ -374,7 +336,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
     pub fn protocol_configuration(
         &self,
@@ -384,7 +345,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.protocol_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_header_configuration` after provisioning.\n"]
     pub fn request_header_configuration(
         &self,
@@ -394,7 +354,6 @@ impl BedrockagentcoreAgentRuntime {
             format!("{}.request_header_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreAgentRuntimeTimeoutsElRef {
         BedrockagentcoreAgentRuntimeTimeoutsElRef::new(
@@ -403,7 +362,6 @@ impl BedrockagentcoreAgentRuntime {
         )
     }
 }
-
 impl Referable for BedrockagentcoreAgentRuntime {
     fn extract_ref(&self) -> String {
         format!(
@@ -413,32 +371,25 @@ impl Referable for BedrockagentcoreAgentRuntime {
         )
     }
 }
-
 impl Resource for BedrockagentcoreAgentRuntime {}
-
 impl ToListMappable for BedrockagentcoreAgentRuntime {
     type O = ListRef<BedrockagentcoreAgentRuntimeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreAgentRuntime_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_agent_runtime".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntime {
     pub tf_id: String,
     #[doc = ""]
@@ -446,7 +397,6 @@ pub struct BuildBedrockagentcoreAgentRuntime {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntime {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreAgentRuntime {
         let out = BedrockagentcoreAgentRuntime(Rc::new(BedrockagentcoreAgentRuntime_ {
@@ -477,27 +427,22 @@ impl BuildBedrockagentcoreAgentRuntime {
         out
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_arn` after provisioning.\n"]
     pub fn agent_runtime_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -505,7 +450,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.agent_runtime_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_id` after provisioning.\n"]
     pub fn agent_runtime_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -513,7 +457,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.agent_runtime_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_name` after provisioning.\n"]
     pub fn agent_runtime_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -521,7 +464,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.agent_runtime_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_version` after provisioning.\n"]
     pub fn agent_runtime_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -529,7 +471,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.agent_runtime_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -537,7 +478,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_variables` after provisioning.\n"]
     pub fn environment_variables(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -545,7 +485,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.environment_variables", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lifecycle_configuration` after provisioning.\n"]
     pub fn lifecycle_configuration(
         &self,
@@ -555,7 +494,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.lifecycle_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -563,7 +501,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -571,7 +508,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -579,7 +515,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -587,7 +522,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
     pub fn workload_identity_details(
         &self,
@@ -597,7 +531,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.workload_identity_details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_runtime_artifact` after provisioning.\n"]
     pub fn agent_runtime_artifact(
         &self,
@@ -607,7 +540,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.agent_runtime_artifact", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
     pub fn authorizer_configuration(
         &self,
@@ -617,7 +549,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.authorizer_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
@@ -627,7 +558,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
     pub fn protocol_configuration(
         &self,
@@ -637,7 +567,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.protocol_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_header_configuration` after provisioning.\n"]
     pub fn request_header_configuration(
         &self,
@@ -647,7 +576,6 @@ impl BedrockagentcoreAgentRuntimeRef {
             format!("{}.request_header_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreAgentRuntimeTimeoutsElRef {
         BedrockagentcoreAgentRuntimeTimeoutsElRef::new(
@@ -656,7 +584,6 @@ impl BedrockagentcoreAgentRuntimeRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -664,24 +591,20 @@ pub struct BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_lifetime: Option<PrimField<f64>>,
 }
-
 impl BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
     #[doc = "Set the field `idle_runtime_session_timeout`.\n"]
     pub fn set_idle_runtime_session_timeout(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.idle_runtime_session_timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_lifetime`.\n"]
     pub fn set_max_lifetime(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_lifetime = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeLifecycleConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -690,9 +613,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeLifecycleConfigurationEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
         BedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
@@ -701,12 +622,10 @@ impl BuildBedrockagentcoreAgentRuntimeLifecycleConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeLifecycleConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeLifecycleConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -718,12 +637,10 @@ impl Ref for BedrockagentcoreAgentRuntimeLifecycleConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeLifecycleConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `idle_runtime_session_timeout` after provisioning.\n"]
     pub fn idle_runtime_session_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -731,19 +648,16 @@ impl BedrockagentcoreAgentRuntimeLifecycleConfigurationElRef {
             format!("{}.idle_runtime_session_timeout", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_lifetime` after provisioning.\n"]
     pub fn max_lifetime(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.max_lifetime", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     workload_identity_arn: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
     #[doc = "Set the field `workload_identity_arn`.\n"]
     pub fn set_workload_identity_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -751,10 +665,8 @@ impl BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -763,9 +675,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
         BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
@@ -773,12 +683,10 @@ impl BuildBedrockagentcoreAgentRuntimeWorkloadIdentityDetailsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsElRef {
     fn new(
         shared: StackShared,
@@ -790,12 +698,10 @@ impl Ref for BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_arn` after provisioning.\n"]
     pub fn workload_identity_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -804,7 +710,6 @@ impl BedrockagentcoreAgentRuntimeWorkloadIdentityDetailsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El {
     bucket: PrimField<String>,
@@ -812,7 +717,6 @@ pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl
     #[serde(skip_serializing_if = "Option::is_none")]
     version_id: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El {
     #[doc = "Set the field `version_id`.\n"]
     pub fn set_version_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -820,14 +724,12 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El
 {
     type O = BlockAssignable<
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -836,14 +738,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El {
     #[doc = ""]
     pub bucket: PrimField<String>,
     #[doc = ""]
     pub prefix: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3El {
     pub fn build(
         self,
@@ -855,12 +755,10 @@ impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElC
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3ElRef {
     fn new(
         shared: StackShared,
@@ -872,28 +770,23 @@ impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfiguration
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
-
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.version_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElDynamic {
     s3: Option<
@@ -902,7 +795,6 @@ struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCode
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -911,7 +803,6 @@ pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl
     >,
     dynamic: BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElDynamic,
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
@@ -933,14 +824,12 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl
 {
     type O = BlockAssignable<
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -949,9 +838,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl {
     pub fn build(
         self,
@@ -962,12 +849,10 @@ impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElC
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElRef {
     fn new(
         shared: StackShared,
@@ -979,12 +864,10 @@ impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfiguration
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(
         &self,
@@ -993,14 +876,12 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElDynamic {
     code: Option<
         DynamicBlock<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
     entry_point: ListField<PrimField<String>>,
@@ -1009,7 +890,6 @@ pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl
     code: Option<Vec<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElCodeEl>>,
     dynamic: BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElDynamic,
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
     #[doc = "Set the field `code`.\n"]
     pub fn set_code(
@@ -1031,10 +911,8 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1043,14 +921,12 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeCo
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
     #[doc = ""]
     pub entry_point: ListField<PrimField<String>>,
     #[doc = ""]
     pub runtime: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl {
@@ -1061,12 +937,10 @@ impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationEl 
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1078,22 +952,18 @@ impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfiguration
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `entry_point` after provisioning.\n"]
     pub fn entry_point(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.entry_point", self.base))
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.runtime", self.base))
     }
-
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(
         &self,
@@ -1102,18 +972,14 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElCodeConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.code", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl {
     container_uri: PrimField<String>,
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl {}
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl {
     type O =
         BlockAssignable<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1122,12 +988,10 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContai
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl {
     #[doc = ""]
     pub container_uri: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl {
     pub fn build(
         self,
@@ -1137,12 +1001,10 @@ impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurati
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1154,12 +1016,10 @@ impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigur
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `container_uri` after provisioning.\n"]
     pub fn container_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1168,7 +1028,6 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationElR
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElDynamic {
     code_configuration:
@@ -1177,7 +1036,6 @@ struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElDynamic {
         DynamicBlock<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1188,7 +1046,6 @@ pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         Option<Vec<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElContainerConfigurationEl>>,
     dynamic: BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElDynamic,
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
     #[doc = "Set the field `code_configuration`.\n"]
     pub fn set_code_configuration(
@@ -1207,7 +1064,6 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         }
         self
     }
-
     #[doc = "Set the field `container_configuration`.\n"]
     pub fn set_container_configuration(
         mut self,
@@ -1228,10 +1084,8 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1240,9 +1094,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         BedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
@@ -1252,12 +1104,10 @@ impl BuildBedrockagentcoreAgentRuntimeAgentRuntimeArtifactEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
     fn new(
         shared: StackShared,
@@ -1269,12 +1119,10 @@ impl Ref for BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `code_configuration` after provisioning.\n"]
     pub fn code_configuration(
         &self,
@@ -1284,7 +1132,6 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
             format!("{}.code_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_configuration` after provisioning.\n"]
     pub fn container_configuration(
         &self,
@@ -1296,7 +1143,6 @@ impl BedrockagentcoreAgentRuntimeAgentRuntimeArtifactElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1305,25 +1151,21 @@ pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthori
     allowed_clients: Option<SetField<PrimField<String>>>,
     discovery_url: PrimField<String>,
 }
-
 impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[doc = "Set the field `allowed_audience`.\n"]
     pub fn set_allowed_audience(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.allowed_audience = Some(v.into());
         self
     }
-
     #[doc = "Set the field `allowed_clients`.\n"]
     pub fn set_allowed_clients(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.allowed_clients = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl {
     type O =
         BlockAssignable<BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1332,12 +1174,10 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCus
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[doc = ""]
     pub discovery_url: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl {
     pub fn build(
         self,
@@ -1349,12 +1189,10 @@ impl BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthoriz
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     fn new(
         shared: StackShared,
@@ -1366,12 +1204,10 @@ impl Ref for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAutho
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_audience` after provisioning.\n"]
     pub fn allowed_audience(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1379,7 +1215,6 @@ impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElR
             format!("{}.allowed_audience", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_clients` after provisioning.\n"]
     pub fn allowed_clients(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1387,7 +1222,6 @@ impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElR
             format!("{}.allowed_clients", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `discovery_url` after provisioning.\n"]
     pub fn discovery_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1396,14 +1230,12 @@ impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerElR
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationElDynamic {
     custom_jwt_authorizer: Option<
         DynamicBlock<BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1411,7 +1243,6 @@ pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
         Option<Vec<BedrockagentcoreAgentRuntimeAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
     dynamic: BedrockagentcoreAgentRuntimeAuthorizerConfigurationElDynamic,
 }
-
 impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
     #[doc = "Set the field `custom_jwt_authorizer`.\n"]
     pub fn set_custom_jwt_authorizer(
@@ -1433,10 +1264,8 @@ impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1445,9 +1274,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
         BedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
@@ -1456,12 +1283,10 @@ impl BuildBedrockagentcoreAgentRuntimeAuthorizerConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeAuthorizerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1473,12 +1298,10 @@ impl Ref for BedrockagentcoreAgentRuntimeAuthorizerConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_jwt_authorizer` after provisioning.\n"]
     pub fn custom_jwt_authorizer(
         &self,
@@ -1490,18 +1313,14 @@ impl BedrockagentcoreAgentRuntimeAuthorizerConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
     security_groups: SetField<PrimField<String>>,
     subnets: SetField<PrimField<String>>,
 }
-
 impl BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {}
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1510,14 +1329,12 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeNetworkConfigurationElNetwor
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
     #[doc = ""]
     pub security_groups: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
         BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl {
@@ -1526,12 +1343,10 @@ impl BuildBedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl 
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigElRef {
     fn new(
         shared: StackShared,
@@ -1543,12 +1358,10 @@ impl Ref for BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfig
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1556,19 +1369,16 @@ impl BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigElRef {
             format!("{}.security_groups", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeNetworkConfigurationElDynamic {
     network_mode_config:
         Option<DynamicBlock<BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
     network_mode: PrimField<String>,
@@ -1577,7 +1387,6 @@ pub struct BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
         Option<Vec<BedrockagentcoreAgentRuntimeNetworkConfigurationElNetworkModeConfigEl>>,
     dynamic: BedrockagentcoreAgentRuntimeNetworkConfigurationElDynamic,
 }
-
 impl BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
     #[doc = "Set the field `network_mode_config`.\n"]
     pub fn set_network_mode_config(
@@ -1597,10 +1406,8 @@ impl BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeNetworkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1609,12 +1416,10 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeNetworkConfigurationEl {
     #[doc = ""]
     pub network_mode: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreAgentRuntimeNetworkConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
         BedrockagentcoreAgentRuntimeNetworkConfigurationEl {
@@ -1624,12 +1429,10 @@ impl BuildBedrockagentcoreAgentRuntimeNetworkConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeNetworkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeNetworkConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1641,17 +1444,14 @@ impl Ref for BedrockagentcoreAgentRuntimeNetworkConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeNetworkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `network_mode` after provisioning.\n"]
     pub fn network_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.network_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `network_mode_config` after provisioning.\n"]
     pub fn network_mode_config(
         &self,
@@ -1662,13 +1462,11 @@ impl BedrockagentcoreAgentRuntimeNetworkConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     server_protocol: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
     #[doc = "Set the field `server_protocol`.\n"]
     pub fn set_server_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1676,10 +1474,8 @@ impl BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeProtocolConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1688,9 +1484,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeProtocolConfigurationEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeProtocolConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
         BedrockagentcoreAgentRuntimeProtocolConfigurationEl {
@@ -1698,12 +1492,10 @@ impl BuildBedrockagentcoreAgentRuntimeProtocolConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeProtocolConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeProtocolConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1715,12 +1507,10 @@ impl Ref for BedrockagentcoreAgentRuntimeProtocolConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeProtocolConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `server_protocol` after provisioning.\n"]
     pub fn server_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1729,13 +1519,11 @@ impl BedrockagentcoreAgentRuntimeProtocolConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     request_header_allowlist: Option<SetField<PrimField<String>>>,
 }
-
 impl BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
     #[doc = "Set the field `request_header_allowlist`.\n"]
     pub fn set_request_header_allowlist(
@@ -1746,10 +1534,8 @@ impl BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1758,9 +1544,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
         BedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
@@ -1768,12 +1552,10 @@ impl BuildBedrockagentcoreAgentRuntimeRequestHeaderConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeRequestHeaderConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeRequestHeaderConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1785,12 +1567,10 @@ impl Ref for BedrockagentcoreAgentRuntimeRequestHeaderConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeRequestHeaderConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `request_header_allowlist` after provisioning.\n"]
     pub fn request_header_allowlist(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1799,7 +1579,6 @@ impl BedrockagentcoreAgentRuntimeRequestHeaderConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreAgentRuntimeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1809,30 +1588,25 @@ pub struct BedrockagentcoreAgentRuntimeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreAgentRuntimeTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreAgentRuntimeTimeoutsEl {
     type O = BlockAssignable<BedrockagentcoreAgentRuntimeTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1841,9 +1615,7 @@ impl ToListMappable for BedrockagentcoreAgentRuntimeTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreAgentRuntimeTimeoutsEl {}
-
 impl BuildBedrockagentcoreAgentRuntimeTimeoutsEl {
     pub fn build(self) -> BedrockagentcoreAgentRuntimeTimeoutsEl {
         BedrockagentcoreAgentRuntimeTimeoutsEl {
@@ -1853,12 +1625,10 @@ impl BuildBedrockagentcoreAgentRuntimeTimeoutsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreAgentRuntimeTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreAgentRuntimeTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreAgentRuntimeTimeoutsElRef {
         BedrockagentcoreAgentRuntimeTimeoutsElRef {
@@ -1867,28 +1637,23 @@ impl Ref for BedrockagentcoreAgentRuntimeTimeoutsElRef {
         }
     }
 }
-
 impl BedrockagentcoreAgentRuntimeTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreAgentRuntimeDynamic {
     agent_runtime_artifact:

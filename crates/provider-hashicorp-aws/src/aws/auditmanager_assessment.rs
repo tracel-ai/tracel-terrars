@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AuditmanagerAssessmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct AuditmanagerAssessmentData {
     scope: Option<Vec<AuditmanagerAssessmentScopeEl>>,
     dynamic: AuditmanagerAssessmentDynamic,
 }
-
 struct AuditmanagerAssessment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AuditmanagerAssessmentData>,
 }
-
 #[derive(Clone)]
 pub struct AuditmanagerAssessment(Rc<AuditmanagerAssessment_>);
-
 impl AuditmanagerAssessment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl AuditmanagerAssessment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl AuditmanagerAssessment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl AuditmanagerAssessment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `assessment_reports_destination`.\n"]
     pub fn set_assessment_reports_destination(
         self,
@@ -148,7 +132,6 @@ impl AuditmanagerAssessment {
         }
         self
     }
-
     #[doc = "Set the field `roles`.\n"]
     pub fn set_roles(self, v: impl Into<BlockAssignable<AuditmanagerAssessmentRolesEl>>) -> Self {
         match v.into() {
@@ -161,7 +144,6 @@ impl AuditmanagerAssessment {
         }
         self
     }
-
     #[doc = "Set the field `scope`.\n"]
     pub fn set_scope(self, v: impl Into<BlockAssignable<AuditmanagerAssessmentScopeEl>>) -> Self {
         match v.into() {
@@ -174,12 +156,10 @@ impl AuditmanagerAssessment {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,7 +167,6 @@ impl AuditmanagerAssessment {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `framework_id` after provisioning.\n"]
     pub fn framework_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -195,12 +174,10 @@ impl AuditmanagerAssessment {
             format!("{}.framework_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +185,6 @@ impl AuditmanagerAssessment {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +192,6 @@ impl AuditmanagerAssessment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `roles_all` after provisioning.\n"]
     pub fn roles_all(&self) -> ListRef<AuditmanagerAssessmentRolesAllElRef> {
         ListRef::new(
@@ -224,7 +199,6 @@ impl AuditmanagerAssessment {
             format!("{}.roles_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +206,6 @@ impl AuditmanagerAssessment {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -240,7 +213,6 @@ impl AuditmanagerAssessment {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -248,7 +220,6 @@ impl AuditmanagerAssessment {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `assessment_reports_destination` after provisioning.\n"]
     pub fn assessment_reports_destination(
         &self,
@@ -258,7 +229,6 @@ impl AuditmanagerAssessment {
             format!("{}.assessment_reports_destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<AuditmanagerAssessmentScopeElRef> {
         ListRef::new(
@@ -267,7 +237,6 @@ impl AuditmanagerAssessment {
         )
     }
 }
-
 impl Referable for AuditmanagerAssessment {
     fn extract_ref(&self) -> String {
         format!(
@@ -277,32 +246,25 @@ impl Referable for AuditmanagerAssessment {
         )
     }
 }
-
 impl Resource for AuditmanagerAssessment {}
-
 impl ToListMappable for AuditmanagerAssessment {
     type O = ListRef<AuditmanagerAssessmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AuditmanagerAssessment_ {
     fn extract_resource_type(&self) -> String {
         "aws_auditmanager_assessment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAuditmanagerAssessment {
     pub tf_id: String,
     #[doc = ""]
@@ -310,7 +272,6 @@ pub struct BuildAuditmanagerAssessment {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAuditmanagerAssessment {
     pub fn build(self, stack: &mut Stack) -> AuditmanagerAssessment {
         let out = AuditmanagerAssessment(Rc::new(AuditmanagerAssessment_ {
@@ -336,32 +297,26 @@ impl BuildAuditmanagerAssessment {
         out
     }
 }
-
 pub struct AuditmanagerAssessmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AuditmanagerAssessmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +324,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `framework_id` after provisioning.\n"]
     pub fn framework_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,12 +331,10 @@ impl AuditmanagerAssessmentRef {
             format!("{}.framework_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -390,7 +342,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -398,7 +349,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `roles_all` after provisioning.\n"]
     pub fn roles_all(&self) -> ListRef<AuditmanagerAssessmentRolesAllElRef> {
         ListRef::new(
@@ -406,7 +356,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.roles_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +363,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -422,7 +370,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -430,7 +377,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `assessment_reports_destination` after provisioning.\n"]
     pub fn assessment_reports_destination(
         &self,
@@ -440,7 +386,6 @@ impl AuditmanagerAssessmentRef {
             format!("{}.assessment_reports_destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> ListRef<AuditmanagerAssessmentScopeElRef> {
         ListRef::new(
@@ -449,7 +394,6 @@ impl AuditmanagerAssessmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentRolesAllEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -457,24 +401,20 @@ pub struct AuditmanagerAssessmentRolesAllEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     role_type: Option<PrimField<String>>,
 }
-
 impl AuditmanagerAssessmentRolesAllEl {
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `role_type`.\n"]
     pub fn set_role_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_type = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AuditmanagerAssessmentRolesAllEl {
     type O = BlockAssignable<AuditmanagerAssessmentRolesAllEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -483,9 +423,7 @@ impl ToListMappable for AuditmanagerAssessmentRolesAllEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentRolesAllEl {}
-
 impl BuildAuditmanagerAssessmentRolesAllEl {
     pub fn build(self) -> AuditmanagerAssessmentRolesAllEl {
         AuditmanagerAssessmentRolesAllEl {
@@ -494,12 +432,10 @@ impl BuildAuditmanagerAssessmentRolesAllEl {
         }
     }
 }
-
 pub struct AuditmanagerAssessmentRolesAllElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentRolesAllElRef {
     fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentRolesAllElRef {
         AuditmanagerAssessmentRolesAllElRef {
@@ -508,34 +444,27 @@ impl Ref for AuditmanagerAssessmentRolesAllElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentRolesAllElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_type` after provisioning.\n"]
     pub fn role_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentAssessmentReportsDestinationEl {
     destination: PrimField<String>,
     destination_type: PrimField<String>,
 }
-
 impl AuditmanagerAssessmentAssessmentReportsDestinationEl {}
-
 impl ToListMappable for AuditmanagerAssessmentAssessmentReportsDestinationEl {
     type O = BlockAssignable<AuditmanagerAssessmentAssessmentReportsDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -544,14 +473,12 @@ impl ToListMappable for AuditmanagerAssessmentAssessmentReportsDestinationEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentAssessmentReportsDestinationEl {
     #[doc = ""]
     pub destination: PrimField<String>,
     #[doc = ""]
     pub destination_type: PrimField<String>,
 }
-
 impl BuildAuditmanagerAssessmentAssessmentReportsDestinationEl {
     pub fn build(self) -> AuditmanagerAssessmentAssessmentReportsDestinationEl {
         AuditmanagerAssessmentAssessmentReportsDestinationEl {
@@ -560,12 +487,10 @@ impl BuildAuditmanagerAssessmentAssessmentReportsDestinationEl {
         }
     }
 }
-
 pub struct AuditmanagerAssessmentAssessmentReportsDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentAssessmentReportsDestinationElRef {
     fn new(
         shared: StackShared,
@@ -577,17 +502,14 @@ impl Ref for AuditmanagerAssessmentAssessmentReportsDestinationElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentAssessmentReportsDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.destination", self.base))
     }
-
     #[doc = "Get a reference to the value of field `destination_type` after provisioning.\n"]
     pub fn destination_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -596,18 +518,14 @@ impl AuditmanagerAssessmentAssessmentReportsDestinationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentRolesEl {
     role_arn: PrimField<String>,
     role_type: PrimField<String>,
 }
-
 impl AuditmanagerAssessmentRolesEl {}
-
 impl ToListMappable for AuditmanagerAssessmentRolesEl {
     type O = BlockAssignable<AuditmanagerAssessmentRolesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -616,14 +534,12 @@ impl ToListMappable for AuditmanagerAssessmentRolesEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentRolesEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub role_type: PrimField<String>,
 }
-
 impl BuildAuditmanagerAssessmentRolesEl {
     pub fn build(self) -> AuditmanagerAssessmentRolesEl {
         AuditmanagerAssessmentRolesEl {
@@ -632,12 +548,10 @@ impl BuildAuditmanagerAssessmentRolesEl {
         }
     }
 }
-
 pub struct AuditmanagerAssessmentRolesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentRolesElRef {
     fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentRolesElRef {
         AuditmanagerAssessmentRolesElRef {
@@ -646,33 +560,26 @@ impl Ref for AuditmanagerAssessmentRolesElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentRolesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_type` after provisioning.\n"]
     pub fn role_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentScopeElAwsAccountsEl {
     id: PrimField<String>,
 }
-
 impl AuditmanagerAssessmentScopeElAwsAccountsEl {}
-
 impl ToListMappable for AuditmanagerAssessmentScopeElAwsAccountsEl {
     type O = BlockAssignable<AuditmanagerAssessmentScopeElAwsAccountsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -681,23 +588,19 @@ impl ToListMappable for AuditmanagerAssessmentScopeElAwsAccountsEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentScopeElAwsAccountsEl {
     #[doc = ""]
     pub id: PrimField<String>,
 }
-
 impl BuildAuditmanagerAssessmentScopeElAwsAccountsEl {
     pub fn build(self) -> AuditmanagerAssessmentScopeElAwsAccountsEl {
         AuditmanagerAssessmentScopeElAwsAccountsEl { id: self.id }
     }
 }
-
 pub struct AuditmanagerAssessmentScopeElAwsAccountsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentScopeElAwsAccountsElRef {
     fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentScopeElAwsAccountsElRef {
         AuditmanagerAssessmentScopeElAwsAccountsElRef {
@@ -706,28 +609,22 @@ impl Ref for AuditmanagerAssessmentScopeElAwsAccountsElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentScopeElAwsAccountsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentScopeElAwsServicesEl {
     service_name: PrimField<String>,
 }
-
 impl AuditmanagerAssessmentScopeElAwsServicesEl {}
-
 impl ToListMappable for AuditmanagerAssessmentScopeElAwsServicesEl {
     type O = BlockAssignable<AuditmanagerAssessmentScopeElAwsServicesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -736,12 +633,10 @@ impl ToListMappable for AuditmanagerAssessmentScopeElAwsServicesEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentScopeElAwsServicesEl {
     #[doc = ""]
     pub service_name: PrimField<String>,
 }
-
 impl BuildAuditmanagerAssessmentScopeElAwsServicesEl {
     pub fn build(self) -> AuditmanagerAssessmentScopeElAwsServicesEl {
         AuditmanagerAssessmentScopeElAwsServicesEl {
@@ -749,12 +644,10 @@ impl BuildAuditmanagerAssessmentScopeElAwsServicesEl {
         }
     }
 }
-
 pub struct AuditmanagerAssessmentScopeElAwsServicesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentScopeElAwsServicesElRef {
     fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentScopeElAwsServicesElRef {
         AuditmanagerAssessmentScopeElAwsServicesElRef {
@@ -763,24 +656,20 @@ impl Ref for AuditmanagerAssessmentScopeElAwsServicesElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentScopeElAwsServicesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.service_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AuditmanagerAssessmentScopeElDynamic {
     aws_accounts: Option<DynamicBlock<AuditmanagerAssessmentScopeElAwsAccountsEl>>,
     aws_services: Option<DynamicBlock<AuditmanagerAssessmentScopeElAwsServicesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AuditmanagerAssessmentScopeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -789,7 +678,6 @@ pub struct AuditmanagerAssessmentScopeEl {
     aws_services: Option<Vec<AuditmanagerAssessmentScopeElAwsServicesEl>>,
     dynamic: AuditmanagerAssessmentScopeElDynamic,
 }
-
 impl AuditmanagerAssessmentScopeEl {
     #[doc = "Set the field `aws_accounts`.\n"]
     pub fn set_aws_accounts(
@@ -806,7 +694,6 @@ impl AuditmanagerAssessmentScopeEl {
         }
         self
     }
-
     #[doc = "Set the field `aws_services`.\n"]
     pub fn set_aws_services(
         mut self,
@@ -823,10 +710,8 @@ impl AuditmanagerAssessmentScopeEl {
         self
     }
 }
-
 impl ToListMappable for AuditmanagerAssessmentScopeEl {
     type O = BlockAssignable<AuditmanagerAssessmentScopeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -835,9 +720,7 @@ impl ToListMappable for AuditmanagerAssessmentScopeEl {
         })
     }
 }
-
 pub struct BuildAuditmanagerAssessmentScopeEl {}
-
 impl BuildAuditmanagerAssessmentScopeEl {
     pub fn build(self) -> AuditmanagerAssessmentScopeEl {
         AuditmanagerAssessmentScopeEl {
@@ -847,12 +730,10 @@ impl BuildAuditmanagerAssessmentScopeEl {
         }
     }
 }
-
 pub struct AuditmanagerAssessmentScopeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AuditmanagerAssessmentScopeElRef {
     fn new(shared: StackShared, base: String) -> AuditmanagerAssessmentScopeElRef {
         AuditmanagerAssessmentScopeElRef {
@@ -861,13 +742,11 @@ impl Ref for AuditmanagerAssessmentScopeElRef {
         }
     }
 }
-
 impl AuditmanagerAssessmentScopeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize, Default)]
 struct AuditmanagerAssessmentDynamic {
     assessment_reports_destination:

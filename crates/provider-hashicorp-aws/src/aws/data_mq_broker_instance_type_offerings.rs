@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataMqBrokerInstanceTypeOfferingsData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,61 +22,50 @@ struct DataMqBrokerInstanceTypeOfferingsData {
     #[serde(skip_serializing_if = "Option::is_none")]
     storage_type: Option<PrimField<String>>,
 }
-
 struct DataMqBrokerInstanceTypeOfferings_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataMqBrokerInstanceTypeOfferingsData>,
 }
-
 #[derive(Clone)]
 pub struct DataMqBrokerInstanceTypeOfferings(Rc<DataMqBrokerInstanceTypeOfferings_>);
-
 impl DataMqBrokerInstanceTypeOfferings {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `engine_type`.\n"]
     pub fn set_engine_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().engine_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_instance_type`.\n"]
     pub fn set_host_instance_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().host_instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `storage_type`.\n"]
     pub fn set_storage_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().storage_type = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `broker_instance_options` after provisioning.\n"]
     pub fn broker_instance_options(
         &self,
@@ -87,7 +75,6 @@ impl DataMqBrokerInstanceTypeOfferings {
             format!("{}.broker_instance_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_type` after provisioning.\n"]
     pub fn engine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -95,7 +82,6 @@ impl DataMqBrokerInstanceTypeOfferings {
             format!("{}.engine_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_instance_type` after provisioning.\n"]
     pub fn host_instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -103,12 +89,10 @@ impl DataMqBrokerInstanceTypeOfferings {
             format!("{}.host_instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -116,7 +100,6 @@ impl DataMqBrokerInstanceTypeOfferings {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
     pub fn storage_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -125,7 +108,6 @@ impl DataMqBrokerInstanceTypeOfferings {
         )
     }
 }
-
 impl Referable for DataMqBrokerInstanceTypeOfferings {
     fn extract_ref(&self) -> String {
         format!(
@@ -135,36 +117,28 @@ impl Referable for DataMqBrokerInstanceTypeOfferings {
         )
     }
 }
-
 impl Datasource for DataMqBrokerInstanceTypeOfferings {}
-
 impl ToListMappable for DataMqBrokerInstanceTypeOfferings {
     type O = ListRef<DataMqBrokerInstanceTypeOfferingsRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataMqBrokerInstanceTypeOfferings_ {
     fn extract_datasource_type(&self) -> String {
         "aws_mq_broker_instance_type_offerings".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataMqBrokerInstanceTypeOfferings {
     pub tf_id: String,
 }
-
 impl BuildDataMqBrokerInstanceTypeOfferings {
     pub fn build(self, stack: &mut Stack) -> DataMqBrokerInstanceTypeOfferings {
         let out = DataMqBrokerInstanceTypeOfferings(Rc::new(DataMqBrokerInstanceTypeOfferings_ {
@@ -185,27 +159,22 @@ impl BuildDataMqBrokerInstanceTypeOfferings {
         out
     }
 }
-
 pub struct DataMqBrokerInstanceTypeOfferingsRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataMqBrokerInstanceTypeOfferingsRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataMqBrokerInstanceTypeOfferingsRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `broker_instance_options` after provisioning.\n"]
     pub fn broker_instance_options(
         &self,
@@ -215,7 +184,6 @@ impl DataMqBrokerInstanceTypeOfferingsRef {
             format!("{}.broker_instance_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_type` after provisioning.\n"]
     pub fn engine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -223,7 +191,6 @@ impl DataMqBrokerInstanceTypeOfferingsRef {
             format!("{}.engine_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_instance_type` after provisioning.\n"]
     pub fn host_instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,12 +198,10 @@ impl DataMqBrokerInstanceTypeOfferingsRef {
             format!("{}.host_instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +209,6 @@ impl DataMqBrokerInstanceTypeOfferingsRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
     pub fn storage_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,13 +217,11 @@ impl DataMqBrokerInstanceTypeOfferingsRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
 }
-
 impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -267,14 +229,12 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl
         self
     }
 }
-
 impl ToListMappable
     for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl
 {
     type O = BlockAssignable<
         DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -283,9 +243,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl {}
-
 impl BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesEl {
     pub fn build(
         self,
@@ -295,12 +253,10 @@ impl BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZo
         }
     }
 }
-
 pub struct DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesElRef {
     fn new(
         shared: StackShared,
@@ -312,18 +268,15 @@ impl Ref for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilit
         }
     }
 }
-
 impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElAvailabilityZonesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -341,7 +294,6 @@ pub struct DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     supported_engine_versions: Option<ListField<PrimField<String>>>,
 }
-
 impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
     #[doc = "Set the field `availability_zones`.\n"]
     pub fn set_availability_zones(
@@ -353,25 +305,21 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
         self.availability_zones = Some(v.into());
         self
     }
-
     #[doc = "Set the field `engine_type`.\n"]
     pub fn set_engine_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.engine_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_instance_type`.\n"]
     pub fn set_host_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.host_instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `storage_type`.\n"]
     pub fn set_storage_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.storage_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `supported_deployment_modes`.\n"]
     pub fn set_supported_deployment_modes(
         mut self,
@@ -380,7 +328,6 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
         self.supported_deployment_modes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `supported_engine_versions`.\n"]
     pub fn set_supported_engine_versions(
         mut self,
@@ -390,10 +337,8 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
         self
     }
 }
-
 impl ToListMappable for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
     type O = BlockAssignable<DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -402,9 +347,7 @@ impl ToListMappable for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl
         })
     }
 }
-
 pub struct BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {}
-
 impl BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
     pub fn build(self) -> DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
         DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
@@ -417,12 +360,10 @@ impl BuildDataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsEl {
         }
     }
 }
-
 pub struct DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
     fn new(
         shared: StackShared,
@@ -434,12 +375,10 @@ impl Ref for DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
         }
     }
 }
-
 impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(
         &self,
@@ -450,12 +389,10 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
             format!("{}.availability_zones", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_type` after provisioning.\n"]
     pub fn engine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.engine_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `host_instance_type` after provisioning.\n"]
     pub fn host_instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,12 +400,10 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
             format!("{}.host_instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
     pub fn storage_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.storage_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `supported_deployment_modes` after provisioning.\n"]
     pub fn supported_deployment_modes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -476,7 +411,6 @@ impl DataMqBrokerInstanceTypeOfferingsBrokerInstanceOptionsElRef {
             format!("{}.supported_deployment_modes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `supported_engine_versions` after provisioning.\n"]
     pub fn supported_engine_versions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(

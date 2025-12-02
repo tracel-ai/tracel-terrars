@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct PrometheusScraperData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct PrometheusScraperData {
     timeouts: Option<PrometheusScraperTimeoutsEl>,
     dynamic: PrometheusScraperDynamic,
 }
-
 struct PrometheusScraper_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<PrometheusScraperData>,
 }
-
 #[derive(Clone)]
 pub struct PrometheusScraper(Rc<PrometheusScraper_>);
-
 impl PrometheusScraper {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl PrometheusScraper {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl PrometheusScraper {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl PrometheusScraper {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `alias`.\n"]
     pub fn set_alias(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().alias = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(
         self,
@@ -144,7 +128,6 @@ impl PrometheusScraper {
         }
         self
     }
-
     #[doc = "Set the field `role_configuration`.\n"]
     pub fn set_role_configuration(
         self,
@@ -160,7 +143,6 @@ impl PrometheusScraper {
         }
         self
     }
-
     #[doc = "Set the field `source`.\n"]
     pub fn set_source(self, v: impl Into<BlockAssignable<PrometheusScraperSourceEl>>) -> Self {
         match v.into() {
@@ -173,13 +155,11 @@ impl PrometheusScraper {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<PrometheusScraperTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,17 +167,14 @@ impl PrometheusScraper {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +182,6 @@ impl PrometheusScraper {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +189,6 @@ impl PrometheusScraper {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scrape_configuration` after provisioning.\n"]
     pub fn scrape_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +196,6 @@ impl PrometheusScraper {
             format!("{}.scrape_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -229,7 +203,6 @@ impl PrometheusScraper {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -237,7 +210,6 @@ impl PrometheusScraper {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> ListRef<PrometheusScraperDestinationElRef> {
         ListRef::new(
@@ -245,7 +217,6 @@ impl PrometheusScraper {
             format!("{}.destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_configuration` after provisioning.\n"]
     pub fn role_configuration(&self) -> ListRef<PrometheusScraperRoleConfigurationElRef> {
         ListRef::new(
@@ -253,7 +224,6 @@ impl PrometheusScraper {
             format!("{}.role_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<PrometheusScraperSourceElRef> {
         ListRef::new(
@@ -261,7 +231,6 @@ impl PrometheusScraper {
             format!("{}.source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> PrometheusScraperTimeoutsElRef {
         PrometheusScraperTimeoutsElRef::new(
@@ -270,7 +239,6 @@ impl PrometheusScraper {
         )
     }
 }
-
 impl Referable for PrometheusScraper {
     fn extract_ref(&self) -> String {
         format!(
@@ -280,38 +248,30 @@ impl Referable for PrometheusScraper {
         )
     }
 }
-
 impl Resource for PrometheusScraper {}
-
 impl ToListMappable for PrometheusScraper {
     type O = ListRef<PrometheusScraperRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for PrometheusScraper_ {
     fn extract_resource_type(&self) -> String {
         "aws_prometheus_scraper".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildPrometheusScraper {
     pub tf_id: String,
     #[doc = ""]
     pub scrape_configuration: PrimField<String>,
 }
-
 impl BuildPrometheusScraper {
     pub fn build(self, stack: &mut Stack) -> PrometheusScraper {
         let out = PrometheusScraper(Rc::new(PrometheusScraper_ {
@@ -337,27 +297,22 @@ impl BuildPrometheusScraper {
         out
     }
 }
-
 pub struct PrometheusScraperRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl PrometheusScraperRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -365,17 +320,14 @@ impl PrometheusScraperRef {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +335,6 @@ impl PrometheusScraperRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +342,6 @@ impl PrometheusScraperRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scrape_configuration` after provisioning.\n"]
     pub fn scrape_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +349,6 @@ impl PrometheusScraperRef {
             format!("{}.scrape_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -407,7 +356,6 @@ impl PrometheusScraperRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -415,7 +363,6 @@ impl PrometheusScraperRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> ListRef<PrometheusScraperDestinationElRef> {
         ListRef::new(
@@ -423,7 +370,6 @@ impl PrometheusScraperRef {
             format!("{}.destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_configuration` after provisioning.\n"]
     pub fn role_configuration(&self) -> ListRef<PrometheusScraperRoleConfigurationElRef> {
         ListRef::new(
@@ -431,7 +377,6 @@ impl PrometheusScraperRef {
             format!("{}.role_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> ListRef<PrometheusScraperSourceElRef> {
         ListRef::new(
@@ -439,7 +384,6 @@ impl PrometheusScraperRef {
             format!("{}.source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> PrometheusScraperTimeoutsElRef {
         PrometheusScraperTimeoutsElRef::new(
@@ -448,17 +392,13 @@ impl PrometheusScraperRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperDestinationElAmpEl {
     workspace_arn: PrimField<String>,
 }
-
 impl PrometheusScraperDestinationElAmpEl {}
-
 impl ToListMappable for PrometheusScraperDestinationElAmpEl {
     type O = BlockAssignable<PrometheusScraperDestinationElAmpEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -467,12 +407,10 @@ impl ToListMappable for PrometheusScraperDestinationElAmpEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperDestinationElAmpEl {
     #[doc = ""]
     pub workspace_arn: PrimField<String>,
 }
-
 impl BuildPrometheusScraperDestinationElAmpEl {
     pub fn build(self) -> PrometheusScraperDestinationElAmpEl {
         PrometheusScraperDestinationElAmpEl {
@@ -480,12 +418,10 @@ impl BuildPrometheusScraperDestinationElAmpEl {
         }
     }
 }
-
 pub struct PrometheusScraperDestinationElAmpElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperDestinationElAmpElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperDestinationElAmpElRef {
         PrometheusScraperDestinationElAmpElRef {
@@ -494,12 +430,10 @@ impl Ref for PrometheusScraperDestinationElAmpElRef {
         }
     }
 }
-
 impl PrometheusScraperDestinationElAmpElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `workspace_arn` after provisioning.\n"]
     pub fn workspace_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -508,19 +442,16 @@ impl PrometheusScraperDestinationElAmpElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct PrometheusScraperDestinationElDynamic {
     amp: Option<DynamicBlock<PrometheusScraperDestinationElAmpEl>>,
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     amp: Option<Vec<PrometheusScraperDestinationElAmpEl>>,
     dynamic: PrometheusScraperDestinationElDynamic,
 }
-
 impl PrometheusScraperDestinationEl {
     #[doc = "Set the field `amp`.\n"]
     pub fn set_amp(
@@ -538,10 +469,8 @@ impl PrometheusScraperDestinationEl {
         self
     }
 }
-
 impl ToListMappable for PrometheusScraperDestinationEl {
     type O = BlockAssignable<PrometheusScraperDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -550,9 +479,7 @@ impl ToListMappable for PrometheusScraperDestinationEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperDestinationEl {}
-
 impl BuildPrometheusScraperDestinationEl {
     pub fn build(self) -> PrometheusScraperDestinationEl {
         PrometheusScraperDestinationEl {
@@ -561,12 +488,10 @@ impl BuildPrometheusScraperDestinationEl {
         }
     }
 }
-
 pub struct PrometheusScraperDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperDestinationElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperDestinationElRef {
         PrometheusScraperDestinationElRef {
@@ -575,18 +500,15 @@ impl Ref for PrometheusScraperDestinationElRef {
         }
     }
 }
-
 impl PrometheusScraperDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `amp` after provisioning.\n"]
     pub fn amp(&self) -> ListRef<PrometheusScraperDestinationElAmpElRef> {
         ListRef::new(self.shared().clone(), format!("{}.amp", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperRoleConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -594,24 +516,20 @@ pub struct PrometheusScraperRoleConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_role_arn: Option<PrimField<String>>,
 }
-
 impl PrometheusScraperRoleConfigurationEl {
     #[doc = "Set the field `source_role_arn`.\n"]
     pub fn set_source_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.source_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_role_arn`.\n"]
     pub fn set_target_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_role_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for PrometheusScraperRoleConfigurationEl {
     type O = BlockAssignable<PrometheusScraperRoleConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -620,9 +538,7 @@ impl ToListMappable for PrometheusScraperRoleConfigurationEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperRoleConfigurationEl {}
-
 impl BuildPrometheusScraperRoleConfigurationEl {
     pub fn build(self) -> PrometheusScraperRoleConfigurationEl {
         PrometheusScraperRoleConfigurationEl {
@@ -631,12 +547,10 @@ impl BuildPrometheusScraperRoleConfigurationEl {
         }
     }
 }
-
 pub struct PrometheusScraperRoleConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperRoleConfigurationElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperRoleConfigurationElRef {
         PrometheusScraperRoleConfigurationElRef {
@@ -645,12 +559,10 @@ impl Ref for PrometheusScraperRoleConfigurationElRef {
         }
     }
 }
-
 impl PrometheusScraperRoleConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `source_role_arn` after provisioning.\n"]
     pub fn source_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -658,7 +570,6 @@ impl PrometheusScraperRoleConfigurationElRef {
             format!("{}.source_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_role_arn` after provisioning.\n"]
     pub fn target_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -667,7 +578,6 @@ impl PrometheusScraperRoleConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperSourceElEksEl {
     cluster_arn: PrimField<String>,
@@ -675,7 +585,6 @@ pub struct PrometheusScraperSourceElEksEl {
     security_group_ids: Option<SetField<PrimField<String>>>,
     subnet_ids: SetField<PrimField<String>>,
 }
-
 impl PrometheusScraperSourceElEksEl {
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -683,10 +592,8 @@ impl PrometheusScraperSourceElEksEl {
         self
     }
 }
-
 impl ToListMappable for PrometheusScraperSourceElEksEl {
     type O = BlockAssignable<PrometheusScraperSourceElEksEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -695,14 +602,12 @@ impl ToListMappable for PrometheusScraperSourceElEksEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperSourceElEksEl {
     #[doc = ""]
     pub cluster_arn: PrimField<String>,
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildPrometheusScraperSourceElEksEl {
     pub fn build(self) -> PrometheusScraperSourceElEksEl {
         PrometheusScraperSourceElEksEl {
@@ -712,12 +617,10 @@ impl BuildPrometheusScraperSourceElEksEl {
         }
     }
 }
-
 pub struct PrometheusScraperSourceElEksElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperSourceElEksElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperSourceElEksElRef {
         PrometheusScraperSourceElEksElRef {
@@ -726,17 +629,14 @@ impl Ref for PrometheusScraperSourceElEksElRef {
         }
     }
 }
-
 impl PrometheusScraperSourceElEksElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cluster_arn` after provisioning.\n"]
     pub fn cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cluster_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -744,25 +644,21 @@ impl PrometheusScraperSourceElEksElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct PrometheusScraperSourceElDynamic {
     eks: Option<DynamicBlock<PrometheusScraperSourceElEksEl>>,
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     eks: Option<Vec<PrometheusScraperSourceElEksEl>>,
     dynamic: PrometheusScraperSourceElDynamic,
 }
-
 impl PrometheusScraperSourceEl {
     #[doc = "Set the field `eks`.\n"]
     pub fn set_eks(
@@ -780,10 +676,8 @@ impl PrometheusScraperSourceEl {
         self
     }
 }
-
 impl ToListMappable for PrometheusScraperSourceEl {
     type O = BlockAssignable<PrometheusScraperSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -792,9 +686,7 @@ impl ToListMappable for PrometheusScraperSourceEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperSourceEl {}
-
 impl BuildPrometheusScraperSourceEl {
     pub fn build(self) -> PrometheusScraperSourceEl {
         PrometheusScraperSourceEl {
@@ -803,12 +695,10 @@ impl BuildPrometheusScraperSourceEl {
         }
     }
 }
-
 pub struct PrometheusScraperSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperSourceElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperSourceElRef {
         PrometheusScraperSourceElRef {
@@ -817,18 +707,15 @@ impl Ref for PrometheusScraperSourceElRef {
         }
     }
 }
-
 impl PrometheusScraperSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eks` after provisioning.\n"]
     pub fn eks(&self) -> ListRef<PrometheusScraperSourceElEksElRef> {
         ListRef::new(self.shared().clone(), format!("{}.eks", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct PrometheusScraperTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -838,30 +725,25 @@ pub struct PrometheusScraperTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl PrometheusScraperTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for PrometheusScraperTimeoutsEl {
     type O = BlockAssignable<PrometheusScraperTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -870,9 +752,7 @@ impl ToListMappable for PrometheusScraperTimeoutsEl {
         })
     }
 }
-
 pub struct BuildPrometheusScraperTimeoutsEl {}
-
 impl BuildPrometheusScraperTimeoutsEl {
     pub fn build(self) -> PrometheusScraperTimeoutsEl {
         PrometheusScraperTimeoutsEl {
@@ -882,12 +762,10 @@ impl BuildPrometheusScraperTimeoutsEl {
         }
     }
 }
-
 pub struct PrometheusScraperTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PrometheusScraperTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> PrometheusScraperTimeoutsElRef {
         PrometheusScraperTimeoutsElRef {
@@ -896,28 +774,23 @@ impl Ref for PrometheusScraperTimeoutsElRef {
         }
     }
 }
-
 impl PrometheusScraperTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct PrometheusScraperDynamic {
     destination: Option<DynamicBlock<PrometheusScraperDestinationEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataImagebuilderInfrastructureConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -22,62 +21,51 @@ struct DataImagebuilderInfrastructureConfigurationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataImagebuilderInfrastructureConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataImagebuilderInfrastructureConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct DataImagebuilderInfrastructureConfiguration(
     Rc<DataImagebuilderInfrastructureConfiguration_>,
 );
-
 impl DataImagebuilderInfrastructureConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_tags`.\n"]
     pub fn set_resource_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().resource_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -85,7 +73,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.date_created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -93,7 +80,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.date_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -101,12 +87,10 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_metadata_options` after provisioning.\n"]
     pub fn instance_metadata_options(
         &self,
@@ -116,7 +100,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.instance_metadata_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_profile_name` after provisioning.\n"]
     pub fn instance_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -124,7 +107,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.instance_profile_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_types` after provisioning.\n"]
     pub fn instance_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -132,7 +114,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.instance_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair` after provisioning.\n"]
     pub fn key_pair(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -140,7 +121,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.key_pair", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElRef> {
         ListRef::new(
@@ -148,7 +128,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.logging", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,7 +135,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationPlacementElRef> {
         ListRef::new(
@@ -164,7 +142,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.placement", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +149,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -180,7 +156,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.resource_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -188,7 +163,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,7 +170,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.sns_topic_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -204,7 +177,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.subnet_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -212,7 +184,6 @@ impl DataImagebuilderInfrastructureConfiguration {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `terminate_instance_on_failure` after provisioning.\n"]
     pub fn terminate_instance_on_failure(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -221,7 +192,6 @@ impl DataImagebuilderInfrastructureConfiguration {
         )
     }
 }
-
 impl Referable for DataImagebuilderInfrastructureConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -231,38 +201,30 @@ impl Referable for DataImagebuilderInfrastructureConfiguration {
         )
     }
 }
-
 impl Datasource for DataImagebuilderInfrastructureConfiguration {}
-
 impl ToListMappable for DataImagebuilderInfrastructureConfiguration {
     type O = ListRef<DataImagebuilderInfrastructureConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataImagebuilderInfrastructureConfiguration_ {
     fn extract_datasource_type(&self) -> String {
         "aws_imagebuilder_infrastructure_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataImagebuilderInfrastructureConfiguration {
     pub tf_id: String,
     #[doc = ""]
     pub arn: PrimField<String>,
 }
-
 impl BuildDataImagebuilderInfrastructureConfiguration {
     pub fn build(self, stack: &mut Stack) -> DataImagebuilderInfrastructureConfiguration {
         let out = DataImagebuilderInfrastructureConfiguration(Rc::new(
@@ -285,32 +247,26 @@ impl BuildDataImagebuilderInfrastructureConfiguration {
         out
     }
 }
-
 pub struct DataImagebuilderInfrastructureConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataImagebuilderInfrastructureConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataImagebuilderInfrastructureConfigurationRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -318,7 +274,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.date_created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -326,7 +281,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.date_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -334,12 +288,10 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_metadata_options` after provisioning.\n"]
     pub fn instance_metadata_options(
         &self,
@@ -349,7 +301,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.instance_metadata_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_profile_name` after provisioning.\n"]
     pub fn instance_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -357,7 +308,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.instance_profile_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_types` after provisioning.\n"]
     pub fn instance_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -365,7 +315,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.instance_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair` after provisioning.\n"]
     pub fn key_pair(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,7 +322,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.key_pair", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging` after provisioning.\n"]
     pub fn logging(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationLoggingElRef> {
         ListRef::new(
@@ -381,7 +329,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.logging", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -389,7 +336,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `placement` after provisioning.\n"]
     pub fn placement(&self) -> ListRef<DataImagebuilderInfrastructureConfigurationPlacementElRef> {
         ListRef::new(
@@ -397,7 +343,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.placement", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -405,7 +350,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_tags` after provisioning.\n"]
     pub fn resource_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -413,7 +357,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.resource_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -421,7 +364,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sns_topic_arn` after provisioning.\n"]
     pub fn sns_topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,7 +371,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.sns_topic_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -437,7 +378,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.subnet_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -445,7 +385,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `terminate_instance_on_failure` after provisioning.\n"]
     pub fn terminate_instance_on_failure(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -454,7 +393,6 @@ impl DataImagebuilderInfrastructureConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -462,24 +400,20 @@ pub struct DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     http_tokens: Option<PrimField<String>>,
 }
-
 impl DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
     #[doc = "Set the field `http_put_response_hop_limit`.\n"]
     pub fn set_http_put_response_hop_limit(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.http_put_response_hop_limit = Some(v.into());
         self
     }
-
     #[doc = "Set the field `http_tokens`.\n"]
     pub fn set_http_tokens(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.http_tokens = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
     type O = BlockAssignable<DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -488,9 +422,7 @@ impl ToListMappable for DataImagebuilderInfrastructureConfigurationInstanceMetad
         })
     }
 }
-
 pub struct BuildDataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {}
-
 impl BuildDataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
     pub fn build(self) -> DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
         DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
@@ -499,12 +431,10 @@ impl BuildDataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsEl {
         }
     }
 }
-
 pub struct DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef {
     fn new(
         shared: StackShared,
@@ -516,12 +446,10 @@ impl Ref for DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsE
         }
     }
 }
-
 impl DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `http_put_response_hop_limit` after provisioning.\n"]
     pub fn http_put_response_hop_limit(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -529,13 +457,11 @@ impl DataImagebuilderInfrastructureConfigurationInstanceMetadataOptionsElRef {
             format!("{}.http_put_response_hop_limit", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_tokens` after provisioning.\n"]
     pub fn http_tokens(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.http_tokens", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -543,24 +469,20 @@ pub struct DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_key_prefix: Option<PrimField<String>>,
 }
-
 impl DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
     #[doc = "Set the field `s3_bucket_name`.\n"]
     pub fn set_s3_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_bucket_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_key_prefix`.\n"]
     pub fn set_s3_key_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_key_prefix = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
     type O = BlockAssignable<DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -569,9 +491,7 @@ impl ToListMappable for DataImagebuilderInfrastructureConfigurationLoggingElS3Lo
         })
     }
 }
-
 pub struct BuildDataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {}
-
 impl BuildDataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
     pub fn build(self) -> DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
         DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
@@ -580,12 +500,10 @@ impl BuildDataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl {
         }
     }
 }
-
 pub struct DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
     fn new(
         shared: StackShared,
@@ -597,12 +515,10 @@ impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
         }
     }
 }
-
 impl DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -610,7 +526,6 @@ impl DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
             format!("{}.s3_bucket_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_key_prefix` after provisioning.\n"]
     pub fn s3_key_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -619,13 +534,11 @@ impl DataImagebuilderInfrastructureConfigurationLoggingElS3LogsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataImagebuilderInfrastructureConfigurationLoggingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_logs: Option<ListField<DataImagebuilderInfrastructureConfigurationLoggingElS3LogsEl>>,
 }
-
 impl DataImagebuilderInfrastructureConfigurationLoggingEl {
     #[doc = "Set the field `s3_logs`.\n"]
     pub fn set_s3_logs(
@@ -636,10 +549,8 @@ impl DataImagebuilderInfrastructureConfigurationLoggingEl {
         self
     }
 }
-
 impl ToListMappable for DataImagebuilderInfrastructureConfigurationLoggingEl {
     type O = BlockAssignable<DataImagebuilderInfrastructureConfigurationLoggingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -648,9 +559,7 @@ impl ToListMappable for DataImagebuilderInfrastructureConfigurationLoggingEl {
         })
     }
 }
-
 pub struct BuildDataImagebuilderInfrastructureConfigurationLoggingEl {}
-
 impl BuildDataImagebuilderInfrastructureConfigurationLoggingEl {
     pub fn build(self) -> DataImagebuilderInfrastructureConfigurationLoggingEl {
         DataImagebuilderInfrastructureConfigurationLoggingEl {
@@ -658,12 +567,10 @@ impl BuildDataImagebuilderInfrastructureConfigurationLoggingEl {
         }
     }
 }
-
 pub struct DataImagebuilderInfrastructureConfigurationLoggingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElRef {
     fn new(
         shared: StackShared,
@@ -675,12 +582,10 @@ impl Ref for DataImagebuilderInfrastructureConfigurationLoggingElRef {
         }
     }
 }
-
 impl DataImagebuilderInfrastructureConfigurationLoggingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_logs` after provisioning.\n"]
     pub fn s3_logs(
         &self,
@@ -688,7 +593,6 @@ impl DataImagebuilderInfrastructureConfigurationLoggingElRef {
         ListRef::new(self.shared().clone(), format!("{}.s3_logs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataImagebuilderInfrastructureConfigurationPlacementEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -700,36 +604,30 @@ pub struct DataImagebuilderInfrastructureConfigurationPlacementEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tenancy: Option<PrimField<String>>,
 }
-
 impl DataImagebuilderInfrastructureConfigurationPlacementEl {
     #[doc = "Set the field `availability_zone`.\n"]
     pub fn set_availability_zone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.availability_zone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_id`.\n"]
     pub fn set_host_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.host_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_resource_group_arn`.\n"]
     pub fn set_host_resource_group_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.host_resource_group_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tenancy`.\n"]
     pub fn set_tenancy(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.tenancy = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataImagebuilderInfrastructureConfigurationPlacementEl {
     type O = BlockAssignable<DataImagebuilderInfrastructureConfigurationPlacementEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -738,9 +636,7 @@ impl ToListMappable for DataImagebuilderInfrastructureConfigurationPlacementEl {
         })
     }
 }
-
 pub struct BuildDataImagebuilderInfrastructureConfigurationPlacementEl {}
-
 impl BuildDataImagebuilderInfrastructureConfigurationPlacementEl {
     pub fn build(self) -> DataImagebuilderInfrastructureConfigurationPlacementEl {
         DataImagebuilderInfrastructureConfigurationPlacementEl {
@@ -751,12 +647,10 @@ impl BuildDataImagebuilderInfrastructureConfigurationPlacementEl {
         }
     }
 }
-
 pub struct DataImagebuilderInfrastructureConfigurationPlacementElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataImagebuilderInfrastructureConfigurationPlacementElRef {
     fn new(
         shared: StackShared,
@@ -768,12 +662,10 @@ impl Ref for DataImagebuilderInfrastructureConfigurationPlacementElRef {
         }
     }
 }
-
 impl DataImagebuilderInfrastructureConfigurationPlacementElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -781,12 +673,10 @@ impl DataImagebuilderInfrastructureConfigurationPlacementElRef {
             format!("{}.availability_zone", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_id` after provisioning.\n"]
     pub fn host_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.host_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `host_resource_group_arn` after provisioning.\n"]
     pub fn host_resource_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -794,7 +684,6 @@ impl DataImagebuilderInfrastructureConfigurationPlacementElRef {
             format!("{}.host_resource_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tenancy` after provisioning.\n"]
     pub fn tenancy(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.tenancy", self.base))

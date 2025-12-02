@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataConnectLambdaFunctionAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -19,43 +18,35 @@ struct DataConnectLambdaFunctionAssociationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct DataConnectLambdaFunctionAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataConnectLambdaFunctionAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct DataConnectLambdaFunctionAssociation(Rc<DataConnectLambdaFunctionAssociation_>);
-
 impl DataConnectLambdaFunctionAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -63,12 +54,10 @@ impl DataConnectLambdaFunctionAssociation {
             format!("{}.function_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -76,7 +65,6 @@ impl DataConnectLambdaFunctionAssociation {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -85,7 +73,6 @@ impl DataConnectLambdaFunctionAssociation {
         )
     }
 }
-
 impl Referable for DataConnectLambdaFunctionAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -95,32 +82,25 @@ impl Referable for DataConnectLambdaFunctionAssociation {
         )
     }
 }
-
 impl Datasource for DataConnectLambdaFunctionAssociation {}
-
 impl ToListMappable for DataConnectLambdaFunctionAssociation {
     type O = ListRef<DataConnectLambdaFunctionAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataConnectLambdaFunctionAssociation_ {
     fn extract_datasource_type(&self) -> String {
         "aws_connect_lambda_function_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataConnectLambdaFunctionAssociation {
     pub tf_id: String,
     #[doc = ""]
@@ -128,7 +108,6 @@ pub struct BuildDataConnectLambdaFunctionAssociation {
     #[doc = ""]
     pub instance_id: PrimField<String>,
 }
-
 impl BuildDataConnectLambdaFunctionAssociation {
     pub fn build(self, stack: &mut Stack) -> DataConnectLambdaFunctionAssociation {
         let out =
@@ -149,27 +128,22 @@ impl BuildDataConnectLambdaFunctionAssociation {
         out
     }
 }
-
 pub struct DataConnectLambdaFunctionAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataConnectLambdaFunctionAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataConnectLambdaFunctionAssociationRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,12 +151,10 @@ impl DataConnectLambdaFunctionAssociationRef {
             format!("{}.function_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +162,6 @@ impl DataConnectLambdaFunctionAssociationRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(

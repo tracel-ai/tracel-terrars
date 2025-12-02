@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CodebuildWebhookData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct CodebuildWebhookData {
     scope_configuration: Option<Vec<CodebuildWebhookScopeConfigurationEl>>,
     dynamic: CodebuildWebhookDynamic,
 }
-
 struct CodebuildWebhook_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CodebuildWebhookData>,
 }
-
 #[derive(Clone)]
 pub struct CodebuildWebhook(Rc<CodebuildWebhook_>);
-
 impl CodebuildWebhook {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl CodebuildWebhook {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl CodebuildWebhook {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,37 +100,31 @@ impl CodebuildWebhook {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `branch_filter`.\n"]
     pub fn set_branch_filter(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().branch_filter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `build_type`.\n"]
     pub fn set_build_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().build_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `manual_creation`.\n"]
     pub fn set_manual_creation(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().manual_creation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter_group`.\n"]
     pub fn set_filter_group(
         self,
@@ -158,7 +140,6 @@ impl CodebuildWebhook {
         }
         self
     }
-
     #[doc = "Set the field `pull_request_build_policy`.\n"]
     pub fn set_pull_request_build_policy(
         self,
@@ -174,7 +155,6 @@ impl CodebuildWebhook {
         }
         self
     }
-
     #[doc = "Set the field `scope_configuration`.\n"]
     pub fn set_scope_configuration(
         self,
@@ -190,7 +170,6 @@ impl CodebuildWebhook {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `branch_filter` after provisioning.\n"]
     pub fn branch_filter(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +177,6 @@ impl CodebuildWebhook {
             format!("{}.branch_filter", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `build_type` after provisioning.\n"]
     pub fn build_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,12 +184,10 @@ impl CodebuildWebhook {
             format!("{}.build_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `manual_creation` after provisioning.\n"]
     pub fn manual_creation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -219,7 +195,6 @@ impl CodebuildWebhook {
             format!("{}.manual_creation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `payload_url` after provisioning.\n"]
     pub fn payload_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +202,6 @@ impl CodebuildWebhook {
             format!("{}.payload_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +209,6 @@ impl CodebuildWebhook {
             format!("{}.project_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +216,6 @@ impl CodebuildWebhook {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
     pub fn secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,12 +223,10 @@ impl CodebuildWebhook {
             format!("{}.secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pull_request_build_policy` after provisioning.\n"]
     pub fn pull_request_build_policy(
         &self,
@@ -266,7 +236,6 @@ impl CodebuildWebhook {
             format!("{}.pull_request_build_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope_configuration` after provisioning.\n"]
     pub fn scope_configuration(&self) -> ListRef<CodebuildWebhookScopeConfigurationElRef> {
         ListRef::new(
@@ -275,7 +244,6 @@ impl CodebuildWebhook {
         )
     }
 }
-
 impl Referable for CodebuildWebhook {
     fn extract_ref(&self) -> String {
         format!(
@@ -285,38 +253,30 @@ impl Referable for CodebuildWebhook {
         )
     }
 }
-
 impl Resource for CodebuildWebhook {}
-
 impl ToListMappable for CodebuildWebhook {
     type O = ListRef<CodebuildWebhookRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CodebuildWebhook_ {
     fn extract_resource_type(&self) -> String {
         "aws_codebuild_webhook".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCodebuildWebhook {
     pub tf_id: String,
     #[doc = ""]
     pub project_name: PrimField<String>,
 }
-
 impl BuildCodebuildWebhook {
     pub fn build(self, stack: &mut Stack) -> CodebuildWebhook {
         let out = CodebuildWebhook(Rc::new(CodebuildWebhook_ {
@@ -343,27 +303,22 @@ impl BuildCodebuildWebhook {
         out
     }
 }
-
 pub struct CodebuildWebhookRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildWebhookRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CodebuildWebhookRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `branch_filter` after provisioning.\n"]
     pub fn branch_filter(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +326,6 @@ impl CodebuildWebhookRef {
             format!("{}.branch_filter", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `build_type` after provisioning.\n"]
     pub fn build_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,12 +333,10 @@ impl CodebuildWebhookRef {
             format!("{}.build_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `manual_creation` after provisioning.\n"]
     pub fn manual_creation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -392,7 +344,6 @@ impl CodebuildWebhookRef {
             format!("{}.manual_creation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `payload_url` after provisioning.\n"]
     pub fn payload_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -400,7 +351,6 @@ impl CodebuildWebhookRef {
             format!("{}.payload_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `project_name` after provisioning.\n"]
     pub fn project_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,7 +358,6 @@ impl CodebuildWebhookRef {
             format!("{}.project_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -416,7 +365,6 @@ impl CodebuildWebhookRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret` after provisioning.\n"]
     pub fn secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -424,12 +372,10 @@ impl CodebuildWebhookRef {
             format!("{}.secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pull_request_build_policy` after provisioning.\n"]
     pub fn pull_request_build_policy(
         &self,
@@ -439,7 +385,6 @@ impl CodebuildWebhookRef {
             format!("{}.pull_request_build_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope_configuration` after provisioning.\n"]
     pub fn scope_configuration(&self) -> ListRef<CodebuildWebhookScopeConfigurationElRef> {
         ListRef::new(
@@ -448,7 +393,6 @@ impl CodebuildWebhookRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildWebhookFilterGroupElFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -457,7 +401,6 @@ pub struct CodebuildWebhookFilterGroupElFilterEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl CodebuildWebhookFilterGroupElFilterEl {
     #[doc = "Set the field `exclude_matched_pattern`.\n"]
     pub fn set_exclude_matched_pattern(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -465,10 +408,8 @@ impl CodebuildWebhookFilterGroupElFilterEl {
         self
     }
 }
-
 impl ToListMappable for CodebuildWebhookFilterGroupElFilterEl {
     type O = BlockAssignable<CodebuildWebhookFilterGroupElFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -477,14 +418,12 @@ impl ToListMappable for CodebuildWebhookFilterGroupElFilterEl {
         })
     }
 }
-
 pub struct BuildCodebuildWebhookFilterGroupElFilterEl {
     #[doc = ""]
     pub pattern: PrimField<String>,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildCodebuildWebhookFilterGroupElFilterEl {
     pub fn build(self) -> CodebuildWebhookFilterGroupElFilterEl {
         CodebuildWebhookFilterGroupElFilterEl {
@@ -494,12 +433,10 @@ impl BuildCodebuildWebhookFilterGroupElFilterEl {
         }
     }
 }
-
 pub struct CodebuildWebhookFilterGroupElFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildWebhookFilterGroupElFilterElRef {
     fn new(shared: StackShared, base: String) -> CodebuildWebhookFilterGroupElFilterElRef {
         CodebuildWebhookFilterGroupElFilterElRef {
@@ -508,12 +445,10 @@ impl Ref for CodebuildWebhookFilterGroupElFilterElRef {
         }
     }
 }
-
 impl CodebuildWebhookFilterGroupElFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `exclude_matched_pattern` after provisioning.\n"]
     pub fn exclude_matched_pattern(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -521,30 +456,25 @@ impl CodebuildWebhookFilterGroupElFilterElRef {
             format!("{}.exclude_matched_pattern", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.pattern", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CodebuildWebhookFilterGroupElDynamic {
     filter: Option<DynamicBlock<CodebuildWebhookFilterGroupElFilterEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CodebuildWebhookFilterGroupEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     filter: Option<Vec<CodebuildWebhookFilterGroupElFilterEl>>,
     dynamic: CodebuildWebhookFilterGroupElDynamic,
 }
-
 impl CodebuildWebhookFilterGroupEl {
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
@@ -562,10 +492,8 @@ impl CodebuildWebhookFilterGroupEl {
         self
     }
 }
-
 impl ToListMappable for CodebuildWebhookFilterGroupEl {
     type O = BlockAssignable<CodebuildWebhookFilterGroupEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -574,9 +502,7 @@ impl ToListMappable for CodebuildWebhookFilterGroupEl {
         })
     }
 }
-
 pub struct BuildCodebuildWebhookFilterGroupEl {}
-
 impl BuildCodebuildWebhookFilterGroupEl {
     pub fn build(self) -> CodebuildWebhookFilterGroupEl {
         CodebuildWebhookFilterGroupEl {
@@ -585,12 +511,10 @@ impl BuildCodebuildWebhookFilterGroupEl {
         }
     }
 }
-
 pub struct CodebuildWebhookFilterGroupElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildWebhookFilterGroupElRef {
     fn new(shared: StackShared, base: String) -> CodebuildWebhookFilterGroupElRef {
         CodebuildWebhookFilterGroupElRef {
@@ -599,25 +523,21 @@ impl Ref for CodebuildWebhookFilterGroupElRef {
         }
     }
 }
-
 impl CodebuildWebhookFilterGroupElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> ListRef<CodebuildWebhookFilterGroupElFilterElRef> {
         ListRef::new(self.shared().clone(), format!("{}.filter", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildWebhookPullRequestBuildPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     approver_roles: Option<SetField<PrimField<String>>>,
     requires_comment_approval: PrimField<String>,
 }
-
 impl CodebuildWebhookPullRequestBuildPolicyEl {
     #[doc = "Set the field `approver_roles`.\n"]
     pub fn set_approver_roles(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -625,10 +545,8 @@ impl CodebuildWebhookPullRequestBuildPolicyEl {
         self
     }
 }
-
 impl ToListMappable for CodebuildWebhookPullRequestBuildPolicyEl {
     type O = BlockAssignable<CodebuildWebhookPullRequestBuildPolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -637,12 +555,10 @@ impl ToListMappable for CodebuildWebhookPullRequestBuildPolicyEl {
         })
     }
 }
-
 pub struct BuildCodebuildWebhookPullRequestBuildPolicyEl {
     #[doc = ""]
     pub requires_comment_approval: PrimField<String>,
 }
-
 impl BuildCodebuildWebhookPullRequestBuildPolicyEl {
     pub fn build(self) -> CodebuildWebhookPullRequestBuildPolicyEl {
         CodebuildWebhookPullRequestBuildPolicyEl {
@@ -651,12 +567,10 @@ impl BuildCodebuildWebhookPullRequestBuildPolicyEl {
         }
     }
 }
-
 pub struct CodebuildWebhookPullRequestBuildPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildWebhookPullRequestBuildPolicyElRef {
     fn new(shared: StackShared, base: String) -> CodebuildWebhookPullRequestBuildPolicyElRef {
         CodebuildWebhookPullRequestBuildPolicyElRef {
@@ -665,12 +579,10 @@ impl Ref for CodebuildWebhookPullRequestBuildPolicyElRef {
         }
     }
 }
-
 impl CodebuildWebhookPullRequestBuildPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `approver_roles` after provisioning.\n"]
     pub fn approver_roles(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -678,7 +590,6 @@ impl CodebuildWebhookPullRequestBuildPolicyElRef {
             format!("{}.approver_roles", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `requires_comment_approval` after provisioning.\n"]
     pub fn requires_comment_approval(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -687,7 +598,6 @@ impl CodebuildWebhookPullRequestBuildPolicyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildWebhookScopeConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -695,7 +605,6 @@ pub struct CodebuildWebhookScopeConfigurationEl {
     name: PrimField<String>,
     scope: PrimField<String>,
 }
-
 impl CodebuildWebhookScopeConfigurationEl {
     #[doc = "Set the field `domain`.\n"]
     pub fn set_domain(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -703,10 +612,8 @@ impl CodebuildWebhookScopeConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CodebuildWebhookScopeConfigurationEl {
     type O = BlockAssignable<CodebuildWebhookScopeConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -715,14 +622,12 @@ impl ToListMappable for CodebuildWebhookScopeConfigurationEl {
         })
     }
 }
-
 pub struct BuildCodebuildWebhookScopeConfigurationEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub scope: PrimField<String>,
 }
-
 impl BuildCodebuildWebhookScopeConfigurationEl {
     pub fn build(self) -> CodebuildWebhookScopeConfigurationEl {
         CodebuildWebhookScopeConfigurationEl {
@@ -732,12 +637,10 @@ impl BuildCodebuildWebhookScopeConfigurationEl {
         }
     }
 }
-
 pub struct CodebuildWebhookScopeConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildWebhookScopeConfigurationElRef {
     fn new(shared: StackShared, base: String) -> CodebuildWebhookScopeConfigurationElRef {
         CodebuildWebhookScopeConfigurationElRef {
@@ -746,28 +649,23 @@ impl Ref for CodebuildWebhookScopeConfigurationElRef {
         }
     }
 }
-
 impl CodebuildWebhookScopeConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.domain", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.scope", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CodebuildWebhookDynamic {
     filter_group: Option<DynamicBlock<CodebuildWebhookFilterGroupEl>>,

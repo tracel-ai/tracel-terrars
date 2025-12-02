@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct MskVpcConnectionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct MskVpcConnectionData {
     target_cluster_arn: PrimField<String>,
     vpc_id: PrimField<String>,
 }
-
 struct MskVpcConnection_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<MskVpcConnectionData>,
 }
-
 #[derive(Clone)]
 pub struct MskVpcConnection(Rc<MskVpcConnection_>);
-
 impl MskVpcConnection {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl MskVpcConnection {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl MskVpcConnection {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,36 +95,30 @@ impl MskVpcConnection {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authentication` after provisioning.\n"]
     pub fn authentication(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -144,7 +126,6 @@ impl MskVpcConnection {
             format!("{}.authentication", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_subnets` after provisioning.\n"]
     pub fn client_subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -152,12 +133,10 @@ impl MskVpcConnection {
             format!("{}.client_subnets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -165,7 +144,6 @@ impl MskVpcConnection {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -173,7 +151,6 @@ impl MskVpcConnection {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -181,7 +158,6 @@ impl MskVpcConnection {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -189,7 +165,6 @@ impl MskVpcConnection {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_cluster_arn` after provisioning.\n"]
     pub fn target_cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +172,6 @@ impl MskVpcConnection {
             format!("{}.target_cluster_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +180,6 @@ impl MskVpcConnection {
         )
     }
 }
-
 impl Referable for MskVpcConnection {
     fn extract_ref(&self) -> String {
         format!(
@@ -216,32 +189,25 @@ impl Referable for MskVpcConnection {
         )
     }
 }
-
 impl Resource for MskVpcConnection {}
-
 impl ToListMappable for MskVpcConnection {
     type O = ListRef<MskVpcConnectionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for MskVpcConnection_ {
     fn extract_resource_type(&self) -> String {
         "aws_msk_vpc_connection".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildMskVpcConnection {
     pub tf_id: String,
     #[doc = ""]
@@ -255,7 +221,6 @@ pub struct BuildMskVpcConnection {
     #[doc = ""]
     pub vpc_id: PrimField<String>,
 }
-
 impl BuildMskVpcConnection {
     pub fn build(self, stack: &mut Stack) -> MskVpcConnection {
         let out = MskVpcConnection(Rc::new(MskVpcConnection_ {
@@ -281,32 +246,26 @@ impl BuildMskVpcConnection {
         out
     }
 }
-
 pub struct MskVpcConnectionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskVpcConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl MskVpcConnectionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authentication` after provisioning.\n"]
     pub fn authentication(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +273,6 @@ impl MskVpcConnectionRef {
             format!("{}.authentication", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_subnets` after provisioning.\n"]
     pub fn client_subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -322,12 +280,10 @@ impl MskVpcConnectionRef {
             format!("{}.client_subnets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -335,7 +291,6 @@ impl MskVpcConnectionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -343,7 +298,6 @@ impl MskVpcConnectionRef {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -351,7 +305,6 @@ impl MskVpcConnectionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -359,7 +312,6 @@ impl MskVpcConnectionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_cluster_arn` after provisioning.\n"]
     pub fn target_cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +319,6 @@ impl MskVpcConnectionRef {
             format!("{}.target_cluster_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

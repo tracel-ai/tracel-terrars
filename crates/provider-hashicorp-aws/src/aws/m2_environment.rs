@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct M2EnvironmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -47,47 +46,38 @@ struct M2EnvironmentData {
     timeouts: Option<M2EnvironmentTimeoutsEl>,
     dynamic: M2EnvironmentDynamic,
 }
-
 struct M2Environment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<M2EnvironmentData>,
 }
-
 #[derive(Clone)]
 pub struct M2Environment(Rc<M2Environment_>);
-
 impl M2Environment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -106,7 +96,6 @@ impl M2Environment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -116,7 +105,6 @@ impl M2Environment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -126,7 +114,6 @@ impl M2Environment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `apply_changes_during_maintenance_window`.\n"]
     pub fn set_apply_changes_during_maintenance_window(
         self,
@@ -138,67 +125,56 @@ impl M2Environment {
             .apply_changes_during_maintenance_window = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `engine_version`.\n"]
     pub fn set_engine_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().engine_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `force_update`.\n"]
     pub fn set_force_update(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().force_update = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preferred_maintenance_window`.\n"]
     pub fn set_preferred_maintenance_window(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().preferred_maintenance_window = Some(v.into());
         self
     }
-
     #[doc = "Set the field `publicly_accessible`.\n"]
     pub fn set_publicly_accessible(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().publicly_accessible = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_ids`.\n"]
     pub fn set_subnet_ids(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().subnet_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `high_availability_config`.\n"]
     pub fn set_high_availability_config(
         self,
@@ -214,7 +190,6 @@ impl M2Environment {
         }
         self
     }
-
     #[doc = "Set the field `storage_configuration`.\n"]
     pub fn set_storage_configuration(
         self,
@@ -230,13 +205,11 @@ impl M2Environment {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<M2EnvironmentTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `apply_changes_during_maintenance_window` after provisioning.\n"]
     pub fn apply_changes_during_maintenance_window(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -247,12 +220,10 @@ impl M2Environment {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +231,6 @@ impl M2Environment {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_type` after provisioning.\n"]
     pub fn engine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +238,6 @@ impl M2Environment {
             format!("{}.engine_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +245,6 @@ impl M2Environment {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_id` after provisioning.\n"]
     pub fn environment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +252,6 @@ impl M2Environment {
             format!("{}.environment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_update` after provisioning.\n"]
     pub fn force_update(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -292,12 +259,10 @@ impl M2Environment {
             format!("{}.force_update", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +270,6 @@ impl M2Environment {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +277,6 @@ impl M2Environment {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +284,6 @@ impl M2Environment {
             format!("{}.load_balancer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +291,6 @@ impl M2Environment {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_maintenance_window` after provisioning.\n"]
     pub fn preferred_maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +298,6 @@ impl M2Environment {
             format!("{}.preferred_maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publicly_accessible` after provisioning.\n"]
     pub fn publicly_accessible(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -345,7 +305,6 @@ impl M2Environment {
             format!("{}.publicly_accessible", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,7 +312,6 @@ impl M2Environment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -361,7 +319,6 @@ impl M2Environment {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -369,7 +326,6 @@ impl M2Environment {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -377,7 +333,6 @@ impl M2Environment {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -385,7 +340,6 @@ impl M2Environment {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `high_availability_config` after provisioning.\n"]
     pub fn high_availability_config(&self) -> ListRef<M2EnvironmentHighAvailabilityConfigElRef> {
         ListRef::new(
@@ -393,7 +347,6 @@ impl M2Environment {
             format!("{}.high_availability_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_configuration` after provisioning.\n"]
     pub fn storage_configuration(&self) -> ListRef<M2EnvironmentStorageConfigurationElRef> {
         ListRef::new(
@@ -401,7 +354,6 @@ impl M2Environment {
             format!("{}.storage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> M2EnvironmentTimeoutsElRef {
         M2EnvironmentTimeoutsElRef::new(
@@ -410,7 +362,6 @@ impl M2Environment {
         )
     }
 }
-
 impl Referable for M2Environment {
     fn extract_ref(&self) -> String {
         format!(
@@ -420,32 +371,25 @@ impl Referable for M2Environment {
         )
     }
 }
-
 impl Resource for M2Environment {}
-
 impl ToListMappable for M2Environment {
     type O = ListRef<M2EnvironmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for M2Environment_ {
     fn extract_resource_type(&self) -> String {
         "aws_m2_environment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildM2Environment {
     pub tf_id: String,
     #[doc = ""]
@@ -455,7 +399,6 @@ pub struct BuildM2Environment {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildM2Environment {
     pub fn build(self, stack: &mut Stack) -> M2Environment {
         let out = M2Environment(Rc::new(M2Environment_ {
@@ -490,27 +433,22 @@ impl BuildM2Environment {
         out
     }
 }
-
 pub struct M2EnvironmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl M2EnvironmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `apply_changes_during_maintenance_window` after provisioning.\n"]
     pub fn apply_changes_during_maintenance_window(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -521,12 +459,10 @@ impl M2EnvironmentRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -534,7 +470,6 @@ impl M2EnvironmentRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_type` after provisioning.\n"]
     pub fn engine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -542,7 +477,6 @@ impl M2EnvironmentRef {
             format!("{}.engine_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -550,7 +484,6 @@ impl M2EnvironmentRef {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_id` after provisioning.\n"]
     pub fn environment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -558,7 +491,6 @@ impl M2EnvironmentRef {
             format!("{}.environment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_update` after provisioning.\n"]
     pub fn force_update(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -566,12 +498,10 @@ impl M2EnvironmentRef {
             format!("{}.force_update", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -579,7 +509,6 @@ impl M2EnvironmentRef {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +516,6 @@ impl M2EnvironmentRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_arn` after provisioning.\n"]
     pub fn load_balancer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -595,7 +523,6 @@ impl M2EnvironmentRef {
             format!("{}.load_balancer_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -603,7 +530,6 @@ impl M2EnvironmentRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preferred_maintenance_window` after provisioning.\n"]
     pub fn preferred_maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -611,7 +537,6 @@ impl M2EnvironmentRef {
             format!("{}.preferred_maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publicly_accessible` after provisioning.\n"]
     pub fn publicly_accessible(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -619,7 +544,6 @@ impl M2EnvironmentRef {
             format!("{}.publicly_accessible", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -627,7 +551,6 @@ impl M2EnvironmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -635,7 +558,6 @@ impl M2EnvironmentRef {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -643,7 +565,6 @@ impl M2EnvironmentRef {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -651,7 +572,6 @@ impl M2EnvironmentRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -659,7 +579,6 @@ impl M2EnvironmentRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `high_availability_config` after provisioning.\n"]
     pub fn high_availability_config(&self) -> ListRef<M2EnvironmentHighAvailabilityConfigElRef> {
         ListRef::new(
@@ -667,7 +586,6 @@ impl M2EnvironmentRef {
             format!("{}.high_availability_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_configuration` after provisioning.\n"]
     pub fn storage_configuration(&self) -> ListRef<M2EnvironmentStorageConfigurationElRef> {
         ListRef::new(
@@ -675,7 +593,6 @@ impl M2EnvironmentRef {
             format!("{}.storage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> M2EnvironmentTimeoutsElRef {
         M2EnvironmentTimeoutsElRef::new(
@@ -684,17 +601,13 @@ impl M2EnvironmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct M2EnvironmentHighAvailabilityConfigEl {
     desired_capacity: PrimField<f64>,
 }
-
 impl M2EnvironmentHighAvailabilityConfigEl {}
-
 impl ToListMappable for M2EnvironmentHighAvailabilityConfigEl {
     type O = BlockAssignable<M2EnvironmentHighAvailabilityConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -703,12 +616,10 @@ impl ToListMappable for M2EnvironmentHighAvailabilityConfigEl {
         })
     }
 }
-
 pub struct BuildM2EnvironmentHighAvailabilityConfigEl {
     #[doc = ""]
     pub desired_capacity: PrimField<f64>,
 }
-
 impl BuildM2EnvironmentHighAvailabilityConfigEl {
     pub fn build(self) -> M2EnvironmentHighAvailabilityConfigEl {
         M2EnvironmentHighAvailabilityConfigEl {
@@ -716,12 +627,10 @@ impl BuildM2EnvironmentHighAvailabilityConfigEl {
         }
     }
 }
-
 pub struct M2EnvironmentHighAvailabilityConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentHighAvailabilityConfigElRef {
     fn new(shared: StackShared, base: String) -> M2EnvironmentHighAvailabilityConfigElRef {
         M2EnvironmentHighAvailabilityConfigElRef {
@@ -730,12 +639,10 @@ impl Ref for M2EnvironmentHighAvailabilityConfigElRef {
         }
     }
 }
-
 impl M2EnvironmentHighAvailabilityConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -744,18 +651,14 @@ impl M2EnvironmentHighAvailabilityConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct M2EnvironmentStorageConfigurationElEfsEl {
     file_system_id: PrimField<String>,
     mount_point: PrimField<String>,
 }
-
 impl M2EnvironmentStorageConfigurationElEfsEl {}
-
 impl ToListMappable for M2EnvironmentStorageConfigurationElEfsEl {
     type O = BlockAssignable<M2EnvironmentStorageConfigurationElEfsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -764,14 +667,12 @@ impl ToListMappable for M2EnvironmentStorageConfigurationElEfsEl {
         })
     }
 }
-
 pub struct BuildM2EnvironmentStorageConfigurationElEfsEl {
     #[doc = ""]
     pub file_system_id: PrimField<String>,
     #[doc = ""]
     pub mount_point: PrimField<String>,
 }
-
 impl BuildM2EnvironmentStorageConfigurationElEfsEl {
     pub fn build(self) -> M2EnvironmentStorageConfigurationElEfsEl {
         M2EnvironmentStorageConfigurationElEfsEl {
@@ -780,12 +681,10 @@ impl BuildM2EnvironmentStorageConfigurationElEfsEl {
         }
     }
 }
-
 pub struct M2EnvironmentStorageConfigurationElEfsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentStorageConfigurationElEfsElRef {
     fn new(shared: StackShared, base: String) -> M2EnvironmentStorageConfigurationElEfsElRef {
         M2EnvironmentStorageConfigurationElEfsElRef {
@@ -794,12 +693,10 @@ impl Ref for M2EnvironmentStorageConfigurationElEfsElRef {
         }
     }
 }
-
 impl M2EnvironmentStorageConfigurationElEfsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -807,24 +704,19 @@ impl M2EnvironmentStorageConfigurationElEfsElRef {
             format!("{}.file_system_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `mount_point` after provisioning.\n"]
     pub fn mount_point(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mount_point", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct M2EnvironmentStorageConfigurationElFsxEl {
     file_system_id: PrimField<String>,
     mount_point: PrimField<String>,
 }
-
 impl M2EnvironmentStorageConfigurationElFsxEl {}
-
 impl ToListMappable for M2EnvironmentStorageConfigurationElFsxEl {
     type O = BlockAssignable<M2EnvironmentStorageConfigurationElFsxEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -833,14 +725,12 @@ impl ToListMappable for M2EnvironmentStorageConfigurationElFsxEl {
         })
     }
 }
-
 pub struct BuildM2EnvironmentStorageConfigurationElFsxEl {
     #[doc = ""]
     pub file_system_id: PrimField<String>,
     #[doc = ""]
     pub mount_point: PrimField<String>,
 }
-
 impl BuildM2EnvironmentStorageConfigurationElFsxEl {
     pub fn build(self) -> M2EnvironmentStorageConfigurationElFsxEl {
         M2EnvironmentStorageConfigurationElFsxEl {
@@ -849,12 +739,10 @@ impl BuildM2EnvironmentStorageConfigurationElFsxEl {
         }
     }
 }
-
 pub struct M2EnvironmentStorageConfigurationElFsxElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentStorageConfigurationElFsxElRef {
     fn new(shared: StackShared, base: String) -> M2EnvironmentStorageConfigurationElFsxElRef {
         M2EnvironmentStorageConfigurationElFsxElRef {
@@ -863,12 +751,10 @@ impl Ref for M2EnvironmentStorageConfigurationElFsxElRef {
         }
     }
 }
-
 impl M2EnvironmentStorageConfigurationElFsxElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -876,19 +762,16 @@ impl M2EnvironmentStorageConfigurationElFsxElRef {
             format!("{}.file_system_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `mount_point` after provisioning.\n"]
     pub fn mount_point(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mount_point", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct M2EnvironmentStorageConfigurationElDynamic {
     efs: Option<DynamicBlock<M2EnvironmentStorageConfigurationElEfsEl>>,
     fsx: Option<DynamicBlock<M2EnvironmentStorageConfigurationElFsxEl>>,
 }
-
 #[derive(Serialize)]
 pub struct M2EnvironmentStorageConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -897,7 +780,6 @@ pub struct M2EnvironmentStorageConfigurationEl {
     fsx: Option<Vec<M2EnvironmentStorageConfigurationElFsxEl>>,
     dynamic: M2EnvironmentStorageConfigurationElDynamic,
 }
-
 impl M2EnvironmentStorageConfigurationEl {
     #[doc = "Set the field `efs`.\n"]
     pub fn set_efs(
@@ -914,7 +796,6 @@ impl M2EnvironmentStorageConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `fsx`.\n"]
     pub fn set_fsx(
         mut self,
@@ -931,10 +812,8 @@ impl M2EnvironmentStorageConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for M2EnvironmentStorageConfigurationEl {
     type O = BlockAssignable<M2EnvironmentStorageConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -943,9 +822,7 @@ impl ToListMappable for M2EnvironmentStorageConfigurationEl {
         })
     }
 }
-
 pub struct BuildM2EnvironmentStorageConfigurationEl {}
-
 impl BuildM2EnvironmentStorageConfigurationEl {
     pub fn build(self) -> M2EnvironmentStorageConfigurationEl {
         M2EnvironmentStorageConfigurationEl {
@@ -955,12 +832,10 @@ impl BuildM2EnvironmentStorageConfigurationEl {
         }
     }
 }
-
 pub struct M2EnvironmentStorageConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentStorageConfigurationElRef {
     fn new(shared: StackShared, base: String) -> M2EnvironmentStorageConfigurationElRef {
         M2EnvironmentStorageConfigurationElRef {
@@ -969,23 +844,19 @@ impl Ref for M2EnvironmentStorageConfigurationElRef {
         }
     }
 }
-
 impl M2EnvironmentStorageConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `efs` after provisioning.\n"]
     pub fn efs(&self) -> ListRef<M2EnvironmentStorageConfigurationElEfsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.efs", self.base))
     }
-
     #[doc = "Get a reference to the value of field `fsx` after provisioning.\n"]
     pub fn fsx(&self) -> ListRef<M2EnvironmentStorageConfigurationElFsxElRef> {
         ListRef::new(self.shared().clone(), format!("{}.fsx", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct M2EnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -995,30 +866,25 @@ pub struct M2EnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl M2EnvironmentTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for M2EnvironmentTimeoutsEl {
     type O = BlockAssignable<M2EnvironmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1027,9 +893,7 @@ impl ToListMappable for M2EnvironmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildM2EnvironmentTimeoutsEl {}
-
 impl BuildM2EnvironmentTimeoutsEl {
     pub fn build(self) -> M2EnvironmentTimeoutsEl {
         M2EnvironmentTimeoutsEl {
@@ -1039,12 +903,10 @@ impl BuildM2EnvironmentTimeoutsEl {
         }
     }
 }
-
 pub struct M2EnvironmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for M2EnvironmentTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> M2EnvironmentTimeoutsElRef {
         M2EnvironmentTimeoutsElRef {
@@ -1053,28 +915,23 @@ impl Ref for M2EnvironmentTimeoutsElRef {
         }
     }
 }
-
 impl M2EnvironmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct M2EnvironmentDynamic {
     high_availability_config: Option<DynamicBlock<M2EnvironmentHighAvailabilityConfigEl>>,

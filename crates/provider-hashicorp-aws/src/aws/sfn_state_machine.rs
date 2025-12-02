@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SfnStateMachineData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -42,47 +41,38 @@ struct SfnStateMachineData {
     tracing_configuration: Option<Vec<SfnStateMachineTracingConfigurationEl>>,
     dynamic: SfnStateMachineDynamic,
 }
-
 struct SfnStateMachine_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SfnStateMachineData>,
 }
-
 #[derive(Clone)]
 pub struct SfnStateMachine(Rc<SfnStateMachine_>);
-
 impl SfnStateMachine {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -101,7 +91,6 @@ impl SfnStateMachine {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -111,7 +100,6 @@ impl SfnStateMachine {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -121,55 +109,46 @@ impl SfnStateMachine {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `publish`.\n"]
     pub fn set_publish(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().publish = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         self,
@@ -185,7 +164,6 @@ impl SfnStateMachine {
         }
         self
     }
-
     #[doc = "Set the field `logging_configuration`.\n"]
     pub fn set_logging_configuration(
         self,
@@ -201,13 +179,11 @@ impl SfnStateMachine {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<SfnStateMachineTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tracing_configuration`.\n"]
     pub fn set_tracing_configuration(
         self,
@@ -223,12 +199,10 @@ impl SfnStateMachine {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +210,6 @@ impl SfnStateMachine {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +217,6 @@ impl SfnStateMachine {
             format!("{}.definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,12 +224,10 @@ impl SfnStateMachine {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +235,6 @@ impl SfnStateMachine {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +242,6 @@ impl SfnStateMachine {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publish` after provisioning.\n"]
     pub fn publish(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -281,7 +249,6 @@ impl SfnStateMachine {
             format!("{}.publish", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +256,6 @@ impl SfnStateMachine {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `revision_id` after provisioning.\n"]
     pub fn revision_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +263,6 @@ impl SfnStateMachine {
             format!("{}.revision_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +270,6 @@ impl SfnStateMachine {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state_machine_version_arn` after provisioning.\n"]
     pub fn state_machine_version_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +277,6 @@ impl SfnStateMachine {
             format!("{}.state_machine_version_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +284,6 @@ impl SfnStateMachine {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -329,7 +291,6 @@ impl SfnStateMachine {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -337,7 +298,6 @@ impl SfnStateMachine {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +305,6 @@ impl SfnStateMachine {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,7 +312,6 @@ impl SfnStateMachine {
             format!("{}.version_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(&self) -> ListRef<SfnStateMachineEncryptionConfigurationElRef> {
         ListRef::new(
@@ -361,7 +319,6 @@ impl SfnStateMachine {
             format!("{}.encryption_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<SfnStateMachineLoggingConfigurationElRef> {
         ListRef::new(
@@ -369,7 +326,6 @@ impl SfnStateMachine {
             format!("{}.logging_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SfnStateMachineTimeoutsElRef {
         SfnStateMachineTimeoutsElRef::new(
@@ -377,7 +333,6 @@ impl SfnStateMachine {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracing_configuration` after provisioning.\n"]
     pub fn tracing_configuration(&self) -> ListRef<SfnStateMachineTracingConfigurationElRef> {
         ListRef::new(
@@ -386,7 +341,6 @@ impl SfnStateMachine {
         )
     }
 }
-
 impl Referable for SfnStateMachine {
     fn extract_ref(&self) -> String {
         format!(
@@ -396,32 +350,25 @@ impl Referable for SfnStateMachine {
         )
     }
 }
-
 impl Resource for SfnStateMachine {}
-
 impl ToListMappable for SfnStateMachine {
     type O = ListRef<SfnStateMachineRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SfnStateMachine_ {
     fn extract_resource_type(&self) -> String {
         "aws_sfn_state_machine".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSfnStateMachine {
     pub tf_id: String,
     #[doc = ""]
@@ -429,7 +376,6 @@ pub struct BuildSfnStateMachine {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildSfnStateMachine {
     pub fn build(self, stack: &mut Stack) -> SfnStateMachine {
         let out = SfnStateMachine(Rc::new(SfnStateMachine_ {
@@ -461,32 +407,26 @@ impl BuildSfnStateMachine {
         out
     }
 }
-
 pub struct SfnStateMachineRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SfnStateMachineRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SfnStateMachineRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +434,6 @@ impl SfnStateMachineRef {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,7 +441,6 @@ impl SfnStateMachineRef {
             format!("{}.definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -510,12 +448,10 @@ impl SfnStateMachineRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +459,6 @@ impl SfnStateMachineRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -531,7 +466,6 @@ impl SfnStateMachineRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publish` after provisioning.\n"]
     pub fn publish(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -539,7 +473,6 @@ impl SfnStateMachineRef {
             format!("{}.publish", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +480,6 @@ impl SfnStateMachineRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `revision_id` after provisioning.\n"]
     pub fn revision_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -555,7 +487,6 @@ impl SfnStateMachineRef {
             format!("{}.revision_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -563,7 +494,6 @@ impl SfnStateMachineRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state_machine_version_arn` after provisioning.\n"]
     pub fn state_machine_version_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -571,7 +501,6 @@ impl SfnStateMachineRef {
             format!("{}.state_machine_version_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -579,7 +508,6 @@ impl SfnStateMachineRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -587,7 +515,6 @@ impl SfnStateMachineRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -595,7 +522,6 @@ impl SfnStateMachineRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -603,7 +529,6 @@ impl SfnStateMachineRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_description` after provisioning.\n"]
     pub fn version_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -611,7 +536,6 @@ impl SfnStateMachineRef {
             format!("{}.version_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(&self) -> ListRef<SfnStateMachineEncryptionConfigurationElRef> {
         ListRef::new(
@@ -619,7 +543,6 @@ impl SfnStateMachineRef {
             format!("{}.encryption_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<SfnStateMachineLoggingConfigurationElRef> {
         ListRef::new(
@@ -627,7 +550,6 @@ impl SfnStateMachineRef {
             format!("{}.logging_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SfnStateMachineTimeoutsElRef {
         SfnStateMachineTimeoutsElRef::new(
@@ -635,7 +557,6 @@ impl SfnStateMachineRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracing_configuration` after provisioning.\n"]
     pub fn tracing_configuration(&self) -> ListRef<SfnStateMachineTracingConfigurationElRef> {
         ListRef::new(
@@ -644,7 +565,6 @@ impl SfnStateMachineRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SfnStateMachineEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -654,30 +574,25 @@ pub struct SfnStateMachineEncryptionConfigurationEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl SfnStateMachineEncryptionConfigurationEl {
     #[doc = "Set the field `kms_data_key_reuse_period_seconds`.\n"]
     pub fn set_kms_data_key_reuse_period_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.kms_data_key_reuse_period_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SfnStateMachineEncryptionConfigurationEl {
     type O = BlockAssignable<SfnStateMachineEncryptionConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -686,9 +601,7 @@ impl ToListMappable for SfnStateMachineEncryptionConfigurationEl {
         })
     }
 }
-
 pub struct BuildSfnStateMachineEncryptionConfigurationEl {}
-
 impl BuildSfnStateMachineEncryptionConfigurationEl {
     pub fn build(self) -> SfnStateMachineEncryptionConfigurationEl {
         SfnStateMachineEncryptionConfigurationEl {
@@ -698,12 +611,10 @@ impl BuildSfnStateMachineEncryptionConfigurationEl {
         }
     }
 }
-
 pub struct SfnStateMachineEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SfnStateMachineEncryptionConfigurationElRef {
     fn new(shared: StackShared, base: String) -> SfnStateMachineEncryptionConfigurationElRef {
         SfnStateMachineEncryptionConfigurationElRef {
@@ -712,12 +623,10 @@ impl Ref for SfnStateMachineEncryptionConfigurationElRef {
         }
     }
 }
-
 impl SfnStateMachineEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_data_key_reuse_period_seconds` after provisioning.\n"]
     pub fn kms_data_key_reuse_period_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -725,18 +634,15 @@ impl SfnStateMachineEncryptionConfigurationElRef {
             format!("{}.kms_data_key_reuse_period_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SfnStateMachineLoggingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -746,30 +652,25 @@ pub struct SfnStateMachineLoggingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_destination: Option<PrimField<String>>,
 }
-
 impl SfnStateMachineLoggingConfigurationEl {
     #[doc = "Set the field `include_execution_data`.\n"]
     pub fn set_include_execution_data(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_execution_data = Some(v.into());
         self
     }
-
     #[doc = "Set the field `level`.\n"]
     pub fn set_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.level = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_destination`.\n"]
     pub fn set_log_destination(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_destination = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SfnStateMachineLoggingConfigurationEl {
     type O = BlockAssignable<SfnStateMachineLoggingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -778,9 +679,7 @@ impl ToListMappable for SfnStateMachineLoggingConfigurationEl {
         })
     }
 }
-
 pub struct BuildSfnStateMachineLoggingConfigurationEl {}
-
 impl BuildSfnStateMachineLoggingConfigurationEl {
     pub fn build(self) -> SfnStateMachineLoggingConfigurationEl {
         SfnStateMachineLoggingConfigurationEl {
@@ -790,12 +689,10 @@ impl BuildSfnStateMachineLoggingConfigurationEl {
         }
     }
 }
-
 pub struct SfnStateMachineLoggingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SfnStateMachineLoggingConfigurationElRef {
     fn new(shared: StackShared, base: String) -> SfnStateMachineLoggingConfigurationElRef {
         SfnStateMachineLoggingConfigurationElRef {
@@ -804,12 +701,10 @@ impl Ref for SfnStateMachineLoggingConfigurationElRef {
         }
     }
 }
-
 impl SfnStateMachineLoggingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `include_execution_data` after provisioning.\n"]
     pub fn include_execution_data(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -817,12 +712,10 @@ impl SfnStateMachineLoggingConfigurationElRef {
             format!("{}.include_execution_data", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `level` after provisioning.\n"]
     pub fn level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.level", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_destination` after provisioning.\n"]
     pub fn log_destination(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -831,7 +724,6 @@ impl SfnStateMachineLoggingConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SfnStateMachineTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -841,30 +733,25 @@ pub struct SfnStateMachineTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl SfnStateMachineTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SfnStateMachineTimeoutsEl {
     type O = BlockAssignable<SfnStateMachineTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -873,9 +760,7 @@ impl ToListMappable for SfnStateMachineTimeoutsEl {
         })
     }
 }
-
 pub struct BuildSfnStateMachineTimeoutsEl {}
-
 impl BuildSfnStateMachineTimeoutsEl {
     pub fn build(self) -> SfnStateMachineTimeoutsEl {
         SfnStateMachineTimeoutsEl {
@@ -885,12 +770,10 @@ impl BuildSfnStateMachineTimeoutsEl {
         }
     }
 }
-
 pub struct SfnStateMachineTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SfnStateMachineTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> SfnStateMachineTimeoutsElRef {
         SfnStateMachineTimeoutsElRef {
@@ -899,34 +782,28 @@ impl Ref for SfnStateMachineTimeoutsElRef {
         }
     }
 }
-
 impl SfnStateMachineTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SfnStateMachineTracingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl SfnStateMachineTracingConfigurationEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -934,10 +811,8 @@ impl SfnStateMachineTracingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SfnStateMachineTracingConfigurationEl {
     type O = BlockAssignable<SfnStateMachineTracingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -946,9 +821,7 @@ impl ToListMappable for SfnStateMachineTracingConfigurationEl {
         })
     }
 }
-
 pub struct BuildSfnStateMachineTracingConfigurationEl {}
-
 impl BuildSfnStateMachineTracingConfigurationEl {
     pub fn build(self) -> SfnStateMachineTracingConfigurationEl {
         SfnStateMachineTracingConfigurationEl {
@@ -956,12 +829,10 @@ impl BuildSfnStateMachineTracingConfigurationEl {
         }
     }
 }
-
 pub struct SfnStateMachineTracingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SfnStateMachineTracingConfigurationElRef {
     fn new(shared: StackShared, base: String) -> SfnStateMachineTracingConfigurationElRef {
         SfnStateMachineTracingConfigurationElRef {
@@ -970,18 +841,15 @@ impl Ref for SfnStateMachineTracingConfigurationElRef {
         }
     }
 }
-
 impl SfnStateMachineTracingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SfnStateMachineDynamic {
     encryption_configuration: Option<DynamicBlock<SfnStateMachineEncryptionConfigurationEl>>,

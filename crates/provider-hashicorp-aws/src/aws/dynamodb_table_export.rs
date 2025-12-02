@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DynamodbTableExportData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -41,47 +40,38 @@ struct DynamodbTableExportData {
     timeouts: Option<DynamodbTableExportTimeoutsEl>,
     dynamic: DynamodbTableExportDynamic,
 }
-
 struct DynamodbTableExport_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DynamodbTableExportData>,
 }
-
 #[derive(Clone)]
 pub struct DynamodbTableExport(Rc<DynamodbTableExport_>);
-
 impl DynamodbTableExport {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -100,7 +90,6 @@ impl DynamodbTableExport {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -110,7 +99,6 @@ impl DynamodbTableExport {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -120,61 +108,51 @@ impl DynamodbTableExport {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `export_format`.\n"]
     pub fn set_export_format(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().export_format = Some(v.into());
         self
     }
-
     #[doc = "Set the field `export_time`.\n"]
     pub fn set_export_time(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().export_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `export_type`.\n"]
     pub fn set_export_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().export_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_bucket_owner`.\n"]
     pub fn set_s3_bucket_owner(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_bucket_owner = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_prefix`.\n"]
     pub fn set_s3_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_sse_algorithm`.\n"]
     pub fn set_s3_sse_algorithm(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_sse_algorithm = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_sse_kms_key_id`.\n"]
     pub fn set_s3_sse_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_sse_kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `incremental_export_specification`.\n"]
     pub fn set_incremental_export_specification(
         self,
@@ -194,18 +172,15 @@ impl DynamodbTableExport {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DynamodbTableExportTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `billed_size_in_bytes` after provisioning.\n"]
     pub fn billed_size_in_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -213,7 +188,6 @@ impl DynamodbTableExport {
             format!("{}.billed_size_in_bytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +195,6 @@ impl DynamodbTableExport {
             format!("{}.end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_format` after provisioning.\n"]
     pub fn export_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +202,6 @@ impl DynamodbTableExport {
             format!("{}.export_format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_status` after provisioning.\n"]
     pub fn export_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +209,6 @@ impl DynamodbTableExport {
             format!("{}.export_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_time` after provisioning.\n"]
     pub fn export_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +216,6 @@ impl DynamodbTableExport {
             format!("{}.export_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_type` after provisioning.\n"]
     pub fn export_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,12 +223,10 @@ impl DynamodbTableExport {
             format!("{}.export_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `item_count` after provisioning.\n"]
     pub fn item_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -266,7 +234,6 @@ impl DynamodbTableExport {
             format!("{}.item_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `manifest_files_s3_key` after provisioning.\n"]
     pub fn manifest_files_s3_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +241,6 @@ impl DynamodbTableExport {
             format!("{}.manifest_files_s3_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,7 +248,6 @@ impl DynamodbTableExport {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +255,6 @@ impl DynamodbTableExport {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_owner` after provisioning.\n"]
     pub fn s3_bucket_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +262,6 @@ impl DynamodbTableExport {
             format!("{}.s3_bucket_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +269,6 @@ impl DynamodbTableExport {
             format!("{}.s3_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_sse_algorithm` after provisioning.\n"]
     pub fn s3_sse_algorithm(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +276,6 @@ impl DynamodbTableExport {
             format!("{}.s3_sse_algorithm", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_sse_kms_key_id` after provisioning.\n"]
     pub fn s3_sse_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -322,7 +283,6 @@ impl DynamodbTableExport {
             format!("{}.s3_sse_kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +290,6 @@ impl DynamodbTableExport {
             format!("{}.start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_arn` after provisioning.\n"]
     pub fn table_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -338,7 +297,6 @@ impl DynamodbTableExport {
             format!("{}.table_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `incremental_export_specification` after provisioning.\n"]
     pub fn incremental_export_specification(
         &self,
@@ -348,7 +306,6 @@ impl DynamodbTableExport {
             format!("{}.incremental_export_specification", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DynamodbTableExportTimeoutsElRef {
         DynamodbTableExportTimeoutsElRef::new(
@@ -357,7 +314,6 @@ impl DynamodbTableExport {
         )
     }
 }
-
 impl Referable for DynamodbTableExport {
     fn extract_ref(&self) -> String {
         format!(
@@ -367,32 +323,25 @@ impl Referable for DynamodbTableExport {
         )
     }
 }
-
 impl Resource for DynamodbTableExport {}
-
 impl ToListMappable for DynamodbTableExport {
     type O = ListRef<DynamodbTableExportRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DynamodbTableExport_ {
     fn extract_resource_type(&self) -> String {
         "aws_dynamodb_table_export".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDynamodbTableExport {
     pub tf_id: String,
     #[doc = ""]
@@ -400,7 +349,6 @@ pub struct BuildDynamodbTableExport {
     #[doc = ""]
     pub table_arn: PrimField<String>,
 }
-
 impl BuildDynamodbTableExport {
     pub fn build(self, stack: &mut Stack) -> DynamodbTableExport {
         let out = DynamodbTableExport(Rc::new(DynamodbTableExport_ {
@@ -431,32 +379,26 @@ impl BuildDynamodbTableExport {
         out
     }
 }
-
 pub struct DynamodbTableExportRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DynamodbTableExportRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DynamodbTableExportRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `billed_size_in_bytes` after provisioning.\n"]
     pub fn billed_size_in_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -464,7 +406,6 @@ impl DynamodbTableExportRef {
             format!("{}.billed_size_in_bytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +413,6 @@ impl DynamodbTableExportRef {
             format!("{}.end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_format` after provisioning.\n"]
     pub fn export_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +420,6 @@ impl DynamodbTableExportRef {
             format!("{}.export_format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_status` after provisioning.\n"]
     pub fn export_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +427,6 @@ impl DynamodbTableExportRef {
             format!("{}.export_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_time` after provisioning.\n"]
     pub fn export_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +434,6 @@ impl DynamodbTableExportRef {
             format!("{}.export_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_type` after provisioning.\n"]
     pub fn export_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,12 +441,10 @@ impl DynamodbTableExportRef {
             format!("{}.export_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `item_count` after provisioning.\n"]
     pub fn item_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -517,7 +452,6 @@ impl DynamodbTableExportRef {
             format!("{}.item_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `manifest_files_s3_key` after provisioning.\n"]
     pub fn manifest_files_s3_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -525,7 +459,6 @@ impl DynamodbTableExportRef {
             format!("{}.manifest_files_s3_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -533,7 +466,6 @@ impl DynamodbTableExportRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -541,7 +473,6 @@ impl DynamodbTableExportRef {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_owner` after provisioning.\n"]
     pub fn s3_bucket_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -549,7 +480,6 @@ impl DynamodbTableExportRef {
             format!("{}.s3_bucket_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -557,7 +487,6 @@ impl DynamodbTableExportRef {
             format!("{}.s3_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_sse_algorithm` after provisioning.\n"]
     pub fn s3_sse_algorithm(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -565,7 +494,6 @@ impl DynamodbTableExportRef {
             format!("{}.s3_sse_algorithm", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_sse_kms_key_id` after provisioning.\n"]
     pub fn s3_sse_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -573,7 +501,6 @@ impl DynamodbTableExportRef {
             format!("{}.s3_sse_kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -581,7 +508,6 @@ impl DynamodbTableExportRef {
             format!("{}.start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_arn` after provisioning.\n"]
     pub fn table_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -589,7 +515,6 @@ impl DynamodbTableExportRef {
             format!("{}.table_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `incremental_export_specification` after provisioning.\n"]
     pub fn incremental_export_specification(
         &self,
@@ -599,7 +524,6 @@ impl DynamodbTableExportRef {
             format!("{}.incremental_export_specification", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DynamodbTableExportTimeoutsElRef {
         DynamodbTableExportTimeoutsElRef::new(
@@ -608,7 +532,6 @@ impl DynamodbTableExportRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DynamodbTableExportIncrementalExportSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -618,30 +541,25 @@ pub struct DynamodbTableExportIncrementalExportSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     export_view_type: Option<PrimField<String>>,
 }
-
 impl DynamodbTableExportIncrementalExportSpecificationEl {
     #[doc = "Set the field `export_from_time`.\n"]
     pub fn set_export_from_time(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.export_from_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `export_to_time`.\n"]
     pub fn set_export_to_time(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.export_to_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `export_view_type`.\n"]
     pub fn set_export_view_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.export_view_type = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DynamodbTableExportIncrementalExportSpecificationEl {
     type O = BlockAssignable<DynamodbTableExportIncrementalExportSpecificationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -650,9 +568,7 @@ impl ToListMappable for DynamodbTableExportIncrementalExportSpecificationEl {
         })
     }
 }
-
 pub struct BuildDynamodbTableExportIncrementalExportSpecificationEl {}
-
 impl BuildDynamodbTableExportIncrementalExportSpecificationEl {
     pub fn build(self) -> DynamodbTableExportIncrementalExportSpecificationEl {
         DynamodbTableExportIncrementalExportSpecificationEl {
@@ -662,12 +578,10 @@ impl BuildDynamodbTableExportIncrementalExportSpecificationEl {
         }
     }
 }
-
 pub struct DynamodbTableExportIncrementalExportSpecificationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DynamodbTableExportIncrementalExportSpecificationElRef {
     fn new(
         shared: StackShared,
@@ -679,12 +593,10 @@ impl Ref for DynamodbTableExportIncrementalExportSpecificationElRef {
         }
     }
 }
-
 impl DynamodbTableExportIncrementalExportSpecificationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `export_from_time` after provisioning.\n"]
     pub fn export_from_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -692,7 +604,6 @@ impl DynamodbTableExportIncrementalExportSpecificationElRef {
             format!("{}.export_from_time", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_to_time` after provisioning.\n"]
     pub fn export_to_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -700,7 +611,6 @@ impl DynamodbTableExportIncrementalExportSpecificationElRef {
             format!("{}.export_to_time", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `export_view_type` after provisioning.\n"]
     pub fn export_view_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -709,7 +619,6 @@ impl DynamodbTableExportIncrementalExportSpecificationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DynamodbTableExportTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -717,24 +626,20 @@ pub struct DynamodbTableExportTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl DynamodbTableExportTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DynamodbTableExportTimeoutsEl {
     type O = BlockAssignable<DynamodbTableExportTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -743,9 +648,7 @@ impl ToListMappable for DynamodbTableExportTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDynamodbTableExportTimeoutsEl {}
-
 impl BuildDynamodbTableExportTimeoutsEl {
     pub fn build(self) -> DynamodbTableExportTimeoutsEl {
         DynamodbTableExportTimeoutsEl {
@@ -754,12 +657,10 @@ impl BuildDynamodbTableExportTimeoutsEl {
         }
     }
 }
-
 pub struct DynamodbTableExportTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DynamodbTableExportTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DynamodbTableExportTimeoutsElRef {
         DynamodbTableExportTimeoutsElRef {
@@ -768,23 +669,19 @@ impl Ref for DynamodbTableExportTimeoutsElRef {
         }
     }
 }
-
 impl DynamodbTableExportTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DynamodbTableExportDynamic {
     incremental_export_specification:

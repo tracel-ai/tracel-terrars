@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EcrRegistryScanningConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct EcrRegistryScanningConfigurationData {
     rule: Option<Vec<EcrRegistryScanningConfigurationRuleEl>>,
     dynamic: EcrRegistryScanningConfigurationDynamic,
 }
-
 struct EcrRegistryScanningConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EcrRegistryScanningConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct EcrRegistryScanningConfiguration(Rc<EcrRegistryScanningConfiguration_>);
-
 impl EcrRegistryScanningConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl EcrRegistryScanningConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl EcrRegistryScanningConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,19 +90,16 @@ impl EcrRegistryScanningConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(
         self,
@@ -130,12 +115,10 @@ impl EcrRegistryScanningConfiguration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +126,6 @@ impl EcrRegistryScanningConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +133,6 @@ impl EcrRegistryScanningConfiguration {
             format!("{}.registry_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scan_type` after provisioning.\n"]
     pub fn scan_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +141,6 @@ impl EcrRegistryScanningConfiguration {
         )
     }
 }
-
 impl Referable for EcrRegistryScanningConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -170,38 +150,30 @@ impl Referable for EcrRegistryScanningConfiguration {
         )
     }
 }
-
 impl Resource for EcrRegistryScanningConfiguration {}
-
 impl ToListMappable for EcrRegistryScanningConfiguration {
     type O = ListRef<EcrRegistryScanningConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EcrRegistryScanningConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_ecr_registry_scanning_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEcrRegistryScanningConfiguration {
     pub tf_id: String,
     #[doc = ""]
     pub scan_type: PrimField<String>,
 }
-
 impl BuildEcrRegistryScanningConfiguration {
     pub fn build(self, stack: &mut Stack) -> EcrRegistryScanningConfiguration {
         let out = EcrRegistryScanningConfiguration(Rc::new(EcrRegistryScanningConfiguration_ {
@@ -223,32 +195,26 @@ impl BuildEcrRegistryScanningConfiguration {
         out
     }
 }
-
 pub struct EcrRegistryScanningConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrRegistryScanningConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EcrRegistryScanningConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +222,6 @@ impl EcrRegistryScanningConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +229,6 @@ impl EcrRegistryScanningConfigurationRef {
             format!("{}.registry_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scan_type` after provisioning.\n"]
     pub fn scan_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,18 +237,14 @@ impl EcrRegistryScanningConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     filter: PrimField<String>,
     filter_type: PrimField<String>,
 }
-
 impl EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {}
-
 impl ToListMappable for EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     type O = BlockAssignable<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -293,14 +253,12 @@ impl ToListMappable for EcrRegistryScanningConfigurationRuleElRepositoryFilterEl
         })
     }
 }
-
 pub struct BuildEcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     #[doc = ""]
     pub filter: PrimField<String>,
     #[doc = ""]
     pub filter_type: PrimField<String>,
 }
-
 impl BuildEcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
     pub fn build(self) -> EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
         EcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
@@ -309,12 +267,10 @@ impl BuildEcrRegistryScanningConfigurationRuleElRepositoryFilterEl {
         }
     }
 }
-
 pub struct EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
     fn new(
         shared: StackShared,
@@ -326,29 +282,24 @@ impl Ref for EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
         }
     }
 }
-
 impl EcrRegistryScanningConfigurationRuleElRepositoryFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter_type` after provisioning.\n"]
     pub fn filter_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter_type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct EcrRegistryScanningConfigurationRuleElDynamic {
     repository_filter:
         Option<DynamicBlock<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>>,
 }
-
 #[derive(Serialize)]
 pub struct EcrRegistryScanningConfigurationRuleEl {
     scan_frequency: PrimField<String>,
@@ -356,7 +307,6 @@ pub struct EcrRegistryScanningConfigurationRuleEl {
     repository_filter: Option<Vec<EcrRegistryScanningConfigurationRuleElRepositoryFilterEl>>,
     dynamic: EcrRegistryScanningConfigurationRuleElDynamic,
 }
-
 impl EcrRegistryScanningConfigurationRuleEl {
     #[doc = "Set the field `repository_filter`.\n"]
     pub fn set_repository_filter(
@@ -374,10 +324,8 @@ impl EcrRegistryScanningConfigurationRuleEl {
         self
     }
 }
-
 impl ToListMappable for EcrRegistryScanningConfigurationRuleEl {
     type O = BlockAssignable<EcrRegistryScanningConfigurationRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -386,12 +334,10 @@ impl ToListMappable for EcrRegistryScanningConfigurationRuleEl {
         })
     }
 }
-
 pub struct BuildEcrRegistryScanningConfigurationRuleEl {
     #[doc = ""]
     pub scan_frequency: PrimField<String>,
 }
-
 impl BuildEcrRegistryScanningConfigurationRuleEl {
     pub fn build(self) -> EcrRegistryScanningConfigurationRuleEl {
         EcrRegistryScanningConfigurationRuleEl {
@@ -401,12 +347,10 @@ impl BuildEcrRegistryScanningConfigurationRuleEl {
         }
     }
 }
-
 pub struct EcrRegistryScanningConfigurationRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrRegistryScanningConfigurationRuleElRef {
     fn new(shared: StackShared, base: String) -> EcrRegistryScanningConfigurationRuleElRef {
         EcrRegistryScanningConfigurationRuleElRef {
@@ -415,12 +359,10 @@ impl Ref for EcrRegistryScanningConfigurationRuleElRef {
         }
     }
 }
-
 impl EcrRegistryScanningConfigurationRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `scan_frequency` after provisioning.\n"]
     pub fn scan_frequency(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,7 +371,6 @@ impl EcrRegistryScanningConfigurationRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct EcrRegistryScanningConfigurationDynamic {
     rule: Option<DynamicBlock<EcrRegistryScanningConfigurationRuleEl>>,

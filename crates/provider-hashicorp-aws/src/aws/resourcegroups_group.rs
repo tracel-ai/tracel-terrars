@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ResourcegroupsGroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct ResourcegroupsGroupData {
     timeouts: Option<ResourcegroupsGroupTimeoutsEl>,
     dynamic: ResourcegroupsGroupDynamic,
 }
-
 struct ResourcegroupsGroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ResourcegroupsGroupData>,
 }
-
 #[derive(Clone)]
 pub struct ResourcegroupsGroup(Rc<ResourcegroupsGroup_>);
-
 impl ResourcegroupsGroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl ResourcegroupsGroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl ResourcegroupsGroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,37 +100,31 @@ impl ResourcegroupsGroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -158,7 +140,6 @@ impl ResourcegroupsGroup {
         }
         self
     }
-
     #[doc = "Set the field `resource_query`.\n"]
     pub fn set_resource_query(
         self,
@@ -174,18 +155,15 @@ impl ResourcegroupsGroup {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<ResourcegroupsGroupTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,12 +171,10 @@ impl ResourcegroupsGroup {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +182,6 @@ impl ResourcegroupsGroup {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +189,6 @@ impl ResourcegroupsGroup {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -222,7 +196,6 @@ impl ResourcegroupsGroup {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -230,7 +203,6 @@ impl ResourcegroupsGroup {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_query` after provisioning.\n"]
     pub fn resource_query(&self) -> ListRef<ResourcegroupsGroupResourceQueryElRef> {
         ListRef::new(
@@ -238,7 +210,6 @@ impl ResourcegroupsGroup {
             format!("{}.resource_query", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ResourcegroupsGroupTimeoutsElRef {
         ResourcegroupsGroupTimeoutsElRef::new(
@@ -247,7 +218,6 @@ impl ResourcegroupsGroup {
         )
     }
 }
-
 impl Referable for ResourcegroupsGroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -257,38 +227,30 @@ impl Referable for ResourcegroupsGroup {
         )
     }
 }
-
 impl Resource for ResourcegroupsGroup {}
-
 impl ToListMappable for ResourcegroupsGroup {
     type O = ListRef<ResourcegroupsGroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ResourcegroupsGroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_resourcegroups_group".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildResourcegroupsGroup {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildResourcegroupsGroup {
     pub fn build(self, stack: &mut Stack) -> ResourcegroupsGroup {
         let out = ResourcegroupsGroup(Rc::new(ResourcegroupsGroup_ {
@@ -315,32 +277,26 @@ impl BuildResourcegroupsGroup {
         out
     }
 }
-
 pub struct ResourcegroupsGroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ResourcegroupsGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ResourcegroupsGroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,12 +304,10 @@ impl ResourcegroupsGroupRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -361,7 +315,6 @@ impl ResourcegroupsGroupRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +322,6 @@ impl ResourcegroupsGroupRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -377,7 +329,6 @@ impl ResourcegroupsGroupRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -385,7 +336,6 @@ impl ResourcegroupsGroupRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_query` after provisioning.\n"]
     pub fn resource_query(&self) -> ListRef<ResourcegroupsGroupResourceQueryElRef> {
         ListRef::new(
@@ -393,7 +343,6 @@ impl ResourcegroupsGroupRef {
             format!("{}.resource_query", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ResourcegroupsGroupTimeoutsElRef {
         ResourcegroupsGroupTimeoutsElRef::new(
@@ -402,18 +351,14 @@ impl ResourcegroupsGroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ResourcegroupsGroupConfigurationElParametersEl {
     name: PrimField<String>,
     values: ListField<PrimField<String>>,
 }
-
 impl ResourcegroupsGroupConfigurationElParametersEl {}
-
 impl ToListMappable for ResourcegroupsGroupConfigurationElParametersEl {
     type O = BlockAssignable<ResourcegroupsGroupConfigurationElParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -422,14 +367,12 @@ impl ToListMappable for ResourcegroupsGroupConfigurationElParametersEl {
         })
     }
 }
-
 pub struct BuildResourcegroupsGroupConfigurationElParametersEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: ListField<PrimField<String>>,
 }
-
 impl BuildResourcegroupsGroupConfigurationElParametersEl {
     pub fn build(self) -> ResourcegroupsGroupConfigurationElParametersEl {
         ResourcegroupsGroupConfigurationElParametersEl {
@@ -438,12 +381,10 @@ impl BuildResourcegroupsGroupConfigurationElParametersEl {
         }
     }
 }
-
 pub struct ResourcegroupsGroupConfigurationElParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ResourcegroupsGroupConfigurationElParametersElRef {
     fn new(shared: StackShared, base: String) -> ResourcegroupsGroupConfigurationElParametersElRef {
         ResourcegroupsGroupConfigurationElParametersElRef {
@@ -452,28 +393,23 @@ impl Ref for ResourcegroupsGroupConfigurationElParametersElRef {
         }
     }
 }
-
 impl ResourcegroupsGroupConfigurationElParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ResourcegroupsGroupConfigurationElDynamic {
     parameters: Option<DynamicBlock<ResourcegroupsGroupConfigurationElParametersEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ResourcegroupsGroupConfigurationEl {
     #[serde(rename = "type")]
@@ -482,7 +418,6 @@ pub struct ResourcegroupsGroupConfigurationEl {
     parameters: Option<Vec<ResourcegroupsGroupConfigurationElParametersEl>>,
     dynamic: ResourcegroupsGroupConfigurationElDynamic,
 }
-
 impl ResourcegroupsGroupConfigurationEl {
     #[doc = "Set the field `parameters`.\n"]
     pub fn set_parameters(
@@ -500,10 +435,8 @@ impl ResourcegroupsGroupConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for ResourcegroupsGroupConfigurationEl {
     type O = BlockAssignable<ResourcegroupsGroupConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -512,12 +445,10 @@ impl ToListMappable for ResourcegroupsGroupConfigurationEl {
         })
     }
 }
-
 pub struct BuildResourcegroupsGroupConfigurationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildResourcegroupsGroupConfigurationEl {
     pub fn build(self) -> ResourcegroupsGroupConfigurationEl {
         ResourcegroupsGroupConfigurationEl {
@@ -527,12 +458,10 @@ impl BuildResourcegroupsGroupConfigurationEl {
         }
     }
 }
-
 pub struct ResourcegroupsGroupConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ResourcegroupsGroupConfigurationElRef {
     fn new(shared: StackShared, base: String) -> ResourcegroupsGroupConfigurationElRef {
         ResourcegroupsGroupConfigurationElRef {
@@ -541,25 +470,21 @@ impl Ref for ResourcegroupsGroupConfigurationElRef {
         }
     }
 }
-
 impl ResourcegroupsGroupConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ResourcegroupsGroupResourceQueryEl {
     query: PrimField<String>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl ResourcegroupsGroupResourceQueryEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -567,10 +492,8 @@ impl ResourcegroupsGroupResourceQueryEl {
         self
     }
 }
-
 impl ToListMappable for ResourcegroupsGroupResourceQueryEl {
     type O = BlockAssignable<ResourcegroupsGroupResourceQueryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -579,12 +502,10 @@ impl ToListMappable for ResourcegroupsGroupResourceQueryEl {
         })
     }
 }
-
 pub struct BuildResourcegroupsGroupResourceQueryEl {
     #[doc = ""]
     pub query: PrimField<String>,
 }
-
 impl BuildResourcegroupsGroupResourceQueryEl {
     pub fn build(self) -> ResourcegroupsGroupResourceQueryEl {
         ResourcegroupsGroupResourceQueryEl {
@@ -593,12 +514,10 @@ impl BuildResourcegroupsGroupResourceQueryEl {
         }
     }
 }
-
 pub struct ResourcegroupsGroupResourceQueryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ResourcegroupsGroupResourceQueryElRef {
     fn new(shared: StackShared, base: String) -> ResourcegroupsGroupResourceQueryElRef {
         ResourcegroupsGroupResourceQueryElRef {
@@ -607,23 +526,19 @@ impl Ref for ResourcegroupsGroupResourceQueryElRef {
         }
     }
 }
-
 impl ResourcegroupsGroupResourceQueryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `query` after provisioning.\n"]
     pub fn query(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.query", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ResourcegroupsGroupTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -631,24 +546,20 @@ pub struct ResourcegroupsGroupTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl ResourcegroupsGroupTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ResourcegroupsGroupTimeoutsEl {
     type O = BlockAssignable<ResourcegroupsGroupTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -657,9 +568,7 @@ impl ToListMappable for ResourcegroupsGroupTimeoutsEl {
         })
     }
 }
-
 pub struct BuildResourcegroupsGroupTimeoutsEl {}
-
 impl BuildResourcegroupsGroupTimeoutsEl {
     pub fn build(self) -> ResourcegroupsGroupTimeoutsEl {
         ResourcegroupsGroupTimeoutsEl {
@@ -668,12 +577,10 @@ impl BuildResourcegroupsGroupTimeoutsEl {
         }
     }
 }
-
 pub struct ResourcegroupsGroupTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ResourcegroupsGroupTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> ResourcegroupsGroupTimeoutsElRef {
         ResourcegroupsGroupTimeoutsElRef {
@@ -682,23 +589,19 @@ impl Ref for ResourcegroupsGroupTimeoutsElRef {
         }
     }
 }
-
 impl ResourcegroupsGroupTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ResourcegroupsGroupDynamic {
     configuration: Option<DynamicBlock<ResourcegroupsGroupConfigurationEl>>,

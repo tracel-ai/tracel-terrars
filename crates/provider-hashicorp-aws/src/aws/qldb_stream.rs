@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct QldbStreamData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct QldbStreamData {
     timeouts: Option<QldbStreamTimeoutsEl>,
     dynamic: QldbStreamDynamic,
 }
-
 struct QldbStream_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<QldbStreamData>,
 }
-
 #[derive(Clone)]
 pub struct QldbStream(Rc<QldbStream_>);
-
 impl QldbStream {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl QldbStream {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl QldbStream {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,37 +101,31 @@ impl QldbStream {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `exclusive_end_time`.\n"]
     pub fn set_exclusive_end_time(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().exclusive_end_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kinesis_configuration`.\n"]
     pub fn set_kinesis_configuration(
         self,
@@ -159,18 +141,15 @@ impl QldbStream {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<QldbStreamTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `exclusive_end_time` after provisioning.\n"]
     pub fn exclusive_end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -178,12 +157,10 @@ impl QldbStream {
             format!("{}.exclusive_end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inclusive_start_time` after provisioning.\n"]
     pub fn inclusive_start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +168,6 @@ impl QldbStream {
             format!("{}.inclusive_start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ledger_name` after provisioning.\n"]
     pub fn ledger_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +175,6 @@ impl QldbStream {
             format!("{}.ledger_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -207,7 +182,6 @@ impl QldbStream {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,7 +189,6 @@ impl QldbStream {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stream_name` after provisioning.\n"]
     pub fn stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -223,7 +196,6 @@ impl QldbStream {
             format!("{}.stream_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -231,7 +203,6 @@ impl QldbStream {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -239,7 +210,6 @@ impl QldbStream {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_configuration` after provisioning.\n"]
     pub fn kinesis_configuration(&self) -> ListRef<QldbStreamKinesisConfigurationElRef> {
         ListRef::new(
@@ -247,7 +217,6 @@ impl QldbStream {
             format!("{}.kinesis_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> QldbStreamTimeoutsElRef {
         QldbStreamTimeoutsElRef::new(
@@ -256,7 +225,6 @@ impl QldbStream {
         )
     }
 }
-
 impl Referable for QldbStream {
     fn extract_ref(&self) -> String {
         format!(
@@ -266,32 +234,25 @@ impl Referable for QldbStream {
         )
     }
 }
-
 impl Resource for QldbStream {}
-
 impl ToListMappable for QldbStream {
     type O = ListRef<QldbStreamRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for QldbStream_ {
     fn extract_resource_type(&self) -> String {
         "aws_qldb_stream".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildQldbStream {
     pub tf_id: String,
     #[doc = ""]
@@ -303,7 +264,6 @@ pub struct BuildQldbStream {
     #[doc = ""]
     pub stream_name: PrimField<String>,
 }
-
 impl BuildQldbStream {
     pub fn build(self, stack: &mut Stack) -> QldbStream {
         let out = QldbStream(Rc::new(QldbStream_ {
@@ -332,32 +292,26 @@ impl BuildQldbStream {
         out
     }
 }
-
 pub struct QldbStreamRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for QldbStreamRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl QldbStreamRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `exclusive_end_time` after provisioning.\n"]
     pub fn exclusive_end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -365,12 +319,10 @@ impl QldbStreamRef {
             format!("{}.exclusive_end_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inclusive_start_time` after provisioning.\n"]
     pub fn inclusive_start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +330,6 @@ impl QldbStreamRef {
             format!("{}.inclusive_start_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ledger_name` after provisioning.\n"]
     pub fn ledger_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -386,7 +337,6 @@ impl QldbStreamRef {
             format!("{}.ledger_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +344,6 @@ impl QldbStreamRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +351,6 @@ impl QldbStreamRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stream_name` after provisioning.\n"]
     pub fn stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +358,6 @@ impl QldbStreamRef {
             format!("{}.stream_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -418,7 +365,6 @@ impl QldbStreamRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -426,7 +372,6 @@ impl QldbStreamRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kinesis_configuration` after provisioning.\n"]
     pub fn kinesis_configuration(&self) -> ListRef<QldbStreamKinesisConfigurationElRef> {
         ListRef::new(
@@ -434,7 +379,6 @@ impl QldbStreamRef {
             format!("{}.kinesis_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> QldbStreamTimeoutsElRef {
         QldbStreamTimeoutsElRef::new(
@@ -443,14 +387,12 @@ impl QldbStreamRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct QldbStreamKinesisConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     aggregation_enabled: Option<PrimField<bool>>,
     stream_arn: PrimField<String>,
 }
-
 impl QldbStreamKinesisConfigurationEl {
     #[doc = "Set the field `aggregation_enabled`.\n"]
     pub fn set_aggregation_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -458,10 +400,8 @@ impl QldbStreamKinesisConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for QldbStreamKinesisConfigurationEl {
     type O = BlockAssignable<QldbStreamKinesisConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -470,12 +410,10 @@ impl ToListMappable for QldbStreamKinesisConfigurationEl {
         })
     }
 }
-
 pub struct BuildQldbStreamKinesisConfigurationEl {
     #[doc = ""]
     pub stream_arn: PrimField<String>,
 }
-
 impl BuildQldbStreamKinesisConfigurationEl {
     pub fn build(self) -> QldbStreamKinesisConfigurationEl {
         QldbStreamKinesisConfigurationEl {
@@ -484,12 +422,10 @@ impl BuildQldbStreamKinesisConfigurationEl {
         }
     }
 }
-
 pub struct QldbStreamKinesisConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for QldbStreamKinesisConfigurationElRef {
     fn new(shared: StackShared, base: String) -> QldbStreamKinesisConfigurationElRef {
         QldbStreamKinesisConfigurationElRef {
@@ -498,12 +434,10 @@ impl Ref for QldbStreamKinesisConfigurationElRef {
         }
     }
 }
-
 impl QldbStreamKinesisConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `aggregation_enabled` after provisioning.\n"]
     pub fn aggregation_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -511,13 +445,11 @@ impl QldbStreamKinesisConfigurationElRef {
             format!("{}.aggregation_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `stream_arn` after provisioning.\n"]
     pub fn stream_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.stream_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct QldbStreamTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -525,24 +457,20 @@ pub struct QldbStreamTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl QldbStreamTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for QldbStreamTimeoutsEl {
     type O = BlockAssignable<QldbStreamTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -551,9 +479,7 @@ impl ToListMappable for QldbStreamTimeoutsEl {
         })
     }
 }
-
 pub struct BuildQldbStreamTimeoutsEl {}
-
 impl BuildQldbStreamTimeoutsEl {
     pub fn build(self) -> QldbStreamTimeoutsEl {
         QldbStreamTimeoutsEl {
@@ -562,12 +488,10 @@ impl BuildQldbStreamTimeoutsEl {
         }
     }
 }
-
 pub struct QldbStreamTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for QldbStreamTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> QldbStreamTimeoutsElRef {
         QldbStreamTimeoutsElRef {
@@ -576,23 +500,19 @@ impl Ref for QldbStreamTimeoutsElRef {
         }
     }
 }
-
 impl QldbStreamTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct QldbStreamDynamic {
     kinesis_configuration: Option<DynamicBlock<QldbStreamKinesisConfigurationEl>>,

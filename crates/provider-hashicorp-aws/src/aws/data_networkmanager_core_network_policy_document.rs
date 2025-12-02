@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,45 +30,37 @@ struct DataNetworkmanagerCoreNetworkPolicyDocumentData {
     segments: Option<Vec<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl>>,
     dynamic: DataNetworkmanagerCoreNetworkPolicyDocumentDynamic,
 }
-
 struct DataNetworkmanagerCoreNetworkPolicyDocument_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataNetworkmanagerCoreNetworkPolicyDocumentData>,
 }
-
 #[derive(Clone)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocument(
     Rc<DataNetworkmanagerCoreNetworkPolicyDocument_>,
 );
-
 impl DataNetworkmanagerCoreNetworkPolicyDocument {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `version`.\n"]
     pub fn set_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `attachment_policies`.\n"]
     pub fn set_attachment_policies(
         self,
@@ -85,7 +76,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         }
         self
     }
-
     #[doc = "Set the field `core_network_configuration`.\n"]
     pub fn set_core_network_configuration(
         self,
@@ -103,7 +93,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         }
         self
     }
-
     #[doc = "Set the field `network_function_groups`.\n"]
     pub fn set_network_function_groups(
         self,
@@ -121,7 +110,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         }
         self
     }
-
     #[doc = "Set the field `segment_actions`.\n"]
     pub fn set_segment_actions(
         self,
@@ -137,7 +125,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         }
         self
     }
-
     #[doc = "Set the field `segments`.\n"]
     pub fn set_segments(
         self,
@@ -153,12 +140,10 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +151,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.json", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +158,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `attachment_policies` after provisioning.\n"]
     pub fn attachment_policies(
         &self,
@@ -184,7 +167,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.attachment_policies", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_configuration` after provisioning.\n"]
     pub fn core_network_configuration(
         &self,
@@ -194,7 +176,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.core_network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_function_groups` after provisioning.\n"]
     pub fn network_function_groups(
         &self,
@@ -204,7 +185,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.network_function_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `segment_actions` after provisioning.\n"]
     pub fn segment_actions(
         &self,
@@ -214,7 +194,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
             format!("{}.segment_actions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `segments` after provisioning.\n"]
     pub fn segments(&self) -> ListRef<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef> {
         ListRef::new(
@@ -223,7 +202,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocument {
         )
     }
 }
-
 impl Referable for DataNetworkmanagerCoreNetworkPolicyDocument {
     fn extract_ref(&self) -> String {
         format!(
@@ -233,36 +211,28 @@ impl Referable for DataNetworkmanagerCoreNetworkPolicyDocument {
         )
     }
 }
-
 impl Datasource for DataNetworkmanagerCoreNetworkPolicyDocument {}
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocument {
     type O = ListRef<DataNetworkmanagerCoreNetworkPolicyDocumentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataNetworkmanagerCoreNetworkPolicyDocument_ {
     fn extract_datasource_type(&self) -> String {
         "aws_networkmanager_core_network_policy_document".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocument {
     pub tf_id: String,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocument {
     pub fn build(self, stack: &mut Stack) -> DataNetworkmanagerCoreNetworkPolicyDocument {
         let out = DataNetworkmanagerCoreNetworkPolicyDocument(Rc::new(
@@ -288,32 +258,26 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocument {
         out
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +285,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.json", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +292,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `attachment_policies` after provisioning.\n"]
     pub fn attachment_policies(
         &self,
@@ -339,7 +301,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.attachment_policies", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_configuration` after provisioning.\n"]
     pub fn core_network_configuration(
         &self,
@@ -349,7 +310,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.core_network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_function_groups` after provisioning.\n"]
     pub fn network_function_groups(
         &self,
@@ -359,7 +319,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.network_function_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `segment_actions` after provisioning.\n"]
     pub fn segment_actions(
         &self,
@@ -369,7 +328,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
             format!("{}.segment_actions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `segments` after provisioning.\n"]
     pub fn segments(&self) -> ListRef<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef> {
         ListRef::new(
@@ -378,7 +336,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -392,43 +349,36 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElAction
     #[serde(skip_serializing_if = "Option::is_none")]
     tag_value_of_key: Option<PrimField<String>>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
     #[doc = "Set the field `add_to_network_function_group`.\n"]
     pub fn set_add_to_network_function_group(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.add_to_network_function_group = Some(v.into());
         self
     }
-
     #[doc = "Set the field `association_method`.\n"]
     pub fn set_association_method(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.association_method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `require_acceptance`.\n"]
     pub fn set_require_acceptance(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.require_acceptance = Some(v.into());
         self
     }
-
     #[doc = "Set the field `segment`.\n"]
     pub fn set_segment(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.segment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tag_value_of_key`.\n"]
     pub fn set_tag_value_of_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.tag_value_of_key = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
     type O =
         BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -437,9 +387,7 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPol
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {}
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionEl {
@@ -451,12 +399,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionE
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef {
     fn new(
         shared: StackShared,
@@ -468,12 +414,10 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActi
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `add_to_network_function_group` after provisioning.\n"]
     pub fn add_to_network_function_group(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -481,7 +425,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef 
             format!("{}.add_to_network_function_group", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `association_method` after provisioning.\n"]
     pub fn association_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -489,7 +432,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef 
             format!("{}.association_method", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `require_acceptance` after provisioning.\n"]
     pub fn require_acceptance(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -497,12 +439,10 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef 
             format!("{}.require_acceptance", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `segment` after provisioning.\n"]
     pub fn segment(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.segment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tag_value_of_key` after provisioning.\n"]
     pub fn tag_value_of_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -511,7 +451,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef 
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -523,34 +462,29 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElCondit
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `operator`.\n"]
     pub fn set_operator(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.operator = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl
 {
     type O = BlockAssignable<
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -559,12 +493,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl {
     pub fn build(
         self,
@@ -577,12 +509,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditi
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsElRef {
     fn new(
         shared: StackShared,
@@ -594,33 +524,27 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElCond
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `operator` after provisioning.\n"]
     pub fn operator(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.operator", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElDynamic {
     action: Option<
@@ -630,7 +554,6 @@ struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElDynamic {
         DynamicBlock<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -645,20 +568,17 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
         Option<Vec<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElConditionsEl>>,
     dynamic: DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElDynamic,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
     #[doc = "Set the field `condition_logic`.\n"]
     pub fn set_condition_logic(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.condition_logic = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         mut self,
@@ -678,7 +598,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
         }
         self
     }
-
     #[doc = "Set the field `conditions`.\n"]
     pub fn set_conditions(
         mut self,
@@ -699,10 +618,8 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -711,12 +628,10 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPol
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
     #[doc = ""]
     pub rule_number: PrimField<f64>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
@@ -729,12 +644,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesEl {
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef {
     fn new(
         shared: StackShared,
@@ -746,12 +659,10 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef 
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `condition_logic` after provisioning.\n"]
     pub fn condition_logic(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -759,24 +670,20 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef {
             format!("{}.condition_logic", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `rule_number` after provisioning.\n"]
     pub fn rule_number(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.rule_number", self.base))
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(
         &self,
     ) -> ListRef<DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElActionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `conditions` after provisioning.\n"]
     pub fn conditions(
         &self,
@@ -785,7 +692,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentAttachmentPoliciesElRef {
         ListRef::new(self.shared().clone(), format!("{}.conditions", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -794,28 +700,24 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl
     inside_cidr_blocks: Option<ListField<PrimField<String>>>,
     location: PrimField<String>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl {
     #[doc = "Set the field `asn`.\n"]
     pub fn set_asn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.asn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inside_cidr_blocks`.\n"]
     pub fn set_inside_cidr_blocks(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.inside_cidr_blocks = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl
 {
     type O = BlockAssignable<
         DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -824,13 +726,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl
 {
     #[doc = ""]
     pub location: PrimField<String>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl {
     pub fn build(
         self,
@@ -842,12 +742,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElE
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsElRef
 {
@@ -862,17 +760,14 @@ impl Ref
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `asn` after provisioning.\n"]
     pub fn asn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.asn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -880,13 +775,11 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLo
             format!("{}.inside_cidr_blocks", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.location", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElDynamic {
     edge_locations: Option<
@@ -895,7 +788,6 @@ struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElDyna
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
     asn_ranges: SetField<PrimField<String>>,
@@ -913,43 +805,31 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl
     >,
     dynamic: DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElDynamic,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
     #[doc = "Set the field `dns_support`.\n"]
     pub fn set_dns_support(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.dns_support = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inside_cidr_blocks`.\n"]
     pub fn set_inside_cidr_blocks(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.inside_cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_referencing_support`.\n"]
     pub fn set_security_group_referencing_support(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.security_group_referencing_support = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpn_ecmp_support`.\n"]
     pub fn set_vpn_ecmp_support(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.vpn_ecmp_support = Some(v.into());
         self
     }
-
     #[doc = "Set the field `edge_locations`.\n"]
     pub fn set_edge_locations(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElEdgeLocationsEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -962,10 +842,8 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -974,12 +852,10 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkCo
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
     #[doc = ""]
     pub asn_ranges: SetField<PrimField<String>>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl {
@@ -993,12 +869,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationEl 
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1010,22 +884,18 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfiguration
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `asn_ranges` after provisioning.\n"]
     pub fn asn_ranges(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.asn_ranges", self.base))
     }
-
     #[doc = "Get a reference to the value of field `dns_support` after provisioning.\n"]
     pub fn dns_support(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.dns_support", self.base))
     }
-
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1033,7 +903,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
             format!("{}.inside_cidr_blocks", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_referencing_support` after provisioning.\n"]
     pub fn security_group_referencing_support(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1041,7 +910,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
             format!("{}.security_group_referencing_support", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpn_ecmp_support` after provisioning.\n"]
     pub fn vpn_ecmp_support(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1049,7 +917,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
             format!("{}.vpn_ecmp_support", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `edge_locations` after provisioning.\n"]
     pub fn edge_locations(
         &self,
@@ -1062,7 +929,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentCoreNetworkConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1070,7 +936,6 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     name: PrimField<String>,
     require_attachment_acceptance: PrimField<bool>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1078,10 +943,8 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1090,14 +953,12 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFuncti
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub require_attachment_acceptance: PrimField<bool>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
@@ -1107,12 +968,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsEl {
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsElRef {
     fn new(
         shared: StackShared,
@@ -1124,22 +983,18 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsElR
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `require_attachment_acceptance` after provisioning.\n"]
     pub fn require_attachment_acceptance(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1148,7 +1003,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentNetworkFunctionGroupsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1158,34 +1012,29 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithE
     #[serde(skip_serializing_if = "Option::is_none")]
     use_edge_location: Option<PrimField<String>>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl {
     #[doc = "Set the field `edge_sets`.\n"]
     pub fn set_edge_sets(mut self, v: impl Into<SetField<SetField<PrimField<String>>>>) -> Self {
         self.edge_sets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_edge`.\n"]
     pub fn set_use_edge(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.use_edge = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_edge_location`.\n"]
     pub fn set_use_edge_location(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.use_edge_location = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl
 {
     type O = BlockAssignable<
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1194,10 +1043,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl
 {}
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideEl {
     pub fn build(
         self,
@@ -1209,12 +1056,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEd
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideElRef {
     fn new(
         shared: StackShared,
@@ -1226,22 +1071,18 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWit
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOverrideElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `edge_sets` after provisioning.\n"]
     pub fn edge_sets(&self) -> SetRef<SetRef<PrimExpr<String>>> {
         SetRef::new(self.shared().clone(), format!("{}.edge_sets", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_edge` after provisioning.\n"]
     pub fn use_edge(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.use_edge", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_edge_location` after provisioning.\n"]
     pub fn use_edge_location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1250,7 +1091,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElWithEdgeOve
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElDynamic {
     with_edge_override: Option<
@@ -1259,7 +1099,6 @@ struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1270,7 +1109,6 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
     >,
     dynamic: DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElDynamic,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
     #[doc = "Set the field `network_function_groups`.\n"]
     pub fn set_network_function_groups(
@@ -1280,7 +1118,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
         self.network_function_groups = Some(v.into());
         self
     }
-
     #[doc = "Set the field `with_edge_override`.\n"]
     pub fn set_with_edge_override(
         mut self,
@@ -1301,10 +1138,8 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1313,9 +1148,7 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentAction
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {}
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
@@ -1325,12 +1158,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl {
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef {
     fn new(
         shared: StackShared,
@@ -1342,12 +1173,10 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `network_function_groups` after provisioning.\n"]
     pub fn network_function_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1355,7 +1184,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef {
             format!("{}.network_function_groups", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `with_edge_override` after provisioning.\n"]
     pub fn with_edge_override(
         &self,
@@ -1368,13 +1196,11 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     segments: Option<SetField<PrimField<String>>>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
     #[doc = "Set the field `segments`.\n"]
     pub fn set_segments(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -1382,11 +1208,9 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
     type O =
         BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1395,9 +1219,7 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentAction
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {}
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl {
@@ -1405,12 +1227,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToE
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToElRef {
     fn new(
         shared: StackShared,
@@ -1422,18 +1242,15 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSent
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `segments` after provisioning.\n"]
     pub fn segments(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.segments", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElDynamic {
     via: Option<DynamicBlock<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaEl>>,
@@ -1441,7 +1258,6 @@ struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElDynamic {
         DynamicBlock<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
     action: PrimField<String>,
@@ -1465,14 +1281,12 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         Option<Vec<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElWhenSentToEl>>,
     dynamic: DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElDynamic,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_cidr_blocks`.\n"]
     pub fn set_destination_cidr_blocks(
         mut self,
@@ -1481,31 +1295,26 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         self.destination_cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destinations`.\n"]
     pub fn set_destinations(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.destinations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mode`.\n"]
     pub fn set_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `share_with`.\n"]
     pub fn set_share_with(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.share_with = Some(v.into());
         self
     }
-
     #[doc = "Set the field `share_with_except`.\n"]
     pub fn set_share_with_except(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.share_with_except = Some(v.into());
         self
     }
-
     #[doc = "Set the field `via`.\n"]
     pub fn set_via(
         mut self,
@@ -1521,7 +1330,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         }
         self
     }
-
     #[doc = "Set the field `when_sent_to`.\n"]
     pub fn set_when_sent_to(
         mut self,
@@ -1542,10 +1350,8 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1554,14 +1360,12 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentAction
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
     #[doc = ""]
     pub action: PrimField<String>,
     #[doc = ""]
     pub segment: PrimField<String>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
@@ -1579,12 +1383,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsEl {
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
     fn new(
         shared: StackShared,
@@ -1596,22 +1398,18 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `destination_cidr_blocks` after provisioning.\n"]
     pub fn destination_cidr_blocks(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1619,27 +1417,22 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
             format!("{}.destination_cidr_blocks", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `destinations` after provisioning.\n"]
     pub fn destinations(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.destinations", self.base))
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `segment` after provisioning.\n"]
     pub fn segment(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.segment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `share_with` after provisioning.\n"]
     pub fn share_with(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.share_with", self.base))
     }
-
     #[doc = "Get a reference to the value of field `share_with_except` after provisioning.\n"]
     pub fn share_with_except(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1647,14 +1440,12 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
             format!("{}.share_with_except", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `via` after provisioning.\n"]
     pub fn via(
         &self,
     ) -> ListRef<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElViaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.via", self.base))
     }
-
     #[doc = "Get a reference to the value of field `when_sent_to` after provisioning.\n"]
     pub fn when_sent_to(
         &self,
@@ -1662,7 +1453,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentActionsElRef {
         ListRef::new(self.shared().clone(), format!("{}.when_sent_to", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1679,48 +1469,40 @@ pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     require_attachment_acceptance: Option<PrimField<bool>>,
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     #[doc = "Set the field `allow_filter`.\n"]
     pub fn set_allow_filter(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.allow_filter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deny_filter`.\n"]
     pub fn set_deny_filter(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.deny_filter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `edge_locations`.\n"]
     pub fn set_edge_locations(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.edge_locations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `isolate_attachments`.\n"]
     pub fn set_isolate_attachments(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.isolate_attachments = Some(v.into());
         self
     }
-
     #[doc = "Set the field `require_attachment_acceptance`.\n"]
     pub fn set_require_attachment_acceptance(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.require_attachment_acceptance = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     type O = BlockAssignable<DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1729,12 +1511,10 @@ impl ToListMappable for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
         })
     }
 }
-
 pub struct BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
     pub fn build(self) -> DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
         DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
@@ -1748,12 +1528,10 @@ impl BuildDataNetworkmanagerCoreNetworkPolicyDocumentSegmentsEl {
         }
     }
 }
-
 pub struct DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
     fn new(
         shared: StackShared,
@@ -1765,27 +1543,22 @@ impl Ref for DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
         }
     }
 }
-
 impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allow_filter` after provisioning.\n"]
     pub fn allow_filter(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.allow_filter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `deny_filter` after provisioning.\n"]
     pub fn deny_filter(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.deny_filter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `edge_locations` after provisioning.\n"]
     pub fn edge_locations(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1793,7 +1566,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
             format!("{}.edge_locations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `isolate_attachments` after provisioning.\n"]
     pub fn isolate_attachments(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1801,12 +1573,10 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
             format!("{}.isolate_attachments", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `require_attachment_acceptance` after provisioning.\n"]
     pub fn require_attachment_acceptance(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1815,7 +1585,6 @@ impl DataNetworkmanagerCoreNetworkPolicyDocumentSegmentsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataNetworkmanagerCoreNetworkPolicyDocumentDynamic {
     attachment_policies:

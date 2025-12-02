@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IotTopicRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -70,47 +69,38 @@ struct IotTopicRuleData {
     timestream: Option<Vec<IotTopicRuleTimestreamEl>>,
     dynamic: IotTopicRuleDynamic,
 }
-
 struct IotTopicRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IotTopicRuleData>,
 }
-
 #[derive(Clone)]
 pub struct IotTopicRule(Rc<IotTopicRule_>);
-
 impl IotTopicRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -129,7 +119,6 @@ impl IotTopicRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -139,7 +128,6 @@ impl IotTopicRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -149,37 +137,31 @@ impl IotTopicRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cloudwatch_alarm`.\n"]
     pub fn set_cloudwatch_alarm(
         self,
@@ -195,7 +177,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         self,
@@ -211,7 +192,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `cloudwatch_metric`.\n"]
     pub fn set_cloudwatch_metric(
         self,
@@ -227,7 +207,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `dynamodb`.\n"]
     pub fn set_dynamodb(self, v: impl Into<BlockAssignable<IotTopicRuleDynamodbEl>>) -> Self {
         match v.into() {
@@ -240,7 +219,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `dynamodbv2`.\n"]
     pub fn set_dynamodbv2(self, v: impl Into<BlockAssignable<IotTopicRuleDynamodbv2El>>) -> Self {
         match v.into() {
@@ -253,7 +231,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `elasticsearch`.\n"]
     pub fn set_elasticsearch(
         self,
@@ -269,7 +246,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `error_action`.\n"]
     pub fn set_error_action(
         self,
@@ -285,7 +261,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `firehose`.\n"]
     pub fn set_firehose(self, v: impl Into<BlockAssignable<IotTopicRuleFirehoseEl>>) -> Self {
         match v.into() {
@@ -298,7 +273,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `http`.\n"]
     pub fn set_http(self, v: impl Into<BlockAssignable<IotTopicRuleHttpEl>>) -> Self {
         match v.into() {
@@ -311,7 +285,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `iot_analytics`.\n"]
     pub fn set_iot_analytics(
         self,
@@ -327,7 +300,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `iot_events`.\n"]
     pub fn set_iot_events(self, v: impl Into<BlockAssignable<IotTopicRuleIotEventsEl>>) -> Self {
         match v.into() {
@@ -340,7 +312,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `kafka`.\n"]
     pub fn set_kafka(self, v: impl Into<BlockAssignable<IotTopicRuleKafkaEl>>) -> Self {
         match v.into() {
@@ -353,7 +324,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `kinesis`.\n"]
     pub fn set_kinesis(self, v: impl Into<BlockAssignable<IotTopicRuleKinesisEl>>) -> Self {
         match v.into() {
@@ -366,7 +336,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `lambda`.\n"]
     pub fn set_lambda(self, v: impl Into<BlockAssignable<IotTopicRuleLambdaEl>>) -> Self {
         match v.into() {
@@ -379,7 +348,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `republish`.\n"]
     pub fn set_republish(self, v: impl Into<BlockAssignable<IotTopicRuleRepublishEl>>) -> Self {
         match v.into() {
@@ -392,7 +360,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(self, v: impl Into<BlockAssignable<IotTopicRuleS3El>>) -> Self {
         match v.into() {
@@ -405,7 +372,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `sns`.\n"]
     pub fn set_sns(self, v: impl Into<BlockAssignable<IotTopicRuleSnsEl>>) -> Self {
         match v.into() {
@@ -418,7 +384,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `sqs`.\n"]
     pub fn set_sqs(self, v: impl Into<BlockAssignable<IotTopicRuleSqsEl>>) -> Self {
         match v.into() {
@@ -431,7 +396,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `step_functions`.\n"]
     pub fn set_step_functions(
         self,
@@ -447,7 +411,6 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Set the field `timestream`.\n"]
     pub fn set_timestream(self, v: impl Into<BlockAssignable<IotTopicRuleTimestreamEl>>) -> Self {
         match v.into() {
@@ -460,12 +423,10 @@ impl IotTopicRule {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -473,7 +434,6 @@ impl IotTopicRule {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -481,12 +441,10 @@ impl IotTopicRule {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +452,6 @@ impl IotTopicRule {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,12 +459,10 @@ impl IotTopicRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
     pub fn sql(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.sql", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `sql_version` after provisioning.\n"]
     pub fn sql_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -515,7 +470,6 @@ impl IotTopicRule {
             format!("{}.sql_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -523,7 +477,6 @@ impl IotTopicRule {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -531,7 +484,6 @@ impl IotTopicRule {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `error_action` after provisioning.\n"]
     pub fn error_action(&self) -> ListRef<IotTopicRuleErrorActionElRef> {
         ListRef::new(
@@ -540,7 +492,6 @@ impl IotTopicRule {
         )
     }
 }
-
 impl Referable for IotTopicRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -550,32 +501,25 @@ impl Referable for IotTopicRule {
         )
     }
 }
-
 impl Resource for IotTopicRule {}
-
 impl ToListMappable for IotTopicRule {
     type O = ListRef<IotTopicRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IotTopicRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_iot_topic_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIotTopicRule {
     pub tf_id: String,
     #[doc = ""]
@@ -587,7 +531,6 @@ pub struct BuildIotTopicRule {
     #[doc = ""]
     pub sql_version: PrimField<String>,
 }
-
 impl BuildIotTopicRule {
     pub fn build(self, stack: &mut Stack) -> IotTopicRule {
         let out = IotTopicRule(Rc::new(IotTopicRule_ {
@@ -634,32 +577,26 @@ impl BuildIotTopicRule {
         out
     }
 }
-
 pub struct IotTopicRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IotTopicRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -667,7 +604,6 @@ impl IotTopicRuleRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -675,12 +611,10 @@ impl IotTopicRuleRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -688,7 +622,6 @@ impl IotTopicRuleRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -696,12 +629,10 @@ impl IotTopicRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sql` after provisioning.\n"]
     pub fn sql(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.sql", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `sql_version` after provisioning.\n"]
     pub fn sql_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -709,7 +640,6 @@ impl IotTopicRuleRef {
             format!("{}.sql_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -717,7 +647,6 @@ impl IotTopicRuleRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -725,7 +654,6 @@ impl IotTopicRuleRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `error_action` after provisioning.\n"]
     pub fn error_action(&self) -> ListRef<IotTopicRuleErrorActionElRef> {
         ListRef::new(
@@ -734,7 +662,6 @@ impl IotTopicRuleRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleCloudwatchAlarmEl {
     alarm_name: PrimField<String>,
@@ -742,12 +669,9 @@ pub struct IotTopicRuleCloudwatchAlarmEl {
     state_reason: PrimField<String>,
     state_value: PrimField<String>,
 }
-
 impl IotTopicRuleCloudwatchAlarmEl {}
-
 impl ToListMappable for IotTopicRuleCloudwatchAlarmEl {
     type O = BlockAssignable<IotTopicRuleCloudwatchAlarmEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -756,7 +680,6 @@ impl ToListMappable for IotTopicRuleCloudwatchAlarmEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleCloudwatchAlarmEl {
     #[doc = ""]
     pub alarm_name: PrimField<String>,
@@ -767,7 +690,6 @@ pub struct BuildIotTopicRuleCloudwatchAlarmEl {
     #[doc = ""]
     pub state_value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleCloudwatchAlarmEl {
     pub fn build(self) -> IotTopicRuleCloudwatchAlarmEl {
         IotTopicRuleCloudwatchAlarmEl {
@@ -778,12 +700,10 @@ impl BuildIotTopicRuleCloudwatchAlarmEl {
         }
     }
 }
-
 pub struct IotTopicRuleCloudwatchAlarmElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleCloudwatchAlarmElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleCloudwatchAlarmElRef {
         IotTopicRuleCloudwatchAlarmElRef {
@@ -792,33 +712,27 @@ impl Ref for IotTopicRuleCloudwatchAlarmElRef {
         }
     }
 }
-
 impl IotTopicRuleCloudwatchAlarmElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alarm_name` after provisioning.\n"]
     pub fn alarm_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.alarm_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_reason` after provisioning.\n"]
     pub fn state_reason(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.state_reason", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_value` after provisioning.\n"]
     pub fn state_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.state_value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleCloudwatchLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -826,7 +740,6 @@ pub struct IotTopicRuleCloudwatchLogsEl {
     log_group_name: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleCloudwatchLogsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -834,10 +747,8 @@ impl IotTopicRuleCloudwatchLogsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleCloudwatchLogsEl {
     type O = BlockAssignable<IotTopicRuleCloudwatchLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -846,14 +757,12 @@ impl ToListMappable for IotTopicRuleCloudwatchLogsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleCloudwatchLogsEl {
     #[doc = ""]
     pub log_group_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleCloudwatchLogsEl {
     pub fn build(self) -> IotTopicRuleCloudwatchLogsEl {
         IotTopicRuleCloudwatchLogsEl {
@@ -863,12 +772,10 @@ impl BuildIotTopicRuleCloudwatchLogsEl {
         }
     }
 }
-
 pub struct IotTopicRuleCloudwatchLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleCloudwatchLogsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleCloudwatchLogsElRef {
         IotTopicRuleCloudwatchLogsElRef {
@@ -877,17 +784,14 @@ impl Ref for IotTopicRuleCloudwatchLogsElRef {
         }
     }
 }
-
 impl IotTopicRuleCloudwatchLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -895,13 +799,11 @@ impl IotTopicRuleCloudwatchLogsElRef {
             format!("{}.log_group_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleCloudwatchMetricEl {
     metric_name: PrimField<String>,
@@ -912,7 +814,6 @@ pub struct IotTopicRuleCloudwatchMetricEl {
     metric_value: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleCloudwatchMetricEl {
     #[doc = "Set the field `metric_timestamp`.\n"]
     pub fn set_metric_timestamp(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -920,10 +821,8 @@ impl IotTopicRuleCloudwatchMetricEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleCloudwatchMetricEl {
     type O = BlockAssignable<IotTopicRuleCloudwatchMetricEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -932,7 +831,6 @@ impl ToListMappable for IotTopicRuleCloudwatchMetricEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleCloudwatchMetricEl {
     #[doc = ""]
     pub metric_name: PrimField<String>,
@@ -945,7 +843,6 @@ pub struct BuildIotTopicRuleCloudwatchMetricEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleCloudwatchMetricEl {
     pub fn build(self) -> IotTopicRuleCloudwatchMetricEl {
         IotTopicRuleCloudwatchMetricEl {
@@ -958,12 +855,10 @@ impl BuildIotTopicRuleCloudwatchMetricEl {
         }
     }
 }
-
 pub struct IotTopicRuleCloudwatchMetricElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleCloudwatchMetricElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleCloudwatchMetricElRef {
         IotTopicRuleCloudwatchMetricElRef {
@@ -972,17 +867,14 @@ impl Ref for IotTopicRuleCloudwatchMetricElRef {
         }
     }
 }
-
 impl IotTopicRuleCloudwatchMetricElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `metric_namespace` after provisioning.\n"]
     pub fn metric_namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -990,7 +882,6 @@ impl IotTopicRuleCloudwatchMetricElRef {
             format!("{}.metric_namespace", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metric_timestamp` after provisioning.\n"]
     pub fn metric_timestamp(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -998,23 +889,19 @@ impl IotTopicRuleCloudwatchMetricElRef {
             format!("{}.metric_timestamp", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metric_unit` after provisioning.\n"]
     pub fn metric_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `metric_value` after provisioning.\n"]
     pub fn metric_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_value", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleDynamodbEl {
     hash_key_field: PrimField<String>,
@@ -1034,48 +921,40 @@ pub struct IotTopicRuleDynamodbEl {
     role_arn: PrimField<String>,
     table_name: PrimField<String>,
 }
-
 impl IotTopicRuleDynamodbEl {
     #[doc = "Set the field `hash_key_type`.\n"]
     pub fn set_hash_key_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.hash_key_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `operation`.\n"]
     pub fn set_operation(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.operation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `payload_field`.\n"]
     pub fn set_payload_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.payload_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_field`.\n"]
     pub fn set_range_key_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_type`.\n"]
     pub fn set_range_key_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_value`.\n"]
     pub fn set_range_key_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleDynamodbEl {
     type O = BlockAssignable<IotTopicRuleDynamodbEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1084,7 +963,6 @@ impl ToListMappable for IotTopicRuleDynamodbEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleDynamodbEl {
     #[doc = ""]
     pub hash_key_field: PrimField<String>,
@@ -1095,7 +973,6 @@ pub struct BuildIotTopicRuleDynamodbEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleDynamodbEl {
     pub fn build(self) -> IotTopicRuleDynamodbEl {
         IotTopicRuleDynamodbEl {
@@ -1112,12 +989,10 @@ impl BuildIotTopicRuleDynamodbEl {
         }
     }
 }
-
 pub struct IotTopicRuleDynamodbElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleDynamodbElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleDynamodbElRef {
         IotTopicRuleDynamodbElRef {
@@ -1126,12 +1001,10 @@ impl Ref for IotTopicRuleDynamodbElRef {
         }
     }
 }
-
 impl IotTopicRuleDynamodbElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hash_key_field` after provisioning.\n"]
     pub fn hash_key_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1139,7 +1012,6 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.hash_key_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `hash_key_type` after provisioning.\n"]
     pub fn hash_key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1147,7 +1019,6 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.hash_key_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `hash_key_value` after provisioning.\n"]
     pub fn hash_key_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1155,12 +1026,10 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.hash_key_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `operation` after provisioning.\n"]
     pub fn operation(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.operation", self.base))
     }
-
     #[doc = "Get a reference to the value of field `payload_field` after provisioning.\n"]
     pub fn payload_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1168,7 +1037,6 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.payload_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_field` after provisioning.\n"]
     pub fn range_key_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1176,7 +1044,6 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.range_key_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_type` after provisioning.\n"]
     pub fn range_key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1184,7 +1051,6 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.range_key_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_value` after provisioning.\n"]
     pub fn range_key_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1192,28 +1058,22 @@ impl IotTopicRuleDynamodbElRef {
             format!("{}.range_key_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleDynamodbv2ElPutItemEl {
     table_name: PrimField<String>,
 }
-
 impl IotTopicRuleDynamodbv2ElPutItemEl {}
-
 impl ToListMappable for IotTopicRuleDynamodbv2ElPutItemEl {
     type O = BlockAssignable<IotTopicRuleDynamodbv2ElPutItemEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1222,12 +1082,10 @@ impl ToListMappable for IotTopicRuleDynamodbv2ElPutItemEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleDynamodbv2ElPutItemEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleDynamodbv2ElPutItemEl {
     pub fn build(self) -> IotTopicRuleDynamodbv2ElPutItemEl {
         IotTopicRuleDynamodbv2ElPutItemEl {
@@ -1235,12 +1093,10 @@ impl BuildIotTopicRuleDynamodbv2ElPutItemEl {
         }
     }
 }
-
 pub struct IotTopicRuleDynamodbv2ElPutItemElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleDynamodbv2ElPutItemElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleDynamodbv2ElPutItemElRef {
         IotTopicRuleDynamodbv2ElPutItemElRef {
@@ -1249,23 +1105,19 @@ impl Ref for IotTopicRuleDynamodbv2ElPutItemElRef {
         }
     }
 }
-
 impl IotTopicRuleDynamodbv2ElPutItemElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleDynamodbv2ElDynamic {
     put_item: Option<DynamicBlock<IotTopicRuleDynamodbv2ElPutItemEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleDynamodbv2El {
     role_arn: PrimField<String>,
@@ -1273,7 +1125,6 @@ pub struct IotTopicRuleDynamodbv2El {
     put_item: Option<Vec<IotTopicRuleDynamodbv2ElPutItemEl>>,
     dynamic: IotTopicRuleDynamodbv2ElDynamic,
 }
-
 impl IotTopicRuleDynamodbv2El {
     #[doc = "Set the field `put_item`.\n"]
     pub fn set_put_item(
@@ -1291,10 +1142,8 @@ impl IotTopicRuleDynamodbv2El {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleDynamodbv2El {
     type O = BlockAssignable<IotTopicRuleDynamodbv2El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1303,12 +1152,10 @@ impl ToListMappable for IotTopicRuleDynamodbv2El {
         })
     }
 }
-
 pub struct BuildIotTopicRuleDynamodbv2El {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleDynamodbv2El {
     pub fn build(self) -> IotTopicRuleDynamodbv2El {
         IotTopicRuleDynamodbv2El {
@@ -1318,12 +1165,10 @@ impl BuildIotTopicRuleDynamodbv2El {
         }
     }
 }
-
 pub struct IotTopicRuleDynamodbv2ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleDynamodbv2ElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleDynamodbv2ElRef {
         IotTopicRuleDynamodbv2ElRef {
@@ -1332,23 +1177,19 @@ impl Ref for IotTopicRuleDynamodbv2ElRef {
         }
     }
 }
-
 impl IotTopicRuleDynamodbv2ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `put_item` after provisioning.\n"]
     pub fn put_item(&self) -> ListRef<IotTopicRuleDynamodbv2ElPutItemElRef> {
         ListRef::new(self.shared().clone(), format!("{}.put_item", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleElasticsearchEl {
     endpoint: PrimField<String>,
@@ -1358,12 +1199,9 @@ pub struct IotTopicRuleElasticsearchEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl IotTopicRuleElasticsearchEl {}
-
 impl ToListMappable for IotTopicRuleElasticsearchEl {
     type O = BlockAssignable<IotTopicRuleElasticsearchEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1372,7 +1210,6 @@ impl ToListMappable for IotTopicRuleElasticsearchEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleElasticsearchEl {
     #[doc = ""]
     pub endpoint: PrimField<String>,
@@ -1385,7 +1222,6 @@ pub struct BuildIotTopicRuleElasticsearchEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildIotTopicRuleElasticsearchEl {
     pub fn build(self) -> IotTopicRuleElasticsearchEl {
         IotTopicRuleElasticsearchEl {
@@ -1397,12 +1233,10 @@ impl BuildIotTopicRuleElasticsearchEl {
         }
     }
 }
-
 pub struct IotTopicRuleElasticsearchElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleElasticsearchElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleElasticsearchElRef {
         IotTopicRuleElasticsearchElRef {
@@ -1411,38 +1245,31 @@ impl Ref for IotTopicRuleElasticsearchElRef {
         }
     }
 }
-
 impl IotTopicRuleElasticsearchElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `index` after provisioning.\n"]
     pub fn index(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.index", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElCloudwatchAlarmEl {
     alarm_name: PrimField<String>,
@@ -1450,12 +1277,9 @@ pub struct IotTopicRuleErrorActionElCloudwatchAlarmEl {
     state_reason: PrimField<String>,
     state_value: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElCloudwatchAlarmEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElCloudwatchAlarmEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElCloudwatchAlarmEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1464,7 +1288,6 @@ impl ToListMappable for IotTopicRuleErrorActionElCloudwatchAlarmEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElCloudwatchAlarmEl {
     #[doc = ""]
     pub alarm_name: PrimField<String>,
@@ -1475,7 +1298,6 @@ pub struct BuildIotTopicRuleErrorActionElCloudwatchAlarmEl {
     #[doc = ""]
     pub state_value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElCloudwatchAlarmEl {
     pub fn build(self) -> IotTopicRuleErrorActionElCloudwatchAlarmEl {
         IotTopicRuleErrorActionElCloudwatchAlarmEl {
@@ -1486,12 +1308,10 @@ impl BuildIotTopicRuleErrorActionElCloudwatchAlarmEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElCloudwatchAlarmElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElCloudwatchAlarmElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElCloudwatchAlarmElRef {
         IotTopicRuleErrorActionElCloudwatchAlarmElRef {
@@ -1500,33 +1320,27 @@ impl Ref for IotTopicRuleErrorActionElCloudwatchAlarmElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElCloudwatchAlarmElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alarm_name` after provisioning.\n"]
     pub fn alarm_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.alarm_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_reason` after provisioning.\n"]
     pub fn state_reason(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.state_reason", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_value` after provisioning.\n"]
     pub fn state_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.state_value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElCloudwatchLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1534,7 +1348,6 @@ pub struct IotTopicRuleErrorActionElCloudwatchLogsEl {
     log_group_name: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElCloudwatchLogsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1542,10 +1355,8 @@ impl IotTopicRuleErrorActionElCloudwatchLogsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElCloudwatchLogsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElCloudwatchLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1554,14 +1365,12 @@ impl ToListMappable for IotTopicRuleErrorActionElCloudwatchLogsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElCloudwatchLogsEl {
     #[doc = ""]
     pub log_group_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElCloudwatchLogsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElCloudwatchLogsEl {
         IotTopicRuleErrorActionElCloudwatchLogsEl {
@@ -1571,12 +1380,10 @@ impl BuildIotTopicRuleErrorActionElCloudwatchLogsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElCloudwatchLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElCloudwatchLogsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElCloudwatchLogsElRef {
         IotTopicRuleErrorActionElCloudwatchLogsElRef {
@@ -1585,17 +1392,14 @@ impl Ref for IotTopicRuleErrorActionElCloudwatchLogsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElCloudwatchLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1603,13 +1407,11 @@ impl IotTopicRuleErrorActionElCloudwatchLogsElRef {
             format!("{}.log_group_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElCloudwatchMetricEl {
     metric_name: PrimField<String>,
@@ -1620,7 +1422,6 @@ pub struct IotTopicRuleErrorActionElCloudwatchMetricEl {
     metric_value: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElCloudwatchMetricEl {
     #[doc = "Set the field `metric_timestamp`.\n"]
     pub fn set_metric_timestamp(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1628,10 +1429,8 @@ impl IotTopicRuleErrorActionElCloudwatchMetricEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElCloudwatchMetricEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElCloudwatchMetricEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1640,7 +1439,6 @@ impl ToListMappable for IotTopicRuleErrorActionElCloudwatchMetricEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElCloudwatchMetricEl {
     #[doc = ""]
     pub metric_name: PrimField<String>,
@@ -1653,7 +1451,6 @@ pub struct BuildIotTopicRuleErrorActionElCloudwatchMetricEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElCloudwatchMetricEl {
     pub fn build(self) -> IotTopicRuleErrorActionElCloudwatchMetricEl {
         IotTopicRuleErrorActionElCloudwatchMetricEl {
@@ -1666,12 +1463,10 @@ impl BuildIotTopicRuleErrorActionElCloudwatchMetricEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElCloudwatchMetricElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElCloudwatchMetricElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElCloudwatchMetricElRef {
         IotTopicRuleErrorActionElCloudwatchMetricElRef {
@@ -1680,17 +1475,14 @@ impl Ref for IotTopicRuleErrorActionElCloudwatchMetricElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElCloudwatchMetricElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `metric_namespace` after provisioning.\n"]
     pub fn metric_namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1698,7 +1490,6 @@ impl IotTopicRuleErrorActionElCloudwatchMetricElRef {
             format!("{}.metric_namespace", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metric_timestamp` after provisioning.\n"]
     pub fn metric_timestamp(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1706,23 +1497,19 @@ impl IotTopicRuleErrorActionElCloudwatchMetricElRef {
             format!("{}.metric_timestamp", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metric_unit` after provisioning.\n"]
     pub fn metric_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `metric_value` after provisioning.\n"]
     pub fn metric_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_value", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElDynamodbEl {
     hash_key_field: PrimField<String>,
@@ -1742,48 +1529,40 @@ pub struct IotTopicRuleErrorActionElDynamodbEl {
     role_arn: PrimField<String>,
     table_name: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElDynamodbEl {
     #[doc = "Set the field `hash_key_type`.\n"]
     pub fn set_hash_key_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.hash_key_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `operation`.\n"]
     pub fn set_operation(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.operation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `payload_field`.\n"]
     pub fn set_payload_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.payload_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_field`.\n"]
     pub fn set_range_key_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_type`.\n"]
     pub fn set_range_key_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `range_key_value`.\n"]
     pub fn set_range_key_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.range_key_value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElDynamodbEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElDynamodbEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1792,7 +1571,6 @@ impl ToListMappable for IotTopicRuleErrorActionElDynamodbEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElDynamodbEl {
     #[doc = ""]
     pub hash_key_field: PrimField<String>,
@@ -1803,7 +1581,6 @@ pub struct BuildIotTopicRuleErrorActionElDynamodbEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElDynamodbEl {
     pub fn build(self) -> IotTopicRuleErrorActionElDynamodbEl {
         IotTopicRuleErrorActionElDynamodbEl {
@@ -1820,12 +1597,10 @@ impl BuildIotTopicRuleErrorActionElDynamodbEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElDynamodbElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElDynamodbElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElDynamodbElRef {
         IotTopicRuleErrorActionElDynamodbElRef {
@@ -1834,12 +1609,10 @@ impl Ref for IotTopicRuleErrorActionElDynamodbElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElDynamodbElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hash_key_field` after provisioning.\n"]
     pub fn hash_key_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1847,7 +1620,6 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.hash_key_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `hash_key_type` after provisioning.\n"]
     pub fn hash_key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1855,7 +1627,6 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.hash_key_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `hash_key_value` after provisioning.\n"]
     pub fn hash_key_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1863,12 +1634,10 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.hash_key_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `operation` after provisioning.\n"]
     pub fn operation(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.operation", self.base))
     }
-
     #[doc = "Get a reference to the value of field `payload_field` after provisioning.\n"]
     pub fn payload_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1876,7 +1645,6 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.payload_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_field` after provisioning.\n"]
     pub fn range_key_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1884,7 +1652,6 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.range_key_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_type` after provisioning.\n"]
     pub fn range_key_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1892,7 +1659,6 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.range_key_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `range_key_value` after provisioning.\n"]
     pub fn range_key_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1900,28 +1666,22 @@ impl IotTopicRuleErrorActionElDynamodbElRef {
             format!("{}.range_key_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     table_name: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElDynamodbv2ElPutItemEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1930,12 +1690,10 @@ impl ToListMappable for IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
     pub fn build(self) -> IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
         IotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
@@ -1943,12 +1701,10 @@ impl BuildIotTopicRuleErrorActionElDynamodbv2ElPutItemEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
         IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
@@ -1957,23 +1713,19 @@ impl Ref for IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleErrorActionElDynamodbv2ElDynamic {
     put_item: Option<DynamicBlock<IotTopicRuleErrorActionElDynamodbv2ElPutItemEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElDynamodbv2El {
     role_arn: PrimField<String>,
@@ -1981,7 +1733,6 @@ pub struct IotTopicRuleErrorActionElDynamodbv2El {
     put_item: Option<Vec<IotTopicRuleErrorActionElDynamodbv2ElPutItemEl>>,
     dynamic: IotTopicRuleErrorActionElDynamodbv2ElDynamic,
 }
-
 impl IotTopicRuleErrorActionElDynamodbv2El {
     #[doc = "Set the field `put_item`.\n"]
     pub fn set_put_item(
@@ -1999,10 +1750,8 @@ impl IotTopicRuleErrorActionElDynamodbv2El {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElDynamodbv2El {
     type O = BlockAssignable<IotTopicRuleErrorActionElDynamodbv2El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2011,12 +1760,10 @@ impl ToListMappable for IotTopicRuleErrorActionElDynamodbv2El {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElDynamodbv2El {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElDynamodbv2El {
     pub fn build(self) -> IotTopicRuleErrorActionElDynamodbv2El {
         IotTopicRuleErrorActionElDynamodbv2El {
@@ -2026,12 +1773,10 @@ impl BuildIotTopicRuleErrorActionElDynamodbv2El {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElDynamodbv2ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElDynamodbv2ElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElDynamodbv2ElRef {
         IotTopicRuleErrorActionElDynamodbv2ElRef {
@@ -2040,23 +1785,19 @@ impl Ref for IotTopicRuleErrorActionElDynamodbv2ElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElDynamodbv2ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `put_item` after provisioning.\n"]
     pub fn put_item(&self) -> ListRef<IotTopicRuleErrorActionElDynamodbv2ElPutItemElRef> {
         ListRef::new(self.shared().clone(), format!("{}.put_item", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElElasticsearchEl {
     endpoint: PrimField<String>,
@@ -2066,12 +1807,9 @@ pub struct IotTopicRuleErrorActionElElasticsearchEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElElasticsearchEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElElasticsearchEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElElasticsearchEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2080,7 +1818,6 @@ impl ToListMappable for IotTopicRuleErrorActionElElasticsearchEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElElasticsearchEl {
     #[doc = ""]
     pub endpoint: PrimField<String>,
@@ -2093,7 +1830,6 @@ pub struct BuildIotTopicRuleErrorActionElElasticsearchEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElElasticsearchEl {
     pub fn build(self) -> IotTopicRuleErrorActionElElasticsearchEl {
         IotTopicRuleErrorActionElElasticsearchEl {
@@ -2105,12 +1841,10 @@ impl BuildIotTopicRuleErrorActionElElasticsearchEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElElasticsearchElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElElasticsearchElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElElasticsearchElRef {
         IotTopicRuleErrorActionElElasticsearchElRef {
@@ -2119,38 +1853,31 @@ impl Ref for IotTopicRuleErrorActionElElasticsearchElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElElasticsearchElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `index` after provisioning.\n"]
     pub fn index(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.index", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElFirehoseEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2160,24 +1887,20 @@ pub struct IotTopicRuleErrorActionElFirehoseEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     separator: Option<PrimField<String>>,
 }
-
 impl IotTopicRuleErrorActionElFirehoseEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.batch_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `separator`.\n"]
     pub fn set_separator(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.separator = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElFirehoseEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElFirehoseEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2186,14 +1909,12 @@ impl ToListMappable for IotTopicRuleErrorActionElFirehoseEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElFirehoseEl {
     #[doc = ""]
     pub delivery_stream_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElFirehoseEl {
     pub fn build(self) -> IotTopicRuleErrorActionElFirehoseEl {
         IotTopicRuleErrorActionElFirehoseEl {
@@ -2204,12 +1925,10 @@ impl BuildIotTopicRuleErrorActionElFirehoseEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElFirehoseElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElFirehoseElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElFirehoseElRef {
         IotTopicRuleErrorActionElFirehoseElRef {
@@ -2218,17 +1937,14 @@ impl Ref for IotTopicRuleErrorActionElFirehoseElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElFirehoseElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delivery_stream_name` after provisioning.\n"]
     pub fn delivery_stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2236,29 +1952,23 @@ impl IotTopicRuleErrorActionElFirehoseElRef {
             format!("{}.delivery_stream_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `separator` after provisioning.\n"]
     pub fn separator(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.separator", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElHttpElHttpHeaderEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElHttpElHttpHeaderEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElHttpElHttpHeaderEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElHttpElHttpHeaderEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2267,14 +1977,12 @@ impl ToListMappable for IotTopicRuleErrorActionElHttpElHttpHeaderEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElHttpElHttpHeaderEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElHttpElHttpHeaderEl {
     pub fn build(self) -> IotTopicRuleErrorActionElHttpElHttpHeaderEl {
         IotTopicRuleErrorActionElHttpElHttpHeaderEl {
@@ -2283,12 +1991,10 @@ impl BuildIotTopicRuleErrorActionElHttpElHttpHeaderEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
         IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
@@ -2297,28 +2003,23 @@ impl Ref for IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElHttpElHttpHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleErrorActionElHttpElDynamic {
     http_header: Option<DynamicBlock<IotTopicRuleErrorActionElHttpElHttpHeaderEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElHttpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2328,14 +2029,12 @@ pub struct IotTopicRuleErrorActionElHttpEl {
     http_header: Option<Vec<IotTopicRuleErrorActionElHttpElHttpHeaderEl>>,
     dynamic: IotTopicRuleErrorActionElHttpElDynamic,
 }
-
 impl IotTopicRuleErrorActionElHttpEl {
     #[doc = "Set the field `confirmation_url`.\n"]
     pub fn set_confirmation_url(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.confirmation_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `http_header`.\n"]
     pub fn set_http_header(
         mut self,
@@ -2352,10 +2051,8 @@ impl IotTopicRuleErrorActionElHttpEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElHttpEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElHttpEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2364,12 +2061,10 @@ impl ToListMappable for IotTopicRuleErrorActionElHttpEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElHttpEl {
     #[doc = ""]
     pub url: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElHttpEl {
     pub fn build(self) -> IotTopicRuleErrorActionElHttpEl {
         IotTopicRuleErrorActionElHttpEl {
@@ -2380,12 +2075,10 @@ impl BuildIotTopicRuleErrorActionElHttpEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElHttpElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElHttpElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElHttpElRef {
         IotTopicRuleErrorActionElHttpElRef {
@@ -2394,12 +2087,10 @@ impl Ref for IotTopicRuleErrorActionElHttpElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElHttpElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `confirmation_url` after provisioning.\n"]
     pub fn confirmation_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2407,18 +2098,15 @@ impl IotTopicRuleErrorActionElHttpElRef {
             format!("{}.confirmation_url", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `http_header` after provisioning.\n"]
     pub fn http_header(&self) -> ListRef<IotTopicRuleErrorActionElHttpElHttpHeaderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.http_header", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElIotAnalyticsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2426,7 +2114,6 @@ pub struct IotTopicRuleErrorActionElIotAnalyticsEl {
     channel_name: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElIotAnalyticsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -2434,10 +2121,8 @@ impl IotTopicRuleErrorActionElIotAnalyticsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElIotAnalyticsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElIotAnalyticsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2446,14 +2131,12 @@ impl ToListMappable for IotTopicRuleErrorActionElIotAnalyticsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElIotAnalyticsEl {
     #[doc = ""]
     pub channel_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElIotAnalyticsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElIotAnalyticsEl {
         IotTopicRuleErrorActionElIotAnalyticsEl {
@@ -2463,12 +2146,10 @@ impl BuildIotTopicRuleErrorActionElIotAnalyticsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElIotAnalyticsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElIotAnalyticsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElIotAnalyticsElRef {
         IotTopicRuleErrorActionElIotAnalyticsElRef {
@@ -2477,28 +2158,23 @@ impl Ref for IotTopicRuleErrorActionElIotAnalyticsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElIotAnalyticsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `channel_name` after provisioning.\n"]
     pub fn channel_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElIotEventsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2508,24 +2184,20 @@ pub struct IotTopicRuleErrorActionElIotEventsEl {
     message_id: Option<PrimField<String>>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElIotEventsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.batch_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message_id`.\n"]
     pub fn set_message_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.message_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElIotEventsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElIotEventsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2534,14 +2206,12 @@ impl ToListMappable for IotTopicRuleErrorActionElIotEventsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElIotEventsEl {
     #[doc = ""]
     pub input_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElIotEventsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElIotEventsEl {
         IotTopicRuleErrorActionElIotEventsEl {
@@ -2552,12 +2222,10 @@ impl BuildIotTopicRuleErrorActionElIotEventsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElIotEventsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElIotEventsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElIotEventsElRef {
         IotTopicRuleErrorActionElIotEventsElRef {
@@ -2566,44 +2234,35 @@ impl Ref for IotTopicRuleErrorActionElIotEventsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElIotEventsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `input_name` after provisioning.\n"]
     pub fn input_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.input_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `message_id` after provisioning.\n"]
     pub fn message_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.message_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElKafkaElHeaderEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElKafkaElHeaderEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElKafkaElHeaderEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElKafkaElHeaderEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2612,14 +2271,12 @@ impl ToListMappable for IotTopicRuleErrorActionElKafkaElHeaderEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElKafkaElHeaderEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElKafkaElHeaderEl {
     pub fn build(self) -> IotTopicRuleErrorActionElKafkaElHeaderEl {
         IotTopicRuleErrorActionElKafkaElHeaderEl {
@@ -2628,12 +2285,10 @@ impl BuildIotTopicRuleErrorActionElKafkaElHeaderEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElKafkaElHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElKafkaElHeaderElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElKafkaElHeaderElRef {
         IotTopicRuleErrorActionElKafkaElHeaderElRef {
@@ -2642,28 +2297,23 @@ impl Ref for IotTopicRuleErrorActionElKafkaElHeaderElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElKafkaElHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleErrorActionElKafkaElDynamic {
     header: Option<DynamicBlock<IotTopicRuleErrorActionElKafkaElHeaderEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElKafkaEl {
     client_properties: RecField<PrimField<String>>,
@@ -2677,20 +2327,17 @@ pub struct IotTopicRuleErrorActionElKafkaEl {
     header: Option<Vec<IotTopicRuleErrorActionElKafkaElHeaderEl>>,
     dynamic: IotTopicRuleErrorActionElKafkaElDynamic,
 }
-
 impl IotTopicRuleErrorActionElKafkaEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `partition`.\n"]
     pub fn set_partition(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.partition = Some(v.into());
         self
     }
-
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(
         mut self,
@@ -2707,10 +2354,8 @@ impl IotTopicRuleErrorActionElKafkaEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElKafkaEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElKafkaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2719,7 +2364,6 @@ impl ToListMappable for IotTopicRuleErrorActionElKafkaEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElKafkaEl {
     #[doc = ""]
     pub client_properties: RecField<PrimField<String>>,
@@ -2728,7 +2372,6 @@ pub struct BuildIotTopicRuleErrorActionElKafkaEl {
     #[doc = ""]
     pub topic: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElKafkaEl {
     pub fn build(self) -> IotTopicRuleErrorActionElKafkaEl {
         IotTopicRuleErrorActionElKafkaEl {
@@ -2742,12 +2385,10 @@ impl BuildIotTopicRuleErrorActionElKafkaEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElKafkaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElKafkaElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElKafkaElRef {
         IotTopicRuleErrorActionElKafkaElRef {
@@ -2756,12 +2397,10 @@ impl Ref for IotTopicRuleErrorActionElKafkaElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElKafkaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `client_properties` after provisioning.\n"]
     pub fn client_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -2769,7 +2408,6 @@ impl IotTopicRuleErrorActionElKafkaElRef {
             format!("{}.client_properties", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2777,28 +2415,23 @@ impl IotTopicRuleErrorActionElKafkaElRef {
             format!("{}.destination_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `partition` after provisioning.\n"]
     pub fn partition(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.partition", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic", self.base))
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(&self) -> ListRef<IotTopicRuleErrorActionElKafkaElHeaderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElKinesisEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2806,7 +2439,6 @@ pub struct IotTopicRuleErrorActionElKinesisEl {
     role_arn: PrimField<String>,
     stream_name: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElKinesisEl {
     #[doc = "Set the field `partition_key`.\n"]
     pub fn set_partition_key(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -2814,10 +2446,8 @@ impl IotTopicRuleErrorActionElKinesisEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElKinesisEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElKinesisEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2826,14 +2456,12 @@ impl ToListMappable for IotTopicRuleErrorActionElKinesisEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElKinesisEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub stream_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElKinesisEl {
     pub fn build(self) -> IotTopicRuleErrorActionElKinesisEl {
         IotTopicRuleErrorActionElKinesisEl {
@@ -2843,12 +2471,10 @@ impl BuildIotTopicRuleErrorActionElKinesisEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElKinesisElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElKinesisElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElKinesisElRef {
         IotTopicRuleErrorActionElKinesisElRef {
@@ -2857,12 +2483,10 @@ impl Ref for IotTopicRuleErrorActionElKinesisElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElKinesisElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2870,28 +2494,22 @@ impl IotTopicRuleErrorActionElKinesisElRef {
             format!("{}.partition_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `stream_name` after provisioning.\n"]
     pub fn stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.stream_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElLambdaEl {
     function_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElLambdaEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElLambdaEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElLambdaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2900,12 +2518,10 @@ impl ToListMappable for IotTopicRuleErrorActionElLambdaEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElLambdaEl {
     #[doc = ""]
     pub function_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElLambdaEl {
     pub fn build(self) -> IotTopicRuleErrorActionElLambdaEl {
         IotTopicRuleErrorActionElLambdaEl {
@@ -2913,12 +2529,10 @@ impl BuildIotTopicRuleErrorActionElLambdaEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElLambdaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElLambdaElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElLambdaElRef {
         IotTopicRuleErrorActionElLambdaElRef {
@@ -2927,18 +2541,15 @@ impl Ref for IotTopicRuleErrorActionElLambdaElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElLambdaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElRepublishEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2946,7 +2557,6 @@ pub struct IotTopicRuleErrorActionElRepublishEl {
     role_arn: PrimField<String>,
     topic: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElRepublishEl {
     #[doc = "Set the field `qos`.\n"]
     pub fn set_qos(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -2954,10 +2564,8 @@ impl IotTopicRuleErrorActionElRepublishEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElRepublishEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElRepublishEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2966,14 +2574,12 @@ impl ToListMappable for IotTopicRuleErrorActionElRepublishEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElRepublishEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub topic: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElRepublishEl {
     pub fn build(self) -> IotTopicRuleErrorActionElRepublishEl {
         IotTopicRuleErrorActionElRepublishEl {
@@ -2983,12 +2589,10 @@ impl BuildIotTopicRuleErrorActionElRepublishEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElRepublishElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElRepublishElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElRepublishElRef {
         IotTopicRuleErrorActionElRepublishElRef {
@@ -2997,28 +2601,23 @@ impl Ref for IotTopicRuleErrorActionElRepublishElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElRepublishElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `qos` after provisioning.\n"]
     pub fn qos(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.qos", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElS3El {
     bucket_name: PrimField<String>,
@@ -3027,7 +2626,6 @@ pub struct IotTopicRuleErrorActionElS3El {
     key: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElS3El {
     #[doc = "Set the field `canned_acl`.\n"]
     pub fn set_canned_acl(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -3035,10 +2633,8 @@ impl IotTopicRuleErrorActionElS3El {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElS3El {
     type O = BlockAssignable<IotTopicRuleErrorActionElS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3047,7 +2643,6 @@ impl ToListMappable for IotTopicRuleErrorActionElS3El {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElS3El {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
@@ -3056,7 +2651,6 @@ pub struct BuildIotTopicRuleErrorActionElS3El {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElS3El {
     pub fn build(self) -> IotTopicRuleErrorActionElS3El {
         IotTopicRuleErrorActionElS3El {
@@ -3067,12 +2661,10 @@ impl BuildIotTopicRuleErrorActionElS3El {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElS3ElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElS3ElRef {
         IotTopicRuleErrorActionElS3ElRef {
@@ -3081,33 +2673,27 @@ impl Ref for IotTopicRuleErrorActionElS3ElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `canned_acl` after provisioning.\n"]
     pub fn canned_acl(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.canned_acl", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElSnsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3115,7 +2701,6 @@ pub struct IotTopicRuleErrorActionElSnsEl {
     role_arn: PrimField<String>,
     target_arn: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElSnsEl {
     #[doc = "Set the field `message_format`.\n"]
     pub fn set_message_format(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -3123,10 +2708,8 @@ impl IotTopicRuleErrorActionElSnsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElSnsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElSnsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3135,14 +2718,12 @@ impl ToListMappable for IotTopicRuleErrorActionElSnsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElSnsEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElSnsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElSnsEl {
         IotTopicRuleErrorActionElSnsEl {
@@ -3152,12 +2733,10 @@ impl BuildIotTopicRuleErrorActionElSnsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElSnsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElSnsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElSnsElRef {
         IotTopicRuleErrorActionElSnsElRef {
@@ -3166,12 +2745,10 @@ impl Ref for IotTopicRuleErrorActionElSnsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElSnsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3179,30 +2756,24 @@ impl IotTopicRuleErrorActionElSnsElRef {
             format!("{}.message_format", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElSqsEl {
     queue_url: PrimField<String>,
     role_arn: PrimField<String>,
     use_base64: PrimField<bool>,
 }
-
 impl IotTopicRuleErrorActionElSqsEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElSqsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElSqsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3211,7 +2782,6 @@ impl ToListMappable for IotTopicRuleErrorActionElSqsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElSqsEl {
     #[doc = ""]
     pub queue_url: PrimField<String>,
@@ -3220,7 +2790,6 @@ pub struct BuildIotTopicRuleErrorActionElSqsEl {
     #[doc = ""]
     pub use_base64: PrimField<bool>,
 }
-
 impl BuildIotTopicRuleErrorActionElSqsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElSqsEl {
         IotTopicRuleErrorActionElSqsEl {
@@ -3230,12 +2799,10 @@ impl BuildIotTopicRuleErrorActionElSqsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElSqsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElSqsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElSqsElRef {
         IotTopicRuleErrorActionElSqsElRef {
@@ -3244,28 +2811,23 @@ impl Ref for IotTopicRuleErrorActionElSqsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElSqsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `queue_url` after provisioning.\n"]
     pub fn queue_url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_base64` after provisioning.\n"]
     pub fn use_base64(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.use_base64", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElStepFunctionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3273,7 +2835,6 @@ pub struct IotTopicRuleErrorActionElStepFunctionsEl {
     role_arn: PrimField<String>,
     state_machine_name: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElStepFunctionsEl {
     #[doc = "Set the field `execution_name_prefix`.\n"]
     pub fn set_execution_name_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -3281,10 +2842,8 @@ impl IotTopicRuleErrorActionElStepFunctionsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElStepFunctionsEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElStepFunctionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3293,14 +2852,12 @@ impl ToListMappable for IotTopicRuleErrorActionElStepFunctionsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElStepFunctionsEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub state_machine_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElStepFunctionsEl {
     pub fn build(self) -> IotTopicRuleErrorActionElStepFunctionsEl {
         IotTopicRuleErrorActionElStepFunctionsEl {
@@ -3310,12 +2867,10 @@ impl BuildIotTopicRuleErrorActionElStepFunctionsEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElStepFunctionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElStepFunctionsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElStepFunctionsElRef {
         IotTopicRuleErrorActionElStepFunctionsElRef {
@@ -3324,12 +2879,10 @@ impl Ref for IotTopicRuleErrorActionElStepFunctionsElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElStepFunctionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `execution_name_prefix` after provisioning.\n"]
     pub fn execution_name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3337,12 +2890,10 @@ impl IotTopicRuleErrorActionElStepFunctionsElRef {
             format!("{}.execution_name_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_machine_name` after provisioning.\n"]
     pub fn state_machine_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3351,18 +2902,14 @@ impl IotTopicRuleErrorActionElStepFunctionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElTimestreamElDimensionEl {
     name: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElTimestreamElDimensionEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElTimestreamElDimensionEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElTimestreamElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3371,14 +2918,12 @@ impl ToListMappable for IotTopicRuleErrorActionElTimestreamElDimensionEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElTimestreamElDimensionEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElTimestreamElDimensionEl {
     pub fn build(self) -> IotTopicRuleErrorActionElTimestreamElDimensionEl {
         IotTopicRuleErrorActionElTimestreamElDimensionEl {
@@ -3387,12 +2932,10 @@ impl BuildIotTopicRuleErrorActionElTimestreamElDimensionEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElTimestreamElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElTimestreamElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -3404,34 +2947,27 @@ impl Ref for IotTopicRuleErrorActionElTimestreamElDimensionElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElTimestreamElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElTimestreamElTimestampEl {
     unit: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleErrorActionElTimestreamElTimestampEl {}
-
 impl ToListMappable for IotTopicRuleErrorActionElTimestreamElTimestampEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElTimestreamElTimestampEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3440,14 +2976,12 @@ impl ToListMappable for IotTopicRuleErrorActionElTimestreamElTimestampEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElTimestreamElTimestampEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElTimestreamElTimestampEl {
     pub fn build(self) -> IotTopicRuleErrorActionElTimestreamElTimestampEl {
         IotTopicRuleErrorActionElTimestreamElTimestampEl {
@@ -3456,12 +2990,10 @@ impl BuildIotTopicRuleErrorActionElTimestreamElTimestampEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElTimestreamElTimestampElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElTimestreamElTimestampElRef {
     fn new(
         shared: StackShared,
@@ -3473,29 +3005,24 @@ impl Ref for IotTopicRuleErrorActionElTimestreamElTimestampElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElTimestreamElTimestampElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleErrorActionElTimestreamElDynamic {
     dimension: Option<DynamicBlock<IotTopicRuleErrorActionElTimestreamElDimensionEl>>,
     timestamp: Option<DynamicBlock<IotTopicRuleErrorActionElTimestreamElTimestampEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionElTimestreamEl {
     database_name: PrimField<String>,
@@ -3507,7 +3034,6 @@ pub struct IotTopicRuleErrorActionElTimestreamEl {
     timestamp: Option<Vec<IotTopicRuleErrorActionElTimestreamElTimestampEl>>,
     dynamic: IotTopicRuleErrorActionElTimestreamElDynamic,
 }
-
 impl IotTopicRuleErrorActionElTimestreamEl {
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
@@ -3524,7 +3050,6 @@ impl IotTopicRuleErrorActionElTimestreamEl {
         }
         self
     }
-
     #[doc = "Set the field `timestamp`.\n"]
     pub fn set_timestamp(
         mut self,
@@ -3541,10 +3066,8 @@ impl IotTopicRuleErrorActionElTimestreamEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionElTimestreamEl {
     type O = BlockAssignable<IotTopicRuleErrorActionElTimestreamEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3553,7 +3076,6 @@ impl ToListMappable for IotTopicRuleErrorActionElTimestreamEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionElTimestreamEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
@@ -3562,7 +3084,6 @@ pub struct BuildIotTopicRuleErrorActionElTimestreamEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleErrorActionElTimestreamEl {
     pub fn build(self) -> IotTopicRuleErrorActionElTimestreamEl {
         IotTopicRuleErrorActionElTimestreamEl {
@@ -3575,12 +3096,10 @@ impl BuildIotTopicRuleErrorActionElTimestreamEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElTimestreamElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElTimestreamElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElTimestreamElRef {
         IotTopicRuleErrorActionElTimestreamElRef {
@@ -3589,12 +3108,10 @@ impl Ref for IotTopicRuleErrorActionElTimestreamElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElTimestreamElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3602,23 +3119,19 @@ impl IotTopicRuleErrorActionElTimestreamElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `timestamp` after provisioning.\n"]
     pub fn timestamp(&self) -> ListRef<IotTopicRuleErrorActionElTimestreamElTimestampElRef> {
         ListRef::new(self.shared().clone(), format!("{}.timestamp", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleErrorActionElDynamic {
     cloudwatch_alarm: Option<DynamicBlock<IotTopicRuleErrorActionElCloudwatchAlarmEl>>,
@@ -3641,7 +3154,6 @@ struct IotTopicRuleErrorActionElDynamic {
     step_functions: Option<DynamicBlock<IotTopicRuleErrorActionElStepFunctionsEl>>,
     timestream: Option<DynamicBlock<IotTopicRuleErrorActionElTimestreamEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleErrorActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3684,7 +3196,6 @@ pub struct IotTopicRuleErrorActionEl {
     timestream: Option<Vec<IotTopicRuleErrorActionElTimestreamEl>>,
     dynamic: IotTopicRuleErrorActionElDynamic,
 }
-
 impl IotTopicRuleErrorActionEl {
     #[doc = "Set the field `cloudwatch_alarm`.\n"]
     pub fn set_cloudwatch_alarm(
@@ -3701,7 +3212,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `cloudwatch_logs`.\n"]
     pub fn set_cloudwatch_logs(
         mut self,
@@ -3717,7 +3227,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `cloudwatch_metric`.\n"]
     pub fn set_cloudwatch_metric(
         mut self,
@@ -3733,7 +3242,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `dynamodb`.\n"]
     pub fn set_dynamodb(
         mut self,
@@ -3749,7 +3257,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `dynamodbv2`.\n"]
     pub fn set_dynamodbv2(
         mut self,
@@ -3765,7 +3272,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `elasticsearch`.\n"]
     pub fn set_elasticsearch(
         mut self,
@@ -3781,7 +3287,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `firehose`.\n"]
     pub fn set_firehose(
         mut self,
@@ -3797,7 +3302,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `http`.\n"]
     pub fn set_http(
         mut self,
@@ -3813,7 +3317,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `iot_analytics`.\n"]
     pub fn set_iot_analytics(
         mut self,
@@ -3829,7 +3332,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `iot_events`.\n"]
     pub fn set_iot_events(
         mut self,
@@ -3845,7 +3347,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `kafka`.\n"]
     pub fn set_kafka(
         mut self,
@@ -3861,7 +3362,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `kinesis`.\n"]
     pub fn set_kinesis(
         mut self,
@@ -3877,7 +3377,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `lambda`.\n"]
     pub fn set_lambda(
         mut self,
@@ -3893,7 +3392,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `republish`.\n"]
     pub fn set_republish(
         mut self,
@@ -3909,7 +3407,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(mut self, v: impl Into<BlockAssignable<IotTopicRuleErrorActionElS3El>>) -> Self {
         match v.into() {
@@ -3922,7 +3419,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `sns`.\n"]
     pub fn set_sns(
         mut self,
@@ -3938,7 +3434,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `sqs`.\n"]
     pub fn set_sqs(
         mut self,
@@ -3954,7 +3449,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `step_functions`.\n"]
     pub fn set_step_functions(
         mut self,
@@ -3970,7 +3464,6 @@ impl IotTopicRuleErrorActionEl {
         }
         self
     }
-
     #[doc = "Set the field `timestream`.\n"]
     pub fn set_timestream(
         mut self,
@@ -3987,10 +3480,8 @@ impl IotTopicRuleErrorActionEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleErrorActionEl {
     type O = BlockAssignable<IotTopicRuleErrorActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3999,9 +3490,7 @@ impl ToListMappable for IotTopicRuleErrorActionEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleErrorActionEl {}
-
 impl BuildIotTopicRuleErrorActionEl {
     pub fn build(self) -> IotTopicRuleErrorActionEl {
         IotTopicRuleErrorActionEl {
@@ -4028,12 +3517,10 @@ impl BuildIotTopicRuleErrorActionEl {
         }
     }
 }
-
 pub struct IotTopicRuleErrorActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleErrorActionElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleErrorActionElRef {
         IotTopicRuleErrorActionElRef {
@@ -4042,12 +3529,10 @@ impl Ref for IotTopicRuleErrorActionElRef {
         }
     }
 }
-
 impl IotTopicRuleErrorActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_alarm` after provisioning.\n"]
     pub fn cloudwatch_alarm(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchAlarmElRef> {
         ListRef::new(
@@ -4055,7 +3540,6 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.cloudwatch_alarm", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_logs` after provisioning.\n"]
     pub fn cloudwatch_logs(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchLogsElRef> {
         ListRef::new(
@@ -4063,7 +3547,6 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.cloudwatch_logs", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_metric` after provisioning.\n"]
     pub fn cloudwatch_metric(&self) -> ListRef<IotTopicRuleErrorActionElCloudwatchMetricElRef> {
         ListRef::new(
@@ -4071,17 +3554,14 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.cloudwatch_metric", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamodb` after provisioning.\n"]
     pub fn dynamodb(&self) -> ListRef<IotTopicRuleErrorActionElDynamodbElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dynamodb", self.base))
     }
-
     #[doc = "Get a reference to the value of field `dynamodbv2` after provisioning.\n"]
     pub fn dynamodbv2(&self) -> ListRef<IotTopicRuleErrorActionElDynamodbv2ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dynamodbv2", self.base))
     }
-
     #[doc = "Get a reference to the value of field `elasticsearch` after provisioning.\n"]
     pub fn elasticsearch(&self) -> ListRef<IotTopicRuleErrorActionElElasticsearchElRef> {
         ListRef::new(
@@ -4089,17 +3569,14 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.elasticsearch", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `firehose` after provisioning.\n"]
     pub fn firehose(&self) -> ListRef<IotTopicRuleErrorActionElFirehoseElRef> {
         ListRef::new(self.shared().clone(), format!("{}.firehose", self.base))
     }
-
     #[doc = "Get a reference to the value of field `http` after provisioning.\n"]
     pub fn http(&self) -> ListRef<IotTopicRuleErrorActionElHttpElRef> {
         ListRef::new(self.shared().clone(), format!("{}.http", self.base))
     }
-
     #[doc = "Get a reference to the value of field `iot_analytics` after provisioning.\n"]
     pub fn iot_analytics(&self) -> ListRef<IotTopicRuleErrorActionElIotAnalyticsElRef> {
         ListRef::new(
@@ -4107,47 +3584,38 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.iot_analytics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `iot_events` after provisioning.\n"]
     pub fn iot_events(&self) -> ListRef<IotTopicRuleErrorActionElIotEventsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.iot_events", self.base))
     }
-
     #[doc = "Get a reference to the value of field `kafka` after provisioning.\n"]
     pub fn kafka(&self) -> ListRef<IotTopicRuleErrorActionElKafkaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.kafka", self.base))
     }
-
     #[doc = "Get a reference to the value of field `kinesis` after provisioning.\n"]
     pub fn kinesis(&self) -> ListRef<IotTopicRuleErrorActionElKinesisElRef> {
         ListRef::new(self.shared().clone(), format!("{}.kinesis", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lambda` after provisioning.\n"]
     pub fn lambda(&self) -> ListRef<IotTopicRuleErrorActionElLambdaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.lambda", self.base))
     }
-
     #[doc = "Get a reference to the value of field `republish` after provisioning.\n"]
     pub fn republish(&self) -> ListRef<IotTopicRuleErrorActionElRepublishElRef> {
         ListRef::new(self.shared().clone(), format!("{}.republish", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(&self) -> ListRef<IotTopicRuleErrorActionElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sns` after provisioning.\n"]
     pub fn sns(&self) -> ListRef<IotTopicRuleErrorActionElSnsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.sns", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sqs` after provisioning.\n"]
     pub fn sqs(&self) -> ListRef<IotTopicRuleErrorActionElSqsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.sqs", self.base))
     }
-
     #[doc = "Get a reference to the value of field `step_functions` after provisioning.\n"]
     pub fn step_functions(&self) -> ListRef<IotTopicRuleErrorActionElStepFunctionsElRef> {
         ListRef::new(
@@ -4155,13 +3623,11 @@ impl IotTopicRuleErrorActionElRef {
             format!("{}.step_functions", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timestream` after provisioning.\n"]
     pub fn timestream(&self) -> ListRef<IotTopicRuleErrorActionElTimestreamElRef> {
         ListRef::new(self.shared().clone(), format!("{}.timestream", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleFirehoseEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4171,24 +3637,20 @@ pub struct IotTopicRuleFirehoseEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     separator: Option<PrimField<String>>,
 }
-
 impl IotTopicRuleFirehoseEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.batch_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `separator`.\n"]
     pub fn set_separator(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.separator = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleFirehoseEl {
     type O = BlockAssignable<IotTopicRuleFirehoseEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4197,14 +3659,12 @@ impl ToListMappable for IotTopicRuleFirehoseEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleFirehoseEl {
     #[doc = ""]
     pub delivery_stream_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleFirehoseEl {
     pub fn build(self) -> IotTopicRuleFirehoseEl {
         IotTopicRuleFirehoseEl {
@@ -4215,12 +3675,10 @@ impl BuildIotTopicRuleFirehoseEl {
         }
     }
 }
-
 pub struct IotTopicRuleFirehoseElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleFirehoseElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleFirehoseElRef {
         IotTopicRuleFirehoseElRef {
@@ -4229,17 +3687,14 @@ impl Ref for IotTopicRuleFirehoseElRef {
         }
     }
 }
-
 impl IotTopicRuleFirehoseElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delivery_stream_name` after provisioning.\n"]
     pub fn delivery_stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4247,29 +3702,23 @@ impl IotTopicRuleFirehoseElRef {
             format!("{}.delivery_stream_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `separator` after provisioning.\n"]
     pub fn separator(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.separator", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleHttpElHttpHeaderEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleHttpElHttpHeaderEl {}
-
 impl ToListMappable for IotTopicRuleHttpElHttpHeaderEl {
     type O = BlockAssignable<IotTopicRuleHttpElHttpHeaderEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4278,14 +3727,12 @@ impl ToListMappable for IotTopicRuleHttpElHttpHeaderEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleHttpElHttpHeaderEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleHttpElHttpHeaderEl {
     pub fn build(self) -> IotTopicRuleHttpElHttpHeaderEl {
         IotTopicRuleHttpElHttpHeaderEl {
@@ -4294,12 +3741,10 @@ impl BuildIotTopicRuleHttpElHttpHeaderEl {
         }
     }
 }
-
 pub struct IotTopicRuleHttpElHttpHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleHttpElHttpHeaderElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleHttpElHttpHeaderElRef {
         IotTopicRuleHttpElHttpHeaderElRef {
@@ -4308,28 +3753,23 @@ impl Ref for IotTopicRuleHttpElHttpHeaderElRef {
         }
     }
 }
-
 impl IotTopicRuleHttpElHttpHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleHttpElDynamic {
     http_header: Option<DynamicBlock<IotTopicRuleHttpElHttpHeaderEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleHttpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4339,14 +3779,12 @@ pub struct IotTopicRuleHttpEl {
     http_header: Option<Vec<IotTopicRuleHttpElHttpHeaderEl>>,
     dynamic: IotTopicRuleHttpElDynamic,
 }
-
 impl IotTopicRuleHttpEl {
     #[doc = "Set the field `confirmation_url`.\n"]
     pub fn set_confirmation_url(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.confirmation_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `http_header`.\n"]
     pub fn set_http_header(
         mut self,
@@ -4363,10 +3801,8 @@ impl IotTopicRuleHttpEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleHttpEl {
     type O = BlockAssignable<IotTopicRuleHttpEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4375,12 +3811,10 @@ impl ToListMappable for IotTopicRuleHttpEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleHttpEl {
     #[doc = ""]
     pub url: PrimField<String>,
 }
-
 impl BuildIotTopicRuleHttpEl {
     pub fn build(self) -> IotTopicRuleHttpEl {
         IotTopicRuleHttpEl {
@@ -4391,12 +3825,10 @@ impl BuildIotTopicRuleHttpEl {
         }
     }
 }
-
 pub struct IotTopicRuleHttpElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleHttpElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleHttpElRef {
         IotTopicRuleHttpElRef {
@@ -4405,12 +3837,10 @@ impl Ref for IotTopicRuleHttpElRef {
         }
     }
 }
-
 impl IotTopicRuleHttpElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `confirmation_url` after provisioning.\n"]
     pub fn confirmation_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4418,18 +3848,15 @@ impl IotTopicRuleHttpElRef {
             format!("{}.confirmation_url", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `http_header` after provisioning.\n"]
     pub fn http_header(&self) -> ListRef<IotTopicRuleHttpElHttpHeaderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.http_header", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleIotAnalyticsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4437,7 +3864,6 @@ pub struct IotTopicRuleIotAnalyticsEl {
     channel_name: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleIotAnalyticsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -4445,10 +3871,8 @@ impl IotTopicRuleIotAnalyticsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleIotAnalyticsEl {
     type O = BlockAssignable<IotTopicRuleIotAnalyticsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4457,14 +3881,12 @@ impl ToListMappable for IotTopicRuleIotAnalyticsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleIotAnalyticsEl {
     #[doc = ""]
     pub channel_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleIotAnalyticsEl {
     pub fn build(self) -> IotTopicRuleIotAnalyticsEl {
         IotTopicRuleIotAnalyticsEl {
@@ -4474,12 +3896,10 @@ impl BuildIotTopicRuleIotAnalyticsEl {
         }
     }
 }
-
 pub struct IotTopicRuleIotAnalyticsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleIotAnalyticsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleIotAnalyticsElRef {
         IotTopicRuleIotAnalyticsElRef {
@@ -4488,28 +3908,23 @@ impl Ref for IotTopicRuleIotAnalyticsElRef {
         }
     }
 }
-
 impl IotTopicRuleIotAnalyticsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `channel_name` after provisioning.\n"]
     pub fn channel_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleIotEventsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4519,24 +3934,20 @@ pub struct IotTopicRuleIotEventsEl {
     message_id: Option<PrimField<String>>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleIotEventsEl {
     #[doc = "Set the field `batch_mode`.\n"]
     pub fn set_batch_mode(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.batch_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message_id`.\n"]
     pub fn set_message_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.message_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleIotEventsEl {
     type O = BlockAssignable<IotTopicRuleIotEventsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4545,14 +3956,12 @@ impl ToListMappable for IotTopicRuleIotEventsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleIotEventsEl {
     #[doc = ""]
     pub input_name: PrimField<String>,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleIotEventsEl {
     pub fn build(self) -> IotTopicRuleIotEventsEl {
         IotTopicRuleIotEventsEl {
@@ -4563,12 +3972,10 @@ impl BuildIotTopicRuleIotEventsEl {
         }
     }
 }
-
 pub struct IotTopicRuleIotEventsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleIotEventsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleIotEventsElRef {
         IotTopicRuleIotEventsElRef {
@@ -4577,44 +3984,35 @@ impl Ref for IotTopicRuleIotEventsElRef {
         }
     }
 }
-
 impl IotTopicRuleIotEventsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_mode` after provisioning.\n"]
     pub fn batch_mode(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.batch_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `input_name` after provisioning.\n"]
     pub fn input_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.input_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `message_id` after provisioning.\n"]
     pub fn message_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.message_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleKafkaElHeaderEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleKafkaElHeaderEl {}
-
 impl ToListMappable for IotTopicRuleKafkaElHeaderEl {
     type O = BlockAssignable<IotTopicRuleKafkaElHeaderEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4623,14 +4021,12 @@ impl ToListMappable for IotTopicRuleKafkaElHeaderEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleKafkaElHeaderEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleKafkaElHeaderEl {
     pub fn build(self) -> IotTopicRuleKafkaElHeaderEl {
         IotTopicRuleKafkaElHeaderEl {
@@ -4639,12 +4035,10 @@ impl BuildIotTopicRuleKafkaElHeaderEl {
         }
     }
 }
-
 pub struct IotTopicRuleKafkaElHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleKafkaElHeaderElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleKafkaElHeaderElRef {
         IotTopicRuleKafkaElHeaderElRef {
@@ -4653,28 +4047,23 @@ impl Ref for IotTopicRuleKafkaElHeaderElRef {
         }
     }
 }
-
 impl IotTopicRuleKafkaElHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleKafkaElDynamic {
     header: Option<DynamicBlock<IotTopicRuleKafkaElHeaderEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleKafkaEl {
     client_properties: RecField<PrimField<String>>,
@@ -4688,20 +4077,17 @@ pub struct IotTopicRuleKafkaEl {
     header: Option<Vec<IotTopicRuleKafkaElHeaderEl>>,
     dynamic: IotTopicRuleKafkaElDynamic,
 }
-
 impl IotTopicRuleKafkaEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `partition`.\n"]
     pub fn set_partition(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.partition = Some(v.into());
         self
     }
-
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(
         mut self,
@@ -4718,10 +4104,8 @@ impl IotTopicRuleKafkaEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleKafkaEl {
     type O = BlockAssignable<IotTopicRuleKafkaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4730,7 +4114,6 @@ impl ToListMappable for IotTopicRuleKafkaEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleKafkaEl {
     #[doc = ""]
     pub client_properties: RecField<PrimField<String>>,
@@ -4739,7 +4122,6 @@ pub struct BuildIotTopicRuleKafkaEl {
     #[doc = ""]
     pub topic: PrimField<String>,
 }
-
 impl BuildIotTopicRuleKafkaEl {
     pub fn build(self) -> IotTopicRuleKafkaEl {
         IotTopicRuleKafkaEl {
@@ -4753,12 +4135,10 @@ impl BuildIotTopicRuleKafkaEl {
         }
     }
 }
-
 pub struct IotTopicRuleKafkaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleKafkaElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleKafkaElRef {
         IotTopicRuleKafkaElRef {
@@ -4767,12 +4147,10 @@ impl Ref for IotTopicRuleKafkaElRef {
         }
     }
 }
-
 impl IotTopicRuleKafkaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `client_properties` after provisioning.\n"]
     pub fn client_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -4780,7 +4158,6 @@ impl IotTopicRuleKafkaElRef {
             format!("{}.client_properties", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_arn` after provisioning.\n"]
     pub fn destination_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4788,28 +4165,23 @@ impl IotTopicRuleKafkaElRef {
             format!("{}.destination_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `partition` after provisioning.\n"]
     pub fn partition(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.partition", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic", self.base))
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(&self) -> ListRef<IotTopicRuleKafkaElHeaderElRef> {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleKinesisEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4817,7 +4189,6 @@ pub struct IotTopicRuleKinesisEl {
     role_arn: PrimField<String>,
     stream_name: PrimField<String>,
 }
-
 impl IotTopicRuleKinesisEl {
     #[doc = "Set the field `partition_key`.\n"]
     pub fn set_partition_key(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -4825,10 +4196,8 @@ impl IotTopicRuleKinesisEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleKinesisEl {
     type O = BlockAssignable<IotTopicRuleKinesisEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4837,14 +4206,12 @@ impl ToListMappable for IotTopicRuleKinesisEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleKinesisEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub stream_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleKinesisEl {
     pub fn build(self) -> IotTopicRuleKinesisEl {
         IotTopicRuleKinesisEl {
@@ -4854,12 +4221,10 @@ impl BuildIotTopicRuleKinesisEl {
         }
     }
 }
-
 pub struct IotTopicRuleKinesisElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleKinesisElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleKinesisElRef {
         IotTopicRuleKinesisElRef {
@@ -4868,12 +4233,10 @@ impl Ref for IotTopicRuleKinesisElRef {
         }
     }
 }
-
 impl IotTopicRuleKinesisElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `partition_key` after provisioning.\n"]
     pub fn partition_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4881,28 +4244,22 @@ impl IotTopicRuleKinesisElRef {
             format!("{}.partition_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `stream_name` after provisioning.\n"]
     pub fn stream_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.stream_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleLambdaEl {
     function_arn: PrimField<String>,
 }
-
 impl IotTopicRuleLambdaEl {}
-
 impl ToListMappable for IotTopicRuleLambdaEl {
     type O = BlockAssignable<IotTopicRuleLambdaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4911,12 +4268,10 @@ impl ToListMappable for IotTopicRuleLambdaEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleLambdaEl {
     #[doc = ""]
     pub function_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleLambdaEl {
     pub fn build(self) -> IotTopicRuleLambdaEl {
         IotTopicRuleLambdaEl {
@@ -4924,12 +4279,10 @@ impl BuildIotTopicRuleLambdaEl {
         }
     }
 }
-
 pub struct IotTopicRuleLambdaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleLambdaElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleLambdaElRef {
         IotTopicRuleLambdaElRef {
@@ -4938,18 +4291,15 @@ impl Ref for IotTopicRuleLambdaElRef {
         }
     }
 }
-
 impl IotTopicRuleLambdaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleRepublishEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4957,7 +4307,6 @@ pub struct IotTopicRuleRepublishEl {
     role_arn: PrimField<String>,
     topic: PrimField<String>,
 }
-
 impl IotTopicRuleRepublishEl {
     #[doc = "Set the field `qos`.\n"]
     pub fn set_qos(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -4965,10 +4314,8 @@ impl IotTopicRuleRepublishEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleRepublishEl {
     type O = BlockAssignable<IotTopicRuleRepublishEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4977,14 +4324,12 @@ impl ToListMappable for IotTopicRuleRepublishEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleRepublishEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub topic: PrimField<String>,
 }
-
 impl BuildIotTopicRuleRepublishEl {
     pub fn build(self) -> IotTopicRuleRepublishEl {
         IotTopicRuleRepublishEl {
@@ -4994,12 +4339,10 @@ impl BuildIotTopicRuleRepublishEl {
         }
     }
 }
-
 pub struct IotTopicRuleRepublishElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleRepublishElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleRepublishElRef {
         IotTopicRuleRepublishElRef {
@@ -5008,28 +4351,23 @@ impl Ref for IotTopicRuleRepublishElRef {
         }
     }
 }
-
 impl IotTopicRuleRepublishElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `qos` after provisioning.\n"]
     pub fn qos(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.qos", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleS3El {
     bucket_name: PrimField<String>,
@@ -5038,7 +4376,6 @@ pub struct IotTopicRuleS3El {
     key: PrimField<String>,
     role_arn: PrimField<String>,
 }
-
 impl IotTopicRuleS3El {
     #[doc = "Set the field `canned_acl`.\n"]
     pub fn set_canned_acl(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -5046,10 +4383,8 @@ impl IotTopicRuleS3El {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleS3El {
     type O = BlockAssignable<IotTopicRuleS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5058,7 +4393,6 @@ impl ToListMappable for IotTopicRuleS3El {
         })
     }
 }
-
 pub struct BuildIotTopicRuleS3El {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
@@ -5067,7 +4401,6 @@ pub struct BuildIotTopicRuleS3El {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleS3El {
     pub fn build(self) -> IotTopicRuleS3El {
         IotTopicRuleS3El {
@@ -5078,12 +4411,10 @@ impl BuildIotTopicRuleS3El {
         }
     }
 }
-
 pub struct IotTopicRuleS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleS3ElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleS3ElRef {
         IotTopicRuleS3ElRef {
@@ -5092,33 +4423,27 @@ impl Ref for IotTopicRuleS3ElRef {
         }
     }
 }
-
 impl IotTopicRuleS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `canned_acl` after provisioning.\n"]
     pub fn canned_acl(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.canned_acl", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleSnsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5126,7 +4451,6 @@ pub struct IotTopicRuleSnsEl {
     role_arn: PrimField<String>,
     target_arn: PrimField<String>,
 }
-
 impl IotTopicRuleSnsEl {
     #[doc = "Set the field `message_format`.\n"]
     pub fn set_message_format(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -5134,10 +4458,8 @@ impl IotTopicRuleSnsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleSnsEl {
     type O = BlockAssignable<IotTopicRuleSnsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5146,14 +4468,12 @@ impl ToListMappable for IotTopicRuleSnsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleSnsEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildIotTopicRuleSnsEl {
     pub fn build(self) -> IotTopicRuleSnsEl {
         IotTopicRuleSnsEl {
@@ -5163,12 +4483,10 @@ impl BuildIotTopicRuleSnsEl {
         }
     }
 }
-
 pub struct IotTopicRuleSnsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleSnsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleSnsElRef {
         IotTopicRuleSnsElRef {
@@ -5177,12 +4495,10 @@ impl Ref for IotTopicRuleSnsElRef {
         }
     }
 }
-
 impl IotTopicRuleSnsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `message_format` after provisioning.\n"]
     pub fn message_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5190,30 +4506,24 @@ impl IotTopicRuleSnsElRef {
             format!("{}.message_format", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleSqsEl {
     queue_url: PrimField<String>,
     role_arn: PrimField<String>,
     use_base64: PrimField<bool>,
 }
-
 impl IotTopicRuleSqsEl {}
-
 impl ToListMappable for IotTopicRuleSqsEl {
     type O = BlockAssignable<IotTopicRuleSqsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5222,7 +4532,6 @@ impl ToListMappable for IotTopicRuleSqsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleSqsEl {
     #[doc = ""]
     pub queue_url: PrimField<String>,
@@ -5231,7 +4540,6 @@ pub struct BuildIotTopicRuleSqsEl {
     #[doc = ""]
     pub use_base64: PrimField<bool>,
 }
-
 impl BuildIotTopicRuleSqsEl {
     pub fn build(self) -> IotTopicRuleSqsEl {
         IotTopicRuleSqsEl {
@@ -5241,12 +4549,10 @@ impl BuildIotTopicRuleSqsEl {
         }
     }
 }
-
 pub struct IotTopicRuleSqsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleSqsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleSqsElRef {
         IotTopicRuleSqsElRef {
@@ -5255,28 +4561,23 @@ impl Ref for IotTopicRuleSqsElRef {
         }
     }
 }
-
 impl IotTopicRuleSqsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `queue_url` after provisioning.\n"]
     pub fn queue_url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_base64` after provisioning.\n"]
     pub fn use_base64(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.use_base64", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleStepFunctionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5284,7 +4585,6 @@ pub struct IotTopicRuleStepFunctionsEl {
     role_arn: PrimField<String>,
     state_machine_name: PrimField<String>,
 }
-
 impl IotTopicRuleStepFunctionsEl {
     #[doc = "Set the field `execution_name_prefix`.\n"]
     pub fn set_execution_name_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -5292,10 +4592,8 @@ impl IotTopicRuleStepFunctionsEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleStepFunctionsEl {
     type O = BlockAssignable<IotTopicRuleStepFunctionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5304,14 +4602,12 @@ impl ToListMappable for IotTopicRuleStepFunctionsEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleStepFunctionsEl {
     #[doc = ""]
     pub role_arn: PrimField<String>,
     #[doc = ""]
     pub state_machine_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleStepFunctionsEl {
     pub fn build(self) -> IotTopicRuleStepFunctionsEl {
         IotTopicRuleStepFunctionsEl {
@@ -5321,12 +4617,10 @@ impl BuildIotTopicRuleStepFunctionsEl {
         }
     }
 }
-
 pub struct IotTopicRuleStepFunctionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleStepFunctionsElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleStepFunctionsElRef {
         IotTopicRuleStepFunctionsElRef {
@@ -5335,12 +4629,10 @@ impl Ref for IotTopicRuleStepFunctionsElRef {
         }
     }
 }
-
 impl IotTopicRuleStepFunctionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `execution_name_prefix` after provisioning.\n"]
     pub fn execution_name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5348,12 +4640,10 @@ impl IotTopicRuleStepFunctionsElRef {
             format!("{}.execution_name_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state_machine_name` after provisioning.\n"]
     pub fn state_machine_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5362,18 +4652,14 @@ impl IotTopicRuleStepFunctionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleTimestreamElDimensionEl {
     name: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleTimestreamElDimensionEl {}
-
 impl ToListMappable for IotTopicRuleTimestreamElDimensionEl {
     type O = BlockAssignable<IotTopicRuleTimestreamElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5382,14 +4668,12 @@ impl ToListMappable for IotTopicRuleTimestreamElDimensionEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleTimestreamElDimensionEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleTimestreamElDimensionEl {
     pub fn build(self) -> IotTopicRuleTimestreamElDimensionEl {
         IotTopicRuleTimestreamElDimensionEl {
@@ -5398,12 +4682,10 @@ impl BuildIotTopicRuleTimestreamElDimensionEl {
         }
     }
 }
-
 pub struct IotTopicRuleTimestreamElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleTimestreamElDimensionElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleTimestreamElDimensionElRef {
         IotTopicRuleTimestreamElDimensionElRef {
@@ -5412,34 +4694,27 @@ impl Ref for IotTopicRuleTimestreamElDimensionElRef {
         }
     }
 }
-
 impl IotTopicRuleTimestreamElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleTimestreamElTimestampEl {
     unit: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl IotTopicRuleTimestreamElTimestampEl {}
-
 impl ToListMappable for IotTopicRuleTimestreamElTimestampEl {
     type O = BlockAssignable<IotTopicRuleTimestreamElTimestampEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5448,14 +4723,12 @@ impl ToListMappable for IotTopicRuleTimestreamElTimestampEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleTimestreamElTimestampEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildIotTopicRuleTimestreamElTimestampEl {
     pub fn build(self) -> IotTopicRuleTimestreamElTimestampEl {
         IotTopicRuleTimestreamElTimestampEl {
@@ -5464,12 +4737,10 @@ impl BuildIotTopicRuleTimestreamElTimestampEl {
         }
     }
 }
-
 pub struct IotTopicRuleTimestreamElTimestampElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleTimestreamElTimestampElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleTimestreamElTimestampElRef {
         IotTopicRuleTimestreamElTimestampElRef {
@@ -5478,29 +4749,24 @@ impl Ref for IotTopicRuleTimestreamElTimestampElRef {
         }
     }
 }
-
 impl IotTopicRuleTimestreamElTimestampElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleTimestreamElDynamic {
     dimension: Option<DynamicBlock<IotTopicRuleTimestreamElDimensionEl>>,
     timestamp: Option<DynamicBlock<IotTopicRuleTimestreamElTimestampEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotTopicRuleTimestreamEl {
     database_name: PrimField<String>,
@@ -5512,7 +4778,6 @@ pub struct IotTopicRuleTimestreamEl {
     timestamp: Option<Vec<IotTopicRuleTimestreamElTimestampEl>>,
     dynamic: IotTopicRuleTimestreamElDynamic,
 }
-
 impl IotTopicRuleTimestreamEl {
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
@@ -5529,7 +4794,6 @@ impl IotTopicRuleTimestreamEl {
         }
         self
     }
-
     #[doc = "Set the field `timestamp`.\n"]
     pub fn set_timestamp(
         mut self,
@@ -5546,10 +4810,8 @@ impl IotTopicRuleTimestreamEl {
         self
     }
 }
-
 impl ToListMappable for IotTopicRuleTimestreamEl {
     type O = BlockAssignable<IotTopicRuleTimestreamEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5558,7 +4820,6 @@ impl ToListMappable for IotTopicRuleTimestreamEl {
         })
     }
 }
-
 pub struct BuildIotTopicRuleTimestreamEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
@@ -5567,7 +4828,6 @@ pub struct BuildIotTopicRuleTimestreamEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildIotTopicRuleTimestreamEl {
     pub fn build(self) -> IotTopicRuleTimestreamEl {
         IotTopicRuleTimestreamEl {
@@ -5580,12 +4840,10 @@ impl BuildIotTopicRuleTimestreamEl {
         }
     }
 }
-
 pub struct IotTopicRuleTimestreamElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotTopicRuleTimestreamElRef {
     fn new(shared: StackShared, base: String) -> IotTopicRuleTimestreamElRef {
         IotTopicRuleTimestreamElRef {
@@ -5594,12 +4852,10 @@ impl Ref for IotTopicRuleTimestreamElRef {
         }
     }
 }
-
 impl IotTopicRuleTimestreamElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5607,23 +4863,19 @@ impl IotTopicRuleTimestreamElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `timestamp` after provisioning.\n"]
     pub fn timestamp(&self) -> ListRef<IotTopicRuleTimestreamElTimestampElRef> {
         ListRef::new(self.shared().clone(), format!("{}.timestamp", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotTopicRuleDynamic {
     cloudwatch_alarm: Option<DynamicBlock<IotTopicRuleCloudwatchAlarmEl>>,

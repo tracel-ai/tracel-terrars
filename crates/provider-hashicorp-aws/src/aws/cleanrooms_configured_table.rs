@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CleanroomsConfiguredTableData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct CleanroomsConfiguredTableData {
     timeouts: Option<CleanroomsConfiguredTableTimeoutsEl>,
     dynamic: CleanroomsConfiguredTableDynamic,
 }
-
 struct CleanroomsConfiguredTable_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CleanroomsConfiguredTableData>,
 }
-
 #[derive(Clone)]
 pub struct CleanroomsConfiguredTable(Rc<CleanroomsConfiguredTable_>);
-
 impl CleanroomsConfiguredTable {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl CleanroomsConfiguredTable {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl CleanroomsConfiguredTable {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,37 +100,31 @@ impl CleanroomsConfiguredTable {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_reference`.\n"]
     pub fn set_table_reference(
         self,
@@ -158,13 +140,11 @@ impl CleanroomsConfiguredTable {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<CleanroomsConfiguredTableTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `allowed_columns` after provisioning.\n"]
     pub fn allowed_columns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -172,7 +152,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.allowed_columns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `analysis_method` after provisioning.\n"]
     pub fn analysis_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,12 +159,10 @@ impl CleanroomsConfiguredTable {
             format!("{}.analysis_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +170,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,12 +177,10 @@ impl CleanroomsConfiguredTable {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +188,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +195,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -230,7 +202,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -238,7 +209,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -246,7 +216,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.update_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_reference` after provisioning.\n"]
     pub fn table_reference(&self) -> ListRef<CleanroomsConfiguredTableTableReferenceElRef> {
         ListRef::new(
@@ -254,7 +223,6 @@ impl CleanroomsConfiguredTable {
             format!("{}.table_reference", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CleanroomsConfiguredTableTimeoutsElRef {
         CleanroomsConfiguredTableTimeoutsElRef::new(
@@ -263,7 +231,6 @@ impl CleanroomsConfiguredTable {
         )
     }
 }
-
 impl Referable for CleanroomsConfiguredTable {
     fn extract_ref(&self) -> String {
         format!(
@@ -273,32 +240,25 @@ impl Referable for CleanroomsConfiguredTable {
         )
     }
 }
-
 impl Resource for CleanroomsConfiguredTable {}
-
 impl ToListMappable for CleanroomsConfiguredTable {
     type O = ListRef<CleanroomsConfiguredTableRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CleanroomsConfiguredTable_ {
     fn extract_resource_type(&self) -> String {
         "aws_cleanrooms_configured_table".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCleanroomsConfiguredTable {
     pub tf_id: String,
     #[doc = ""]
@@ -308,7 +268,6 @@ pub struct BuildCleanroomsConfiguredTable {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCleanroomsConfiguredTable {
     pub fn build(self, stack: &mut Stack) -> CleanroomsConfiguredTable {
         let out = CleanroomsConfiguredTable(Rc::new(CleanroomsConfiguredTable_ {
@@ -336,27 +295,22 @@ impl BuildCleanroomsConfiguredTable {
         out
     }
 }
-
 pub struct CleanroomsConfiguredTableRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsConfiguredTableRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CleanroomsConfiguredTableRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_columns` after provisioning.\n"]
     pub fn allowed_columns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -364,7 +318,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.allowed_columns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `analysis_method` after provisioning.\n"]
     pub fn analysis_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -372,12 +325,10 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.analysis_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +336,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,12 +343,10 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +354,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +361,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -422,7 +368,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -430,7 +375,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -438,7 +382,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.update_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_reference` after provisioning.\n"]
     pub fn table_reference(&self) -> ListRef<CleanroomsConfiguredTableTableReferenceElRef> {
         ListRef::new(
@@ -446,7 +389,6 @@ impl CleanroomsConfiguredTableRef {
             format!("{}.table_reference", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CleanroomsConfiguredTableTimeoutsElRef {
         CleanroomsConfiguredTableTimeoutsElRef::new(
@@ -455,18 +397,14 @@ impl CleanroomsConfiguredTableRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsConfiguredTableTableReferenceEl {
     database_name: PrimField<String>,
     table_name: PrimField<String>,
 }
-
 impl CleanroomsConfiguredTableTableReferenceEl {}
-
 impl ToListMappable for CleanroomsConfiguredTableTableReferenceEl {
     type O = BlockAssignable<CleanroomsConfiguredTableTableReferenceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -475,14 +413,12 @@ impl ToListMappable for CleanroomsConfiguredTableTableReferenceEl {
         })
     }
 }
-
 pub struct BuildCleanroomsConfiguredTableTableReferenceEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildCleanroomsConfiguredTableTableReferenceEl {
     pub fn build(self) -> CleanroomsConfiguredTableTableReferenceEl {
         CleanroomsConfiguredTableTableReferenceEl {
@@ -491,12 +427,10 @@ impl BuildCleanroomsConfiguredTableTableReferenceEl {
         }
     }
 }
-
 pub struct CleanroomsConfiguredTableTableReferenceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsConfiguredTableTableReferenceElRef {
     fn new(shared: StackShared, base: String) -> CleanroomsConfiguredTableTableReferenceElRef {
         CleanroomsConfiguredTableTableReferenceElRef {
@@ -505,12 +439,10 @@ impl Ref for CleanroomsConfiguredTableTableReferenceElRef {
         }
     }
 }
-
 impl CleanroomsConfiguredTableTableReferenceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -518,13 +450,11 @@ impl CleanroomsConfiguredTableTableReferenceElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsConfiguredTableTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -534,30 +464,25 @@ pub struct CleanroomsConfiguredTableTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl CleanroomsConfiguredTableTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CleanroomsConfiguredTableTimeoutsEl {
     type O = BlockAssignable<CleanroomsConfiguredTableTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -566,9 +491,7 @@ impl ToListMappable for CleanroomsConfiguredTableTimeoutsEl {
         })
     }
 }
-
 pub struct BuildCleanroomsConfiguredTableTimeoutsEl {}
-
 impl BuildCleanroomsConfiguredTableTimeoutsEl {
     pub fn build(self) -> CleanroomsConfiguredTableTimeoutsEl {
         CleanroomsConfiguredTableTimeoutsEl {
@@ -578,12 +501,10 @@ impl BuildCleanroomsConfiguredTableTimeoutsEl {
         }
     }
 }
-
 pub struct CleanroomsConfiguredTableTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsConfiguredTableTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> CleanroomsConfiguredTableTimeoutsElRef {
         CleanroomsConfiguredTableTimeoutsElRef {
@@ -592,28 +513,23 @@ impl Ref for CleanroomsConfiguredTableTimeoutsElRef {
         }
     }
 }
-
 impl CleanroomsConfiguredTableTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CleanroomsConfiguredTableDynamic {
     table_reference: Option<DynamicBlock<CleanroomsConfiguredTableTableReferenceEl>>,

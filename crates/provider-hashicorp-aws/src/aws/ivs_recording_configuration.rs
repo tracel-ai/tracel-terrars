@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IvsRecordingConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct IvsRecordingConfigurationData {
     timeouts: Option<IvsRecordingConfigurationTimeoutsEl>,
     dynamic: IvsRecordingConfigurationDynamic,
 }
-
 struct IvsRecordingConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IvsRecordingConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct IvsRecordingConfiguration(Rc<IvsRecordingConfiguration_>);
-
 impl IvsRecordingConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl IvsRecordingConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl IvsRecordingConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,43 +101,36 @@ impl IvsRecordingConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recording_reconnect_window_seconds`.\n"]
     pub fn set_recording_reconnect_window_seconds(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().recording_reconnect_window_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_configuration`.\n"]
     pub fn set_destination_configuration(
         self,
@@ -165,7 +146,6 @@ impl IvsRecordingConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `thumbnail_configuration`.\n"]
     pub fn set_thumbnail_configuration(
         self,
@@ -181,23 +161,19 @@ impl IvsRecordingConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<IvsRecordingConfigurationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +181,6 @@ impl IvsRecordingConfiguration {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_reconnect_window_seconds` after provisioning.\n"]
     pub fn recording_reconnect_window_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -213,7 +188,6 @@ impl IvsRecordingConfiguration {
             format!("{}.recording_reconnect_window_seconds", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +195,6 @@ impl IvsRecordingConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +202,6 @@ impl IvsRecordingConfiguration {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -237,7 +209,6 @@ impl IvsRecordingConfiguration {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -245,7 +216,6 @@ impl IvsRecordingConfiguration {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_configuration` after provisioning.\n"]
     pub fn destination_configuration(
         &self,
@@ -255,7 +225,6 @@ impl IvsRecordingConfiguration {
             format!("{}.destination_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thumbnail_configuration` after provisioning.\n"]
     pub fn thumbnail_configuration(
         &self,
@@ -265,7 +234,6 @@ impl IvsRecordingConfiguration {
             format!("{}.thumbnail_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvsRecordingConfigurationTimeoutsElRef {
         IvsRecordingConfigurationTimeoutsElRef::new(
@@ -274,7 +242,6 @@ impl IvsRecordingConfiguration {
         )
     }
 }
-
 impl Referable for IvsRecordingConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -284,36 +251,28 @@ impl Referable for IvsRecordingConfiguration {
         )
     }
 }
-
 impl Resource for IvsRecordingConfiguration {}
-
 impl ToListMappable for IvsRecordingConfiguration {
     type O = ListRef<IvsRecordingConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IvsRecordingConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_ivs_recording_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIvsRecordingConfiguration {
     pub tf_id: String,
 }
-
 impl BuildIvsRecordingConfiguration {
     pub fn build(self, stack: &mut Stack) -> IvsRecordingConfiguration {
         let out = IvsRecordingConfiguration(Rc::new(IvsRecordingConfiguration_ {
@@ -340,37 +299,30 @@ impl BuildIvsRecordingConfiguration {
         out
     }
 }
-
 pub struct IvsRecordingConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsRecordingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IvsRecordingConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +330,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_reconnect_window_seconds` after provisioning.\n"]
     pub fn recording_reconnect_window_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -386,7 +337,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.recording_reconnect_window_seconds", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +344,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +351,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -410,7 +358,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -418,7 +365,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_configuration` after provisioning.\n"]
     pub fn destination_configuration(
         &self,
@@ -428,7 +374,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.destination_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thumbnail_configuration` after provisioning.\n"]
     pub fn thumbnail_configuration(
         &self,
@@ -438,7 +383,6 @@ impl IvsRecordingConfigurationRef {
             format!("{}.thumbnail_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IvsRecordingConfigurationTimeoutsElRef {
         IvsRecordingConfigurationTimeoutsElRef::new(
@@ -447,17 +391,13 @@ impl IvsRecordingConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IvsRecordingConfigurationDestinationConfigurationElS3El {
     bucket_name: PrimField<String>,
 }
-
 impl IvsRecordingConfigurationDestinationConfigurationElS3El {}
-
 impl ToListMappable for IvsRecordingConfigurationDestinationConfigurationElS3El {
     type O = BlockAssignable<IvsRecordingConfigurationDestinationConfigurationElS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -466,12 +406,10 @@ impl ToListMappable for IvsRecordingConfigurationDestinationConfigurationElS3El 
         })
     }
 }
-
 pub struct BuildIvsRecordingConfigurationDestinationConfigurationElS3El {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
-
 impl BuildIvsRecordingConfigurationDestinationConfigurationElS3El {
     pub fn build(self) -> IvsRecordingConfigurationDestinationConfigurationElS3El {
         IvsRecordingConfigurationDestinationConfigurationElS3El {
@@ -479,12 +417,10 @@ impl BuildIvsRecordingConfigurationDestinationConfigurationElS3El {
         }
     }
 }
-
 pub struct IvsRecordingConfigurationDestinationConfigurationElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsRecordingConfigurationDestinationConfigurationElS3ElRef {
     fn new(
         shared: StackShared,
@@ -496,30 +432,25 @@ impl Ref for IvsRecordingConfigurationDestinationConfigurationElS3ElRef {
         }
     }
 }
-
 impl IvsRecordingConfigurationDestinationConfigurationElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IvsRecordingConfigurationDestinationConfigurationElDynamic {
     s3: Option<DynamicBlock<IvsRecordingConfigurationDestinationConfigurationElS3El>>,
 }
-
 #[derive(Serialize)]
 pub struct IvsRecordingConfigurationDestinationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3: Option<Vec<IvsRecordingConfigurationDestinationConfigurationElS3El>>,
     dynamic: IvsRecordingConfigurationDestinationConfigurationElDynamic,
 }
-
 impl IvsRecordingConfigurationDestinationConfigurationEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
@@ -537,10 +468,8 @@ impl IvsRecordingConfigurationDestinationConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for IvsRecordingConfigurationDestinationConfigurationEl {
     type O = BlockAssignable<IvsRecordingConfigurationDestinationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -549,9 +478,7 @@ impl ToListMappable for IvsRecordingConfigurationDestinationConfigurationEl {
         })
     }
 }
-
 pub struct BuildIvsRecordingConfigurationDestinationConfigurationEl {}
-
 impl BuildIvsRecordingConfigurationDestinationConfigurationEl {
     pub fn build(self) -> IvsRecordingConfigurationDestinationConfigurationEl {
         IvsRecordingConfigurationDestinationConfigurationEl {
@@ -560,12 +487,10 @@ impl BuildIvsRecordingConfigurationDestinationConfigurationEl {
         }
     }
 }
-
 pub struct IvsRecordingConfigurationDestinationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsRecordingConfigurationDestinationConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -577,18 +502,15 @@ impl Ref for IvsRecordingConfigurationDestinationConfigurationElRef {
         }
     }
 }
-
 impl IvsRecordingConfigurationDestinationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(&self) -> ListRef<IvsRecordingConfigurationDestinationConfigurationElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IvsRecordingConfigurationThumbnailConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -596,24 +518,20 @@ pub struct IvsRecordingConfigurationThumbnailConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_interval_seconds: Option<PrimField<f64>>,
 }
-
 impl IvsRecordingConfigurationThumbnailConfigurationEl {
     #[doc = "Set the field `recording_mode`.\n"]
     pub fn set_recording_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.recording_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_interval_seconds`.\n"]
     pub fn set_target_interval_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.target_interval_seconds = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IvsRecordingConfigurationThumbnailConfigurationEl {
     type O = BlockAssignable<IvsRecordingConfigurationThumbnailConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -622,9 +540,7 @@ impl ToListMappable for IvsRecordingConfigurationThumbnailConfigurationEl {
         })
     }
 }
-
 pub struct BuildIvsRecordingConfigurationThumbnailConfigurationEl {}
-
 impl BuildIvsRecordingConfigurationThumbnailConfigurationEl {
     pub fn build(self) -> IvsRecordingConfigurationThumbnailConfigurationEl {
         IvsRecordingConfigurationThumbnailConfigurationEl {
@@ -633,12 +549,10 @@ impl BuildIvsRecordingConfigurationThumbnailConfigurationEl {
         }
     }
 }
-
 pub struct IvsRecordingConfigurationThumbnailConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsRecordingConfigurationThumbnailConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -650,12 +564,10 @@ impl Ref for IvsRecordingConfigurationThumbnailConfigurationElRef {
         }
     }
 }
-
 impl IvsRecordingConfigurationThumbnailConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `recording_mode` after provisioning.\n"]
     pub fn recording_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -663,7 +575,6 @@ impl IvsRecordingConfigurationThumbnailConfigurationElRef {
             format!("{}.recording_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_interval_seconds` after provisioning.\n"]
     pub fn target_interval_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -672,7 +583,6 @@ impl IvsRecordingConfigurationThumbnailConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IvsRecordingConfigurationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -680,24 +590,20 @@ pub struct IvsRecordingConfigurationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl IvsRecordingConfigurationTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IvsRecordingConfigurationTimeoutsEl {
     type O = BlockAssignable<IvsRecordingConfigurationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -706,9 +612,7 @@ impl ToListMappable for IvsRecordingConfigurationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildIvsRecordingConfigurationTimeoutsEl {}
-
 impl BuildIvsRecordingConfigurationTimeoutsEl {
     pub fn build(self) -> IvsRecordingConfigurationTimeoutsEl {
         IvsRecordingConfigurationTimeoutsEl {
@@ -717,12 +621,10 @@ impl BuildIvsRecordingConfigurationTimeoutsEl {
         }
     }
 }
-
 pub struct IvsRecordingConfigurationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IvsRecordingConfigurationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> IvsRecordingConfigurationTimeoutsElRef {
         IvsRecordingConfigurationTimeoutsElRef {
@@ -731,23 +633,19 @@ impl Ref for IvsRecordingConfigurationTimeoutsElRef {
         }
     }
 }
-
 impl IvsRecordingConfigurationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IvsRecordingConfigurationDynamic {
     destination_configuration:

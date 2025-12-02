@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CustomerprofilesDomainData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct CustomerprofilesDomainData {
     rule_based_matching: Option<Vec<CustomerprofilesDomainRuleBasedMatchingEl>>,
     dynamic: CustomerprofilesDomainDynamic,
 }
-
 struct CustomerprofilesDomain_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CustomerprofilesDomainData>,
 }
-
 #[derive(Clone)]
 pub struct CustomerprofilesDomain(Rc<CustomerprofilesDomain_>);
-
 impl CustomerprofilesDomain {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl CustomerprofilesDomain {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl CustomerprofilesDomain {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,43 +101,36 @@ impl CustomerprofilesDomain {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `dead_letter_queue_url`.\n"]
     pub fn set_dead_letter_queue_url(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().dead_letter_queue_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_encryption_key`.\n"]
     pub fn set_default_encryption_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().default_encryption_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `matching`.\n"]
     pub fn set_matching(
         self,
@@ -165,7 +146,6 @@ impl CustomerprofilesDomain {
         }
         self
     }
-
     #[doc = "Set the field `rule_based_matching`.\n"]
     pub fn set_rule_based_matching(
         self,
@@ -181,12 +161,10 @@ impl CustomerprofilesDomain {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_queue_url` after provisioning.\n"]
     pub fn dead_letter_queue_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -194,7 +172,6 @@ impl CustomerprofilesDomain {
             format!("{}.dead_letter_queue_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_encryption_key` after provisioning.\n"]
     pub fn default_encryption_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +179,6 @@ impl CustomerprofilesDomain {
             format!("{}.default_encryption_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_expiration_days` after provisioning.\n"]
     pub fn default_expiration_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -210,7 +186,6 @@ impl CustomerprofilesDomain {
             format!("{}.default_expiration_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,12 +193,10 @@ impl CustomerprofilesDomain {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +204,6 @@ impl CustomerprofilesDomain {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -239,7 +211,6 @@ impl CustomerprofilesDomain {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -247,7 +218,6 @@ impl CustomerprofilesDomain {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `matching` after provisioning.\n"]
     pub fn matching(&self) -> ListRef<CustomerprofilesDomainMatchingElRef> {
         ListRef::new(
@@ -255,7 +225,6 @@ impl CustomerprofilesDomain {
             format!("{}.matching", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_based_matching` after provisioning.\n"]
     pub fn rule_based_matching(&self) -> ListRef<CustomerprofilesDomainRuleBasedMatchingElRef> {
         ListRef::new(
@@ -264,7 +233,6 @@ impl CustomerprofilesDomain {
         )
     }
 }
-
 impl Referable for CustomerprofilesDomain {
     fn extract_ref(&self) -> String {
         format!(
@@ -274,32 +242,25 @@ impl Referable for CustomerprofilesDomain {
         )
     }
 }
-
 impl Resource for CustomerprofilesDomain {}
-
 impl ToListMappable for CustomerprofilesDomain {
     type O = ListRef<CustomerprofilesDomainRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CustomerprofilesDomain_ {
     fn extract_resource_type(&self) -> String {
         "aws_customerprofiles_domain".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCustomerprofilesDomain {
     pub tf_id: String,
     #[doc = ""]
@@ -307,7 +268,6 @@ pub struct BuildCustomerprofilesDomain {
     #[doc = ""]
     pub domain_name: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomain {
     pub fn build(self, stack: &mut Stack) -> CustomerprofilesDomain {
         let out = CustomerprofilesDomain(Rc::new(CustomerprofilesDomain_ {
@@ -335,32 +295,26 @@ impl BuildCustomerprofilesDomain {
         out
     }
 }
-
 pub struct CustomerprofilesDomainRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CustomerprofilesDomainRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_queue_url` after provisioning.\n"]
     pub fn dead_letter_queue_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -368,7 +322,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.dead_letter_queue_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_encryption_key` after provisioning.\n"]
     pub fn default_encryption_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -376,7 +329,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.default_encryption_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_expiration_days` after provisioning.\n"]
     pub fn default_expiration_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -384,7 +336,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.default_expiration_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,12 +343,10 @@ impl CustomerprofilesDomainRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -405,7 +354,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -413,7 +361,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -421,7 +368,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `matching` after provisioning.\n"]
     pub fn matching(&self) -> ListRef<CustomerprofilesDomainMatchingElRef> {
         ListRef::new(
@@ -429,7 +375,6 @@ impl CustomerprofilesDomainRef {
             format!("{}.matching", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_based_matching` after provisioning.\n"]
     pub fn rule_based_matching(&self) -> ListRef<CustomerprofilesDomainRuleBasedMatchingElRef> {
         ListRef::new(
@@ -438,14 +383,12 @@ impl CustomerprofilesDomainRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
     conflict_resolving_model: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_name: Option<PrimField<String>>,
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
     #[doc = "Set the field `source_name`.\n"]
     pub fn set_source_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -453,10 +396,8 @@ impl CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -465,12 +406,10 @@ impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingElConflictRes
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
     #[doc = ""]
     pub conflict_resolving_model: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
         CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
@@ -479,12 +418,10 @@ impl BuildCustomerprofilesDomainMatchingElAutoMergingElConflictResolutionEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionElRef {
     fn new(
         shared: StackShared,
@@ -496,12 +433,10 @@ impl Ref for CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionElRe
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `conflict_resolving_model` after provisioning.\n"]
     pub fn conflict_resolving_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,23 +444,18 @@ impl CustomerprofilesDomainMatchingElAutoMergingElConflictResolutionElRef {
             format!("{}.conflict_resolving_model", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_name` after provisioning.\n"]
     pub fn source_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.source_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
     matching_attributes_list: ListField<ListField<PrimField<String>>>,
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {}
-
 impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -534,12 +464,10 @@ impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingElConsolidati
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
     #[doc = ""]
     pub matching_attributes_list: ListField<ListField<PrimField<String>>>,
 }
-
 impl BuildCustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
         CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
@@ -547,12 +475,10 @@ impl BuildCustomerprofilesDomainMatchingElAutoMergingElConsolidationEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElAutoMergingElConsolidationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElAutoMergingElConsolidationElRef {
     fn new(
         shared: StackShared,
@@ -564,12 +490,10 @@ impl Ref for CustomerprofilesDomainMatchingElAutoMergingElConsolidationElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingElConsolidationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `matching_attributes_list` after provisioning.\n"]
     pub fn matching_attributes_list(&self) -> ListRef<ListRef<PrimExpr<String>>> {
         ListRef::new(
@@ -578,7 +502,6 @@ impl CustomerprofilesDomainMatchingElAutoMergingElConsolidationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainMatchingElAutoMergingElDynamic {
     conflict_resolution:
@@ -586,7 +509,6 @@ struct CustomerprofilesDomainMatchingElAutoMergingElDynamic {
     consolidation:
         Option<DynamicBlock<CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElAutoMergingEl {
     enabled: PrimField<bool>,
@@ -599,7 +521,6 @@ pub struct CustomerprofilesDomainMatchingElAutoMergingEl {
     consolidation: Option<Vec<CustomerprofilesDomainMatchingElAutoMergingElConsolidationEl>>,
     dynamic: CustomerprofilesDomainMatchingElAutoMergingElDynamic,
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingEl {
     #[doc = "Set the field `min_allowed_confidence_score_for_merging`.\n"]
     pub fn set_min_allowed_confidence_score_for_merging(
@@ -609,7 +530,6 @@ impl CustomerprofilesDomainMatchingElAutoMergingEl {
         self.min_allowed_confidence_score_for_merging = Some(v.into());
         self
     }
-
     #[doc = "Set the field `conflict_resolution`.\n"]
     pub fn set_conflict_resolution(
         mut self,
@@ -625,7 +545,6 @@ impl CustomerprofilesDomainMatchingElAutoMergingEl {
         }
         self
     }
-
     #[doc = "Set the field `consolidation`.\n"]
     pub fn set_consolidation(
         mut self,
@@ -642,10 +561,8 @@ impl CustomerprofilesDomainMatchingElAutoMergingEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElAutoMergingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -654,12 +571,10 @@ impl ToListMappable for CustomerprofilesDomainMatchingElAutoMergingEl {
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElAutoMergingEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildCustomerprofilesDomainMatchingElAutoMergingEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElAutoMergingEl {
         CustomerprofilesDomainMatchingElAutoMergingEl {
@@ -671,12 +586,10 @@ impl BuildCustomerprofilesDomainMatchingElAutoMergingEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElAutoMergingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElAutoMergingElRef {
     fn new(shared: StackShared, base: String) -> CustomerprofilesDomainMatchingElAutoMergingElRef {
         CustomerprofilesDomainMatchingElAutoMergingElRef {
@@ -685,17 +598,14 @@ impl Ref for CustomerprofilesDomainMatchingElAutoMergingElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElAutoMergingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `min_allowed_confidence_score_for_merging` after provisioning.\n"]
     pub fn min_allowed_confidence_score_for_merging(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -703,7 +613,6 @@ impl CustomerprofilesDomainMatchingElAutoMergingElRef {
             format!("{}.min_allowed_confidence_score_for_merging", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `conflict_resolution` after provisioning.\n"]
     pub fn conflict_resolution(
         &self,
@@ -713,7 +622,6 @@ impl CustomerprofilesDomainMatchingElAutoMergingElRef {
             format!("{}.conflict_resolution", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `consolidation` after provisioning.\n"]
     pub fn consolidation(
         &self,
@@ -724,14 +632,12 @@ impl CustomerprofilesDomainMatchingElAutoMergingElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
     s3_bucket_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_key_name: Option<PrimField<String>>,
 }
-
 impl CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
     #[doc = "Set the field `s3_key_name`.\n"]
     pub fn set_s3_key_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -739,10 +645,8 @@ impl CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -751,12 +655,10 @@ impl ToListMappable for CustomerprofilesDomainMatchingElExportingConfigElS3Expor
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
     #[doc = ""]
     pub s3_bucket_name: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
         CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
@@ -765,12 +667,10 @@ impl BuildCustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElExportingConfigElS3ExportingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElExportingConfigElS3ExportingElRef {
     fn new(
         shared: StackShared,
@@ -782,12 +682,10 @@ impl Ref for CustomerprofilesDomainMatchingElExportingConfigElS3ExportingElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElExportingConfigElS3ExportingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -795,26 +693,22 @@ impl CustomerprofilesDomainMatchingElExportingConfigElS3ExportingElRef {
             format!("{}.s3_bucket_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_key_name` after provisioning.\n"]
     pub fn s3_key_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_key_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainMatchingElExportingConfigElDynamic {
     s3_exporting:
         Option<DynamicBlock<CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElExportingConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_exporting: Option<Vec<CustomerprofilesDomainMatchingElExportingConfigElS3ExportingEl>>,
     dynamic: CustomerprofilesDomainMatchingElExportingConfigElDynamic,
 }
-
 impl CustomerprofilesDomainMatchingElExportingConfigEl {
     #[doc = "Set the field `s3_exporting`.\n"]
     pub fn set_s3_exporting(
@@ -832,10 +726,8 @@ impl CustomerprofilesDomainMatchingElExportingConfigEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainMatchingElExportingConfigEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElExportingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -844,9 +736,7 @@ impl ToListMappable for CustomerprofilesDomainMatchingElExportingConfigEl {
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElExportingConfigEl {}
-
 impl BuildCustomerprofilesDomainMatchingElExportingConfigEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElExportingConfigEl {
         CustomerprofilesDomainMatchingElExportingConfigEl {
@@ -855,12 +745,10 @@ impl BuildCustomerprofilesDomainMatchingElExportingConfigEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElExportingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElExportingConfigElRef {
     fn new(
         shared: StackShared,
@@ -872,12 +760,10 @@ impl Ref for CustomerprofilesDomainMatchingElExportingConfigElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElExportingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_exporting` after provisioning.\n"]
     pub fn s3_exporting(
         &self,
@@ -885,18 +771,14 @@ impl CustomerprofilesDomainMatchingElExportingConfigElRef {
         ListRef::new(self.shared().clone(), format!("{}.s3_exporting", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingElJobScheduleEl {
     day_of_the_week: PrimField<String>,
     time: PrimField<String>,
 }
-
 impl CustomerprofilesDomainMatchingElJobScheduleEl {}
-
 impl ToListMappable for CustomerprofilesDomainMatchingElJobScheduleEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingElJobScheduleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -905,14 +787,12 @@ impl ToListMappable for CustomerprofilesDomainMatchingElJobScheduleEl {
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingElJobScheduleEl {
     #[doc = ""]
     pub day_of_the_week: PrimField<String>,
     #[doc = ""]
     pub time: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainMatchingElJobScheduleEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingElJobScheduleEl {
         CustomerprofilesDomainMatchingElJobScheduleEl {
@@ -921,12 +801,10 @@ impl BuildCustomerprofilesDomainMatchingElJobScheduleEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElJobScheduleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElJobScheduleElRef {
     fn new(shared: StackShared, base: String) -> CustomerprofilesDomainMatchingElJobScheduleElRef {
         CustomerprofilesDomainMatchingElJobScheduleElRef {
@@ -935,12 +813,10 @@ impl Ref for CustomerprofilesDomainMatchingElJobScheduleElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElJobScheduleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `day_of_the_week` after provisioning.\n"]
     pub fn day_of_the_week(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -948,20 +824,17 @@ impl CustomerprofilesDomainMatchingElJobScheduleElRef {
             format!("{}.day_of_the_week", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `time` after provisioning.\n"]
     pub fn time(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.time", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainMatchingElDynamic {
     auto_merging: Option<DynamicBlock<CustomerprofilesDomainMatchingElAutoMergingEl>>,
     exporting_config: Option<DynamicBlock<CustomerprofilesDomainMatchingElExportingConfigEl>>,
     job_schedule: Option<DynamicBlock<CustomerprofilesDomainMatchingElJobScheduleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainMatchingEl {
     enabled: PrimField<bool>,
@@ -973,7 +846,6 @@ pub struct CustomerprofilesDomainMatchingEl {
     job_schedule: Option<Vec<CustomerprofilesDomainMatchingElJobScheduleEl>>,
     dynamic: CustomerprofilesDomainMatchingElDynamic,
 }
-
 impl CustomerprofilesDomainMatchingEl {
     #[doc = "Set the field `auto_merging`.\n"]
     pub fn set_auto_merging(
@@ -990,7 +862,6 @@ impl CustomerprofilesDomainMatchingEl {
         }
         self
     }
-
     #[doc = "Set the field `exporting_config`.\n"]
     pub fn set_exporting_config(
         mut self,
@@ -1006,7 +877,6 @@ impl CustomerprofilesDomainMatchingEl {
         }
         self
     }
-
     #[doc = "Set the field `job_schedule`.\n"]
     pub fn set_job_schedule(
         mut self,
@@ -1023,10 +893,8 @@ impl CustomerprofilesDomainMatchingEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainMatchingEl {
     type O = BlockAssignable<CustomerprofilesDomainMatchingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1035,12 +903,10 @@ impl ToListMappable for CustomerprofilesDomainMatchingEl {
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainMatchingEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildCustomerprofilesDomainMatchingEl {
     pub fn build(self) -> CustomerprofilesDomainMatchingEl {
         CustomerprofilesDomainMatchingEl {
@@ -1052,12 +918,10 @@ impl BuildCustomerprofilesDomainMatchingEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainMatchingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainMatchingElRef {
     fn new(shared: StackShared, base: String) -> CustomerprofilesDomainMatchingElRef {
         CustomerprofilesDomainMatchingElRef {
@@ -1066,22 +930,18 @@ impl Ref for CustomerprofilesDomainMatchingElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainMatchingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `auto_merging` after provisioning.\n"]
     pub fn auto_merging(&self) -> ListRef<CustomerprofilesDomainMatchingElAutoMergingElRef> {
         ListRef::new(self.shared().clone(), format!("{}.auto_merging", self.base))
     }
-
     #[doc = "Get a reference to the value of field `exporting_config` after provisioning.\n"]
     pub fn exporting_config(
         &self,
@@ -1091,13 +951,11 @@ impl CustomerprofilesDomainMatchingElRef {
             format!("{}.exporting_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_schedule` after provisioning.\n"]
     pub fn job_schedule(&self) -> ListRef<CustomerprofilesDomainMatchingElJobScheduleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.job_schedule", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1108,30 +966,25 @@ pub struct CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     phone_number: Option<ListField<PrimField<String>>>,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     #[doc = "Set the field `address`.\n"]
     pub fn set_address(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `email_address`.\n"]
     pub fn set_email_address(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.email_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `phone_number`.\n"]
     pub fn set_phone_number(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.phone_number = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     type O = BlockAssignable<CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1140,12 +993,10 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElAttributeTypesS
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     #[doc = ""]
     pub attribute_matching_model: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
         CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
@@ -1156,12 +1007,10 @@ impl BuildCustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRef {
     fn new(
         shared: StackShared,
@@ -1173,17 +1022,14 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRe
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `address` after provisioning.\n"]
     pub fn address(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `attribute_matching_model` after provisioning.\n"]
     pub fn attribute_matching_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1191,7 +1037,6 @@ impl CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRef {
             format!("{}.attribute_matching_model", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `email_address` after provisioning.\n"]
     pub fn email_address(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1199,20 +1044,17 @@ impl CustomerprofilesDomainRuleBasedMatchingElAttributeTypesSelectorElRef {
             format!("{}.email_address", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_number` after provisioning.\n"]
     pub fn phone_number(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.phone_number", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
     conflict_resolving_model: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     source_name: Option<PrimField<String>>,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
     #[doc = "Set the field `source_name`.\n"]
     pub fn set_source_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1220,10 +1062,8 @@ impl CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
     type O = BlockAssignable<CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1232,12 +1072,10 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElConflictResolut
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
     #[doc = ""]
     pub conflict_resolving_model: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
         CustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
@@ -1246,12 +1084,10 @@ impl BuildCustomerprofilesDomainRuleBasedMatchingElConflictResolutionEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElConflictResolutionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElConflictResolutionElRef {
     fn new(
         shared: StackShared,
@@ -1263,12 +1099,10 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElConflictResolutionElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElConflictResolutionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `conflict_resolving_model` after provisioning.\n"]
     pub fn conflict_resolving_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1276,20 +1110,17 @@ impl CustomerprofilesDomainRuleBasedMatchingElConflictResolutionElRef {
             format!("{}.conflict_resolving_model", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_name` after provisioning.\n"]
     pub fn source_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.source_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
     s3_bucket_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_key_name: Option<PrimField<String>>,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
     #[doc = "Set the field `s3_key_name`.\n"]
     pub fn set_s3_key_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1297,11 +1128,9 @@ impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
     type O =
         BlockAssignable<CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1310,12 +1139,10 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElExportingConfig
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
     #[doc = ""]
     pub s3_bucket_name: PrimField<String>,
 }
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
         CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl {
@@ -1324,12 +1151,10 @@ impl BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingE
         }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingElRef {
     fn new(
         shared: StackShared,
@@ -1341,12 +1166,10 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3Exporti
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_name` after provisioning.\n"]
     pub fn s3_bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1354,20 +1177,17 @@ impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingElRef 
             format!("{}.s3_bucket_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_key_name` after provisioning.\n"]
     pub fn s3_key_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_key_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigElDynamic {
     s3_exporting: Option<
         DynamicBlock<CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1375,7 +1195,6 @@ pub struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
         Option<Vec<CustomerprofilesDomainRuleBasedMatchingElExportingConfigElS3ExportingEl>>,
     dynamic: CustomerprofilesDomainRuleBasedMatchingElExportingConfigElDynamic,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
     #[doc = "Set the field `s3_exporting`.\n"]
     pub fn set_s3_exporting(
@@ -1397,10 +1216,8 @@ impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
     type O = BlockAssignable<CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1409,9 +1226,7 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElExportingConfig
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {}
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
         CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
@@ -1420,12 +1235,10 @@ impl BuildCustomerprofilesDomainRuleBasedMatchingElExportingConfigEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElExportingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElExportingConfigElRef {
     fn new(
         shared: StackShared,
@@ -1437,12 +1250,10 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElExportingConfigElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_exporting` after provisioning.\n"]
     pub fn s3_exporting(
         &self,
@@ -1450,17 +1261,13 @@ impl CustomerprofilesDomainRuleBasedMatchingElExportingConfigElRef {
         ListRef::new(self.shared().clone(), format!("{}.s3_exporting", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {
     rule: ListField<PrimField<String>>,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {}
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {
     type O = BlockAssignable<CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1469,23 +1276,19 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {
     #[doc = ""]
     pub rule: ListField<PrimField<String>>,
 }
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl {
         CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl { rule: self.rule }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElMatchingRulesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElMatchingRulesElRef {
     fn new(
         shared: StackShared,
@@ -1497,18 +1300,15 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElMatchingRulesElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElMatchingRulesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.rule", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainRuleBasedMatchingElDynamic {
     attribute_types_selector:
@@ -1519,7 +1319,6 @@ struct CustomerprofilesDomainRuleBasedMatchingElDynamic {
         Option<DynamicBlock<CustomerprofilesDomainRuleBasedMatchingElExportingConfigEl>>,
     matching_rules: Option<DynamicBlock<CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CustomerprofilesDomainRuleBasedMatchingEl {
     enabled: PrimField<bool>,
@@ -1540,26 +1339,22 @@ pub struct CustomerprofilesDomainRuleBasedMatchingEl {
     matching_rules: Option<Vec<CustomerprofilesDomainRuleBasedMatchingElMatchingRulesEl>>,
     dynamic: CustomerprofilesDomainRuleBasedMatchingElDynamic,
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingEl {
     #[doc = "Set the field `max_allowed_rule_level_for_matching`.\n"]
     pub fn set_max_allowed_rule_level_for_matching(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_allowed_rule_level_for_matching = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_allowed_rule_level_for_merging`.\n"]
     pub fn set_max_allowed_rule_level_for_merging(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_allowed_rule_level_for_merging = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `attribute_types_selector`.\n"]
     pub fn set_attribute_types_selector(
         mut self,
@@ -1575,7 +1370,6 @@ impl CustomerprofilesDomainRuleBasedMatchingEl {
         }
         self
     }
-
     #[doc = "Set the field `conflict_resolution`.\n"]
     pub fn set_conflict_resolution(
         mut self,
@@ -1591,7 +1385,6 @@ impl CustomerprofilesDomainRuleBasedMatchingEl {
         }
         self
     }
-
     #[doc = "Set the field `exporting_config`.\n"]
     pub fn set_exporting_config(
         mut self,
@@ -1607,7 +1400,6 @@ impl CustomerprofilesDomainRuleBasedMatchingEl {
         }
         self
     }
-
     #[doc = "Set the field `matching_rules`.\n"]
     pub fn set_matching_rules(
         mut self,
@@ -1624,10 +1416,8 @@ impl CustomerprofilesDomainRuleBasedMatchingEl {
         self
     }
 }
-
 impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingEl {
     type O = BlockAssignable<CustomerprofilesDomainRuleBasedMatchingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1636,12 +1426,10 @@ impl ToListMappable for CustomerprofilesDomainRuleBasedMatchingEl {
         })
     }
 }
-
 pub struct BuildCustomerprofilesDomainRuleBasedMatchingEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildCustomerprofilesDomainRuleBasedMatchingEl {
     pub fn build(self) -> CustomerprofilesDomainRuleBasedMatchingEl {
         CustomerprofilesDomainRuleBasedMatchingEl {
@@ -1657,12 +1445,10 @@ impl BuildCustomerprofilesDomainRuleBasedMatchingEl {
         }
     }
 }
-
 pub struct CustomerprofilesDomainRuleBasedMatchingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CustomerprofilesDomainRuleBasedMatchingElRef {
     fn new(shared: StackShared, base: String) -> CustomerprofilesDomainRuleBasedMatchingElRef {
         CustomerprofilesDomainRuleBasedMatchingElRef {
@@ -1671,17 +1457,14 @@ impl Ref for CustomerprofilesDomainRuleBasedMatchingElRef {
         }
     }
 }
-
 impl CustomerprofilesDomainRuleBasedMatchingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `max_allowed_rule_level_for_matching` after provisioning.\n"]
     pub fn max_allowed_rule_level_for_matching(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1689,7 +1472,6 @@ impl CustomerprofilesDomainRuleBasedMatchingElRef {
             format!("{}.max_allowed_rule_level_for_matching", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_allowed_rule_level_for_merging` after provisioning.\n"]
     pub fn max_allowed_rule_level_for_merging(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1697,12 +1479,10 @@ impl CustomerprofilesDomainRuleBasedMatchingElRef {
             format!("{}.max_allowed_rule_level_for_merging", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
-
     #[doc = "Get a reference to the value of field `attribute_types_selector` after provisioning.\n"]
     pub fn attribute_types_selector(
         &self,
@@ -1712,7 +1492,6 @@ impl CustomerprofilesDomainRuleBasedMatchingElRef {
             format!("{}.attribute_types_selector", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `conflict_resolution` after provisioning.\n"]
     pub fn conflict_resolution(
         &self,
@@ -1722,7 +1501,6 @@ impl CustomerprofilesDomainRuleBasedMatchingElRef {
             format!("{}.conflict_resolution", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exporting_config` after provisioning.\n"]
     pub fn exporting_config(
         &self,
@@ -1733,7 +1511,6 @@ impl CustomerprofilesDomainRuleBasedMatchingElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CustomerprofilesDomainDynamic {
     matching: Option<DynamicBlock<CustomerprofilesDomainMatchingEl>>,

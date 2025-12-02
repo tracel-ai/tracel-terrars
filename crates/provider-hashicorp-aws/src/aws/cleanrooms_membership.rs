@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CleanroomsMembershipData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct CleanroomsMembershipData {
     payment_configuration: Option<Vec<CleanroomsMembershipPaymentConfigurationEl>>,
     dynamic: CleanroomsMembershipDynamic,
 }
-
 struct CleanroomsMembership_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CleanroomsMembershipData>,
 }
-
 #[derive(Clone)]
 pub struct CleanroomsMembership(Rc<CleanroomsMembership_>);
-
 impl CleanroomsMembership {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl CleanroomsMembership {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl CleanroomsMembership {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,19 +93,16 @@ impl CleanroomsMembership {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_result_configuration`.\n"]
     pub fn set_default_result_configuration(
         self,
@@ -137,7 +122,6 @@ impl CleanroomsMembership {
         }
         self
     }
-
     #[doc = "Set the field `payment_configuration`.\n"]
     pub fn set_payment_configuration(
         self,
@@ -153,12 +137,10 @@ impl CleanroomsMembership {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `collaboration_arn` after provisioning.\n"]
     pub fn collaboration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +148,6 @@ impl CleanroomsMembership {
             format!("{}.collaboration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_creator_account_id` after provisioning.\n"]
     pub fn collaboration_creator_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +155,6 @@ impl CleanroomsMembership {
             format!("{}.collaboration_creator_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_creator_display_name` after provisioning.\n"]
     pub fn collaboration_creator_display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +162,6 @@ impl CleanroomsMembership {
             format!("{}.collaboration_creator_display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_id` after provisioning.\n"]
     pub fn collaboration_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +169,6 @@ impl CleanroomsMembership {
             format!("{}.collaboration_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_name` after provisioning.\n"]
     pub fn collaboration_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +176,6 @@ impl CleanroomsMembership {
             format!("{}.collaboration_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,12 +183,10 @@ impl CleanroomsMembership {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `member_abilities` after provisioning.\n"]
     pub fn member_abilities(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -219,7 +194,6 @@ impl CleanroomsMembership {
             format!("{}.member_abilities", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +201,6 @@ impl CleanroomsMembership {
             format!("{}.query_log_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +208,6 @@ impl CleanroomsMembership {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,7 +215,6 @@ impl CleanroomsMembership {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -251,7 +222,6 @@ impl CleanroomsMembership {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -259,7 +229,6 @@ impl CleanroomsMembership {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -267,7 +236,6 @@ impl CleanroomsMembership {
             format!("{}.update_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_result_configuration` after provisioning.\n"]
     pub fn default_result_configuration(
         &self,
@@ -277,7 +245,6 @@ impl CleanroomsMembership {
             format!("{}.default_result_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `payment_configuration` after provisioning.\n"]
     pub fn payment_configuration(&self) -> ListRef<CleanroomsMembershipPaymentConfigurationElRef> {
         ListRef::new(
@@ -286,7 +253,6 @@ impl CleanroomsMembership {
         )
     }
 }
-
 impl Referable for CleanroomsMembership {
     fn extract_ref(&self) -> String {
         format!(
@@ -296,32 +262,25 @@ impl Referable for CleanroomsMembership {
         )
     }
 }
-
 impl Resource for CleanroomsMembership {}
-
 impl ToListMappable for CleanroomsMembership {
     type O = ListRef<CleanroomsMembershipRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CleanroomsMembership_ {
     fn extract_resource_type(&self) -> String {
         "aws_cleanrooms_membership".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCleanroomsMembership {
     pub tf_id: String,
     #[doc = ""]
@@ -329,7 +288,6 @@ pub struct BuildCleanroomsMembership {
     #[doc = ""]
     pub query_log_status: PrimField<String>,
 }
-
 impl BuildCleanroomsMembership {
     pub fn build(self, stack: &mut Stack) -> CleanroomsMembership {
         let out = CleanroomsMembership(Rc::new(CleanroomsMembership_ {
@@ -353,32 +311,26 @@ impl BuildCleanroomsMembership {
         out
     }
 }
-
 pub struct CleanroomsMembershipRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CleanroomsMembershipRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `collaboration_arn` after provisioning.\n"]
     pub fn collaboration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -386,7 +338,6 @@ impl CleanroomsMembershipRef {
             format!("{}.collaboration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_creator_account_id` after provisioning.\n"]
     pub fn collaboration_creator_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +345,6 @@ impl CleanroomsMembershipRef {
             format!("{}.collaboration_creator_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_creator_display_name` after provisioning.\n"]
     pub fn collaboration_creator_display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +352,6 @@ impl CleanroomsMembershipRef {
             format!("{}.collaboration_creator_display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_id` after provisioning.\n"]
     pub fn collaboration_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +359,6 @@ impl CleanroomsMembershipRef {
             format!("{}.collaboration_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `collaboration_name` after provisioning.\n"]
     pub fn collaboration_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -418,7 +366,6 @@ impl CleanroomsMembershipRef {
             format!("{}.collaboration_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -426,12 +373,10 @@ impl CleanroomsMembershipRef {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `member_abilities` after provisioning.\n"]
     pub fn member_abilities(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -439,7 +384,6 @@ impl CleanroomsMembershipRef {
             format!("{}.member_abilities", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `query_log_status` after provisioning.\n"]
     pub fn query_log_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -447,7 +391,6 @@ impl CleanroomsMembershipRef {
             format!("{}.query_log_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -455,7 +398,6 @@ impl CleanroomsMembershipRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +405,6 @@ impl CleanroomsMembershipRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -471,7 +412,6 @@ impl CleanroomsMembershipRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -479,7 +419,6 @@ impl CleanroomsMembershipRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -487,7 +426,6 @@ impl CleanroomsMembershipRef {
             format!("{}.update_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_result_configuration` after provisioning.\n"]
     pub fn default_result_configuration(
         &self,
@@ -497,7 +435,6 @@ impl CleanroomsMembershipRef {
             format!("{}.default_result_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `payment_configuration` after provisioning.\n"]
     pub fn payment_configuration(&self) -> ListRef<CleanroomsMembershipPaymentConfigurationElRef> {
         ListRef::new(
@@ -506,7 +443,6 @@ impl CleanroomsMembershipRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
     bucket: PrimField<String>,
@@ -514,7 +450,6 @@ pub struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl
     key_prefix: Option<PrimField<String>>,
     result_format: PrimField<String>,
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
     #[doc = "Set the field `key_prefix`.\n"]
     pub fn set_key_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -522,11 +457,9 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
         self
     }
 }
-
 impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
     type O =
         BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -535,14 +468,12 @@ impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationElOutputCo
         })
     }
 }
-
 pub struct BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
     #[doc = ""]
     pub bucket: PrimField<String>,
     #[doc = ""]
     pub result_format: PrimField<String>,
 }
-
 impl BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El {
     pub fn build(
         self,
@@ -554,12 +485,10 @@ impl BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS
         }
     }
 }
-
 pub struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRef {
     fn new(
         shared: StackShared,
@@ -571,22 +500,18 @@ impl Ref for CleanroomsMembershipDefaultResultConfigurationElOutputConfiguration
         }
     }
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key_prefix` after provisioning.\n"]
     pub fn key_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key_prefix", self.base))
     }
-
     #[doc = "Get a reference to the value of field `result_format` after provisioning.\n"]
     pub fn result_format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -595,21 +520,18 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3ElRe
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElDynamic {
     s3: Option<
         DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3: Option<Vec<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElS3El>>,
     dynamic: CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElDynamic,
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
@@ -631,10 +553,8 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
     type O = BlockAssignable<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -643,9 +563,7 @@ impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationElOutputCo
         })
     }
 }
-
 pub struct BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {}
-
 impl BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
     pub fn build(self) -> CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
         CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl {
@@ -654,12 +572,10 @@ impl BuildCleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl 
         }
     }
 }
-
 pub struct CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -671,12 +587,10 @@ impl Ref for CleanroomsMembershipDefaultResultConfigurationElOutputConfiguration
         }
     }
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(
         &self,
@@ -684,13 +598,11 @@ impl CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDefaultResultConfigurationElDynamic {
     output_configuration:
         Option<DynamicBlock<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsMembershipDefaultResultConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -700,14 +612,12 @@ pub struct CleanroomsMembershipDefaultResultConfigurationEl {
         Option<Vec<CleanroomsMembershipDefaultResultConfigurationElOutputConfigurationEl>>,
     dynamic: CleanroomsMembershipDefaultResultConfigurationElDynamic,
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationEl {
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `output_configuration`.\n"]
     pub fn set_output_configuration(
         mut self,
@@ -726,10 +636,8 @@ impl CleanroomsMembershipDefaultResultConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationEl {
     type O = BlockAssignable<CleanroomsMembershipDefaultResultConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -738,9 +646,7 @@ impl ToListMappable for CleanroomsMembershipDefaultResultConfigurationEl {
         })
     }
 }
-
 pub struct BuildCleanroomsMembershipDefaultResultConfigurationEl {}
-
 impl BuildCleanroomsMembershipDefaultResultConfigurationEl {
     pub fn build(self) -> CleanroomsMembershipDefaultResultConfigurationEl {
         CleanroomsMembershipDefaultResultConfigurationEl {
@@ -750,12 +656,10 @@ impl BuildCleanroomsMembershipDefaultResultConfigurationEl {
         }
     }
 }
-
 pub struct CleanroomsMembershipDefaultResultConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipDefaultResultConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -767,17 +671,14 @@ impl Ref for CleanroomsMembershipDefaultResultConfigurationElRef {
         }
     }
 }
-
 impl CleanroomsMembershipDefaultResultConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `output_configuration` after provisioning.\n"]
     pub fn output_configuration(
         &self,
@@ -788,17 +689,13 @@ impl CleanroomsMembershipDefaultResultConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     is_responsible: PrimField<bool>,
 }
-
 impl CleanroomsMembershipPaymentConfigurationElQueryComputeEl {}
-
 impl ToListMappable for CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     type O = BlockAssignable<CleanroomsMembershipPaymentConfigurationElQueryComputeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -807,12 +704,10 @@ impl ToListMappable for CleanroomsMembershipPaymentConfigurationElQueryComputeEl
         })
     }
 }
-
 pub struct BuildCleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     #[doc = ""]
     pub is_responsible: PrimField<bool>,
 }
-
 impl BuildCleanroomsMembershipPaymentConfigurationElQueryComputeEl {
     pub fn build(self) -> CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
         CleanroomsMembershipPaymentConfigurationElQueryComputeEl {
@@ -820,12 +715,10 @@ impl BuildCleanroomsMembershipPaymentConfigurationElQueryComputeEl {
         }
     }
 }
-
 pub struct CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
     fn new(
         shared: StackShared,
@@ -837,12 +730,10 @@ impl Ref for CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
         }
     }
 }
-
 impl CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_responsible` after provisioning.\n"]
     pub fn is_responsible(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -851,19 +742,16 @@ impl CleanroomsMembershipPaymentConfigurationElQueryComputeElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipPaymentConfigurationElDynamic {
     query_compute: Option<DynamicBlock<CleanroomsMembershipPaymentConfigurationElQueryComputeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CleanroomsMembershipPaymentConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     query_compute: Option<Vec<CleanroomsMembershipPaymentConfigurationElQueryComputeEl>>,
     dynamic: CleanroomsMembershipPaymentConfigurationElDynamic,
 }
-
 impl CleanroomsMembershipPaymentConfigurationEl {
     #[doc = "Set the field `query_compute`.\n"]
     pub fn set_query_compute(
@@ -881,10 +769,8 @@ impl CleanroomsMembershipPaymentConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CleanroomsMembershipPaymentConfigurationEl {
     type O = BlockAssignable<CleanroomsMembershipPaymentConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -893,9 +779,7 @@ impl ToListMappable for CleanroomsMembershipPaymentConfigurationEl {
         })
     }
 }
-
 pub struct BuildCleanroomsMembershipPaymentConfigurationEl {}
-
 impl BuildCleanroomsMembershipPaymentConfigurationEl {
     pub fn build(self) -> CleanroomsMembershipPaymentConfigurationEl {
         CleanroomsMembershipPaymentConfigurationEl {
@@ -904,12 +788,10 @@ impl BuildCleanroomsMembershipPaymentConfigurationEl {
         }
     }
 }
-
 pub struct CleanroomsMembershipPaymentConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CleanroomsMembershipPaymentConfigurationElRef {
     fn new(shared: StackShared, base: String) -> CleanroomsMembershipPaymentConfigurationElRef {
         CleanroomsMembershipPaymentConfigurationElRef {
@@ -918,12 +800,10 @@ impl Ref for CleanroomsMembershipPaymentConfigurationElRef {
         }
     }
 }
-
 impl CleanroomsMembershipPaymentConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `query_compute` after provisioning.\n"]
     pub fn query_compute(
         &self,
@@ -934,7 +814,6 @@ impl CleanroomsMembershipPaymentConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CleanroomsMembershipDynamic {
     default_result_configuration:

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GrafanaWorkspaceServiceAccountTokenData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct GrafanaWorkspaceServiceAccountTokenData {
     service_account_id: PrimField<String>,
     workspace_id: PrimField<String>,
 }
-
 struct GrafanaWorkspaceServiceAccountToken_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GrafanaWorkspaceServiceAccountTokenData>,
 }
-
 #[derive(Clone)]
 pub struct GrafanaWorkspaceServiceAccountToken(Rc<GrafanaWorkspaceServiceAccountToken_>);
-
 impl GrafanaWorkspaceServiceAccountToken {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl GrafanaWorkspaceServiceAccountToken {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,13 +88,11 @@ impl GrafanaWorkspaceServiceAccountToken {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -114,7 +100,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expires_at` after provisioning.\n"]
     pub fn expires_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -122,17 +107,14 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.expires_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -140,7 +122,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -148,7 +129,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `seconds_to_live` after provisioning.\n"]
     pub fn seconds_to_live(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -156,7 +136,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.seconds_to_live", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account_id` after provisioning.\n"]
     pub fn service_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -164,7 +143,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.service_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account_token_id` after provisioning.\n"]
     pub fn service_account_token_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +150,6 @@ impl GrafanaWorkspaceServiceAccountToken {
             format!("{}.service_account_token_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workspace_id` after provisioning.\n"]
     pub fn workspace_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +158,6 @@ impl GrafanaWorkspaceServiceAccountToken {
         )
     }
 }
-
 impl Referable for GrafanaWorkspaceServiceAccountToken {
     fn extract_ref(&self) -> String {
         format!(
@@ -191,32 +167,25 @@ impl Referable for GrafanaWorkspaceServiceAccountToken {
         )
     }
 }
-
 impl Resource for GrafanaWorkspaceServiceAccountToken {}
-
 impl ToListMappable for GrafanaWorkspaceServiceAccountToken {
     type O = ListRef<GrafanaWorkspaceServiceAccountTokenRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GrafanaWorkspaceServiceAccountToken_ {
     fn extract_resource_type(&self) -> String {
         "aws_grafana_workspace_service_account_token".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGrafanaWorkspaceServiceAccountToken {
     pub tf_id: String,
     #[doc = ""]
@@ -228,7 +197,6 @@ pub struct BuildGrafanaWorkspaceServiceAccountToken {
     #[doc = ""]
     pub workspace_id: PrimField<String>,
 }
-
 impl BuildGrafanaWorkspaceServiceAccountToken {
     pub fn build(self, stack: &mut Stack) -> GrafanaWorkspaceServiceAccountToken {
         let out =
@@ -251,27 +219,22 @@ impl BuildGrafanaWorkspaceServiceAccountToken {
         out
     }
 }
-
 pub struct GrafanaWorkspaceServiceAccountTokenRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GrafanaWorkspaceServiceAccountTokenRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GrafanaWorkspaceServiceAccountTokenRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +242,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expires_at` after provisioning.\n"]
     pub fn expires_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -287,17 +249,14 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.expires_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +264,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +271,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `seconds_to_live` after provisioning.\n"]
     pub fn seconds_to_live(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -321,7 +278,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.seconds_to_live", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account_id` after provisioning.\n"]
     pub fn service_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +285,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.service_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account_token_id` after provisioning.\n"]
     pub fn service_account_token_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +292,6 @@ impl GrafanaWorkspaceServiceAccountTokenRef {
             format!("{}.service_account_token_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workspace_id` after provisioning.\n"]
     pub fn workspace_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct XrayGroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct XrayGroupData {
     insights_configuration: Option<Vec<XrayGroupInsightsConfigurationEl>>,
     dynamic: XrayGroupDynamic,
 }
-
 struct XrayGroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<XrayGroupData>,
 }
-
 #[derive(Clone)]
 pub struct XrayGroup(Rc<XrayGroup_>);
-
 impl XrayGroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl XrayGroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl XrayGroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,31 +95,26 @@ impl XrayGroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `insights_configuration`.\n"]
     pub fn set_insights_configuration(
         self,
@@ -147,12 +130,10 @@ impl XrayGroup {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `filter_expression` after provisioning.\n"]
     pub fn filter_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +141,6 @@ impl XrayGroup {
             format!("{}.filter_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,12 +148,10 @@ impl XrayGroup {
             format!("{}.group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +159,6 @@ impl XrayGroup {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -189,7 +166,6 @@ impl XrayGroup {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -197,7 +173,6 @@ impl XrayGroup {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `insights_configuration` after provisioning.\n"]
     pub fn insights_configuration(&self) -> ListRef<XrayGroupInsightsConfigurationElRef> {
         ListRef::new(
@@ -206,7 +181,6 @@ impl XrayGroup {
         )
     }
 }
-
 impl Referable for XrayGroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -216,32 +190,25 @@ impl Referable for XrayGroup {
         )
     }
 }
-
 impl Resource for XrayGroup {}
-
 impl ToListMappable for XrayGroup {
     type O = ListRef<XrayGroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for XrayGroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_xray_group".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildXrayGroup {
     pub tf_id: String,
     #[doc = ""]
@@ -249,7 +216,6 @@ pub struct BuildXrayGroup {
     #[doc = ""]
     pub group_name: PrimField<String>,
 }
-
 impl BuildXrayGroup {
     pub fn build(self, stack: &mut Stack) -> XrayGroup {
         let out = XrayGroup(Rc::new(XrayGroup_ {
@@ -274,32 +240,26 @@ impl BuildXrayGroup {
         out
     }
 }
-
 pub struct XrayGroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for XrayGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl XrayGroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `filter_expression` after provisioning.\n"]
     pub fn filter_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +267,6 @@ impl XrayGroupRef {
             format!("{}.filter_expression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,12 +274,10 @@ impl XrayGroupRef {
             format!("{}.group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -328,7 +285,6 @@ impl XrayGroupRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -336,7 +292,6 @@ impl XrayGroupRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -344,7 +299,6 @@ impl XrayGroupRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `insights_configuration` after provisioning.\n"]
     pub fn insights_configuration(&self) -> ListRef<XrayGroupInsightsConfigurationElRef> {
         ListRef::new(
@@ -353,14 +307,12 @@ impl XrayGroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct XrayGroupInsightsConfigurationEl {
     insights_enabled: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     notifications_enabled: Option<PrimField<bool>>,
 }
-
 impl XrayGroupInsightsConfigurationEl {
     #[doc = "Set the field `notifications_enabled`.\n"]
     pub fn set_notifications_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -368,10 +320,8 @@ impl XrayGroupInsightsConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for XrayGroupInsightsConfigurationEl {
     type O = BlockAssignable<XrayGroupInsightsConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -380,12 +330,10 @@ impl ToListMappable for XrayGroupInsightsConfigurationEl {
         })
     }
 }
-
 pub struct BuildXrayGroupInsightsConfigurationEl {
     #[doc = ""]
     pub insights_enabled: PrimField<bool>,
 }
-
 impl BuildXrayGroupInsightsConfigurationEl {
     pub fn build(self) -> XrayGroupInsightsConfigurationEl {
         XrayGroupInsightsConfigurationEl {
@@ -394,12 +342,10 @@ impl BuildXrayGroupInsightsConfigurationEl {
         }
     }
 }
-
 pub struct XrayGroupInsightsConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for XrayGroupInsightsConfigurationElRef {
     fn new(shared: StackShared, base: String) -> XrayGroupInsightsConfigurationElRef {
         XrayGroupInsightsConfigurationElRef {
@@ -408,12 +354,10 @@ impl Ref for XrayGroupInsightsConfigurationElRef {
         }
     }
 }
-
 impl XrayGroupInsightsConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `insights_enabled` after provisioning.\n"]
     pub fn insights_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -421,7 +365,6 @@ impl XrayGroupInsightsConfigurationElRef {
             format!("{}.insights_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `notifications_enabled` after provisioning.\n"]
     pub fn notifications_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -430,7 +373,6 @@ impl XrayGroupInsightsConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct XrayGroupDynamic {
     insights_configuration: Option<DynamicBlock<XrayGroupInsightsConfigurationEl>>,

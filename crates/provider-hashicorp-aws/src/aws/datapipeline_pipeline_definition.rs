@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DatapipelinePipelineDefinitionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct DatapipelinePipelineDefinitionData {
     pipeline_object: Option<Vec<DatapipelinePipelineDefinitionPipelineObjectEl>>,
     dynamic: DatapipelinePipelineDefinitionDynamic,
 }
-
 struct DatapipelinePipelineDefinition_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DatapipelinePipelineDefinitionData>,
 }
-
 #[derive(Clone)]
 pub struct DatapipelinePipelineDefinition(Rc<DatapipelinePipelineDefinition_>);
-
 impl DatapipelinePipelineDefinition {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl DatapipelinePipelineDefinition {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl DatapipelinePipelineDefinition {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,19 +94,16 @@ impl DatapipelinePipelineDefinition {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter_object`.\n"]
     pub fn set_parameter_object(
         self,
@@ -134,7 +119,6 @@ impl DatapipelinePipelineDefinition {
         }
         self
     }
-
     #[doc = "Set the field `parameter_value`.\n"]
     pub fn set_parameter_value(
         self,
@@ -150,7 +134,6 @@ impl DatapipelinePipelineDefinition {
         }
         self
     }
-
     #[doc = "Set the field `pipeline_object`.\n"]
     pub fn set_pipeline_object(
         self,
@@ -166,12 +149,10 @@ impl DatapipelinePipelineDefinition {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pipeline_id` after provisioning.\n"]
     pub fn pipeline_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +160,6 @@ impl DatapipelinePipelineDefinition {
             format!("{}.pipeline_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +168,6 @@ impl DatapipelinePipelineDefinition {
         )
     }
 }
-
 impl Referable for DatapipelinePipelineDefinition {
     fn extract_ref(&self) -> String {
         format!(
@@ -198,38 +177,30 @@ impl Referable for DatapipelinePipelineDefinition {
         )
     }
 }
-
 impl Resource for DatapipelinePipelineDefinition {}
-
 impl ToListMappable for DatapipelinePipelineDefinition {
     type O = ListRef<DatapipelinePipelineDefinitionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DatapipelinePipelineDefinition_ {
     fn extract_resource_type(&self) -> String {
         "aws_datapipeline_pipeline_definition".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinition {
     pub tf_id: String,
     #[doc = ""]
     pub pipeline_id: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinition {
     pub fn build(self, stack: &mut Stack) -> DatapipelinePipelineDefinition {
         let out = DatapipelinePipelineDefinition(Rc::new(DatapipelinePipelineDefinition_ {
@@ -253,32 +224,26 @@ impl BuildDatapipelinePipelineDefinition {
         out
     }
 }
-
 pub struct DatapipelinePipelineDefinitionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DatapipelinePipelineDefinitionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pipeline_id` after provisioning.\n"]
     pub fn pipeline_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,7 +251,6 @@ impl DatapipelinePipelineDefinitionRef {
             format!("{}.pipeline_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,18 +259,14 @@ impl DatapipelinePipelineDefinitionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatapipelinePipelineDefinitionParameterObjectElAttributeEl {
     key: PrimField<String>,
     string_value: PrimField<String>,
 }
-
 impl DatapipelinePipelineDefinitionParameterObjectElAttributeEl {}
-
 impl ToListMappable for DatapipelinePipelineDefinitionParameterObjectElAttributeEl {
     type O = BlockAssignable<DatapipelinePipelineDefinitionParameterObjectElAttributeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -315,14 +275,12 @@ impl ToListMappable for DatapipelinePipelineDefinitionParameterObjectElAttribute
         })
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinitionParameterObjectElAttributeEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub string_value: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinitionParameterObjectElAttributeEl {
     pub fn build(self) -> DatapipelinePipelineDefinitionParameterObjectElAttributeEl {
         DatapipelinePipelineDefinitionParameterObjectElAttributeEl {
@@ -331,12 +289,10 @@ impl BuildDatapipelinePipelineDefinitionParameterObjectElAttributeEl {
         }
     }
 }
-
 pub struct DatapipelinePipelineDefinitionParameterObjectElAttributeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionParameterObjectElAttributeElRef {
     fn new(
         shared: StackShared,
@@ -348,28 +304,23 @@ impl Ref for DatapipelinePipelineDefinitionParameterObjectElAttributeElRef {
         }
     }
 }
-
 impl DatapipelinePipelineDefinitionParameterObjectElAttributeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
     pub fn string_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatapipelinePipelineDefinitionParameterObjectElDynamic {
     attribute: Option<DynamicBlock<DatapipelinePipelineDefinitionParameterObjectElAttributeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatapipelinePipelineDefinitionParameterObjectEl {
     id: PrimField<String>,
@@ -377,7 +328,6 @@ pub struct DatapipelinePipelineDefinitionParameterObjectEl {
     attribute: Option<Vec<DatapipelinePipelineDefinitionParameterObjectElAttributeEl>>,
     dynamic: DatapipelinePipelineDefinitionParameterObjectElDynamic,
 }
-
 impl DatapipelinePipelineDefinitionParameterObjectEl {
     #[doc = "Set the field `attribute`.\n"]
     pub fn set_attribute(
@@ -395,10 +345,8 @@ impl DatapipelinePipelineDefinitionParameterObjectEl {
         self
     }
 }
-
 impl ToListMappable for DatapipelinePipelineDefinitionParameterObjectEl {
     type O = BlockAssignable<DatapipelinePipelineDefinitionParameterObjectEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -407,12 +355,10 @@ impl ToListMappable for DatapipelinePipelineDefinitionParameterObjectEl {
         })
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinitionParameterObjectEl {
     #[doc = ""]
     pub id: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinitionParameterObjectEl {
     pub fn build(self) -> DatapipelinePipelineDefinitionParameterObjectEl {
         DatapipelinePipelineDefinitionParameterObjectEl {
@@ -422,12 +368,10 @@ impl BuildDatapipelinePipelineDefinitionParameterObjectEl {
         }
     }
 }
-
 pub struct DatapipelinePipelineDefinitionParameterObjectElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionParameterObjectElRef {
     fn new(
         shared: StackShared,
@@ -439,29 +383,23 @@ impl Ref for DatapipelinePipelineDefinitionParameterObjectElRef {
         }
     }
 }
-
 impl DatapipelinePipelineDefinitionParameterObjectElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DatapipelinePipelineDefinitionParameterValueEl {
     id: PrimField<String>,
     string_value: PrimField<String>,
 }
-
 impl DatapipelinePipelineDefinitionParameterValueEl {}
-
 impl ToListMappable for DatapipelinePipelineDefinitionParameterValueEl {
     type O = BlockAssignable<DatapipelinePipelineDefinitionParameterValueEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -470,14 +408,12 @@ impl ToListMappable for DatapipelinePipelineDefinitionParameterValueEl {
         })
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinitionParameterValueEl {
     #[doc = ""]
     pub id: PrimField<String>,
     #[doc = ""]
     pub string_value: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinitionParameterValueEl {
     pub fn build(self) -> DatapipelinePipelineDefinitionParameterValueEl {
         DatapipelinePipelineDefinitionParameterValueEl {
@@ -486,12 +422,10 @@ impl BuildDatapipelinePipelineDefinitionParameterValueEl {
         }
     }
 }
-
 pub struct DatapipelinePipelineDefinitionParameterValueElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionParameterValueElRef {
     fn new(shared: StackShared, base: String) -> DatapipelinePipelineDefinitionParameterValueElRef {
         DatapipelinePipelineDefinitionParameterValueElRef {
@@ -500,23 +434,19 @@ impl Ref for DatapipelinePipelineDefinitionParameterValueElRef {
         }
     }
 }
-
 impl DatapipelinePipelineDefinitionParameterValueElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
     pub fn string_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     key: PrimField<String>,
@@ -525,24 +455,20 @@ pub struct DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     string_value: Option<PrimField<String>>,
 }
-
 impl DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     #[doc = "Set the field `ref_value`.\n"]
     pub fn set_ref_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ref_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `string_value`.\n"]
     pub fn set_string_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.string_value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     type O = BlockAssignable<DatapipelinePipelineDefinitionPipelineObjectElFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -551,12 +477,10 @@ impl ToListMappable for DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
         })
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     #[doc = ""]
     pub key: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinitionPipelineObjectElFieldEl {
     pub fn build(self) -> DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
         DatapipelinePipelineDefinitionPipelineObjectElFieldEl {
@@ -566,12 +490,10 @@ impl BuildDatapipelinePipelineDefinitionPipelineObjectElFieldEl {
         }
     }
 }
-
 pub struct DatapipelinePipelineDefinitionPipelineObjectElFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionPipelineObjectElFieldElRef {
     fn new(
         shared: StackShared,
@@ -583,33 +505,27 @@ impl Ref for DatapipelinePipelineDefinitionPipelineObjectElFieldElRef {
         }
     }
 }
-
 impl DatapipelinePipelineDefinitionPipelineObjectElFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `ref_value` after provisioning.\n"]
     pub fn ref_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.ref_value", self.base))
     }
-
     #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
     pub fn string_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatapipelinePipelineDefinitionPipelineObjectElDynamic {
     field: Option<DynamicBlock<DatapipelinePipelineDefinitionPipelineObjectElFieldEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatapipelinePipelineDefinitionPipelineObjectEl {
     id: PrimField<String>,
@@ -618,7 +534,6 @@ pub struct DatapipelinePipelineDefinitionPipelineObjectEl {
     field: Option<Vec<DatapipelinePipelineDefinitionPipelineObjectElFieldEl>>,
     dynamic: DatapipelinePipelineDefinitionPipelineObjectElDynamic,
 }
-
 impl DatapipelinePipelineDefinitionPipelineObjectEl {
     #[doc = "Set the field `field`.\n"]
     pub fn set_field(
@@ -636,10 +551,8 @@ impl DatapipelinePipelineDefinitionPipelineObjectEl {
         self
     }
 }
-
 impl ToListMappable for DatapipelinePipelineDefinitionPipelineObjectEl {
     type O = BlockAssignable<DatapipelinePipelineDefinitionPipelineObjectEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -648,14 +561,12 @@ impl ToListMappable for DatapipelinePipelineDefinitionPipelineObjectEl {
         })
     }
 }
-
 pub struct BuildDatapipelinePipelineDefinitionPipelineObjectEl {
     #[doc = ""]
     pub id: PrimField<String>,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDatapipelinePipelineDefinitionPipelineObjectEl {
     pub fn build(self) -> DatapipelinePipelineDefinitionPipelineObjectEl {
         DatapipelinePipelineDefinitionPipelineObjectEl {
@@ -666,12 +577,10 @@ impl BuildDatapipelinePipelineDefinitionPipelineObjectEl {
         }
     }
 }
-
 pub struct DatapipelinePipelineDefinitionPipelineObjectElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatapipelinePipelineDefinitionPipelineObjectElRef {
     fn new(shared: StackShared, base: String) -> DatapipelinePipelineDefinitionPipelineObjectElRef {
         DatapipelinePipelineDefinitionPipelineObjectElRef {
@@ -680,23 +589,19 @@ impl Ref for DatapipelinePipelineDefinitionPipelineObjectElRef {
         }
     }
 }
-
 impl DatapipelinePipelineDefinitionPipelineObjectElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatapipelinePipelineDefinitionDynamic {
     parameter_object: Option<DynamicBlock<DatapipelinePipelineDefinitionParameterObjectEl>>,

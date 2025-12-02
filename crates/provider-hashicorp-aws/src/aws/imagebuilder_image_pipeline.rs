@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ImagebuilderImagePipelineData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -49,47 +48,38 @@ struct ImagebuilderImagePipelineData {
     workflow: Option<Vec<ImagebuilderImagePipelineWorkflowEl>>,
     dynamic: ImagebuilderImagePipelineDynamic,
 }
-
 struct ImagebuilderImagePipeline_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ImagebuilderImagePipelineData>,
 }
-
 #[derive(Clone)]
 pub struct ImagebuilderImagePipeline(Rc<ImagebuilderImagePipeline_>);
-
 impl ImagebuilderImagePipeline {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -108,7 +98,6 @@ impl ImagebuilderImagePipeline {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -118,7 +107,6 @@ impl ImagebuilderImagePipeline {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -128,73 +116,61 @@ impl ImagebuilderImagePipeline {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `container_recipe_arn`.\n"]
     pub fn set_container_recipe_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().container_recipe_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `distribution_configuration_arn`.\n"]
     pub fn set_distribution_configuration_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().distribution_configuration_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enhanced_image_metadata_enabled`.\n"]
     pub fn set_enhanced_image_metadata_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enhanced_image_metadata_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_role`.\n"]
     pub fn set_execution_role(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().execution_role = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image_recipe_arn`.\n"]
     pub fn set_image_recipe_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().image_recipe_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image_scanning_configuration`.\n"]
     pub fn set_image_scanning_configuration(
         self,
@@ -214,7 +190,6 @@ impl ImagebuilderImagePipeline {
         }
         self
     }
-
     #[doc = "Set the field `image_tests_configuration`.\n"]
     pub fn set_image_tests_configuration(
         self,
@@ -230,7 +205,6 @@ impl ImagebuilderImagePipeline {
         }
         self
     }
-
     #[doc = "Set the field `schedule`.\n"]
     pub fn set_schedule(
         self,
@@ -246,7 +220,6 @@ impl ImagebuilderImagePipeline {
         }
         self
     }
-
     #[doc = "Set the field `workflow`.\n"]
     pub fn set_workflow(
         self,
@@ -262,12 +235,10 @@ impl ImagebuilderImagePipeline {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `container_recipe_arn` after provisioning.\n"]
     pub fn container_recipe_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,7 +246,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.container_recipe_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -283,7 +253,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.date_created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_last_run` after provisioning.\n"]
     pub fn date_last_run(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +260,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.date_last_run", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_next_run` after provisioning.\n"]
     pub fn date_next_run(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -299,7 +267,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.date_next_run", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +274,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.date_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +281,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `distribution_configuration_arn` after provisioning.\n"]
     pub fn distribution_configuration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +288,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.distribution_configuration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enhanced_image_metadata_enabled` after provisioning.\n"]
     pub fn enhanced_image_metadata_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -331,7 +295,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.enhanced_image_metadata_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -339,12 +302,10 @@ impl ImagebuilderImagePipeline {
             format!("{}.execution_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_recipe_arn` after provisioning.\n"]
     pub fn image_recipe_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -352,7 +313,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.image_recipe_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `infrastructure_configuration_arn` after provisioning.\n"]
     pub fn infrastructure_configuration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -360,7 +320,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.infrastructure_configuration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -368,7 +327,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -376,7 +334,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.platform", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -384,7 +341,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,7 +348,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -400,7 +355,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -408,7 +362,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_scanning_configuration` after provisioning.\n"]
     pub fn image_scanning_configuration(
         &self,
@@ -418,7 +371,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.image_scanning_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_tests_configuration` after provisioning.\n"]
     pub fn image_tests_configuration(
         &self,
@@ -428,7 +380,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.image_tests_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<ImagebuilderImagePipelineScheduleElRef> {
         ListRef::new(
@@ -436,7 +387,6 @@ impl ImagebuilderImagePipeline {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workflow` after provisioning.\n"]
     pub fn workflow(&self) -> ListRef<ImagebuilderImagePipelineWorkflowElRef> {
         ListRef::new(
@@ -445,7 +395,6 @@ impl ImagebuilderImagePipeline {
         )
     }
 }
-
 impl Referable for ImagebuilderImagePipeline {
     fn extract_ref(&self) -> String {
         format!(
@@ -455,32 +404,25 @@ impl Referable for ImagebuilderImagePipeline {
         )
     }
 }
-
 impl Resource for ImagebuilderImagePipeline {}
-
 impl ToListMappable for ImagebuilderImagePipeline {
     type O = ListRef<ImagebuilderImagePipelineRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ImagebuilderImagePipeline_ {
     fn extract_resource_type(&self) -> String {
         "aws_imagebuilder_image_pipeline".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildImagebuilderImagePipeline {
     pub tf_id: String,
     #[doc = ""]
@@ -488,7 +430,6 @@ pub struct BuildImagebuilderImagePipeline {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildImagebuilderImagePipeline {
     pub fn build(self, stack: &mut Stack) -> ImagebuilderImagePipeline {
         let out = ImagebuilderImagePipeline(Rc::new(ImagebuilderImagePipeline_ {
@@ -523,32 +464,26 @@ impl BuildImagebuilderImagePipeline {
         out
     }
 }
-
 pub struct ImagebuilderImagePipelineRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ImagebuilderImagePipelineRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `container_recipe_arn` after provisioning.\n"]
     pub fn container_recipe_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -556,7 +491,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.container_recipe_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_created` after provisioning.\n"]
     pub fn date_created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -564,7 +498,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.date_created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_last_run` after provisioning.\n"]
     pub fn date_last_run(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -572,7 +505,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.date_last_run", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_next_run` after provisioning.\n"]
     pub fn date_next_run(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -580,7 +512,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.date_next_run", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `date_updated` after provisioning.\n"]
     pub fn date_updated(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -588,7 +519,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.date_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -596,7 +526,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `distribution_configuration_arn` after provisioning.\n"]
     pub fn distribution_configuration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -604,7 +533,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.distribution_configuration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enhanced_image_metadata_enabled` after provisioning.\n"]
     pub fn enhanced_image_metadata_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -612,7 +540,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.enhanced_image_metadata_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -620,12 +547,10 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.execution_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_recipe_arn` after provisioning.\n"]
     pub fn image_recipe_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -633,7 +558,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.image_recipe_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `infrastructure_configuration_arn` after provisioning.\n"]
     pub fn infrastructure_configuration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -641,7 +565,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.infrastructure_configuration_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -649,7 +572,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform` after provisioning.\n"]
     pub fn platform(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -657,7 +579,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.platform", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -665,7 +586,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -673,7 +593,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -681,7 +600,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -689,7 +607,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_scanning_configuration` after provisioning.\n"]
     pub fn image_scanning_configuration(
         &self,
@@ -699,7 +616,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.image_scanning_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_tests_configuration` after provisioning.\n"]
     pub fn image_tests_configuration(
         &self,
@@ -709,7 +625,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.image_tests_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<ImagebuilderImagePipelineScheduleElRef> {
         ListRef::new(
@@ -717,7 +632,6 @@ impl ImagebuilderImagePipelineRef {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workflow` after provisioning.\n"]
     pub fn workflow(&self) -> ListRef<ImagebuilderImagePipelineWorkflowElRef> {
         ListRef::new(
@@ -726,7 +640,6 @@ impl ImagebuilderImagePipelineRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -734,25 +647,21 @@ pub struct ImagebuilderImagePipelineImageScanningConfigurationElEcrConfiguration
     #[serde(skip_serializing_if = "Option::is_none")]
     repository_name: Option<PrimField<String>>,
 }
-
 impl ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
     #[doc = "Set the field `container_tags`.\n"]
     pub fn set_container_tags(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.container_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `repository_name`.\n"]
     pub fn set_repository_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.repository_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
     type O =
         BlockAssignable<ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -761,9 +670,7 @@ impl ToListMappable for ImagebuilderImagePipelineImageScanningConfigurationElEcr
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {}
-
 impl BuildImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
     pub fn build(self) -> ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
         ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl {
@@ -772,12 +679,10 @@ impl BuildImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationE
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -789,12 +694,10 @@ impl Ref for ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurati
         }
     }
 }
-
 impl ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `container_tags` after provisioning.\n"]
     pub fn container_tags(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -802,7 +705,6 @@ impl ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationElRef 
             format!("{}.container_tags", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `repository_name` after provisioning.\n"]
     pub fn repository_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -811,14 +713,12 @@ impl ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationElRef 
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ImagebuilderImagePipelineImageScanningConfigurationElDynamic {
     ecr_configuration: Option<
         DynamicBlock<ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineImageScanningConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -828,14 +728,12 @@ pub struct ImagebuilderImagePipelineImageScanningConfigurationEl {
         Option<Vec<ImagebuilderImagePipelineImageScanningConfigurationElEcrConfigurationEl>>,
     dynamic: ImagebuilderImagePipelineImageScanningConfigurationElDynamic,
 }
-
 impl ImagebuilderImagePipelineImageScanningConfigurationEl {
     #[doc = "Set the field `image_scanning_enabled`.\n"]
     pub fn set_image_scanning_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.image_scanning_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ecr_configuration`.\n"]
     pub fn set_ecr_configuration(
         mut self,
@@ -856,10 +754,8 @@ impl ImagebuilderImagePipelineImageScanningConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for ImagebuilderImagePipelineImageScanningConfigurationEl {
     type O = BlockAssignable<ImagebuilderImagePipelineImageScanningConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -868,9 +764,7 @@ impl ToListMappable for ImagebuilderImagePipelineImageScanningConfigurationEl {
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineImageScanningConfigurationEl {}
-
 impl BuildImagebuilderImagePipelineImageScanningConfigurationEl {
     pub fn build(self) -> ImagebuilderImagePipelineImageScanningConfigurationEl {
         ImagebuilderImagePipelineImageScanningConfigurationEl {
@@ -880,12 +774,10 @@ impl BuildImagebuilderImagePipelineImageScanningConfigurationEl {
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineImageScanningConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineImageScanningConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -897,12 +789,10 @@ impl Ref for ImagebuilderImagePipelineImageScanningConfigurationElRef {
         }
     }
 }
-
 impl ImagebuilderImagePipelineImageScanningConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `image_scanning_enabled` after provisioning.\n"]
     pub fn image_scanning_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -910,7 +800,6 @@ impl ImagebuilderImagePipelineImageScanningConfigurationElRef {
             format!("{}.image_scanning_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ecr_configuration` after provisioning.\n"]
     pub fn ecr_configuration(
         &self,
@@ -921,7 +810,6 @@ impl ImagebuilderImagePipelineImageScanningConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineImageTestsConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -929,24 +817,20 @@ pub struct ImagebuilderImagePipelineImageTestsConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeout_minutes: Option<PrimField<f64>>,
 }
-
 impl ImagebuilderImagePipelineImageTestsConfigurationEl {
     #[doc = "Set the field `image_tests_enabled`.\n"]
     pub fn set_image_tests_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.image_tests_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout_minutes`.\n"]
     pub fn set_timeout_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.timeout_minutes = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ImagebuilderImagePipelineImageTestsConfigurationEl {
     type O = BlockAssignable<ImagebuilderImagePipelineImageTestsConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -955,9 +839,7 @@ impl ToListMappable for ImagebuilderImagePipelineImageTestsConfigurationEl {
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineImageTestsConfigurationEl {}
-
 impl BuildImagebuilderImagePipelineImageTestsConfigurationEl {
     pub fn build(self) -> ImagebuilderImagePipelineImageTestsConfigurationEl {
         ImagebuilderImagePipelineImageTestsConfigurationEl {
@@ -966,12 +848,10 @@ impl BuildImagebuilderImagePipelineImageTestsConfigurationEl {
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineImageTestsConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineImageTestsConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -983,12 +863,10 @@ impl Ref for ImagebuilderImagePipelineImageTestsConfigurationElRef {
         }
     }
 }
-
 impl ImagebuilderImagePipelineImageTestsConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `image_tests_enabled` after provisioning.\n"]
     pub fn image_tests_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -996,7 +874,6 @@ impl ImagebuilderImagePipelineImageTestsConfigurationElRef {
             format!("{}.image_tests_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout_minutes` after provisioning.\n"]
     pub fn timeout_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1005,7 +882,6 @@ impl ImagebuilderImagePipelineImageTestsConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineScheduleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1014,7 +890,6 @@ pub struct ImagebuilderImagePipelineScheduleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     timezone: Option<PrimField<String>>,
 }
-
 impl ImagebuilderImagePipelineScheduleEl {
     #[doc = "Set the field `pipeline_execution_start_condition`.\n"]
     pub fn set_pipeline_execution_start_condition(
@@ -1024,17 +899,14 @@ impl ImagebuilderImagePipelineScheduleEl {
         self.pipeline_execution_start_condition = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timezone`.\n"]
     pub fn set_timezone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.timezone = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ImagebuilderImagePipelineScheduleEl {
     type O = BlockAssignable<ImagebuilderImagePipelineScheduleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1043,12 +915,10 @@ impl ToListMappable for ImagebuilderImagePipelineScheduleEl {
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineScheduleEl {
     #[doc = ""]
     pub schedule_expression: PrimField<String>,
 }
-
 impl BuildImagebuilderImagePipelineScheduleEl {
     pub fn build(self) -> ImagebuilderImagePipelineScheduleEl {
         ImagebuilderImagePipelineScheduleEl {
@@ -1058,12 +928,10 @@ impl BuildImagebuilderImagePipelineScheduleEl {
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineScheduleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineScheduleElRef {
     fn new(shared: StackShared, base: String) -> ImagebuilderImagePipelineScheduleElRef {
         ImagebuilderImagePipelineScheduleElRef {
@@ -1072,12 +940,10 @@ impl Ref for ImagebuilderImagePipelineScheduleElRef {
         }
     }
 }
-
 impl ImagebuilderImagePipelineScheduleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `pipeline_execution_start_condition` after provisioning.\n"]
     pub fn pipeline_execution_start_condition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1085,7 +951,6 @@ impl ImagebuilderImagePipelineScheduleElRef {
             format!("{}.pipeline_execution_start_condition", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1093,24 +958,19 @@ impl ImagebuilderImagePipelineScheduleElRef {
             format!("{}.schedule_expression", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\n"]
     pub fn timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.timezone", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineWorkflowElParameterEl {
     name: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl ImagebuilderImagePipelineWorkflowElParameterEl {}
-
 impl ToListMappable for ImagebuilderImagePipelineWorkflowElParameterEl {
     type O = BlockAssignable<ImagebuilderImagePipelineWorkflowElParameterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1119,14 +979,12 @@ impl ToListMappable for ImagebuilderImagePipelineWorkflowElParameterEl {
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineWorkflowElParameterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildImagebuilderImagePipelineWorkflowElParameterEl {
     pub fn build(self) -> ImagebuilderImagePipelineWorkflowElParameterEl {
         ImagebuilderImagePipelineWorkflowElParameterEl {
@@ -1135,12 +993,10 @@ impl BuildImagebuilderImagePipelineWorkflowElParameterEl {
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineWorkflowElParameterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineWorkflowElParameterElRef {
     fn new(shared: StackShared, base: String) -> ImagebuilderImagePipelineWorkflowElParameterElRef {
         ImagebuilderImagePipelineWorkflowElParameterElRef {
@@ -1149,28 +1005,23 @@ impl Ref for ImagebuilderImagePipelineWorkflowElParameterElRef {
         }
     }
 }
-
 impl ImagebuilderImagePipelineWorkflowElParameterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ImagebuilderImagePipelineWorkflowElDynamic {
     parameter: Option<DynamicBlock<ImagebuilderImagePipelineWorkflowElParameterEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ImagebuilderImagePipelineWorkflowEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1182,20 +1033,17 @@ pub struct ImagebuilderImagePipelineWorkflowEl {
     parameter: Option<Vec<ImagebuilderImagePipelineWorkflowElParameterEl>>,
     dynamic: ImagebuilderImagePipelineWorkflowElDynamic,
 }
-
 impl ImagebuilderImagePipelineWorkflowEl {
     #[doc = "Set the field `on_failure`.\n"]
     pub fn set_on_failure(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.on_failure = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parallel_group`.\n"]
     pub fn set_parallel_group(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.parallel_group = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(
         mut self,
@@ -1212,10 +1060,8 @@ impl ImagebuilderImagePipelineWorkflowEl {
         self
     }
 }
-
 impl ToListMappable for ImagebuilderImagePipelineWorkflowEl {
     type O = BlockAssignable<ImagebuilderImagePipelineWorkflowEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1224,12 +1070,10 @@ impl ToListMappable for ImagebuilderImagePipelineWorkflowEl {
         })
     }
 }
-
 pub struct BuildImagebuilderImagePipelineWorkflowEl {
     #[doc = ""]
     pub workflow_arn: PrimField<String>,
 }
-
 impl BuildImagebuilderImagePipelineWorkflowEl {
     pub fn build(self) -> ImagebuilderImagePipelineWorkflowEl {
         ImagebuilderImagePipelineWorkflowEl {
@@ -1241,12 +1085,10 @@ impl BuildImagebuilderImagePipelineWorkflowEl {
         }
     }
 }
-
 pub struct ImagebuilderImagePipelineWorkflowElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ImagebuilderImagePipelineWorkflowElRef {
     fn new(shared: StackShared, base: String) -> ImagebuilderImagePipelineWorkflowElRef {
         ImagebuilderImagePipelineWorkflowElRef {
@@ -1255,17 +1097,14 @@ impl Ref for ImagebuilderImagePipelineWorkflowElRef {
         }
     }
 }
-
 impl ImagebuilderImagePipelineWorkflowElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `on_failure` after provisioning.\n"]
     pub fn on_failure(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.on_failure", self.base))
     }
-
     #[doc = "Get a reference to the value of field `parallel_group` after provisioning.\n"]
     pub fn parallel_group(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1273,13 +1112,11 @@ impl ImagebuilderImagePipelineWorkflowElRef {
             format!("{}.parallel_group", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `workflow_arn` after provisioning.\n"]
     pub fn workflow_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.workflow_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ImagebuilderImagePipelineDynamic {
     image_scanning_configuration:

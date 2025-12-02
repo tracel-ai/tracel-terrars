@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct KendraDataSourceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -43,47 +42,38 @@ struct KendraDataSourceData {
     timeouts: Option<KendraDataSourceTimeoutsEl>,
     dynamic: KendraDataSourceDynamic,
 }
-
 struct KendraDataSource_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<KendraDataSourceData>,
 }
-
 #[derive(Clone)]
 pub struct KendraDataSource(Rc<KendraDataSource_>);
-
 impl KendraDataSource {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -102,7 +92,6 @@ impl KendraDataSource {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -112,7 +101,6 @@ impl KendraDataSource {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -122,55 +110,46 @@ impl KendraDataSource {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `language_code`.\n"]
     pub fn set_language_code(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().language_code = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule`.\n"]
     pub fn set_schedule(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().schedule = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -186,7 +165,6 @@ impl KendraDataSource {
         }
         self
     }
-
     #[doc = "Set the field `custom_document_enrichment_configuration`.\n"]
     pub fn set_custom_document_enrichment_configuration(
         self,
@@ -209,18 +187,15 @@ impl KendraDataSource {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<KendraDataSourceTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +203,6 @@ impl KendraDataSource {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source_id` after provisioning.\n"]
     pub fn data_source_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +210,6 @@ impl KendraDataSource {
             format!("{}.data_source_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +217,6 @@ impl KendraDataSource {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,12 +224,10 @@ impl KendraDataSource {
             format!("{}.error_message", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `index_id` after provisioning.\n"]
     pub fn index_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +235,6 @@ impl KendraDataSource {
             format!("{}.index_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +242,6 @@ impl KendraDataSource {
             format!("{}.language_code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +249,6 @@ impl KendraDataSource {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +256,6 @@ impl KendraDataSource {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +263,6 @@ impl KendraDataSource {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +270,6 @@ impl KendraDataSource {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +277,6 @@ impl KendraDataSource {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -321,7 +284,6 @@ impl KendraDataSource {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -329,7 +291,6 @@ impl KendraDataSource {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +298,6 @@ impl KendraDataSource {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +305,6 @@ impl KendraDataSource {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<KendraDataSourceConfigurationElRef> {
         ListRef::new(
@@ -353,7 +312,6 @@ impl KendraDataSource {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_document_enrichment_configuration` after provisioning.\n"]
     pub fn custom_document_enrichment_configuration(
         &self,
@@ -366,7 +324,6 @@ impl KendraDataSource {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KendraDataSourceTimeoutsElRef {
         KendraDataSourceTimeoutsElRef::new(
@@ -375,7 +332,6 @@ impl KendraDataSource {
         )
     }
 }
-
 impl Referable for KendraDataSource {
     fn extract_ref(&self) -> String {
         format!(
@@ -385,32 +341,25 @@ impl Referable for KendraDataSource {
         )
     }
 }
-
 impl Resource for KendraDataSource {}
-
 impl ToListMappable for KendraDataSource {
     type O = ListRef<KendraDataSourceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for KendraDataSource_ {
     fn extract_resource_type(&self) -> String {
         "aws_kendra_data_source".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildKendraDataSource {
     pub tf_id: String,
     #[doc = ""]
@@ -420,7 +369,6 @@ pub struct BuildKendraDataSource {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildKendraDataSource {
     pub fn build(self, stack: &mut Stack) -> KendraDataSource {
         let out = KendraDataSource(Rc::new(KendraDataSource_ {
@@ -452,32 +400,26 @@ impl BuildKendraDataSource {
         out
     }
 }
-
 pub struct KendraDataSourceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl KendraDataSourceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -485,7 +427,6 @@ impl KendraDataSourceRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source_id` after provisioning.\n"]
     pub fn data_source_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -493,7 +434,6 @@ impl KendraDataSourceRef {
             format!("{}.data_source_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -501,7 +441,6 @@ impl KendraDataSourceRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,12 +448,10 @@ impl KendraDataSourceRef {
             format!("{}.error_message", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `index_id` after provisioning.\n"]
     pub fn index_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -522,7 +459,6 @@ impl KendraDataSourceRef {
             format!("{}.index_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `language_code` after provisioning.\n"]
     pub fn language_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -530,7 +466,6 @@ impl KendraDataSourceRef {
             format!("{}.language_code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -538,7 +473,6 @@ impl KendraDataSourceRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -546,7 +480,6 @@ impl KendraDataSourceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -554,7 +487,6 @@ impl KendraDataSourceRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -562,7 +494,6 @@ impl KendraDataSourceRef {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -570,7 +501,6 @@ impl KendraDataSourceRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -578,7 +508,6 @@ impl KendraDataSourceRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -586,7 +515,6 @@ impl KendraDataSourceRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -594,7 +522,6 @@ impl KendraDataSourceRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -602,7 +529,6 @@ impl KendraDataSourceRef {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<KendraDataSourceConfigurationElRef> {
         ListRef::new(
@@ -610,7 +536,6 @@ impl KendraDataSourceRef {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_document_enrichment_configuration` after provisioning.\n"]
     pub fn custom_document_enrichment_configuration(
         &self,
@@ -623,7 +548,6 @@ impl KendraDataSourceRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> KendraDataSourceTimeoutsElRef {
         KendraDataSourceTimeoutsElRef::new(
@@ -632,13 +556,11 @@ impl KendraDataSourceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     key_path: Option<PrimField<String>>,
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl {
     #[doc = "Set the field `key_path`.\n"]
     pub fn set_key_path(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -646,14 +568,12 @@ impl KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurat
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -662,10 +582,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl {
 }
-
 impl BuildKendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationEl {
     pub fn build(
         self,
@@ -675,12 +593,10 @@ impl BuildKendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfi
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -692,24 +608,20 @@ impl Ref for KendraDataSourceConfigurationElS3ConfigurationElAccessControlListCo
         }
     }
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationElAccessControlListConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key_path` after provisioning.\n"]
     pub fn key_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key_path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_prefix: Option<PrimField<String>>,
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl {
     #[doc = "Set the field `s3_prefix`.\n"]
     pub fn set_s3_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -717,14 +629,12 @@ impl KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurat
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -733,10 +643,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl {
 }
-
 impl BuildKendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationEl {
     pub fn build(
         self,
@@ -746,12 +654,10 @@ impl BuildKendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfi
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -763,18 +669,15 @@ impl Ref for KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataCo
         }
     }
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationElDocumentsMetadataConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_prefix", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct KendraDataSourceConfigurationElS3ConfigurationElDynamic {
     access_control_list_configuration: Option<
@@ -788,7 +691,6 @@ struct KendraDataSourceConfigurationElS3ConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElS3ConfigurationEl {
     bucket_name: PrimField<String>,
@@ -808,26 +710,22 @@ pub struct KendraDataSourceConfigurationElS3ConfigurationEl {
     >,
     dynamic: KendraDataSourceConfigurationElS3ConfigurationElDynamic,
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationEl {
     #[doc = "Set the field `exclusion_patterns`.\n"]
     pub fn set_exclusion_patterns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.exclusion_patterns = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inclusion_patterns`.\n"]
     pub fn set_inclusion_patterns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.inclusion_patterns = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inclusion_prefixes`.\n"]
     pub fn set_inclusion_prefixes(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.inclusion_prefixes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `access_control_list_configuration`.\n"]
     pub fn set_access_control_list_configuration(
         mut self,
@@ -847,7 +745,6 @@ impl KendraDataSourceConfigurationElS3ConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `documents_metadata_configuration`.\n"]
     pub fn set_documents_metadata_configuration(
         mut self,
@@ -868,10 +765,8 @@ impl KendraDataSourceConfigurationElS3ConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceConfigurationElS3ConfigurationEl {
     type O = BlockAssignable<KendraDataSourceConfigurationElS3ConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -880,12 +775,10 @@ impl ToListMappable for KendraDataSourceConfigurationElS3ConfigurationEl {
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElS3ConfigurationEl {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
-
 impl BuildKendraDataSourceConfigurationElS3ConfigurationEl {
     pub fn build(self) -> KendraDataSourceConfigurationElS3ConfigurationEl {
         KendraDataSourceConfigurationElS3ConfigurationEl {
@@ -899,12 +792,10 @@ impl BuildKendraDataSourceConfigurationElS3ConfigurationEl {
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElS3ConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElS3ConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -916,17 +807,14 @@ impl Ref for KendraDataSourceConfigurationElS3ConfigurationElRef {
         }
     }
 }
-
 impl KendraDataSourceConfigurationElS3ConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `exclusion_patterns` after provisioning.\n"]
     pub fn exclusion_patterns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -934,7 +822,6 @@ impl KendraDataSourceConfigurationElS3ConfigurationElRef {
             format!("{}.exclusion_patterns", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `inclusion_patterns` after provisioning.\n"]
     pub fn inclusion_patterns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -942,7 +829,6 @@ impl KendraDataSourceConfigurationElS3ConfigurationElRef {
             format!("{}.inclusion_patterns", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `inclusion_prefixes` after provisioning.\n"]
     pub fn inclusion_prefixes(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -950,7 +836,6 @@ impl KendraDataSourceConfigurationElS3ConfigurationElRef {
             format!("{}.inclusion_prefixes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_list_configuration` after provisioning.\n"]
     pub fn access_control_list_configuration(
         &self,
@@ -961,7 +846,6 @@ impl KendraDataSourceConfigurationElS3ConfigurationElRef {
             format!("{}.access_control_list_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `documents_metadata_configuration` after provisioning.\n"]
     pub fn documents_metadata_configuration(
         &self,
@@ -973,17 +857,13 @@ impl KendraDataSourceConfigurationElS3ConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElTemplateConfigurationEl {
     template: PrimField<String>,
 }
-
 impl KendraDataSourceConfigurationElTemplateConfigurationEl {}
-
 impl ToListMappable for KendraDataSourceConfigurationElTemplateConfigurationEl {
     type O = BlockAssignable<KendraDataSourceConfigurationElTemplateConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -992,12 +872,10 @@ impl ToListMappable for KendraDataSourceConfigurationElTemplateConfigurationEl {
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElTemplateConfigurationEl {
     #[doc = ""]
     pub template: PrimField<String>,
 }
-
 impl BuildKendraDataSourceConfigurationElTemplateConfigurationEl {
     pub fn build(self) -> KendraDataSourceConfigurationElTemplateConfigurationEl {
         KendraDataSourceConfigurationElTemplateConfigurationEl {
@@ -1005,12 +883,10 @@ impl BuildKendraDataSourceConfigurationElTemplateConfigurationEl {
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElTemplateConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElTemplateConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1022,18 +898,15 @@ impl Ref for KendraDataSourceConfigurationElTemplateConfigurationElRef {
         }
     }
 }
-
 impl KendraDataSourceConfigurationElTemplateConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `template` after provisioning.\n"]
     pub fn template(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.template", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl
 {
@@ -1041,24 +914,8 @@ pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticatio
     host: PrimField<String>,
     port: PrimField<f64>,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl { }
-
-impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl { type O = BlockAssignable < KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl
 {
     #[doc = ""]
@@ -1068,90 +925,23 @@ pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenti
     #[doc = ""]
     pub port: PrimField<f64>,
 }
-
-impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl {
-        KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl {
-            credentials: self.credentials,
-            host: self.host,
-            port: self.port,
-        }
-    }
-}
-
+impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl { pub fn build (self) -> KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl { KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl { credentials : self . credentials , host : self . host , port : self . port , } } }
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef {
-        KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
-    pub fn credentials(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.credentials", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `host` after provisioning.\n"]
-    pub fn host(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.host", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
-    pub fn port(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef { KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `credentials` after provisioning.\n"] pub fn credentials (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.credentials" , self . base)) } # [doc = "Get a reference to the value of field `host` after provisioning.\n"] pub fn host (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.host" , self . base)) } # [doc = "Get a reference to the value of field `port` after provisioning.\n"] pub fn port (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.port" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElDynamic {
-    basic_authentication: Option<
-        DynamicBlock<
-            KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElDynamic { basic_authentication : Option < DynamicBlock < KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    basic_authentication: Option<
-        Vec<
-            KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl,
-        >,
-    >,
-    dynamic: KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElDynamic,
-}
-
+pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] basic_authentication : Option < Vec < KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl > > , dynamic : KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElDynamic , }
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl {
     #[doc = "Set the field `basic_authentication`.\n"]
     pub fn set_basic_authentication(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElBasicAuthenticationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1164,14 +954,12 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfi
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1180,10 +968,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl
 {}
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl {
     pub fn build(
         self,
@@ -1194,13 +980,11 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElAuthentication
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElRef
 {
@@ -1215,13 +999,11 @@ impl Ref
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1229,7 +1011,6 @@ pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigur
     host: PrimField<String>,
     port: PrimField<f64>,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl {
     #[doc = "Set the field `credentials`.\n"]
     pub fn set_credentials(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1237,14 +1018,12 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationE
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1253,14 +1032,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl {
     #[doc = ""]
     pub host: PrimField<String>,
     #[doc = ""]
     pub port: PrimField<f64>,
 }
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationEl {
     pub fn build(
         self,
@@ -1272,12 +1049,10 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigura
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1289,35 +1064,29 @@ impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfig
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElProxyConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `credentials` after provisioning.\n"]
     pub fn credentials(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.credentials", self.base))
     }
-
     #[doc = "Get a reference to the value of field `host` after provisioning.\n"]
     pub fn host(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.host", self.base))
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl {
     seed_urls: SetField<PrimField<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     web_crawler_mode: Option<PrimField<String>>,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl {
     #[doc = "Set the field `web_crawler_mode`.\n"]
     pub fn set_web_crawler_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1325,14 +1094,12 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfig
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1341,13 +1108,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl
 {
     #[doc = ""]
     pub seed_urls: SetField<PrimField<String>>,
 }
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl {
     pub fn build(
         self,
@@ -1358,12 +1123,10 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlC
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationElRef
 {
@@ -1378,17 +1141,14 @@ impl Ref
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `seed_urls` after provisioning.\n"]
     pub fn seed_urls(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.seed_urls", self.base))
     }
-
     #[doc = "Get a reference to the value of field `web_crawler_mode` after provisioning.\n"]
     pub fn web_crawler_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1397,21 +1157,17 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfig
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl {
     site_maps: SetField<PrimField<String>>,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl {}
-
 impl ToListMappable
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1420,13 +1176,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl
 {
     #[doc = ""]
     pub site_maps: SetField<PrimField<String>>,
 }
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl {
     pub fn build(
         self,
@@ -1436,13 +1190,11 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMaps
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationElRef
 {
@@ -1457,18 +1209,15 @@ impl Ref
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `site_maps` after provisioning.\n"]
     pub fn site_maps(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.site_maps", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElDynamic {
     seed_url_configuration: Option<
@@ -1482,7 +1231,6 @@ struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1495,19 +1243,11 @@ pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
     >,
     dynamic: KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElDynamic,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
     #[doc = "Set the field `seed_url_configuration`.\n"]
     pub fn set_seed_url_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSeedUrlConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1519,18 +1259,10 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
         }
         self
     }
-
     #[doc = "Set the field `site_maps_configuration`.\n"]
     pub fn set_site_maps_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElSiteMapsConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1543,10 +1275,8 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
     type O = BlockAssignable<KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1555,9 +1285,7 @@ impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationEl
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {}
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
     pub fn build(self) -> KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
         KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
@@ -1567,12 +1295,10 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl {
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
     fn new(
         shared: StackShared,
@@ -1584,12 +1310,10 @@ impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `seed_url_configuration` after provisioning.\n"]
     pub fn seed_url_configuration(
         &self,
@@ -1601,7 +1325,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
             format!("{}.seed_url_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `site_maps_configuration` after provisioning.\n"]
     pub fn site_maps_configuration(
         &self,
@@ -1614,7 +1337,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct KendraDataSourceConfigurationElWebCrawlerConfigurationElDynamic {
     authentication_configuration: Option<
@@ -1627,7 +1349,6 @@ struct KendraDataSourceConfigurationElWebCrawlerConfigurationElDynamic {
     >,
     urls: Option<DynamicBlock<KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1653,14 +1374,12 @@ pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
     urls: Option<Vec<KendraDataSourceConfigurationElWebCrawlerConfigurationElUrlsEl>>,
     dynamic: KendraDataSourceConfigurationElWebCrawlerConfigurationElDynamic,
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
     #[doc = "Set the field `crawl_depth`.\n"]
     pub fn set_crawl_depth(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.crawl_depth = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_content_size_per_page_in_mega_bytes`.\n"]
     pub fn set_max_content_size_per_page_in_mega_bytes(
         mut self,
@@ -1669,42 +1388,30 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         self.max_content_size_per_page_in_mega_bytes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_links_per_page`.\n"]
     pub fn set_max_links_per_page(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_links_per_page = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_urls_per_minute_crawl_rate`.\n"]
     pub fn set_max_urls_per_minute_crawl_rate(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_urls_per_minute_crawl_rate = Some(v.into());
         self
     }
-
     #[doc = "Set the field `url_exclusion_patterns`.\n"]
     pub fn set_url_exclusion_patterns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.url_exclusion_patterns = Some(v.into());
         self
     }
-
     #[doc = "Set the field `url_inclusion_patterns`.\n"]
     pub fn set_url_inclusion_patterns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.url_inclusion_patterns = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authentication_configuration`.\n"]
     pub fn set_authentication_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceConfigurationElWebCrawlerConfigurationElAuthenticationConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1716,7 +1423,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `proxy_configuration`.\n"]
     pub fn set_proxy_configuration(
         mut self,
@@ -1736,7 +1442,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `urls`.\n"]
     pub fn set_urls(
         mut self,
@@ -1753,10 +1458,8 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
     type O = BlockAssignable<KendraDataSourceConfigurationElWebCrawlerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1765,9 +1468,7 @@ impl ToListMappable for KendraDataSourceConfigurationElWebCrawlerConfigurationEl
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationElWebCrawlerConfigurationEl {}
-
 impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationEl {
     pub fn build(self) -> KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         KendraDataSourceConfigurationElWebCrawlerConfigurationEl {
@@ -1784,12 +1485,10 @@ impl BuildKendraDataSourceConfigurationElWebCrawlerConfigurationEl {
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1801,17 +1500,14 @@ impl Ref for KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
         }
     }
 }
-
 impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `crawl_depth` after provisioning.\n"]
     pub fn crawl_depth(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.crawl_depth", self.base))
     }
-
     #[doc = "Get a reference to the value of field `max_content_size_per_page_in_mega_bytes` after provisioning.\n"]
     pub fn max_content_size_per_page_in_mega_bytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1819,7 +1515,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.max_content_size_per_page_in_mega_bytes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_links_per_page` after provisioning.\n"]
     pub fn max_links_per_page(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1827,7 +1522,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.max_links_per_page", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_urls_per_minute_crawl_rate` after provisioning.\n"]
     pub fn max_urls_per_minute_crawl_rate(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1835,7 +1529,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.max_urls_per_minute_crawl_rate", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `url_exclusion_patterns` after provisioning.\n"]
     pub fn url_exclusion_patterns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1843,7 +1536,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.url_exclusion_patterns", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `url_inclusion_patterns` after provisioning.\n"]
     pub fn url_inclusion_patterns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1851,7 +1543,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.url_inclusion_patterns", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `authentication_configuration` after provisioning.\n"]
     pub fn authentication_configuration(
         &self,
@@ -1863,7 +1554,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.authentication_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `proxy_configuration` after provisioning.\n"]
     pub fn proxy_configuration(
         &self,
@@ -1874,7 +1564,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
             format!("{}.proxy_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `urls` after provisioning.\n"]
     pub fn urls(
         &self,
@@ -1882,7 +1571,6 @@ impl KendraDataSourceConfigurationElWebCrawlerConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.urls", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct KendraDataSourceConfigurationElDynamic {
     s3_configuration: Option<DynamicBlock<KendraDataSourceConfigurationElS3ConfigurationEl>>,
@@ -1891,7 +1579,6 @@ struct KendraDataSourceConfigurationElDynamic {
     web_crawler_configuration:
         Option<DynamicBlock<KendraDataSourceConfigurationElWebCrawlerConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1903,7 +1590,6 @@ pub struct KendraDataSourceConfigurationEl {
         Option<Vec<KendraDataSourceConfigurationElWebCrawlerConfigurationEl>>,
     dynamic: KendraDataSourceConfigurationElDynamic,
 }
-
 impl KendraDataSourceConfigurationEl {
     #[doc = "Set the field `s3_configuration`.\n"]
     pub fn set_s3_configuration(
@@ -1920,7 +1606,6 @@ impl KendraDataSourceConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `template_configuration`.\n"]
     pub fn set_template_configuration(
         mut self,
@@ -1936,7 +1621,6 @@ impl KendraDataSourceConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `web_crawler_configuration`.\n"]
     pub fn set_web_crawler_configuration(
         mut self,
@@ -1953,10 +1637,8 @@ impl KendraDataSourceConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceConfigurationEl {
     type O = BlockAssignable<KendraDataSourceConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1965,9 +1647,7 @@ impl ToListMappable for KendraDataSourceConfigurationEl {
         })
     }
 }
-
 pub struct BuildKendraDataSourceConfigurationEl {}
-
 impl BuildKendraDataSourceConfigurationEl {
     pub fn build(self) -> KendraDataSourceConfigurationEl {
         KendraDataSourceConfigurationEl {
@@ -1978,12 +1658,10 @@ impl BuildKendraDataSourceConfigurationEl {
         }
     }
 }
-
 pub struct KendraDataSourceConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceConfigurationElRef {
     fn new(shared: StackShared, base: String) -> KendraDataSourceConfigurationElRef {
         KendraDataSourceConfigurationElRef {
@@ -1992,12 +1670,10 @@ impl Ref for KendraDataSourceConfigurationElRef {
         }
     }
 }
-
 impl KendraDataSourceConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_configuration` after provisioning.\n"]
     pub fn s3_configuration(&self) -> ListRef<KendraDataSourceConfigurationElS3ConfigurationElRef> {
         ListRef::new(
@@ -2005,7 +1681,6 @@ impl KendraDataSourceConfigurationElRef {
             format!("{}.s3_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `template_configuration` after provisioning.\n"]
     pub fn template_configuration(
         &self,
@@ -2015,7 +1690,6 @@ impl KendraDataSourceConfigurationElRef {
             format!("{}.template_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `web_crawler_configuration` after provisioning.\n"]
     pub fn web_crawler_configuration(
         &self,
@@ -2026,7 +1700,6 @@ impl KendraDataSourceConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl
 {
@@ -2039,142 +1712,27 @@ pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigur
     #[serde(skip_serializing_if = "Option::is_none")]
     string_value: Option<PrimField<String>>,
 }
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl {
-    #[doc = "Set the field `date_value`.\n"]
-    pub fn set_date_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.date_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `long_value`.\n"]
-    pub fn set_long_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.long_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_list_value`.\n"]
-    pub fn set_string_list_value(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.string_list_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_value`.\n"]
-    pub fn set_string_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.string_value = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl { # [doc = "Set the field `date_value`.\n"] pub fn set_date_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . date_value = Some (v . into ()) ; self } # [doc = "Set the field `long_value`.\n"] pub fn set_long_value (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . long_value = Some (v . into ()) ; self } # [doc = "Set the field `string_list_value`.\n"] pub fn set_string_list_value (mut self , v : impl Into < SetField < PrimField < String > > >) -> Self { self . string_list_value = Some (v . into ()) ; self } # [doc = "Set the field `string_value`.\n"] pub fn set_string_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . string_value = Some (v . into ()) ; self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl
 {}
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl {
-            date_value: core::default::Default::default(),
-            long_value: core::default::Default::default(),
-            string_list_value: core::default::Default::default(),
-            string_value: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl { date_value : core :: default :: Default :: default () , long_value : core :: default :: Default :: default () , string_list_value : core :: default :: Default :: default () , string_value : core :: default :: Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `date_value` after provisioning.\n"]
-    pub fn date_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `long_value` after provisioning.\n"]
-    pub fn long_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.long_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"]
-    pub fn string_list_value(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.string_list_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
-    pub fn string_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `date_value` after provisioning.\n"] pub fn date_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.date_value" , self . base)) } # [doc = "Get a reference to the value of field `long_value` after provisioning.\n"] pub fn long_value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.long_value" , self . base)) } # [doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"] pub fn string_list_value (& self) -> SetRef < PrimExpr < String > > { SetRef :: new (self . shared () . clone () , format ! ("{}.string_list_value" , self . base)) } # [doc = "Get a reference to the value of field `string_value` after provisioning.\n"] pub fn string_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.string_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElDynamic {
-    condition_on_value: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElDynamic { condition_on_value : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl {
-    condition_document_attribute_key: PrimField<String>,
-    operator: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    condition_on_value: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl { condition_document_attribute_key : PrimField < String > , operator : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] condition_on_value : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl {
     #[doc = "Set the field `condition_on_value`.\n"]
     pub fn set_condition_on_value(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2187,14 +1745,12 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl
 {
     type O = BlockAssignable<
         KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2203,7 +1759,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl
 {
     #[doc = ""]
@@ -2211,7 +1766,6 @@ pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineCon
     #[doc = ""]
     pub operator: PrimField<String>,
 }
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl {
     pub fn build(
         self,
@@ -2225,13 +1779,11 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigura
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef
 {
@@ -2240,18 +1792,13 @@ impl Ref
         base: String,
     ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef
     {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
+        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef { shared : shared , base : base . to_string () , }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `condition_document_attribute_key` after provisioning.\n"]
     pub fn condition_document_attribute_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2259,25 +1806,17 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
             format!("{}.condition_document_attribute_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `operator` after provisioning.\n"]
     pub fn operator(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.operator", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"]
-    pub fn condition_on_value(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef,
-    >{
+    #[doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"]    pub fn condition_on_value (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionElConditionOnValueElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.condition_on_value", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl
 {
@@ -2290,139 +1829,28 @@ pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigur
     #[serde(skip_serializing_if = "Option::is_none")]
     string_value: Option<PrimField<String>>,
 }
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl {
-    #[doc = "Set the field `date_value`.\n"]
-    pub fn set_date_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.date_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `long_value`.\n"]
-    pub fn set_long_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.long_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_list_value`.\n"]
-    pub fn set_string_list_value(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.string_list_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_value`.\n"]
-    pub fn set_string_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.string_value = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl { # [doc = "Set the field `date_value`.\n"] pub fn set_date_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . date_value = Some (v . into ()) ; self } # [doc = "Set the field `long_value`.\n"] pub fn set_long_value (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . long_value = Some (v . into ()) ; self } # [doc = "Set the field `string_list_value`.\n"] pub fn set_string_list_value (mut self , v : impl Into < SetField < PrimField < String > > >) -> Self { self . string_list_value = Some (v . into ()) ; self } # [doc = "Set the field `string_value`.\n"] pub fn set_string_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . string_value = Some (v . into ()) ; self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl
 {}
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl {
-            date_value: core::default::Default::default(),
-            long_value: core::default::Default::default(),
-            string_list_value: core::default::Default::default(),
-            string_value: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl { date_value : core :: default :: Default :: default () , long_value : core :: default :: Default :: default () , string_list_value : core :: default :: Default :: default () , string_value : core :: default :: Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `date_value` after provisioning.\n"]
-    pub fn date_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `long_value` after provisioning.\n"]
-    pub fn long_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.long_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"]
-    pub fn string_list_value(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.string_list_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
-    pub fn string_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `date_value` after provisioning.\n"] pub fn date_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.date_value" , self . base)) } # [doc = "Get a reference to the value of field `long_value` after provisioning.\n"] pub fn long_value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.long_value" , self . base)) } # [doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"] pub fn string_list_value (& self) -> SetRef < PrimExpr < String > > { SetRef :: new (self . shared () . clone () , format ! ("{}.string_list_value" , self . base)) } # [doc = "Get a reference to the value of field `string_value` after provisioning.\n"] pub fn string_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.string_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElDynamic {
-    target_document_attribute_value: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElDynamic { target_document_attribute_value : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    target_document_attribute_key: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    target_document_attribute_value_deletion: Option<PrimField<bool>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    target_document_attribute_value: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl { # [serde (skip_serializing_if = "Option::is_none")] target_document_attribute_key : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] target_document_attribute_value_deletion : Option < PrimField < bool > > , # [serde (skip_serializing_if = "Option::is_none")] target_document_attribute_value : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl {
     #[doc = "Set the field `target_document_attribute_key`.\n"]
     pub fn set_target_document_attribute_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_document_attribute_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_document_attribute_value_deletion`.\n"]
     pub fn set_target_document_attribute_value_deletion(
         mut self,
@@ -2431,18 +1859,10 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         self.target_document_attribute_value_deletion = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_document_attribute_value`.\n"]
     pub fn set_target_document_attribute_value(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2455,14 +1875,12 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl
 {
     type O = BlockAssignable<
         KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2471,10 +1889,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl
 {}
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl {
     pub fn build(
         self,
@@ -2487,13 +1903,11 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigura
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElRef
 {
@@ -2508,12 +1922,10 @@ impl Ref
         }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_document_attribute_key` after provisioning.\n"]
     pub fn target_document_attribute_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2521,7 +1933,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
             format!("{}.target_document_attribute_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_document_attribute_value_deletion` after provisioning.\n"]
     pub fn target_document_attribute_value_deletion(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2529,59 +1940,27 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
             format!("{}.target_document_attribute_value_deletion", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `target_document_attribute_value` after provisioning.\n"]
-    pub fn target_document_attribute_value(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef,
-    >{
+    #[doc = "Get a reference to the value of field `target_document_attribute_value` after provisioning.\n"]    pub fn target_document_attribute_value (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetElTargetDocumentAttributeValueElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.target_document_attribute_value", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElDynamic {
-    condition: Option<
-        DynamicBlock<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl>,
-    >,
-    target: Option<
-        DynamicBlock<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl>,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElDynamic { condition : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl >> , target : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    document_content_deletion: Option<PrimField<bool>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    condition: Option<Vec<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    target: Option<Vec<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl>>,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl { # [serde (skip_serializing_if = "Option::is_none")] document_content_deletion : Option < PrimField < bool > > , # [serde (skip_serializing_if = "Option::is_none")] condition : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl > > , # [serde (skip_serializing_if = "Option::is_none")] target : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl {
     #[doc = "Set the field `document_content_deletion`.\n"]
     pub fn set_document_content_deletion(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.document_content_deletion = Some(v.into());
         self
     }
-
     #[doc = "Set the field `condition`.\n"]
     pub fn set_condition(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElConditionEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2593,18 +1972,10 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         }
         self
     }
-
     #[doc = "Set the field `target`.\n"]
     pub fn set_target(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElTargetEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2617,14 +1988,12 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl
 {
     type O = BlockAssignable<
         KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2633,9 +2002,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl {}
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl {
     pub fn build(
         self,
@@ -2648,12 +2015,10 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigura
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElRef {
     fn new(
         shared: StackShared,
@@ -2665,12 +2030,10 @@ impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfig
         }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `document_content_deletion` after provisioning.\n"]
     pub fn document_content_deletion(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2678,7 +2041,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
             format!("{}.document_content_deletion", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `condition` after provisioning.\n"]
     pub fn condition(
         &self,
@@ -2687,7 +2049,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
     > {
         ListRef::new(self.shared().clone(), format!("{}.condition", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(
         &self,
@@ -2697,7 +2058,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurations
         ListRef::new(self.shared().clone(), format!("{}.target", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl
 {
@@ -2710,170 +2070,24 @@ pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtraction
     #[serde(skip_serializing_if = "Option::is_none")]
     string_value: Option<PrimField<String>>,
 }
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    #[doc = "Set the field `date_value`.\n"]
-    pub fn set_date_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.date_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `long_value`.\n"]
-    pub fn set_long_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.long_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_list_value`.\n"]
-    pub fn set_string_list_value(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.string_list_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_value`.\n"]
-    pub fn set_string_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.string_value = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { # [doc = "Set the field `date_value`.\n"] pub fn set_date_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . date_value = Some (v . into ()) ; self } # [doc = "Set the field `long_value`.\n"] pub fn set_long_value (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . long_value = Some (v . into ()) ; self } # [doc = "Set the field `string_list_value`.\n"] pub fn set_string_list_value (mut self , v : impl Into < SetField < PrimField < String > > >) -> Self { self . string_list_value = Some (v . into ()) ; self } # [doc = "Set the field `string_value`.\n"] pub fn set_string_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . string_value = Some (v . into ()) ; self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl
 {}
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-            date_value: core::default::Default::default(),
-            long_value: core::default::Default::default(),
-            string_list_value: core::default::Default::default(),
-            string_value: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { date_value : core :: default :: Default :: default () , long_value : core :: default :: Default :: default () , string_list_value : core :: default :: Default :: default () , string_value : core :: default :: Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `date_value` after provisioning.\n"]
-    pub fn date_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `long_value` after provisioning.\n"]
-    pub fn long_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.long_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"]
-    pub fn string_list_value(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.string_list_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
-    pub fn string_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `date_value` after provisioning.\n"] pub fn date_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.date_value" , self . base)) } # [doc = "Get a reference to the value of field `long_value` after provisioning.\n"] pub fn long_value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.long_value" , self . base)) } # [doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"] pub fn string_list_value (& self) -> SetRef < PrimExpr < String > > { SetRef :: new (self . shared () . clone () , format ! ("{}.string_list_value" , self . base)) } # [doc = "Get a reference to the value of field `string_value` after provisioning.\n"] pub fn string_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.string_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElDynamic {
-    condition_on_value: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElDynamic { condition_on_value : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-    condition_document_attribute_key: PrimField<String>,
-    operator: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    condition_on_value: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElDynamic,
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-    #[doc = "Set the field `condition_on_value`.\n"]
-    pub fn set_condition_on_value(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.condition_on_value = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.condition_on_value = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { condition_document_attribute_key : PrimField < String > , operator : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] condition_on_value : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElDynamic , }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { # [doc = "Set the field `condition_on_value`.\n"] pub fn set_condition_on_value (mut self , v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . condition_on_value = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . condition_on_value = Some (d) ; } } self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl
 {
     #[doc = ""]
@@ -2881,97 +2095,23 @@ pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtra
     #[doc = ""]
     pub operator: PrimField<String>,
 }
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl {
-            condition_document_attribute_key: self.condition_document_attribute_key,
-            operator: self.operator,
-            condition_on_value: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl { condition_document_attribute_key : self . condition_document_attribute_key , operator : self . operator , condition_on_value : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `condition_document_attribute_key` after provisioning.\n"]
-    pub fn condition_document_attribute_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.condition_document_attribute_key", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `operator` after provisioning.\n"]
-    pub fn operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operator", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"]
-    pub fn condition_on_value(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.condition_on_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `condition_document_attribute_key` after provisioning.\n"] pub fn condition_document_attribute_key (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.condition_document_attribute_key" , self . base)) } # [doc = "Get a reference to the value of field `operator` after provisioning.\n"] pub fn operator (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.operator" , self . base)) } # [doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"] pub fn condition_on_value (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.condition_on_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElDynamic {
-    invocation_condition: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElDynamic { invocation_condition : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl {
-    lambda_arn: PrimField<String>,
-    s3_bucket: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    invocation_condition: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl { lambda_arn : PrimField < String > , s3_bucket : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] invocation_condition : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl {
     #[doc = "Set the field `invocation_condition`.\n"]
     pub fn set_invocation_condition(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2984,14 +2124,12 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookCo
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3000,7 +2138,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl
 {
     #[doc = ""]
@@ -3008,7 +2145,6 @@ pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtra
     #[doc = ""]
     pub s3_bucket: PrimField<String>,
 }
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl {
     pub fn build(
         self,
@@ -3022,13 +2158,11 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionH
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef
 {
@@ -3037,41 +2171,28 @@ impl Ref
         base: String,
     ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef
     {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
+        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef { shared : shared , base : base . to_string () , }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lambda_arn` after provisioning.\n"]
     pub fn lambda_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lambda_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `invocation_condition` after provisioning.\n"]
-    pub fn invocation_condition(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef,
-    >{
+    #[doc = "Get a reference to the value of field `invocation_condition` after provisioning.\n"]    pub fn invocation_condition (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationElInvocationConditionElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.invocation_condition", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl
 {
@@ -3084,170 +2205,24 @@ pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionH
     #[serde(skip_serializing_if = "Option::is_none")]
     string_value: Option<PrimField<String>>,
 }
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    #[doc = "Set the field `date_value`.\n"]
-    pub fn set_date_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.date_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `long_value`.\n"]
-    pub fn set_long_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.long_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_list_value`.\n"]
-    pub fn set_string_list_value(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
-        self.string_list_value = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `string_value`.\n"]
-    pub fn set_string_value(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.string_value = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { # [doc = "Set the field `date_value`.\n"] pub fn set_date_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . date_value = Some (v . into ()) ; self } # [doc = "Set the field `long_value`.\n"] pub fn set_long_value (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . long_value = Some (v . into ()) ; self } # [doc = "Set the field `string_list_value`.\n"] pub fn set_string_list_value (mut self , v : impl Into < SetField < PrimField < String > > >) -> Self { self . string_list_value = Some (v . into ()) ; self } # [doc = "Set the field `string_value`.\n"] pub fn set_string_value (mut self , v : impl Into < PrimField < String > >) -> Self { self . string_value = Some (v . into ()) ; self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl
 {}
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl {
-            date_value: core::default::Default::default(),
-            long_value: core::default::Default::default(),
-            string_list_value: core::default::Default::default(),
-            string_value: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl { date_value : core :: default :: Default :: default () , long_value : core :: default :: Default :: default () , string_list_value : core :: default :: Default :: default () , string_value : core :: default :: Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `date_value` after provisioning.\n"]
-    pub fn date_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.date_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `long_value` after provisioning.\n"]
-    pub fn long_value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.long_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"]
-    pub fn string_list_value(&self) -> SetRef<PrimExpr<String>> {
-        SetRef::new(self.shared().clone(), format!("{}.string_list_value", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `string_value` after provisioning.\n"]
-    pub fn string_value(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.string_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `date_value` after provisioning.\n"] pub fn date_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.date_value" , self . base)) } # [doc = "Get a reference to the value of field `long_value` after provisioning.\n"] pub fn long_value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.long_value" , self . base)) } # [doc = "Get a reference to the value of field `string_list_value` after provisioning.\n"] pub fn string_list_value (& self) -> SetRef < PrimExpr < String > > { SetRef :: new (self . shared () . clone () , format ! ("{}.string_list_value" , self . base)) } # [doc = "Get a reference to the value of field `string_value` after provisioning.\n"] pub fn string_value (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.string_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElDynamic {
-    condition_on_value: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElDynamic { condition_on_value : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-    condition_document_attribute_key: PrimField<String>,
-    operator: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    condition_on_value: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElDynamic,
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-    #[doc = "Set the field `condition_on_value`.\n"]
-    pub fn set_condition_on_value(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.condition_on_value = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.condition_on_value = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-    type O =
-        BlockAssignable<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { condition_document_attribute_key : PrimField < String > , operator : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] condition_on_value : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElDynamic , }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { # [doc = "Set the field `condition_on_value`.\n"] pub fn set_condition_on_value (mut self , v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . condition_on_value = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . condition_on_value = Some (d) ; } } self } }
+impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { type O = BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl
 {
     #[doc = ""]
@@ -3255,97 +2230,23 @@ pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtrac
     #[doc = ""]
     pub operator: PrimField<String>,
 }
-
-impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-    pub fn build(
-        self,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl {
-            condition_document_attribute_key: self.condition_document_attribute_key,
-            operator: self.operator,
-            condition_on_value: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { pub fn build (self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl { condition_document_attribute_key : self . condition_document_attribute_key , operator : self . operator , condition_on_value : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef {
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `condition_document_attribute_key` after provisioning.\n"]
-    pub fn condition_document_attribute_key(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.condition_document_attribute_key", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `operator` after provisioning.\n"]
-    pub fn operator(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.operator", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"]
-    pub fn condition_on_value(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.condition_on_value", self.base))
-    }
-}
-
+impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef { fn new (shared : StackShared , base : String) -> KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef { KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef { shared : shared , base : base . to_string () , } } }
+impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `condition_document_attribute_key` after provisioning.\n"] pub fn condition_document_attribute_key (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.condition_document_attribute_key" , self . base)) } # [doc = "Get a reference to the value of field `operator` after provisioning.\n"] pub fn operator (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.operator" , self . base)) } # [doc = "Get a reference to the value of field `condition_on_value` after provisioning.\n"] pub fn condition_on_value (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElConditionOnValueElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.condition_on_value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElDynamic {
-    invocation_condition: Option<
-        DynamicBlock<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl,
-        >,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElDynamic { invocation_condition : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl {
-    lambda_arn: PrimField<String>,
-    s3_bucket: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    invocation_condition: Option<
-        Vec<
-            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl,
-        >,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl { lambda_arn : PrimField < String > , s3_bucket : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] invocation_condition : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl {
     #[doc = "Set the field `invocation_condition`.\n"]
     pub fn set_invocation_condition(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3358,14 +2259,12 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookCon
         self
     }
 }
-
 impl ToListMappable
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl
 {
     type O = BlockAssignable<
         KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3374,7 +2273,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl
 {
     #[doc = ""]
@@ -3382,7 +2280,6 @@ pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtrac
     #[doc = ""]
     pub s3_bucket: PrimField<String>,
 }
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl {
     pub fn build(
         self,
@@ -3396,13 +2293,11 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHo
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElRef
 {
@@ -3417,72 +2312,35 @@ impl Ref
         }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lambda_arn` after provisioning.\n"]
     pub fn lambda_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lambda_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_bucket", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `invocation_condition` after provisioning.\n"]
-    pub fn invocation_condition(
-        &self,
-    ) -> ListRef<
-        KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef,
-    >{
+    #[doc = "Get a reference to the value of field `invocation_condition` after provisioning.\n"]    pub fn invocation_condition (& self) -> ListRef < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationElInvocationConditionElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.invocation_condition", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
-struct KendraDataSourceCustomDocumentEnrichmentConfigurationElDynamic {
-    inline_configurations: Option<
-        DynamicBlock<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl>,
-    >,
-    post_extraction_hook_configuration: Option<
-        DynamicBlock<KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl>,
-    >,
-    pre_extraction_hook_configuration: Option<
-        DynamicBlock<KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl>,
-    >,
-}
-
+struct KendraDataSourceCustomDocumentEnrichmentConfigurationElDynamic { inline_configurations : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl >> , post_extraction_hook_configuration : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl >> , pre_extraction_hook_configuration : Option < DynamicBlock < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    role_arn: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    inline_configurations: Option<Vec<KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    post_extraction_hook_configuration: Option<
-        Vec<KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl>,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pre_extraction_hook_configuration: Option<
-        Vec<KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl>,
-    >,
-    dynamic: KendraDataSourceCustomDocumentEnrichmentConfigurationElDynamic,
-}
-
+pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] role_arn : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] inline_configurations : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElInlineConfigurationsEl > > , # [serde (skip_serializing_if = "Option::is_none")] post_extraction_hook_configuration : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl > > , # [serde (skip_serializing_if = "Option::is_none")] pre_extraction_hook_configuration : Option < Vec < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl > > , dynamic : KendraDataSourceCustomDocumentEnrichmentConfigurationElDynamic , }
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inline_configurations`.\n"]
     pub fn set_inline_configurations(
         mut self,
@@ -3502,18 +2360,10 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `post_extraction_hook_configuration`.\n"]
     pub fn set_post_extraction_hook_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPostExtractionHookConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3525,18 +2375,10 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `pre_extraction_hook_configuration`.\n"]
     pub fn set_pre_extraction_hook_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < KendraDataSourceCustomDocumentEnrichmentConfigurationElPreExtractionHookConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3549,10 +2391,8 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
     type O = BlockAssignable<KendraDataSourceCustomDocumentEnrichmentConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3561,9 +2401,7 @@ impl ToListMappable for KendraDataSourceCustomDocumentEnrichmentConfigurationEl 
         })
     }
 }
-
 pub struct BuildKendraDataSourceCustomDocumentEnrichmentConfigurationEl {}
-
 impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationEl {
     pub fn build(self) -> KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
         KendraDataSourceCustomDocumentEnrichmentConfigurationEl {
@@ -3575,12 +2413,10 @@ impl BuildKendraDataSourceCustomDocumentEnrichmentConfigurationEl {
         }
     }
 }
-
 pub struct KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -3592,17 +2428,14 @@ impl Ref for KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
         }
     }
 }
-
 impl KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `post_extraction_hook_configuration` after provisioning.\n"]
     pub fn post_extraction_hook_configuration(
         &self,
@@ -3614,7 +2447,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
             format!("{}.post_extraction_hook_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `pre_extraction_hook_configuration` after provisioning.\n"]
     pub fn pre_extraction_hook_configuration(
         &self,
@@ -3627,7 +2459,6 @@ impl KendraDataSourceCustomDocumentEnrichmentConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct KendraDataSourceTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3637,30 +2468,25 @@ pub struct KendraDataSourceTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl KendraDataSourceTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for KendraDataSourceTimeoutsEl {
     type O = BlockAssignable<KendraDataSourceTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3669,9 +2495,7 @@ impl ToListMappable for KendraDataSourceTimeoutsEl {
         })
     }
 }
-
 pub struct BuildKendraDataSourceTimeoutsEl {}
-
 impl BuildKendraDataSourceTimeoutsEl {
     pub fn build(self) -> KendraDataSourceTimeoutsEl {
         KendraDataSourceTimeoutsEl {
@@ -3681,12 +2505,10 @@ impl BuildKendraDataSourceTimeoutsEl {
         }
     }
 }
-
 pub struct KendraDataSourceTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KendraDataSourceTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> KendraDataSourceTimeoutsElRef {
         KendraDataSourceTimeoutsElRef {
@@ -3695,28 +2517,23 @@ impl Ref for KendraDataSourceTimeoutsElRef {
         }
     }
 }
-
 impl KendraDataSourceTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct KendraDataSourceDynamic {
     configuration: Option<DynamicBlock<KendraDataSourceConfigurationEl>>,

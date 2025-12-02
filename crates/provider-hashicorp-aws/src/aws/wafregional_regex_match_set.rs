@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WafregionalRegexMatchSetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct WafregionalRegexMatchSetData {
     regex_match_tuple: Option<Vec<WafregionalRegexMatchSetRegexMatchTupleEl>>,
     dynamic: WafregionalRegexMatchSetDynamic,
 }
-
 struct WafregionalRegexMatchSet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WafregionalRegexMatchSetData>,
 }
-
 #[derive(Clone)]
 pub struct WafregionalRegexMatchSet(Rc<WafregionalRegexMatchSet_>);
-
 impl WafregionalRegexMatchSet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl WafregionalRegexMatchSet {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl WafregionalRegexMatchSet {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,19 +90,16 @@ impl WafregionalRegexMatchSet {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `regex_match_tuple`.\n"]
     pub fn set_regex_match_tuple(
         self,
@@ -130,12 +115,10 @@ impl WafregionalRegexMatchSet {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +126,6 @@ impl WafregionalRegexMatchSet {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -152,7 +134,6 @@ impl WafregionalRegexMatchSet {
         )
     }
 }
-
 impl Referable for WafregionalRegexMatchSet {
     fn extract_ref(&self) -> String {
         format!(
@@ -162,38 +143,30 @@ impl Referable for WafregionalRegexMatchSet {
         )
     }
 }
-
 impl Resource for WafregionalRegexMatchSet {}
-
 impl ToListMappable for WafregionalRegexMatchSet {
     type O = ListRef<WafregionalRegexMatchSetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WafregionalRegexMatchSet_ {
     fn extract_resource_type(&self) -> String {
         "aws_wafregional_regex_match_set".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWafregionalRegexMatchSet {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildWafregionalRegexMatchSet {
     pub fn build(self, stack: &mut Stack) -> WafregionalRegexMatchSet {
         let out = WafregionalRegexMatchSet(Rc::new(WafregionalRegexMatchSet_ {
@@ -215,32 +188,26 @@ impl BuildWafregionalRegexMatchSet {
         out
     }
 }
-
 pub struct WafregionalRegexMatchSetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalRegexMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WafregionalRegexMatchSetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +215,6 @@ impl WafregionalRegexMatchSetRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +223,6 @@ impl WafregionalRegexMatchSetRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -265,7 +230,6 @@ pub struct WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     #[doc = "Set the field `data`.\n"]
     pub fn set_data(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -273,10 +237,8 @@ impl WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     type O = BlockAssignable<WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -285,12 +247,10 @@ impl ToListMappable for WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl 
         })
     }
 }
-
 pub struct BuildWafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
     pub fn build(self) -> WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
         WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
@@ -299,12 +259,10 @@ impl BuildWafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl {
         }
     }
 }
-
 pub struct WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
     fn new(
         shared: StackShared,
@@ -316,28 +274,23 @@ impl Ref for WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
         }
     }
 }
-
 impl WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data` after provisioning.\n"]
     pub fn data(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalRegexMatchSetRegexMatchTupleElDynamic {
     field_to_match: Option<DynamicBlock<WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl>>,
 }
-
 #[derive(Serialize)]
 pub struct WafregionalRegexMatchSetRegexMatchTupleEl {
     regex_pattern_set_id: PrimField<String>,
@@ -346,7 +299,6 @@ pub struct WafregionalRegexMatchSetRegexMatchTupleEl {
     field_to_match: Option<Vec<WafregionalRegexMatchSetRegexMatchTupleElFieldToMatchEl>>,
     dynamic: WafregionalRegexMatchSetRegexMatchTupleElDynamic,
 }
-
 impl WafregionalRegexMatchSetRegexMatchTupleEl {
     #[doc = "Set the field `field_to_match`.\n"]
     pub fn set_field_to_match(
@@ -364,10 +316,8 @@ impl WafregionalRegexMatchSetRegexMatchTupleEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalRegexMatchSetRegexMatchTupleEl {
     type O = BlockAssignable<WafregionalRegexMatchSetRegexMatchTupleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -376,14 +326,12 @@ impl ToListMappable for WafregionalRegexMatchSetRegexMatchTupleEl {
         })
     }
 }
-
 pub struct BuildWafregionalRegexMatchSetRegexMatchTupleEl {
     #[doc = ""]
     pub regex_pattern_set_id: PrimField<String>,
     #[doc = ""]
     pub text_transformation: PrimField<String>,
 }
-
 impl BuildWafregionalRegexMatchSetRegexMatchTupleEl {
     pub fn build(self) -> WafregionalRegexMatchSetRegexMatchTupleEl {
         WafregionalRegexMatchSetRegexMatchTupleEl {
@@ -394,12 +342,10 @@ impl BuildWafregionalRegexMatchSetRegexMatchTupleEl {
         }
     }
 }
-
 pub struct WafregionalRegexMatchSetRegexMatchTupleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalRegexMatchSetRegexMatchTupleElRef {
     fn new(shared: StackShared, base: String) -> WafregionalRegexMatchSetRegexMatchTupleElRef {
         WafregionalRegexMatchSetRegexMatchTupleElRef {
@@ -408,12 +354,10 @@ impl Ref for WafregionalRegexMatchSetRegexMatchTupleElRef {
         }
     }
 }
-
 impl WafregionalRegexMatchSetRegexMatchTupleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `regex_pattern_set_id` after provisioning.\n"]
     pub fn regex_pattern_set_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -421,7 +365,6 @@ impl WafregionalRegexMatchSetRegexMatchTupleElRef {
             format!("{}.regex_pattern_set_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,7 +372,6 @@ impl WafregionalRegexMatchSetRegexMatchTupleElRef {
             format!("{}.text_transformation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
     pub fn field_to_match(
         &self,
@@ -440,7 +382,6 @@ impl WafregionalRegexMatchSetRegexMatchTupleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalRegexMatchSetDynamic {
     regex_match_tuple: Option<DynamicBlock<WafregionalRegexMatchSetRegexMatchTupleEl>>,

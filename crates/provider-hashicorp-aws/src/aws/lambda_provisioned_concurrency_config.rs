@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LambdaProvisionedConcurrencyConfigData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct LambdaProvisionedConcurrencyConfigData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<LambdaProvisionedConcurrencyConfigTimeoutsEl>,
 }
-
 struct LambdaProvisionedConcurrencyConfig_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LambdaProvisionedConcurrencyConfigData>,
 }
-
 #[derive(Clone)]
 pub struct LambdaProvisionedConcurrencyConfig(Rc<LambdaProvisionedConcurrencyConfig_>);
-
 impl LambdaProvisionedConcurrencyConfig {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl LambdaProvisionedConcurrencyConfig {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl LambdaProvisionedConcurrencyConfig {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,31 +93,26 @@ impl LambdaProvisionedConcurrencyConfig {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `skip_destroy`.\n"]
     pub fn set_skip_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().skip_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<LambdaProvisionedConcurrencyConfigTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -137,12 +120,10 @@ impl LambdaProvisionedConcurrencyConfig {
             format!("{}.function_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `provisioned_concurrent_executions` after provisioning.\n"]
     pub fn provisioned_concurrent_executions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -150,7 +131,6 @@ impl LambdaProvisionedConcurrencyConfig {
             format!("{}.provisioned_concurrent_executions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +138,6 @@ impl LambdaProvisionedConcurrencyConfig {
             format!("{}.qualifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +145,6 @@ impl LambdaProvisionedConcurrencyConfig {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -174,7 +152,6 @@ impl LambdaProvisionedConcurrencyConfig {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LambdaProvisionedConcurrencyConfigTimeoutsElRef {
         LambdaProvisionedConcurrencyConfigTimeoutsElRef::new(
@@ -183,7 +160,6 @@ impl LambdaProvisionedConcurrencyConfig {
         )
     }
 }
-
 impl Referable for LambdaProvisionedConcurrencyConfig {
     fn extract_ref(&self) -> String {
         format!(
@@ -193,32 +169,25 @@ impl Referable for LambdaProvisionedConcurrencyConfig {
         )
     }
 }
-
 impl Resource for LambdaProvisionedConcurrencyConfig {}
-
 impl ToListMappable for LambdaProvisionedConcurrencyConfig {
     type O = ListRef<LambdaProvisionedConcurrencyConfigRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LambdaProvisionedConcurrencyConfig_ {
     fn extract_resource_type(&self) -> String {
         "aws_lambda_provisioned_concurrency_config".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLambdaProvisionedConcurrencyConfig {
     pub tf_id: String,
     #[doc = ""]
@@ -228,7 +197,6 @@ pub struct BuildLambdaProvisionedConcurrencyConfig {
     #[doc = ""]
     pub qualifier: PrimField<String>,
 }
-
 impl BuildLambdaProvisionedConcurrencyConfig {
     pub fn build(self, stack: &mut Stack) -> LambdaProvisionedConcurrencyConfig {
         let out =
@@ -253,27 +221,22 @@ impl BuildLambdaProvisionedConcurrencyConfig {
         out
     }
 }
-
 pub struct LambdaProvisionedConcurrencyConfigRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaProvisionedConcurrencyConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LambdaProvisionedConcurrencyConfigRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,12 +244,10 @@ impl LambdaProvisionedConcurrencyConfigRef {
             format!("{}.function_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `provisioned_concurrent_executions` after provisioning.\n"]
     pub fn provisioned_concurrent_executions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -294,7 +255,6 @@ impl LambdaProvisionedConcurrencyConfigRef {
             format!("{}.provisioned_concurrent_executions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualifier` after provisioning.\n"]
     pub fn qualifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -302,7 +262,6 @@ impl LambdaProvisionedConcurrencyConfigRef {
             format!("{}.qualifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -310,7 +269,6 @@ impl LambdaProvisionedConcurrencyConfigRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -318,7 +276,6 @@ impl LambdaProvisionedConcurrencyConfigRef {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LambdaProvisionedConcurrencyConfigTimeoutsElRef {
         LambdaProvisionedConcurrencyConfigTimeoutsElRef::new(
@@ -327,7 +284,6 @@ impl LambdaProvisionedConcurrencyConfigRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaProvisionedConcurrencyConfigTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -335,24 +291,20 @@ pub struct LambdaProvisionedConcurrencyConfigTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl LambdaProvisionedConcurrencyConfigTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LambdaProvisionedConcurrencyConfigTimeoutsEl {
     type O = BlockAssignable<LambdaProvisionedConcurrencyConfigTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -361,9 +313,7 @@ impl ToListMappable for LambdaProvisionedConcurrencyConfigTimeoutsEl {
         })
     }
 }
-
 pub struct BuildLambdaProvisionedConcurrencyConfigTimeoutsEl {}
-
 impl BuildLambdaProvisionedConcurrencyConfigTimeoutsEl {
     pub fn build(self) -> LambdaProvisionedConcurrencyConfigTimeoutsEl {
         LambdaProvisionedConcurrencyConfigTimeoutsEl {
@@ -372,12 +322,10 @@ impl BuildLambdaProvisionedConcurrencyConfigTimeoutsEl {
         }
     }
 }
-
 pub struct LambdaProvisionedConcurrencyConfigTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaProvisionedConcurrencyConfigTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> LambdaProvisionedConcurrencyConfigTimeoutsElRef {
         LambdaProvisionedConcurrencyConfigTimeoutsElRef {
@@ -386,17 +334,14 @@ impl Ref for LambdaProvisionedConcurrencyConfigTimeoutsElRef {
         }
     }
 }
-
 impl LambdaProvisionedConcurrencyConfigTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

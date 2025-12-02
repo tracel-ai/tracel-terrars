@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3BucketNotificationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct S3BucketNotificationData {
     topic: Option<Vec<S3BucketNotificationTopicEl>>,
     dynamic: S3BucketNotificationDynamic,
 }
-
 struct S3BucketNotification_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3BucketNotificationData>,
 }
-
 #[derive(Clone)]
 pub struct S3BucketNotification(Rc<S3BucketNotification_>);
-
 impl S3BucketNotification {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl S3BucketNotification {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl S3BucketNotification {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,25 +96,21 @@ impl S3BucketNotification {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `eventbridge`.\n"]
     pub fn set_eventbridge(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().eventbridge = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lambda_function`.\n"]
     pub fn set_lambda_function(
         self,
@@ -142,7 +126,6 @@ impl S3BucketNotification {
         }
         self
     }
-
     #[doc = "Set the field `queue`.\n"]
     pub fn set_queue(self, v: impl Into<BlockAssignable<S3BucketNotificationQueueEl>>) -> Self {
         match v.into() {
@@ -155,7 +138,6 @@ impl S3BucketNotification {
         }
         self
     }
-
     #[doc = "Set the field `topic`.\n"]
     pub fn set_topic(self, v: impl Into<BlockAssignable<S3BucketNotificationTopicEl>>) -> Self {
         match v.into() {
@@ -168,7 +150,6 @@ impl S3BucketNotification {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +157,6 @@ impl S3BucketNotification {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `eventbridge` after provisioning.\n"]
     pub fn eventbridge(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -184,12 +164,10 @@ impl S3BucketNotification {
             format!("{}.eventbridge", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +175,6 @@ impl S3BucketNotification {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_function` after provisioning.\n"]
     pub fn lambda_function(&self) -> ListRef<S3BucketNotificationLambdaFunctionElRef> {
         ListRef::new(
@@ -205,7 +182,6 @@ impl S3BucketNotification {
             format!("{}.lambda_function", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `queue` after provisioning.\n"]
     pub fn queue(&self) -> ListRef<S3BucketNotificationQueueElRef> {
         ListRef::new(
@@ -213,7 +189,6 @@ impl S3BucketNotification {
             format!("{}.queue", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> ListRef<S3BucketNotificationTopicElRef> {
         ListRef::new(
@@ -222,7 +197,6 @@ impl S3BucketNotification {
         )
     }
 }
-
 impl Referable for S3BucketNotification {
     fn extract_ref(&self) -> String {
         format!(
@@ -232,38 +206,30 @@ impl Referable for S3BucketNotification {
         )
     }
 }
-
 impl Resource for S3BucketNotification {}
-
 impl ToListMappable for S3BucketNotification {
     type O = ListRef<S3BucketNotificationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3BucketNotification_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3_bucket_notification".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3BucketNotification {
     pub tf_id: String,
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
-
 impl BuildS3BucketNotification {
     pub fn build(self, stack: &mut Stack) -> S3BucketNotification {
         let out = S3BucketNotification(Rc::new(S3BucketNotification_ {
@@ -288,27 +254,22 @@ impl BuildS3BucketNotification {
         out
     }
 }
-
 pub struct S3BucketNotificationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketNotificationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3BucketNotificationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,7 +277,6 @@ impl S3BucketNotificationRef {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `eventbridge` after provisioning.\n"]
     pub fn eventbridge(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -324,12 +284,10 @@ impl S3BucketNotificationRef {
             format!("{}.eventbridge", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +295,6 @@ impl S3BucketNotificationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_function` after provisioning.\n"]
     pub fn lambda_function(&self) -> ListRef<S3BucketNotificationLambdaFunctionElRef> {
         ListRef::new(
@@ -345,7 +302,6 @@ impl S3BucketNotificationRef {
             format!("{}.lambda_function", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `queue` after provisioning.\n"]
     pub fn queue(&self) -> ListRef<S3BucketNotificationQueueElRef> {
         ListRef::new(
@@ -353,7 +309,6 @@ impl S3BucketNotificationRef {
             format!("{}.queue", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `topic` after provisioning.\n"]
     pub fn topic(&self) -> ListRef<S3BucketNotificationTopicElRef> {
         ListRef::new(
@@ -362,7 +317,6 @@ impl S3BucketNotificationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketNotificationLambdaFunctionEl {
     events: SetField<PrimField<String>>,
@@ -375,36 +329,30 @@ pub struct S3BucketNotificationLambdaFunctionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lambda_function_arn: Option<PrimField<String>>,
 }
-
 impl S3BucketNotificationLambdaFunctionEl {
     #[doc = "Set the field `filter_prefix`.\n"]
     pub fn set_filter_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter_suffix`.\n"]
     pub fn set_filter_suffix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_suffix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lambda_function_arn`.\n"]
     pub fn set_lambda_function_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lambda_function_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketNotificationLambdaFunctionEl {
     type O = BlockAssignable<S3BucketNotificationLambdaFunctionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -413,12 +361,10 @@ impl ToListMappable for S3BucketNotificationLambdaFunctionEl {
         })
     }
 }
-
 pub struct BuildS3BucketNotificationLambdaFunctionEl {
     #[doc = ""]
     pub events: SetField<PrimField<String>>,
 }
-
 impl BuildS3BucketNotificationLambdaFunctionEl {
     pub fn build(self) -> S3BucketNotificationLambdaFunctionEl {
         S3BucketNotificationLambdaFunctionEl {
@@ -430,12 +376,10 @@ impl BuildS3BucketNotificationLambdaFunctionEl {
         }
     }
 }
-
 pub struct S3BucketNotificationLambdaFunctionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketNotificationLambdaFunctionElRef {
     fn new(shared: StackShared, base: String) -> S3BucketNotificationLambdaFunctionElRef {
         S3BucketNotificationLambdaFunctionElRef {
@@ -444,17 +388,14 @@ impl Ref for S3BucketNotificationLambdaFunctionElRef {
         }
     }
 }
-
 impl S3BucketNotificationLambdaFunctionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `events` after provisioning.\n"]
     pub fn events(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.events", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,7 +403,6 @@ impl S3BucketNotificationLambdaFunctionElRef {
             format!("{}.filter_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -470,12 +410,10 @@ impl S3BucketNotificationLambdaFunctionElRef {
             format!("{}.filter_suffix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lambda_function_arn` after provisioning.\n"]
     pub fn lambda_function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -484,7 +422,6 @@ impl S3BucketNotificationLambdaFunctionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketNotificationQueueEl {
     events: SetField<PrimField<String>>,
@@ -496,30 +433,25 @@ pub struct S3BucketNotificationQueueEl {
     id: Option<PrimField<String>>,
     queue_arn: PrimField<String>,
 }
-
 impl S3BucketNotificationQueueEl {
     #[doc = "Set the field `filter_prefix`.\n"]
     pub fn set_filter_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter_suffix`.\n"]
     pub fn set_filter_suffix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_suffix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketNotificationQueueEl {
     type O = BlockAssignable<S3BucketNotificationQueueEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -528,14 +460,12 @@ impl ToListMappable for S3BucketNotificationQueueEl {
         })
     }
 }
-
 pub struct BuildS3BucketNotificationQueueEl {
     #[doc = ""]
     pub events: SetField<PrimField<String>>,
     #[doc = ""]
     pub queue_arn: PrimField<String>,
 }
-
 impl BuildS3BucketNotificationQueueEl {
     pub fn build(self) -> S3BucketNotificationQueueEl {
         S3BucketNotificationQueueEl {
@@ -547,12 +477,10 @@ impl BuildS3BucketNotificationQueueEl {
         }
     }
 }
-
 pub struct S3BucketNotificationQueueElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketNotificationQueueElRef {
     fn new(shared: StackShared, base: String) -> S3BucketNotificationQueueElRef {
         S3BucketNotificationQueueElRef {
@@ -561,17 +489,14 @@ impl Ref for S3BucketNotificationQueueElRef {
         }
     }
 }
-
 impl S3BucketNotificationQueueElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `events` after provisioning.\n"]
     pub fn events(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.events", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -579,7 +504,6 @@ impl S3BucketNotificationQueueElRef {
             format!("{}.filter_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,18 +511,15 @@ impl S3BucketNotificationQueueElRef {
             format!("{}.filter_suffix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `queue_arn` after provisioning.\n"]
     pub fn queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketNotificationTopicEl {
     events: SetField<PrimField<String>>,
@@ -610,30 +531,25 @@ pub struct S3BucketNotificationTopicEl {
     id: Option<PrimField<String>>,
     topic_arn: PrimField<String>,
 }
-
 impl S3BucketNotificationTopicEl {
     #[doc = "Set the field `filter_prefix`.\n"]
     pub fn set_filter_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter_suffix`.\n"]
     pub fn set_filter_suffix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_suffix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketNotificationTopicEl {
     type O = BlockAssignable<S3BucketNotificationTopicEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -642,14 +558,12 @@ impl ToListMappable for S3BucketNotificationTopicEl {
         })
     }
 }
-
 pub struct BuildS3BucketNotificationTopicEl {
     #[doc = ""]
     pub events: SetField<PrimField<String>>,
     #[doc = ""]
     pub topic_arn: PrimField<String>,
 }
-
 impl BuildS3BucketNotificationTopicEl {
     pub fn build(self) -> S3BucketNotificationTopicEl {
         S3BucketNotificationTopicEl {
@@ -661,12 +575,10 @@ impl BuildS3BucketNotificationTopicEl {
         }
     }
 }
-
 pub struct S3BucketNotificationTopicElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketNotificationTopicElRef {
     fn new(shared: StackShared, base: String) -> S3BucketNotificationTopicElRef {
         S3BucketNotificationTopicElRef {
@@ -675,17 +587,14 @@ impl Ref for S3BucketNotificationTopicElRef {
         }
     }
 }
-
 impl S3BucketNotificationTopicElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `events` after provisioning.\n"]
     pub fn events(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.events", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter_prefix` after provisioning.\n"]
     pub fn filter_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -693,7 +602,6 @@ impl S3BucketNotificationTopicElRef {
             format!("{}.filter_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter_suffix` after provisioning.\n"]
     pub fn filter_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -701,18 +609,15 @@ impl S3BucketNotificationTopicElRef {
             format!("{}.filter_suffix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketNotificationDynamic {
     lambda_function: Option<DynamicBlock<S3BucketNotificationLambdaFunctionEl>>,

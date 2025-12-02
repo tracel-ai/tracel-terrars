@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WorkspaceswebPortalData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct WorkspaceswebPortalData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<WorkspaceswebPortalTimeoutsEl>,
 }
-
 struct WorkspaceswebPortal_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WorkspaceswebPortalData>,
 }
-
 #[derive(Clone)]
 pub struct WorkspaceswebPortal(Rc<WorkspaceswebPortal_>);
-
 impl WorkspaceswebPortal {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl WorkspaceswebPortal {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl WorkspaceswebPortal {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,7 +102,6 @@ impl WorkspaceswebPortal {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `additional_encryption_context`.\n"]
     pub fn set_additional_encryption_context(
         self,
@@ -123,61 +110,51 @@ impl WorkspaceswebPortal {
         self.0.data.borrow_mut().additional_encryption_context = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authentication_type`.\n"]
     pub fn set_authentication_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().authentication_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `browser_settings_arn`.\n"]
     pub fn set_browser_settings_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().browser_settings_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `customer_managed_key`.\n"]
     pub fn set_customer_managed_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().customer_managed_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `display_name`.\n"]
     pub fn set_display_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().display_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type`.\n"]
     pub fn set_instance_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_concurrent_sessions`.\n"]
     pub fn set_max_concurrent_sessions(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_concurrent_sessions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<WorkspaceswebPortalTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -185,7 +162,6 @@ impl WorkspaceswebPortal {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +169,6 @@ impl WorkspaceswebPortal {
             format!("{}.authentication_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `browser_settings_arn` after provisioning.\n"]
     pub fn browser_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +176,6 @@ impl WorkspaceswebPortal {
             format!("{}.browser_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `browser_type` after provisioning.\n"]
     pub fn browser_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,7 +183,6 @@ impl WorkspaceswebPortal {
             format!("{}.browser_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,7 +190,6 @@ impl WorkspaceswebPortal {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -225,7 +197,6 @@ impl WorkspaceswebPortal {
             format!("{}.customer_managed_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -233,7 +204,6 @@ impl WorkspaceswebPortal {
             format!("{}.data_protection_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -241,7 +211,6 @@ impl WorkspaceswebPortal {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -249,7 +218,6 @@ impl WorkspaceswebPortal {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_access_settings_arn` after provisioning.\n"]
     pub fn ip_access_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +225,6 @@ impl WorkspaceswebPortal {
             format!("{}.ip_access_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_concurrent_sessions` after provisioning.\n"]
     pub fn max_concurrent_sessions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -265,7 +232,6 @@ impl WorkspaceswebPortal {
             format!("{}.max_concurrent_sessions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_settings_arn` after provisioning.\n"]
     pub fn network_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +239,6 @@ impl WorkspaceswebPortal {
             format!("{}.network_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_arn` after provisioning.\n"]
     pub fn portal_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +246,6 @@ impl WorkspaceswebPortal {
             format!("{}.portal_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_endpoint` after provisioning.\n"]
     pub fn portal_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +253,6 @@ impl WorkspaceswebPortal {
             format!("{}.portal_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_status` after provisioning.\n"]
     pub fn portal_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +260,6 @@ impl WorkspaceswebPortal {
             format!("{}.portal_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +267,6 @@ impl WorkspaceswebPortal {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `renderer_type` after provisioning.\n"]
     pub fn renderer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +274,6 @@ impl WorkspaceswebPortal {
             format!("{}.renderer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_logger_arn` after provisioning.\n"]
     pub fn session_logger_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +281,6 @@ impl WorkspaceswebPortal {
             format!("{}.session_logger_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +288,6 @@ impl WorkspaceswebPortal {
             format!("{}.status_reason", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -337,7 +295,6 @@ impl WorkspaceswebPortal {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -345,7 +302,6 @@ impl WorkspaceswebPortal {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,7 +309,6 @@ impl WorkspaceswebPortal {
             format!("{}.trust_store_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_access_logging_settings_arn` after provisioning.\n"]
     pub fn user_access_logging_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -361,7 +316,6 @@ impl WorkspaceswebPortal {
             format!("{}.user_access_logging_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_settings_arn` after provisioning.\n"]
     pub fn user_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +323,6 @@ impl WorkspaceswebPortal {
             format!("{}.user_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> WorkspaceswebPortalTimeoutsElRef {
         WorkspaceswebPortalTimeoutsElRef::new(
@@ -378,7 +331,6 @@ impl WorkspaceswebPortal {
         )
     }
 }
-
 impl Referable for WorkspaceswebPortal {
     fn extract_ref(&self) -> String {
         format!(
@@ -388,36 +340,28 @@ impl Referable for WorkspaceswebPortal {
         )
     }
 }
-
 impl Resource for WorkspaceswebPortal {}
-
 impl ToListMappable for WorkspaceswebPortal {
     type O = ListRef<WorkspaceswebPortalRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WorkspaceswebPortal_ {
     fn extract_resource_type(&self) -> String {
         "aws_workspacesweb_portal".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWorkspaceswebPortal {
     pub tf_id: String,
 }
-
 impl BuildWorkspaceswebPortal {
     pub fn build(self, stack: &mut Stack) -> WorkspaceswebPortal {
         let out = WorkspaceswebPortal(Rc::new(WorkspaceswebPortal_ {
@@ -444,27 +388,22 @@ impl BuildWorkspaceswebPortal {
         out
     }
 }
-
 pub struct WorkspaceswebPortalRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebPortalRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WorkspaceswebPortalRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -472,7 +411,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +418,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.authentication_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `browser_settings_arn` after provisioning.\n"]
     pub fn browser_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +425,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.browser_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `browser_type` after provisioning.\n"]
     pub fn browser_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +432,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.browser_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `creation_date` after provisioning.\n"]
     pub fn creation_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +439,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.creation_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_key` after provisioning.\n"]
     pub fn customer_managed_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -512,7 +446,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.customer_managed_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_protection_settings_arn` after provisioning.\n"]
     pub fn data_protection_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,7 +453,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.data_protection_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -528,7 +460,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,7 +467,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.instance_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_access_settings_arn` after provisioning.\n"]
     pub fn ip_access_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -544,7 +474,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.ip_access_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_concurrent_sessions` after provisioning.\n"]
     pub fn max_concurrent_sessions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -552,7 +481,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.max_concurrent_sessions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_settings_arn` after provisioning.\n"]
     pub fn network_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -560,7 +488,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.network_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_arn` after provisioning.\n"]
     pub fn portal_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -568,7 +495,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.portal_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_endpoint` after provisioning.\n"]
     pub fn portal_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -576,7 +502,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.portal_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `portal_status` after provisioning.\n"]
     pub fn portal_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -584,7 +509,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.portal_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -592,7 +516,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `renderer_type` after provisioning.\n"]
     pub fn renderer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -600,7 +523,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.renderer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_logger_arn` after provisioning.\n"]
     pub fn session_logger_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -608,7 +530,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.session_logger_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status_reason` after provisioning.\n"]
     pub fn status_reason(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -616,7 +537,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.status_reason", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -624,7 +544,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -632,7 +551,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trust_store_arn` after provisioning.\n"]
     pub fn trust_store_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -640,7 +558,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.trust_store_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_access_logging_settings_arn` after provisioning.\n"]
     pub fn user_access_logging_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -648,7 +565,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.user_access_logging_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_settings_arn` after provisioning.\n"]
     pub fn user_settings_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -656,7 +572,6 @@ impl WorkspaceswebPortalRef {
             format!("{}.user_settings_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> WorkspaceswebPortalTimeoutsElRef {
         WorkspaceswebPortalTimeoutsElRef::new(
@@ -665,7 +580,6 @@ impl WorkspaceswebPortalRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WorkspaceswebPortalTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -675,30 +589,25 @@ pub struct WorkspaceswebPortalTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl WorkspaceswebPortalTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for WorkspaceswebPortalTimeoutsEl {
     type O = BlockAssignable<WorkspaceswebPortalTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -707,9 +616,7 @@ impl ToListMappable for WorkspaceswebPortalTimeoutsEl {
         })
     }
 }
-
 pub struct BuildWorkspaceswebPortalTimeoutsEl {}
-
 impl BuildWorkspaceswebPortalTimeoutsEl {
     pub fn build(self) -> WorkspaceswebPortalTimeoutsEl {
         WorkspaceswebPortalTimeoutsEl {
@@ -719,12 +626,10 @@ impl BuildWorkspaceswebPortalTimeoutsEl {
         }
     }
 }
-
 pub struct WorkspaceswebPortalTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WorkspaceswebPortalTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> WorkspaceswebPortalTimeoutsElRef {
         WorkspaceswebPortalTimeoutsElRef {
@@ -733,22 +638,18 @@ impl Ref for WorkspaceswebPortalTimeoutsElRef {
         }
     }
 }
-
 impl WorkspaceswebPortalTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

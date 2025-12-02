@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataGlueConnectionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -18,48 +17,39 @@ struct DataGlueConnectionData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataGlueConnection_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataGlueConnectionData>,
 }
-
 #[derive(Clone)]
 pub struct DataGlueConnection(Rc<DataGlueConnection_>);
-
 impl DataGlueConnection {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `athena_properties` after provisioning.\n"]
     pub fn athena_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -67,7 +57,6 @@ impl DataGlueConnection {
             format!("{}.athena_properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -75,7 +64,6 @@ impl DataGlueConnection {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_properties` after provisioning.\n"]
     pub fn connection_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -83,7 +71,6 @@ impl DataGlueConnection {
             format!("{}.connection_properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_type` after provisioning.\n"]
     pub fn connection_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -91,7 +78,6 @@ impl DataGlueConnection {
             format!("{}.connection_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -99,12 +85,10 @@ impl DataGlueConnection {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `match_criteria` after provisioning.\n"]
     pub fn match_criteria(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -112,7 +96,6 @@ impl DataGlueConnection {
             format!("{}.match_criteria", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +103,6 @@ impl DataGlueConnection {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `physical_connection_requirements` after provisioning.\n"]
     pub fn physical_connection_requirements(
         &self,
@@ -130,7 +112,6 @@ impl DataGlueConnection {
             format!("{}.physical_connection_requirements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,7 +119,6 @@ impl DataGlueConnection {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -147,7 +127,6 @@ impl DataGlueConnection {
         )
     }
 }
-
 impl Referable for DataGlueConnection {
     fn extract_ref(&self) -> String {
         format!(
@@ -157,38 +136,30 @@ impl Referable for DataGlueConnection {
         )
     }
 }
-
 impl Datasource for DataGlueConnection {}
-
 impl ToListMappable for DataGlueConnection {
     type O = ListRef<DataGlueConnectionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataGlueConnection_ {
     fn extract_datasource_type(&self) -> String {
         "aws_glue_connection".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataGlueConnection {
     pub tf_id: String,
     #[doc = ""]
     pub id: PrimField<String>,
 }
-
 impl BuildDataGlueConnection {
     pub fn build(self, stack: &mut Stack) -> DataGlueConnection {
         let out = DataGlueConnection(Rc::new(DataGlueConnection_ {
@@ -207,32 +178,26 @@ impl BuildDataGlueConnection {
         out
     }
 }
-
 pub struct DataGlueConnectionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataGlueConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataGlueConnectionRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `athena_properties` after provisioning.\n"]
     pub fn athena_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -240,7 +205,6 @@ impl DataGlueConnectionRef {
             format!("{}.athena_properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +212,6 @@ impl DataGlueConnectionRef {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_properties` after provisioning.\n"]
     pub fn connection_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -256,7 +219,6 @@ impl DataGlueConnectionRef {
             format!("{}.connection_properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_type` after provisioning.\n"]
     pub fn connection_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +226,6 @@ impl DataGlueConnectionRef {
             format!("{}.connection_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,12 +233,10 @@ impl DataGlueConnectionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `match_criteria` after provisioning.\n"]
     pub fn match_criteria(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -285,7 +244,6 @@ impl DataGlueConnectionRef {
             format!("{}.match_criteria", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,7 +251,6 @@ impl DataGlueConnectionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `physical_connection_requirements` after provisioning.\n"]
     pub fn physical_connection_requirements(
         &self,
@@ -303,7 +260,6 @@ impl DataGlueConnectionRef {
             format!("{}.physical_connection_requirements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -311,7 +267,6 @@ impl DataGlueConnectionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -320,7 +275,6 @@ impl DataGlueConnectionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataGlueConnectionPhysicalConnectionRequirementsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -330,30 +284,25 @@ pub struct DataGlueConnectionPhysicalConnectionRequirementsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet_id: Option<PrimField<String>>,
 }
-
 impl DataGlueConnectionPhysicalConnectionRequirementsEl {
     #[doc = "Set the field `availability_zone`.\n"]
     pub fn set_availability_zone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.availability_zone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_id_list`.\n"]
     pub fn set_security_group_id_list(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_group_id_list = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_id`.\n"]
     pub fn set_subnet_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.subnet_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataGlueConnectionPhysicalConnectionRequirementsEl {
     type O = BlockAssignable<DataGlueConnectionPhysicalConnectionRequirementsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -362,9 +311,7 @@ impl ToListMappable for DataGlueConnectionPhysicalConnectionRequirementsEl {
         })
     }
 }
-
 pub struct BuildDataGlueConnectionPhysicalConnectionRequirementsEl {}
-
 impl BuildDataGlueConnectionPhysicalConnectionRequirementsEl {
     pub fn build(self) -> DataGlueConnectionPhysicalConnectionRequirementsEl {
         DataGlueConnectionPhysicalConnectionRequirementsEl {
@@ -374,12 +321,10 @@ impl BuildDataGlueConnectionPhysicalConnectionRequirementsEl {
         }
     }
 }
-
 pub struct DataGlueConnectionPhysicalConnectionRequirementsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataGlueConnectionPhysicalConnectionRequirementsElRef {
     fn new(
         shared: StackShared,
@@ -391,12 +336,10 @@ impl Ref for DataGlueConnectionPhysicalConnectionRequirementsElRef {
         }
     }
 }
-
 impl DataGlueConnectionPhysicalConnectionRequirementsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -404,7 +347,6 @@ impl DataGlueConnectionPhysicalConnectionRequirementsElRef {
             format!("{}.availability_zone", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_id_list` after provisioning.\n"]
     pub fn security_group_id_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -412,7 +354,6 @@ impl DataGlueConnectionPhysicalConnectionRequirementsElRef {
             format!("{}.security_group_id_list", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.base))

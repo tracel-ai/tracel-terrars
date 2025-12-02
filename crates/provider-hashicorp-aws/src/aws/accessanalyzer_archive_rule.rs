@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AccessanalyzerArchiveRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct AccessanalyzerArchiveRuleData {
     filter: Option<Vec<AccessanalyzerArchiveRuleFilterEl>>,
     dynamic: AccessanalyzerArchiveRuleDynamic,
 }
-
 struct AccessanalyzerArchiveRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AccessanalyzerArchiveRuleData>,
 }
-
 #[derive(Clone)]
 pub struct AccessanalyzerArchiveRule(Rc<AccessanalyzerArchiveRule_>);
-
 impl AccessanalyzerArchiveRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl AccessanalyzerArchiveRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl AccessanalyzerArchiveRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,19 +91,16 @@ impl AccessanalyzerArchiveRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
         self,
@@ -131,7 +116,6 @@ impl AccessanalyzerArchiveRule {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `analyzer_name` after provisioning.\n"]
     pub fn analyzer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,12 +123,10 @@ impl AccessanalyzerArchiveRule {
             format!("{}.analyzer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -152,7 +134,6 @@ impl AccessanalyzerArchiveRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -161,7 +142,6 @@ impl AccessanalyzerArchiveRule {
         )
     }
 }
-
 impl Referable for AccessanalyzerArchiveRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -171,32 +151,25 @@ impl Referable for AccessanalyzerArchiveRule {
         )
     }
 }
-
 impl Resource for AccessanalyzerArchiveRule {}
-
 impl ToListMappable for AccessanalyzerArchiveRule {
     type O = ListRef<AccessanalyzerArchiveRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AccessanalyzerArchiveRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_accessanalyzer_archive_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAccessanalyzerArchiveRule {
     pub tf_id: String,
     #[doc = ""]
@@ -204,7 +177,6 @@ pub struct BuildAccessanalyzerArchiveRule {
     #[doc = ""]
     pub rule_name: PrimField<String>,
 }
-
 impl BuildAccessanalyzerArchiveRule {
     pub fn build(self, stack: &mut Stack) -> AccessanalyzerArchiveRule {
         let out = AccessanalyzerArchiveRule(Rc::new(AccessanalyzerArchiveRule_ {
@@ -227,27 +199,22 @@ impl BuildAccessanalyzerArchiveRule {
         out
     }
 }
-
 pub struct AccessanalyzerArchiveRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AccessanalyzerArchiveRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AccessanalyzerArchiveRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `analyzer_name` after provisioning.\n"]
     pub fn analyzer_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -255,12 +222,10 @@ impl AccessanalyzerArchiveRuleRef {
             format!("{}.analyzer_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +233,6 @@ impl AccessanalyzerArchiveRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +241,6 @@ impl AccessanalyzerArchiveRuleRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AccessanalyzerArchiveRuleFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -290,36 +253,30 @@ pub struct AccessanalyzerArchiveRuleFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     neq: Option<ListField<PrimField<String>>>,
 }
-
 impl AccessanalyzerArchiveRuleFilterEl {
     #[doc = "Set the field `contains`.\n"]
     pub fn set_contains(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.contains = Some(v.into());
         self
     }
-
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exists`.\n"]
     pub fn set_exists(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.exists = Some(v.into());
         self
     }
-
     #[doc = "Set the field `neq`.\n"]
     pub fn set_neq(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.neq = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AccessanalyzerArchiveRuleFilterEl {
     type O = BlockAssignable<AccessanalyzerArchiveRuleFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -328,12 +285,10 @@ impl ToListMappable for AccessanalyzerArchiveRuleFilterEl {
         })
     }
 }
-
 pub struct BuildAccessanalyzerArchiveRuleFilterEl {
     #[doc = ""]
     pub criteria: PrimField<String>,
 }
-
 impl BuildAccessanalyzerArchiveRuleFilterEl {
     pub fn build(self) -> AccessanalyzerArchiveRuleFilterEl {
         AccessanalyzerArchiveRuleFilterEl {
@@ -345,12 +300,10 @@ impl BuildAccessanalyzerArchiveRuleFilterEl {
         }
     }
 }
-
 pub struct AccessanalyzerArchiveRuleFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AccessanalyzerArchiveRuleFilterElRef {
     fn new(shared: StackShared, base: String) -> AccessanalyzerArchiveRuleFilterElRef {
         AccessanalyzerArchiveRuleFilterElRef {
@@ -359,38 +312,31 @@ impl Ref for AccessanalyzerArchiveRuleFilterElRef {
         }
     }
 }
-
 impl AccessanalyzerArchiveRuleFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `contains` after provisioning.\n"]
     pub fn contains(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.contains", self.base))
     }
-
     #[doc = "Get a reference to the value of field `criteria` after provisioning.\n"]
     pub fn criteria(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.criteria", self.base))
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `exists` after provisioning.\n"]
     pub fn exists(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.exists", self.base))
     }
-
     #[doc = "Get a reference to the value of field `neq` after provisioning.\n"]
     pub fn neq(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.neq", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AccessanalyzerArchiveRuleDynamic {
     filter: Option<DynamicBlock<AccessanalyzerArchiveRuleFilterEl>>,

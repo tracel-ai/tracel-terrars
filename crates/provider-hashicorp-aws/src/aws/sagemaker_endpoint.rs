@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerEndpointData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct SagemakerEndpointData {
     deployment_config: Option<Vec<SagemakerEndpointDeploymentConfigEl>>,
     dynamic: SagemakerEndpointDynamic,
 }
-
 struct SagemakerEndpoint_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerEndpointData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerEndpoint(Rc<SagemakerEndpoint_>);
-
 impl SagemakerEndpoint {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl SagemakerEndpoint {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl SagemakerEndpoint {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,37 +96,31 @@ impl SagemakerEndpoint {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deployment_config`.\n"]
     pub fn set_deployment_config(
         self,
@@ -154,12 +136,10 @@ impl SagemakerEndpoint {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `endpoint_config_name` after provisioning.\n"]
     pub fn endpoint_config_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,12 +147,10 @@ impl SagemakerEndpoint {
             format!("{}.endpoint_config_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +158,6 @@ impl SagemakerEndpoint {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +165,6 @@ impl SagemakerEndpoint {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -196,7 +172,6 @@ impl SagemakerEndpoint {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -204,7 +179,6 @@ impl SagemakerEndpoint {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deployment_config` after provisioning.\n"]
     pub fn deployment_config(&self) -> ListRef<SagemakerEndpointDeploymentConfigElRef> {
         ListRef::new(
@@ -213,7 +187,6 @@ impl SagemakerEndpoint {
         )
     }
 }
-
 impl Referable for SagemakerEndpoint {
     fn extract_ref(&self) -> String {
         format!(
@@ -223,38 +196,30 @@ impl Referable for SagemakerEndpoint {
         )
     }
 }
-
 impl Resource for SagemakerEndpoint {}
-
 impl ToListMappable for SagemakerEndpoint {
     type O = ListRef<SagemakerEndpointRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerEndpoint_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_endpoint".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerEndpoint {
     pub tf_id: String,
     #[doc = ""]
     pub endpoint_config_name: PrimField<String>,
 }
-
 impl BuildSagemakerEndpoint {
     pub fn build(self, stack: &mut Stack) -> SagemakerEndpoint {
         let out = SagemakerEndpoint(Rc::new(SagemakerEndpoint_ {
@@ -279,32 +244,26 @@ impl BuildSagemakerEndpoint {
         out
     }
 }
-
 pub struct SagemakerEndpointRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerEndpointRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `endpoint_config_name` after provisioning.\n"]
     pub fn endpoint_config_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -312,12 +271,10 @@ impl SagemakerEndpointRef {
             format!("{}.endpoint_config_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -325,7 +282,6 @@ impl SagemakerEndpointRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +289,6 @@ impl SagemakerEndpointRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -341,7 +296,6 @@ impl SagemakerEndpointRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -349,7 +303,6 @@ impl SagemakerEndpointRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deployment_config` after provisioning.\n"]
     pub fn deployment_config(&self) -> ListRef<SagemakerEndpointDeploymentConfigElRef> {
         ListRef::new(
@@ -358,18 +311,14 @@ impl SagemakerEndpointRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
     alarm_name: PrimField<String>,
 }
-
 impl SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {}
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
     type O =
         BlockAssignable<SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -378,12 +327,10 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigElAutoRollbackConfigura
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
     #[doc = ""]
     pub alarm_name: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
     pub fn build(self) -> SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
         SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl {
@@ -391,12 +338,10 @@ impl BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsElRef {
     fn new(
         shared: StackShared,
@@ -408,32 +353,27 @@ impl Ref for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarm
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `alarm_name` after provisioning.\n"]
     pub fn alarm_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.alarm_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElDynamic {
     alarms: Option<
         DynamicBlock<SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     alarms: Option<Vec<SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElAlarmsEl>>,
     dynamic: SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElDynamic,
 }
-
 impl SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
     #[doc = "Set the field `alarms`.\n"]
     pub fn set_alarms(
@@ -453,10 +393,8 @@ impl SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
     type O = BlockAssignable<SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -465,9 +403,7 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigElAutoRollbackConfigura
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {}
-
 impl BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
     pub fn build(self) -> SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
         SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
@@ -476,12 +412,10 @@ impl BuildSagemakerEndpointDeploymentConfigElAutoRollbackConfigurationEl {
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -493,13 +427,11 @@ impl Ref for SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElRef {
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElAutoRollbackConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl
 {
@@ -507,24 +439,8 @@ pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRout
     type_: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl { }
-
-impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl {
-    type O =
-        BlockAssignable<
-            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl { type O = BlockAssignable < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl
 {
     #[doc = ""]
@@ -532,52 +448,14 @@ pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTraffi
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
-impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl {
-    pub fn build(
-        self,
-    ) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl {
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl {
-            type_: self.type_,
-            value: self.value,
-        }
-    }
-}
-
+impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl { pub fn build (self) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl { SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl { type_ : self . type_ , value : self . value , } } }
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef {
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
-    pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
-    pub fn value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
-    }
-}
-
+impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef { fn new (shared : StackShared , base : String) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef { SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef { shared : shared , base : base . to_string () , } } }
+impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `type_` after provisioning.\n"] pub fn type_ (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.type" , self . base)) } # [doc = "Get a reference to the value of field `value` after provisioning.\n"] pub fn value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.value" , self . base)) } }
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl
 {
@@ -585,24 +463,8 @@ pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRout
     type_: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl { }
-
-impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl {
-    type O =
-        BlockAssignable<
-            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl { type O = BlockAssignable < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl
 {
     #[doc = ""]
@@ -610,94 +472,23 @@ pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTraffi
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
-impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl {
-    pub fn build(
-        self,
-    ) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl {
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl {
-            type_: self.type_,
-            value: self.value,
-        }
-    }
-}
-
+impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl { pub fn build (self) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl { SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl { type_ : self . type_ , value : self . value , } } }
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef {
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
-    pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
-    pub fn value(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
-    }
-}
-
+impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef { fn new (shared : StackShared , base : String) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef { SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef { shared : shared , base : base . to_string () , } } }
+impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `type_` after provisioning.\n"] pub fn type_ (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.type" , self . base)) } # [doc = "Get a reference to the value of field `value` after provisioning.\n"] pub fn value (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.value" , self . base)) } }
 #[derive(Serialize, Default)]
-struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElDynamic {
-    canary_size: Option<
-        DynamicBlock<
-            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl,
-        >,
-    >,
-    linear_step_size: Option<
-        DynamicBlock<
-            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl,
-        >,
-    >,
-}
-
+struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElDynamic { canary_size : Option < DynamicBlock < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl >> , linear_step_size : Option < DynamicBlock < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl >> , }
 #[derive(Serialize)]
-pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl {
-    #[serde(rename = "type")]
-    type_: PrimField<String>,
-    wait_interval_in_seconds: PrimField<f64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    canary_size: Option<
-        Vec<SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl>,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    linear_step_size: Option<
-        Vec<SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl>,
-    >,
-    dynamic: SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElDynamic,
-}
-
+pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl { # [serde (rename = "type")] type_ : PrimField < String > , wait_interval_in_seconds : PrimField < f64 > , # [serde (skip_serializing_if = "Option::is_none")] canary_size : Option < Vec < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl > > , # [serde (skip_serializing_if = "Option::is_none")] linear_step_size : Option < Vec < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl > > , dynamic : SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElDynamic , }
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl {
     #[doc = "Set the field `canary_size`.\n"]
     pub fn set_canary_size(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -709,18 +500,10 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingCon
         }
         self
     }
-
     #[doc = "Set the field `linear_step_size`.\n"]
     pub fn set_linear_step_size(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -733,14 +516,12 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingCon
         self
     }
 }
-
 impl ToListMappable
     for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl
 {
     type O = BlockAssignable<
         SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -749,7 +530,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl
 {
     #[doc = ""]
@@ -757,7 +537,6 @@ pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTraffi
     #[doc = ""]
     pub wait_interval_in_seconds: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl {
     pub fn build(
         self,
@@ -772,13 +551,11 @@ impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRouti
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElRef
 {
@@ -793,17 +570,14 @@ impl Ref
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `wait_interval_in_seconds` after provisioning.\n"]
     pub fn wait_interval_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -811,29 +585,16 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingCon
             format!("{}.wait_interval_in_seconds", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `canary_size` after provisioning.\n"]
-    pub fn canary_size(
-        &self,
-    ) -> ListRef<
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef,
-    >{
+    #[doc = "Get a reference to the value of field `canary_size` after provisioning.\n"]    pub fn canary_size (& self) -> ListRef < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElCanarySizeElRef >{
         ListRef::new(self.shared().clone(), format!("{}.canary_size", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `linear_step_size` after provisioning.\n"]
-    pub fn linear_step_size(
-        &self,
-    ) -> ListRef<
-        SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef,
-    >{
+    #[doc = "Get a reference to the value of field `linear_step_size` after provisioning.\n"]    pub fn linear_step_size (& self) -> ListRef < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationElLinearStepSizeElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.linear_step_size", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElDynamic {
     traffic_routing_configuration: Option<
@@ -842,7 +603,6 @@ struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -857,7 +617,6 @@ pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
     >,
     dynamic: SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElDynamic,
 }
-
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
     #[doc = "Set the field `maximum_execution_timeout_in_seconds`.\n"]
     pub fn set_maximum_execution_timeout_in_seconds(
@@ -867,24 +626,15 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
         self.maximum_execution_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `termination_wait_in_seconds`.\n"]
     pub fn set_termination_wait_in_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.termination_wait_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `traffic_routing_configuration`.\n"]
     pub fn set_traffic_routing_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElTrafficRoutingConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -897,10 +647,8 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
     type O = BlockAssignable<SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -909,9 +657,7 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicy
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {}
-
 impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
     pub fn build(self) -> SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
         SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
@@ -922,12 +668,10 @@ impl BuildSagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyEl {
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
     fn new(
         shared: StackShared,
@@ -939,12 +683,10 @@ impl Ref for SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `maximum_execution_timeout_in_seconds` after provisioning.\n"]
     pub fn maximum_execution_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -952,7 +694,6 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
             format!("{}.maximum_execution_timeout_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `termination_wait_in_seconds` after provisioning.\n"]
     pub fn termination_wait_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -960,7 +701,6 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
             format!("{}.termination_wait_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `traffic_routing_configuration` after provisioning.\n"]
     pub fn traffic_routing_configuration(
         &self,
@@ -973,20 +713,16 @@ impl SagemakerEndpointDeploymentConfigElBlueGreenUpdatePolicyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl {}
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl {
     type O =
         BlockAssignable<SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -995,14 +731,12 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl {
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeEl {
     pub fn build(
         self,
@@ -1013,12 +747,10 @@ impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSi
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeElRef {
     fn new(
         shared: StackShared,
@@ -1030,39 +762,32 @@ impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatc
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElMaximumBatchSizeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl {}
-
 impl ToListMappable
     for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl
 {
     type O = BlockAssignable<
         SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1071,14 +796,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl {
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeEl {
     pub fn build(
         self,
@@ -1089,12 +812,10 @@ impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximu
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeElRef {
     fn new(
         shared: StackShared,
@@ -1106,23 +827,19 @@ impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMax
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRollbackMaximumBatchSizeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElDynamic {
     maximum_batch_size: Option<
@@ -1134,7 +851,6 @@ struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1149,7 +865,6 @@ pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     >,
     dynamic: SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElDynamic,
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     #[doc = "Set the field `maximum_execution_timeout_in_seconds`.\n"]
     pub fn set_maximum_execution_timeout_in_seconds(
@@ -1159,7 +874,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
         self.maximum_execution_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maximum_batch_size`.\n"]
     pub fn set_maximum_batch_size(
         mut self,
@@ -1179,7 +893,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
         }
         self
     }
-
     #[doc = "Set the field `rollback_maximum_batch_size`.\n"]
     pub fn set_rollback_maximum_batch_size(
         mut self,
@@ -1200,10 +913,8 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     type O = BlockAssignable<SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1212,12 +923,10 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     #[doc = ""]
     pub wait_interval_in_seconds: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
     pub fn build(self) -> SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
         SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
@@ -1229,12 +938,10 @@ impl BuildSagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl {
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
     fn new(
         shared: StackShared,
@@ -1246,12 +953,10 @@ impl Ref for SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `maximum_execution_timeout_in_seconds` after provisioning.\n"]
     pub fn maximum_execution_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1259,7 +964,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
             format!("{}.maximum_execution_timeout_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `wait_interval_in_seconds` after provisioning.\n"]
     pub fn wait_interval_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1267,7 +971,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
             format!("{}.wait_interval_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `maximum_batch_size` after provisioning.\n"]
     pub fn maximum_batch_size(
         &self,
@@ -1278,7 +981,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
             format!("{}.maximum_batch_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rollback_maximum_batch_size` after provisioning.\n"]
     pub fn rollback_maximum_batch_size(
         &self,
@@ -1291,7 +993,6 @@ impl SagemakerEndpointDeploymentConfigElRollingUpdatePolicyElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointDeploymentConfigElDynamic {
     auto_rollback_configuration:
@@ -1301,7 +1002,6 @@ struct SagemakerEndpointDeploymentConfigElDynamic {
     rolling_update_policy:
         Option<DynamicBlock<SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointDeploymentConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1314,7 +1014,6 @@ pub struct SagemakerEndpointDeploymentConfigEl {
     rolling_update_policy: Option<Vec<SagemakerEndpointDeploymentConfigElRollingUpdatePolicyEl>>,
     dynamic: SagemakerEndpointDeploymentConfigElDynamic,
 }
-
 impl SagemakerEndpointDeploymentConfigEl {
     #[doc = "Set the field `auto_rollback_configuration`.\n"]
     pub fn set_auto_rollback_configuration(
@@ -1331,7 +1030,6 @@ impl SagemakerEndpointDeploymentConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `blue_green_update_policy`.\n"]
     pub fn set_blue_green_update_policy(
         mut self,
@@ -1347,7 +1045,6 @@ impl SagemakerEndpointDeploymentConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `rolling_update_policy`.\n"]
     pub fn set_rolling_update_policy(
         mut self,
@@ -1364,10 +1061,8 @@ impl SagemakerEndpointDeploymentConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointDeploymentConfigEl {
     type O = BlockAssignable<SagemakerEndpointDeploymentConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1376,9 +1071,7 @@ impl ToListMappable for SagemakerEndpointDeploymentConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerEndpointDeploymentConfigEl {}
-
 impl BuildSagemakerEndpointDeploymentConfigEl {
     pub fn build(self) -> SagemakerEndpointDeploymentConfigEl {
         SagemakerEndpointDeploymentConfigEl {
@@ -1389,12 +1082,10 @@ impl BuildSagemakerEndpointDeploymentConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointDeploymentConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointDeploymentConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerEndpointDeploymentConfigElRef {
         SagemakerEndpointDeploymentConfigElRef {
@@ -1403,12 +1094,10 @@ impl Ref for SagemakerEndpointDeploymentConfigElRef {
         }
     }
 }
-
 impl SagemakerEndpointDeploymentConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `auto_rollback_configuration` after provisioning.\n"]
     pub fn auto_rollback_configuration(
         &self,
@@ -1418,7 +1107,6 @@ impl SagemakerEndpointDeploymentConfigElRef {
             format!("{}.auto_rollback_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `blue_green_update_policy` after provisioning.\n"]
     pub fn blue_green_update_policy(
         &self,
@@ -1428,7 +1116,6 @@ impl SagemakerEndpointDeploymentConfigElRef {
             format!("{}.blue_green_update_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rolling_update_policy` after provisioning.\n"]
     pub fn rolling_update_policy(
         &self,
@@ -1439,7 +1126,6 @@ impl SagemakerEndpointDeploymentConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointDynamic {
     deployment_config: Option<DynamicBlock<SagemakerEndpointDeploymentConfigEl>>,

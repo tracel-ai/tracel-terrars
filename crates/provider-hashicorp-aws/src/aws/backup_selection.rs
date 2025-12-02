@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BackupSelectionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct BackupSelectionData {
     selection_tag: Option<Vec<BackupSelectionSelectionTagEl>>,
     dynamic: BackupSelectionDynamic,
 }
-
 struct BackupSelection_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BackupSelectionData>,
 }
-
 #[derive(Clone)]
 pub struct BackupSelection(Rc<BackupSelection_>);
-
 impl BackupSelection {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl BackupSelection {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl BackupSelection {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,31 +98,26 @@ impl BackupSelection {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not_resources`.\n"]
     pub fn set_not_resources(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().not_resources = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().resources = Some(v.into());
         self
     }
-
     #[doc = "Set the field `condition`.\n"]
     pub fn set_condition(self, v: impl Into<BlockAssignable<BackupSelectionConditionEl>>) -> Self {
         match v.into() {
@@ -147,7 +130,6 @@ impl BackupSelection {
         }
         self
     }
-
     #[doc = "Set the field `selection_tag`.\n"]
     pub fn set_selection_tag(
         self,
@@ -163,7 +145,6 @@ impl BackupSelection {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -171,12 +152,10 @@ impl BackupSelection {
             format!("{}.iam_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +163,6 @@ impl BackupSelection {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `not_resources` after provisioning.\n"]
     pub fn not_resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -192,7 +170,6 @@ impl BackupSelection {
             format!("{}.not_resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plan_id` after provisioning.\n"]
     pub fn plan_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +177,6 @@ impl BackupSelection {
             format!("{}.plan_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +184,6 @@ impl BackupSelection {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -217,7 +192,6 @@ impl BackupSelection {
         )
     }
 }
-
 impl Referable for BackupSelection {
     fn extract_ref(&self) -> String {
         format!(
@@ -227,32 +201,25 @@ impl Referable for BackupSelection {
         )
     }
 }
-
 impl Resource for BackupSelection {}
-
 impl ToListMappable for BackupSelection {
     type O = ListRef<BackupSelectionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BackupSelection_ {
     fn extract_resource_type(&self) -> String {
         "aws_backup_selection".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBackupSelection {
     pub tf_id: String,
     #[doc = ""]
@@ -262,7 +229,6 @@ pub struct BuildBackupSelection {
     #[doc = ""]
     pub plan_id: PrimField<String>,
 }
-
 impl BuildBackupSelection {
     pub fn build(self, stack: &mut Stack) -> BackupSelection {
         let out = BackupSelection(Rc::new(BackupSelection_ {
@@ -289,27 +255,22 @@ impl BuildBackupSelection {
         out
     }
 }
-
 pub struct BackupSelectionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BackupSelectionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -317,12 +278,10 @@ impl BackupSelectionRef {
             format!("{}.iam_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +289,6 @@ impl BackupSelectionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `not_resources` after provisioning.\n"]
     pub fn not_resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -338,7 +296,6 @@ impl BackupSelectionRef {
             format!("{}.not_resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plan_id` after provisioning.\n"]
     pub fn plan_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +303,6 @@ impl BackupSelectionRef {
             format!("{}.plan_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,7 +310,6 @@ impl BackupSelectionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -363,18 +318,14 @@ impl BackupSelectionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionConditionElStringEqualsEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl BackupSelectionConditionElStringEqualsEl {}
-
 impl ToListMappable for BackupSelectionConditionElStringEqualsEl {
     type O = BlockAssignable<BackupSelectionConditionElStringEqualsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -383,14 +334,12 @@ impl ToListMappable for BackupSelectionConditionElStringEqualsEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionConditionElStringEqualsEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildBackupSelectionConditionElStringEqualsEl {
     pub fn build(self) -> BackupSelectionConditionElStringEqualsEl {
         BackupSelectionConditionElStringEqualsEl {
@@ -399,12 +348,10 @@ impl BuildBackupSelectionConditionElStringEqualsEl {
         }
     }
 }
-
 pub struct BackupSelectionConditionElStringEqualsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionConditionElStringEqualsElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionConditionElStringEqualsElRef {
         BackupSelectionConditionElStringEqualsElRef {
@@ -413,34 +360,27 @@ impl Ref for BackupSelectionConditionElStringEqualsElRef {
         }
     }
 }
-
 impl BackupSelectionConditionElStringEqualsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionConditionElStringLikeEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl BackupSelectionConditionElStringLikeEl {}
-
 impl ToListMappable for BackupSelectionConditionElStringLikeEl {
     type O = BlockAssignable<BackupSelectionConditionElStringLikeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -449,14 +389,12 @@ impl ToListMappable for BackupSelectionConditionElStringLikeEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionConditionElStringLikeEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildBackupSelectionConditionElStringLikeEl {
     pub fn build(self) -> BackupSelectionConditionElStringLikeEl {
         BackupSelectionConditionElStringLikeEl {
@@ -465,12 +403,10 @@ impl BuildBackupSelectionConditionElStringLikeEl {
         }
     }
 }
-
 pub struct BackupSelectionConditionElStringLikeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionConditionElStringLikeElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionConditionElStringLikeElRef {
         BackupSelectionConditionElStringLikeElRef {
@@ -479,34 +415,27 @@ impl Ref for BackupSelectionConditionElStringLikeElRef {
         }
     }
 }
-
 impl BackupSelectionConditionElStringLikeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionConditionElStringNotEqualsEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl BackupSelectionConditionElStringNotEqualsEl {}
-
 impl ToListMappable for BackupSelectionConditionElStringNotEqualsEl {
     type O = BlockAssignable<BackupSelectionConditionElStringNotEqualsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -515,14 +444,12 @@ impl ToListMappable for BackupSelectionConditionElStringNotEqualsEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionConditionElStringNotEqualsEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildBackupSelectionConditionElStringNotEqualsEl {
     pub fn build(self) -> BackupSelectionConditionElStringNotEqualsEl {
         BackupSelectionConditionElStringNotEqualsEl {
@@ -531,12 +458,10 @@ impl BuildBackupSelectionConditionElStringNotEqualsEl {
         }
     }
 }
-
 pub struct BackupSelectionConditionElStringNotEqualsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionConditionElStringNotEqualsElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionConditionElStringNotEqualsElRef {
         BackupSelectionConditionElStringNotEqualsElRef {
@@ -545,34 +470,27 @@ impl Ref for BackupSelectionConditionElStringNotEqualsElRef {
         }
     }
 }
-
 impl BackupSelectionConditionElStringNotEqualsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionConditionElStringNotLikeEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl BackupSelectionConditionElStringNotLikeEl {}
-
 impl ToListMappable for BackupSelectionConditionElStringNotLikeEl {
     type O = BlockAssignable<BackupSelectionConditionElStringNotLikeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -581,14 +499,12 @@ impl ToListMappable for BackupSelectionConditionElStringNotLikeEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionConditionElStringNotLikeEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildBackupSelectionConditionElStringNotLikeEl {
     pub fn build(self) -> BackupSelectionConditionElStringNotLikeEl {
         BackupSelectionConditionElStringNotLikeEl {
@@ -597,12 +513,10 @@ impl BuildBackupSelectionConditionElStringNotLikeEl {
         }
     }
 }
-
 pub struct BackupSelectionConditionElStringNotLikeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionConditionElStringNotLikeElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionConditionElStringNotLikeElRef {
         BackupSelectionConditionElStringNotLikeElRef {
@@ -611,23 +525,19 @@ impl Ref for BackupSelectionConditionElStringNotLikeElRef {
         }
     }
 }
-
 impl BackupSelectionConditionElStringNotLikeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BackupSelectionConditionElDynamic {
     string_equals: Option<DynamicBlock<BackupSelectionConditionElStringEqualsEl>>,
@@ -635,7 +545,6 @@ struct BackupSelectionConditionElDynamic {
     string_not_equals: Option<DynamicBlock<BackupSelectionConditionElStringNotEqualsEl>>,
     string_not_like: Option<DynamicBlock<BackupSelectionConditionElStringNotLikeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionConditionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -648,7 +557,6 @@ pub struct BackupSelectionConditionEl {
     string_not_like: Option<Vec<BackupSelectionConditionElStringNotLikeEl>>,
     dynamic: BackupSelectionConditionElDynamic,
 }
-
 impl BackupSelectionConditionEl {
     #[doc = "Set the field `string_equals`.\n"]
     pub fn set_string_equals(
@@ -665,7 +573,6 @@ impl BackupSelectionConditionEl {
         }
         self
     }
-
     #[doc = "Set the field `string_like`.\n"]
     pub fn set_string_like(
         mut self,
@@ -681,7 +588,6 @@ impl BackupSelectionConditionEl {
         }
         self
     }
-
     #[doc = "Set the field `string_not_equals`.\n"]
     pub fn set_string_not_equals(
         mut self,
@@ -697,7 +603,6 @@ impl BackupSelectionConditionEl {
         }
         self
     }
-
     #[doc = "Set the field `string_not_like`.\n"]
     pub fn set_string_not_like(
         mut self,
@@ -714,10 +619,8 @@ impl BackupSelectionConditionEl {
         self
     }
 }
-
 impl ToListMappable for BackupSelectionConditionEl {
     type O = BlockAssignable<BackupSelectionConditionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -726,9 +629,7 @@ impl ToListMappable for BackupSelectionConditionEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionConditionEl {}
-
 impl BuildBackupSelectionConditionEl {
     pub fn build(self) -> BackupSelectionConditionEl {
         BackupSelectionConditionEl {
@@ -740,12 +641,10 @@ impl BuildBackupSelectionConditionEl {
         }
     }
 }
-
 pub struct BackupSelectionConditionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionConditionElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionConditionElRef {
         BackupSelectionConditionElRef {
@@ -754,13 +653,11 @@ impl Ref for BackupSelectionConditionElRef {
         }
     }
 }
-
 impl BackupSelectionConditionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct BackupSelectionSelectionTagEl {
     key: PrimField<String>,
@@ -768,12 +665,9 @@ pub struct BackupSelectionSelectionTagEl {
     type_: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl BackupSelectionSelectionTagEl {}
-
 impl ToListMappable for BackupSelectionSelectionTagEl {
     type O = BlockAssignable<BackupSelectionSelectionTagEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -782,7 +676,6 @@ impl ToListMappable for BackupSelectionSelectionTagEl {
         })
     }
 }
-
 pub struct BuildBackupSelectionSelectionTagEl {
     #[doc = ""]
     pub key: PrimField<String>,
@@ -791,7 +684,6 @@ pub struct BuildBackupSelectionSelectionTagEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildBackupSelectionSelectionTagEl {
     pub fn build(self) -> BackupSelectionSelectionTagEl {
         BackupSelectionSelectionTagEl {
@@ -801,12 +693,10 @@ impl BuildBackupSelectionSelectionTagEl {
         }
     }
 }
-
 pub struct BackupSelectionSelectionTagElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BackupSelectionSelectionTagElRef {
     fn new(shared: StackShared, base: String) -> BackupSelectionSelectionTagElRef {
         BackupSelectionSelectionTagElRef {
@@ -815,28 +705,23 @@ impl Ref for BackupSelectionSelectionTagElRef {
         }
     }
 }
-
 impl BackupSelectionSelectionTagElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BackupSelectionDynamic {
     condition: Option<DynamicBlock<BackupSelectionConditionEl>>,

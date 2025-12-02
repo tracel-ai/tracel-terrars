@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LbTargetGroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -68,47 +67,38 @@ struct LbTargetGroupData {
     target_health_state: Option<Vec<LbTargetGroupTargetHealthStateEl>>,
     dynamic: LbTargetGroupDynamic,
 }
-
 struct LbTargetGroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LbTargetGroupData>,
 }
-
 #[derive(Clone)]
 pub struct LbTargetGroup(Rc<LbTargetGroup_>);
-
 impl LbTargetGroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -127,7 +117,6 @@ impl LbTargetGroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -137,7 +126,6 @@ impl LbTargetGroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -147,133 +135,111 @@ impl LbTargetGroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `connection_termination`.\n"]
     pub fn set_connection_termination(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().connection_termination = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deregistration_delay`.\n"]
     pub fn set_deregistration_delay(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().deregistration_delay = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_address_type`.\n"]
     pub fn set_ip_address_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ip_address_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lambda_multi_value_headers_enabled`.\n"]
     pub fn set_lambda_multi_value_headers_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().lambda_multi_value_headers_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `load_balancing_algorithm_type`.\n"]
     pub fn set_load_balancing_algorithm_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().load_balancing_algorithm_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `load_balancing_anomaly_mitigation`.\n"]
     pub fn set_load_balancing_anomaly_mitigation(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().load_balancing_anomaly_mitigation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `load_balancing_cross_zone_enabled`.\n"]
     pub fn set_load_balancing_cross_zone_enabled(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().load_balancing_cross_zone_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preserve_client_ip`.\n"]
     pub fn set_preserve_client_ip(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().preserve_client_ip = Some(v.into());
         self
     }
-
     #[doc = "Set the field `protocol`.\n"]
     pub fn set_protocol(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().protocol = Some(v.into());
         self
     }
-
     #[doc = "Set the field `protocol_version`.\n"]
     pub fn set_protocol_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().protocol_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `proxy_protocol_v2`.\n"]
     pub fn set_proxy_protocol_v2(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().proxy_protocol_v2 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `slow_start`.\n"]
     pub fn set_slow_start(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().slow_start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_type`.\n"]
     pub fn set_target_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().target_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().vpc_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `health_check`.\n"]
     pub fn set_health_check(
         self,
@@ -289,7 +255,6 @@ impl LbTargetGroup {
         }
         self
     }
-
     #[doc = "Set the field `stickiness`.\n"]
     pub fn set_stickiness(self, v: impl Into<BlockAssignable<LbTargetGroupStickinessEl>>) -> Self {
         match v.into() {
@@ -302,7 +267,6 @@ impl LbTargetGroup {
         }
         self
     }
-
     #[doc = "Set the field `target_failover`.\n"]
     pub fn set_target_failover(
         self,
@@ -318,7 +282,6 @@ impl LbTargetGroup {
         }
         self
     }
-
     #[doc = "Set the field `target_group_health`.\n"]
     pub fn set_target_group_health(
         self,
@@ -334,7 +297,6 @@ impl LbTargetGroup {
         }
         self
     }
-
     #[doc = "Set the field `target_health_state`.\n"]
     pub fn set_target_health_state(
         self,
@@ -350,12 +312,10 @@ impl LbTargetGroup {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn_suffix` after provisioning.\n"]
     pub fn arn_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +323,6 @@ impl LbTargetGroup {
             format!("{}.arn_suffix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_termination` after provisioning.\n"]
     pub fn connection_termination(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -371,7 +330,6 @@ impl LbTargetGroup {
             format!("{}.connection_termination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deregistration_delay` after provisioning.\n"]
     pub fn deregistration_delay(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,12 +337,10 @@ impl LbTargetGroup {
             format!("{}.deregistration_delay", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,7 +348,6 @@ impl LbTargetGroup {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_multi_value_headers_enabled` after provisioning.\n"]
     pub fn lambda_multi_value_headers_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -400,7 +355,6 @@ impl LbTargetGroup {
             format!("{}.lambda_multi_value_headers_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_arns` after provisioning.\n"]
     pub fn load_balancer_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -408,7 +362,6 @@ impl LbTargetGroup {
             format!("{}.load_balancer_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_algorithm_type` after provisioning.\n"]
     pub fn load_balancing_algorithm_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -416,7 +369,6 @@ impl LbTargetGroup {
             format!("{}.load_balancing_algorithm_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_anomaly_mitigation` after provisioning.\n"]
     pub fn load_balancing_anomaly_mitigation(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -424,7 +376,6 @@ impl LbTargetGroup {
             format!("{}.load_balancing_anomaly_mitigation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_cross_zone_enabled` after provisioning.\n"]
     pub fn load_balancing_cross_zone_enabled(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -432,7 +383,6 @@ impl LbTargetGroup {
             format!("{}.load_balancing_cross_zone_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -440,7 +390,6 @@ impl LbTargetGroup {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -448,7 +397,6 @@ impl LbTargetGroup {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -456,7 +404,6 @@ impl LbTargetGroup {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_client_ip` after provisioning.\n"]
     pub fn preserve_client_ip(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +411,6 @@ impl LbTargetGroup {
             format!("{}.preserve_client_ip", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +418,6 @@ impl LbTargetGroup {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_version` after provisioning.\n"]
     pub fn protocol_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +425,6 @@ impl LbTargetGroup {
             format!("{}.protocol_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `proxy_protocol_v2` after provisioning.\n"]
     pub fn proxy_protocol_v2(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -488,7 +432,6 @@ impl LbTargetGroup {
             format!("{}.proxy_protocol_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +439,6 @@ impl LbTargetGroup {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `slow_start` after provisioning.\n"]
     pub fn slow_start(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -504,7 +446,6 @@ impl LbTargetGroup {
             format!("{}.slow_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -512,7 +453,6 @@ impl LbTargetGroup {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -520,7 +460,6 @@ impl LbTargetGroup {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_type` after provisioning.\n"]
     pub fn target_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -528,7 +467,6 @@ impl LbTargetGroup {
             format!("{}.target_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,7 +474,6 @@ impl LbTargetGroup {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `health_check` after provisioning.\n"]
     pub fn health_check(&self) -> ListRef<LbTargetGroupHealthCheckElRef> {
         ListRef::new(
@@ -544,7 +481,6 @@ impl LbTargetGroup {
             format!("{}.health_check", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stickiness` after provisioning.\n"]
     pub fn stickiness(&self) -> ListRef<LbTargetGroupStickinessElRef> {
         ListRef::new(
@@ -552,7 +488,6 @@ impl LbTargetGroup {
             format!("{}.stickiness", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_failover` after provisioning.\n"]
     pub fn target_failover(&self) -> ListRef<LbTargetGroupTargetFailoverElRef> {
         ListRef::new(
@@ -560,7 +495,6 @@ impl LbTargetGroup {
             format!("{}.target_failover", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_group_health` after provisioning.\n"]
     pub fn target_group_health(&self) -> ListRef<LbTargetGroupTargetGroupHealthElRef> {
         ListRef::new(
@@ -568,7 +502,6 @@ impl LbTargetGroup {
             format!("{}.target_group_health", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_health_state` after provisioning.\n"]
     pub fn target_health_state(&self) -> ListRef<LbTargetGroupTargetHealthStateElRef> {
         ListRef::new(
@@ -577,7 +510,6 @@ impl LbTargetGroup {
         )
     }
 }
-
 impl Referable for LbTargetGroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -587,36 +519,28 @@ impl Referable for LbTargetGroup {
         )
     }
 }
-
 impl Resource for LbTargetGroup {}
-
 impl ToListMappable for LbTargetGroup {
     type O = ListRef<LbTargetGroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LbTargetGroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_lb_target_group".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLbTargetGroup {
     pub tf_id: String,
 }
-
 impl BuildLbTargetGroup {
     pub fn build(self, stack: &mut Stack) -> LbTargetGroup {
         let out = LbTargetGroup(Rc::new(LbTargetGroup_ {
@@ -660,32 +584,26 @@ impl BuildLbTargetGroup {
         out
     }
 }
-
 pub struct LbTargetGroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LbTargetGroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn_suffix` after provisioning.\n"]
     pub fn arn_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -693,7 +611,6 @@ impl LbTargetGroupRef {
             format!("{}.arn_suffix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_termination` after provisioning.\n"]
     pub fn connection_termination(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -701,7 +618,6 @@ impl LbTargetGroupRef {
             format!("{}.connection_termination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deregistration_delay` after provisioning.\n"]
     pub fn deregistration_delay(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -709,12 +625,10 @@ impl LbTargetGroupRef {
             format!("{}.deregistration_delay", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -722,7 +636,6 @@ impl LbTargetGroupRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_multi_value_headers_enabled` after provisioning.\n"]
     pub fn lambda_multi_value_headers_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -730,7 +643,6 @@ impl LbTargetGroupRef {
             format!("{}.lambda_multi_value_headers_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_arns` after provisioning.\n"]
     pub fn load_balancer_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -738,7 +650,6 @@ impl LbTargetGroupRef {
             format!("{}.load_balancer_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_algorithm_type` after provisioning.\n"]
     pub fn load_balancing_algorithm_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -746,7 +657,6 @@ impl LbTargetGroupRef {
             format!("{}.load_balancing_algorithm_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_anomaly_mitigation` after provisioning.\n"]
     pub fn load_balancing_anomaly_mitigation(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -754,7 +664,6 @@ impl LbTargetGroupRef {
             format!("{}.load_balancing_anomaly_mitigation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancing_cross_zone_enabled` after provisioning.\n"]
     pub fn load_balancing_cross_zone_enabled(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -762,7 +671,6 @@ impl LbTargetGroupRef {
             format!("{}.load_balancing_cross_zone_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -770,7 +678,6 @@ impl LbTargetGroupRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -778,7 +685,6 @@ impl LbTargetGroupRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -786,7 +692,6 @@ impl LbTargetGroupRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_client_ip` after provisioning.\n"]
     pub fn preserve_client_ip(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -794,7 +699,6 @@ impl LbTargetGroupRef {
             format!("{}.preserve_client_ip", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -802,7 +706,6 @@ impl LbTargetGroupRef {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_version` after provisioning.\n"]
     pub fn protocol_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -810,7 +713,6 @@ impl LbTargetGroupRef {
             format!("{}.protocol_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `proxy_protocol_v2` after provisioning.\n"]
     pub fn proxy_protocol_v2(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -818,7 +720,6 @@ impl LbTargetGroupRef {
             format!("{}.proxy_protocol_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -826,7 +727,6 @@ impl LbTargetGroupRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `slow_start` after provisioning.\n"]
     pub fn slow_start(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -834,7 +734,6 @@ impl LbTargetGroupRef {
             format!("{}.slow_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -842,7 +741,6 @@ impl LbTargetGroupRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -850,7 +748,6 @@ impl LbTargetGroupRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_type` after provisioning.\n"]
     pub fn target_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -858,7 +755,6 @@ impl LbTargetGroupRef {
             format!("{}.target_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -866,7 +762,6 @@ impl LbTargetGroupRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `health_check` after provisioning.\n"]
     pub fn health_check(&self) -> ListRef<LbTargetGroupHealthCheckElRef> {
         ListRef::new(
@@ -874,7 +769,6 @@ impl LbTargetGroupRef {
             format!("{}.health_check", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stickiness` after provisioning.\n"]
     pub fn stickiness(&self) -> ListRef<LbTargetGroupStickinessElRef> {
         ListRef::new(
@@ -882,7 +776,6 @@ impl LbTargetGroupRef {
             format!("{}.stickiness", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_failover` after provisioning.\n"]
     pub fn target_failover(&self) -> ListRef<LbTargetGroupTargetFailoverElRef> {
         ListRef::new(
@@ -890,7 +783,6 @@ impl LbTargetGroupRef {
             format!("{}.target_failover", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_group_health` after provisioning.\n"]
     pub fn target_group_health(&self) -> ListRef<LbTargetGroupTargetGroupHealthElRef> {
         ListRef::new(
@@ -898,7 +790,6 @@ impl LbTargetGroupRef {
             format!("{}.target_group_health", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_health_state` after provisioning.\n"]
     pub fn target_health_state(&self) -> ListRef<LbTargetGroupTargetHealthStateElRef> {
         ListRef::new(
@@ -907,7 +798,6 @@ impl LbTargetGroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupHealthCheckEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -929,66 +819,55 @@ pub struct LbTargetGroupHealthCheckEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     unhealthy_threshold: Option<PrimField<f64>>,
 }
-
 impl LbTargetGroupHealthCheckEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `healthy_threshold`.\n"]
     pub fn set_healthy_threshold(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.healthy_threshold = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval`.\n"]
     pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `matcher`.\n"]
     pub fn set_matcher(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.matcher = Some(v.into());
         self
     }
-
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `protocol`.\n"]
     pub fn set_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.protocol = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout`.\n"]
     pub fn set_timeout(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `unhealthy_threshold`.\n"]
     pub fn set_unhealthy_threshold(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.unhealthy_threshold = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupHealthCheckEl {
     type O = BlockAssignable<LbTargetGroupHealthCheckEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -997,9 +876,7 @@ impl ToListMappable for LbTargetGroupHealthCheckEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupHealthCheckEl {}
-
 impl BuildLbTargetGroupHealthCheckEl {
     pub fn build(self) -> LbTargetGroupHealthCheckEl {
         LbTargetGroupHealthCheckEl {
@@ -1015,12 +892,10 @@ impl BuildLbTargetGroupHealthCheckEl {
         }
     }
 }
-
 pub struct LbTargetGroupHealthCheckElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupHealthCheckElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupHealthCheckElRef {
         LbTargetGroupHealthCheckElRef {
@@ -1029,17 +904,14 @@ impl Ref for LbTargetGroupHealthCheckElRef {
         }
     }
 }
-
 impl LbTargetGroupHealthCheckElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `healthy_threshold` after provisioning.\n"]
     pub fn healthy_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1047,37 +919,30 @@ impl LbTargetGroupHealthCheckElRef {
             format!("{}.healthy_threshold", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `matcher` after provisioning.\n"]
     pub fn matcher(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.matcher", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.base))
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.timeout", self.base))
     }
-
     #[doc = "Get a reference to the value of field `unhealthy_threshold` after provisioning.\n"]
     pub fn unhealthy_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1086,7 +951,6 @@ impl LbTargetGroupHealthCheckElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupStickinessEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1098,30 +962,25 @@ pub struct LbTargetGroupStickinessEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl LbTargetGroupStickinessEl {
     #[doc = "Set the field `cookie_duration`.\n"]
     pub fn set_cookie_duration(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.cookie_duration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cookie_name`.\n"]
     pub fn set_cookie_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cookie_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupStickinessEl {
     type O = BlockAssignable<LbTargetGroupStickinessEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1130,12 +989,10 @@ impl ToListMappable for LbTargetGroupStickinessEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupStickinessEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildLbTargetGroupStickinessEl {
     pub fn build(self) -> LbTargetGroupStickinessEl {
         LbTargetGroupStickinessEl {
@@ -1146,12 +1003,10 @@ impl BuildLbTargetGroupStickinessEl {
         }
     }
 }
-
 pub struct LbTargetGroupStickinessElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupStickinessElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupStickinessElRef {
         LbTargetGroupStickinessElRef {
@@ -1160,12 +1015,10 @@ impl Ref for LbTargetGroupStickinessElRef {
         }
     }
 }
-
 impl LbTargetGroupStickinessElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cookie_duration` after provisioning.\n"]
     pub fn cookie_duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1173,34 +1026,27 @@ impl LbTargetGroupStickinessElRef {
             format!("{}.cookie_duration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookie_name` after provisioning.\n"]
     pub fn cookie_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cookie_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupTargetFailoverEl {
     on_deregistration: PrimField<String>,
     on_unhealthy: PrimField<String>,
 }
-
 impl LbTargetGroupTargetFailoverEl {}
-
 impl ToListMappable for LbTargetGroupTargetFailoverEl {
     type O = BlockAssignable<LbTargetGroupTargetFailoverEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1209,14 +1055,12 @@ impl ToListMappable for LbTargetGroupTargetFailoverEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupTargetFailoverEl {
     #[doc = ""]
     pub on_deregistration: PrimField<String>,
     #[doc = ""]
     pub on_unhealthy: PrimField<String>,
 }
-
 impl BuildLbTargetGroupTargetFailoverEl {
     pub fn build(self) -> LbTargetGroupTargetFailoverEl {
         LbTargetGroupTargetFailoverEl {
@@ -1225,12 +1069,10 @@ impl BuildLbTargetGroupTargetFailoverEl {
         }
     }
 }
-
 pub struct LbTargetGroupTargetFailoverElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupTargetFailoverElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupTargetFailoverElRef {
         LbTargetGroupTargetFailoverElRef {
@@ -1239,12 +1081,10 @@ impl Ref for LbTargetGroupTargetFailoverElRef {
         }
     }
 }
-
 impl LbTargetGroupTargetFailoverElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `on_deregistration` after provisioning.\n"]
     pub fn on_deregistration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1252,13 +1092,11 @@ impl LbTargetGroupTargetFailoverElRef {
             format!("{}.on_deregistration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `on_unhealthy` after provisioning.\n"]
     pub fn on_unhealthy(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.on_unhealthy", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupTargetGroupHealthElDnsFailoverEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1266,14 +1104,12 @@ pub struct LbTargetGroupTargetGroupHealthElDnsFailoverEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     minimum_healthy_targets_percentage: Option<PrimField<String>>,
 }
-
 impl LbTargetGroupTargetGroupHealthElDnsFailoverEl {
     #[doc = "Set the field `minimum_healthy_targets_count`.\n"]
     pub fn set_minimum_healthy_targets_count(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.minimum_healthy_targets_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minimum_healthy_targets_percentage`.\n"]
     pub fn set_minimum_healthy_targets_percentage(
         mut self,
@@ -1283,10 +1119,8 @@ impl LbTargetGroupTargetGroupHealthElDnsFailoverEl {
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupTargetGroupHealthElDnsFailoverEl {
     type O = BlockAssignable<LbTargetGroupTargetGroupHealthElDnsFailoverEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1295,9 +1129,7 @@ impl ToListMappable for LbTargetGroupTargetGroupHealthElDnsFailoverEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupTargetGroupHealthElDnsFailoverEl {}
-
 impl BuildLbTargetGroupTargetGroupHealthElDnsFailoverEl {
     pub fn build(self) -> LbTargetGroupTargetGroupHealthElDnsFailoverEl {
         LbTargetGroupTargetGroupHealthElDnsFailoverEl {
@@ -1306,12 +1138,10 @@ impl BuildLbTargetGroupTargetGroupHealthElDnsFailoverEl {
         }
     }
 }
-
 pub struct LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
         LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
@@ -1320,12 +1150,10 @@ impl Ref for LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
         }
     }
 }
-
 impl LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `minimum_healthy_targets_count` after provisioning.\n"]
     pub fn minimum_healthy_targets_count(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1333,7 +1161,6 @@ impl LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
             format!("{}.minimum_healthy_targets_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `minimum_healthy_targets_percentage` after provisioning.\n"]
     pub fn minimum_healthy_targets_percentage(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1342,7 +1169,6 @@ impl LbTargetGroupTargetGroupHealthElDnsFailoverElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1350,14 +1176,12 @@ pub struct LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     minimum_healthy_targets_percentage: Option<PrimField<String>>,
 }
-
 impl LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
     #[doc = "Set the field `minimum_healthy_targets_count`.\n"]
     pub fn set_minimum_healthy_targets_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minimum_healthy_targets_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minimum_healthy_targets_percentage`.\n"]
     pub fn set_minimum_healthy_targets_percentage(
         mut self,
@@ -1367,10 +1191,8 @@ impl LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
     type O = BlockAssignable<LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1379,9 +1201,7 @@ impl ToListMappable for LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl 
         })
     }
 }
-
 pub struct BuildLbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {}
-
 impl BuildLbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
     pub fn build(self) -> LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
         LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
@@ -1390,12 +1210,10 @@ impl BuildLbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl {
         }
     }
 }
-
 pub struct LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
     fn new(
         shared: StackShared,
@@ -1407,12 +1225,10 @@ impl Ref for LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
         }
     }
 }
-
 impl LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `minimum_healthy_targets_count` after provisioning.\n"]
     pub fn minimum_healthy_targets_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1420,7 +1236,6 @@ impl LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
             format!("{}.minimum_healthy_targets_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `minimum_healthy_targets_percentage` after provisioning.\n"]
     pub fn minimum_healthy_targets_percentage(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1429,14 +1244,12 @@ impl LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LbTargetGroupTargetGroupHealthElDynamic {
     dns_failover: Option<DynamicBlock<LbTargetGroupTargetGroupHealthElDnsFailoverEl>>,
     unhealthy_state_routing:
         Option<DynamicBlock<LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl>>,
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupTargetGroupHealthEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1445,7 +1258,6 @@ pub struct LbTargetGroupTargetGroupHealthEl {
     unhealthy_state_routing: Option<Vec<LbTargetGroupTargetGroupHealthElUnhealthyStateRoutingEl>>,
     dynamic: LbTargetGroupTargetGroupHealthElDynamic,
 }
-
 impl LbTargetGroupTargetGroupHealthEl {
     #[doc = "Set the field `dns_failover`.\n"]
     pub fn set_dns_failover(
@@ -1462,7 +1274,6 @@ impl LbTargetGroupTargetGroupHealthEl {
         }
         self
     }
-
     #[doc = "Set the field `unhealthy_state_routing`.\n"]
     pub fn set_unhealthy_state_routing(
         mut self,
@@ -1479,10 +1290,8 @@ impl LbTargetGroupTargetGroupHealthEl {
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupTargetGroupHealthEl {
     type O = BlockAssignable<LbTargetGroupTargetGroupHealthEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1491,9 +1300,7 @@ impl ToListMappable for LbTargetGroupTargetGroupHealthEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupTargetGroupHealthEl {}
-
 impl BuildLbTargetGroupTargetGroupHealthEl {
     pub fn build(self) -> LbTargetGroupTargetGroupHealthEl {
         LbTargetGroupTargetGroupHealthEl {
@@ -1503,12 +1310,10 @@ impl BuildLbTargetGroupTargetGroupHealthEl {
         }
     }
 }
-
 pub struct LbTargetGroupTargetGroupHealthElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupTargetGroupHealthElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupTargetGroupHealthElRef {
         LbTargetGroupTargetGroupHealthElRef {
@@ -1517,17 +1322,14 @@ impl Ref for LbTargetGroupTargetGroupHealthElRef {
         }
     }
 }
-
 impl LbTargetGroupTargetGroupHealthElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dns_failover` after provisioning.\n"]
     pub fn dns_failover(&self) -> ListRef<LbTargetGroupTargetGroupHealthElDnsFailoverElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dns_failover", self.base))
     }
-
     #[doc = "Get a reference to the value of field `unhealthy_state_routing` after provisioning.\n"]
     pub fn unhealthy_state_routing(
         &self,
@@ -1538,14 +1340,12 @@ impl LbTargetGroupTargetGroupHealthElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LbTargetGroupTargetHealthStateEl {
     enable_unhealthy_connection_termination: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     unhealthy_draining_interval: Option<PrimField<f64>>,
 }
-
 impl LbTargetGroupTargetHealthStateEl {
     #[doc = "Set the field `unhealthy_draining_interval`.\n"]
     pub fn set_unhealthy_draining_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1553,10 +1353,8 @@ impl LbTargetGroupTargetHealthStateEl {
         self
     }
 }
-
 impl ToListMappable for LbTargetGroupTargetHealthStateEl {
     type O = BlockAssignable<LbTargetGroupTargetHealthStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1565,12 +1363,10 @@ impl ToListMappable for LbTargetGroupTargetHealthStateEl {
         })
     }
 }
-
 pub struct BuildLbTargetGroupTargetHealthStateEl {
     #[doc = ""]
     pub enable_unhealthy_connection_termination: PrimField<bool>,
 }
-
 impl BuildLbTargetGroupTargetHealthStateEl {
     pub fn build(self) -> LbTargetGroupTargetHealthStateEl {
         LbTargetGroupTargetHealthStateEl {
@@ -1579,12 +1375,10 @@ impl BuildLbTargetGroupTargetHealthStateEl {
         }
     }
 }
-
 pub struct LbTargetGroupTargetHealthStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LbTargetGroupTargetHealthStateElRef {
     fn new(shared: StackShared, base: String) -> LbTargetGroupTargetHealthStateElRef {
         LbTargetGroupTargetHealthStateElRef {
@@ -1593,12 +1387,10 @@ impl Ref for LbTargetGroupTargetHealthStateElRef {
         }
     }
 }
-
 impl LbTargetGroupTargetHealthStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable_unhealthy_connection_termination` after provisioning.\n"]
     pub fn enable_unhealthy_connection_termination(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1606,7 +1398,6 @@ impl LbTargetGroupTargetHealthStateElRef {
             format!("{}.enable_unhealthy_connection_termination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `unhealthy_draining_interval` after provisioning.\n"]
     pub fn unhealthy_draining_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1615,7 +1406,6 @@ impl LbTargetGroupTargetHealthStateElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LbTargetGroupDynamic {
     health_check: Option<DynamicBlock<LbTargetGroupHealthCheckEl>>,

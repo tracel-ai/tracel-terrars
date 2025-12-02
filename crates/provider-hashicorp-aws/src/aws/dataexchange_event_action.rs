@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataexchangeEventActionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -22,47 +21,38 @@ struct DataexchangeEventActionData {
     event: Option<Vec<DataexchangeEventActionEventEl>>,
     dynamic: DataexchangeEventActionDynamic,
 }
-
 struct DataexchangeEventAction_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataexchangeEventActionData>,
 }
-
 #[derive(Clone)]
 pub struct DataexchangeEventAction(Rc<DataexchangeEventAction_>);
-
 impl DataexchangeEventAction {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -81,7 +71,6 @@ impl DataexchangeEventAction {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -91,7 +80,6 @@ impl DataexchangeEventAction {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -101,13 +89,11 @@ impl DataexchangeEventAction {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         self,
@@ -123,7 +109,6 @@ impl DataexchangeEventAction {
         }
         self
     }
-
     #[doc = "Set the field `event`.\n"]
     pub fn set_event(self, v: impl Into<BlockAssignable<DataexchangeEventActionEventEl>>) -> Self {
         match v.into() {
@@ -136,12 +121,10 @@ impl DataexchangeEventAction {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -149,12 +132,10 @@ impl DataexchangeEventAction {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,7 +143,6 @@ impl DataexchangeEventAction {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,7 +150,6 @@ impl DataexchangeEventAction {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataexchangeEventActionActionElRef> {
         ListRef::new(
@@ -178,7 +157,6 @@ impl DataexchangeEventAction {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event` after provisioning.\n"]
     pub fn event(&self) -> ListRef<DataexchangeEventActionEventElRef> {
         ListRef::new(
@@ -187,7 +165,6 @@ impl DataexchangeEventAction {
         )
     }
 }
-
 impl Referable for DataexchangeEventAction {
     fn extract_ref(&self) -> String {
         format!(
@@ -197,36 +174,28 @@ impl Referable for DataexchangeEventAction {
         )
     }
 }
-
 impl Resource for DataexchangeEventAction {}
-
 impl ToListMappable for DataexchangeEventAction {
     type O = ListRef<DataexchangeEventActionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DataexchangeEventAction_ {
     fn extract_resource_type(&self) -> String {
         "aws_dataexchange_event_action".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataexchangeEventAction {
     pub tf_id: String,
 }
-
 impl BuildDataexchangeEventAction {
     pub fn build(self, stack: &mut Stack) -> DataexchangeEventAction {
         let out = DataexchangeEventAction(Rc::new(DataexchangeEventAction_ {
@@ -247,32 +216,26 @@ impl BuildDataexchangeEventAction {
         out
     }
 }
-
 pub struct DataexchangeEventActionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataexchangeEventActionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,12 +243,10 @@ impl DataexchangeEventActionRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,7 +254,6 @@ impl DataexchangeEventActionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,7 +261,6 @@ impl DataexchangeEventActionRef {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataexchangeEventActionActionElRef> {
         ListRef::new(
@@ -309,7 +268,6 @@ impl DataexchangeEventActionRef {
             format!("{}.action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event` after provisioning.\n"]
     pub fn event(&self) -> ListRef<DataexchangeEventActionEventElRef> {
         ListRef::new(
@@ -318,7 +276,6 @@ impl DataexchangeEventActionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -326,24 +283,20 @@ pub struct DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
     type O = BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -352,9 +305,7 @@ impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3ElEncry
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {}
-
 impl BuildDataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
     pub fn build(self) -> DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
         DataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
@@ -363,12 +314,10 @@ impl BuildDataexchangeEventActionActionElExportRevisionToS3ElEncryptionEl {
         }
     }
 }
-
 pub struct DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
     fn new(
         shared: StackShared,
@@ -380,30 +329,25 @@ impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef 
         }
     }
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
     bucket: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     key_pattern: Option<PrimField<String>>,
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
     #[doc = "Set the field `key_pattern`.\n"]
     pub fn set_key_pattern(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -411,11 +355,9 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
         self
     }
 }
-
 impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
     type O =
         BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -424,12 +366,10 @@ impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3ElRevis
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
-
 impl BuildDataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
     pub fn build(self) -> DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
         DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl {
@@ -438,12 +378,10 @@ impl BuildDataexchangeEventActionActionElExportRevisionToS3ElRevisionDestination
         }
     }
 }
-
 pub struct DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationElRef {
     fn new(
         shared: StackShared,
@@ -455,23 +393,19 @@ impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinat
         }
     }
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key_pattern` after provisioning.\n"]
     pub fn key_pattern(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key_pattern", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionActionElExportRevisionToS3ElDynamic {
     encryption:
@@ -480,7 +414,6 @@ struct DataexchangeEventActionActionElExportRevisionToS3ElDynamic {
         DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionActionElExportRevisionToS3El {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -490,7 +423,6 @@ pub struct DataexchangeEventActionActionElExportRevisionToS3El {
         Option<Vec<DataexchangeEventActionActionElExportRevisionToS3ElRevisionDestinationEl>>,
     dynamic: DataexchangeEventActionActionElExportRevisionToS3ElDynamic,
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3El {
     #[doc = "Set the field `encryption`.\n"]
     pub fn set_encryption(
@@ -507,7 +439,6 @@ impl DataexchangeEventActionActionElExportRevisionToS3El {
         }
         self
     }
-
     #[doc = "Set the field `revision_destination`.\n"]
     pub fn set_revision_destination(
         mut self,
@@ -528,10 +459,8 @@ impl DataexchangeEventActionActionElExportRevisionToS3El {
         self
     }
 }
-
 impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3El {
     type O = BlockAssignable<DataexchangeEventActionActionElExportRevisionToS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -540,9 +469,7 @@ impl ToListMappable for DataexchangeEventActionActionElExportRevisionToS3El {
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionActionElExportRevisionToS3El {}
-
 impl BuildDataexchangeEventActionActionElExportRevisionToS3El {
     pub fn build(self) -> DataexchangeEventActionActionElExportRevisionToS3El {
         DataexchangeEventActionActionElExportRevisionToS3El {
@@ -552,12 +479,10 @@ impl BuildDataexchangeEventActionActionElExportRevisionToS3El {
         }
     }
 }
-
 pub struct DataexchangeEventActionActionElExportRevisionToS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElRef {
     fn new(
         shared: StackShared,
@@ -569,19 +494,16 @@ impl Ref for DataexchangeEventActionActionElExportRevisionToS3ElRef {
         }
     }
 }
-
 impl DataexchangeEventActionActionElExportRevisionToS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `encryption` after provisioning.\n"]
     pub fn encryption(
         &self,
     ) -> ListRef<DataexchangeEventActionActionElExportRevisionToS3ElEncryptionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.encryption", self.base))
     }
-
     #[doc = "Get a reference to the value of field `revision_destination` after provisioning.\n"]
     pub fn revision_destination(
         &self,
@@ -592,20 +514,17 @@ impl DataexchangeEventActionActionElExportRevisionToS3ElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionActionElDynamic {
     export_revision_to_s3:
         Option<DynamicBlock<DataexchangeEventActionActionElExportRevisionToS3El>>,
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     export_revision_to_s3: Option<Vec<DataexchangeEventActionActionElExportRevisionToS3El>>,
     dynamic: DataexchangeEventActionActionElDynamic,
 }
-
 impl DataexchangeEventActionActionEl {
     #[doc = "Set the field `export_revision_to_s3`.\n"]
     pub fn set_export_revision_to_s3(
@@ -623,10 +542,8 @@ impl DataexchangeEventActionActionEl {
         self
     }
 }
-
 impl ToListMappable for DataexchangeEventActionActionEl {
     type O = BlockAssignable<DataexchangeEventActionActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -635,9 +552,7 @@ impl ToListMappable for DataexchangeEventActionActionEl {
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionActionEl {}
-
 impl BuildDataexchangeEventActionActionEl {
     pub fn build(self) -> DataexchangeEventActionActionEl {
         DataexchangeEventActionActionEl {
@@ -646,12 +561,10 @@ impl BuildDataexchangeEventActionActionEl {
         }
     }
 }
-
 pub struct DataexchangeEventActionActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionActionElRef {
     fn new(shared: StackShared, base: String) -> DataexchangeEventActionActionElRef {
         DataexchangeEventActionActionElRef {
@@ -660,12 +573,10 @@ impl Ref for DataexchangeEventActionActionElRef {
         }
     }
 }
-
 impl DataexchangeEventActionActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `export_revision_to_s3` after provisioning.\n"]
     pub fn export_revision_to_s3(
         &self,
@@ -676,17 +587,13 @@ impl DataexchangeEventActionActionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionEventElRevisionPublishedEl {
     data_set_id: PrimField<String>,
 }
-
 impl DataexchangeEventActionEventElRevisionPublishedEl {}
-
 impl ToListMappable for DataexchangeEventActionEventElRevisionPublishedEl {
     type O = BlockAssignable<DataexchangeEventActionEventElRevisionPublishedEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -695,12 +602,10 @@ impl ToListMappable for DataexchangeEventActionEventElRevisionPublishedEl {
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionEventElRevisionPublishedEl {
     #[doc = ""]
     pub data_set_id: PrimField<String>,
 }
-
 impl BuildDataexchangeEventActionEventElRevisionPublishedEl {
     pub fn build(self) -> DataexchangeEventActionEventElRevisionPublishedEl {
         DataexchangeEventActionEventElRevisionPublishedEl {
@@ -708,12 +613,10 @@ impl BuildDataexchangeEventActionEventElRevisionPublishedEl {
         }
     }
 }
-
 pub struct DataexchangeEventActionEventElRevisionPublishedElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionEventElRevisionPublishedElRef {
     fn new(
         shared: StackShared,
@@ -725,30 +628,25 @@ impl Ref for DataexchangeEventActionEventElRevisionPublishedElRef {
         }
     }
 }
-
 impl DataexchangeEventActionEventElRevisionPublishedElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_set_id` after provisioning.\n"]
     pub fn data_set_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data_set_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionEventElDynamic {
     revision_published: Option<DynamicBlock<DataexchangeEventActionEventElRevisionPublishedEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DataexchangeEventActionEventEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     revision_published: Option<Vec<DataexchangeEventActionEventElRevisionPublishedEl>>,
     dynamic: DataexchangeEventActionEventElDynamic,
 }
-
 impl DataexchangeEventActionEventEl {
     #[doc = "Set the field `revision_published`.\n"]
     pub fn set_revision_published(
@@ -766,10 +664,8 @@ impl DataexchangeEventActionEventEl {
         self
     }
 }
-
 impl ToListMappable for DataexchangeEventActionEventEl {
     type O = BlockAssignable<DataexchangeEventActionEventEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -778,9 +674,7 @@ impl ToListMappable for DataexchangeEventActionEventEl {
         })
     }
 }
-
 pub struct BuildDataexchangeEventActionEventEl {}
-
 impl BuildDataexchangeEventActionEventEl {
     pub fn build(self) -> DataexchangeEventActionEventEl {
         DataexchangeEventActionEventEl {
@@ -789,12 +683,10 @@ impl BuildDataexchangeEventActionEventEl {
         }
     }
 }
-
 pub struct DataexchangeEventActionEventElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataexchangeEventActionEventElRef {
     fn new(shared: StackShared, base: String) -> DataexchangeEventActionEventElRef {
         DataexchangeEventActionEventElRef {
@@ -803,12 +695,10 @@ impl Ref for DataexchangeEventActionEventElRef {
         }
     }
 }
-
 impl DataexchangeEventActionEventElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `revision_published` after provisioning.\n"]
     pub fn revision_published(
         &self,
@@ -819,7 +709,6 @@ impl DataexchangeEventActionEventElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataexchangeEventActionDynamic {
     action: Option<DynamicBlock<DataexchangeEventActionActionEl>>,

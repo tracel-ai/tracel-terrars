@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct MskReplicatorData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct MskReplicatorData {
     timeouts: Option<MskReplicatorTimeoutsEl>,
     dynamic: MskReplicatorDynamic,
 }
-
 struct MskReplicator_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<MskReplicatorData>,
 }
-
 #[derive(Clone)]
 pub struct MskReplicator(Rc<MskReplicator_>);
-
 impl MskReplicator {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl MskReplicator {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl MskReplicator {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,37 +101,31 @@ impl MskReplicator {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kafka_cluster`.\n"]
     pub fn set_kafka_cluster(
         self,
@@ -159,7 +141,6 @@ impl MskReplicator {
         }
         self
     }
-
     #[doc = "Set the field `replication_info_list`.\n"]
     pub fn set_replication_info_list(
         self,
@@ -175,18 +156,15 @@ impl MskReplicator {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<MskReplicatorTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `current_version` after provisioning.\n"]
     pub fn current_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -194,7 +172,6 @@ impl MskReplicator {
             format!("{}.current_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,12 +179,10 @@ impl MskReplicator {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,7 +190,6 @@ impl MskReplicator {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replicator_name` after provisioning.\n"]
     pub fn replicator_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -223,7 +197,6 @@ impl MskReplicator {
             format!("{}.replicator_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_execution_role_arn` after provisioning.\n"]
     pub fn service_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +204,6 @@ impl MskReplicator {
             format!("{}.service_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -239,7 +211,6 @@ impl MskReplicator {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -247,7 +218,6 @@ impl MskReplicator {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kafka_cluster` after provisioning.\n"]
     pub fn kafka_cluster(&self) -> ListRef<MskReplicatorKafkaClusterElRef> {
         ListRef::new(
@@ -255,7 +225,6 @@ impl MskReplicator {
             format!("{}.kafka_cluster", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_info_list` after provisioning.\n"]
     pub fn replication_info_list(&self) -> ListRef<MskReplicatorReplicationInfoListElRef> {
         ListRef::new(
@@ -263,7 +232,6 @@ impl MskReplicator {
             format!("{}.replication_info_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskReplicatorTimeoutsElRef {
         MskReplicatorTimeoutsElRef::new(
@@ -272,7 +240,6 @@ impl MskReplicator {
         )
     }
 }
-
 impl Referable for MskReplicator {
     fn extract_ref(&self) -> String {
         format!(
@@ -282,32 +249,25 @@ impl Referable for MskReplicator {
         )
     }
 }
-
 impl Resource for MskReplicator {}
-
 impl ToListMappable for MskReplicator {
     type O = ListRef<MskReplicatorRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for MskReplicator_ {
     fn extract_resource_type(&self) -> String {
         "aws_msk_replicator".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildMskReplicator {
     pub tf_id: String,
     #[doc = ""]
@@ -315,7 +275,6 @@ pub struct BuildMskReplicator {
     #[doc = ""]
     pub service_execution_role_arn: PrimField<String>,
 }
-
 impl BuildMskReplicator {
     pub fn build(self, stack: &mut Stack) -> MskReplicator {
         let out = MskReplicator(Rc::new(MskReplicator_ {
@@ -343,32 +302,26 @@ impl BuildMskReplicator {
         out
     }
 }
-
 pub struct MskReplicatorRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl MskReplicatorRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `current_version` after provisioning.\n"]
     pub fn current_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -376,7 +329,6 @@ impl MskReplicatorRef {
             format!("{}.current_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -384,12 +336,10 @@ impl MskReplicatorRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -397,7 +347,6 @@ impl MskReplicatorRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replicator_name` after provisioning.\n"]
     pub fn replicator_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -405,7 +354,6 @@ impl MskReplicatorRef {
             format!("{}.replicator_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_execution_role_arn` after provisioning.\n"]
     pub fn service_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -413,7 +361,6 @@ impl MskReplicatorRef {
             format!("{}.service_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -421,7 +368,6 @@ impl MskReplicatorRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -429,7 +375,6 @@ impl MskReplicatorRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kafka_cluster` after provisioning.\n"]
     pub fn kafka_cluster(&self) -> ListRef<MskReplicatorKafkaClusterElRef> {
         ListRef::new(
@@ -437,7 +382,6 @@ impl MskReplicatorRef {
             format!("{}.kafka_cluster", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_info_list` after provisioning.\n"]
     pub fn replication_info_list(&self) -> ListRef<MskReplicatorReplicationInfoListElRef> {
         ListRef::new(
@@ -445,7 +389,6 @@ impl MskReplicatorRef {
             format!("{}.replication_info_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MskReplicatorTimeoutsElRef {
         MskReplicatorTimeoutsElRef::new(
@@ -454,17 +397,13 @@ impl MskReplicatorRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorKafkaClusterElAmazonMskClusterEl {
     msk_cluster_arn: PrimField<String>,
 }
-
 impl MskReplicatorKafkaClusterElAmazonMskClusterEl {}
-
 impl ToListMappable for MskReplicatorKafkaClusterElAmazonMskClusterEl {
     type O = BlockAssignable<MskReplicatorKafkaClusterElAmazonMskClusterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -473,12 +412,10 @@ impl ToListMappable for MskReplicatorKafkaClusterElAmazonMskClusterEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorKafkaClusterElAmazonMskClusterEl {
     #[doc = ""]
     pub msk_cluster_arn: PrimField<String>,
 }
-
 impl BuildMskReplicatorKafkaClusterElAmazonMskClusterEl {
     pub fn build(self) -> MskReplicatorKafkaClusterElAmazonMskClusterEl {
         MskReplicatorKafkaClusterElAmazonMskClusterEl {
@@ -486,12 +423,10 @@ impl BuildMskReplicatorKafkaClusterElAmazonMskClusterEl {
         }
     }
 }
-
 pub struct MskReplicatorKafkaClusterElAmazonMskClusterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorKafkaClusterElAmazonMskClusterElRef {
     fn new(shared: StackShared, base: String) -> MskReplicatorKafkaClusterElAmazonMskClusterElRef {
         MskReplicatorKafkaClusterElAmazonMskClusterElRef {
@@ -500,12 +435,10 @@ impl Ref for MskReplicatorKafkaClusterElAmazonMskClusterElRef {
         }
     }
 }
-
 impl MskReplicatorKafkaClusterElAmazonMskClusterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `msk_cluster_arn` after provisioning.\n"]
     pub fn msk_cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -514,14 +447,12 @@ impl MskReplicatorKafkaClusterElAmazonMskClusterElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorKafkaClusterElVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     security_groups_ids: Option<SetField<PrimField<String>>>,
     subnet_ids: SetField<PrimField<String>>,
 }
-
 impl MskReplicatorKafkaClusterElVpcConfigEl {
     #[doc = "Set the field `security_groups_ids`.\n"]
     pub fn set_security_groups_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -529,10 +460,8 @@ impl MskReplicatorKafkaClusterElVpcConfigEl {
         self
     }
 }
-
 impl ToListMappable for MskReplicatorKafkaClusterElVpcConfigEl {
     type O = BlockAssignable<MskReplicatorKafkaClusterElVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -541,12 +470,10 @@ impl ToListMappable for MskReplicatorKafkaClusterElVpcConfigEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorKafkaClusterElVpcConfigEl {
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildMskReplicatorKafkaClusterElVpcConfigEl {
     pub fn build(self) -> MskReplicatorKafkaClusterElVpcConfigEl {
         MskReplicatorKafkaClusterElVpcConfigEl {
@@ -555,12 +482,10 @@ impl BuildMskReplicatorKafkaClusterElVpcConfigEl {
         }
     }
 }
-
 pub struct MskReplicatorKafkaClusterElVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorKafkaClusterElVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> MskReplicatorKafkaClusterElVpcConfigElRef {
         MskReplicatorKafkaClusterElVpcConfigElRef {
@@ -569,12 +494,10 @@ impl Ref for MskReplicatorKafkaClusterElVpcConfigElRef {
         }
     }
 }
-
 impl MskReplicatorKafkaClusterElVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_groups_ids` after provisioning.\n"]
     pub fn security_groups_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -582,19 +505,16 @@ impl MskReplicatorKafkaClusterElVpcConfigElRef {
             format!("{}.security_groups_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct MskReplicatorKafkaClusterElDynamic {
     amazon_msk_cluster: Option<DynamicBlock<MskReplicatorKafkaClusterElAmazonMskClusterEl>>,
     vpc_config: Option<DynamicBlock<MskReplicatorKafkaClusterElVpcConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorKafkaClusterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -603,7 +523,6 @@ pub struct MskReplicatorKafkaClusterEl {
     vpc_config: Option<Vec<MskReplicatorKafkaClusterElVpcConfigEl>>,
     dynamic: MskReplicatorKafkaClusterElDynamic,
 }
-
 impl MskReplicatorKafkaClusterEl {
     #[doc = "Set the field `amazon_msk_cluster`.\n"]
     pub fn set_amazon_msk_cluster(
@@ -620,7 +539,6 @@ impl MskReplicatorKafkaClusterEl {
         }
         self
     }
-
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(
         mut self,
@@ -637,10 +555,8 @@ impl MskReplicatorKafkaClusterEl {
         self
     }
 }
-
 impl ToListMappable for MskReplicatorKafkaClusterEl {
     type O = BlockAssignable<MskReplicatorKafkaClusterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -649,9 +565,7 @@ impl ToListMappable for MskReplicatorKafkaClusterEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorKafkaClusterEl {}
-
 impl BuildMskReplicatorKafkaClusterEl {
     pub fn build(self) -> MskReplicatorKafkaClusterEl {
         MskReplicatorKafkaClusterEl {
@@ -661,12 +575,10 @@ impl BuildMskReplicatorKafkaClusterEl {
         }
     }
 }
-
 pub struct MskReplicatorKafkaClusterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorKafkaClusterElRef {
     fn new(shared: StackShared, base: String) -> MskReplicatorKafkaClusterElRef {
         MskReplicatorKafkaClusterElRef {
@@ -675,12 +587,10 @@ impl Ref for MskReplicatorKafkaClusterElRef {
         }
     }
 }
-
 impl MskReplicatorKafkaClusterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `amazon_msk_cluster` after provisioning.\n"]
     pub fn amazon_msk_cluster(&self) -> ListRef<MskReplicatorKafkaClusterElAmazonMskClusterElRef> {
         ListRef::new(
@@ -688,13 +598,11 @@ impl MskReplicatorKafkaClusterElRef {
             format!("{}.amazon_msk_cluster", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<MskReplicatorKafkaClusterElVpcConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -705,7 +613,6 @@ pub struct MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     synchronise_consumer_group_offsets: Option<PrimField<bool>>,
 }
-
 impl MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     #[doc = "Set the field `consumer_groups_to_exclude`.\n"]
     pub fn set_consumer_groups_to_exclude(
@@ -715,7 +622,6 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
         self.consumer_groups_to_exclude = Some(v.into());
         self
     }
-
     #[doc = "Set the field `detect_and_copy_new_consumer_groups`.\n"]
     pub fn set_detect_and_copy_new_consumer_groups(
         mut self,
@@ -724,17 +630,14 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
         self.detect_and_copy_new_consumer_groups = Some(v.into());
         self
     }
-
     #[doc = "Set the field `synchronise_consumer_group_offsets`.\n"]
     pub fn set_synchronise_consumer_group_offsets(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.synchronise_consumer_group_offsets = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     type O = BlockAssignable<MskReplicatorReplicationInfoListElConsumerGroupReplicationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -743,12 +646,10 @@ impl ToListMappable for MskReplicatorReplicationInfoListElConsumerGroupReplicati
         })
     }
 }
-
 pub struct BuildMskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     #[doc = ""]
     pub consumer_groups_to_replicate: SetField<PrimField<String>>,
 }
-
 impl BuildMskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
     pub fn build(self) -> MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
         MskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
@@ -759,12 +660,10 @@ impl BuildMskReplicatorReplicationInfoListElConsumerGroupReplicationEl {
         }
     }
 }
-
 pub struct MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
     fn new(
         shared: StackShared,
@@ -776,12 +675,10 @@ impl Ref for MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
         }
     }
 }
-
 impl MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `consumer_groups_to_exclude` after provisioning.\n"]
     pub fn consumer_groups_to_exclude(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -789,7 +686,6 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
             format!("{}.consumer_groups_to_exclude", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `consumer_groups_to_replicate` after provisioning.\n"]
     pub fn consumer_groups_to_replicate(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -797,7 +693,6 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
             format!("{}.consumer_groups_to_replicate", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `detect_and_copy_new_consumer_groups` after provisioning.\n"]
     pub fn detect_and_copy_new_consumer_groups(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -805,7 +700,6 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
             format!("{}.detect_and_copy_new_consumer_groups", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `synchronise_consumer_group_offsets` after provisioning.\n"]
     pub fn synchronise_consumer_group_offsets(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -814,13 +708,11 @@ impl MskReplicatorReplicationInfoListElConsumerGroupReplicationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -828,11 +720,9 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
         self
     }
 }
-
 impl ToListMappable for MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
     type O =
         BlockAssignable<MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -841,9 +731,7 @@ impl ToListMappable for MskReplicatorReplicationInfoListElTopicReplicationElStar
         })
     }
 }
-
 pub struct BuildMskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {}
-
 impl BuildMskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
     pub fn build(self) -> MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
         MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl {
@@ -851,12 +739,10 @@ impl BuildMskReplicatorReplicationInfoListElTopicReplicationElStartingPositionEl
         }
     }
 }
-
 pub struct MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionElRef {
     fn new(
         shared: StackShared,
@@ -868,24 +754,20 @@ impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElStartingPositio
         }
     }
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationElStartingPositionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -893,14 +775,12 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationE
         self
     }
 }
-
 impl ToListMappable
     for MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl
 {
     type O = BlockAssignable<
         MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -909,9 +789,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildMskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl {}
-
 impl BuildMskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl {
     pub fn build(
         self,
@@ -921,12 +799,10 @@ impl BuildMskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigura
         }
     }
 }
-
 pub struct MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -938,18 +814,15 @@ impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfig
         }
     }
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct MskReplicatorReplicationInfoListElTopicReplicationElDynamic {
     starting_position: Option<
@@ -959,7 +832,6 @@ struct MskReplicatorReplicationInfoListElTopicReplicationElDynamic {
         DynamicBlock<MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorReplicationInfoListElTopicReplicationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -979,7 +851,6 @@ pub struct MskReplicatorReplicationInfoListElTopicReplicationEl {
         Option<Vec<MskReplicatorReplicationInfoListElTopicReplicationElTopicNameConfigurationEl>>,
     dynamic: MskReplicatorReplicationInfoListElTopicReplicationElDynamic,
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationEl {
     #[doc = "Set the field `copy_access_control_lists_for_topics`.\n"]
     pub fn set_copy_access_control_lists_for_topics(
@@ -989,25 +860,21 @@ impl MskReplicatorReplicationInfoListElTopicReplicationEl {
         self.copy_access_control_lists_for_topics = Some(v.into());
         self
     }
-
     #[doc = "Set the field `copy_topic_configurations`.\n"]
     pub fn set_copy_topic_configurations(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.copy_topic_configurations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `detect_and_copy_new_topics`.\n"]
     pub fn set_detect_and_copy_new_topics(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.detect_and_copy_new_topics = Some(v.into());
         self
     }
-
     #[doc = "Set the field `topics_to_exclude`.\n"]
     pub fn set_topics_to_exclude(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.topics_to_exclude = Some(v.into());
         self
     }
-
     #[doc = "Set the field `starting_position`.\n"]
     pub fn set_starting_position(
         mut self,
@@ -1025,7 +892,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationEl {
         }
         self
     }
-
     #[doc = "Set the field `topic_name_configuration`.\n"]
     pub fn set_topic_name_configuration(
         mut self,
@@ -1046,10 +912,8 @@ impl MskReplicatorReplicationInfoListElTopicReplicationEl {
         self
     }
 }
-
 impl ToListMappable for MskReplicatorReplicationInfoListElTopicReplicationEl {
     type O = BlockAssignable<MskReplicatorReplicationInfoListElTopicReplicationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1058,12 +922,10 @@ impl ToListMappable for MskReplicatorReplicationInfoListElTopicReplicationEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorReplicationInfoListElTopicReplicationEl {
     #[doc = ""]
     pub topics_to_replicate: SetField<PrimField<String>>,
 }
-
 impl BuildMskReplicatorReplicationInfoListElTopicReplicationEl {
     pub fn build(self) -> MskReplicatorReplicationInfoListElTopicReplicationEl {
         MskReplicatorReplicationInfoListElTopicReplicationEl {
@@ -1078,12 +940,10 @@ impl BuildMskReplicatorReplicationInfoListElTopicReplicationEl {
         }
     }
 }
-
 pub struct MskReplicatorReplicationInfoListElTopicReplicationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElRef {
     fn new(
         shared: StackShared,
@@ -1095,12 +955,10 @@ impl Ref for MskReplicatorReplicationInfoListElTopicReplicationElRef {
         }
     }
 }
-
 impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `copy_access_control_lists_for_topics` after provisioning.\n"]
     pub fn copy_access_control_lists_for_topics(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1108,7 +966,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.copy_access_control_lists_for_topics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `copy_topic_configurations` after provisioning.\n"]
     pub fn copy_topic_configurations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1116,7 +973,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.copy_topic_configurations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `detect_and_copy_new_topics` after provisioning.\n"]
     pub fn detect_and_copy_new_topics(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1124,7 +980,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.detect_and_copy_new_topics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `topics_to_exclude` after provisioning.\n"]
     pub fn topics_to_exclude(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1132,7 +987,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.topics_to_exclude", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `topics_to_replicate` after provisioning.\n"]
     pub fn topics_to_replicate(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1140,7 +994,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.topics_to_replicate", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `starting_position` after provisioning.\n"]
     pub fn starting_position(
         &self,
@@ -1150,7 +1003,6 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
             format!("{}.starting_position", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `topic_name_configuration` after provisioning.\n"]
     pub fn topic_name_configuration(
         &self,
@@ -1162,14 +1014,12 @@ impl MskReplicatorReplicationInfoListElTopicReplicationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct MskReplicatorReplicationInfoListElDynamic {
     consumer_group_replication:
         Option<DynamicBlock<MskReplicatorReplicationInfoListElConsumerGroupReplicationEl>>,
     topic_replication: Option<DynamicBlock<MskReplicatorReplicationInfoListElTopicReplicationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorReplicationInfoListEl {
     source_kafka_cluster_arn: PrimField<String>,
@@ -1182,7 +1032,6 @@ pub struct MskReplicatorReplicationInfoListEl {
     topic_replication: Option<Vec<MskReplicatorReplicationInfoListElTopicReplicationEl>>,
     dynamic: MskReplicatorReplicationInfoListElDynamic,
 }
-
 impl MskReplicatorReplicationInfoListEl {
     #[doc = "Set the field `consumer_group_replication`.\n"]
     pub fn set_consumer_group_replication(
@@ -1199,7 +1048,6 @@ impl MskReplicatorReplicationInfoListEl {
         }
         self
     }
-
     #[doc = "Set the field `topic_replication`.\n"]
     pub fn set_topic_replication(
         mut self,
@@ -1216,10 +1064,8 @@ impl MskReplicatorReplicationInfoListEl {
         self
     }
 }
-
 impl ToListMappable for MskReplicatorReplicationInfoListEl {
     type O = BlockAssignable<MskReplicatorReplicationInfoListEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1228,7 +1074,6 @@ impl ToListMappable for MskReplicatorReplicationInfoListEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorReplicationInfoListEl {
     #[doc = ""]
     pub source_kafka_cluster_arn: PrimField<String>,
@@ -1237,7 +1082,6 @@ pub struct BuildMskReplicatorReplicationInfoListEl {
     #[doc = ""]
     pub target_kafka_cluster_arn: PrimField<String>,
 }
-
 impl BuildMskReplicatorReplicationInfoListEl {
     pub fn build(self) -> MskReplicatorReplicationInfoListEl {
         MskReplicatorReplicationInfoListEl {
@@ -1250,12 +1094,10 @@ impl BuildMskReplicatorReplicationInfoListEl {
         }
     }
 }
-
 pub struct MskReplicatorReplicationInfoListElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorReplicationInfoListElRef {
     fn new(shared: StackShared, base: String) -> MskReplicatorReplicationInfoListElRef {
         MskReplicatorReplicationInfoListElRef {
@@ -1264,12 +1106,10 @@ impl Ref for MskReplicatorReplicationInfoListElRef {
         }
     }
 }
-
 impl MskReplicatorReplicationInfoListElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `source_kafka_cluster_alias` after provisioning.\n"]
     pub fn source_kafka_cluster_alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1277,7 +1117,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.source_kafka_cluster_alias", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_kafka_cluster_arn` after provisioning.\n"]
     pub fn source_kafka_cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1285,7 +1124,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.source_kafka_cluster_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_compression_type` after provisioning.\n"]
     pub fn target_compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1293,7 +1131,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.target_compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_kafka_cluster_alias` after provisioning.\n"]
     pub fn target_kafka_cluster_alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1301,7 +1138,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.target_kafka_cluster_alias", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_kafka_cluster_arn` after provisioning.\n"]
     pub fn target_kafka_cluster_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1309,7 +1145,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.target_kafka_cluster_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `consumer_group_replication` after provisioning.\n"]
     pub fn consumer_group_replication(
         &self,
@@ -1319,7 +1154,6 @@ impl MskReplicatorReplicationInfoListElRef {
             format!("{}.consumer_group_replication", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `topic_replication` after provisioning.\n"]
     pub fn topic_replication(
         &self,
@@ -1330,7 +1164,6 @@ impl MskReplicatorReplicationInfoListElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MskReplicatorTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1340,30 +1173,25 @@ pub struct MskReplicatorTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl MskReplicatorTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MskReplicatorTimeoutsEl {
     type O = BlockAssignable<MskReplicatorTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1372,9 +1200,7 @@ impl ToListMappable for MskReplicatorTimeoutsEl {
         })
     }
 }
-
 pub struct BuildMskReplicatorTimeoutsEl {}
-
 impl BuildMskReplicatorTimeoutsEl {
     pub fn build(self) -> MskReplicatorTimeoutsEl {
         MskReplicatorTimeoutsEl {
@@ -1384,12 +1210,10 @@ impl BuildMskReplicatorTimeoutsEl {
         }
     }
 }
-
 pub struct MskReplicatorTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MskReplicatorTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> MskReplicatorTimeoutsElRef {
         MskReplicatorTimeoutsElRef {
@@ -1398,28 +1222,23 @@ impl Ref for MskReplicatorTimeoutsElRef {
         }
     }
 }
-
 impl MskReplicatorTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct MskReplicatorDynamic {
     kafka_cluster: Option<DynamicBlock<MskReplicatorKafkaClusterEl>>,

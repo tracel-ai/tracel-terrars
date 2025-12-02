@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsoadminApplicationAccessScopeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct SsoadminApplicationAccessScopeData {
     region: Option<PrimField<String>>,
     scope: PrimField<String>,
 }
-
 struct SsoadminApplicationAccessScope_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsoadminApplicationAccessScopeData>,
 }
-
 #[derive(Clone)]
 pub struct SsoadminApplicationAccessScope(Rc<SsoadminApplicationAccessScope_>);
-
 impl SsoadminApplicationAccessScope {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl SsoadminApplicationAccessScope {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl SsoadminApplicationAccessScope {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,19 +88,16 @@ impl SsoadminApplicationAccessScope {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `authorized_targets`.\n"]
     pub fn set_authorized_targets(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().authorized_targets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +105,6 @@ impl SsoadminApplicationAccessScope {
             format!("{}.application_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorized_targets` after provisioning.\n"]
     pub fn authorized_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -128,12 +112,10 @@ impl SsoadminApplicationAccessScope {
             format!("{}.authorized_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,7 +123,6 @@ impl SsoadminApplicationAccessScope {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +131,6 @@ impl SsoadminApplicationAccessScope {
         )
     }
 }
-
 impl Referable for SsoadminApplicationAccessScope {
     fn extract_ref(&self) -> String {
         format!(
@@ -160,32 +140,25 @@ impl Referable for SsoadminApplicationAccessScope {
         )
     }
 }
-
 impl Resource for SsoadminApplicationAccessScope {}
-
 impl ToListMappable for SsoadminApplicationAccessScope {
     type O = ListRef<SsoadminApplicationAccessScopeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsoadminApplicationAccessScope_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssoadmin_application_access_scope".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsoadminApplicationAccessScope {
     pub tf_id: String,
     #[doc = ""]
@@ -193,7 +166,6 @@ pub struct BuildSsoadminApplicationAccessScope {
     #[doc = ""]
     pub scope: PrimField<String>,
 }
-
 impl BuildSsoadminApplicationAccessScope {
     pub fn build(self, stack: &mut Stack) -> SsoadminApplicationAccessScope {
         let out = SsoadminApplicationAccessScope(Rc::new(SsoadminApplicationAccessScope_ {
@@ -214,27 +186,22 @@ impl BuildSsoadminApplicationAccessScope {
         out
     }
 }
-
 pub struct SsoadminApplicationAccessScopeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminApplicationAccessScopeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsoadminApplicationAccessScopeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `application_arn` after provisioning.\n"]
     pub fn application_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +209,6 @@ impl SsoadminApplicationAccessScopeRef {
             format!("{}.application_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorized_targets` after provisioning.\n"]
     pub fn authorized_targets(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -250,12 +216,10 @@ impl SsoadminApplicationAccessScopeRef {
             format!("{}.authorized_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +227,6 @@ impl SsoadminApplicationAccessScopeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
         PrimExpr::new(

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ApiGatewayDocumentationPartData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct ApiGatewayDocumentationPartData {
     location: Option<Vec<ApiGatewayDocumentationPartLocationEl>>,
     dynamic: ApiGatewayDocumentationPartDynamic,
 }
-
 struct ApiGatewayDocumentationPart_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ApiGatewayDocumentationPartData>,
 }
-
 #[derive(Clone)]
 pub struct ApiGatewayDocumentationPart(Rc<ApiGatewayDocumentationPart_>);
-
 impl ApiGatewayDocumentationPart {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl ApiGatewayDocumentationPart {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl ApiGatewayDocumentationPart {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,19 +91,16 @@ impl ApiGatewayDocumentationPart {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `location`.\n"]
     pub fn set_location(
         self,
@@ -131,7 +116,6 @@ impl ApiGatewayDocumentationPart {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `documentation_part_id` after provisioning.\n"]
     pub fn documentation_part_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,12 +123,10 @@ impl ApiGatewayDocumentationPart {
             format!("{}.documentation_part_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
     pub fn properties(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -152,7 +134,6 @@ impl ApiGatewayDocumentationPart {
             format!("{}.properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +141,6 @@ impl ApiGatewayDocumentationPart {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +148,6 @@ impl ApiGatewayDocumentationPart {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> ListRef<ApiGatewayDocumentationPartLocationElRef> {
         ListRef::new(
@@ -177,7 +156,6 @@ impl ApiGatewayDocumentationPart {
         )
     }
 }
-
 impl Referable for ApiGatewayDocumentationPart {
     fn extract_ref(&self) -> String {
         format!(
@@ -187,32 +165,25 @@ impl Referable for ApiGatewayDocumentationPart {
         )
     }
 }
-
 impl Resource for ApiGatewayDocumentationPart {}
-
 impl ToListMappable for ApiGatewayDocumentationPart {
     type O = ListRef<ApiGatewayDocumentationPartRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ApiGatewayDocumentationPart_ {
     fn extract_resource_type(&self) -> String {
         "aws_api_gateway_documentation_part".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildApiGatewayDocumentationPart {
     pub tf_id: String,
     #[doc = ""]
@@ -220,7 +191,6 @@ pub struct BuildApiGatewayDocumentationPart {
     #[doc = ""]
     pub rest_api_id: PrimField<String>,
 }
-
 impl BuildApiGatewayDocumentationPart {
     pub fn build(self, stack: &mut Stack) -> ApiGatewayDocumentationPart {
         let out = ApiGatewayDocumentationPart(Rc::new(ApiGatewayDocumentationPart_ {
@@ -243,27 +213,22 @@ impl BuildApiGatewayDocumentationPart {
         out
     }
 }
-
 pub struct ApiGatewayDocumentationPartRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ApiGatewayDocumentationPartRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ApiGatewayDocumentationPartRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `documentation_part_id` after provisioning.\n"]
     pub fn documentation_part_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,12 +236,10 @@ impl ApiGatewayDocumentationPartRef {
             format!("{}.documentation_part_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
     pub fn properties(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +247,6 @@ impl ApiGatewayDocumentationPartRef {
             format!("{}.properties", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -292,7 +254,6 @@ impl ApiGatewayDocumentationPartRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +261,6 @@ impl ApiGatewayDocumentationPartRef {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> ListRef<ApiGatewayDocumentationPartLocationElRef> {
         ListRef::new(
@@ -309,7 +269,6 @@ impl ApiGatewayDocumentationPartRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ApiGatewayDocumentationPartLocationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -323,36 +282,30 @@ pub struct ApiGatewayDocumentationPartLocationEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl ApiGatewayDocumentationPartLocationEl {
     #[doc = "Set the field `method`.\n"]
     pub fn set_method(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status_code`.\n"]
     pub fn set_status_code(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status_code = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ApiGatewayDocumentationPartLocationEl {
     type O = BlockAssignable<ApiGatewayDocumentationPartLocationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -361,12 +314,10 @@ impl ToListMappable for ApiGatewayDocumentationPartLocationEl {
         })
     }
 }
-
 pub struct BuildApiGatewayDocumentationPartLocationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildApiGatewayDocumentationPartLocationEl {
     pub fn build(self) -> ApiGatewayDocumentationPartLocationEl {
         ApiGatewayDocumentationPartLocationEl {
@@ -378,12 +329,10 @@ impl BuildApiGatewayDocumentationPartLocationEl {
         }
     }
 }
-
 pub struct ApiGatewayDocumentationPartLocationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ApiGatewayDocumentationPartLocationElRef {
     fn new(shared: StackShared, base: String) -> ApiGatewayDocumentationPartLocationElRef {
         ApiGatewayDocumentationPartLocationElRef {
@@ -392,38 +341,31 @@ impl Ref for ApiGatewayDocumentationPartLocationElRef {
         }
     }
 }
-
 impl ApiGatewayDocumentationPartLocationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `method` after provisioning.\n"]
     pub fn method(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.method", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status_code", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ApiGatewayDocumentationPartDynamic {
     location: Option<DynamicBlock<ApiGatewayDocumentationPartLocationEl>>,

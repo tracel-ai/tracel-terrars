@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataEcsTaskExecutionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -52,109 +51,90 @@ struct DataEcsTaskExecutionData {
     placement_strategy: Option<Vec<DataEcsTaskExecutionPlacementStrategyEl>>,
     dynamic: DataEcsTaskExecutionDynamic,
 }
-
 struct DataEcsTaskExecution_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataEcsTaskExecutionData>,
 }
-
 #[derive(Clone)]
 pub struct DataEcsTaskExecution(Rc<DataEcsTaskExecution_>);
-
 impl DataEcsTaskExecution {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `client_token`.\n"]
     pub fn set_client_token(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().client_token = Some(v.into());
         self
     }
-
     #[doc = "Set the field `desired_count`.\n"]
     pub fn set_desired_count(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().desired_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_ecs_managed_tags`.\n"]
     pub fn set_enable_ecs_managed_tags(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enable_ecs_managed_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_execute_command`.\n"]
     pub fn set_enable_execute_command(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enable_execute_command = Some(v.into());
         self
     }
-
     #[doc = "Set the field `group`.\n"]
     pub fn set_group(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().group = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `launch_type`.\n"]
     pub fn set_launch_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().launch_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `platform_version`.\n"]
     pub fn set_platform_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().platform_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `propagate_tags`.\n"]
     pub fn set_propagate_tags(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().propagate_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `reference_id`.\n"]
     pub fn set_reference_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().reference_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `started_by`.\n"]
     pub fn set_started_by(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().started_by = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `capacity_provider_strategy`.\n"]
     pub fn set_capacity_provider_strategy(
         self,
@@ -170,7 +150,6 @@ impl DataEcsTaskExecution {
         }
         self
     }
-
     #[doc = "Set the field `network_configuration`.\n"]
     pub fn set_network_configuration(
         self,
@@ -186,7 +165,6 @@ impl DataEcsTaskExecution {
         }
         self
     }
-
     #[doc = "Set the field `overrides`.\n"]
     pub fn set_overrides(
         self,
@@ -202,7 +180,6 @@ impl DataEcsTaskExecution {
         }
         self
     }
-
     #[doc = "Set the field `placement_constraints`.\n"]
     pub fn set_placement_constraints(
         self,
@@ -218,7 +195,6 @@ impl DataEcsTaskExecution {
         }
         self
     }
-
     #[doc = "Set the field `placement_strategy`.\n"]
     pub fn set_placement_strategy(
         self,
@@ -234,7 +210,6 @@ impl DataEcsTaskExecution {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +217,6 @@ impl DataEcsTaskExecution {
             format!("{}.client_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +224,6 @@ impl DataEcsTaskExecution {
             format!("{}.cluster", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_count` after provisioning.\n"]
     pub fn desired_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -258,7 +231,6 @@ impl DataEcsTaskExecution {
             format!("{}.desired_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -266,7 +238,6 @@ impl DataEcsTaskExecution {
             format!("{}.enable_ecs_managed_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -274,7 +245,6 @@ impl DataEcsTaskExecution {
             format!("{}.enable_execute_command", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
     pub fn group(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,12 +252,10 @@ impl DataEcsTaskExecution {
             format!("{}.group", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +263,6 @@ impl DataEcsTaskExecution {
             format!("{}.launch_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,7 +270,6 @@ impl DataEcsTaskExecution {
             format!("{}.platform_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -311,7 +277,6 @@ impl DataEcsTaskExecution {
             format!("{}.propagate_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reference_id` after provisioning.\n"]
     pub fn reference_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -319,7 +284,6 @@ impl DataEcsTaskExecution {
             format!("{}.reference_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -327,7 +291,6 @@ impl DataEcsTaskExecution {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `started_by` after provisioning.\n"]
     pub fn started_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -335,7 +298,6 @@ impl DataEcsTaskExecution {
             format!("{}.started_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -343,7 +305,6 @@ impl DataEcsTaskExecution {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_arns` after provisioning.\n"]
     pub fn task_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -351,7 +312,6 @@ impl DataEcsTaskExecution {
             format!("{}.task_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -359,7 +319,6 @@ impl DataEcsTaskExecution {
             format!("{}.task_definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<DataEcsTaskExecutionNetworkConfigurationElRef> {
         ListRef::new(
@@ -367,7 +326,6 @@ impl DataEcsTaskExecution {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `overrides` after provisioning.\n"]
     pub fn overrides(&self) -> ListRef<DataEcsTaskExecutionOverridesElRef> {
         ListRef::new(
@@ -375,7 +333,6 @@ impl DataEcsTaskExecution {
             format!("{}.overrides", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `placement_strategy` after provisioning.\n"]
     pub fn placement_strategy(&self) -> ListRef<DataEcsTaskExecutionPlacementStrategyElRef> {
         ListRef::new(
@@ -384,7 +341,6 @@ impl DataEcsTaskExecution {
         )
     }
 }
-
 impl Referable for DataEcsTaskExecution {
     fn extract_ref(&self) -> String {
         format!(
@@ -394,32 +350,25 @@ impl Referable for DataEcsTaskExecution {
         )
     }
 }
-
 impl Datasource for DataEcsTaskExecution {}
-
 impl ToListMappable for DataEcsTaskExecution {
     type O = ListRef<DataEcsTaskExecutionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataEcsTaskExecution_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ecs_task_execution".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataEcsTaskExecution {
     pub tf_id: String,
     #[doc = ""]
@@ -427,7 +376,6 @@ pub struct BuildDataEcsTaskExecution {
     #[doc = ""]
     pub task_definition: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecution {
     pub fn build(self, stack: &mut Stack) -> DataEcsTaskExecution {
         let out = DataEcsTaskExecution(Rc::new(DataEcsTaskExecution_ {
@@ -464,27 +412,22 @@ impl BuildDataEcsTaskExecution {
         out
     }
 }
-
 pub struct DataEcsTaskExecutionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataEcsTaskExecutionRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `client_token` after provisioning.\n"]
     pub fn client_token(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -492,7 +435,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.client_token", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster` after provisioning.\n"]
     pub fn cluster(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -500,7 +442,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.cluster", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_count` after provisioning.\n"]
     pub fn desired_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -508,7 +449,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.desired_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_ecs_managed_tags` after provisioning.\n"]
     pub fn enable_ecs_managed_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -516,7 +456,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.enable_ecs_managed_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_execute_command` after provisioning.\n"]
     pub fn enable_execute_command(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -524,7 +463,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.enable_execute_command", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `group` after provisioning.\n"]
     pub fn group(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -532,12 +470,10 @@ impl DataEcsTaskExecutionRef {
             format!("{}.group", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `launch_type` after provisioning.\n"]
     pub fn launch_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -545,7 +481,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.launch_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -553,7 +488,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.platform_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `propagate_tags` after provisioning.\n"]
     pub fn propagate_tags(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -561,7 +495,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.propagate_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reference_id` after provisioning.\n"]
     pub fn reference_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -569,7 +502,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.reference_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -577,7 +509,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `started_by` after provisioning.\n"]
     pub fn started_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -585,7 +516,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.started_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -593,7 +523,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_arns` after provisioning.\n"]
     pub fn task_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -601,7 +530,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.task_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_definition` after provisioning.\n"]
     pub fn task_definition(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -609,7 +537,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.task_definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<DataEcsTaskExecutionNetworkConfigurationElRef> {
         ListRef::new(
@@ -617,7 +544,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `overrides` after provisioning.\n"]
     pub fn overrides(&self) -> ListRef<DataEcsTaskExecutionOverridesElRef> {
         ListRef::new(
@@ -625,7 +551,6 @@ impl DataEcsTaskExecutionRef {
             format!("{}.overrides", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `placement_strategy` after provisioning.\n"]
     pub fn placement_strategy(&self) -> ListRef<DataEcsTaskExecutionPlacementStrategyElRef> {
         ListRef::new(
@@ -634,7 +559,6 @@ impl DataEcsTaskExecutionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionCapacityProviderStrategyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -643,24 +567,20 @@ pub struct DataEcsTaskExecutionCapacityProviderStrategyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     weight: Option<PrimField<f64>>,
 }
-
 impl DataEcsTaskExecutionCapacityProviderStrategyEl {
     #[doc = "Set the field `base`.\n"]
     pub fn set_base(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.base = Some(v.into());
         self
     }
-
     #[doc = "Set the field `weight`.\n"]
     pub fn set_weight(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.weight = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionCapacityProviderStrategyEl {
     type O = BlockAssignable<DataEcsTaskExecutionCapacityProviderStrategyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -669,12 +589,10 @@ impl ToListMappable for DataEcsTaskExecutionCapacityProviderStrategyEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionCapacityProviderStrategyEl {
     #[doc = ""]
     pub capacity_provider: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionCapacityProviderStrategyEl {
     pub fn build(self) -> DataEcsTaskExecutionCapacityProviderStrategyEl {
         DataEcsTaskExecutionCapacityProviderStrategyEl {
@@ -684,12 +602,10 @@ impl BuildDataEcsTaskExecutionCapacityProviderStrategyEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionCapacityProviderStrategyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionCapacityProviderStrategyElRef {
     fn new(shared: StackShared, base: String) -> DataEcsTaskExecutionCapacityProviderStrategyElRef {
         DataEcsTaskExecutionCapacityProviderStrategyElRef {
@@ -698,17 +614,14 @@ impl Ref for DataEcsTaskExecutionCapacityProviderStrategyElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionCapacityProviderStrategyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `base` after provisioning.\n"]
     pub fn base(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.base", self.base))
     }
-
     #[doc = "Get a reference to the value of field `capacity_provider` after provisioning.\n"]
     pub fn capacity_provider(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -716,13 +629,11 @@ impl DataEcsTaskExecutionCapacityProviderStrategyElRef {
             format!("{}.capacity_provider", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
     pub fn weight(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.weight", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionNetworkConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -731,24 +642,20 @@ pub struct DataEcsTaskExecutionNetworkConfigurationEl {
     security_groups: Option<SetField<PrimField<String>>>,
     subnets: SetField<PrimField<String>>,
 }
-
 impl DataEcsTaskExecutionNetworkConfigurationEl {
     #[doc = "Set the field `assign_public_ip`.\n"]
     pub fn set_assign_public_ip(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.assign_public_ip = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_groups`.\n"]
     pub fn set_security_groups(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_groups = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionNetworkConfigurationEl {
     type O = BlockAssignable<DataEcsTaskExecutionNetworkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -757,12 +664,10 @@ impl ToListMappable for DataEcsTaskExecutionNetworkConfigurationEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionNetworkConfigurationEl {
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
-
 impl BuildDataEcsTaskExecutionNetworkConfigurationEl {
     pub fn build(self) -> DataEcsTaskExecutionNetworkConfigurationEl {
         DataEcsTaskExecutionNetworkConfigurationEl {
@@ -772,12 +677,10 @@ impl BuildDataEcsTaskExecutionNetworkConfigurationEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionNetworkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionNetworkConfigurationElRef {
     fn new(shared: StackShared, base: String) -> DataEcsTaskExecutionNetworkConfigurationElRef {
         DataEcsTaskExecutionNetworkConfigurationElRef {
@@ -786,12 +689,10 @@ impl Ref for DataEcsTaskExecutionNetworkConfigurationElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionNetworkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `assign_public_ip` after provisioning.\n"]
     pub fn assign_public_ip(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -799,7 +700,6 @@ impl DataEcsTaskExecutionNetworkConfigurationElRef {
             format!("{}.assign_public_ip", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -807,24 +707,19 @@ impl DataEcsTaskExecutionNetworkConfigurationElRef {
             format!("{}.security_groups", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {}
-
 impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
     type O = BlockAssignable<DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -833,14 +728,12 @@ impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesElEnvir
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
     pub fn build(self) -> DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
         DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
@@ -849,12 +742,10 @@ impl BuildDataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentElRef {
     fn new(
         shared: StackShared,
@@ -866,36 +757,29 @@ impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentElRef
         }
     }
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesElEnvironmentElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl {}
-
 impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl {
     type O =
         BlockAssignable<DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -904,14 +788,12 @@ impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesElResou
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl {
     #[doc = ""]
     pub type_: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl {
     pub fn build(
         self,
@@ -922,12 +804,10 @@ impl BuildDataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirement
         }
     }
 }
-
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsElRef {
     fn new(
         shared: StackShared,
@@ -939,23 +819,19 @@ impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirem
         }
     }
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEcsTaskExecutionOverridesElContainerOverridesElDynamic {
     environment:
@@ -964,7 +840,6 @@ struct DataEcsTaskExecutionOverridesElContainerOverridesElDynamic {
         DynamicBlock<DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -983,32 +858,27 @@ pub struct DataEcsTaskExecutionOverridesElContainerOverridesEl {
         Option<Vec<DataEcsTaskExecutionOverridesElContainerOverridesElResourceRequirementsEl>>,
     dynamic: DataEcsTaskExecutionOverridesElContainerOverridesElDynamic,
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesEl {
     #[doc = "Set the field `command`.\n"]
     pub fn set_command(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.command = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cpu`.\n"]
     pub fn set_cpu(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.cpu = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory`.\n"]
     pub fn set_memory(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.memory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory_reservation`.\n"]
     pub fn set_memory_reservation(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.memory_reservation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(
         mut self,
@@ -1024,7 +894,6 @@ impl DataEcsTaskExecutionOverridesElContainerOverridesEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_requirements`.\n"]
     pub fn set_resource_requirements(
         mut self,
@@ -1045,10 +914,8 @@ impl DataEcsTaskExecutionOverridesElContainerOverridesEl {
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesEl {
     type O = BlockAssignable<DataEcsTaskExecutionOverridesElContainerOverridesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1057,12 +924,10 @@ impl ToListMappable for DataEcsTaskExecutionOverridesElContainerOverridesEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionOverridesElContainerOverridesEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionOverridesElContainerOverridesEl {
     pub fn build(self) -> DataEcsTaskExecutionOverridesElContainerOverridesEl {
         DataEcsTaskExecutionOverridesElContainerOverridesEl {
@@ -1077,12 +942,10 @@ impl BuildDataEcsTaskExecutionOverridesElContainerOverridesEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionOverridesElContainerOverridesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElRef {
     fn new(
         shared: StackShared,
@@ -1094,27 +957,22 @@ impl Ref for DataEcsTaskExecutionOverridesElContainerOverridesElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionOverridesElContainerOverridesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `command` after provisioning.\n"]
     pub fn command(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.command", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cpu` after provisioning.\n"]
     pub fn cpu(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.cpu", self.base))
     }
-
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
     pub fn memory(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.memory", self.base))
     }
-
     #[doc = "Get a reference to the value of field `memory_reservation` after provisioning.\n"]
     pub fn memory_reservation(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1122,18 +980,15 @@ impl DataEcsTaskExecutionOverridesElContainerOverridesElRef {
             format!("{}.memory_reservation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEcsTaskExecutionOverridesElDynamic {
     container_overrides: Option<DynamicBlock<DataEcsTaskExecutionOverridesElContainerOverridesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1148,32 +1003,27 @@ pub struct DataEcsTaskExecutionOverridesEl {
     container_overrides: Option<Vec<DataEcsTaskExecutionOverridesElContainerOverridesEl>>,
     dynamic: DataEcsTaskExecutionOverridesElDynamic,
 }
-
 impl DataEcsTaskExecutionOverridesEl {
     #[doc = "Set the field `cpu`.\n"]
     pub fn set_cpu(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cpu = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_role_arn`.\n"]
     pub fn set_execution_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.execution_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory`.\n"]
     pub fn set_memory(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.memory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `task_role_arn`.\n"]
     pub fn set_task_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.task_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `container_overrides`.\n"]
     pub fn set_container_overrides(
         mut self,
@@ -1190,10 +1040,8 @@ impl DataEcsTaskExecutionOverridesEl {
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionOverridesEl {
     type O = BlockAssignable<DataEcsTaskExecutionOverridesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1202,9 +1050,7 @@ impl ToListMappable for DataEcsTaskExecutionOverridesEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionOverridesEl {}
-
 impl BuildDataEcsTaskExecutionOverridesEl {
     pub fn build(self) -> DataEcsTaskExecutionOverridesEl {
         DataEcsTaskExecutionOverridesEl {
@@ -1217,12 +1063,10 @@ impl BuildDataEcsTaskExecutionOverridesEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionOverridesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionOverridesElRef {
     fn new(shared: StackShared, base: String) -> DataEcsTaskExecutionOverridesElRef {
         DataEcsTaskExecutionOverridesElRef {
@@ -1231,17 +1075,14 @@ impl Ref for DataEcsTaskExecutionOverridesElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionOverridesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cpu` after provisioning.\n"]
     pub fn cpu(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cpu", self.base))
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1249,12 +1090,10 @@ impl DataEcsTaskExecutionOverridesElRef {
             format!("{}.execution_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
     pub fn memory(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.memory", self.base))
     }
-
     #[doc = "Get a reference to the value of field `task_role_arn` after provisioning.\n"]
     pub fn task_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1262,7 +1101,6 @@ impl DataEcsTaskExecutionOverridesElRef {
             format!("{}.task_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_overrides` after provisioning.\n"]
     pub fn container_overrides(
         &self,
@@ -1273,7 +1111,6 @@ impl DataEcsTaskExecutionOverridesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionPlacementConstraintsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1281,7 +1118,6 @@ pub struct DataEcsTaskExecutionPlacementConstraintsEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl DataEcsTaskExecutionPlacementConstraintsEl {
     #[doc = "Set the field `expression`.\n"]
     pub fn set_expression(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1289,10 +1125,8 @@ impl DataEcsTaskExecutionPlacementConstraintsEl {
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionPlacementConstraintsEl {
     type O = BlockAssignable<DataEcsTaskExecutionPlacementConstraintsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1301,12 +1135,10 @@ impl ToListMappable for DataEcsTaskExecutionPlacementConstraintsEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionPlacementConstraintsEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionPlacementConstraintsEl {
     pub fn build(self) -> DataEcsTaskExecutionPlacementConstraintsEl {
         DataEcsTaskExecutionPlacementConstraintsEl {
@@ -1315,12 +1147,10 @@ impl BuildDataEcsTaskExecutionPlacementConstraintsEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionPlacementConstraintsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionPlacementConstraintsElRef {
     fn new(shared: StackShared, base: String) -> DataEcsTaskExecutionPlacementConstraintsElRef {
         DataEcsTaskExecutionPlacementConstraintsElRef {
@@ -1329,23 +1159,19 @@ impl Ref for DataEcsTaskExecutionPlacementConstraintsElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionPlacementConstraintsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `expression` after provisioning.\n"]
     pub fn expression(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.expression", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsTaskExecutionPlacementStrategyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1353,7 +1179,6 @@ pub struct DataEcsTaskExecutionPlacementStrategyEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl DataEcsTaskExecutionPlacementStrategyEl {
     #[doc = "Set the field `field`.\n"]
     pub fn set_field(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1361,10 +1186,8 @@ impl DataEcsTaskExecutionPlacementStrategyEl {
         self
     }
 }
-
 impl ToListMappable for DataEcsTaskExecutionPlacementStrategyEl {
     type O = BlockAssignable<DataEcsTaskExecutionPlacementStrategyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1373,12 +1196,10 @@ impl ToListMappable for DataEcsTaskExecutionPlacementStrategyEl {
         })
     }
 }
-
 pub struct BuildDataEcsTaskExecutionPlacementStrategyEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildDataEcsTaskExecutionPlacementStrategyEl {
     pub fn build(self) -> DataEcsTaskExecutionPlacementStrategyEl {
         DataEcsTaskExecutionPlacementStrategyEl {
@@ -1387,12 +1208,10 @@ impl BuildDataEcsTaskExecutionPlacementStrategyEl {
         }
     }
 }
-
 pub struct DataEcsTaskExecutionPlacementStrategyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsTaskExecutionPlacementStrategyElRef {
     fn new(shared: StackShared, base: String) -> DataEcsTaskExecutionPlacementStrategyElRef {
         DataEcsTaskExecutionPlacementStrategyElRef {
@@ -1401,23 +1220,19 @@ impl Ref for DataEcsTaskExecutionPlacementStrategyElRef {
         }
     }
 }
-
 impl DataEcsTaskExecutionPlacementStrategyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `field` after provisioning.\n"]
     pub fn field(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.field", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEcsTaskExecutionDynamic {
     capacity_provider_strategy:

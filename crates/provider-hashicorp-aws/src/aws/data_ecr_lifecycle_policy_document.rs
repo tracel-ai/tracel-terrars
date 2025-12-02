@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataEcrLifecyclePolicyDocumentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -16,31 +15,25 @@ struct DataEcrLifecyclePolicyDocumentData {
     rule: Option<Vec<DataEcrLifecyclePolicyDocumentRuleEl>>,
     dynamic: DataEcrLifecyclePolicyDocumentDynamic,
 }
-
 struct DataEcrLifecyclePolicyDocument_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataEcrLifecyclePolicyDocumentData>,
 }
-
 #[derive(Clone)]
 pub struct DataEcrLifecyclePolicyDocument(Rc<DataEcrLifecyclePolicyDocument_>);
-
 impl DataEcrLifecyclePolicyDocument {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(
         self,
@@ -56,7 +49,6 @@ impl DataEcrLifecyclePolicyDocument {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -64,7 +56,6 @@ impl DataEcrLifecyclePolicyDocument {
             format!("{}.json", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElRef> {
         ListRef::new(
@@ -73,7 +64,6 @@ impl DataEcrLifecyclePolicyDocument {
         )
     }
 }
-
 impl Referable for DataEcrLifecyclePolicyDocument {
     fn extract_ref(&self) -> String {
         format!(
@@ -83,36 +73,28 @@ impl Referable for DataEcrLifecyclePolicyDocument {
         )
     }
 }
-
 impl Datasource for DataEcrLifecyclePolicyDocument {}
-
 impl ToListMappable for DataEcrLifecyclePolicyDocument {
     type O = ListRef<DataEcrLifecyclePolicyDocumentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataEcrLifecyclePolicyDocument_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ecr_lifecycle_policy_document".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataEcrLifecyclePolicyDocument {
     pub tf_id: String,
 }
-
 impl BuildDataEcrLifecyclePolicyDocument {
     pub fn build(self, stack: &mut Stack) -> DataEcrLifecyclePolicyDocument {
         let out = DataEcrLifecyclePolicyDocument(Rc::new(DataEcrLifecyclePolicyDocument_ {
@@ -130,27 +112,22 @@ impl BuildDataEcrLifecyclePolicyDocument {
         out
     }
 }
-
 pub struct DataEcrLifecyclePolicyDocumentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcrLifecyclePolicyDocumentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataEcrLifecyclePolicyDocumentRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
     pub fn json(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +135,6 @@ impl DataEcrLifecyclePolicyDocumentRef {
             format!("{}.json", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElRef> {
         ListRef::new(
@@ -167,18 +143,14 @@ impl DataEcrLifecyclePolicyDocumentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcrLifecyclePolicyDocumentRuleElActionEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleElActionEl {}
-
 impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleElActionEl {
     type O = BlockAssignable<DataEcrLifecyclePolicyDocumentRuleElActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -187,23 +159,19 @@ impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleElActionEl {
         })
     }
 }
-
 pub struct BuildDataEcrLifecyclePolicyDocumentRuleElActionEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildDataEcrLifecyclePolicyDocumentRuleElActionEl {
     pub fn build(self) -> DataEcrLifecyclePolicyDocumentRuleElActionEl {
         DataEcrLifecyclePolicyDocumentRuleElActionEl { type_: self.type_ }
     }
 }
-
 pub struct DataEcrLifecyclePolicyDocumentRuleElActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcrLifecyclePolicyDocumentRuleElActionElRef {
     fn new(shared: StackShared, base: String) -> DataEcrLifecyclePolicyDocumentRuleElActionElRef {
         DataEcrLifecyclePolicyDocumentRuleElActionElRef {
@@ -212,18 +180,15 @@ impl Ref for DataEcrLifecyclePolicyDocumentRuleElActionElRef {
         }
     }
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleElActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     count_number: PrimField<f64>,
@@ -236,30 +201,25 @@ pub struct DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     tag_prefix_list: Option<ListField<PrimField<String>>>,
     tag_status: PrimField<String>,
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     #[doc = "Set the field `count_unit`.\n"]
     pub fn set_count_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.count_unit = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tag_pattern_list`.\n"]
     pub fn set_tag_pattern_list(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.tag_pattern_list = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tag_prefix_list`.\n"]
     pub fn set_tag_prefix_list(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.tag_prefix_list = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     type O = BlockAssignable<DataEcrLifecyclePolicyDocumentRuleElSelectionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -268,7 +228,6 @@ impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
         })
     }
 }
-
 pub struct BuildDataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     #[doc = ""]
     pub count_number: PrimField<f64>,
@@ -277,7 +236,6 @@ pub struct BuildDataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     #[doc = ""]
     pub tag_status: PrimField<String>,
 }
-
 impl BuildDataEcrLifecyclePolicyDocumentRuleElSelectionEl {
     pub fn build(self) -> DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
         DataEcrLifecyclePolicyDocumentRuleElSelectionEl {
@@ -290,12 +248,10 @@ impl BuildDataEcrLifecyclePolicyDocumentRuleElSelectionEl {
         }
     }
 }
-
 pub struct DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
     fn new(
         shared: StackShared,
@@ -307,27 +263,22 @@ impl Ref for DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
         }
     }
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `count_number` after provisioning.\n"]
     pub fn count_number(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.count_number", self.base))
     }
-
     #[doc = "Get a reference to the value of field `count_type` after provisioning.\n"]
     pub fn count_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.count_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `count_unit` after provisioning.\n"]
     pub fn count_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.count_unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tag_pattern_list` after provisioning.\n"]
     pub fn tag_pattern_list(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -335,7 +286,6 @@ impl DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
             format!("{}.tag_pattern_list", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tag_prefix_list` after provisioning.\n"]
     pub fn tag_prefix_list(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -343,19 +293,16 @@ impl DataEcrLifecyclePolicyDocumentRuleElSelectionElRef {
             format!("{}.tag_prefix_list", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tag_status` after provisioning.\n"]
     pub fn tag_status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.tag_status", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEcrLifecyclePolicyDocumentRuleElDynamic {
     action: Option<DynamicBlock<DataEcrLifecyclePolicyDocumentRuleElActionEl>>,
     selection: Option<DynamicBlock<DataEcrLifecyclePolicyDocumentRuleElSelectionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DataEcrLifecyclePolicyDocumentRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -367,14 +314,12 @@ pub struct DataEcrLifecyclePolicyDocumentRuleEl {
     selection: Option<Vec<DataEcrLifecyclePolicyDocumentRuleElSelectionEl>>,
     dynamic: DataEcrLifecyclePolicyDocumentRuleElDynamic,
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         mut self,
@@ -390,7 +335,6 @@ impl DataEcrLifecyclePolicyDocumentRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `selection`.\n"]
     pub fn set_selection(
         mut self,
@@ -407,10 +351,8 @@ impl DataEcrLifecyclePolicyDocumentRuleEl {
         self
     }
 }
-
 impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleEl {
     type O = BlockAssignable<DataEcrLifecyclePolicyDocumentRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -419,12 +361,10 @@ impl ToListMappable for DataEcrLifecyclePolicyDocumentRuleEl {
         })
     }
 }
-
 pub struct BuildDataEcrLifecyclePolicyDocumentRuleEl {
     #[doc = ""]
     pub priority: PrimField<f64>,
 }
-
 impl BuildDataEcrLifecyclePolicyDocumentRuleEl {
     pub fn build(self) -> DataEcrLifecyclePolicyDocumentRuleEl {
         DataEcrLifecyclePolicyDocumentRuleEl {
@@ -436,12 +376,10 @@ impl BuildDataEcrLifecyclePolicyDocumentRuleEl {
         }
     }
 }
-
 pub struct DataEcrLifecyclePolicyDocumentRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcrLifecyclePolicyDocumentRuleElRef {
     fn new(shared: StackShared, base: String) -> DataEcrLifecyclePolicyDocumentRuleElRef {
         DataEcrLifecyclePolicyDocumentRuleElRef {
@@ -450,33 +388,27 @@ impl Ref for DataEcrLifecyclePolicyDocumentRuleElRef {
         }
     }
 }
-
 impl DataEcrLifecyclePolicyDocumentRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.priority", self.base))
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElActionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `selection` after provisioning.\n"]
     pub fn selection(&self) -> ListRef<DataEcrLifecyclePolicyDocumentRuleElSelectionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.selection", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataEcrLifecyclePolicyDocumentDynamic {
     rule: Option<DynamicBlock<DataEcrLifecyclePolicyDocumentRuleEl>>,

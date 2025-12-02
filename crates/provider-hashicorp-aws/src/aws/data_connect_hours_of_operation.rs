@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataConnectHoursOfOperationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,66 +23,54 @@ struct DataConnectHoursOfOperationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataConnectHoursOfOperation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataConnectHoursOfOperationData>,
 }
-
 #[derive(Clone)]
 pub struct DataConnectHoursOfOperation(Rc<DataConnectHoursOfOperation_>);
-
 impl DataConnectHoursOfOperation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `hours_of_operation_id`.\n"]
     pub fn set_hours_of_operation_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().hours_of_operation_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `config` after provisioning.\n"]
     pub fn config(&self) -> SetRef<DataConnectHoursOfOperationConfigElRef> {
         SetRef::new(
@@ -91,7 +78,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -99,7 +85,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hours_of_operation_id` after provisioning.\n"]
     pub fn hours_of_operation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -107,12 +92,10 @@ impl DataConnectHoursOfOperation {
             format!("{}.hours_of_operation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +103,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +110,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +117,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -144,7 +124,6 @@ impl DataConnectHoursOfOperation {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +132,6 @@ impl DataConnectHoursOfOperation {
         )
     }
 }
-
 impl Referable for DataConnectHoursOfOperation {
     fn extract_ref(&self) -> String {
         format!(
@@ -163,38 +141,30 @@ impl Referable for DataConnectHoursOfOperation {
         )
     }
 }
-
 impl Datasource for DataConnectHoursOfOperation {}
-
 impl ToListMappable for DataConnectHoursOfOperation {
     type O = ListRef<DataConnectHoursOfOperationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataConnectHoursOfOperation_ {
     fn extract_datasource_type(&self) -> String {
         "aws_connect_hours_of_operation".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataConnectHoursOfOperation {
     pub tf_id: String,
     #[doc = ""]
     pub instance_id: PrimField<String>,
 }
-
 impl BuildDataConnectHoursOfOperation {
     pub fn build(self, stack: &mut Stack) -> DataConnectHoursOfOperation {
         let out = DataConnectHoursOfOperation(Rc::new(DataConnectHoursOfOperation_ {
@@ -216,32 +186,26 @@ impl BuildDataConnectHoursOfOperation {
         out
     }
 }
-
 pub struct DataConnectHoursOfOperationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataConnectHoursOfOperationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataConnectHoursOfOperationRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `config` after provisioning.\n"]
     pub fn config(&self) -> SetRef<DataConnectHoursOfOperationConfigElRef> {
         SetRef::new(
@@ -249,7 +213,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +220,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hours_of_operation_id` after provisioning.\n"]
     pub fn hours_of_operation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,12 +227,10 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.hours_of_operation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +238,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,7 +245,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -294,7 +252,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -302,7 +259,6 @@ impl DataConnectHoursOfOperationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -311,7 +267,6 @@ impl DataConnectHoursOfOperationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataConnectHoursOfOperationConfigElEndTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -319,24 +274,20 @@ pub struct DataConnectHoursOfOperationConfigElEndTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     minutes: Option<PrimField<f64>>,
 }
-
 impl DataConnectHoursOfOperationConfigElEndTimeEl {
     #[doc = "Set the field `hours`.\n"]
     pub fn set_hours(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.hours = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minutes`.\n"]
     pub fn set_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minutes = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataConnectHoursOfOperationConfigElEndTimeEl {
     type O = BlockAssignable<DataConnectHoursOfOperationConfigElEndTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -345,9 +296,7 @@ impl ToListMappable for DataConnectHoursOfOperationConfigElEndTimeEl {
         })
     }
 }
-
 pub struct BuildDataConnectHoursOfOperationConfigElEndTimeEl {}
-
 impl BuildDataConnectHoursOfOperationConfigElEndTimeEl {
     pub fn build(self) -> DataConnectHoursOfOperationConfigElEndTimeEl {
         DataConnectHoursOfOperationConfigElEndTimeEl {
@@ -356,12 +305,10 @@ impl BuildDataConnectHoursOfOperationConfigElEndTimeEl {
         }
     }
 }
-
 pub struct DataConnectHoursOfOperationConfigElEndTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataConnectHoursOfOperationConfigElEndTimeElRef {
     fn new(shared: StackShared, base: String) -> DataConnectHoursOfOperationConfigElEndTimeElRef {
         DataConnectHoursOfOperationConfigElEndTimeElRef {
@@ -370,23 +317,19 @@ impl Ref for DataConnectHoursOfOperationConfigElEndTimeElRef {
         }
     }
 }
-
 impl DataConnectHoursOfOperationConfigElEndTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hours` after provisioning.\n"]
     pub fn hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.hours", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataConnectHoursOfOperationConfigElStartTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -394,24 +337,20 @@ pub struct DataConnectHoursOfOperationConfigElStartTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     minutes: Option<PrimField<f64>>,
 }
-
 impl DataConnectHoursOfOperationConfigElStartTimeEl {
     #[doc = "Set the field `hours`.\n"]
     pub fn set_hours(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.hours = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minutes`.\n"]
     pub fn set_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minutes = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataConnectHoursOfOperationConfigElStartTimeEl {
     type O = BlockAssignable<DataConnectHoursOfOperationConfigElStartTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -420,9 +359,7 @@ impl ToListMappable for DataConnectHoursOfOperationConfigElStartTimeEl {
         })
     }
 }
-
 pub struct BuildDataConnectHoursOfOperationConfigElStartTimeEl {}
-
 impl BuildDataConnectHoursOfOperationConfigElStartTimeEl {
     pub fn build(self) -> DataConnectHoursOfOperationConfigElStartTimeEl {
         DataConnectHoursOfOperationConfigElStartTimeEl {
@@ -431,12 +368,10 @@ impl BuildDataConnectHoursOfOperationConfigElStartTimeEl {
         }
     }
 }
-
 pub struct DataConnectHoursOfOperationConfigElStartTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataConnectHoursOfOperationConfigElStartTimeElRef {
     fn new(shared: StackShared, base: String) -> DataConnectHoursOfOperationConfigElStartTimeElRef {
         DataConnectHoursOfOperationConfigElStartTimeElRef {
@@ -445,23 +380,19 @@ impl Ref for DataConnectHoursOfOperationConfigElStartTimeElRef {
         }
     }
 }
-
 impl DataConnectHoursOfOperationConfigElStartTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hours` after provisioning.\n"]
     pub fn hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.hours", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataConnectHoursOfOperationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -471,14 +402,12 @@ pub struct DataConnectHoursOfOperationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     start_time: Option<ListField<DataConnectHoursOfOperationConfigElStartTimeEl>>,
 }
-
 impl DataConnectHoursOfOperationConfigEl {
     #[doc = "Set the field `day`.\n"]
     pub fn set_day(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.day = Some(v.into());
         self
     }
-
     #[doc = "Set the field `end_time`.\n"]
     pub fn set_end_time(
         mut self,
@@ -487,7 +416,6 @@ impl DataConnectHoursOfOperationConfigEl {
         self.end_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_time`.\n"]
     pub fn set_start_time(
         mut self,
@@ -497,10 +425,8 @@ impl DataConnectHoursOfOperationConfigEl {
         self
     }
 }
-
 impl ToListMappable for DataConnectHoursOfOperationConfigEl {
     type O = BlockAssignable<DataConnectHoursOfOperationConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -509,9 +435,7 @@ impl ToListMappable for DataConnectHoursOfOperationConfigEl {
         })
     }
 }
-
 pub struct BuildDataConnectHoursOfOperationConfigEl {}
-
 impl BuildDataConnectHoursOfOperationConfigEl {
     pub fn build(self) -> DataConnectHoursOfOperationConfigEl {
         DataConnectHoursOfOperationConfigEl {
@@ -521,12 +445,10 @@ impl BuildDataConnectHoursOfOperationConfigEl {
         }
     }
 }
-
 pub struct DataConnectHoursOfOperationConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataConnectHoursOfOperationConfigElRef {
     fn new(shared: StackShared, base: String) -> DataConnectHoursOfOperationConfigElRef {
         DataConnectHoursOfOperationConfigElRef {
@@ -535,22 +457,18 @@ impl Ref for DataConnectHoursOfOperationConfigElRef {
         }
     }
 }
-
 impl DataConnectHoursOfOperationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `day` after provisioning.\n"]
     pub fn day(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.day", self.base))
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> ListRef<DataConnectHoursOfOperationConfigElEndTimeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.end_time", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> ListRef<DataConnectHoursOfOperationConfigElStartTimeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.start_time", self.base))

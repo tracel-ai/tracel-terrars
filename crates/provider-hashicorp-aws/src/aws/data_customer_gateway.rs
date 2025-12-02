@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataCustomerGatewayData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,49 +23,40 @@ struct DataCustomerGatewayData {
     timeouts: Option<DataCustomerGatewayTimeoutsEl>,
     dynamic: DataCustomerGatewayDynamic,
 }
-
 struct DataCustomerGateway_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataCustomerGatewayData>,
 }
-
 #[derive(Clone)]
 pub struct DataCustomerGateway(Rc<DataCustomerGateway_>);
-
 impl DataCustomerGateway {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataCustomerGatewayFilterEl>>) -> Self {
         match v.into() {
@@ -79,18 +69,15 @@ impl DataCustomerGateway {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataCustomerGatewayTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -98,7 +85,6 @@ impl DataCustomerGateway {
             format!("{}.bgp_asn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn_extended` after provisioning.\n"]
     pub fn bgp_asn_extended(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -106,7 +92,6 @@ impl DataCustomerGateway {
             format!("{}.bgp_asn_extended", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -114,7 +99,6 @@ impl DataCustomerGateway {
             format!("{}.certificate_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `device_name` after provisioning.\n"]
     pub fn device_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -122,12 +106,10 @@ impl DataCustomerGateway {
             format!("{}.device_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address` after provisioning.\n"]
     pub fn ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -135,7 +117,6 @@ impl DataCustomerGateway {
             format!("{}.ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +124,6 @@ impl DataCustomerGateway {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -151,7 +131,6 @@ impl DataCustomerGateway {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +138,6 @@ impl DataCustomerGateway {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataCustomerGatewayTimeoutsElRef {
         DataCustomerGatewayTimeoutsElRef::new(
@@ -168,7 +146,6 @@ impl DataCustomerGateway {
         )
     }
 }
-
 impl Referable for DataCustomerGateway {
     fn extract_ref(&self) -> String {
         format!(
@@ -178,36 +155,28 @@ impl Referable for DataCustomerGateway {
         )
     }
 }
-
 impl Datasource for DataCustomerGateway {}
-
 impl ToListMappable for DataCustomerGateway {
     type O = ListRef<DataCustomerGatewayRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataCustomerGateway_ {
     fn extract_datasource_type(&self) -> String {
         "aws_customer_gateway".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataCustomerGateway {
     pub tf_id: String,
 }
-
 impl BuildDataCustomerGateway {
     pub fn build(self, stack: &mut Stack) -> DataCustomerGateway {
         let out = DataCustomerGateway(Rc::new(DataCustomerGateway_ {
@@ -229,32 +198,26 @@ impl BuildDataCustomerGateway {
         out
     }
 }
-
 pub struct DataCustomerGatewayRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCustomerGatewayRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataCustomerGatewayRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -262,7 +225,6 @@ impl DataCustomerGatewayRef {
             format!("{}.bgp_asn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn_extended` after provisioning.\n"]
     pub fn bgp_asn_extended(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -270,7 +232,6 @@ impl DataCustomerGatewayRef {
             format!("{}.bgp_asn_extended", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_arn` after provisioning.\n"]
     pub fn certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +239,6 @@ impl DataCustomerGatewayRef {
             format!("{}.certificate_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `device_name` after provisioning.\n"]
     pub fn device_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,12 +246,10 @@ impl DataCustomerGatewayRef {
             format!("{}.device_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address` after provisioning.\n"]
     pub fn ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -299,7 +257,6 @@ impl DataCustomerGatewayRef {
             format!("{}.ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +264,6 @@ impl DataCustomerGatewayRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -315,7 +271,6 @@ impl DataCustomerGatewayRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +278,6 @@ impl DataCustomerGatewayRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataCustomerGatewayTimeoutsElRef {
         DataCustomerGatewayTimeoutsElRef::new(
@@ -332,18 +286,14 @@ impl DataCustomerGatewayRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCustomerGatewayFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataCustomerGatewayFilterEl {}
-
 impl ToListMappable for DataCustomerGatewayFilterEl {
     type O = BlockAssignable<DataCustomerGatewayFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -352,14 +302,12 @@ impl ToListMappable for DataCustomerGatewayFilterEl {
         })
     }
 }
-
 pub struct BuildDataCustomerGatewayFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataCustomerGatewayFilterEl {
     pub fn build(self) -> DataCustomerGatewayFilterEl {
         DataCustomerGatewayFilterEl {
@@ -368,12 +316,10 @@ impl BuildDataCustomerGatewayFilterEl {
         }
     }
 }
-
 pub struct DataCustomerGatewayFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCustomerGatewayFilterElRef {
     fn new(shared: StackShared, base: String) -> DataCustomerGatewayFilterElRef {
         DataCustomerGatewayFilterElRef {
@@ -382,29 +328,24 @@ impl Ref for DataCustomerGatewayFilterElRef {
         }
     }
 }
-
 impl DataCustomerGatewayFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCustomerGatewayTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataCustomerGatewayTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -412,10 +353,8 @@ impl DataCustomerGatewayTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataCustomerGatewayTimeoutsEl {
     type O = BlockAssignable<DataCustomerGatewayTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -424,9 +363,7 @@ impl ToListMappable for DataCustomerGatewayTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataCustomerGatewayTimeoutsEl {}
-
 impl BuildDataCustomerGatewayTimeoutsEl {
     pub fn build(self) -> DataCustomerGatewayTimeoutsEl {
         DataCustomerGatewayTimeoutsEl {
@@ -434,12 +371,10 @@ impl BuildDataCustomerGatewayTimeoutsEl {
         }
     }
 }
-
 pub struct DataCustomerGatewayTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCustomerGatewayTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataCustomerGatewayTimeoutsElRef {
         DataCustomerGatewayTimeoutsElRef {
@@ -448,18 +383,15 @@ impl Ref for DataCustomerGatewayTimeoutsElRef {
         }
     }
 }
-
 impl DataCustomerGatewayTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataCustomerGatewayDynamic {
     filter: Option<DynamicBlock<DataCustomerGatewayFilterEl>>,

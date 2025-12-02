@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DxMacsecKeyAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct DxMacsecKeyAssociationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     secret_arn: Option<PrimField<String>>,
 }
-
 struct DxMacsecKeyAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DxMacsecKeyAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct DxMacsecKeyAssociation(Rc<DxMacsecKeyAssociation_>);
-
 impl DxMacsecKeyAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl DxMacsecKeyAssociation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl DxMacsecKeyAssociation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,47 +93,39 @@ impl DxMacsecKeyAssociation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `cak`.\n"]
     pub fn set_cak(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cak = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ckn`.\n"]
     pub fn set_ckn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ckn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `secret_arn`.\n"]
     pub fn set_secret_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().secret_arn = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `cak` after provisioning.\n"]
     pub fn cak(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cak", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ckn` after provisioning.\n"]
     pub fn ckn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.ckn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `connection_id` after provisioning.\n"]
     pub fn connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,12 +133,10 @@ impl DxMacsecKeyAssociation {
             format!("{}.connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +144,6 @@ impl DxMacsecKeyAssociation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +151,6 @@ impl DxMacsecKeyAssociation {
             format!("{}.secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_on` after provisioning.\n"]
     pub fn start_on(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +158,6 @@ impl DxMacsecKeyAssociation {
             format!("{}.start_on", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +166,6 @@ impl DxMacsecKeyAssociation {
         )
     }
 }
-
 impl Referable for DxMacsecKeyAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -201,38 +175,30 @@ impl Referable for DxMacsecKeyAssociation {
         )
     }
 }
-
 impl Resource for DxMacsecKeyAssociation {}
-
 impl ToListMappable for DxMacsecKeyAssociation {
     type O = ListRef<DxMacsecKeyAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DxMacsecKeyAssociation_ {
     fn extract_resource_type(&self) -> String {
         "aws_dx_macsec_key_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDxMacsecKeyAssociation {
     pub tf_id: String,
     #[doc = ""]
     pub connection_id: PrimField<String>,
 }
-
 impl BuildDxMacsecKeyAssociation {
     pub fn build(self, stack: &mut Stack) -> DxMacsecKeyAssociation {
         let out = DxMacsecKeyAssociation(Rc::new(DxMacsecKeyAssociation_ {
@@ -255,37 +221,30 @@ impl BuildDxMacsecKeyAssociation {
         out
     }
 }
-
 pub struct DxMacsecKeyAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DxMacsecKeyAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DxMacsecKeyAssociationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cak` after provisioning.\n"]
     pub fn cak(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cak", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ckn` after provisioning.\n"]
     pub fn ckn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.ckn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `connection_id` after provisioning.\n"]
     pub fn connection_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,12 +252,10 @@ impl DxMacsecKeyAssociationRef {
             format!("{}.connection_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +263,6 @@ impl DxMacsecKeyAssociationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +270,6 @@ impl DxMacsecKeyAssociationRef {
             format!("{}.secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_on` after provisioning.\n"]
     pub fn start_on(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -322,7 +277,6 @@ impl DxMacsecKeyAssociationRef {
             format!("{}.start_on", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(

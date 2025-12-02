@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct InspectorAssessmentTemplateData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct InspectorAssessmentTemplateData {
     event_subscription: Option<Vec<InspectorAssessmentTemplateEventSubscriptionEl>>,
     dynamic: InspectorAssessmentTemplateDynamic,
 }
-
 struct InspectorAssessmentTemplate_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<InspectorAssessmentTemplateData>,
 }
-
 #[derive(Clone)]
 pub struct InspectorAssessmentTemplate(Rc<InspectorAssessmentTemplate_>);
-
 impl InspectorAssessmentTemplate {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl InspectorAssessmentTemplate {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl InspectorAssessmentTemplate {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,31 +97,26 @@ impl InspectorAssessmentTemplate {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_subscription`.\n"]
     pub fn set_event_subscription(
         self,
@@ -149,12 +132,10 @@ impl InspectorAssessmentTemplate {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -162,12 +143,10 @@ impl InspectorAssessmentTemplate {
             format!("{}.duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -175,7 +154,6 @@ impl InspectorAssessmentTemplate {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +161,6 @@ impl InspectorAssessmentTemplate {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rules_package_arns` after provisioning.\n"]
     pub fn rules_package_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -191,7 +168,6 @@ impl InspectorAssessmentTemplate {
             format!("{}.rules_package_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -199,7 +175,6 @@ impl InspectorAssessmentTemplate {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -207,7 +182,6 @@ impl InspectorAssessmentTemplate {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +190,6 @@ impl InspectorAssessmentTemplate {
         )
     }
 }
-
 impl Referable for InspectorAssessmentTemplate {
     fn extract_ref(&self) -> String {
         format!(
@@ -226,32 +199,25 @@ impl Referable for InspectorAssessmentTemplate {
         )
     }
 }
-
 impl Resource for InspectorAssessmentTemplate {}
-
 impl ToListMappable for InspectorAssessmentTemplate {
     type O = ListRef<InspectorAssessmentTemplateRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for InspectorAssessmentTemplate_ {
     fn extract_resource_type(&self) -> String {
         "aws_inspector_assessment_template".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildInspectorAssessmentTemplate {
     pub tf_id: String,
     #[doc = ""]
@@ -263,7 +229,6 @@ pub struct BuildInspectorAssessmentTemplate {
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildInspectorAssessmentTemplate {
     pub fn build(self, stack: &mut Stack) -> InspectorAssessmentTemplate {
         let out = InspectorAssessmentTemplate(Rc::new(InspectorAssessmentTemplate_ {
@@ -290,32 +255,26 @@ impl BuildInspectorAssessmentTemplate {
         out
     }
 }
-
 pub struct InspectorAssessmentTemplateRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InspectorAssessmentTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl InspectorAssessmentTemplateRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -323,12 +282,10 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +293,6 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -344,7 +300,6 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rules_package_arns` after provisioning.\n"]
     pub fn rules_package_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -352,7 +307,6 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.rules_package_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -360,7 +314,6 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -368,7 +321,6 @@ impl InspectorAssessmentTemplateRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,18 +329,14 @@ impl InspectorAssessmentTemplateRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct InspectorAssessmentTemplateEventSubscriptionEl {
     event: PrimField<String>,
     topic_arn: PrimField<String>,
 }
-
 impl InspectorAssessmentTemplateEventSubscriptionEl {}
-
 impl ToListMappable for InspectorAssessmentTemplateEventSubscriptionEl {
     type O = BlockAssignable<InspectorAssessmentTemplateEventSubscriptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -397,14 +345,12 @@ impl ToListMappable for InspectorAssessmentTemplateEventSubscriptionEl {
         })
     }
 }
-
 pub struct BuildInspectorAssessmentTemplateEventSubscriptionEl {
     #[doc = ""]
     pub event: PrimField<String>,
     #[doc = ""]
     pub topic_arn: PrimField<String>,
 }
-
 impl BuildInspectorAssessmentTemplateEventSubscriptionEl {
     pub fn build(self) -> InspectorAssessmentTemplateEventSubscriptionEl {
         InspectorAssessmentTemplateEventSubscriptionEl {
@@ -413,12 +359,10 @@ impl BuildInspectorAssessmentTemplateEventSubscriptionEl {
         }
     }
 }
-
 pub struct InspectorAssessmentTemplateEventSubscriptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InspectorAssessmentTemplateEventSubscriptionElRef {
     fn new(shared: StackShared, base: String) -> InspectorAssessmentTemplateEventSubscriptionElRef {
         InspectorAssessmentTemplateEventSubscriptionElRef {
@@ -427,23 +371,19 @@ impl Ref for InspectorAssessmentTemplateEventSubscriptionElRef {
         }
     }
 }
-
 impl InspectorAssessmentTemplateEventSubscriptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `event` after provisioning.\n"]
     pub fn event(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.event", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct InspectorAssessmentTemplateDynamic {
     event_subscription: Option<DynamicBlock<InspectorAssessmentTemplateEventSubscriptionEl>>,

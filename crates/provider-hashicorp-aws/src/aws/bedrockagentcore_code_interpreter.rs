@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreCodeInterpreterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct BedrockagentcoreCodeInterpreterData {
     timeouts: Option<BedrockagentcoreCodeInterpreterTimeoutsEl>,
     dynamic: BedrockagentcoreCodeInterpreterDynamic,
 }
-
 struct BedrockagentcoreCodeInterpreter_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreCodeInterpreterData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreCodeInterpreter(Rc<BedrockagentcoreCodeInterpreter_>);
-
 impl BedrockagentcoreCodeInterpreter {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl BedrockagentcoreCodeInterpreter {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl BedrockagentcoreCodeInterpreter {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,31 +96,26 @@ impl BedrockagentcoreCodeInterpreter {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_role_arn`.\n"]
     pub fn set_execution_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().execution_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `network_configuration`.\n"]
     pub fn set_network_configuration(
         self,
@@ -148,13 +131,11 @@ impl BedrockagentcoreCodeInterpreter {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BedrockagentcoreCodeInterpreterTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `code_interpreter_arn` after provisioning.\n"]
     pub fn code_interpreter_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,7 +143,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.code_interpreter_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `code_interpreter_id` after provisioning.\n"]
     pub fn code_interpreter_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,7 +150,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.code_interpreter_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -178,7 +157,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -186,7 +164,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -194,7 +171,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +178,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -210,7 +185,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -218,7 +192,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
@@ -228,7 +201,6 @@ impl BedrockagentcoreCodeInterpreter {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreCodeInterpreterTimeoutsElRef {
         BedrockagentcoreCodeInterpreterTimeoutsElRef::new(
@@ -237,7 +209,6 @@ impl BedrockagentcoreCodeInterpreter {
         )
     }
 }
-
 impl Referable for BedrockagentcoreCodeInterpreter {
     fn extract_ref(&self) -> String {
         format!(
@@ -247,38 +218,30 @@ impl Referable for BedrockagentcoreCodeInterpreter {
         )
     }
 }
-
 impl Resource for BedrockagentcoreCodeInterpreter {}
-
 impl ToListMappable for BedrockagentcoreCodeInterpreter {
     type O = ListRef<BedrockagentcoreCodeInterpreterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreCodeInterpreter_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_code_interpreter".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreCodeInterpreter {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreCodeInterpreter {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreCodeInterpreter {
         let out = BedrockagentcoreCodeInterpreter(Rc::new(BedrockagentcoreCodeInterpreter_ {
@@ -303,27 +266,22 @@ impl BuildBedrockagentcoreCodeInterpreter {
         out
     }
 }
-
 pub struct BedrockagentcoreCodeInterpreterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreCodeInterpreterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreCodeInterpreterRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `code_interpreter_arn` after provisioning.\n"]
     pub fn code_interpreter_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -331,7 +289,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.code_interpreter_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `code_interpreter_id` after provisioning.\n"]
     pub fn code_interpreter_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -339,7 +296,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.code_interpreter_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -347,7 +303,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -355,7 +310,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +317,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +324,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -379,7 +331,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -387,7 +338,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(
         &self,
@@ -397,7 +347,6 @@ impl BedrockagentcoreCodeInterpreterRef {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreCodeInterpreterTimeoutsElRef {
         BedrockagentcoreCodeInterpreterTimeoutsElRef::new(
@@ -406,18 +355,14 @@ impl BedrockagentcoreCodeInterpreterRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
     security_groups: SetField<PrimField<String>>,
     subnets: SetField<PrimField<String>>,
 }
-
 impl BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {}
-
 impl ToListMappable for BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
     type O = BlockAssignable<BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -426,14 +371,12 @@ impl ToListMappable for BedrockagentcoreCodeInterpreterNetworkConfigurationElVpc
         })
     }
 }
-
 pub struct BuildBedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
     #[doc = ""]
     pub security_groups: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
-
 impl BuildBedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
     pub fn build(self) -> BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
         BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
@@ -442,12 +385,10 @@ impl BuildBedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl {
         }
     }
 }
-
 pub struct BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigElRef {
     fn new(
         shared: StackShared,
@@ -459,12 +400,10 @@ impl Ref for BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigElRef
         }
     }
 }
-
 impl BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -472,19 +411,16 @@ impl BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigElRef {
             format!("{}.security_groups", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreCodeInterpreterNetworkConfigurationElDynamic {
     vpc_config:
         Option<DynamicBlock<BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     network_mode: PrimField<String>,
@@ -492,7 +428,6 @@ pub struct BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     vpc_config: Option<Vec<BedrockagentcoreCodeInterpreterNetworkConfigurationElVpcConfigEl>>,
     dynamic: BedrockagentcoreCodeInterpreterNetworkConfigurationElDynamic,
 }
-
 impl BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(
@@ -510,10 +445,8 @@ impl BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreCodeInterpreterNetworkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -522,12 +455,10 @@ impl ToListMappable for BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     #[doc = ""]
     pub network_mode: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreCodeInterpreterNetworkConfigurationEl {
     pub fn build(self) -> BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
         BedrockagentcoreCodeInterpreterNetworkConfigurationEl {
@@ -537,12 +468,10 @@ impl BuildBedrockagentcoreCodeInterpreterNetworkConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreCodeInterpreterNetworkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreCodeInterpreterNetworkConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -554,17 +483,14 @@ impl Ref for BedrockagentcoreCodeInterpreterNetworkConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreCodeInterpreterNetworkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `network_mode` after provisioning.\n"]
     pub fn network_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.network_mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(
         &self,
@@ -572,7 +498,6 @@ impl BedrockagentcoreCodeInterpreterNetworkConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreCodeInterpreterTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -580,24 +505,20 @@ pub struct BedrockagentcoreCodeInterpreterTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreCodeInterpreterTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreCodeInterpreterTimeoutsEl {
     type O = BlockAssignable<BedrockagentcoreCodeInterpreterTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -606,9 +527,7 @@ impl ToListMappable for BedrockagentcoreCodeInterpreterTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreCodeInterpreterTimeoutsEl {}
-
 impl BuildBedrockagentcoreCodeInterpreterTimeoutsEl {
     pub fn build(self) -> BedrockagentcoreCodeInterpreterTimeoutsEl {
         BedrockagentcoreCodeInterpreterTimeoutsEl {
@@ -617,12 +536,10 @@ impl BuildBedrockagentcoreCodeInterpreterTimeoutsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreCodeInterpreterTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreCodeInterpreterTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreCodeInterpreterTimeoutsElRef {
         BedrockagentcoreCodeInterpreterTimeoutsElRef {
@@ -631,23 +548,19 @@ impl Ref for BedrockagentcoreCodeInterpreterTimeoutsElRef {
         }
     }
 }
-
 impl BedrockagentcoreCodeInterpreterTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreCodeInterpreterDynamic {
     network_configuration:

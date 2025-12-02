@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SecurityhubAutomationRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct SecurityhubAutomationRuleData {
     criteria: Option<Vec<SecurityhubAutomationRuleCriteriaEl>>,
     dynamic: SecurityhubAutomationRuleDynamic,
 }
-
 struct SecurityhubAutomationRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SecurityhubAutomationRuleData>,
 }
-
 #[derive(Clone)]
 pub struct SecurityhubAutomationRule(Rc<SecurityhubAutomationRule_>);
-
 impl SecurityhubAutomationRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl SecurityhubAutomationRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl SecurityhubAutomationRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,31 +98,26 @@ impl SecurityhubAutomationRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `is_terminal`.\n"]
     pub fn set_is_terminal(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().is_terminal = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule_status`.\n"]
     pub fn set_rule_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().rule_status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `actions`.\n"]
     pub fn set_actions(
         self,
@@ -150,7 +133,6 @@ impl SecurityhubAutomationRule {
         }
         self
     }
-
     #[doc = "Set the field `criteria`.\n"]
     pub fn set_criteria(
         self,
@@ -166,12 +148,10 @@ impl SecurityhubAutomationRule {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,12 +159,10 @@ impl SecurityhubAutomationRule {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_terminal` after provisioning.\n"]
     pub fn is_terminal(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -192,7 +170,6 @@ impl SecurityhubAutomationRule {
             format!("{}.is_terminal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +177,6 @@ impl SecurityhubAutomationRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +184,6 @@ impl SecurityhubAutomationRule {
             format!("{}.rule_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_order` after provisioning.\n"]
     pub fn rule_order(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -216,7 +191,6 @@ impl SecurityhubAutomationRule {
             format!("{}.rule_order", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_status` after provisioning.\n"]
     pub fn rule_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -224,7 +198,6 @@ impl SecurityhubAutomationRule {
             format!("{}.rule_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -232,7 +205,6 @@ impl SecurityhubAutomationRule {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -240,7 +212,6 @@ impl SecurityhubAutomationRule {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `criteria` after provisioning.\n"]
     pub fn criteria(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElRef> {
         ListRef::new(
@@ -249,7 +220,6 @@ impl SecurityhubAutomationRule {
         )
     }
 }
-
 impl Referable for SecurityhubAutomationRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -259,32 +229,25 @@ impl Referable for SecurityhubAutomationRule {
         )
     }
 }
-
 impl Resource for SecurityhubAutomationRule {}
-
 impl ToListMappable for SecurityhubAutomationRule {
     type O = ListRef<SecurityhubAutomationRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SecurityhubAutomationRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_securityhub_automation_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSecurityhubAutomationRule {
     pub tf_id: String,
     #[doc = ""]
@@ -294,7 +257,6 @@ pub struct BuildSecurityhubAutomationRule {
     #[doc = ""]
     pub rule_order: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRule {
     pub fn build(self, stack: &mut Stack) -> SecurityhubAutomationRule {
         let out = SecurityhubAutomationRule(Rc::new(SecurityhubAutomationRule_ {
@@ -321,32 +283,26 @@ impl BuildSecurityhubAutomationRule {
         out
     }
 }
-
 pub struct SecurityhubAutomationRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SecurityhubAutomationRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,12 +310,10 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_terminal` after provisioning.\n"]
     pub fn is_terminal(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -367,7 +321,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.is_terminal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -375,7 +328,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +335,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.rule_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_order` after provisioning.\n"]
     pub fn rule_order(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -391,7 +342,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.rule_order", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_status` after provisioning.\n"]
     pub fn rule_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +349,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.rule_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -407,7 +356,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -415,7 +363,6 @@ impl SecurityhubAutomationRuleRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `criteria` after provisioning.\n"]
     pub fn criteria(&self) -> ListRef<SecurityhubAutomationRuleCriteriaElRef> {
         ListRef::new(
@@ -424,18 +371,14 @@ impl SecurityhubAutomationRuleRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     text: PrimField<String>,
     updated_by: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -444,14 +387,12 @@ impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElN
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     #[doc = ""]
     pub text: PrimField<String>,
     #[doc = ""]
     pub updated_by: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
@@ -460,12 +401,10 @@ impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
     fn new(
         shared: StackShared,
@@ -477,35 +416,28 @@ impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `text` after provisioning.\n"]
     pub fn text(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.text", self.base))
     }
-
     #[doc = "Get a reference to the value of field `updated_by` after provisioning.\n"]
     pub fn updated_by(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.updated_by", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
     id: PrimField<String>,
     product_arn: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
     type O =
         BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -514,14 +446,12 @@ impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElR
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
     #[doc = ""]
     pub id: PrimField<String>,
     #[doc = ""]
     pub product_arn: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsEl {
@@ -530,12 +460,10 @@ impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindings
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsElRef {
     fn new(
         shared: StackShared,
@@ -547,23 +475,19 @@ impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindi
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRelatedFindingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `product_arn` after provisioning.\n"]
     pub fn product_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.product_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -571,24 +495,20 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     product: Option<PrimField<f64>>,
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
     #[doc = "Set the field `label`.\n"]
     pub fn set_label(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.label = Some(v.into());
         self
     }
-
     #[doc = "Set the field `product`.\n"]
     pub fn set_product(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.product = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -597,9 +517,7 @@ impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElS
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {}
-
 impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
@@ -608,12 +526,10 @@ impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef {
     fn new(
         shared: StackShared,
@@ -625,29 +541,24 @@ impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRe
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `label` after provisioning.\n"]
     pub fn label(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.label", self.base))
     }
-
     #[doc = "Get a reference to the value of field `product` after provisioning.\n"]
     pub fn product(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.product", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -655,10 +566,8 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -667,9 +576,7 @@ impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElW
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {}
-
 impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
@@ -677,12 +584,10 @@ impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef {
     fn new(
         shared: StackShared,
@@ -694,18 +599,15 @@ impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRe
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElDynamic {
     note: Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteEl>>,
@@ -717,7 +619,6 @@ struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElDynamic {
     workflow:
         Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -741,38 +642,32 @@ pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     workflow: Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElWorkflowEl>>,
     dynamic: SecurityhubAutomationRuleActionsElFindingFieldsUpdateElDynamic,
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     #[doc = "Set the field `confidence`.\n"]
     pub fn set_confidence(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.confidence = Some(v.into());
         self
     }
-
     #[doc = "Set the field `criticality`.\n"]
     pub fn set_criticality(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.criticality = Some(v.into());
         self
     }
-
     #[doc = "Set the field `types`.\n"]
     pub fn set_types(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `user_defined_fields`.\n"]
     pub fn set_user_defined_fields(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.user_defined_fields = Some(v.into());
         self
     }
-
     #[doc = "Set the field `verification_state`.\n"]
     pub fn set_verification_state(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.verification_state = Some(v.into());
         self
     }
-
     #[doc = "Set the field `note`.\n"]
     pub fn set_note(
         mut self,
@@ -788,7 +683,6 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         }
         self
     }
-
     #[doc = "Set the field `related_findings`.\n"]
     pub fn set_related_findings(
         mut self,
@@ -808,7 +702,6 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         }
         self
     }
-
     #[doc = "Set the field `severity`.\n"]
     pub fn set_severity(
         mut self,
@@ -824,7 +717,6 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         }
         self
     }
-
     #[doc = "Set the field `workflow`.\n"]
     pub fn set_workflow(
         mut self,
@@ -841,10 +733,8 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -853,9 +743,7 @@ impl ToListMappable for SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl 
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {}
-
 impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
@@ -872,12 +760,10 @@ impl BuildSecurityhubAutomationRuleActionsElFindingFieldsUpdateEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
     fn new(
         shared: StackShared,
@@ -889,27 +775,22 @@ impl Ref for SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `confidence` after provisioning.\n"]
     pub fn confidence(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.confidence", self.base))
     }
-
     #[doc = "Get a reference to the value of field `criticality` after provisioning.\n"]
     pub fn criticality(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.criticality", self.base))
     }
-
     #[doc = "Get a reference to the value of field `types` after provisioning.\n"]
     pub fn types(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.types", self.base))
     }
-
     #[doc = "Get a reference to the value of field `user_defined_fields` after provisioning.\n"]
     pub fn user_defined_fields(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -917,7 +798,6 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
             format!("{}.user_defined_fields", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `verification_state` after provisioning.\n"]
     pub fn verification_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -925,21 +805,18 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
             format!("{}.verification_state", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `note` after provisioning.\n"]
     pub fn note(
         &self,
     ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElNoteElRef> {
         ListRef::new(self.shared().clone(), format!("{}.note", self.base))
     }
-
     #[doc = "Get a reference to the value of field `severity` after provisioning.\n"]
     pub fn severity(
         &self,
     ) -> ListRef<SecurityhubAutomationRuleActionsElFindingFieldsUpdateElSeverityElRef> {
         ListRef::new(self.shared().clone(), format!("{}.severity", self.base))
     }
-
     #[doc = "Get a reference to the value of field `workflow` after provisioning.\n"]
     pub fn workflow(
         &self,
@@ -947,13 +824,11 @@ impl SecurityhubAutomationRuleActionsElFindingFieldsUpdateElRef {
         ListRef::new(self.shared().clone(), format!("{}.workflow", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleActionsElDynamic {
     finding_fields_update:
         Option<DynamicBlock<SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleActionsEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -962,14 +837,12 @@ pub struct SecurityhubAutomationRuleActionsEl {
     finding_fields_update: Option<Vec<SecurityhubAutomationRuleActionsElFindingFieldsUpdateEl>>,
     dynamic: SecurityhubAutomationRuleActionsElDynamic,
 }
-
 impl SecurityhubAutomationRuleActionsEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `finding_fields_update`.\n"]
     pub fn set_finding_fields_update(
         mut self,
@@ -986,10 +859,8 @@ impl SecurityhubAutomationRuleActionsEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleActionsEl {
     type O = BlockAssignable<SecurityhubAutomationRuleActionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -998,9 +869,7 @@ impl ToListMappable for SecurityhubAutomationRuleActionsEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleActionsEl {}
-
 impl BuildSecurityhubAutomationRuleActionsEl {
     pub fn build(self) -> SecurityhubAutomationRuleActionsEl {
         SecurityhubAutomationRuleActionsEl {
@@ -1010,12 +879,10 @@ impl BuildSecurityhubAutomationRuleActionsEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleActionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleActionsElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleActionsElRef {
         SecurityhubAutomationRuleActionsElRef {
@@ -1024,17 +891,14 @@ impl Ref for SecurityhubAutomationRuleActionsElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleActionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `finding_fields_update` after provisioning.\n"]
     pub fn finding_fields_update(
         &self,
@@ -1045,18 +909,14 @@ impl SecurityhubAutomationRuleActionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElAwsAccountIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1065,14 +925,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
         SecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
@@ -1081,12 +939,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElAwsAccountIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
     fn new(
         shared: StackShared,
@@ -1098,34 +954,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElAwsAccountIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElAwsAccountNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1134,14 +983,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
         SecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
@@ -1150,12 +997,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElAwsAccountNameEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
     fn new(
         shared: StackShared,
@@ -1167,34 +1012,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElAwsAccountNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElCompanyNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElCompanyNameEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCompanyNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCompanyNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1203,14 +1041,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElCompanyNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElCompanyNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElCompanyNameEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElCompanyNameEl {
         SecurityhubAutomationRuleCriteriaElCompanyNameEl {
@@ -1219,12 +1055,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElCompanyNameEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
     fn new(
         shared: StackShared,
@@ -1236,34 +1070,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElCompanyNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1272,14 +1099,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceAssociatedS
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
         SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
@@ -1288,12 +1113,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdElRef {
     fn new(
         shared: StackShared,
@@ -1305,34 +1128,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdE
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceAssociatedStandardsIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1341,14 +1157,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceSecurityCon
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
         SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
@@ -1357,12 +1171,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
     fn new(
         shared: StackShared,
@@ -1374,34 +1186,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceSecurityControlIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceStatusEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElComplianceStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1410,14 +1215,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElComplianceStatusEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
         SecurityhubAutomationRuleCriteriaElComplianceStatusEl {
@@ -1426,12 +1229,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElComplianceStatusEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
     fn new(
         shared: StackShared,
@@ -1443,23 +1244,19 @@ impl Ref for SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElComplianceStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1473,42 +1270,35 @@ pub struct SecurityhubAutomationRuleCriteriaElConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<f64>>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElConfidenceEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gt`.\n"]
     pub fn set_gt(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.gt = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lt`.\n"]
     pub fn set_lt(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.lt = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElConfidenceEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElConfidenceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1517,9 +1307,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElConfidenceEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElConfidenceEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElConfidenceEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElConfidenceEl {
         SecurityhubAutomationRuleCriteriaElConfidenceEl {
@@ -1531,12 +1319,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElConfidenceEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElConfidenceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElConfidenceElRef {
     fn new(
         shared: StackShared,
@@ -1548,49 +1334,39 @@ impl Ref for SecurityhubAutomationRuleCriteriaElConfidenceElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElConfidenceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gt` after provisioning.\n"]
     pub fn gt(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.gt", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lt` after provisioning.\n"]
     pub fn lt(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.lt", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1599,14 +1375,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeE
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
         SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
@@ -1615,12 +1389,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -1632,28 +1404,23 @@ impl Ref for SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElCreatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElCreatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1664,20 +1431,17 @@ pub struct SecurityhubAutomationRuleCriteriaElCreatedAtEl {
     date_range: Option<Vec<SecurityhubAutomationRuleCriteriaElCreatedAtElDateRangeEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElCreatedAtElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaElCreatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -1694,10 +1458,8 @@ impl SecurityhubAutomationRuleCriteriaElCreatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCreatedAtEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCreatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1706,9 +1468,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElCreatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElCreatedAtEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElCreatedAtEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElCreatedAtEl {
         SecurityhubAutomationRuleCriteriaElCreatedAtEl {
@@ -1719,12 +1479,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElCreatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
         SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
@@ -1733,22 +1491,18 @@ impl Ref for SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -1756,7 +1510,6 @@ impl SecurityhubAutomationRuleCriteriaElCreatedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1770,42 +1523,35 @@ pub struct SecurityhubAutomationRuleCriteriaElCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<f64>>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElCriticalityEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gt`.\n"]
     pub fn set_gt(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.gt = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lt`.\n"]
     pub fn set_lt(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.lt = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElCriticalityEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElCriticalityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1814,9 +1560,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElCriticalityEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElCriticalityEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElCriticalityEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElCriticalityEl {
         SecurityhubAutomationRuleCriteriaElCriticalityEl {
@@ -1828,12 +1572,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElCriticalityEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElCriticalityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElCriticalityElRef {
     fn new(
         shared: StackShared,
@@ -1845,49 +1587,39 @@ impl Ref for SecurityhubAutomationRuleCriteriaElCriticalityElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElCriticalityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gt` after provisioning.\n"]
     pub fn gt(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.gt", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lt` after provisioning.\n"]
     pub fn lt(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.lt", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElDescriptionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElDescriptionEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElDescriptionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElDescriptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1896,14 +1628,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElDescriptionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElDescriptionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElDescriptionEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElDescriptionEl {
         SecurityhubAutomationRuleCriteriaElDescriptionEl {
@@ -1912,12 +1642,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElDescriptionEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElDescriptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElDescriptionElRef {
     fn new(
         shared: StackShared,
@@ -1929,34 +1657,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElDescriptionElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElDescriptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1965,14 +1686,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDate
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
         SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
@@ -1981,12 +1700,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -1998,29 +1715,24 @@ impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef 
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElDynamic {
     date_range:
         Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2031,20 +1743,17 @@ pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
     date_range: Option<Vec<SecurityhubAutomationRuleCriteriaElFirstObservedAtElDateRangeEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElFirstObservedAtElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -2061,10 +1770,8 @@ impl SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElFirstObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2073,9 +1780,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
         SecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
@@ -2086,12 +1791,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElFirstObservedAtEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
     fn new(
         shared: StackShared,
@@ -2103,22 +1806,18 @@ impl Ref for SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -2126,18 +1825,14 @@ impl SecurityhubAutomationRuleCriteriaElFirstObservedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElGeneratorIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElGeneratorIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2146,14 +1841,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElGeneratorIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
         SecurityhubAutomationRuleCriteriaElGeneratorIdEl {
@@ -2162,12 +1855,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElGeneratorIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
     fn new(
         shared: StackShared,
@@ -2179,34 +1870,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElGeneratorIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2215,14 +1899,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElIdEl {
         SecurityhubAutomationRuleCriteriaElIdEl {
@@ -2231,12 +1913,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElIdElRef {
         SecurityhubAutomationRuleCriteriaElIdElRef {
@@ -2245,34 +1925,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElIdElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2281,14 +1954,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateR
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
         SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
@@ -2297,12 +1968,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -2314,29 +1983,24 @@ impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElLastObservedAtElDynamic {
     date_range:
         Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2347,20 +2011,17 @@ pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
     date_range: Option<Vec<SecurityhubAutomationRuleCriteriaElLastObservedAtElDateRangeEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElLastObservedAtElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -2377,10 +2038,8 @@ impl SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElLastObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2389,9 +2048,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElLastObservedAtEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElLastObservedAtEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
         SecurityhubAutomationRuleCriteriaElLastObservedAtEl {
@@ -2402,12 +2059,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElLastObservedAtEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
     fn new(
         shared: StackShared,
@@ -2419,22 +2074,18 @@ impl Ref for SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -2442,18 +2093,14 @@ impl SecurityhubAutomationRuleCriteriaElLastObservedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElNoteTextEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteTextEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteTextEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteTextEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2462,14 +2109,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteTextEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElNoteTextEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElNoteTextEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElNoteTextEl {
         SecurityhubAutomationRuleCriteriaElNoteTextEl {
@@ -2478,12 +2123,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElNoteTextEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElNoteTextElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteTextElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElNoteTextElRef {
         SecurityhubAutomationRuleCriteriaElNoteTextElRef {
@@ -2492,34 +2135,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElNoteTextElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteTextElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2528,14 +2164,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRa
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
@@ -2544,12 +2178,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -2561,28 +2193,23 @@ impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2593,20 +2220,17 @@ pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
     date_range: Option<Vec<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDateRangeEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -2623,10 +2247,8 @@ impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2635,9 +2257,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
@@ -2648,12 +2268,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
     fn new(
         shared: StackShared,
@@ -2665,22 +2283,18 @@ impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -2688,18 +2302,14 @@ impl SecurityhubAutomationRuleCriteriaElNoteUpdatedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2708,14 +2318,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
         SecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
@@ -2724,12 +2332,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElNoteUpdatedByEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
     fn new(
         shared: StackShared,
@@ -2741,34 +2347,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElNoteUpdatedByElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElProductArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElProductArnEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElProductArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2777,14 +2376,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductArnEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElProductArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElProductArnEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElProductArnEl {
         SecurityhubAutomationRuleCriteriaElProductArnEl {
@@ -2793,12 +2390,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElProductArnEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElProductArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElProductArnElRef {
     fn new(
         shared: StackShared,
@@ -2810,34 +2405,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElProductArnElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElProductArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElProductNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElProductNameEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElProductNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2846,14 +2434,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElProductNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElProductNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElProductNameEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElProductNameEl {
         SecurityhubAutomationRuleCriteriaElProductNameEl {
@@ -2862,12 +2448,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElProductNameEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElProductNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElProductNameElRef {
     fn new(
         shared: StackShared,
@@ -2879,34 +2463,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElProductNameElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElProductNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElRecordStateEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElRecordStateEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRecordStateEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRecordStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2915,14 +2492,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElRecordStateEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElRecordStateEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElRecordStateEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElRecordStateEl {
         SecurityhubAutomationRuleCriteriaElRecordStateEl {
@@ -2931,12 +2506,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElRecordStateEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElRecordStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElRecordStateElRef {
     fn new(
         shared: StackShared,
@@ -2948,34 +2521,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElRecordStateElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElRecordStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2984,14 +2550,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
         SecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
@@ -3000,12 +2564,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
     fn new(
         shared: StackShared,
@@ -3017,34 +2579,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElRelatedFindingsIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3053,14 +2608,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElRelatedFindingsProduc
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
         SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
@@ -3069,12 +2622,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
     fn new(
         shared: StackShared,
@@ -3086,34 +2637,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElRelatedFindingsProductArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3122,14 +2666,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationAr
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
         SecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
@@ -3138,12 +2680,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceApplicationArnEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
     fn new(
         shared: StackShared,
@@ -3155,34 +2695,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceApplicationArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3191,14 +2724,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceApplicationNa
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
         SecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
@@ -3207,12 +2738,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceApplicationNameEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
     fn new(
         shared: StackShared,
@@ -3224,35 +2753,28 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceApplicationNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3261,7 +2783,6 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherE
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -3270,7 +2791,6 @@ pub struct BuildSecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
         SecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
@@ -3280,12 +2800,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceDetailsOtherEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
     fn new(
         shared: StackShared,
@@ -3297,39 +2815,31 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceDetailsOtherElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceIdEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceIdEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3338,14 +2848,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceIdEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceIdEl {
         SecurityhubAutomationRuleCriteriaElResourceIdEl {
@@ -3354,12 +2862,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceIdEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceIdElRef {
     fn new(
         shared: StackShared,
@@ -3371,34 +2877,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceIdElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourcePartitionEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourcePartitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3407,14 +2906,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourcePartitionEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
         SecurityhubAutomationRuleCriteriaElResourcePartitionEl {
@@ -3423,12 +2920,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourcePartitionEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
     fn new(
         shared: StackShared,
@@ -3440,34 +2935,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourcePartitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceRegionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceRegionEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceRegionEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceRegionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3476,14 +2964,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceRegionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceRegionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceRegionEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceRegionEl {
         SecurityhubAutomationRuleCriteriaElResourceRegionEl {
@@ -3492,12 +2978,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceRegionEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
     fn new(
         shared: StackShared,
@@ -3509,35 +2993,28 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceRegionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceTagsEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceTagsEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTagsEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3546,7 +3023,6 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTagsEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceTagsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -3555,7 +3031,6 @@ pub struct BuildSecurityhubAutomationRuleCriteriaElResourceTagsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceTagsEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceTagsEl {
         SecurityhubAutomationRuleCriteriaElResourceTagsEl {
@@ -3565,12 +3040,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceTagsEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
     fn new(
         shared: StackShared,
@@ -3582,39 +3055,31 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElResourceTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceTypeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTypeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElResourceTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3623,14 +3088,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElResourceTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElResourceTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElResourceTypeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElResourceTypeEl {
         SecurityhubAutomationRuleCriteriaElResourceTypeEl {
@@ -3639,12 +3102,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElResourceTypeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
     fn new(
         shared: StackShared,
@@ -3656,34 +3117,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElResourceTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElSeverityLabelEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElSeverityLabelEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3692,14 +3146,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElSeverityLabelEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
         SecurityhubAutomationRuleCriteriaElSeverityLabelEl {
@@ -3708,12 +3160,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElSeverityLabelEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
     fn new(
         shared: StackShared,
@@ -3725,34 +3175,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElSeverityLabelElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElSourceUrlEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElSourceUrlEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElSourceUrlEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElSourceUrlEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3761,14 +3204,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElSourceUrlEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElSourceUrlEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElSourceUrlEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElSourceUrlEl {
         SecurityhubAutomationRuleCriteriaElSourceUrlEl {
@@ -3777,12 +3218,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElSourceUrlEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
         SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
@@ -3791,34 +3230,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElSourceUrlElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElTitleEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElTitleEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElTitleEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElTitleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3827,14 +3259,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElTitleEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElTitleEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElTitleEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElTitleEl {
         SecurityhubAutomationRuleCriteriaElTitleEl {
@@ -3843,12 +3273,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElTitleEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElTitleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElTitleElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElTitleElRef {
         SecurityhubAutomationRuleCriteriaElTitleElRef {
@@ -3857,34 +3285,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElTitleElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElTitleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElTypeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElTypeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3893,14 +3314,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElTypeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElTypeEl {
         SecurityhubAutomationRuleCriteriaElTypeEl {
@@ -3909,12 +3328,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElTypeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElTypeElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElTypeElRef {
         SecurityhubAutomationRuleCriteriaElTypeElRef {
@@ -3923,34 +3340,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElTypeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3959,14 +3369,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeE
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
         SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
@@ -3975,12 +3383,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -3992,28 +3398,23 @@ impl Ref for SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElUpdatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4024,20 +3425,17 @@ pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
     date_range: Option<Vec<SecurityhubAutomationRuleCriteriaElUpdatedAtElDateRangeEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElUpdatedAtElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -4054,10 +3452,8 @@ impl SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElUpdatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4066,9 +3462,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElUpdatedAtEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaElUpdatedAtEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
         SecurityhubAutomationRuleCriteriaElUpdatedAtEl {
@@ -4079,12 +3473,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElUpdatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
         SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
@@ -4093,22 +3485,18 @@ impl Ref for SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -4116,19 +3504,15 @@ impl SecurityhubAutomationRuleCriteriaElUpdatedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4137,7 +3521,6 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -4146,7 +3529,6 @@ pub struct BuildSecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
         SecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
@@ -4156,12 +3538,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElUserDefinedFieldsEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
     fn new(
         shared: StackShared,
@@ -4173,39 +3553,31 @@ impl Ref for SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElUserDefinedFieldsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElVerificationStateEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElVerificationStateEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElVerificationStateEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElVerificationStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4214,14 +3586,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElVerificationStateEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElVerificationStateEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElVerificationStateEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElVerificationStateEl {
         SecurityhubAutomationRuleCriteriaElVerificationStateEl {
@@ -4230,12 +3600,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElVerificationStateEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
     fn new(
         shared: StackShared,
@@ -4247,34 +3615,27 @@ impl Ref for SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElVerificationStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {}
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaElWorkflowStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4283,14 +3644,12 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
         SecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
@@ -4299,12 +3658,10 @@ impl BuildSecurityhubAutomationRuleCriteriaElWorkflowStatusEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
     fn new(
         shared: StackShared,
@@ -4316,23 +3673,19 @@ impl Ref for SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElWorkflowStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleCriteriaElDynamic {
     aws_account_id: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElAwsAccountIdEl>>,
@@ -4384,7 +3737,6 @@ struct SecurityhubAutomationRuleCriteriaElDynamic {
         Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElVerificationStateEl>>,
     workflow_status: Option<DynamicBlock<SecurityhubAutomationRuleCriteriaElWorkflowStatusEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubAutomationRuleCriteriaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4470,7 +3822,6 @@ pub struct SecurityhubAutomationRuleCriteriaEl {
     workflow_status: Option<Vec<SecurityhubAutomationRuleCriteriaElWorkflowStatusEl>>,
     dynamic: SecurityhubAutomationRuleCriteriaElDynamic,
 }
-
 impl SecurityhubAutomationRuleCriteriaEl {
     #[doc = "Set the field `aws_account_id`.\n"]
     pub fn set_aws_account_id(
@@ -4487,7 +3838,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `aws_account_name`.\n"]
     pub fn set_aws_account_name(
         mut self,
@@ -4503,7 +3853,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `company_name`.\n"]
     pub fn set_company_name(
         mut self,
@@ -4519,7 +3868,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `compliance_associated_standards_id`.\n"]
     pub fn set_compliance_associated_standards_id(
         mut self,
@@ -4537,7 +3885,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `compliance_security_control_id`.\n"]
     pub fn set_compliance_security_control_id(
         mut self,
@@ -4553,7 +3900,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `compliance_status`.\n"]
     pub fn set_compliance_status(
         mut self,
@@ -4569,7 +3915,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `confidence`.\n"]
     pub fn set_confidence(
         mut self,
@@ -4585,7 +3930,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `created_at`.\n"]
     pub fn set_created_at(
         mut self,
@@ -4601,7 +3945,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `criticality`.\n"]
     pub fn set_criticality(
         mut self,
@@ -4617,7 +3960,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(
         mut self,
@@ -4633,7 +3975,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `first_observed_at`.\n"]
     pub fn set_first_observed_at(
         mut self,
@@ -4649,7 +3990,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `generator_id`.\n"]
     pub fn set_generator_id(
         mut self,
@@ -4665,7 +4005,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(
         mut self,
@@ -4681,7 +4020,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `last_observed_at`.\n"]
     pub fn set_last_observed_at(
         mut self,
@@ -4697,7 +4035,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `note_text`.\n"]
     pub fn set_note_text(
         mut self,
@@ -4713,7 +4050,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `note_updated_at`.\n"]
     pub fn set_note_updated_at(
         mut self,
@@ -4729,7 +4065,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `note_updated_by`.\n"]
     pub fn set_note_updated_by(
         mut self,
@@ -4745,7 +4080,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `product_arn`.\n"]
     pub fn set_product_arn(
         mut self,
@@ -4761,7 +4095,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `product_name`.\n"]
     pub fn set_product_name(
         mut self,
@@ -4777,7 +4110,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `record_state`.\n"]
     pub fn set_record_state(
         mut self,
@@ -4793,7 +4125,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `related_findings_id`.\n"]
     pub fn set_related_findings_id(
         mut self,
@@ -4809,7 +4140,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `related_findings_product_arn`.\n"]
     pub fn set_related_findings_product_arn(
         mut self,
@@ -4825,7 +4155,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_application_arn`.\n"]
     pub fn set_resource_application_arn(
         mut self,
@@ -4841,7 +4170,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_application_name`.\n"]
     pub fn set_resource_application_name(
         mut self,
@@ -4857,7 +4185,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_details_other`.\n"]
     pub fn set_resource_details_other(
         mut self,
@@ -4873,7 +4200,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_id`.\n"]
     pub fn set_resource_id(
         mut self,
@@ -4889,7 +4215,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_partition`.\n"]
     pub fn set_resource_partition(
         mut self,
@@ -4905,7 +4230,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_region`.\n"]
     pub fn set_resource_region(
         mut self,
@@ -4921,7 +4245,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_tags`.\n"]
     pub fn set_resource_tags(
         mut self,
@@ -4937,7 +4260,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_type`.\n"]
     pub fn set_resource_type(
         mut self,
@@ -4953,7 +4275,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `severity_label`.\n"]
     pub fn set_severity_label(
         mut self,
@@ -4969,7 +4290,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `source_url`.\n"]
     pub fn set_source_url(
         mut self,
@@ -4985,7 +4305,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `title`.\n"]
     pub fn set_title(
         mut self,
@@ -5001,7 +4320,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(
         mut self,
@@ -5017,7 +4335,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `updated_at`.\n"]
     pub fn set_updated_at(
         mut self,
@@ -5033,7 +4350,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `user_defined_fields`.\n"]
     pub fn set_user_defined_fields(
         mut self,
@@ -5049,7 +4365,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `verification_state`.\n"]
     pub fn set_verification_state(
         mut self,
@@ -5065,7 +4380,6 @@ impl SecurityhubAutomationRuleCriteriaEl {
         }
         self
     }
-
     #[doc = "Set the field `workflow_status`.\n"]
     pub fn set_workflow_status(
         mut self,
@@ -5082,10 +4396,8 @@ impl SecurityhubAutomationRuleCriteriaEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubAutomationRuleCriteriaEl {
     type O = BlockAssignable<SecurityhubAutomationRuleCriteriaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5094,9 +4406,7 @@ impl ToListMappable for SecurityhubAutomationRuleCriteriaEl {
         })
     }
 }
-
 pub struct BuildSecurityhubAutomationRuleCriteriaEl {}
-
 impl BuildSecurityhubAutomationRuleCriteriaEl {
     pub fn build(self) -> SecurityhubAutomationRuleCriteriaEl {
         SecurityhubAutomationRuleCriteriaEl {
@@ -5142,12 +4452,10 @@ impl BuildSecurityhubAutomationRuleCriteriaEl {
         }
     }
 }
-
 pub struct SecurityhubAutomationRuleCriteriaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubAutomationRuleCriteriaElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubAutomationRuleCriteriaElRef {
         SecurityhubAutomationRuleCriteriaElRef {
@@ -5156,13 +4464,11 @@ impl Ref for SecurityhubAutomationRuleCriteriaElRef {
         }
     }
 }
-
 impl SecurityhubAutomationRuleCriteriaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubAutomationRuleDynamic {
     actions: Option<DynamicBlock<SecurityhubAutomationRuleActionsEl>>,

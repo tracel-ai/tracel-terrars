@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VpclatticeListenerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -36,47 +35,38 @@ struct VpclatticeListenerData {
     timeouts: Option<VpclatticeListenerTimeoutsEl>,
     dynamic: VpclatticeListenerDynamic,
 }
-
 struct VpclatticeListener_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VpclatticeListenerData>,
 }
-
 #[derive(Clone)]
 pub struct VpclatticeListener(Rc<VpclatticeListener_>);
-
 impl VpclatticeListener {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -95,7 +85,6 @@ impl VpclatticeListener {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -105,7 +94,6 @@ impl VpclatticeListener {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -115,49 +103,41 @@ impl VpclatticeListener {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_arn`.\n"]
     pub fn set_service_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().service_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_identifier`.\n"]
     pub fn set_service_identifier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().service_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_action`.\n"]
     pub fn set_default_action(
         self,
@@ -173,18 +153,15 @@ impl VpclatticeListener {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<VpclatticeListenerTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,12 +169,10 @@ impl VpclatticeListener {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_at` after provisioning.\n"]
     pub fn last_updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +180,6 @@ impl VpclatticeListener {
             format!("{}.last_updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `listener_id` after provisioning.\n"]
     pub fn listener_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +187,6 @@ impl VpclatticeListener {
             format!("{}.listener_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +194,6 @@ impl VpclatticeListener {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -229,7 +201,6 @@ impl VpclatticeListener {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +208,6 @@ impl VpclatticeListener {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +215,6 @@ impl VpclatticeListener {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_arn` after provisioning.\n"]
     pub fn service_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +222,6 @@ impl VpclatticeListener {
             format!("{}.service_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +229,6 @@ impl VpclatticeListener {
             format!("{}.service_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -269,7 +236,6 @@ impl VpclatticeListener {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -277,7 +243,6 @@ impl VpclatticeListener {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<VpclatticeListenerDefaultActionElRef> {
         ListRef::new(
@@ -285,7 +250,6 @@ impl VpclatticeListener {
             format!("{}.default_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeListenerTimeoutsElRef {
         VpclatticeListenerTimeoutsElRef::new(
@@ -294,7 +258,6 @@ impl VpclatticeListener {
         )
     }
 }
-
 impl Referable for VpclatticeListener {
     fn extract_ref(&self) -> String {
         format!(
@@ -304,32 +267,25 @@ impl Referable for VpclatticeListener {
         )
     }
 }
-
 impl Resource for VpclatticeListener {}
-
 impl ToListMappable for VpclatticeListener {
     type O = ListRef<VpclatticeListenerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VpclatticeListener_ {
     fn extract_resource_type(&self) -> String {
         "aws_vpclattice_listener".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVpclatticeListener {
     pub tf_id: String,
     #[doc = ""]
@@ -337,7 +293,6 @@ pub struct BuildVpclatticeListener {
     #[doc = ""]
     pub protocol: PrimField<String>,
 }
-
 impl BuildVpclatticeListener {
     pub fn build(self, stack: &mut Stack) -> VpclatticeListener {
         let out = VpclatticeListener(Rc::new(VpclatticeListener_ {
@@ -366,32 +321,26 @@ impl BuildVpclatticeListener {
         out
     }
 }
-
 pub struct VpclatticeListenerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VpclatticeListenerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,12 +348,10 @@ impl VpclatticeListenerRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_at` after provisioning.\n"]
     pub fn last_updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -412,7 +359,6 @@ impl VpclatticeListenerRef {
             format!("{}.last_updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `listener_id` after provisioning.\n"]
     pub fn listener_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -420,7 +366,6 @@ impl VpclatticeListenerRef {
             format!("{}.listener_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -428,7 +373,6 @@ impl VpclatticeListenerRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -436,7 +380,6 @@ impl VpclatticeListenerRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -444,7 +387,6 @@ impl VpclatticeListenerRef {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -452,7 +394,6 @@ impl VpclatticeListenerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_arn` after provisioning.\n"]
     pub fn service_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -460,7 +401,6 @@ impl VpclatticeListenerRef {
             format!("{}.service_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_identifier` after provisioning.\n"]
     pub fn service_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -468,7 +408,6 @@ impl VpclatticeListenerRef {
             format!("{}.service_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -476,7 +415,6 @@ impl VpclatticeListenerRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -484,7 +422,6 @@ impl VpclatticeListenerRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<VpclatticeListenerDefaultActionElRef> {
         ListRef::new(
@@ -492,7 +429,6 @@ impl VpclatticeListenerRef {
             format!("{}.default_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpclatticeListenerTimeoutsElRef {
         VpclatticeListenerTimeoutsElRef::new(
@@ -501,17 +437,13 @@ impl VpclatticeListenerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeListenerDefaultActionElFixedResponseEl {
     status_code: PrimField<f64>,
 }
-
 impl VpclatticeListenerDefaultActionElFixedResponseEl {}
-
 impl ToListMappable for VpclatticeListenerDefaultActionElFixedResponseEl {
     type O = BlockAssignable<VpclatticeListenerDefaultActionElFixedResponseEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -520,12 +452,10 @@ impl ToListMappable for VpclatticeListenerDefaultActionElFixedResponseEl {
         })
     }
 }
-
 pub struct BuildVpclatticeListenerDefaultActionElFixedResponseEl {
     #[doc = ""]
     pub status_code: PrimField<f64>,
 }
-
 impl BuildVpclatticeListenerDefaultActionElFixedResponseEl {
     pub fn build(self) -> VpclatticeListenerDefaultActionElFixedResponseEl {
         VpclatticeListenerDefaultActionElFixedResponseEl {
@@ -533,12 +463,10 @@ impl BuildVpclatticeListenerDefaultActionElFixedResponseEl {
         }
     }
 }
-
 pub struct VpclatticeListenerDefaultActionElFixedResponseElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerDefaultActionElFixedResponseElRef {
     fn new(
         shared: StackShared,
@@ -550,18 +478,15 @@ impl Ref for VpclatticeListenerDefaultActionElFixedResponseElRef {
         }
     }
 }
-
 impl VpclatticeListenerDefaultActionElFixedResponseElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.status_code", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -569,24 +494,20 @@ pub struct VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     weight: Option<PrimField<f64>>,
 }
-
 impl VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
     #[doc = "Set the field `target_group_identifier`.\n"]
     pub fn set_target_group_identifier(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_group_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `weight`.\n"]
     pub fn set_weight(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.weight = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
     type O = BlockAssignable<VpclatticeListenerDefaultActionElForwardElTargetGroupsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -595,9 +516,7 @@ impl ToListMappable for VpclatticeListenerDefaultActionElForwardElTargetGroupsEl
         })
     }
 }
-
 pub struct BuildVpclatticeListenerDefaultActionElForwardElTargetGroupsEl {}
-
 impl BuildVpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
     pub fn build(self) -> VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
         VpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
@@ -606,12 +525,10 @@ impl BuildVpclatticeListenerDefaultActionElForwardElTargetGroupsEl {
         }
     }
 }
-
 pub struct VpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
     fn new(
         shared: StackShared,
@@ -623,12 +540,10 @@ impl Ref for VpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
         }
     }
 }
-
 impl VpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_group_identifier` after provisioning.\n"]
     pub fn target_group_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -636,25 +551,21 @@ impl VpclatticeListenerDefaultActionElForwardElTargetGroupsElRef {
             format!("{}.target_group_identifier", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `weight` after provisioning.\n"]
     pub fn weight(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.weight", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VpclatticeListenerDefaultActionElForwardElDynamic {
     target_groups: Option<DynamicBlock<VpclatticeListenerDefaultActionElForwardElTargetGroupsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeListenerDefaultActionElForwardEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_groups: Option<Vec<VpclatticeListenerDefaultActionElForwardElTargetGroupsEl>>,
     dynamic: VpclatticeListenerDefaultActionElForwardElDynamic,
 }
-
 impl VpclatticeListenerDefaultActionElForwardEl {
     #[doc = "Set the field `target_groups`.\n"]
     pub fn set_target_groups(
@@ -672,10 +583,8 @@ impl VpclatticeListenerDefaultActionElForwardEl {
         self
     }
 }
-
 impl ToListMappable for VpclatticeListenerDefaultActionElForwardEl {
     type O = BlockAssignable<VpclatticeListenerDefaultActionElForwardEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -684,9 +593,7 @@ impl ToListMappable for VpclatticeListenerDefaultActionElForwardEl {
         })
     }
 }
-
 pub struct BuildVpclatticeListenerDefaultActionElForwardEl {}
-
 impl BuildVpclatticeListenerDefaultActionElForwardEl {
     pub fn build(self) -> VpclatticeListenerDefaultActionElForwardEl {
         VpclatticeListenerDefaultActionElForwardEl {
@@ -695,12 +602,10 @@ impl BuildVpclatticeListenerDefaultActionElForwardEl {
         }
     }
 }
-
 pub struct VpclatticeListenerDefaultActionElForwardElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerDefaultActionElForwardElRef {
     fn new(shared: StackShared, base: String) -> VpclatticeListenerDefaultActionElForwardElRef {
         VpclatticeListenerDefaultActionElForwardElRef {
@@ -709,12 +614,10 @@ impl Ref for VpclatticeListenerDefaultActionElForwardElRef {
         }
     }
 }
-
 impl VpclatticeListenerDefaultActionElForwardElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_groups` after provisioning.\n"]
     pub fn target_groups(
         &self,
@@ -725,13 +628,11 @@ impl VpclatticeListenerDefaultActionElForwardElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct VpclatticeListenerDefaultActionElDynamic {
     fixed_response: Option<DynamicBlock<VpclatticeListenerDefaultActionElFixedResponseEl>>,
     forward: Option<DynamicBlock<VpclatticeListenerDefaultActionElForwardEl>>,
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeListenerDefaultActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -740,7 +641,6 @@ pub struct VpclatticeListenerDefaultActionEl {
     forward: Option<Vec<VpclatticeListenerDefaultActionElForwardEl>>,
     dynamic: VpclatticeListenerDefaultActionElDynamic,
 }
-
 impl VpclatticeListenerDefaultActionEl {
     #[doc = "Set the field `fixed_response`.\n"]
     pub fn set_fixed_response(
@@ -757,7 +657,6 @@ impl VpclatticeListenerDefaultActionEl {
         }
         self
     }
-
     #[doc = "Set the field `forward`.\n"]
     pub fn set_forward(
         mut self,
@@ -774,10 +673,8 @@ impl VpclatticeListenerDefaultActionEl {
         self
     }
 }
-
 impl ToListMappable for VpclatticeListenerDefaultActionEl {
     type O = BlockAssignable<VpclatticeListenerDefaultActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -786,9 +683,7 @@ impl ToListMappable for VpclatticeListenerDefaultActionEl {
         })
     }
 }
-
 pub struct BuildVpclatticeListenerDefaultActionEl {}
-
 impl BuildVpclatticeListenerDefaultActionEl {
     pub fn build(self) -> VpclatticeListenerDefaultActionEl {
         VpclatticeListenerDefaultActionEl {
@@ -798,12 +693,10 @@ impl BuildVpclatticeListenerDefaultActionEl {
         }
     }
 }
-
 pub struct VpclatticeListenerDefaultActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerDefaultActionElRef {
     fn new(shared: StackShared, base: String) -> VpclatticeListenerDefaultActionElRef {
         VpclatticeListenerDefaultActionElRef {
@@ -812,12 +705,10 @@ impl Ref for VpclatticeListenerDefaultActionElRef {
         }
     }
 }
-
 impl VpclatticeListenerDefaultActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `fixed_response` after provisioning.\n"]
     pub fn fixed_response(&self) -> ListRef<VpclatticeListenerDefaultActionElFixedResponseElRef> {
         ListRef::new(
@@ -825,13 +716,11 @@ impl VpclatticeListenerDefaultActionElRef {
             format!("{}.fixed_response", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `forward` after provisioning.\n"]
     pub fn forward(&self) -> ListRef<VpclatticeListenerDefaultActionElForwardElRef> {
         ListRef::new(self.shared().clone(), format!("{}.forward", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VpclatticeListenerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -841,30 +730,25 @@ pub struct VpclatticeListenerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl VpclatticeListenerTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for VpclatticeListenerTimeoutsEl {
     type O = BlockAssignable<VpclatticeListenerTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -873,9 +757,7 @@ impl ToListMappable for VpclatticeListenerTimeoutsEl {
         })
     }
 }
-
 pub struct BuildVpclatticeListenerTimeoutsEl {}
-
 impl BuildVpclatticeListenerTimeoutsEl {
     pub fn build(self) -> VpclatticeListenerTimeoutsEl {
         VpclatticeListenerTimeoutsEl {
@@ -885,12 +767,10 @@ impl BuildVpclatticeListenerTimeoutsEl {
         }
     }
 }
-
 pub struct VpclatticeListenerTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpclatticeListenerTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> VpclatticeListenerTimeoutsElRef {
         VpclatticeListenerTimeoutsElRef {
@@ -899,28 +779,23 @@ impl Ref for VpclatticeListenerTimeoutsElRef {
         }
     }
 }
-
 impl VpclatticeListenerTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VpclatticeListenerDynamic {
     default_action: Option<DynamicBlock<VpclatticeListenerDefaultActionEl>>,

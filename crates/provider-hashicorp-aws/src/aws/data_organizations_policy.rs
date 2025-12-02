@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataOrganizationsPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -16,42 +15,34 @@ struct DataOrganizationsPolicyData {
     id: Option<PrimField<String>>,
     policy_id: PrimField<String>,
 }
-
 struct DataOrganizationsPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataOrganizationsPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct DataOrganizationsPolicy(Rc<DataOrganizationsPolicy_>);
-
 impl DataOrganizationsPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `aws_managed` after provisioning.\n"]
     pub fn aws_managed(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -59,7 +50,6 @@ impl DataOrganizationsPolicy {
             format!("{}.aws_managed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `content` after provisioning.\n"]
     pub fn content(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -67,7 +57,6 @@ impl DataOrganizationsPolicy {
             format!("{}.content", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -75,12 +64,10 @@ impl DataOrganizationsPolicy {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -88,7 +75,6 @@ impl DataOrganizationsPolicy {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -96,7 +82,6 @@ impl DataOrganizationsPolicy {
             format!("{}.policy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -105,7 +90,6 @@ impl DataOrganizationsPolicy {
         )
     }
 }
-
 impl Referable for DataOrganizationsPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -115,38 +99,30 @@ impl Referable for DataOrganizationsPolicy {
         )
     }
 }
-
 impl Datasource for DataOrganizationsPolicy {}
-
 impl ToListMappable for DataOrganizationsPolicy {
     type O = ListRef<DataOrganizationsPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataOrganizationsPolicy_ {
     fn extract_datasource_type(&self) -> String {
         "aws_organizations_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataOrganizationsPolicy {
     pub tf_id: String,
     #[doc = ""]
     pub policy_id: PrimField<String>,
 }
-
 impl BuildDataOrganizationsPolicy {
     pub fn build(self, stack: &mut Stack) -> DataOrganizationsPolicy {
         let out = DataOrganizationsPolicy(Rc::new(DataOrganizationsPolicy_ {
@@ -164,32 +140,26 @@ impl BuildDataOrganizationsPolicy {
         out
     }
 }
-
 pub struct DataOrganizationsPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOrganizationsPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataOrganizationsPolicyRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `aws_managed` after provisioning.\n"]
     pub fn aws_managed(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -197,7 +167,6 @@ impl DataOrganizationsPolicyRef {
             format!("{}.aws_managed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `content` after provisioning.\n"]
     pub fn content(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +174,6 @@ impl DataOrganizationsPolicyRef {
             format!("{}.content", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,12 +181,10 @@ impl DataOrganizationsPolicyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +192,6 @@ impl DataOrganizationsPolicyRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +199,6 @@ impl DataOrganizationsPolicyRef {
             format!("{}.policy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(

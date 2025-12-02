@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppstreamStackData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -45,47 +44,38 @@ struct AppstreamStackData {
     user_settings: Option<Vec<AppstreamStackUserSettingsEl>>,
     dynamic: AppstreamStackDynamic,
 }
-
 struct AppstreamStack_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppstreamStackData>,
 }
-
 #[derive(Clone)]
 pub struct AppstreamStack(Rc<AppstreamStack_>);
-
 impl AppstreamStack {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -104,7 +94,6 @@ impl AppstreamStack {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -114,7 +103,6 @@ impl AppstreamStack {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -124,61 +112,51 @@ impl AppstreamStack {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `display_name`.\n"]
     pub fn set_display_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().display_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `embed_host_domains`.\n"]
     pub fn set_embed_host_domains(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().embed_host_domains = Some(v.into());
         self
     }
-
     #[doc = "Set the field `feedback_url`.\n"]
     pub fn set_feedback_url(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().feedback_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `redirect_url`.\n"]
     pub fn set_redirect_url(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().redirect_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `access_endpoints`.\n"]
     pub fn set_access_endpoints(
         self,
@@ -194,7 +172,6 @@ impl AppstreamStack {
         }
         self
     }
-
     #[doc = "Set the field `application_settings`.\n"]
     pub fn set_application_settings(
         self,
@@ -210,7 +187,6 @@ impl AppstreamStack {
         }
         self
     }
-
     #[doc = "Set the field `storage_connectors`.\n"]
     pub fn set_storage_connectors(
         self,
@@ -226,7 +202,6 @@ impl AppstreamStack {
         }
         self
     }
-
     #[doc = "Set the field `streaming_experience_settings`.\n"]
     pub fn set_streaming_experience_settings(
         self,
@@ -246,7 +221,6 @@ impl AppstreamStack {
         }
         self
     }
-
     #[doc = "Set the field `user_settings`.\n"]
     pub fn set_user_settings(
         self,
@@ -262,12 +236,10 @@ impl AppstreamStack {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -275,7 +247,6 @@ impl AppstreamStack {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -283,7 +254,6 @@ impl AppstreamStack {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +261,6 @@ impl AppstreamStack {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `embed_host_domains` after provisioning.\n"]
     pub fn embed_host_domains(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -299,7 +268,6 @@ impl AppstreamStack {
             format!("{}.embed_host_domains", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `feedback_url` after provisioning.\n"]
     pub fn feedback_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,12 +275,10 @@ impl AppstreamStack {
             format!("{}.feedback_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -320,7 +286,6 @@ impl AppstreamStack {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redirect_url` after provisioning.\n"]
     pub fn redirect_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -328,7 +293,6 @@ impl AppstreamStack {
             format!("{}.redirect_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +300,6 @@ impl AppstreamStack {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -344,7 +307,6 @@ impl AppstreamStack {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -352,7 +314,6 @@ impl AppstreamStack {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `application_settings` after provisioning.\n"]
     pub fn application_settings(&self) -> ListRef<AppstreamStackApplicationSettingsElRef> {
         ListRef::new(
@@ -360,7 +321,6 @@ impl AppstreamStack {
             format!("{}.application_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `streaming_experience_settings` after provisioning.\n"]
     pub fn streaming_experience_settings(
         &self,
@@ -371,7 +331,6 @@ impl AppstreamStack {
         )
     }
 }
-
 impl Referable for AppstreamStack {
     fn extract_ref(&self) -> String {
         format!(
@@ -381,38 +340,30 @@ impl Referable for AppstreamStack {
         )
     }
 }
-
 impl Resource for AppstreamStack {}
-
 impl ToListMappable for AppstreamStack {
     type O = ListRef<AppstreamStackRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppstreamStack_ {
     fn extract_resource_type(&self) -> String {
         "aws_appstream_stack".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppstreamStack {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAppstreamStack {
     pub fn build(self, stack: &mut Stack) -> AppstreamStack {
         let out = AppstreamStack(Rc::new(AppstreamStack_ {
@@ -445,32 +396,26 @@ impl BuildAppstreamStack {
         out
     }
 }
-
 pub struct AppstreamStackRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppstreamStackRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -478,7 +423,6 @@ impl AppstreamStackRef {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +430,6 @@ impl AppstreamStackRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `display_name` after provisioning.\n"]
     pub fn display_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +437,6 @@ impl AppstreamStackRef {
             format!("{}.display_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `embed_host_domains` after provisioning.\n"]
     pub fn embed_host_domains(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -502,7 +444,6 @@ impl AppstreamStackRef {
             format!("{}.embed_host_domains", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `feedback_url` after provisioning.\n"]
     pub fn feedback_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -510,12 +451,10 @@ impl AppstreamStackRef {
             format!("{}.feedback_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +462,6 @@ impl AppstreamStackRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `redirect_url` after provisioning.\n"]
     pub fn redirect_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -531,7 +469,6 @@ impl AppstreamStackRef {
             format!("{}.redirect_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -539,7 +476,6 @@ impl AppstreamStackRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -547,7 +483,6 @@ impl AppstreamStackRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -555,7 +490,6 @@ impl AppstreamStackRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `application_settings` after provisioning.\n"]
     pub fn application_settings(&self) -> ListRef<AppstreamStackApplicationSettingsElRef> {
         ListRef::new(
@@ -563,7 +497,6 @@ impl AppstreamStackRef {
             format!("{}.application_settings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `streaming_experience_settings` after provisioning.\n"]
     pub fn streaming_experience_settings(
         &self,
@@ -574,14 +507,12 @@ impl AppstreamStackRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppstreamStackAccessEndpointsEl {
     endpoint_type: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     vpce_id: Option<PrimField<String>>,
 }
-
 impl AppstreamStackAccessEndpointsEl {
     #[doc = "Set the field `vpce_id`.\n"]
     pub fn set_vpce_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -589,10 +520,8 @@ impl AppstreamStackAccessEndpointsEl {
         self
     }
 }
-
 impl ToListMappable for AppstreamStackAccessEndpointsEl {
     type O = BlockAssignable<AppstreamStackAccessEndpointsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -601,12 +530,10 @@ impl ToListMappable for AppstreamStackAccessEndpointsEl {
         })
     }
 }
-
 pub struct BuildAppstreamStackAccessEndpointsEl {
     #[doc = ""]
     pub endpoint_type: PrimField<String>,
 }
-
 impl BuildAppstreamStackAccessEndpointsEl {
     pub fn build(self) -> AppstreamStackAccessEndpointsEl {
         AppstreamStackAccessEndpointsEl {
@@ -615,12 +542,10 @@ impl BuildAppstreamStackAccessEndpointsEl {
         }
     }
 }
-
 pub struct AppstreamStackAccessEndpointsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackAccessEndpointsElRef {
     fn new(shared: StackShared, base: String) -> AppstreamStackAccessEndpointsElRef {
         AppstreamStackAccessEndpointsElRef {
@@ -629,12 +554,10 @@ impl Ref for AppstreamStackAccessEndpointsElRef {
         }
     }
 }
-
 impl AppstreamStackAccessEndpointsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint_type` after provisioning.\n"]
     pub fn endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -642,20 +565,17 @@ impl AppstreamStackAccessEndpointsElRef {
             format!("{}.endpoint_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpce_id` after provisioning.\n"]
     pub fn vpce_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpce_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppstreamStackApplicationSettingsEl {
     enabled: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     settings_group: Option<PrimField<String>>,
 }
-
 impl AppstreamStackApplicationSettingsEl {
     #[doc = "Set the field `settings_group`.\n"]
     pub fn set_settings_group(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -663,10 +583,8 @@ impl AppstreamStackApplicationSettingsEl {
         self
     }
 }
-
 impl ToListMappable for AppstreamStackApplicationSettingsEl {
     type O = BlockAssignable<AppstreamStackApplicationSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -675,12 +593,10 @@ impl ToListMappable for AppstreamStackApplicationSettingsEl {
         })
     }
 }
-
 pub struct BuildAppstreamStackApplicationSettingsEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildAppstreamStackApplicationSettingsEl {
     pub fn build(self) -> AppstreamStackApplicationSettingsEl {
         AppstreamStackApplicationSettingsEl {
@@ -689,12 +605,10 @@ impl BuildAppstreamStackApplicationSettingsEl {
         }
     }
 }
-
 pub struct AppstreamStackApplicationSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackApplicationSettingsElRef {
     fn new(shared: StackShared, base: String) -> AppstreamStackApplicationSettingsElRef {
         AppstreamStackApplicationSettingsElRef {
@@ -703,17 +617,14 @@ impl Ref for AppstreamStackApplicationSettingsElRef {
         }
     }
 }
-
 impl AppstreamStackApplicationSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `settings_group` after provisioning.\n"]
     pub fn settings_group(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -722,7 +633,6 @@ impl AppstreamStackApplicationSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppstreamStackStorageConnectorsEl {
     connector_type: PrimField<String>,
@@ -731,24 +641,20 @@ pub struct AppstreamStackStorageConnectorsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_identifier: Option<PrimField<String>>,
 }
-
 impl AppstreamStackStorageConnectorsEl {
     #[doc = "Set the field `domains`.\n"]
     pub fn set_domains(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.domains = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_identifier`.\n"]
     pub fn set_resource_identifier(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.resource_identifier = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppstreamStackStorageConnectorsEl {
     type O = BlockAssignable<AppstreamStackStorageConnectorsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -757,12 +663,10 @@ impl ToListMappable for AppstreamStackStorageConnectorsEl {
         })
     }
 }
-
 pub struct BuildAppstreamStackStorageConnectorsEl {
     #[doc = ""]
     pub connector_type: PrimField<String>,
 }
-
 impl BuildAppstreamStackStorageConnectorsEl {
     pub fn build(self) -> AppstreamStackStorageConnectorsEl {
         AppstreamStackStorageConnectorsEl {
@@ -772,12 +676,10 @@ impl BuildAppstreamStackStorageConnectorsEl {
         }
     }
 }
-
 pub struct AppstreamStackStorageConnectorsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackStorageConnectorsElRef {
     fn new(shared: StackShared, base: String) -> AppstreamStackStorageConnectorsElRef {
         AppstreamStackStorageConnectorsElRef {
@@ -786,12 +688,10 @@ impl Ref for AppstreamStackStorageConnectorsElRef {
         }
     }
 }
-
 impl AppstreamStackStorageConnectorsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connector_type` after provisioning.\n"]
     pub fn connector_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -799,12 +699,10 @@ impl AppstreamStackStorageConnectorsElRef {
             format!("{}.connector_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `domains` after provisioning.\n"]
     pub fn domains(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.domains", self.base))
     }
-
     #[doc = "Get a reference to the value of field `resource_identifier` after provisioning.\n"]
     pub fn resource_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -813,13 +711,11 @@ impl AppstreamStackStorageConnectorsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppstreamStackStreamingExperienceSettingsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     preferred_protocol: Option<PrimField<String>>,
 }
-
 impl AppstreamStackStreamingExperienceSettingsEl {
     #[doc = "Set the field `preferred_protocol`.\n"]
     pub fn set_preferred_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -827,10 +723,8 @@ impl AppstreamStackStreamingExperienceSettingsEl {
         self
     }
 }
-
 impl ToListMappable for AppstreamStackStreamingExperienceSettingsEl {
     type O = BlockAssignable<AppstreamStackStreamingExperienceSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -839,9 +733,7 @@ impl ToListMappable for AppstreamStackStreamingExperienceSettingsEl {
         })
     }
 }
-
 pub struct BuildAppstreamStackStreamingExperienceSettingsEl {}
-
 impl BuildAppstreamStackStreamingExperienceSettingsEl {
     pub fn build(self) -> AppstreamStackStreamingExperienceSettingsEl {
         AppstreamStackStreamingExperienceSettingsEl {
@@ -849,12 +741,10 @@ impl BuildAppstreamStackStreamingExperienceSettingsEl {
         }
     }
 }
-
 pub struct AppstreamStackStreamingExperienceSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackStreamingExperienceSettingsElRef {
     fn new(shared: StackShared, base: String) -> AppstreamStackStreamingExperienceSettingsElRef {
         AppstreamStackStreamingExperienceSettingsElRef {
@@ -863,12 +753,10 @@ impl Ref for AppstreamStackStreamingExperienceSettingsElRef {
         }
     }
 }
-
 impl AppstreamStackStreamingExperienceSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `preferred_protocol` after provisioning.\n"]
     pub fn preferred_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -877,18 +765,14 @@ impl AppstreamStackStreamingExperienceSettingsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppstreamStackUserSettingsEl {
     action: PrimField<String>,
     permission: PrimField<String>,
 }
-
 impl AppstreamStackUserSettingsEl {}
-
 impl ToListMappable for AppstreamStackUserSettingsEl {
     type O = BlockAssignable<AppstreamStackUserSettingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -897,14 +781,12 @@ impl ToListMappable for AppstreamStackUserSettingsEl {
         })
     }
 }
-
 pub struct BuildAppstreamStackUserSettingsEl {
     #[doc = ""]
     pub action: PrimField<String>,
     #[doc = ""]
     pub permission: PrimField<String>,
 }
-
 impl BuildAppstreamStackUserSettingsEl {
     pub fn build(self) -> AppstreamStackUserSettingsEl {
         AppstreamStackUserSettingsEl {
@@ -913,12 +795,10 @@ impl BuildAppstreamStackUserSettingsEl {
         }
     }
 }
-
 pub struct AppstreamStackUserSettingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppstreamStackUserSettingsElRef {
     fn new(shared: StackShared, base: String) -> AppstreamStackUserSettingsElRef {
         AppstreamStackUserSettingsElRef {
@@ -927,23 +807,19 @@ impl Ref for AppstreamStackUserSettingsElRef {
         }
     }
 }
-
 impl AppstreamStackUserSettingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `permission` after provisioning.\n"]
     pub fn permission(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.permission", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppstreamStackDynamic {
     access_endpoints: Option<DynamicBlock<AppstreamStackAccessEndpointsEl>>,

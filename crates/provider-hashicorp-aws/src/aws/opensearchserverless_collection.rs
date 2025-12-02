@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct OpensearchserverlessCollectionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct OpensearchserverlessCollectionData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<OpensearchserverlessCollectionTimeoutsEl>,
 }
-
 struct OpensearchserverlessCollection_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<OpensearchserverlessCollectionData>,
 }
-
 #[derive(Clone)]
 pub struct OpensearchserverlessCollection(Rc<OpensearchserverlessCollection_>);
-
 impl OpensearchserverlessCollection {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl OpensearchserverlessCollection {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl OpensearchserverlessCollection {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,48 +95,40 @@ impl OpensearchserverlessCollection {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\nDescription of the collection."]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `standby_replicas`.\nIndicates whether standby replicas should be used for a collection. One of `ENABLED` or `DISABLED`. Defaults to `ENABLED`."]
     pub fn set_standby_replicas(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().standby_replicas = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\nType of collection. One of `SEARCH`, `TIMESERIES`, or `VECTORSEARCH`. Defaults to `TIMESERIES`."]
     pub fn set_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<OpensearchserverlessCollectionTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `collection_endpoint` after provisioning.\nCollection-specific endpoint used to submit index, search, and data upload requests to an OpenSearch Serverless collection."]
     pub fn collection_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,7 +136,6 @@ impl OpensearchserverlessCollection {
             format!("{}.collection_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint` after provisioning.\nCollection-specific endpoint used to access OpenSearch Dashboards."]
     pub fn dashboard_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -164,7 +143,6 @@ impl OpensearchserverlessCollection {
             format!("{}.dashboard_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nDescription of the collection."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,12 +150,10 @@ impl OpensearchserverlessCollection {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\nThe ARN of the Amazon Web Services KMS key used to encrypt the collection."]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +161,6 @@ impl OpensearchserverlessCollection {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nName of the collection."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +168,6 @@ impl OpensearchserverlessCollection {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +175,6 @@ impl OpensearchserverlessCollection {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `standby_replicas` after provisioning.\nIndicates whether standby replicas should be used for a collection. One of `ENABLED` or `DISABLED`. Defaults to `ENABLED`."]
     pub fn standby_replicas(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,7 +182,6 @@ impl OpensearchserverlessCollection {
             format!("{}.standby_replicas", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -217,7 +189,6 @@ impl OpensearchserverlessCollection {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -225,7 +196,6 @@ impl OpensearchserverlessCollection {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nType of collection. One of `SEARCH`, `TIMESERIES`, or `VECTORSEARCH`. Defaults to `TIMESERIES`."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -233,7 +203,6 @@ impl OpensearchserverlessCollection {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchserverlessCollectionTimeoutsElRef {
         OpensearchserverlessCollectionTimeoutsElRef::new(
@@ -242,7 +211,6 @@ impl OpensearchserverlessCollection {
         )
     }
 }
-
 impl Referable for OpensearchserverlessCollection {
     fn extract_ref(&self) -> String {
         format!(
@@ -252,38 +220,30 @@ impl Referable for OpensearchserverlessCollection {
         )
     }
 }
-
 impl Resource for OpensearchserverlessCollection {}
-
 impl ToListMappable for OpensearchserverlessCollection {
     type O = ListRef<OpensearchserverlessCollectionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for OpensearchserverlessCollection_ {
     fn extract_resource_type(&self) -> String {
         "aws_opensearchserverless_collection".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildOpensearchserverlessCollection {
     pub tf_id: String,
     #[doc = "Name of the collection."]
     pub name: PrimField<String>,
 }
-
 impl BuildOpensearchserverlessCollection {
     pub fn build(self, stack: &mut Stack) -> OpensearchserverlessCollection {
         let out = OpensearchserverlessCollection(Rc::new(OpensearchserverlessCollection_ {
@@ -307,32 +267,26 @@ impl BuildOpensearchserverlessCollection {
         out
     }
 }
-
 pub struct OpensearchserverlessCollectionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchserverlessCollectionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl OpensearchserverlessCollectionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `collection_endpoint` after provisioning.\nCollection-specific endpoint used to submit index, search, and data upload requests to an OpenSearch Serverless collection."]
     pub fn collection_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -340,7 +294,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.collection_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint` after provisioning.\nCollection-specific endpoint used to access OpenSearch Dashboards."]
     pub fn dashboard_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,7 +301,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.dashboard_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nDescription of the collection."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -356,12 +308,10 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\nThe ARN of the Amazon Web Services KMS key used to encrypt the collection."]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +319,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nName of the collection."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,7 +326,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +333,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `standby_replicas` after provisioning.\nIndicates whether standby replicas should be used for a collection. One of `ENABLED` or `DISABLED`. Defaults to `ENABLED`."]
     pub fn standby_replicas(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,7 +340,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.standby_replicas", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -401,7 +347,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -409,7 +354,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nType of collection. One of `SEARCH`, `TIMESERIES`, or `VECTORSEARCH`. Defaults to `TIMESERIES`."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -417,7 +361,6 @@ impl OpensearchserverlessCollectionRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchserverlessCollectionTimeoutsElRef {
         OpensearchserverlessCollectionTimeoutsElRef::new(
@@ -426,7 +369,6 @@ impl OpensearchserverlessCollectionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchserverlessCollectionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -434,24 +376,20 @@ pub struct OpensearchserverlessCollectionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl OpensearchserverlessCollectionTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchserverlessCollectionTimeoutsEl {
     type O = BlockAssignable<OpensearchserverlessCollectionTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -460,9 +398,7 @@ impl ToListMappable for OpensearchserverlessCollectionTimeoutsEl {
         })
     }
 }
-
 pub struct BuildOpensearchserverlessCollectionTimeoutsEl {}
-
 impl BuildOpensearchserverlessCollectionTimeoutsEl {
     pub fn build(self) -> OpensearchserverlessCollectionTimeoutsEl {
         OpensearchserverlessCollectionTimeoutsEl {
@@ -471,12 +407,10 @@ impl BuildOpensearchserverlessCollectionTimeoutsEl {
         }
     }
 }
-
 pub struct OpensearchserverlessCollectionTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchserverlessCollectionTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchserverlessCollectionTimeoutsElRef {
         OpensearchserverlessCollectionTimeoutsElRef {
@@ -485,17 +419,14 @@ impl Ref for OpensearchserverlessCollectionTimeoutsElRef {
         }
     }
 }
-
 impl OpensearchserverlessCollectionTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct PinpointAdmChannelData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct PinpointAdmChannelData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct PinpointAdmChannel_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<PinpointAdmChannelData>,
 }
-
 #[derive(Clone)]
 pub struct PinpointAdmChannel(Rc<PinpointAdmChannel_>);
-
 impl PinpointAdmChannel {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl PinpointAdmChannel {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl PinpointAdmChannel {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,25 +91,21 @@ impl PinpointAdmChannel {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -129,7 +113,6 @@ impl PinpointAdmChannel {
             format!("{}.application_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -137,7 +120,6 @@ impl PinpointAdmChannel {
             format!("{}.client_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -145,7 +127,6 @@ impl PinpointAdmChannel {
             format!("{}.client_secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -153,12 +134,10 @@ impl PinpointAdmChannel {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +146,6 @@ impl PinpointAdmChannel {
         )
     }
 }
-
 impl Referable for PinpointAdmChannel {
     fn extract_ref(&self) -> String {
         format!(
@@ -177,32 +155,25 @@ impl Referable for PinpointAdmChannel {
         )
     }
 }
-
 impl Resource for PinpointAdmChannel {}
-
 impl ToListMappable for PinpointAdmChannel {
     type O = ListRef<PinpointAdmChannelRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for PinpointAdmChannel_ {
     fn extract_resource_type(&self) -> String {
         "aws_pinpoint_adm_channel".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildPinpointAdmChannel {
     pub tf_id: String,
     #[doc = ""]
@@ -212,7 +183,6 @@ pub struct BuildPinpointAdmChannel {
     #[doc = ""]
     pub client_secret: PrimField<String>,
 }
-
 impl BuildPinpointAdmChannel {
     pub fn build(self, stack: &mut Stack) -> PinpointAdmChannel {
         let out = PinpointAdmChannel(Rc::new(PinpointAdmChannel_ {
@@ -235,27 +205,22 @@ impl BuildPinpointAdmChannel {
         out
     }
 }
-
 pub struct PinpointAdmChannelRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for PinpointAdmChannelRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl PinpointAdmChannelRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `application_id` after provisioning.\n"]
     pub fn application_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +228,6 @@ impl PinpointAdmChannelRef {
             format!("{}.application_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,7 +235,6 @@ impl PinpointAdmChannelRef {
             format!("{}.client_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +242,6 @@ impl PinpointAdmChannelRef {
             format!("{}.client_secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -287,12 +249,10 @@ impl PinpointAdmChannelRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(

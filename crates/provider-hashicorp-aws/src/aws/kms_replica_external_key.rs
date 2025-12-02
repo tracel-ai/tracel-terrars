@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct KmsReplicaExternalKeyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -38,47 +37,38 @@ struct KmsReplicaExternalKeyData {
     #[serde(skip_serializing_if = "Option::is_none")]
     valid_to: Option<PrimField<String>>,
 }
-
 struct KmsReplicaExternalKey_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<KmsReplicaExternalKeyData>,
 }
-
 #[derive(Clone)]
 pub struct KmsReplicaExternalKey(Rc<KmsReplicaExternalKey_>);
-
 impl KmsReplicaExternalKey {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -97,7 +87,6 @@ impl KmsReplicaExternalKey {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -107,7 +96,6 @@ impl KmsReplicaExternalKey {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -117,78 +105,65 @@ impl KmsReplicaExternalKey {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `bypass_policy_lockout_safety_check`.\n"]
     pub fn set_bypass_policy_lockout_safety_check(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().bypass_policy_lockout_safety_check = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deletion_window_in_days`.\n"]
     pub fn set_deletion_window_in_days(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().deletion_window_in_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key_material_base64`.\n"]
     pub fn set_key_material_base64(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().key_material_base64 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy`.\n"]
     pub fn set_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `valid_to`.\n"]
     pub fn set_valid_to(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().valid_to = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bypass_policy_lockout_safety_check` after provisioning.\n"]
     pub fn bypass_policy_lockout_safety_check(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -196,7 +171,6 @@ impl KmsReplicaExternalKey {
             format!("{}.bypass_policy_lockout_safety_check", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deletion_window_in_days` after provisioning.\n"]
     pub fn deletion_window_in_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -204,7 +178,6 @@ impl KmsReplicaExternalKey {
             format!("{}.deletion_window_in_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -212,7 +185,6 @@ impl KmsReplicaExternalKey {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -220,7 +192,6 @@ impl KmsReplicaExternalKey {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expiration_model` after provisioning.\n"]
     pub fn expiration_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,12 +199,10 @@ impl KmsReplicaExternalKey {
             format!("{}.expiration_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -241,7 +210,6 @@ impl KmsReplicaExternalKey {
             format!("{}.key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_material_base64` after provisioning.\n"]
     pub fn key_material_base64(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -249,7 +217,6 @@ impl KmsReplicaExternalKey {
             format!("{}.key_material_base64", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_state` after provisioning.\n"]
     pub fn key_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +224,6 @@ impl KmsReplicaExternalKey {
             format!("{}.key_state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_usage` after provisioning.\n"]
     pub fn key_usage(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +231,6 @@ impl KmsReplicaExternalKey {
             format!("{}.key_usage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +238,6 @@ impl KmsReplicaExternalKey {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_key_arn` after provisioning.\n"]
     pub fn primary_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +245,6 @@ impl KmsReplicaExternalKey {
             format!("{}.primary_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +252,6 @@ impl KmsReplicaExternalKey {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -297,7 +259,6 @@ impl KmsReplicaExternalKey {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -305,7 +266,6 @@ impl KmsReplicaExternalKey {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_to` after provisioning.\n"]
     pub fn valid_to(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +274,6 @@ impl KmsReplicaExternalKey {
         )
     }
 }
-
 impl Referable for KmsReplicaExternalKey {
     fn extract_ref(&self) -> String {
         format!(
@@ -324,38 +283,30 @@ impl Referable for KmsReplicaExternalKey {
         )
     }
 }
-
 impl Resource for KmsReplicaExternalKey {}
-
 impl ToListMappable for KmsReplicaExternalKey {
     type O = ListRef<KmsReplicaExternalKeyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for KmsReplicaExternalKey_ {
     fn extract_resource_type(&self) -> String {
         "aws_kms_replica_external_key".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildKmsReplicaExternalKey {
     pub tf_id: String,
     #[doc = ""]
     pub primary_key_arn: PrimField<String>,
 }
-
 impl BuildKmsReplicaExternalKey {
     pub fn build(self, stack: &mut Stack) -> KmsReplicaExternalKey {
         let out = KmsReplicaExternalKey(Rc::new(KmsReplicaExternalKey_ {
@@ -384,32 +335,26 @@ impl BuildKmsReplicaExternalKey {
         out
     }
 }
-
 pub struct KmsReplicaExternalKeyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for KmsReplicaExternalKeyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl KmsReplicaExternalKeyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bypass_policy_lockout_safety_check` after provisioning.\n"]
     pub fn bypass_policy_lockout_safety_check(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -417,7 +362,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.bypass_policy_lockout_safety_check", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deletion_window_in_days` after provisioning.\n"]
     pub fn deletion_window_in_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -425,7 +369,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.deletion_window_in_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -433,7 +376,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -441,7 +383,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expiration_model` after provisioning.\n"]
     pub fn expiration_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -449,12 +390,10 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.expiration_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `key_id` after provisioning.\n"]
     pub fn key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,7 +401,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_material_base64` after provisioning.\n"]
     pub fn key_material_base64(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -470,7 +408,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.key_material_base64", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_state` after provisioning.\n"]
     pub fn key_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -478,7 +415,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.key_state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_usage` after provisioning.\n"]
     pub fn key_usage(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +422,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.key_usage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +429,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_key_arn` after provisioning.\n"]
     pub fn primary_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,7 +436,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.primary_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -510,7 +443,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -518,7 +450,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -526,7 +457,6 @@ impl KmsReplicaExternalKeyRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `valid_to` after provisioning.\n"]
     pub fn valid_to(&self) -> PrimExpr<String> {
         PrimExpr::new(

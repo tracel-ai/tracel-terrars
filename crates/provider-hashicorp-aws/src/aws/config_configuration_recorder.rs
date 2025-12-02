@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ConfigConfigurationRecorderData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct ConfigConfigurationRecorderData {
     recording_mode: Option<Vec<ConfigConfigurationRecorderRecordingModeEl>>,
     dynamic: ConfigConfigurationRecorderDynamic,
 }
-
 struct ConfigConfigurationRecorder_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ConfigConfigurationRecorderData>,
 }
-
 #[derive(Clone)]
 pub struct ConfigConfigurationRecorder(Rc<ConfigConfigurationRecorder_>);
-
 impl ConfigConfigurationRecorder {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl ConfigConfigurationRecorder {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl ConfigConfigurationRecorder {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,25 +94,21 @@ impl ConfigConfigurationRecorder {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recording_group`.\n"]
     pub fn set_recording_group(
         self,
@@ -140,7 +124,6 @@ impl ConfigConfigurationRecorder {
         }
         self
     }
-
     #[doc = "Set the field `recording_mode`.\n"]
     pub fn set_recording_mode(
         self,
@@ -156,12 +139,10 @@ impl ConfigConfigurationRecorder {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +150,6 @@ impl ConfigConfigurationRecorder {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +157,6 @@ impl ConfigConfigurationRecorder {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +164,6 @@ impl ConfigConfigurationRecorder {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_group` after provisioning.\n"]
     pub fn recording_group(&self) -> ListRef<ConfigConfigurationRecorderRecordingGroupElRef> {
         ListRef::new(
@@ -193,7 +171,6 @@ impl ConfigConfigurationRecorder {
             format!("{}.recording_group", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_mode` after provisioning.\n"]
     pub fn recording_mode(&self) -> ListRef<ConfigConfigurationRecorderRecordingModeElRef> {
         ListRef::new(
@@ -202,7 +179,6 @@ impl ConfigConfigurationRecorder {
         )
     }
 }
-
 impl Referable for ConfigConfigurationRecorder {
     fn extract_ref(&self) -> String {
         format!(
@@ -212,38 +188,30 @@ impl Referable for ConfigConfigurationRecorder {
         )
     }
 }
-
 impl Resource for ConfigConfigurationRecorder {}
-
 impl ToListMappable for ConfigConfigurationRecorder {
     type O = ListRef<ConfigConfigurationRecorderRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ConfigConfigurationRecorder_ {
     fn extract_resource_type(&self) -> String {
         "aws_config_configuration_recorder".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildConfigConfigurationRecorder {
     pub tf_id: String,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildConfigConfigurationRecorder {
     pub fn build(self, stack: &mut Stack) -> ConfigConfigurationRecorder {
         let out = ConfigConfigurationRecorder(Rc::new(ConfigConfigurationRecorder_ {
@@ -267,32 +235,26 @@ impl BuildConfigConfigurationRecorder {
         out
     }
 }
-
 pub struct ConfigConfigurationRecorderRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ConfigConfigurationRecorderRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +262,6 @@ impl ConfigConfigurationRecorderRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -308,7 +269,6 @@ impl ConfigConfigurationRecorderRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,7 +276,6 @@ impl ConfigConfigurationRecorderRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_group` after provisioning.\n"]
     pub fn recording_group(&self) -> ListRef<ConfigConfigurationRecorderRecordingGroupElRef> {
         ListRef::new(
@@ -324,7 +283,6 @@ impl ConfigConfigurationRecorderRef {
             format!("{}.recording_group", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_mode` after provisioning.\n"]
     pub fn recording_mode(&self) -> ListRef<ConfigConfigurationRecorderRecordingModeElRef> {
         ListRef::new(
@@ -333,13 +291,11 @@ impl ConfigConfigurationRecorderRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     resource_types: Option<SetField<PrimField<String>>>,
 }
-
 impl ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
     #[doc = "Set the field `resource_types`.\n"]
     pub fn set_resource_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -347,10 +303,8 @@ impl ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
         self
     }
 }
-
 impl ToListMappable for ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
     type O = BlockAssignable<ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -359,9 +313,7 @@ impl ToListMappable for ConfigConfigurationRecorderRecordingGroupElExclusionByRe
         })
     }
 }
-
 pub struct BuildConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {}
-
 impl BuildConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
     pub fn build(self) -> ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
         ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl {
@@ -369,12 +321,10 @@ impl BuildConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesEl 
         }
     }
 }
-
 pub struct ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesElRef {
     fn new(
         shared: StackShared,
@@ -386,12 +336,10 @@ impl Ref for ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypes
         }
     }
 }
-
 impl ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -400,13 +348,11 @@ impl ConfigConfigurationRecorderRecordingGroupElExclusionByResourceTypesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     use_only: Option<PrimField<String>>,
 }
-
 impl ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
     #[doc = "Set the field `use_only`.\n"]
     pub fn set_use_only(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -414,10 +360,8 @@ impl ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
         self
     }
 }
-
 impl ToListMappable for ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
     type O = BlockAssignable<ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -426,9 +370,7 @@ impl ToListMappable for ConfigConfigurationRecorderRecordingGroupElRecordingStra
         })
     }
 }
-
 pub struct BuildConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {}
-
 impl BuildConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
     pub fn build(self) -> ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
         ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
@@ -436,12 +378,10 @@ impl BuildConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl {
         }
     }
 }
-
 pub struct ConfigConfigurationRecorderRecordingGroupElRecordingStrategyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRecordingGroupElRecordingStrategyElRef {
     fn new(
         shared: StackShared,
@@ -453,18 +393,15 @@ impl Ref for ConfigConfigurationRecorderRecordingGroupElRecordingStrategyElRef {
         }
     }
 }
-
 impl ConfigConfigurationRecorderRecordingGroupElRecordingStrategyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `use_only` after provisioning.\n"]
     pub fn use_only(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.use_only", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConfigConfigurationRecorderRecordingGroupElDynamic {
     exclusion_by_resource_types:
@@ -472,7 +409,6 @@ struct ConfigConfigurationRecorderRecordingGroupElDynamic {
     recording_strategy:
         Option<DynamicBlock<ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ConfigConfigurationRecorderRecordingGroupEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -488,26 +424,22 @@ pub struct ConfigConfigurationRecorderRecordingGroupEl {
     recording_strategy: Option<Vec<ConfigConfigurationRecorderRecordingGroupElRecordingStrategyEl>>,
     dynamic: ConfigConfigurationRecorderRecordingGroupElDynamic,
 }
-
 impl ConfigConfigurationRecorderRecordingGroupEl {
     #[doc = "Set the field `all_supported`.\n"]
     pub fn set_all_supported(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.all_supported = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_global_resource_types`.\n"]
     pub fn set_include_global_resource_types(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_global_resource_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_types`.\n"]
     pub fn set_resource_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.resource_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclusion_by_resource_types`.\n"]
     pub fn set_exclusion_by_resource_types(
         mut self,
@@ -525,7 +457,6 @@ impl ConfigConfigurationRecorderRecordingGroupEl {
         }
         self
     }
-
     #[doc = "Set the field `recording_strategy`.\n"]
     pub fn set_recording_strategy(
         mut self,
@@ -542,10 +473,8 @@ impl ConfigConfigurationRecorderRecordingGroupEl {
         self
     }
 }
-
 impl ToListMappable for ConfigConfigurationRecorderRecordingGroupEl {
     type O = BlockAssignable<ConfigConfigurationRecorderRecordingGroupEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -554,9 +483,7 @@ impl ToListMappable for ConfigConfigurationRecorderRecordingGroupEl {
         })
     }
 }
-
 pub struct BuildConfigConfigurationRecorderRecordingGroupEl {}
-
 impl BuildConfigConfigurationRecorderRecordingGroupEl {
     pub fn build(self) -> ConfigConfigurationRecorderRecordingGroupEl {
         ConfigConfigurationRecorderRecordingGroupEl {
@@ -569,12 +496,10 @@ impl BuildConfigConfigurationRecorderRecordingGroupEl {
         }
     }
 }
-
 pub struct ConfigConfigurationRecorderRecordingGroupElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRecordingGroupElRef {
     fn new(shared: StackShared, base: String) -> ConfigConfigurationRecorderRecordingGroupElRef {
         ConfigConfigurationRecorderRecordingGroupElRef {
@@ -583,12 +508,10 @@ impl Ref for ConfigConfigurationRecorderRecordingGroupElRef {
         }
     }
 }
-
 impl ConfigConfigurationRecorderRecordingGroupElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `all_supported` after provisioning.\n"]
     pub fn all_supported(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -596,7 +519,6 @@ impl ConfigConfigurationRecorderRecordingGroupElRef {
             format!("{}.all_supported", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_global_resource_types` after provisioning.\n"]
     pub fn include_global_resource_types(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -604,7 +526,6 @@ impl ConfigConfigurationRecorderRecordingGroupElRef {
             format!("{}.include_global_resource_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -612,7 +533,6 @@ impl ConfigConfigurationRecorderRecordingGroupElRef {
             format!("{}.resource_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclusion_by_resource_types` after provisioning.\n"]
     pub fn exclusion_by_resource_types(
         &self,
@@ -622,7 +542,6 @@ impl ConfigConfigurationRecorderRecordingGroupElRef {
             format!("{}.exclusion_by_resource_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_strategy` after provisioning.\n"]
     pub fn recording_strategy(
         &self,
@@ -633,7 +552,6 @@ impl ConfigConfigurationRecorderRecordingGroupElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -641,7 +559,6 @@ pub struct ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     recording_frequency: PrimField<String>,
     resource_types: SetField<PrimField<String>>,
 }
-
 impl ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -649,10 +566,8 @@ impl ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
         self
     }
 }
-
 impl ToListMappable for ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     type O = BlockAssignable<ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -661,14 +576,12 @@ impl ToListMappable for ConfigConfigurationRecorderRecordingModeElRecordingModeO
         })
     }
 }
-
 pub struct BuildConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     #[doc = ""]
     pub recording_frequency: PrimField<String>,
     #[doc = ""]
     pub resource_types: SetField<PrimField<String>>,
 }
-
 impl BuildConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
     pub fn build(self) -> ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
         ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
@@ -678,12 +591,10 @@ impl BuildConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl {
         }
     }
 }
-
 pub struct ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRef {
     fn new(
         shared: StackShared,
@@ -695,17 +606,14 @@ impl Ref for ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRe
         }
     }
 }
-
 impl ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `recording_frequency` after provisioning.\n"]
     pub fn recording_frequency(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -713,7 +621,6 @@ impl ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRef {
             format!("{}.recording_frequency", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -722,13 +629,11 @@ impl ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConfigConfigurationRecorderRecordingModeElDynamic {
     recording_mode_override:
         Option<DynamicBlock<ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ConfigConfigurationRecorderRecordingModeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -738,14 +643,12 @@ pub struct ConfigConfigurationRecorderRecordingModeEl {
         Option<Vec<ConfigConfigurationRecorderRecordingModeElRecordingModeOverrideEl>>,
     dynamic: ConfigConfigurationRecorderRecordingModeElDynamic,
 }
-
 impl ConfigConfigurationRecorderRecordingModeEl {
     #[doc = "Set the field `recording_frequency`.\n"]
     pub fn set_recording_frequency(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.recording_frequency = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recording_mode_override`.\n"]
     pub fn set_recording_mode_override(
         mut self,
@@ -762,10 +665,8 @@ impl ConfigConfigurationRecorderRecordingModeEl {
         self
     }
 }
-
 impl ToListMappable for ConfigConfigurationRecorderRecordingModeEl {
     type O = BlockAssignable<ConfigConfigurationRecorderRecordingModeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -774,9 +675,7 @@ impl ToListMappable for ConfigConfigurationRecorderRecordingModeEl {
         })
     }
 }
-
 pub struct BuildConfigConfigurationRecorderRecordingModeEl {}
-
 impl BuildConfigConfigurationRecorderRecordingModeEl {
     pub fn build(self) -> ConfigConfigurationRecorderRecordingModeEl {
         ConfigConfigurationRecorderRecordingModeEl {
@@ -786,12 +685,10 @@ impl BuildConfigConfigurationRecorderRecordingModeEl {
         }
     }
 }
-
 pub struct ConfigConfigurationRecorderRecordingModeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConfigConfigurationRecorderRecordingModeElRef {
     fn new(shared: StackShared, base: String) -> ConfigConfigurationRecorderRecordingModeElRef {
         ConfigConfigurationRecorderRecordingModeElRef {
@@ -800,12 +697,10 @@ impl Ref for ConfigConfigurationRecorderRecordingModeElRef {
         }
     }
 }
-
 impl ConfigConfigurationRecorderRecordingModeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `recording_frequency` after provisioning.\n"]
     pub fn recording_frequency(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -813,7 +708,6 @@ impl ConfigConfigurationRecorderRecordingModeElRef {
             format!("{}.recording_frequency", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `recording_mode_override` after provisioning.\n"]
     pub fn recording_mode_override(
         &self,
@@ -824,7 +718,6 @@ impl ConfigConfigurationRecorderRecordingModeElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConfigConfigurationRecorderDynamic {
     recording_group: Option<DynamicBlock<ConfigConfigurationRecorderRecordingGroupEl>>,

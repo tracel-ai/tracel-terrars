@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataLicensemanagerReceivedLicensesData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,43 +19,35 @@ struct DataLicensemanagerReceivedLicensesData {
     filter: Option<Vec<DataLicensemanagerReceivedLicensesFilterEl>>,
     dynamic: DataLicensemanagerReceivedLicensesDynamic,
 }
-
 struct DataLicensemanagerReceivedLicenses_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataLicensemanagerReceivedLicensesData>,
 }
-
 #[derive(Clone)]
 pub struct DataLicensemanagerReceivedLicenses(Rc<DataLicensemanagerReceivedLicenses_>);
-
 impl DataLicensemanagerReceivedLicenses {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
         self,
@@ -72,7 +63,6 @@ impl DataLicensemanagerReceivedLicenses {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -80,12 +70,10 @@ impl DataLicensemanagerReceivedLicenses {
             format!("{}.arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -94,7 +82,6 @@ impl DataLicensemanagerReceivedLicenses {
         )
     }
 }
-
 impl Referable for DataLicensemanagerReceivedLicenses {
     fn extract_ref(&self) -> String {
         format!(
@@ -104,36 +91,28 @@ impl Referable for DataLicensemanagerReceivedLicenses {
         )
     }
 }
-
 impl Datasource for DataLicensemanagerReceivedLicenses {}
-
 impl ToListMappable for DataLicensemanagerReceivedLicenses {
     type O = ListRef<DataLicensemanagerReceivedLicensesRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataLicensemanagerReceivedLicenses_ {
     fn extract_datasource_type(&self) -> String {
         "aws_licensemanager_received_licenses".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataLicensemanagerReceivedLicenses {
     pub tf_id: String,
 }
-
 impl BuildDataLicensemanagerReceivedLicenses {
     pub fn build(self, stack: &mut Stack) -> DataLicensemanagerReceivedLicenses {
         let out =
@@ -154,27 +133,22 @@ impl BuildDataLicensemanagerReceivedLicenses {
         out
     }
 }
-
 pub struct DataLicensemanagerReceivedLicensesRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataLicensemanagerReceivedLicensesRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataLicensemanagerReceivedLicensesRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arns` after provisioning.\n"]
     pub fn arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -182,12 +156,10 @@ impl DataLicensemanagerReceivedLicensesRef {
             format!("{}.arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,18 +168,14 @@ impl DataLicensemanagerReceivedLicensesRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataLicensemanagerReceivedLicensesFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataLicensemanagerReceivedLicensesFilterEl {}
-
 impl ToListMappable for DataLicensemanagerReceivedLicensesFilterEl {
     type O = BlockAssignable<DataLicensemanagerReceivedLicensesFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -216,14 +184,12 @@ impl ToListMappable for DataLicensemanagerReceivedLicensesFilterEl {
         })
     }
 }
-
 pub struct BuildDataLicensemanagerReceivedLicensesFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataLicensemanagerReceivedLicensesFilterEl {
     pub fn build(self) -> DataLicensemanagerReceivedLicensesFilterEl {
         DataLicensemanagerReceivedLicensesFilterEl {
@@ -232,12 +198,10 @@ impl BuildDataLicensemanagerReceivedLicensesFilterEl {
         }
     }
 }
-
 pub struct DataLicensemanagerReceivedLicensesFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataLicensemanagerReceivedLicensesFilterElRef {
     fn new(shared: StackShared, base: String) -> DataLicensemanagerReceivedLicensesFilterElRef {
         DataLicensemanagerReceivedLicensesFilterElRef {
@@ -246,23 +210,19 @@ impl Ref for DataLicensemanagerReceivedLicensesFilterElRef {
         }
     }
 }
-
 impl DataLicensemanagerReceivedLicensesFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataLicensemanagerReceivedLicensesDynamic {
     filter: Option<DynamicBlock<DataLicensemanagerReceivedLicensesFilterEl>>,

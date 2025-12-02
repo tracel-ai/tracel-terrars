@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ApiGatewayGatewayResponseData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct ApiGatewayGatewayResponseData {
     #[serde(skip_serializing_if = "Option::is_none")]
     status_code: Option<PrimField<String>>,
 }
-
 struct ApiGatewayGatewayResponse_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ApiGatewayGatewayResponseData>,
 }
-
 #[derive(Clone)]
 pub struct ApiGatewayGatewayResponse(Rc<ApiGatewayGatewayResponse_>);
-
 impl ApiGatewayGatewayResponse {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl ApiGatewayGatewayResponse {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl ApiGatewayGatewayResponse {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,42 +94,35 @@ impl ApiGatewayGatewayResponse {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `response_parameters`.\n"]
     pub fn set_response_parameters(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().response_parameters = Some(v.into());
         self
     }
-
     #[doc = "Set the field `response_templates`.\n"]
     pub fn set_response_templates(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().response_templates = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status_code`.\n"]
     pub fn set_status_code(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().status_code = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -149,7 +130,6 @@ impl ApiGatewayGatewayResponse {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_parameters` after provisioning.\n"]
     pub fn response_parameters(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -157,7 +137,6 @@ impl ApiGatewayGatewayResponse {
             format!("{}.response_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_templates` after provisioning.\n"]
     pub fn response_templates(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -165,7 +144,6 @@ impl ApiGatewayGatewayResponse {
             format!("{}.response_templates", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_type` after provisioning.\n"]
     pub fn response_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -173,7 +151,6 @@ impl ApiGatewayGatewayResponse {
             format!("{}.response_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +158,6 @@ impl ApiGatewayGatewayResponse {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +166,6 @@ impl ApiGatewayGatewayResponse {
         )
     }
 }
-
 impl Referable for ApiGatewayGatewayResponse {
     fn extract_ref(&self) -> String {
         format!(
@@ -200,32 +175,25 @@ impl Referable for ApiGatewayGatewayResponse {
         )
     }
 }
-
 impl Resource for ApiGatewayGatewayResponse {}
-
 impl ToListMappable for ApiGatewayGatewayResponse {
     type O = ListRef<ApiGatewayGatewayResponseRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ApiGatewayGatewayResponse_ {
     fn extract_resource_type(&self) -> String {
         "aws_api_gateway_gateway_response".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildApiGatewayGatewayResponse {
     pub tf_id: String,
     #[doc = ""]
@@ -233,7 +201,6 @@ pub struct BuildApiGatewayGatewayResponse {
     #[doc = ""]
     pub rest_api_id: PrimField<String>,
 }
-
 impl BuildApiGatewayGatewayResponse {
     pub fn build(self, stack: &mut Stack) -> ApiGatewayGatewayResponse {
         let out = ApiGatewayGatewayResponse(Rc::new(ApiGatewayGatewayResponse_ {
@@ -257,32 +224,26 @@ impl BuildApiGatewayGatewayResponse {
         out
     }
 }
-
 pub struct ApiGatewayGatewayResponseRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ApiGatewayGatewayResponseRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ApiGatewayGatewayResponseRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +251,6 @@ impl ApiGatewayGatewayResponseRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_parameters` after provisioning.\n"]
     pub fn response_parameters(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -298,7 +258,6 @@ impl ApiGatewayGatewayResponseRef {
             format!("{}.response_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_templates` after provisioning.\n"]
     pub fn response_templates(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -306,7 +265,6 @@ impl ApiGatewayGatewayResponseRef {
             format!("{}.response_templates", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_type` after provisioning.\n"]
     pub fn response_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -314,7 +272,6 @@ impl ApiGatewayGatewayResponseRef {
             format!("{}.response_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rest_api_id` after provisioning.\n"]
     pub fn rest_api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -322,7 +279,6 @@ impl ApiGatewayGatewayResponseRef {
             format!("{}.rest_api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<String> {
         PrimExpr::new(

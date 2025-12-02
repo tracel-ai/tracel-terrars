@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3tablesNamespaceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -19,47 +18,38 @@ struct S3tablesNamespaceData {
     region: Option<PrimField<String>>,
     table_bucket_arn: PrimField<String>,
 }
-
 struct S3tablesNamespace_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3tablesNamespaceData>,
 }
-
 #[derive(Clone)]
 pub struct S3tablesNamespace(Rc<S3tablesNamespace_>);
-
 impl S3tablesNamespace {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -78,7 +68,6 @@ impl S3tablesNamespace {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -88,7 +77,6 @@ impl S3tablesNamespace {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -98,13 +86,11 @@ impl S3tablesNamespace {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -112,7 +98,6 @@ impl S3tablesNamespace {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +105,6 @@ impl S3tablesNamespace {
             format!("{}.created_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +112,6 @@ impl S3tablesNamespace {
             format!("{}.namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +119,6 @@ impl S3tablesNamespace {
             format!("{}.owner_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -144,7 +126,6 @@ impl S3tablesNamespace {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_bucket_arn` after provisioning.\n"]
     pub fn table_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +134,6 @@ impl S3tablesNamespace {
         )
     }
 }
-
 impl Referable for S3tablesNamespace {
     fn extract_ref(&self) -> String {
         format!(
@@ -163,32 +143,25 @@ impl Referable for S3tablesNamespace {
         )
     }
 }
-
 impl Resource for S3tablesNamespace {}
-
 impl ToListMappable for S3tablesNamespace {
     type O = ListRef<S3tablesNamespaceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3tablesNamespace_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3tables_namespace".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3tablesNamespace {
     pub tf_id: String,
     #[doc = ""]
@@ -196,7 +169,6 @@ pub struct BuildS3tablesNamespace {
     #[doc = ""]
     pub table_bucket_arn: PrimField<String>,
 }
-
 impl BuildS3tablesNamespace {
     pub fn build(self, stack: &mut Stack) -> S3tablesNamespace {
         let out = S3tablesNamespace(Rc::new(S3tablesNamespace_ {
@@ -216,27 +188,22 @@ impl BuildS3tablesNamespace {
         out
     }
 }
-
 pub struct S3tablesNamespaceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3tablesNamespaceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3tablesNamespaceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +211,6 @@ impl S3tablesNamespaceRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_by` after provisioning.\n"]
     pub fn created_by(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +218,6 @@ impl S3tablesNamespaceRef {
             format!("{}.created_by", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +225,6 @@ impl S3tablesNamespaceRef {
             format!("{}.namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_account_id` after provisioning.\n"]
     pub fn owner_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +232,6 @@ impl S3tablesNamespaceRef {
             format!("{}.owner_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +239,6 @@ impl S3tablesNamespaceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_bucket_arn` after provisioning.\n"]
     pub fn table_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(

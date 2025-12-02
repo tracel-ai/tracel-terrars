@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EksPodIdentityAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct EksPodIdentityAssociationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_role_arn: Option<PrimField<String>>,
 }
-
 struct EksPodIdentityAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EksPodIdentityAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct EksPodIdentityAssociation(Rc<EksPodIdentityAssociation_>);
-
 impl EksPodIdentityAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl EksPodIdentityAssociation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl EksPodIdentityAssociation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,31 +94,26 @@ impl EksPodIdentityAssociation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `disable_session_tags`.\n"]
     pub fn set_disable_session_tags(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().disable_session_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_role_arn`.\n"]
     pub fn set_target_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().target_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `association_arn` after provisioning.\n"]
     pub fn association_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,7 +121,6 @@ impl EksPodIdentityAssociation {
             format!("{}.association_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,7 +128,6 @@ impl EksPodIdentityAssociation {
             format!("{}.association_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,7 +135,6 @@ impl EksPodIdentityAssociation {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disable_session_tags` after provisioning.\n"]
     pub fn disable_session_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -162,7 +142,6 @@ impl EksPodIdentityAssociation {
             format!("{}.disable_session_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
     pub fn external_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -170,12 +149,10 @@ impl EksPodIdentityAssociation {
             format!("{}.external_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +160,6 @@ impl EksPodIdentityAssociation {
             format!("{}.namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +167,6 @@ impl EksPodIdentityAssociation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +174,6 @@ impl EksPodIdentityAssociation {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account` after provisioning.\n"]
     pub fn service_account(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -207,7 +181,6 @@ impl EksPodIdentityAssociation {
             format!("{}.service_account", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -215,7 +188,6 @@ impl EksPodIdentityAssociation {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -223,7 +195,6 @@ impl EksPodIdentityAssociation {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_role_arn` after provisioning.\n"]
     pub fn target_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +203,6 @@ impl EksPodIdentityAssociation {
         )
     }
 }
-
 impl Referable for EksPodIdentityAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -242,32 +212,25 @@ impl Referable for EksPodIdentityAssociation {
         )
     }
 }
-
 impl Resource for EksPodIdentityAssociation {}
-
 impl ToListMappable for EksPodIdentityAssociation {
     type O = ListRef<EksPodIdentityAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EksPodIdentityAssociation_ {
     fn extract_resource_type(&self) -> String {
         "aws_eks_pod_identity_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEksPodIdentityAssociation {
     pub tf_id: String,
     #[doc = ""]
@@ -279,7 +242,6 @@ pub struct BuildEksPodIdentityAssociation {
     #[doc = ""]
     pub service_account: PrimField<String>,
 }
-
 impl BuildEksPodIdentityAssociation {
     pub fn build(self, stack: &mut Stack) -> EksPodIdentityAssociation {
         let out = EksPodIdentityAssociation(Rc::new(EksPodIdentityAssociation_ {
@@ -304,27 +266,22 @@ impl BuildEksPodIdentityAssociation {
         out
     }
 }
-
 pub struct EksPodIdentityAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksPodIdentityAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EksPodIdentityAssociationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `association_arn` after provisioning.\n"]
     pub fn association_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -332,7 +289,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.association_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -340,7 +296,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.association_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,7 +303,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `disable_session_tags` after provisioning.\n"]
     pub fn disable_session_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -356,7 +310,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.disable_session_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `external_id` after provisioning.\n"]
     pub fn external_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -364,12 +317,10 @@ impl EksPodIdentityAssociationRef {
             format!("{}.external_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -377,7 +328,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.namespace", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +335,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,7 +342,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_account` after provisioning.\n"]
     pub fn service_account(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -401,7 +349,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.service_account", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -409,7 +356,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -417,7 +363,6 @@ impl EksPodIdentityAssociationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_role_arn` after provisioning.\n"]
     pub fn target_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(

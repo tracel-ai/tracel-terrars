@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct NetworkmonitorProbeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct NetworkmonitorProbeData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct NetworkmonitorProbe_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<NetworkmonitorProbeData>,
 }
-
 #[derive(Clone)]
 pub struct NetworkmonitorProbe(Rc<NetworkmonitorProbe_>);
-
 impl NetworkmonitorProbe {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl NetworkmonitorProbe {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl NetworkmonitorProbe {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,31 +94,26 @@ impl NetworkmonitorProbe {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `destination_port`.\n"]
     pub fn set_destination_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().destination_port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `packet_size`.\n"]
     pub fn set_packet_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().packet_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `address_family` after provisioning.\n"]
     pub fn address_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,12 +121,10 @@ impl NetworkmonitorProbe {
             format!("{}.address_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +132,6 @@ impl NetworkmonitorProbe {
             format!("{}.destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_port` after provisioning.\n"]
     pub fn destination_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -159,12 +139,10 @@ impl NetworkmonitorProbe {
             format!("{}.destination_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `monitor_name` after provisioning.\n"]
     pub fn monitor_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +150,6 @@ impl NetworkmonitorProbe {
             format!("{}.monitor_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `packet_size` after provisioning.\n"]
     pub fn packet_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -180,7 +157,6 @@ impl NetworkmonitorProbe {
             format!("{}.packet_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `probe_id` after provisioning.\n"]
     pub fn probe_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +164,6 @@ impl NetworkmonitorProbe {
             format!("{}.probe_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,7 +171,6 @@ impl NetworkmonitorProbe {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -204,7 +178,6 @@ impl NetworkmonitorProbe {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -212,7 +185,6 @@ impl NetworkmonitorProbe {
             format!("{}.source_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -220,7 +192,6 @@ impl NetworkmonitorProbe {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -228,7 +199,6 @@ impl NetworkmonitorProbe {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +207,6 @@ impl NetworkmonitorProbe {
         )
     }
 }
-
 impl Referable for NetworkmonitorProbe {
     fn extract_ref(&self) -> String {
         format!(
@@ -247,32 +216,25 @@ impl Referable for NetworkmonitorProbe {
         )
     }
 }
-
 impl Resource for NetworkmonitorProbe {}
-
 impl ToListMappable for NetworkmonitorProbe {
     type O = ListRef<NetworkmonitorProbeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for NetworkmonitorProbe_ {
     fn extract_resource_type(&self) -> String {
         "aws_networkmonitor_probe".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildNetworkmonitorProbe {
     pub tf_id: String,
     #[doc = ""]
@@ -284,7 +246,6 @@ pub struct BuildNetworkmonitorProbe {
     #[doc = ""]
     pub source_arn: PrimField<String>,
 }
-
 impl BuildNetworkmonitorProbe {
     pub fn build(self, stack: &mut Stack) -> NetworkmonitorProbe {
         let out = NetworkmonitorProbe(Rc::new(NetworkmonitorProbe_ {
@@ -309,27 +270,22 @@ impl BuildNetworkmonitorProbe {
         out
     }
 }
-
 pub struct NetworkmonitorProbeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmonitorProbeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl NetworkmonitorProbeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `address_family` after provisioning.\n"]
     pub fn address_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,12 +293,10 @@ impl NetworkmonitorProbeRef {
             format!("{}.address_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +304,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.destination", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_port` after provisioning.\n"]
     pub fn destination_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -358,12 +311,10 @@ impl NetworkmonitorProbeRef {
             format!("{}.destination_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `monitor_name` after provisioning.\n"]
     pub fn monitor_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +322,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.monitor_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `packet_size` after provisioning.\n"]
     pub fn packet_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -379,7 +329,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.packet_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `probe_id` after provisioning.\n"]
     pub fn probe_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -387,7 +336,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.probe_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -395,7 +343,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -403,7 +350,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -411,7 +357,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.source_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -419,7 +364,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -427,7 +371,6 @@ impl NetworkmonitorProbeRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

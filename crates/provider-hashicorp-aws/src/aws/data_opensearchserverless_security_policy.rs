@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataOpensearchserverlessSecurityPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,43 +19,35 @@ struct DataOpensearchserverlessSecurityPolicyData {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 struct DataOpensearchserverlessSecurityPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataOpensearchserverlessSecurityPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct DataOpensearchserverlessSecurityPolicy(Rc<DataOpensearchserverlessSecurityPolicy_>);
-
 impl DataOpensearchserverlessSecurityPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the security policy was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -64,7 +55,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nDescription of the security policy."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -72,12 +62,10 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the security policy was last modified."]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -85,7 +73,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.last_modified_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nName of the policy."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -93,7 +80,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\nThe JSON policy document without any whitespaces."]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -101,7 +87,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_version` after provisioning.\nVersion of the policy."]
     pub fn policy_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -109,7 +94,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.policy_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -117,7 +101,6 @@ impl DataOpensearchserverlessSecurityPolicy {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nType of security policy. One of `encryption` or `network`."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -126,7 +109,6 @@ impl DataOpensearchserverlessSecurityPolicy {
         )
     }
 }
-
 impl Referable for DataOpensearchserverlessSecurityPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -136,32 +118,25 @@ impl Referable for DataOpensearchserverlessSecurityPolicy {
         )
     }
 }
-
 impl Datasource for DataOpensearchserverlessSecurityPolicy {}
-
 impl ToListMappable for DataOpensearchserverlessSecurityPolicy {
     type O = ListRef<DataOpensearchserverlessSecurityPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataOpensearchserverlessSecurityPolicy_ {
     fn extract_datasource_type(&self) -> String {
         "aws_opensearchserverless_security_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataOpensearchserverlessSecurityPolicy {
     pub tf_id: String,
     #[doc = "Name of the policy."]
@@ -169,7 +144,6 @@ pub struct BuildDataOpensearchserverlessSecurityPolicy {
     #[doc = "Type of security policy. One of `encryption` or `network`."]
     pub type_: PrimField<String>,
 }
-
 impl BuildDataOpensearchserverlessSecurityPolicy {
     pub fn build(self, stack: &mut Stack) -> DataOpensearchserverlessSecurityPolicy {
         let out = DataOpensearchserverlessSecurityPolicy(Rc::new(
@@ -191,27 +165,22 @@ impl BuildDataOpensearchserverlessSecurityPolicy {
         out
     }
 }
-
 pub struct DataOpensearchserverlessSecurityPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataOpensearchserverlessSecurityPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataOpensearchserverlessSecurityPolicyRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\nThe date the security policy was created."]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -219,7 +188,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\nDescription of the security policy."]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,12 +195,10 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_modified_date` after provisioning.\nThe date the security policy was last modified."]
     pub fn last_modified_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +206,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.last_modified_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\nName of the policy."]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +213,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\nThe JSON policy document without any whitespaces."]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +220,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_version` after provisioning.\nVersion of the policy."]
     pub fn policy_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +227,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.policy_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +234,6 @@ impl DataOpensearchserverlessSecurityPolicyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\nType of security policy. One of `encryption` or `network`."]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(

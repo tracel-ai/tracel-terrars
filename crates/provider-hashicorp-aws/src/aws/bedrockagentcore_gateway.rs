@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreGatewayData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -36,47 +35,38 @@ struct BedrockagentcoreGatewayData {
     timeouts: Option<BedrockagentcoreGatewayTimeoutsEl>,
     dynamic: BedrockagentcoreGatewayDynamic,
 }
-
 struct BedrockagentcoreGateway_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreGatewayData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreGateway(Rc<BedrockagentcoreGateway_>);
-
 impl BedrockagentcoreGateway {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -95,7 +85,6 @@ impl BedrockagentcoreGateway {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -105,7 +94,6 @@ impl BedrockagentcoreGateway {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -115,37 +103,31 @@ impl BedrockagentcoreGateway {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exception_level`.\n"]
     pub fn set_exception_level(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().exception_level = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `authorizer_configuration`.\n"]
     pub fn set_authorizer_configuration(
         self,
@@ -161,7 +143,6 @@ impl BedrockagentcoreGateway {
         }
         self
     }
-
     #[doc = "Set the field `protocol_configuration`.\n"]
     pub fn set_protocol_configuration(
         self,
@@ -177,13 +158,11 @@ impl BedrockagentcoreGateway {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BedrockagentcoreGatewayTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +170,6 @@ impl BedrockagentcoreGateway {
             format!("{}.authorizer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +177,6 @@ impl BedrockagentcoreGateway {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `exception_level` after provisioning.\n"]
     pub fn exception_level(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -207,7 +184,6 @@ impl BedrockagentcoreGateway {
             format!("{}.exception_level", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,7 +191,6 @@ impl BedrockagentcoreGateway {
             format!("{}.gateway_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -223,7 +198,6 @@ impl BedrockagentcoreGateway {
             format!("{}.gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_url` after provisioning.\n"]
     pub fn gateway_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +205,6 @@ impl BedrockagentcoreGateway {
             format!("{}.gateway_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -239,7 +212,6 @@ impl BedrockagentcoreGateway {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,7 +219,6 @@ impl BedrockagentcoreGateway {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_type` after provisioning.\n"]
     pub fn protocol_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -255,7 +226,6 @@ impl BedrockagentcoreGateway {
             format!("{}.protocol_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +233,6 @@ impl BedrockagentcoreGateway {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,7 +240,6 @@ impl BedrockagentcoreGateway {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -279,7 +247,6 @@ impl BedrockagentcoreGateway {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -287,7 +254,6 @@ impl BedrockagentcoreGateway {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
     pub fn workload_identity_details(
         &self,
@@ -297,7 +263,6 @@ impl BedrockagentcoreGateway {
             format!("{}.workload_identity_details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
     pub fn authorizer_configuration(
         &self,
@@ -307,7 +272,6 @@ impl BedrockagentcoreGateway {
             format!("{}.authorizer_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
     pub fn protocol_configuration(
         &self,
@@ -317,7 +281,6 @@ impl BedrockagentcoreGateway {
             format!("{}.protocol_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreGatewayTimeoutsElRef {
         BedrockagentcoreGatewayTimeoutsElRef::new(
@@ -326,7 +289,6 @@ impl BedrockagentcoreGateway {
         )
     }
 }
-
 impl Referable for BedrockagentcoreGateway {
     fn extract_ref(&self) -> String {
         format!(
@@ -336,32 +298,25 @@ impl Referable for BedrockagentcoreGateway {
         )
     }
 }
-
 impl Resource for BedrockagentcoreGateway {}
-
 impl ToListMappable for BedrockagentcoreGateway {
     type O = ListRef<BedrockagentcoreGatewayRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreGateway_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_gateway".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreGateway {
     pub tf_id: String,
     #[doc = ""]
@@ -373,7 +328,6 @@ pub struct BuildBedrockagentcoreGateway {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreGateway {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreGateway {
         let out = BedrockagentcoreGateway(Rc::new(BedrockagentcoreGateway_ {
@@ -403,27 +357,22 @@ impl BuildBedrockagentcoreGateway {
         out
     }
 }
-
 pub struct BedrockagentcoreGatewayRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreGatewayRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `authorizer_type` after provisioning.\n"]
     pub fn authorizer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -431,7 +380,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.authorizer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -439,7 +387,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `exception_level` after provisioning.\n"]
     pub fn exception_level(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -447,7 +394,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.exception_level", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_arn` after provisioning.\n"]
     pub fn gateway_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -455,7 +401,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.gateway_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_id` after provisioning.\n"]
     pub fn gateway_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +408,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.gateway_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `gateway_url` after provisioning.\n"]
     pub fn gateway_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +415,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.gateway_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +422,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -487,7 +429,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_type` after provisioning.\n"]
     pub fn protocol_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -495,7 +436,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.protocol_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -503,7 +443,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -511,7 +450,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -519,7 +457,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -527,7 +464,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_details` after provisioning.\n"]
     pub fn workload_identity_details(
         &self,
@@ -537,7 +473,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.workload_identity_details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `authorizer_configuration` after provisioning.\n"]
     pub fn authorizer_configuration(
         &self,
@@ -547,7 +482,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.authorizer_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol_configuration` after provisioning.\n"]
     pub fn protocol_configuration(
         &self,
@@ -557,7 +491,6 @@ impl BedrockagentcoreGatewayRef {
             format!("{}.protocol_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreGatewayTimeoutsElRef {
         BedrockagentcoreGatewayTimeoutsElRef::new(
@@ -566,13 +499,11 @@ impl BedrockagentcoreGatewayRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     workload_identity_arn: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
     #[doc = "Set the field `workload_identity_arn`.\n"]
     pub fn set_workload_identity_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -580,10 +511,8 @@ impl BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
     type O = BlockAssignable<BedrockagentcoreGatewayWorkloadIdentityDetailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -592,9 +521,7 @@ impl ToListMappable for BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayWorkloadIdentityDetailsEl {}
-
 impl BuildBedrockagentcoreGatewayWorkloadIdentityDetailsEl {
     pub fn build(self) -> BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
         BedrockagentcoreGatewayWorkloadIdentityDetailsEl {
@@ -602,12 +529,10 @@ impl BuildBedrockagentcoreGatewayWorkloadIdentityDetailsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
     fn new(
         shared: StackShared,
@@ -619,12 +544,10 @@ impl Ref for BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
         }
     }
 }
-
 impl BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_arn` after provisioning.\n"]
     pub fn workload_identity_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -633,7 +556,6 @@ impl BedrockagentcoreGatewayWorkloadIdentityDetailsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -642,24 +564,20 @@ pub struct BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl
     allowed_clients: Option<SetField<PrimField<String>>>,
     discovery_url: PrimField<String>,
 }
-
 impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[doc = "Set the field `allowed_audience`.\n"]
     pub fn set_allowed_audience(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.allowed_audience = Some(v.into());
         self
     }
-
     #[doc = "Set the field `allowed_clients`.\n"]
     pub fn set_allowed_clients(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.allowed_clients = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
     type O = BlockAssignable<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -668,12 +586,10 @@ impl ToListMappable for BedrockagentcoreGatewayAuthorizerConfigurationElCustomJw
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
     #[doc = ""]
     pub discovery_url: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
     pub fn build(self) -> BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
         BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl {
@@ -683,12 +599,10 @@ impl BuildBedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl 
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     fn new(
         shared: StackShared,
@@ -700,12 +614,10 @@ impl Ref for BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizer
         }
     }
 }
-
 impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_audience` after provisioning.\n"]
     pub fn allowed_audience(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -713,7 +625,6 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
             format!("{}.allowed_audience", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_clients` after provisioning.\n"]
     pub fn allowed_clients(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -721,7 +632,6 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
             format!("{}.allowed_clients", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `discovery_url` after provisioning.\n"]
     pub fn discovery_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -730,13 +640,11 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayAuthorizerConfigurationElDynamic {
     custom_jwt_authorizer:
         Option<DynamicBlock<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayAuthorizerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -744,7 +652,6 @@ pub struct BedrockagentcoreGatewayAuthorizerConfigurationEl {
         Option<Vec<BedrockagentcoreGatewayAuthorizerConfigurationElCustomJwtAuthorizerEl>>,
     dynamic: BedrockagentcoreGatewayAuthorizerConfigurationElDynamic,
 }
-
 impl BedrockagentcoreGatewayAuthorizerConfigurationEl {
     #[doc = "Set the field `custom_jwt_authorizer`.\n"]
     pub fn set_custom_jwt_authorizer(
@@ -764,10 +671,8 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayAuthorizerConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreGatewayAuthorizerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -776,9 +681,7 @@ impl ToListMappable for BedrockagentcoreGatewayAuthorizerConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayAuthorizerConfigurationEl {}
-
 impl BuildBedrockagentcoreGatewayAuthorizerConfigurationEl {
     pub fn build(self) -> BedrockagentcoreGatewayAuthorizerConfigurationEl {
         BedrockagentcoreGatewayAuthorizerConfigurationEl {
@@ -787,12 +690,10 @@ impl BuildBedrockagentcoreGatewayAuthorizerConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayAuthorizerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayAuthorizerConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -804,12 +705,10 @@ impl Ref for BedrockagentcoreGatewayAuthorizerConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreGatewayAuthorizerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_jwt_authorizer` after provisioning.\n"]
     pub fn custom_jwt_authorizer(
         &self,
@@ -820,7 +719,6 @@ impl BedrockagentcoreGatewayAuthorizerConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -830,30 +728,25 @@ pub struct BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     supported_versions: Option<SetField<PrimField<String>>>,
 }
-
 impl BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
     #[doc = "Set the field `instructions`.\n"]
     pub fn set_instructions(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.instructions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `search_type`.\n"]
     pub fn set_search_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.search_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `supported_versions`.\n"]
     pub fn set_supported_versions(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.supported_versions = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
     type O = BlockAssignable<BedrockagentcoreGatewayProtocolConfigurationElMcpEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -862,9 +755,7 @@ impl ToListMappable for BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayProtocolConfigurationElMcpEl {}
-
 impl BuildBedrockagentcoreGatewayProtocolConfigurationElMcpEl {
     pub fn build(self) -> BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
         BedrockagentcoreGatewayProtocolConfigurationElMcpEl {
@@ -874,12 +765,10 @@ impl BuildBedrockagentcoreGatewayProtocolConfigurationElMcpEl {
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
     fn new(
         shared: StackShared,
@@ -891,22 +780,18 @@ impl Ref for BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
         }
     }
 }
-
 impl BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `instructions` after provisioning.\n"]
     pub fn instructions(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.instructions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `search_type` after provisioning.\n"]
     pub fn search_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.search_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `supported_versions` after provisioning.\n"]
     pub fn supported_versions(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -915,19 +800,16 @@ impl BedrockagentcoreGatewayProtocolConfigurationElMcpElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayProtocolConfigurationElDynamic {
     mcp: Option<DynamicBlock<BedrockagentcoreGatewayProtocolConfigurationElMcpEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayProtocolConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     mcp: Option<Vec<BedrockagentcoreGatewayProtocolConfigurationElMcpEl>>,
     dynamic: BedrockagentcoreGatewayProtocolConfigurationElDynamic,
 }
-
 impl BedrockagentcoreGatewayProtocolConfigurationEl {
     #[doc = "Set the field `mcp`.\n"]
     pub fn set_mcp(
@@ -945,10 +827,8 @@ impl BedrockagentcoreGatewayProtocolConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayProtocolConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreGatewayProtocolConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -957,9 +837,7 @@ impl ToListMappable for BedrockagentcoreGatewayProtocolConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayProtocolConfigurationEl {}
-
 impl BuildBedrockagentcoreGatewayProtocolConfigurationEl {
     pub fn build(self) -> BedrockagentcoreGatewayProtocolConfigurationEl {
         BedrockagentcoreGatewayProtocolConfigurationEl {
@@ -968,12 +846,10 @@ impl BuildBedrockagentcoreGatewayProtocolConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayProtocolConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayProtocolConfigurationElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayProtocolConfigurationElRef {
         BedrockagentcoreGatewayProtocolConfigurationElRef {
@@ -982,18 +858,15 @@ impl Ref for BedrockagentcoreGatewayProtocolConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreGatewayProtocolConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `mcp` after provisioning.\n"]
     pub fn mcp(&self) -> ListRef<BedrockagentcoreGatewayProtocolConfigurationElMcpElRef> {
         ListRef::new(self.shared().clone(), format!("{}.mcp", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreGatewayTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1003,30 +876,25 @@ pub struct BedrockagentcoreGatewayTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreGatewayTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreGatewayTimeoutsEl {
     type O = BlockAssignable<BedrockagentcoreGatewayTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1035,9 +903,7 @@ impl ToListMappable for BedrockagentcoreGatewayTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreGatewayTimeoutsEl {}
-
 impl BuildBedrockagentcoreGatewayTimeoutsEl {
     pub fn build(self) -> BedrockagentcoreGatewayTimeoutsEl {
         BedrockagentcoreGatewayTimeoutsEl {
@@ -1047,12 +913,10 @@ impl BuildBedrockagentcoreGatewayTimeoutsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreGatewayTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreGatewayTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreGatewayTimeoutsElRef {
         BedrockagentcoreGatewayTimeoutsElRef {
@@ -1061,28 +925,23 @@ impl Ref for BedrockagentcoreGatewayTimeoutsElRef {
         }
     }
 }
-
 impl BedrockagentcoreGatewayTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreGatewayDynamic {
     authorizer_configuration:

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VerifiedpermissionsPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct VerifiedpermissionsPolicyData {
     definition: Option<Vec<VerifiedpermissionsPolicyDefinitionEl>>,
     dynamic: VerifiedpermissionsPolicyDynamic,
 }
-
 struct VerifiedpermissionsPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VerifiedpermissionsPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct VerifiedpermissionsPolicy(Rc<VerifiedpermissionsPolicy_>);
-
 impl VerifiedpermissionsPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl VerifiedpermissionsPolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl VerifiedpermissionsPolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,13 +88,11 @@ impl VerifiedpermissionsPolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `definition`.\n"]
     pub fn set_definition(
         self,
@@ -122,7 +108,6 @@ impl VerifiedpermissionsPolicy {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,12 +115,10 @@ impl VerifiedpermissionsPolicy {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +126,6 @@ impl VerifiedpermissionsPolicy {
             format!("{}.policy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_store_id` after provisioning.\n"]
     pub fn policy_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +133,6 @@ impl VerifiedpermissionsPolicy {
             format!("{}.policy_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +140,6 @@ impl VerifiedpermissionsPolicy {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<VerifiedpermissionsPolicyDefinitionElRef> {
         ListRef::new(
@@ -168,7 +148,6 @@ impl VerifiedpermissionsPolicy {
         )
     }
 }
-
 impl Referable for VerifiedpermissionsPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -178,38 +157,30 @@ impl Referable for VerifiedpermissionsPolicy {
         )
     }
 }
-
 impl Resource for VerifiedpermissionsPolicy {}
-
 impl ToListMappable for VerifiedpermissionsPolicy {
     type O = ListRef<VerifiedpermissionsPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VerifiedpermissionsPolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_verifiedpermissions_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicy {
     pub tf_id: String,
     #[doc = ""]
     pub policy_store_id: PrimField<String>,
 }
-
 impl BuildVerifiedpermissionsPolicy {
     pub fn build(self, stack: &mut Stack) -> VerifiedpermissionsPolicy {
         let out = VerifiedpermissionsPolicy(Rc::new(VerifiedpermissionsPolicy_ {
@@ -230,27 +201,22 @@ impl BuildVerifiedpermissionsPolicy {
         out
     }
 }
-
 pub struct VerifiedpermissionsPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VerifiedpermissionsPolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,12 +224,10 @@ impl VerifiedpermissionsPolicyRef {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,7 +235,6 @@ impl VerifiedpermissionsPolicyRef {
             format!("{}.policy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_store_id` after provisioning.\n"]
     pub fn policy_store_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +242,6 @@ impl VerifiedpermissionsPolicyRef {
             format!("{}.policy_store_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -287,7 +249,6 @@ impl VerifiedpermissionsPolicyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<VerifiedpermissionsPolicyDefinitionElRef> {
         ListRef::new(
@@ -296,14 +257,12 @@ impl VerifiedpermissionsPolicyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct VerifiedpermissionsPolicyDefinitionElStaticEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     description: Option<PrimField<String>>,
     statement: PrimField<String>,
 }
-
 impl VerifiedpermissionsPolicyDefinitionElStaticEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -311,10 +270,8 @@ impl VerifiedpermissionsPolicyDefinitionElStaticEl {
         self
     }
 }
-
 impl ToListMappable for VerifiedpermissionsPolicyDefinitionElStaticEl {
     type O = BlockAssignable<VerifiedpermissionsPolicyDefinitionElStaticEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -323,12 +280,10 @@ impl ToListMappable for VerifiedpermissionsPolicyDefinitionElStaticEl {
         })
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicyDefinitionElStaticEl {
     #[doc = ""]
     pub statement: PrimField<String>,
 }
-
 impl BuildVerifiedpermissionsPolicyDefinitionElStaticEl {
     pub fn build(self) -> VerifiedpermissionsPolicyDefinitionElStaticEl {
         VerifiedpermissionsPolicyDefinitionElStaticEl {
@@ -337,12 +292,10 @@ impl BuildVerifiedpermissionsPolicyDefinitionElStaticEl {
         }
     }
 }
-
 pub struct VerifiedpermissionsPolicyDefinitionElStaticElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyDefinitionElStaticElRef {
     fn new(shared: StackShared, base: String) -> VerifiedpermissionsPolicyDefinitionElStaticElRef {
         VerifiedpermissionsPolicyDefinitionElStaticElRef {
@@ -351,34 +304,27 @@ impl Ref for VerifiedpermissionsPolicyDefinitionElStaticElRef {
         }
     }
 }
-
 impl VerifiedpermissionsPolicyDefinitionElStaticElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `statement` after provisioning.\n"]
     pub fn statement(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.statement", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
     entity_id: PrimField<String>,
     entity_type: PrimField<String>,
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {}
-
 impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
     type O = BlockAssignable<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -387,14 +333,12 @@ impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPri
         })
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
     #[doc = ""]
     pub entity_id: PrimField<String>,
     #[doc = ""]
     pub entity_type: PrimField<String>,
 }
-
 impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
     pub fn build(self) -> VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
         VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
@@ -403,12 +347,10 @@ impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl {
         }
     }
 }
-
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalElRef {
     fn new(
         shared: StackShared,
@@ -420,34 +362,27 @@ impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalElRef
         }
     }
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `entity_id` after provisioning.\n"]
     pub fn entity_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `entity_type` after provisioning.\n"]
     pub fn entity_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
     entity_id: PrimField<String>,
     entity_type: PrimField<String>,
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {}
-
 impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
     type O = BlockAssignable<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -456,14 +391,12 @@ impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRes
         })
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
     #[doc = ""]
     pub entity_id: PrimField<String>,
     #[doc = ""]
     pub entity_type: PrimField<String>,
 }
-
 impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
     pub fn build(self) -> VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
         VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
@@ -472,12 +405,10 @@ impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl {
         }
     }
 }
-
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceElRef {
     fn new(
         shared: StackShared,
@@ -489,30 +420,25 @@ impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceElRef 
         }
     }
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `entity_id` after provisioning.\n"]
     pub fn entity_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `entity_type` after provisioning.\n"]
     pub fn entity_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElDynamic {
     principal:
         Option<DynamicBlock<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalEl>>,
     resource: Option<DynamicBlock<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl>>,
 }
-
 #[derive(Serialize)]
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     policy_template_id: PrimField<String>,
@@ -522,7 +448,6 @@ pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     resource: Option<Vec<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElResourceEl>>,
     dynamic: VerifiedpermissionsPolicyDefinitionElTemplateLinkedElDynamic,
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     #[doc = "Set the field `principal`.\n"]
     pub fn set_principal(
@@ -539,7 +464,6 @@ impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
         }
         self
     }
-
     #[doc = "Set the field `resource`.\n"]
     pub fn set_resource(
         mut self,
@@ -556,10 +480,8 @@ impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
         self
     }
 }
-
 impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     type O = BlockAssignable<VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -568,12 +490,10 @@ impl ToListMappable for VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
         })
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     #[doc = ""]
     pub policy_template_id: PrimField<String>,
 }
-
 impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
     pub fn build(self) -> VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
         VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
@@ -584,12 +504,10 @@ impl BuildVerifiedpermissionsPolicyDefinitionElTemplateLinkedEl {
         }
     }
 }
-
 pub struct VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
     fn new(
         shared: StackShared,
@@ -601,12 +519,10 @@ impl Ref for VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
         }
     }
 }
-
 impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `policy_template_id` after provisioning.\n"]
     pub fn policy_template_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -614,14 +530,12 @@ impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
             format!("{}.policy_template_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `principal` after provisioning.\n"]
     pub fn principal(
         &self,
     ) -> ListRef<VerifiedpermissionsPolicyDefinitionElTemplateLinkedElPrincipalElRef> {
         ListRef::new(self.shared().clone(), format!("{}.principal", self.base))
     }
-
     #[doc = "Get a reference to the value of field `resource` after provisioning.\n"]
     pub fn resource(
         &self,
@@ -629,13 +543,11 @@ impl VerifiedpermissionsPolicyDefinitionElTemplateLinkedElRef {
         ListRef::new(self.shared().clone(), format!("{}.resource", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct VerifiedpermissionsPolicyDefinitionElDynamic {
     static_: Option<DynamicBlock<VerifiedpermissionsPolicyDefinitionElStaticEl>>,
     template_linked: Option<DynamicBlock<VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl>>,
 }
-
 #[derive(Serialize)]
 pub struct VerifiedpermissionsPolicyDefinitionEl {
     #[serde(rename = "static", skip_serializing_if = "Option::is_none")]
@@ -644,7 +556,6 @@ pub struct VerifiedpermissionsPolicyDefinitionEl {
     template_linked: Option<Vec<VerifiedpermissionsPolicyDefinitionElTemplateLinkedEl>>,
     dynamic: VerifiedpermissionsPolicyDefinitionElDynamic,
 }
-
 impl VerifiedpermissionsPolicyDefinitionEl {
     #[doc = "Set the field `static_`.\n"]
     pub fn set_static(
@@ -661,7 +572,6 @@ impl VerifiedpermissionsPolicyDefinitionEl {
         }
         self
     }
-
     #[doc = "Set the field `template_linked`.\n"]
     pub fn set_template_linked(
         mut self,
@@ -678,10 +588,8 @@ impl VerifiedpermissionsPolicyDefinitionEl {
         self
     }
 }
-
 impl ToListMappable for VerifiedpermissionsPolicyDefinitionEl {
     type O = BlockAssignable<VerifiedpermissionsPolicyDefinitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -690,9 +598,7 @@ impl ToListMappable for VerifiedpermissionsPolicyDefinitionEl {
         })
     }
 }
-
 pub struct BuildVerifiedpermissionsPolicyDefinitionEl {}
-
 impl BuildVerifiedpermissionsPolicyDefinitionEl {
     pub fn build(self) -> VerifiedpermissionsPolicyDefinitionEl {
         VerifiedpermissionsPolicyDefinitionEl {
@@ -702,12 +608,10 @@ impl BuildVerifiedpermissionsPolicyDefinitionEl {
         }
     }
 }
-
 pub struct VerifiedpermissionsPolicyDefinitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VerifiedpermissionsPolicyDefinitionElRef {
     fn new(shared: StackShared, base: String) -> VerifiedpermissionsPolicyDefinitionElRef {
         VerifiedpermissionsPolicyDefinitionElRef {
@@ -716,17 +620,14 @@ impl Ref for VerifiedpermissionsPolicyDefinitionElRef {
         }
     }
 }
-
 impl VerifiedpermissionsPolicyDefinitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `static_` after provisioning.\n"]
     pub fn static_(&self) -> ListRef<VerifiedpermissionsPolicyDefinitionElStaticElRef> {
         ListRef::new(self.shared().clone(), format!("{}.static", self.base))
     }
-
     #[doc = "Get a reference to the value of field `template_linked` after provisioning.\n"]
     pub fn template_linked(
         &self,
@@ -737,7 +638,6 @@ impl VerifiedpermissionsPolicyDefinitionElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct VerifiedpermissionsPolicyDynamic {
     definition: Option<DynamicBlock<VerifiedpermissionsPolicyDefinitionEl>>,

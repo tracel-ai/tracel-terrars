@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppfabricIngestionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct AppfabricIngestionData {
     tags: Option<RecField<PrimField<String>>>,
     tenant_id: PrimField<String>,
 }
-
 struct AppfabricIngestion_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppfabricIngestionData>,
 }
-
 #[derive(Clone)]
 pub struct AppfabricIngestion(Rc<AppfabricIngestion_>);
-
 impl AppfabricIngestion {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl AppfabricIngestion {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl AppfabricIngestion {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,24 +90,20 @@ impl AppfabricIngestion {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `app` after provisioning.\n"]
     pub fn app(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.app", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `app_bundle_arn` after provisioning.\n"]
     pub fn app_bundle_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -127,17 +111,14 @@ impl AppfabricIngestion {
             format!("{}.app_bundle_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ingestion_type` after provisioning.\n"]
     pub fn ingestion_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -145,7 +126,6 @@ impl AppfabricIngestion {
             format!("{}.ingestion_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +133,6 @@ impl AppfabricIngestion {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -161,7 +140,6 @@ impl AppfabricIngestion {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -169,7 +147,6 @@ impl AppfabricIngestion {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tenant_id` after provisioning.\n"]
     pub fn tenant_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -178,7 +155,6 @@ impl AppfabricIngestion {
         )
     }
 }
-
 impl Referable for AppfabricIngestion {
     fn extract_ref(&self) -> String {
         format!(
@@ -188,32 +164,25 @@ impl Referable for AppfabricIngestion {
         )
     }
 }
-
 impl Resource for AppfabricIngestion {}
-
 impl ToListMappable for AppfabricIngestion {
     type O = ListRef<AppfabricIngestionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppfabricIngestion_ {
     fn extract_resource_type(&self) -> String {
         "aws_appfabric_ingestion".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppfabricIngestion {
     pub tf_id: String,
     #[doc = ""]
@@ -225,7 +194,6 @@ pub struct BuildAppfabricIngestion {
     #[doc = ""]
     pub tenant_id: PrimField<String>,
 }
-
 impl BuildAppfabricIngestion {
     pub fn build(self, stack: &mut Stack) -> AppfabricIngestion {
         let out = AppfabricIngestion(Rc::new(AppfabricIngestion_ {
@@ -248,32 +216,26 @@ impl BuildAppfabricIngestion {
         out
     }
 }
-
 pub struct AppfabricIngestionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppfabricIngestionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppfabricIngestionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `app` after provisioning.\n"]
     pub fn app(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.app", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `app_bundle_arn` after provisioning.\n"]
     pub fn app_bundle_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,17 +243,14 @@ impl AppfabricIngestionRef {
             format!("{}.app_bundle_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ingestion_type` after provisioning.\n"]
     pub fn ingestion_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -299,7 +258,6 @@ impl AppfabricIngestionRef {
             format!("{}.ingestion_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +265,6 @@ impl AppfabricIngestionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -315,7 +272,6 @@ impl AppfabricIngestionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -323,7 +279,6 @@ impl AppfabricIngestionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tenant_id` after provisioning.\n"]
     pub fn tenant_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

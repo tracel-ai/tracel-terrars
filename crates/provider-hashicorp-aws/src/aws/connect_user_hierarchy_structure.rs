@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ConnectUserHierarchyStructureData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct ConnectUserHierarchyStructureData {
     hierarchy_structure: Option<Vec<ConnectUserHierarchyStructureHierarchyStructureEl>>,
     dynamic: ConnectUserHierarchyStructureDynamic,
 }
-
 struct ConnectUserHierarchyStructure_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ConnectUserHierarchyStructureData>,
 }
-
 #[derive(Clone)]
 pub struct ConnectUserHierarchyStructure(Rc<ConnectUserHierarchyStructure_>);
-
 impl ConnectUserHierarchyStructure {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl ConnectUserHierarchyStructure {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl ConnectUserHierarchyStructure {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,19 +90,16 @@ impl ConnectUserHierarchyStructure {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `hierarchy_structure`.\n"]
     pub fn set_hierarchy_structure(
         self,
@@ -130,12 +115,10 @@ impl ConnectUserHierarchyStructure {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +126,6 @@ impl ConnectUserHierarchyStructure {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +133,6 @@ impl ConnectUserHierarchyStructure {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hierarchy_structure` after provisioning.\n"]
     pub fn hierarchy_structure(
         &self,
@@ -162,7 +143,6 @@ impl ConnectUserHierarchyStructure {
         )
     }
 }
-
 impl Referable for ConnectUserHierarchyStructure {
     fn extract_ref(&self) -> String {
         format!(
@@ -172,38 +152,30 @@ impl Referable for ConnectUserHierarchyStructure {
         )
     }
 }
-
 impl Resource for ConnectUserHierarchyStructure {}
-
 impl ToListMappable for ConnectUserHierarchyStructure {
     type O = ListRef<ConnectUserHierarchyStructureRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ConnectUserHierarchyStructure_ {
     fn extract_resource_type(&self) -> String {
         "aws_connect_user_hierarchy_structure".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildConnectUserHierarchyStructure {
     pub tf_id: String,
     #[doc = ""]
     pub instance_id: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructure {
     pub fn build(self, stack: &mut Stack) -> ConnectUserHierarchyStructure {
         let out = ConnectUserHierarchyStructure(Rc::new(ConnectUserHierarchyStructure_ {
@@ -225,32 +197,26 @@ impl BuildConnectUserHierarchyStructure {
         out
     }
 }
-
 pub struct ConnectUserHierarchyStructureRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ConnectUserHierarchyStructureRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +224,6 @@ impl ConnectUserHierarchyStructureRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +231,6 @@ impl ConnectUserHierarchyStructureRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hierarchy_structure` after provisioning.\n"]
     pub fn hierarchy_structure(
         &self,
@@ -277,17 +241,13 @@ impl ConnectUserHierarchyStructureRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {
     name: PrimField<String>,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {}
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -296,23 +256,19 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelFi
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl {
         ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl { name: self.name }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
     fn new(
         shared: StackShared,
@@ -324,38 +280,30 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {
     name: PrimField<String>,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {}
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -364,23 +312,19 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelFo
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl {
         ConnectUserHierarchyStructureHierarchyStructureElLevelFourEl { name: self.name }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
     fn new(
         shared: StackShared,
@@ -392,38 +336,30 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {
     name: PrimField<String>,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {}
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -432,23 +368,19 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelOn
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl {
         ConnectUserHierarchyStructureHierarchyStructureElLevelOneEl { name: self.name }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
     fn new(
         shared: StackShared,
@@ -460,38 +392,30 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {
     name: PrimField<String>,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {}
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -500,23 +424,19 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelTh
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl {
         ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl { name: self.name }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef {
     fn new(
         shared: StackShared,
@@ -528,38 +448,30 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {
     name: PrimField<String>,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {}
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -568,23 +480,19 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureElLevelTw
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl {
         ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl { name: self.name }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
     fn new(
         shared: StackShared,
@@ -596,28 +504,23 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElLevelTwoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectUserHierarchyStructureHierarchyStructureElDynamic {
     level_five: Option<DynamicBlock<ConnectUserHierarchyStructureHierarchyStructureElLevelFiveEl>>,
@@ -627,7 +530,6 @@ struct ConnectUserHierarchyStructureHierarchyStructureElDynamic {
         Option<DynamicBlock<ConnectUserHierarchyStructureHierarchyStructureElLevelThreeEl>>,
     level_two: Option<DynamicBlock<ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserHierarchyStructureHierarchyStructureEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -642,7 +544,6 @@ pub struct ConnectUserHierarchyStructureHierarchyStructureEl {
     level_two: Option<Vec<ConnectUserHierarchyStructureHierarchyStructureElLevelTwoEl>>,
     dynamic: ConnectUserHierarchyStructureHierarchyStructureElDynamic,
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureEl {
     #[doc = "Set the field `level_five`.\n"]
     pub fn set_level_five(
@@ -659,7 +560,6 @@ impl ConnectUserHierarchyStructureHierarchyStructureEl {
         }
         self
     }
-
     #[doc = "Set the field `level_four`.\n"]
     pub fn set_level_four(
         mut self,
@@ -675,7 +575,6 @@ impl ConnectUserHierarchyStructureHierarchyStructureEl {
         }
         self
     }
-
     #[doc = "Set the field `level_one`.\n"]
     pub fn set_level_one(
         mut self,
@@ -691,7 +590,6 @@ impl ConnectUserHierarchyStructureHierarchyStructureEl {
         }
         self
     }
-
     #[doc = "Set the field `level_three`.\n"]
     pub fn set_level_three(
         mut self,
@@ -707,7 +605,6 @@ impl ConnectUserHierarchyStructureHierarchyStructureEl {
         }
         self
     }
-
     #[doc = "Set the field `level_two`.\n"]
     pub fn set_level_two(
         mut self,
@@ -724,10 +621,8 @@ impl ConnectUserHierarchyStructureHierarchyStructureEl {
         self
     }
 }
-
 impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureEl {
     type O = BlockAssignable<ConnectUserHierarchyStructureHierarchyStructureEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -736,9 +631,7 @@ impl ToListMappable for ConnectUserHierarchyStructureHierarchyStructureEl {
         })
     }
 }
-
 pub struct BuildConnectUserHierarchyStructureHierarchyStructureEl {}
-
 impl BuildConnectUserHierarchyStructureHierarchyStructureEl {
     pub fn build(self) -> ConnectUserHierarchyStructureHierarchyStructureEl {
         ConnectUserHierarchyStructureHierarchyStructureEl {
@@ -751,12 +644,10 @@ impl BuildConnectUserHierarchyStructureHierarchyStructureEl {
         }
     }
 }
-
 pub struct ConnectUserHierarchyStructureHierarchyStructureElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserHierarchyStructureHierarchyStructureElRef {
     fn new(
         shared: StackShared,
@@ -768,40 +659,34 @@ impl Ref for ConnectUserHierarchyStructureHierarchyStructureElRef {
         }
     }
 }
-
 impl ConnectUserHierarchyStructureHierarchyStructureElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `level_five` after provisioning.\n"]
     pub fn level_five(
         &self,
     ) -> ListRef<ConnectUserHierarchyStructureHierarchyStructureElLevelFiveElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_five", self.base))
     }
-
     #[doc = "Get a reference to the value of field `level_four` after provisioning.\n"]
     pub fn level_four(
         &self,
     ) -> ListRef<ConnectUserHierarchyStructureHierarchyStructureElLevelFourElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_four", self.base))
     }
-
     #[doc = "Get a reference to the value of field `level_one` after provisioning.\n"]
     pub fn level_one(
         &self,
     ) -> ListRef<ConnectUserHierarchyStructureHierarchyStructureElLevelOneElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_one", self.base))
     }
-
     #[doc = "Get a reference to the value of field `level_three` after provisioning.\n"]
     pub fn level_three(
         &self,
     ) -> ListRef<ConnectUserHierarchyStructureHierarchyStructureElLevelThreeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.level_three", self.base))
     }
-
     #[doc = "Get a reference to the value of field `level_two` after provisioning.\n"]
     pub fn level_two(
         &self,
@@ -809,7 +694,6 @@ impl ConnectUserHierarchyStructureHierarchyStructureElRef {
         ListRef::new(self.shared().clone(), format!("{}.level_two", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectUserHierarchyStructureDynamic {
     hierarchy_structure: Option<DynamicBlock<ConnectUserHierarchyStructureHierarchyStructureEl>>,

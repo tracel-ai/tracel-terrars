@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AutoscalingTrafficSourceAttachmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct AutoscalingTrafficSourceAttachmentData {
     traffic_source: Option<Vec<AutoscalingTrafficSourceAttachmentTrafficSourceEl>>,
     dynamic: AutoscalingTrafficSourceAttachmentDynamic,
 }
-
 struct AutoscalingTrafficSourceAttachment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AutoscalingTrafficSourceAttachmentData>,
 }
-
 #[derive(Clone)]
 pub struct AutoscalingTrafficSourceAttachment(Rc<AutoscalingTrafficSourceAttachment_>);
-
 impl AutoscalingTrafficSourceAttachment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl AutoscalingTrafficSourceAttachment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl AutoscalingTrafficSourceAttachment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,25 +92,21 @@ impl AutoscalingTrafficSourceAttachment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<AutoscalingTrafficSourceAttachmentTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `traffic_source`.\n"]
     pub fn set_traffic_source(
         self,
@@ -138,7 +122,6 @@ impl AutoscalingTrafficSourceAttachment {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,12 +129,10 @@ impl AutoscalingTrafficSourceAttachment {
             format!("{}.autoscaling_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +140,6 @@ impl AutoscalingTrafficSourceAttachment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AutoscalingTrafficSourceAttachmentTimeoutsElRef {
         AutoscalingTrafficSourceAttachmentTimeoutsElRef::new(
@@ -167,7 +147,6 @@ impl AutoscalingTrafficSourceAttachment {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `traffic_source` after provisioning.\n"]
     pub fn traffic_source(&self) -> ListRef<AutoscalingTrafficSourceAttachmentTrafficSourceElRef> {
         ListRef::new(
@@ -176,7 +155,6 @@ impl AutoscalingTrafficSourceAttachment {
         )
     }
 }
-
 impl Referable for AutoscalingTrafficSourceAttachment {
     fn extract_ref(&self) -> String {
         format!(
@@ -186,38 +164,30 @@ impl Referable for AutoscalingTrafficSourceAttachment {
         )
     }
 }
-
 impl Resource for AutoscalingTrafficSourceAttachment {}
-
 impl ToListMappable for AutoscalingTrafficSourceAttachment {
     type O = ListRef<AutoscalingTrafficSourceAttachmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AutoscalingTrafficSourceAttachment_ {
     fn extract_resource_type(&self) -> String {
         "aws_autoscaling_traffic_source_attachment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAutoscalingTrafficSourceAttachment {
     pub tf_id: String,
     #[doc = ""]
     pub autoscaling_group_name: PrimField<String>,
 }
-
 impl BuildAutoscalingTrafficSourceAttachment {
     pub fn build(self, stack: &mut Stack) -> AutoscalingTrafficSourceAttachment {
         let out =
@@ -241,27 +211,22 @@ impl BuildAutoscalingTrafficSourceAttachment {
         out
     }
 }
-
 pub struct AutoscalingTrafficSourceAttachmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AutoscalingTrafficSourceAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AutoscalingTrafficSourceAttachmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `autoscaling_group_name` after provisioning.\n"]
     pub fn autoscaling_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -269,12 +234,10 @@ impl AutoscalingTrafficSourceAttachmentRef {
             format!("{}.autoscaling_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,7 +245,6 @@ impl AutoscalingTrafficSourceAttachmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> AutoscalingTrafficSourceAttachmentTimeoutsElRef {
         AutoscalingTrafficSourceAttachmentTimeoutsElRef::new(
@@ -290,7 +252,6 @@ impl AutoscalingTrafficSourceAttachmentRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `traffic_source` after provisioning.\n"]
     pub fn traffic_source(&self) -> ListRef<AutoscalingTrafficSourceAttachmentTrafficSourceElRef> {
         ListRef::new(
@@ -299,7 +260,6 @@ impl AutoscalingTrafficSourceAttachmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AutoscalingTrafficSourceAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -307,24 +267,20 @@ pub struct AutoscalingTrafficSourceAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl AutoscalingTrafficSourceAttachmentTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AutoscalingTrafficSourceAttachmentTimeoutsEl {
     type O = BlockAssignable<AutoscalingTrafficSourceAttachmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -333,9 +289,7 @@ impl ToListMappable for AutoscalingTrafficSourceAttachmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildAutoscalingTrafficSourceAttachmentTimeoutsEl {}
-
 impl BuildAutoscalingTrafficSourceAttachmentTimeoutsEl {
     pub fn build(self) -> AutoscalingTrafficSourceAttachmentTimeoutsEl {
         AutoscalingTrafficSourceAttachmentTimeoutsEl {
@@ -344,12 +298,10 @@ impl BuildAutoscalingTrafficSourceAttachmentTimeoutsEl {
         }
     }
 }
-
 pub struct AutoscalingTrafficSourceAttachmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AutoscalingTrafficSourceAttachmentTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> AutoscalingTrafficSourceAttachmentTimeoutsElRef {
         AutoscalingTrafficSourceAttachmentTimeoutsElRef {
@@ -358,35 +310,28 @@ impl Ref for AutoscalingTrafficSourceAttachmentTimeoutsElRef {
         }
     }
 }
-
 impl AutoscalingTrafficSourceAttachmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AutoscalingTrafficSourceAttachmentTrafficSourceEl {
     identifier: PrimField<String>,
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl AutoscalingTrafficSourceAttachmentTrafficSourceEl {}
-
 impl ToListMappable for AutoscalingTrafficSourceAttachmentTrafficSourceEl {
     type O = BlockAssignable<AutoscalingTrafficSourceAttachmentTrafficSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -395,14 +340,12 @@ impl ToListMappable for AutoscalingTrafficSourceAttachmentTrafficSourceEl {
         })
     }
 }
-
 pub struct BuildAutoscalingTrafficSourceAttachmentTrafficSourceEl {
     #[doc = ""]
     pub identifier: PrimField<String>,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildAutoscalingTrafficSourceAttachmentTrafficSourceEl {
     pub fn build(self) -> AutoscalingTrafficSourceAttachmentTrafficSourceEl {
         AutoscalingTrafficSourceAttachmentTrafficSourceEl {
@@ -411,12 +354,10 @@ impl BuildAutoscalingTrafficSourceAttachmentTrafficSourceEl {
         }
     }
 }
-
 pub struct AutoscalingTrafficSourceAttachmentTrafficSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AutoscalingTrafficSourceAttachmentTrafficSourceElRef {
     fn new(
         shared: StackShared,
@@ -428,23 +369,19 @@ impl Ref for AutoscalingTrafficSourceAttachmentTrafficSourceElRef {
         }
     }
 }
-
 impl AutoscalingTrafficSourceAttachmentTrafficSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `identifier` after provisioning.\n"]
     pub fn identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.identifier", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AutoscalingTrafficSourceAttachmentDynamic {
     traffic_source: Option<DynamicBlock<AutoscalingTrafficSourceAttachmentTrafficSourceEl>>,

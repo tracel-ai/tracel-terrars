@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct InternetmonitorMonitorData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -38,47 +37,38 @@ struct InternetmonitorMonitorData {
         Option<Vec<InternetmonitorMonitorInternetMeasurementsLogDeliveryEl>>,
     dynamic: InternetmonitorMonitorDynamic,
 }
-
 struct InternetmonitorMonitor_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<InternetmonitorMonitorData>,
 }
-
 #[derive(Clone)]
 pub struct InternetmonitorMonitor(Rc<InternetmonitorMonitor_>);
-
 impl InternetmonitorMonitor {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -97,7 +87,6 @@ impl InternetmonitorMonitor {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -107,7 +96,6 @@ impl InternetmonitorMonitor {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -117,55 +105,46 @@ impl InternetmonitorMonitor {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_city_networks_to_monitor`.\n"]
     pub fn set_max_city_networks_to_monitor(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_city_networks_to_monitor = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resources`.\n"]
     pub fn set_resources(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().resources = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `traffic_percentage_to_monitor`.\n"]
     pub fn set_traffic_percentage_to_monitor(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().traffic_percentage_to_monitor = Some(v.into());
         self
     }
-
     #[doc = "Set the field `health_events_config`.\n"]
     pub fn set_health_events_config(
         self,
@@ -181,7 +160,6 @@ impl InternetmonitorMonitor {
         }
         self
     }
-
     #[doc = "Set the field `internet_measurements_log_delivery`.\n"]
     pub fn set_internet_measurements_log_delivery(
         self,
@@ -201,17 +179,14 @@ impl InternetmonitorMonitor {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_city_networks_to_monitor` after provisioning.\n"]
     pub fn max_city_networks_to_monitor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -219,7 +194,6 @@ impl InternetmonitorMonitor {
             format!("{}.max_city_networks_to_monitor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `monitor_name` after provisioning.\n"]
     pub fn monitor_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +201,6 @@ impl InternetmonitorMonitor {
             format!("{}.monitor_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +208,6 @@ impl InternetmonitorMonitor {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -243,7 +215,6 @@ impl InternetmonitorMonitor {
             format!("{}.resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -251,7 +222,6 @@ impl InternetmonitorMonitor {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -259,7 +229,6 @@ impl InternetmonitorMonitor {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -267,7 +236,6 @@ impl InternetmonitorMonitor {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `traffic_percentage_to_monitor` after provisioning.\n"]
     pub fn traffic_percentage_to_monitor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -275,7 +243,6 @@ impl InternetmonitorMonitor {
             format!("{}.traffic_percentage_to_monitor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `health_events_config` after provisioning.\n"]
     pub fn health_events_config(&self) -> ListRef<InternetmonitorMonitorHealthEventsConfigElRef> {
         ListRef::new(
@@ -283,7 +250,6 @@ impl InternetmonitorMonitor {
             format!("{}.health_events_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `internet_measurements_log_delivery` after provisioning.\n"]
     pub fn internet_measurements_log_delivery(
         &self,
@@ -294,7 +260,6 @@ impl InternetmonitorMonitor {
         )
     }
 }
-
 impl Referable for InternetmonitorMonitor {
     fn extract_ref(&self) -> String {
         format!(
@@ -304,38 +269,30 @@ impl Referable for InternetmonitorMonitor {
         )
     }
 }
-
 impl Resource for InternetmonitorMonitor {}
-
 impl ToListMappable for InternetmonitorMonitor {
     type O = ListRef<InternetmonitorMonitorRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for InternetmonitorMonitor_ {
     fn extract_resource_type(&self) -> String {
         "aws_internetmonitor_monitor".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildInternetmonitorMonitor {
     pub tf_id: String,
     #[doc = ""]
     pub monitor_name: PrimField<String>,
 }
-
 impl BuildInternetmonitorMonitor {
     pub fn build(self, stack: &mut Stack) -> InternetmonitorMonitor {
         let out = InternetmonitorMonitor(Rc::new(InternetmonitorMonitor_ {
@@ -364,37 +321,30 @@ impl BuildInternetmonitorMonitor {
         out
     }
 }
-
 pub struct InternetmonitorMonitorRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InternetmonitorMonitorRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl InternetmonitorMonitorRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_city_networks_to_monitor` after provisioning.\n"]
     pub fn max_city_networks_to_monitor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -402,7 +352,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.max_city_networks_to_monitor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `monitor_name` after provisioning.\n"]
     pub fn monitor_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +359,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.monitor_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -418,7 +366,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resources` after provisioning.\n"]
     pub fn resources(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -426,7 +373,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -434,7 +380,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -442,7 +387,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -450,7 +394,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `traffic_percentage_to_monitor` after provisioning.\n"]
     pub fn traffic_percentage_to_monitor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -458,7 +401,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.traffic_percentage_to_monitor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `health_events_config` after provisioning.\n"]
     pub fn health_events_config(&self) -> ListRef<InternetmonitorMonitorHealthEventsConfigElRef> {
         ListRef::new(
@@ -466,7 +408,6 @@ impl InternetmonitorMonitorRef {
             format!("{}.health_events_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `internet_measurements_log_delivery` after provisioning.\n"]
     pub fn internet_measurements_log_delivery(
         &self,
@@ -477,7 +418,6 @@ impl InternetmonitorMonitorRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct InternetmonitorMonitorHealthEventsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -485,24 +425,20 @@ pub struct InternetmonitorMonitorHealthEventsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     performance_score_threshold: Option<PrimField<f64>>,
 }
-
 impl InternetmonitorMonitorHealthEventsConfigEl {
     #[doc = "Set the field `availability_score_threshold`.\n"]
     pub fn set_availability_score_threshold(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.availability_score_threshold = Some(v.into());
         self
     }
-
     #[doc = "Set the field `performance_score_threshold`.\n"]
     pub fn set_performance_score_threshold(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.performance_score_threshold = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for InternetmonitorMonitorHealthEventsConfigEl {
     type O = BlockAssignable<InternetmonitorMonitorHealthEventsConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -511,9 +447,7 @@ impl ToListMappable for InternetmonitorMonitorHealthEventsConfigEl {
         })
     }
 }
-
 pub struct BuildInternetmonitorMonitorHealthEventsConfigEl {}
-
 impl BuildInternetmonitorMonitorHealthEventsConfigEl {
     pub fn build(self) -> InternetmonitorMonitorHealthEventsConfigEl {
         InternetmonitorMonitorHealthEventsConfigEl {
@@ -522,12 +456,10 @@ impl BuildInternetmonitorMonitorHealthEventsConfigEl {
         }
     }
 }
-
 pub struct InternetmonitorMonitorHealthEventsConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InternetmonitorMonitorHealthEventsConfigElRef {
     fn new(shared: StackShared, base: String) -> InternetmonitorMonitorHealthEventsConfigElRef {
         InternetmonitorMonitorHealthEventsConfigElRef {
@@ -536,12 +468,10 @@ impl Ref for InternetmonitorMonitorHealthEventsConfigElRef {
         }
     }
 }
-
 impl InternetmonitorMonitorHealthEventsConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_score_threshold` after provisioning.\n"]
     pub fn availability_score_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -549,7 +479,6 @@ impl InternetmonitorMonitorHealthEventsConfigElRef {
             format!("{}.availability_score_threshold", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `performance_score_threshold` after provisioning.\n"]
     pub fn performance_score_threshold(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -558,7 +487,6 @@ impl InternetmonitorMonitorHealthEventsConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     bucket_name: PrimField<String>,
@@ -567,24 +495,20 @@ pub struct InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_delivery_status: Option<PrimField<String>>,
 }
-
 impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_delivery_status`.\n"]
     pub fn set_log_delivery_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_delivery_status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     type O = BlockAssignable<InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -593,12 +517,10 @@ impl ToListMappable for InternetmonitorMonitorInternetMeasurementsLogDeliveryElS
         })
     }
 }
-
 pub struct BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
-
 impl BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
     pub fn build(self) -> InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
         InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
@@ -608,12 +530,10 @@ impl BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl {
         }
     }
 }
-
 pub struct InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRef {
     fn new(
         shared: StackShared,
@@ -625,17 +545,14 @@ impl Ref for InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRe
         }
     }
 }
-
 impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -643,7 +560,6 @@ impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRef {
             format!("{}.bucket_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_delivery_status` after provisioning.\n"]
     pub fn log_delivery_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -652,20 +568,17 @@ impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct InternetmonitorMonitorInternetMeasurementsLogDeliveryElDynamic {
     s3_config:
         Option<DynamicBlock<InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_config: Option<Vec<InternetmonitorMonitorInternetMeasurementsLogDeliveryElS3ConfigEl>>,
     dynamic: InternetmonitorMonitorInternetMeasurementsLogDeliveryElDynamic,
 }
-
 impl InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
     #[doc = "Set the field `s3_config`.\n"]
     pub fn set_s3_config(
@@ -683,10 +596,8 @@ impl InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
         self
     }
 }
-
 impl ToListMappable for InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
     type O = BlockAssignable<InternetmonitorMonitorInternetMeasurementsLogDeliveryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -695,9 +606,7 @@ impl ToListMappable for InternetmonitorMonitorInternetMeasurementsLogDeliveryEl 
         })
     }
 }
-
 pub struct BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryEl {}
-
 impl BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
     pub fn build(self) -> InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
         InternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
@@ -706,12 +615,10 @@ impl BuildInternetmonitorMonitorInternetMeasurementsLogDeliveryEl {
         }
     }
 }
-
 pub struct InternetmonitorMonitorInternetMeasurementsLogDeliveryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for InternetmonitorMonitorInternetMeasurementsLogDeliveryElRef {
     fn new(
         shared: StackShared,
@@ -723,12 +630,10 @@ impl Ref for InternetmonitorMonitorInternetMeasurementsLogDeliveryElRef {
         }
     }
 }
-
 impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_config` after provisioning.\n"]
     pub fn s3_config(
         &self,
@@ -736,7 +641,6 @@ impl InternetmonitorMonitorInternetMeasurementsLogDeliveryElRef {
         ListRef::new(self.shared().clone(), format!("{}.s3_config", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct InternetmonitorMonitorDynamic {
     health_events_config: Option<DynamicBlock<InternetmonitorMonitorHealthEventsConfigEl>>,

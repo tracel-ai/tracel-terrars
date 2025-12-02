@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct MwaaEnvironmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -72,47 +71,38 @@ struct MwaaEnvironmentData {
     timeouts: Option<MwaaEnvironmentTimeoutsEl>,
     dynamic: MwaaEnvironmentDynamic,
 }
-
 struct MwaaEnvironment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<MwaaEnvironmentData>,
 }
-
 #[derive(Clone)]
 pub struct MwaaEnvironment(Rc<MwaaEnvironment_>);
-
 impl MwaaEnvironment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -131,7 +121,6 @@ impl MwaaEnvironment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -141,7 +130,6 @@ impl MwaaEnvironment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -151,7 +139,6 @@ impl MwaaEnvironment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `airflow_configuration_options`.\n"]
     pub fn set_airflow_configuration_options(
         self,
@@ -160,139 +147,116 @@ impl MwaaEnvironment {
         self.0.data.borrow_mut().airflow_configuration_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `airflow_version`.\n"]
     pub fn set_airflow_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().airflow_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `endpoint_management`.\n"]
     pub fn set_endpoint_management(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().endpoint_management = Some(v.into());
         self
     }
-
     #[doc = "Set the field `environment_class`.\n"]
     pub fn set_environment_class(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().environment_class = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key`.\n"]
     pub fn set_kms_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_webservers`.\n"]
     pub fn set_max_webservers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_webservers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_workers`.\n"]
     pub fn set_max_workers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_workers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_webservers`.\n"]
     pub fn set_min_webservers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().min_webservers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_workers`.\n"]
     pub fn set_min_workers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().min_workers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `plugins_s3_object_version`.\n"]
     pub fn set_plugins_s3_object_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().plugins_s3_object_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `plugins_s3_path`.\n"]
     pub fn set_plugins_s3_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().plugins_s3_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `requirements_s3_object_version`.\n"]
     pub fn set_requirements_s3_object_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().requirements_s3_object_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `requirements_s3_path`.\n"]
     pub fn set_requirements_s3_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().requirements_s3_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedulers`.\n"]
     pub fn set_schedulers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().schedulers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `startup_script_s3_object_version`.\n"]
     pub fn set_startup_script_s3_object_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().startup_script_s3_object_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `startup_script_s3_path`.\n"]
     pub fn set_startup_script_s3_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().startup_script_s3_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `webserver_access_mode`.\n"]
     pub fn set_webserver_access_mode(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().webserver_access_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `weekly_maintenance_window_start`.\n"]
     pub fn set_weekly_maintenance_window_start(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().weekly_maintenance_window_start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `worker_replacement_strategy`.\n"]
     pub fn set_worker_replacement_strategy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().worker_replacement_strategy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `logging_configuration`.\n"]
     pub fn set_logging_configuration(
         self,
@@ -308,7 +272,6 @@ impl MwaaEnvironment {
         }
         self
     }
-
     #[doc = "Set the field `network_configuration`.\n"]
     pub fn set_network_configuration(
         self,
@@ -324,13 +287,11 @@ impl MwaaEnvironment {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<MwaaEnvironmentTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `airflow_configuration_options` after provisioning.\n"]
     pub fn airflow_configuration_options(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -338,7 +299,6 @@ impl MwaaEnvironment {
             format!("{}.airflow_configuration_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `airflow_version` after provisioning.\n"]
     pub fn airflow_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,12 +306,10 @@ impl MwaaEnvironment {
             format!("{}.airflow_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -359,7 +317,6 @@ impl MwaaEnvironment {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dag_s3_path` after provisioning.\n"]
     pub fn dag_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +324,6 @@ impl MwaaEnvironment {
             format!("{}.dag_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_vpc_endpoint_service` after provisioning.\n"]
     pub fn database_vpc_endpoint_service(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -375,7 +331,6 @@ impl MwaaEnvironment {
             format!("{}.database_vpc_endpoint_service", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_management` after provisioning.\n"]
     pub fn endpoint_management(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +338,6 @@ impl MwaaEnvironment {
             format!("{}.endpoint_management", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_class` after provisioning.\n"]
     pub fn environment_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +345,6 @@ impl MwaaEnvironment {
             format!("{}.environment_class", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,12 +352,10 @@ impl MwaaEnvironment {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key` after provisioning.\n"]
     pub fn kms_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -412,7 +363,6 @@ impl MwaaEnvironment {
             format!("{}.kms_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_updated` after provisioning.\n"]
     pub fn last_updated(&self) -> ListRef<MwaaEnvironmentLastUpdatedElRef> {
         ListRef::new(
@@ -420,7 +370,6 @@ impl MwaaEnvironment {
             format!("{}.last_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_webservers` after provisioning.\n"]
     pub fn max_webservers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -428,7 +377,6 @@ impl MwaaEnvironment {
             format!("{}.max_webservers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_workers` after provisioning.\n"]
     pub fn max_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -436,7 +384,6 @@ impl MwaaEnvironment {
             format!("{}.max_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_webservers` after provisioning.\n"]
     pub fn min_webservers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -444,7 +391,6 @@ impl MwaaEnvironment {
             format!("{}.min_webservers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_workers` after provisioning.\n"]
     pub fn min_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -452,7 +398,6 @@ impl MwaaEnvironment {
             format!("{}.min_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -460,7 +405,6 @@ impl MwaaEnvironment {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plugins_s3_object_version` after provisioning.\n"]
     pub fn plugins_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -468,7 +412,6 @@ impl MwaaEnvironment {
             format!("{}.plugins_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plugins_s3_path` after provisioning.\n"]
     pub fn plugins_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -476,7 +419,6 @@ impl MwaaEnvironment {
             format!("{}.plugins_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -484,7 +426,6 @@ impl MwaaEnvironment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requirements_s3_object_version` after provisioning.\n"]
     pub fn requirements_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -492,7 +433,6 @@ impl MwaaEnvironment {
             format!("{}.requirements_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requirements_s3_path` after provisioning.\n"]
     pub fn requirements_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -500,7 +440,6 @@ impl MwaaEnvironment {
             format!("{}.requirements_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedulers` after provisioning.\n"]
     pub fn schedulers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -508,7 +447,6 @@ impl MwaaEnvironment {
             format!("{}.schedulers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -516,7 +454,6 @@ impl MwaaEnvironment {
             format!("{}.service_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_bucket_arn` after provisioning.\n"]
     pub fn source_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -524,7 +461,6 @@ impl MwaaEnvironment {
             format!("{}.source_bucket_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `startup_script_s3_object_version` after provisioning.\n"]
     pub fn startup_script_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -532,7 +468,6 @@ impl MwaaEnvironment {
             format!("{}.startup_script_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `startup_script_s3_path` after provisioning.\n"]
     pub fn startup_script_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -540,7 +475,6 @@ impl MwaaEnvironment {
             format!("{}.startup_script_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -548,7 +482,6 @@ impl MwaaEnvironment {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -556,7 +489,6 @@ impl MwaaEnvironment {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -564,7 +496,6 @@ impl MwaaEnvironment {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_access_mode` after provisioning.\n"]
     pub fn webserver_access_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -572,7 +503,6 @@ impl MwaaEnvironment {
             format!("{}.webserver_access_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_url` after provisioning.\n"]
     pub fn webserver_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -580,7 +510,6 @@ impl MwaaEnvironment {
             format!("{}.webserver_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_vpc_endpoint_service` after provisioning.\n"]
     pub fn webserver_vpc_endpoint_service(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -588,7 +517,6 @@ impl MwaaEnvironment {
             format!("{}.webserver_vpc_endpoint_service", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `weekly_maintenance_window_start` after provisioning.\n"]
     pub fn weekly_maintenance_window_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -596,7 +524,6 @@ impl MwaaEnvironment {
             format!("{}.weekly_maintenance_window_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_replacement_strategy` after provisioning.\n"]
     pub fn worker_replacement_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -604,7 +531,6 @@ impl MwaaEnvironment {
             format!("{}.worker_replacement_strategy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<MwaaEnvironmentLoggingConfigurationElRef> {
         ListRef::new(
@@ -612,7 +538,6 @@ impl MwaaEnvironment {
             format!("{}.logging_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<MwaaEnvironmentNetworkConfigurationElRef> {
         ListRef::new(
@@ -620,7 +545,6 @@ impl MwaaEnvironment {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MwaaEnvironmentTimeoutsElRef {
         MwaaEnvironmentTimeoutsElRef::new(
@@ -629,7 +553,6 @@ impl MwaaEnvironment {
         )
     }
 }
-
 impl Referable for MwaaEnvironment {
     fn extract_ref(&self) -> String {
         format!(
@@ -639,32 +562,25 @@ impl Referable for MwaaEnvironment {
         )
     }
 }
-
 impl Resource for MwaaEnvironment {}
-
 impl ToListMappable for MwaaEnvironment {
     type O = ListRef<MwaaEnvironmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for MwaaEnvironment_ {
     fn extract_resource_type(&self) -> String {
         "aws_mwaa_environment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildMwaaEnvironment {
     pub tf_id: String,
     #[doc = ""]
@@ -676,7 +592,6 @@ pub struct BuildMwaaEnvironment {
     #[doc = ""]
     pub source_bucket_arn: PrimField<String>,
 }
-
 impl BuildMwaaEnvironment {
     pub fn build(self, stack: &mut Stack) -> MwaaEnvironment {
         let out = MwaaEnvironment(Rc::new(MwaaEnvironment_ {
@@ -724,27 +639,22 @@ impl BuildMwaaEnvironment {
         out
     }
 }
-
 pub struct MwaaEnvironmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl MwaaEnvironmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `airflow_configuration_options` after provisioning.\n"]
     pub fn airflow_configuration_options(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -752,7 +662,6 @@ impl MwaaEnvironmentRef {
             format!("{}.airflow_configuration_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `airflow_version` after provisioning.\n"]
     pub fn airflow_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -760,12 +669,10 @@ impl MwaaEnvironmentRef {
             format!("{}.airflow_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -773,7 +680,6 @@ impl MwaaEnvironmentRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dag_s3_path` after provisioning.\n"]
     pub fn dag_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -781,7 +687,6 @@ impl MwaaEnvironmentRef {
             format!("{}.dag_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_vpc_endpoint_service` after provisioning.\n"]
     pub fn database_vpc_endpoint_service(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -789,7 +694,6 @@ impl MwaaEnvironmentRef {
             format!("{}.database_vpc_endpoint_service", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_management` after provisioning.\n"]
     pub fn endpoint_management(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -797,7 +701,6 @@ impl MwaaEnvironmentRef {
             format!("{}.endpoint_management", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_class` after provisioning.\n"]
     pub fn environment_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -805,7 +708,6 @@ impl MwaaEnvironmentRef {
             format!("{}.environment_class", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -813,12 +715,10 @@ impl MwaaEnvironmentRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key` after provisioning.\n"]
     pub fn kms_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -826,7 +726,6 @@ impl MwaaEnvironmentRef {
             format!("{}.kms_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_updated` after provisioning.\n"]
     pub fn last_updated(&self) -> ListRef<MwaaEnvironmentLastUpdatedElRef> {
         ListRef::new(
@@ -834,7 +733,6 @@ impl MwaaEnvironmentRef {
             format!("{}.last_updated", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_webservers` after provisioning.\n"]
     pub fn max_webservers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -842,7 +740,6 @@ impl MwaaEnvironmentRef {
             format!("{}.max_webservers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_workers` after provisioning.\n"]
     pub fn max_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -850,7 +747,6 @@ impl MwaaEnvironmentRef {
             format!("{}.max_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_webservers` after provisioning.\n"]
     pub fn min_webservers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -858,7 +754,6 @@ impl MwaaEnvironmentRef {
             format!("{}.min_webservers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_workers` after provisioning.\n"]
     pub fn min_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -866,7 +761,6 @@ impl MwaaEnvironmentRef {
             format!("{}.min_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -874,7 +768,6 @@ impl MwaaEnvironmentRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plugins_s3_object_version` after provisioning.\n"]
     pub fn plugins_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -882,7 +775,6 @@ impl MwaaEnvironmentRef {
             format!("{}.plugins_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `plugins_s3_path` after provisioning.\n"]
     pub fn plugins_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -890,7 +782,6 @@ impl MwaaEnvironmentRef {
             format!("{}.plugins_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -898,7 +789,6 @@ impl MwaaEnvironmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requirements_s3_object_version` after provisioning.\n"]
     pub fn requirements_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -906,7 +796,6 @@ impl MwaaEnvironmentRef {
             format!("{}.requirements_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requirements_s3_path` after provisioning.\n"]
     pub fn requirements_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -914,7 +803,6 @@ impl MwaaEnvironmentRef {
             format!("{}.requirements_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedulers` after provisioning.\n"]
     pub fn schedulers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -922,7 +810,6 @@ impl MwaaEnvironmentRef {
             format!("{}.schedulers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -930,7 +817,6 @@ impl MwaaEnvironmentRef {
             format!("{}.service_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_bucket_arn` after provisioning.\n"]
     pub fn source_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -938,7 +824,6 @@ impl MwaaEnvironmentRef {
             format!("{}.source_bucket_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `startup_script_s3_object_version` after provisioning.\n"]
     pub fn startup_script_s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -946,7 +831,6 @@ impl MwaaEnvironmentRef {
             format!("{}.startup_script_s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `startup_script_s3_path` after provisioning.\n"]
     pub fn startup_script_s3_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -954,7 +838,6 @@ impl MwaaEnvironmentRef {
             format!("{}.startup_script_s3_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -962,7 +845,6 @@ impl MwaaEnvironmentRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -970,7 +852,6 @@ impl MwaaEnvironmentRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -978,7 +859,6 @@ impl MwaaEnvironmentRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_access_mode` after provisioning.\n"]
     pub fn webserver_access_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -986,7 +866,6 @@ impl MwaaEnvironmentRef {
             format!("{}.webserver_access_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_url` after provisioning.\n"]
     pub fn webserver_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -994,7 +873,6 @@ impl MwaaEnvironmentRef {
             format!("{}.webserver_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `webserver_vpc_endpoint_service` after provisioning.\n"]
     pub fn webserver_vpc_endpoint_service(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1002,7 +880,6 @@ impl MwaaEnvironmentRef {
             format!("{}.webserver_vpc_endpoint_service", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `weekly_maintenance_window_start` after provisioning.\n"]
     pub fn weekly_maintenance_window_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1010,7 +887,6 @@ impl MwaaEnvironmentRef {
             format!("{}.weekly_maintenance_window_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_replacement_strategy` after provisioning.\n"]
     pub fn worker_replacement_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1018,7 +894,6 @@ impl MwaaEnvironmentRef {
             format!("{}.worker_replacement_strategy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<MwaaEnvironmentLoggingConfigurationElRef> {
         ListRef::new(
@@ -1026,7 +901,6 @@ impl MwaaEnvironmentRef {
             format!("{}.logging_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_configuration` after provisioning.\n"]
     pub fn network_configuration(&self) -> ListRef<MwaaEnvironmentNetworkConfigurationElRef> {
         ListRef::new(
@@ -1034,7 +908,6 @@ impl MwaaEnvironmentRef {
             format!("{}.network_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> MwaaEnvironmentTimeoutsElRef {
         MwaaEnvironmentTimeoutsElRef::new(
@@ -1043,7 +916,6 @@ impl MwaaEnvironmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLastUpdatedElErrorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1051,24 +923,20 @@ pub struct MwaaEnvironmentLastUpdatedElErrorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     error_message: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLastUpdatedElErrorEl {
     #[doc = "Set the field `error_code`.\n"]
     pub fn set_error_code(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.error_code = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_message`.\n"]
     pub fn set_error_message(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.error_message = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLastUpdatedElErrorEl {
     type O = BlockAssignable<MwaaEnvironmentLastUpdatedElErrorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1077,9 +945,7 @@ impl ToListMappable for MwaaEnvironmentLastUpdatedElErrorEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLastUpdatedElErrorEl {}
-
 impl BuildMwaaEnvironmentLastUpdatedElErrorEl {
     pub fn build(self) -> MwaaEnvironmentLastUpdatedElErrorEl {
         MwaaEnvironmentLastUpdatedElErrorEl {
@@ -1088,12 +954,10 @@ impl BuildMwaaEnvironmentLastUpdatedElErrorEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLastUpdatedElErrorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLastUpdatedElErrorElRef {
     fn new(shared: StackShared, base: String) -> MwaaEnvironmentLastUpdatedElErrorElRef {
         MwaaEnvironmentLastUpdatedElErrorElRef {
@@ -1102,17 +966,14 @@ impl Ref for MwaaEnvironmentLastUpdatedElErrorElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLastUpdatedElErrorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `error_code` after provisioning.\n"]
     pub fn error_code(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.error_code", self.base))
     }
-
     #[doc = "Get a reference to the value of field `error_message` after provisioning.\n"]
     pub fn error_message(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1121,7 +982,6 @@ impl MwaaEnvironmentLastUpdatedElErrorElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLastUpdatedEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1131,14 +991,12 @@ pub struct MwaaEnvironmentLastUpdatedEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLastUpdatedEl {
     #[doc = "Set the field `created_at`.\n"]
     pub fn set_created_at(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.created_at = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error`.\n"]
     pub fn set_error(
         mut self,
@@ -1147,17 +1005,14 @@ impl MwaaEnvironmentLastUpdatedEl {
         self.error = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLastUpdatedEl {
     type O = BlockAssignable<MwaaEnvironmentLastUpdatedEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1166,9 +1021,7 @@ impl ToListMappable for MwaaEnvironmentLastUpdatedEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLastUpdatedEl {}
-
 impl BuildMwaaEnvironmentLastUpdatedEl {
     pub fn build(self) -> MwaaEnvironmentLastUpdatedEl {
         MwaaEnvironmentLastUpdatedEl {
@@ -1178,12 +1031,10 @@ impl BuildMwaaEnvironmentLastUpdatedEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLastUpdatedElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLastUpdatedElRef {
     fn new(shared: StackShared, base: String) -> MwaaEnvironmentLastUpdatedElRef {
         MwaaEnvironmentLastUpdatedElRef {
@@ -1192,28 +1043,23 @@ impl Ref for MwaaEnvironmentLastUpdatedElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLastUpdatedElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.created_at", self.base))
     }
-
     #[doc = "Get a reference to the value of field `error` after provisioning.\n"]
     pub fn error(&self) -> ListRef<MwaaEnvironmentLastUpdatedElErrorElRef> {
         ListRef::new(self.shared().clone(), format!("{}.error", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1221,24 +1067,20 @@ pub struct MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1247,9 +1089,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
         MwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
@@ -1258,12 +1098,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationElDagProcessingLogsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElDagProcessingLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElDagProcessingLogsElRef {
     fn new(
         shared: StackShared,
@@ -1275,12 +1113,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElDagProcessingLogsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElDagProcessingLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_arn` after provisioning.\n"]
     pub fn cloud_watch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1288,18 +1124,15 @@ impl MwaaEnvironmentLoggingConfigurationElDagProcessingLogsElRef {
             format!("{}.cloud_watch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1307,24 +1140,20 @@ pub struct MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1333,9 +1162,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
         MwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
@@ -1344,12 +1171,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationElSchedulerLogsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElSchedulerLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElSchedulerLogsElRef {
     fn new(
         shared: StackShared,
@@ -1361,12 +1186,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElSchedulerLogsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElSchedulerLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_arn` after provisioning.\n"]
     pub fn cloud_watch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1374,18 +1197,15 @@ impl MwaaEnvironmentLoggingConfigurationElSchedulerLogsElRef {
             format!("{}.cloud_watch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1393,24 +1213,20 @@ pub struct MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationElTaskLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1419,9 +1235,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationElTaskLogsEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationElTaskLogsEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
         MwaaEnvironmentLoggingConfigurationElTaskLogsEl {
@@ -1430,12 +1244,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationElTaskLogsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElTaskLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElTaskLogsElRef {
     fn new(
         shared: StackShared,
@@ -1447,12 +1259,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElTaskLogsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElTaskLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_arn` after provisioning.\n"]
     pub fn cloud_watch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1460,18 +1270,15 @@ impl MwaaEnvironmentLoggingConfigurationElTaskLogsElRef {
             format!("{}.cloud_watch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1479,24 +1286,20 @@ pub struct MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationElWebserverLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1505,9 +1308,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationElWebserverLogsEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
         MwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
@@ -1516,12 +1317,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationElWebserverLogsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElWebserverLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElWebserverLogsElRef {
     fn new(
         shared: StackShared,
@@ -1533,12 +1332,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElWebserverLogsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElWebserverLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_arn` after provisioning.\n"]
     pub fn cloud_watch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1546,18 +1343,15 @@ impl MwaaEnvironmentLoggingConfigurationElWebserverLogsElRef {
             format!("{}.cloud_watch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1565,24 +1359,20 @@ pub struct MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     log_level: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationElWorkerLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1591,9 +1381,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationElWorkerLogsEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
         MwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
@@ -1602,12 +1390,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationElWorkerLogsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef {
     fn new(
         shared: StackShared,
@@ -1619,12 +1405,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloud_watch_log_group_arn` after provisioning.\n"]
     pub fn cloud_watch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1632,18 +1416,15 @@ impl MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef {
             format!("{}.cloud_watch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct MwaaEnvironmentLoggingConfigurationElDynamic {
     dag_processing_logs:
@@ -1653,7 +1434,6 @@ struct MwaaEnvironmentLoggingConfigurationElDynamic {
     webserver_logs: Option<DynamicBlock<MwaaEnvironmentLoggingConfigurationElWebserverLogsEl>>,
     worker_logs: Option<DynamicBlock<MwaaEnvironmentLoggingConfigurationElWorkerLogsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentLoggingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1668,7 +1448,6 @@ pub struct MwaaEnvironmentLoggingConfigurationEl {
     worker_logs: Option<Vec<MwaaEnvironmentLoggingConfigurationElWorkerLogsEl>>,
     dynamic: MwaaEnvironmentLoggingConfigurationElDynamic,
 }
-
 impl MwaaEnvironmentLoggingConfigurationEl {
     #[doc = "Set the field `dag_processing_logs`.\n"]
     pub fn set_dag_processing_logs(
@@ -1685,7 +1464,6 @@ impl MwaaEnvironmentLoggingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `scheduler_logs`.\n"]
     pub fn set_scheduler_logs(
         mut self,
@@ -1701,7 +1479,6 @@ impl MwaaEnvironmentLoggingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `task_logs`.\n"]
     pub fn set_task_logs(
         mut self,
@@ -1717,7 +1494,6 @@ impl MwaaEnvironmentLoggingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `webserver_logs`.\n"]
     pub fn set_webserver_logs(
         mut self,
@@ -1733,7 +1509,6 @@ impl MwaaEnvironmentLoggingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `worker_logs`.\n"]
     pub fn set_worker_logs(
         mut self,
@@ -1750,10 +1525,8 @@ impl MwaaEnvironmentLoggingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentLoggingConfigurationEl {
     type O = BlockAssignable<MwaaEnvironmentLoggingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1762,9 +1535,7 @@ impl ToListMappable for MwaaEnvironmentLoggingConfigurationEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentLoggingConfigurationEl {}
-
 impl BuildMwaaEnvironmentLoggingConfigurationEl {
     pub fn build(self) -> MwaaEnvironmentLoggingConfigurationEl {
         MwaaEnvironmentLoggingConfigurationEl {
@@ -1777,12 +1548,10 @@ impl BuildMwaaEnvironmentLoggingConfigurationEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentLoggingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentLoggingConfigurationElRef {
     fn new(shared: StackShared, base: String) -> MwaaEnvironmentLoggingConfigurationElRef {
         MwaaEnvironmentLoggingConfigurationElRef {
@@ -1791,12 +1560,10 @@ impl Ref for MwaaEnvironmentLoggingConfigurationElRef {
         }
     }
 }
-
 impl MwaaEnvironmentLoggingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dag_processing_logs` after provisioning.\n"]
     pub fn dag_processing_logs(
         &self,
@@ -1806,7 +1573,6 @@ impl MwaaEnvironmentLoggingConfigurationElRef {
             format!("{}.dag_processing_logs", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `scheduler_logs` after provisioning.\n"]
     pub fn scheduler_logs(
         &self,
@@ -1816,12 +1582,10 @@ impl MwaaEnvironmentLoggingConfigurationElRef {
             format!("{}.scheduler_logs", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_logs` after provisioning.\n"]
     pub fn task_logs(&self) -> ListRef<MwaaEnvironmentLoggingConfigurationElTaskLogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.task_logs", self.base))
     }
-
     #[doc = "Get a reference to the value of field `webserver_logs` after provisioning.\n"]
     pub fn webserver_logs(
         &self,
@@ -1831,24 +1595,19 @@ impl MwaaEnvironmentLoggingConfigurationElRef {
             format!("{}.webserver_logs", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_logs` after provisioning.\n"]
     pub fn worker_logs(&self) -> ListRef<MwaaEnvironmentLoggingConfigurationElWorkerLogsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.worker_logs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentNetworkConfigurationEl {
     security_group_ids: SetField<PrimField<String>>,
     subnet_ids: SetField<PrimField<String>>,
 }
-
 impl MwaaEnvironmentNetworkConfigurationEl {}
-
 impl ToListMappable for MwaaEnvironmentNetworkConfigurationEl {
     type O = BlockAssignable<MwaaEnvironmentNetworkConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1857,14 +1616,12 @@ impl ToListMappable for MwaaEnvironmentNetworkConfigurationEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentNetworkConfigurationEl {
     #[doc = ""]
     pub security_group_ids: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildMwaaEnvironmentNetworkConfigurationEl {
     pub fn build(self) -> MwaaEnvironmentNetworkConfigurationEl {
         MwaaEnvironmentNetworkConfigurationEl {
@@ -1873,12 +1630,10 @@ impl BuildMwaaEnvironmentNetworkConfigurationEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentNetworkConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentNetworkConfigurationElRef {
     fn new(shared: StackShared, base: String) -> MwaaEnvironmentNetworkConfigurationElRef {
         MwaaEnvironmentNetworkConfigurationElRef {
@@ -1887,12 +1642,10 @@ impl Ref for MwaaEnvironmentNetworkConfigurationElRef {
         }
     }
 }
-
 impl MwaaEnvironmentNetworkConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1900,13 +1653,11 @@ impl MwaaEnvironmentNetworkConfigurationElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct MwaaEnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1916,30 +1667,25 @@ pub struct MwaaEnvironmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl MwaaEnvironmentTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for MwaaEnvironmentTimeoutsEl {
     type O = BlockAssignable<MwaaEnvironmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1948,9 +1694,7 @@ impl ToListMappable for MwaaEnvironmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildMwaaEnvironmentTimeoutsEl {}
-
 impl BuildMwaaEnvironmentTimeoutsEl {
     pub fn build(self) -> MwaaEnvironmentTimeoutsEl {
         MwaaEnvironmentTimeoutsEl {
@@ -1960,12 +1704,10 @@ impl BuildMwaaEnvironmentTimeoutsEl {
         }
     }
 }
-
 pub struct MwaaEnvironmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for MwaaEnvironmentTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> MwaaEnvironmentTimeoutsElRef {
         MwaaEnvironmentTimeoutsElRef {
@@ -1974,28 +1716,23 @@ impl Ref for MwaaEnvironmentTimeoutsElRef {
         }
     }
 }
-
 impl MwaaEnvironmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct MwaaEnvironmentDynamic {
     logging_configuration: Option<DynamicBlock<MwaaEnvironmentLoggingConfigurationEl>>,

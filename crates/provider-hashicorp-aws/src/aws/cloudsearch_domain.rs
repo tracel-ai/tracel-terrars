@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudsearchDomainData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct CloudsearchDomainData {
     timeouts: Option<CloudsearchDomainTimeoutsEl>,
     dynamic: CloudsearchDomainDynamic,
 }
-
 struct CloudsearchDomain_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudsearchDomainData>,
 }
-
 #[derive(Clone)]
 pub struct CloudsearchDomain(Rc<CloudsearchDomain_>);
-
 impl CloudsearchDomain {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl CloudsearchDomain {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl CloudsearchDomain {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl CloudsearchDomain {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `multi_az`.\n"]
     pub fn set_multi_az(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().multi_az = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `endpoint_options`.\n"]
     pub fn set_endpoint_options(
         self,
@@ -144,7 +128,6 @@ impl CloudsearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `index_field`.\n"]
     pub fn set_index_field(
         self,
@@ -160,7 +143,6 @@ impl CloudsearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `scaling_parameters`.\n"]
     pub fn set_scaling_parameters(
         self,
@@ -176,18 +158,15 @@ impl CloudsearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<CloudsearchDomainTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `document_service_endpoint` after provisioning.\n"]
     pub fn document_service_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -195,7 +174,6 @@ impl CloudsearchDomain {
             format!("{}.document_service_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -203,12 +181,10 @@ impl CloudsearchDomain {
             format!("{}.domain_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `multi_az` after provisioning.\n"]
     pub fn multi_az(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -216,7 +192,6 @@ impl CloudsearchDomain {
             format!("{}.multi_az", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -224,7 +199,6 @@ impl CloudsearchDomain {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +206,6 @@ impl CloudsearchDomain {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `search_service_endpoint` after provisioning.\n"]
     pub fn search_service_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +213,6 @@ impl CloudsearchDomain {
             format!("{}.search_service_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_options` after provisioning.\n"]
     pub fn endpoint_options(&self) -> ListRef<CloudsearchDomainEndpointOptionsElRef> {
         ListRef::new(
@@ -248,7 +220,6 @@ impl CloudsearchDomain {
             format!("{}.endpoint_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scaling_parameters` after provisioning.\n"]
     pub fn scaling_parameters(&self) -> ListRef<CloudsearchDomainScalingParametersElRef> {
         ListRef::new(
@@ -256,7 +227,6 @@ impl CloudsearchDomain {
             format!("{}.scaling_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudsearchDomainTimeoutsElRef {
         CloudsearchDomainTimeoutsElRef::new(
@@ -265,7 +235,6 @@ impl CloudsearchDomain {
         )
     }
 }
-
 impl Referable for CloudsearchDomain {
     fn extract_ref(&self) -> String {
         format!(
@@ -275,38 +244,30 @@ impl Referable for CloudsearchDomain {
         )
     }
 }
-
 impl Resource for CloudsearchDomain {}
-
 impl ToListMappable for CloudsearchDomain {
     type O = ListRef<CloudsearchDomainRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudsearchDomain_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudsearch_domain".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudsearchDomain {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCloudsearchDomain {
     pub fn build(self, stack: &mut Stack) -> CloudsearchDomain {
         let out = CloudsearchDomain(Rc::new(CloudsearchDomain_ {
@@ -332,32 +293,26 @@ impl BuildCloudsearchDomain {
         out
     }
 }
-
 pub struct CloudsearchDomainRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudsearchDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudsearchDomainRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `document_service_endpoint` after provisioning.\n"]
     pub fn document_service_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -365,7 +320,6 @@ impl CloudsearchDomainRef {
             format!("{}.document_service_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,12 +327,10 @@ impl CloudsearchDomainRef {
             format!("{}.domain_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `multi_az` after provisioning.\n"]
     pub fn multi_az(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -386,7 +338,6 @@ impl CloudsearchDomainRef {
             format!("{}.multi_az", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +345,6 @@ impl CloudsearchDomainRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +352,6 @@ impl CloudsearchDomainRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `search_service_endpoint` after provisioning.\n"]
     pub fn search_service_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +359,6 @@ impl CloudsearchDomainRef {
             format!("{}.search_service_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_options` after provisioning.\n"]
     pub fn endpoint_options(&self) -> ListRef<CloudsearchDomainEndpointOptionsElRef> {
         ListRef::new(
@@ -418,7 +366,6 @@ impl CloudsearchDomainRef {
             format!("{}.endpoint_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scaling_parameters` after provisioning.\n"]
     pub fn scaling_parameters(&self) -> ListRef<CloudsearchDomainScalingParametersElRef> {
         ListRef::new(
@@ -426,7 +373,6 @@ impl CloudsearchDomainRef {
             format!("{}.scaling_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> CloudsearchDomainTimeoutsElRef {
         CloudsearchDomainTimeoutsElRef::new(
@@ -435,7 +381,6 @@ impl CloudsearchDomainRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudsearchDomainEndpointOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -443,24 +388,20 @@ pub struct CloudsearchDomainEndpointOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tls_security_policy: Option<PrimField<String>>,
 }
-
 impl CloudsearchDomainEndpointOptionsEl {
     #[doc = "Set the field `enforce_https`.\n"]
     pub fn set_enforce_https(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enforce_https = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tls_security_policy`.\n"]
     pub fn set_tls_security_policy(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.tls_security_policy = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudsearchDomainEndpointOptionsEl {
     type O = BlockAssignable<CloudsearchDomainEndpointOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -469,9 +410,7 @@ impl ToListMappable for CloudsearchDomainEndpointOptionsEl {
         })
     }
 }
-
 pub struct BuildCloudsearchDomainEndpointOptionsEl {}
-
 impl BuildCloudsearchDomainEndpointOptionsEl {
     pub fn build(self) -> CloudsearchDomainEndpointOptionsEl {
         CloudsearchDomainEndpointOptionsEl {
@@ -480,12 +419,10 @@ impl BuildCloudsearchDomainEndpointOptionsEl {
         }
     }
 }
-
 pub struct CloudsearchDomainEndpointOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudsearchDomainEndpointOptionsElRef {
     fn new(shared: StackShared, base: String) -> CloudsearchDomainEndpointOptionsElRef {
         CloudsearchDomainEndpointOptionsElRef {
@@ -494,12 +431,10 @@ impl Ref for CloudsearchDomainEndpointOptionsElRef {
         }
     }
 }
-
 impl CloudsearchDomainEndpointOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enforce_https` after provisioning.\n"]
     pub fn enforce_https(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -507,7 +442,6 @@ impl CloudsearchDomainEndpointOptionsElRef {
             format!("{}.enforce_https", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tls_security_policy` after provisioning.\n"]
     pub fn tls_security_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -516,7 +450,6 @@ impl CloudsearchDomainEndpointOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudsearchDomainIndexFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -539,60 +472,50 @@ pub struct CloudsearchDomainIndexFieldEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl CloudsearchDomainIndexFieldEl {
     #[doc = "Set the field `analysis_scheme`.\n"]
     pub fn set_analysis_scheme(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.analysis_scheme = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_value`.\n"]
     pub fn set_default_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.default_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `facet`.\n"]
     pub fn set_facet(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.facet = Some(v.into());
         self
     }
-
     #[doc = "Set the field `highlight`.\n"]
     pub fn set_highlight(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.highlight = Some(v.into());
         self
     }
-
     #[doc = "Set the field `return_`.\n"]
     pub fn set_return(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.return_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `search`.\n"]
     pub fn set_search(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.search = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sort`.\n"]
     pub fn set_sort(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.sort = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_fields`.\n"]
     pub fn set_source_fields(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.source_fields = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudsearchDomainIndexFieldEl {
     type O = BlockAssignable<CloudsearchDomainIndexFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -601,14 +524,12 @@ impl ToListMappable for CloudsearchDomainIndexFieldEl {
         })
     }
 }
-
 pub struct BuildCloudsearchDomainIndexFieldEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildCloudsearchDomainIndexFieldEl {
     pub fn build(self) -> CloudsearchDomainIndexFieldEl {
         CloudsearchDomainIndexFieldEl {
@@ -625,12 +546,10 @@ impl BuildCloudsearchDomainIndexFieldEl {
         }
     }
 }
-
 pub struct CloudsearchDomainIndexFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudsearchDomainIndexFieldElRef {
     fn new(shared: StackShared, base: String) -> CloudsearchDomainIndexFieldElRef {
         CloudsearchDomainIndexFieldElRef {
@@ -639,12 +558,10 @@ impl Ref for CloudsearchDomainIndexFieldElRef {
         }
     }
 }
-
 impl CloudsearchDomainIndexFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `analysis_scheme` after provisioning.\n"]
     pub fn analysis_scheme(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -652,7 +569,6 @@ impl CloudsearchDomainIndexFieldElRef {
             format!("{}.analysis_scheme", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -660,37 +576,30 @@ impl CloudsearchDomainIndexFieldElRef {
             format!("{}.default_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `facet` after provisioning.\n"]
     pub fn facet(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.facet", self.base))
     }
-
     #[doc = "Get a reference to the value of field `highlight` after provisioning.\n"]
     pub fn highlight(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.highlight", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `return_` after provisioning.\n"]
     pub fn return_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.return", self.base))
     }
-
     #[doc = "Get a reference to the value of field `search` after provisioning.\n"]
     pub fn search(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.search", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sort` after provisioning.\n"]
     pub fn sort(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.sort", self.base))
     }
-
     #[doc = "Get a reference to the value of field `source_fields` after provisioning.\n"]
     pub fn source_fields(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -698,13 +607,11 @@ impl CloudsearchDomainIndexFieldElRef {
             format!("{}.source_fields", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudsearchDomainScalingParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -714,30 +621,25 @@ pub struct CloudsearchDomainScalingParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     desired_replication_count: Option<PrimField<f64>>,
 }
-
 impl CloudsearchDomainScalingParametersEl {
     #[doc = "Set the field `desired_instance_type`.\n"]
     pub fn set_desired_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.desired_instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `desired_partition_count`.\n"]
     pub fn set_desired_partition_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.desired_partition_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `desired_replication_count`.\n"]
     pub fn set_desired_replication_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.desired_replication_count = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudsearchDomainScalingParametersEl {
     type O = BlockAssignable<CloudsearchDomainScalingParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -746,9 +648,7 @@ impl ToListMappable for CloudsearchDomainScalingParametersEl {
         })
     }
 }
-
 pub struct BuildCloudsearchDomainScalingParametersEl {}
-
 impl BuildCloudsearchDomainScalingParametersEl {
     pub fn build(self) -> CloudsearchDomainScalingParametersEl {
         CloudsearchDomainScalingParametersEl {
@@ -758,12 +658,10 @@ impl BuildCloudsearchDomainScalingParametersEl {
         }
     }
 }
-
 pub struct CloudsearchDomainScalingParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudsearchDomainScalingParametersElRef {
     fn new(shared: StackShared, base: String) -> CloudsearchDomainScalingParametersElRef {
         CloudsearchDomainScalingParametersElRef {
@@ -772,12 +670,10 @@ impl Ref for CloudsearchDomainScalingParametersElRef {
         }
     }
 }
-
 impl CloudsearchDomainScalingParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `desired_instance_type` after provisioning.\n"]
     pub fn desired_instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -785,7 +681,6 @@ impl CloudsearchDomainScalingParametersElRef {
             format!("{}.desired_instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_partition_count` after provisioning.\n"]
     pub fn desired_partition_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -793,7 +688,6 @@ impl CloudsearchDomainScalingParametersElRef {
             format!("{}.desired_partition_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `desired_replication_count` after provisioning.\n"]
     pub fn desired_replication_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -802,7 +696,6 @@ impl CloudsearchDomainScalingParametersElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudsearchDomainTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -812,30 +705,25 @@ pub struct CloudsearchDomainTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl CloudsearchDomainTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudsearchDomainTimeoutsEl {
     type O = BlockAssignable<CloudsearchDomainTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -844,9 +732,7 @@ impl ToListMappable for CloudsearchDomainTimeoutsEl {
         })
     }
 }
-
 pub struct BuildCloudsearchDomainTimeoutsEl {}
-
 impl BuildCloudsearchDomainTimeoutsEl {
     pub fn build(self) -> CloudsearchDomainTimeoutsEl {
         CloudsearchDomainTimeoutsEl {
@@ -856,12 +742,10 @@ impl BuildCloudsearchDomainTimeoutsEl {
         }
     }
 }
-
 pub struct CloudsearchDomainTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudsearchDomainTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> CloudsearchDomainTimeoutsElRef {
         CloudsearchDomainTimeoutsElRef {
@@ -870,28 +754,23 @@ impl Ref for CloudsearchDomainTimeoutsElRef {
         }
     }
 }
-
 impl CloudsearchDomainTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudsearchDomainDynamic {
     endpoint_options: Option<DynamicBlock<CloudsearchDomainEndpointOptionsEl>>,

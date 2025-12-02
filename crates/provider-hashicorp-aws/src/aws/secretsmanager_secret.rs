@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SecretsmanagerSecretData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -40,47 +39,38 @@ struct SecretsmanagerSecretData {
     replica: Option<Vec<SecretsmanagerSecretReplicaEl>>,
     dynamic: SecretsmanagerSecretDynamic,
 }
-
 struct SecretsmanagerSecret_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SecretsmanagerSecretData>,
 }
-
 #[derive(Clone)]
 pub struct SecretsmanagerSecret(Rc<SecretsmanagerSecret_>);
-
 impl SecretsmanagerSecret {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -99,7 +89,6 @@ impl SecretsmanagerSecret {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -109,7 +98,6 @@ impl SecretsmanagerSecret {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -119,73 +107,61 @@ impl SecretsmanagerSecret {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `force_overwrite_replica_secret`.\n"]
     pub fn set_force_overwrite_replica_secret(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().force_overwrite_replica_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy`.\n"]
     pub fn set_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recovery_window_in_days`.\n"]
     pub fn set_recovery_window_in_days(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().recovery_window_in_days = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replica`.\n"]
     pub fn set_replica(self, v: impl Into<BlockAssignable<SecretsmanagerSecretReplicaEl>>) -> Self {
         match v.into() {
@@ -198,12 +174,10 @@ impl SecretsmanagerSecret {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +185,6 @@ impl SecretsmanagerSecret {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_overwrite_replica_secret` after provisioning.\n"]
     pub fn force_overwrite_replica_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -219,12 +192,10 @@ impl SecretsmanagerSecret {
             format!("{}.force_overwrite_replica_secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +203,6 @@ impl SecretsmanagerSecret {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +210,6 @@ impl SecretsmanagerSecret {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +217,6 @@ impl SecretsmanagerSecret {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +224,6 @@ impl SecretsmanagerSecret {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recovery_window_in_days` after provisioning.\n"]
     pub fn recovery_window_in_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -264,7 +231,6 @@ impl SecretsmanagerSecret {
             format!("{}.recovery_window_in_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +238,6 @@ impl SecretsmanagerSecret {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -280,7 +245,6 @@ impl SecretsmanagerSecret {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -289,7 +253,6 @@ impl SecretsmanagerSecret {
         )
     }
 }
-
 impl Referable for SecretsmanagerSecret {
     fn extract_ref(&self) -> String {
         format!(
@@ -299,36 +262,28 @@ impl Referable for SecretsmanagerSecret {
         )
     }
 }
-
 impl Resource for SecretsmanagerSecret {}
-
 impl ToListMappable for SecretsmanagerSecret {
     type O = ListRef<SecretsmanagerSecretRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SecretsmanagerSecret_ {
     fn extract_resource_type(&self) -> String {
         "aws_secretsmanager_secret".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSecretsmanagerSecret {
     pub tf_id: String,
 }
-
 impl BuildSecretsmanagerSecret {
     pub fn build(self, stack: &mut Stack) -> SecretsmanagerSecret {
         let out = SecretsmanagerSecret(Rc::new(SecretsmanagerSecret_ {
@@ -358,32 +313,26 @@ impl BuildSecretsmanagerSecret {
         out
     }
 }
-
 pub struct SecretsmanagerSecretRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecretsmanagerSecretRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SecretsmanagerSecretRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +340,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_overwrite_replica_secret` after provisioning.\n"]
     pub fn force_overwrite_replica_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -399,12 +347,10 @@ impl SecretsmanagerSecretRef {
             format!("{}.force_overwrite_replica_secret", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -412,7 +358,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -420,7 +365,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -428,7 +372,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -436,7 +379,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recovery_window_in_days` after provisioning.\n"]
     pub fn recovery_window_in_days(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -444,7 +386,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.recovery_window_in_days", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -452,7 +393,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -460,7 +400,6 @@ impl SecretsmanagerSecretRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -469,14 +408,12 @@ impl SecretsmanagerSecretRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecretsmanagerSecretReplicaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_id: Option<PrimField<String>>,
     region: PrimField<String>,
 }
-
 impl SecretsmanagerSecretReplicaEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -484,10 +421,8 @@ impl SecretsmanagerSecretReplicaEl {
         self
     }
 }
-
 impl ToListMappable for SecretsmanagerSecretReplicaEl {
     type O = BlockAssignable<SecretsmanagerSecretReplicaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -496,12 +431,10 @@ impl ToListMappable for SecretsmanagerSecretReplicaEl {
         })
     }
 }
-
 pub struct BuildSecretsmanagerSecretReplicaEl {
     #[doc = ""]
     pub region: PrimField<String>,
 }
-
 impl BuildSecretsmanagerSecretReplicaEl {
     pub fn build(self) -> SecretsmanagerSecretReplicaEl {
         SecretsmanagerSecretReplicaEl {
@@ -510,12 +443,10 @@ impl BuildSecretsmanagerSecretReplicaEl {
         }
     }
 }
-
 pub struct SecretsmanagerSecretReplicaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecretsmanagerSecretReplicaElRef {
     fn new(shared: StackShared, base: String) -> SecretsmanagerSecretReplicaElRef {
         SecretsmanagerSecretReplicaElRef {
@@ -524,17 +455,14 @@ impl Ref for SecretsmanagerSecretReplicaElRef {
         }
     }
 }
-
 impl SecretsmanagerSecretReplicaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `last_accessed_date` after provisioning.\n"]
     pub fn last_accessed_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -542,17 +470,14 @@ impl SecretsmanagerSecretReplicaElRef {
             format!("{}.last_accessed_date", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status_message` after provisioning.\n"]
     pub fn status_message(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -561,7 +486,6 @@ impl SecretsmanagerSecretReplicaElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecretsmanagerSecretDynamic {
     replica: Option<DynamicBlock<SecretsmanagerSecretReplicaEl>>,

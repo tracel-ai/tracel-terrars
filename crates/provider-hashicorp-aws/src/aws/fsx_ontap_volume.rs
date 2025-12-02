@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct FsxOntapVolumeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -60,47 +59,38 @@ struct FsxOntapVolumeData {
     timeouts: Option<FsxOntapVolumeTimeoutsEl>,
     dynamic: FsxOntapVolumeDynamic,
 }
-
 struct FsxOntapVolume_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<FsxOntapVolumeData>,
 }
-
 #[derive(Clone)]
 pub struct FsxOntapVolume(Rc<FsxOntapVolume_>);
-
 impl FsxOntapVolume {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -119,7 +109,6 @@ impl FsxOntapVolume {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -129,7 +118,6 @@ impl FsxOntapVolume {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -139,7 +127,6 @@ impl FsxOntapVolume {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `bypass_snaplock_enterprise_retention`.\n"]
     pub fn set_bypass_snaplock_enterprise_retention(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0
@@ -148,103 +135,86 @@ impl FsxOntapVolume {
             .bypass_snaplock_enterprise_retention = Some(v.into());
         self
     }
-
     #[doc = "Set the field `copy_tags_to_backups`.\n"]
     pub fn set_copy_tags_to_backups(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().copy_tags_to_backups = Some(v.into());
         self
     }
-
     #[doc = "Set the field `final_backup_tags`.\n"]
     pub fn set_final_backup_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().final_backup_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `junction_path`.\n"]
     pub fn set_junction_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().junction_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ontap_volume_type`.\n"]
     pub fn set_ontap_volume_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ontap_volume_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_style`.\n"]
     pub fn set_security_style(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().security_style = Some(v.into());
         self
     }
-
     #[doc = "Set the field `size_in_bytes`.\n"]
     pub fn set_size_in_bytes(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().size_in_bytes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `size_in_megabytes`.\n"]
     pub fn set_size_in_megabytes(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().size_in_megabytes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `skip_final_backup`.\n"]
     pub fn set_skip_final_backup(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().skip_final_backup = Some(v.into());
         self
     }
-
     #[doc = "Set the field `snapshot_policy`.\n"]
     pub fn set_snapshot_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().snapshot_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `storage_efficiency_enabled`.\n"]
     pub fn set_storage_efficiency_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().storage_efficiency_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_style`.\n"]
     pub fn set_volume_style(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().volume_style = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_type`.\n"]
     pub fn set_volume_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().volume_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `aggregate_configuration`.\n"]
     pub fn set_aggregate_configuration(
         self,
@@ -260,7 +230,6 @@ impl FsxOntapVolume {
         }
         self
     }
-
     #[doc = "Set the field `snaplock_configuration`.\n"]
     pub fn set_snaplock_configuration(
         self,
@@ -276,7 +245,6 @@ impl FsxOntapVolume {
         }
         self
     }
-
     #[doc = "Set the field `tiering_policy`.\n"]
     pub fn set_tiering_policy(
         self,
@@ -292,18 +260,15 @@ impl FsxOntapVolume {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<FsxOntapVolumeTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bypass_snaplock_enterprise_retention` after provisioning.\n"]
     pub fn bypass_snaplock_enterprise_retention(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -314,7 +279,6 @@ impl FsxOntapVolume {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `copy_tags_to_backups` after provisioning.\n"]
     pub fn copy_tags_to_backups(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -322,7 +286,6 @@ impl FsxOntapVolume {
             format!("{}.copy_tags_to_backups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +293,6 @@ impl FsxOntapVolume {
             format!("{}.file_system_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `final_backup_tags` after provisioning.\n"]
     pub fn final_backup_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -338,7 +300,6 @@ impl FsxOntapVolume {
             format!("{}.final_backup_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `flexcache_endpoint_type` after provisioning.\n"]
     pub fn flexcache_endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,12 +307,10 @@ impl FsxOntapVolume {
             format!("{}.flexcache_endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `junction_path` after provisioning.\n"]
     pub fn junction_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -359,7 +318,6 @@ impl FsxOntapVolume {
             format!("{}.junction_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +325,6 @@ impl FsxOntapVolume {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ontap_volume_type` after provisioning.\n"]
     pub fn ontap_volume_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -375,7 +332,6 @@ impl FsxOntapVolume {
             format!("{}.ontap_volume_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +339,6 @@ impl FsxOntapVolume {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_style` after provisioning.\n"]
     pub fn security_style(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +346,6 @@ impl FsxOntapVolume {
             format!("{}.security_style", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `size_in_bytes` after provisioning.\n"]
     pub fn size_in_bytes(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +353,6 @@ impl FsxOntapVolume {
             format!("{}.size_in_bytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `size_in_megabytes` after provisioning.\n"]
     pub fn size_in_megabytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -407,7 +360,6 @@ impl FsxOntapVolume {
             format!("{}.size_in_megabytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_final_backup` after provisioning.\n"]
     pub fn skip_final_backup(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -415,7 +367,6 @@ impl FsxOntapVolume {
             format!("{}.skip_final_backup", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_policy` after provisioning.\n"]
     pub fn snapshot_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -423,7 +374,6 @@ impl FsxOntapVolume {
             format!("{}.snapshot_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_efficiency_enabled` after provisioning.\n"]
     pub fn storage_efficiency_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -431,7 +381,6 @@ impl FsxOntapVolume {
             format!("{}.storage_efficiency_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_virtual_machine_id` after provisioning.\n"]
     pub fn storage_virtual_machine_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -439,7 +388,6 @@ impl FsxOntapVolume {
             format!("{}.storage_virtual_machine_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -447,7 +395,6 @@ impl FsxOntapVolume {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -455,7 +402,6 @@ impl FsxOntapVolume {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +409,6 @@ impl FsxOntapVolume {
             format!("{}.uuid", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_style` after provisioning.\n"]
     pub fn volume_style(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +416,6 @@ impl FsxOntapVolume {
             format!("{}.volume_style", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
     pub fn volume_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +423,6 @@ impl FsxOntapVolume {
             format!("{}.volume_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aggregate_configuration` after provisioning.\n"]
     pub fn aggregate_configuration(&self) -> ListRef<FsxOntapVolumeAggregateConfigurationElRef> {
         ListRef::new(
@@ -487,7 +430,6 @@ impl FsxOntapVolume {
             format!("{}.aggregate_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snaplock_configuration` after provisioning.\n"]
     pub fn snaplock_configuration(&self) -> ListRef<FsxOntapVolumeSnaplockConfigurationElRef> {
         ListRef::new(
@@ -495,7 +437,6 @@ impl FsxOntapVolume {
             format!("{}.snaplock_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tiering_policy` after provisioning.\n"]
     pub fn tiering_policy(&self) -> ListRef<FsxOntapVolumeTieringPolicyElRef> {
         ListRef::new(
@@ -503,7 +444,6 @@ impl FsxOntapVolume {
             format!("{}.tiering_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FsxOntapVolumeTimeoutsElRef {
         FsxOntapVolumeTimeoutsElRef::new(
@@ -512,7 +452,6 @@ impl FsxOntapVolume {
         )
     }
 }
-
 impl Referable for FsxOntapVolume {
     fn extract_ref(&self) -> String {
         format!(
@@ -522,32 +461,25 @@ impl Referable for FsxOntapVolume {
         )
     }
 }
-
 impl Resource for FsxOntapVolume {}
-
 impl ToListMappable for FsxOntapVolume {
     type O = ListRef<FsxOntapVolumeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for FsxOntapVolume_ {
     fn extract_resource_type(&self) -> String {
         "aws_fsx_ontap_volume".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildFsxOntapVolume {
     pub tf_id: String,
     #[doc = ""]
@@ -555,7 +487,6 @@ pub struct BuildFsxOntapVolume {
     #[doc = ""]
     pub storage_virtual_machine_id: PrimField<String>,
 }
-
 impl BuildFsxOntapVolume {
     pub fn build(self, stack: &mut Stack) -> FsxOntapVolume {
         let out = FsxOntapVolume(Rc::new(FsxOntapVolume_ {
@@ -596,32 +527,26 @@ impl BuildFsxOntapVolume {
         out
     }
 }
-
 pub struct FsxOntapVolumeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl FsxOntapVolumeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `bypass_snaplock_enterprise_retention` after provisioning.\n"]
     pub fn bypass_snaplock_enterprise_retention(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -632,7 +557,6 @@ impl FsxOntapVolumeRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `copy_tags_to_backups` after provisioning.\n"]
     pub fn copy_tags_to_backups(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -640,7 +564,6 @@ impl FsxOntapVolumeRef {
             format!("{}.copy_tags_to_backups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -648,7 +571,6 @@ impl FsxOntapVolumeRef {
             format!("{}.file_system_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `final_backup_tags` after provisioning.\n"]
     pub fn final_backup_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -656,7 +578,6 @@ impl FsxOntapVolumeRef {
             format!("{}.final_backup_tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `flexcache_endpoint_type` after provisioning.\n"]
     pub fn flexcache_endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -664,12 +585,10 @@ impl FsxOntapVolumeRef {
             format!("{}.flexcache_endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `junction_path` after provisioning.\n"]
     pub fn junction_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -677,7 +596,6 @@ impl FsxOntapVolumeRef {
             format!("{}.junction_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -685,7 +603,6 @@ impl FsxOntapVolumeRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ontap_volume_type` after provisioning.\n"]
     pub fn ontap_volume_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -693,7 +610,6 @@ impl FsxOntapVolumeRef {
             format!("{}.ontap_volume_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -701,7 +617,6 @@ impl FsxOntapVolumeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_style` after provisioning.\n"]
     pub fn security_style(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -709,7 +624,6 @@ impl FsxOntapVolumeRef {
             format!("{}.security_style", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `size_in_bytes` after provisioning.\n"]
     pub fn size_in_bytes(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -717,7 +631,6 @@ impl FsxOntapVolumeRef {
             format!("{}.size_in_bytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `size_in_megabytes` after provisioning.\n"]
     pub fn size_in_megabytes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -725,7 +638,6 @@ impl FsxOntapVolumeRef {
             format!("{}.size_in_megabytes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_final_backup` after provisioning.\n"]
     pub fn skip_final_backup(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -733,7 +645,6 @@ impl FsxOntapVolumeRef {
             format!("{}.skip_final_backup", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_policy` after provisioning.\n"]
     pub fn snapshot_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -741,7 +652,6 @@ impl FsxOntapVolumeRef {
             format!("{}.snapshot_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_efficiency_enabled` after provisioning.\n"]
     pub fn storage_efficiency_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -749,7 +659,6 @@ impl FsxOntapVolumeRef {
             format!("{}.storage_efficiency_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_virtual_machine_id` after provisioning.\n"]
     pub fn storage_virtual_machine_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -757,7 +666,6 @@ impl FsxOntapVolumeRef {
             format!("{}.storage_virtual_machine_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -765,7 +673,6 @@ impl FsxOntapVolumeRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -773,7 +680,6 @@ impl FsxOntapVolumeRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uuid` after provisioning.\n"]
     pub fn uuid(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -781,7 +687,6 @@ impl FsxOntapVolumeRef {
             format!("{}.uuid", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_style` after provisioning.\n"]
     pub fn volume_style(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -789,7 +694,6 @@ impl FsxOntapVolumeRef {
             format!("{}.volume_style", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
     pub fn volume_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -797,7 +701,6 @@ impl FsxOntapVolumeRef {
             format!("{}.volume_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aggregate_configuration` after provisioning.\n"]
     pub fn aggregate_configuration(&self) -> ListRef<FsxOntapVolumeAggregateConfigurationElRef> {
         ListRef::new(
@@ -805,7 +708,6 @@ impl FsxOntapVolumeRef {
             format!("{}.aggregate_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snaplock_configuration` after provisioning.\n"]
     pub fn snaplock_configuration(&self) -> ListRef<FsxOntapVolumeSnaplockConfigurationElRef> {
         ListRef::new(
@@ -813,7 +715,6 @@ impl FsxOntapVolumeRef {
             format!("{}.snaplock_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tiering_policy` after provisioning.\n"]
     pub fn tiering_policy(&self) -> ListRef<FsxOntapVolumeTieringPolicyElRef> {
         ListRef::new(
@@ -821,7 +722,6 @@ impl FsxOntapVolumeRef {
             format!("{}.tiering_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FsxOntapVolumeTimeoutsElRef {
         FsxOntapVolumeTimeoutsElRef::new(
@@ -830,7 +730,6 @@ impl FsxOntapVolumeRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeAggregateConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -838,24 +737,20 @@ pub struct FsxOntapVolumeAggregateConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     constituents_per_aggregate: Option<PrimField<f64>>,
 }
-
 impl FsxOntapVolumeAggregateConfigurationEl {
     #[doc = "Set the field `aggregates`.\n"]
     pub fn set_aggregates(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.aggregates = Some(v.into());
         self
     }
-
     #[doc = "Set the field `constituents_per_aggregate`.\n"]
     pub fn set_constituents_per_aggregate(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.constituents_per_aggregate = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeAggregateConfigurationEl {
     type O = BlockAssignable<FsxOntapVolumeAggregateConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -864,9 +759,7 @@ impl ToListMappable for FsxOntapVolumeAggregateConfigurationEl {
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeAggregateConfigurationEl {}
-
 impl BuildFsxOntapVolumeAggregateConfigurationEl {
     pub fn build(self) -> FsxOntapVolumeAggregateConfigurationEl {
         FsxOntapVolumeAggregateConfigurationEl {
@@ -875,12 +768,10 @@ impl BuildFsxOntapVolumeAggregateConfigurationEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeAggregateConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeAggregateConfigurationElRef {
     fn new(shared: StackShared, base: String) -> FsxOntapVolumeAggregateConfigurationElRef {
         FsxOntapVolumeAggregateConfigurationElRef {
@@ -889,17 +780,14 @@ impl Ref for FsxOntapVolumeAggregateConfigurationElRef {
         }
     }
 }
-
 impl FsxOntapVolumeAggregateConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `aggregates` after provisioning.\n"]
     pub fn aggregates(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.aggregates", self.base))
     }
-
     #[doc = "Get a reference to the value of field `constituents_per_aggregate` after provisioning.\n"]
     pub fn constituents_per_aggregate(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -907,7 +795,6 @@ impl FsxOntapVolumeAggregateConfigurationElRef {
             format!("{}.constituents_per_aggregate", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `total_constituents` after provisioning.\n"]
     pub fn total_constituents(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -916,7 +803,6 @@ impl FsxOntapVolumeAggregateConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -924,24 +810,20 @@ pub struct FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<f64>>,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
     type O = BlockAssignable<FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -950,9 +832,7 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl 
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {}
-
 impl BuildFsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
         FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
@@ -961,12 +841,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodElRef {
     fn new(
         shared: StackShared,
@@ -978,23 +856,19 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodElRef {
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -1002,25 +876,21 @@ pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentio
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<f64>>,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
     type O =
         BlockAssignable<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1029,9 +899,7 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDe
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {}
-
 impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
         FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionEl {
@@ -1040,12 +908,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetention
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionElRef {
     fn new(
         shared: StackShared,
@@ -1057,23 +923,19 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetent
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDefaultRetentionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -1081,25 +943,21 @@ pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentio
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<f64>>,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
     type O =
         BlockAssignable<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1108,9 +966,7 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMa
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {}
-
 impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
         FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionEl {
@@ -1119,12 +975,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetention
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionElRef {
     fn new(
         shared: StackShared,
@@ -1136,23 +990,19 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetent
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMaximumRetentionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -1160,25 +1010,21 @@ pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentio
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<f64>>,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
     type O =
         BlockAssignable<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1187,9 +1033,7 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMi
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {}
-
 impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
         FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl {
@@ -1198,12 +1042,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetention
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionElRef {
     fn new(
         shared: StackShared,
@@ -1215,23 +1057,19 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetent
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDynamic {
     default_retention: Option<
@@ -1244,7 +1082,6 @@ struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDynamic {
         DynamicBlock<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1258,7 +1095,6 @@ pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         Option<Vec<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElMinimumRetentionEl>>,
     dynamic: FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElDynamic,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
     #[doc = "Set the field `default_retention`.\n"]
     pub fn set_default_retention(
@@ -1279,7 +1115,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         }
         self
     }
-
     #[doc = "Set the field `maximum_retention`.\n"]
     pub fn set_maximum_retention(
         mut self,
@@ -1299,7 +1134,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         }
         self
     }
-
     #[doc = "Set the field `minimum_retention`.\n"]
     pub fn set_minimum_retention(
         mut self,
@@ -1320,10 +1154,8 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
     type O = BlockAssignable<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1332,9 +1164,7 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {}
-
 impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
@@ -1345,12 +1175,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
     fn new(
         shared: StackShared,
@@ -1362,12 +1190,10 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `default_retention` after provisioning.\n"]
     pub fn default_retention(
         &self,
@@ -1377,7 +1203,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
             format!("{}.default_retention", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `maximum_retention` after provisioning.\n"]
     pub fn maximum_retention(
         &self,
@@ -1387,7 +1212,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
             format!("{}.maximum_retention", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `minimum_retention` after provisioning.\n"]
     pub fn minimum_retention(
         &self,
@@ -1398,14 +1222,12 @@ impl FsxOntapVolumeSnaplockConfigurationElRetentionPeriodElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxOntapVolumeSnaplockConfigurationElDynamic {
     autocommit_period:
         Option<DynamicBlock<FsxOntapVolumeSnaplockConfigurationElAutocommitPeriodEl>>,
     retention_period: Option<DynamicBlock<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl>>,
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeSnaplockConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1421,26 +1243,22 @@ pub struct FsxOntapVolumeSnaplockConfigurationEl {
     retention_period: Option<Vec<FsxOntapVolumeSnaplockConfigurationElRetentionPeriodEl>>,
     dynamic: FsxOntapVolumeSnaplockConfigurationElDynamic,
 }
-
 impl FsxOntapVolumeSnaplockConfigurationEl {
     #[doc = "Set the field `audit_log_volume`.\n"]
     pub fn set_audit_log_volume(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.audit_log_volume = Some(v.into());
         self
     }
-
     #[doc = "Set the field `privileged_delete`.\n"]
     pub fn set_privileged_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.privileged_delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_append_mode_enabled`.\n"]
     pub fn set_volume_append_mode_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.volume_append_mode_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `autocommit_period`.\n"]
     pub fn set_autocommit_period(
         mut self,
@@ -1456,7 +1274,6 @@ impl FsxOntapVolumeSnaplockConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `retention_period`.\n"]
     pub fn set_retention_period(
         mut self,
@@ -1473,10 +1290,8 @@ impl FsxOntapVolumeSnaplockConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeSnaplockConfigurationEl {
     type O = BlockAssignable<FsxOntapVolumeSnaplockConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1485,12 +1300,10 @@ impl ToListMappable for FsxOntapVolumeSnaplockConfigurationEl {
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeSnaplockConfigurationEl {
     #[doc = ""]
     pub snaplock_type: PrimField<String>,
 }
-
 impl BuildFsxOntapVolumeSnaplockConfigurationEl {
     pub fn build(self) -> FsxOntapVolumeSnaplockConfigurationEl {
         FsxOntapVolumeSnaplockConfigurationEl {
@@ -1504,12 +1317,10 @@ impl BuildFsxOntapVolumeSnaplockConfigurationEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeSnaplockConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeSnaplockConfigurationElRef {
     fn new(shared: StackShared, base: String) -> FsxOntapVolumeSnaplockConfigurationElRef {
         FsxOntapVolumeSnaplockConfigurationElRef {
@@ -1518,12 +1329,10 @@ impl Ref for FsxOntapVolumeSnaplockConfigurationElRef {
         }
     }
 }
-
 impl FsxOntapVolumeSnaplockConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `audit_log_volume` after provisioning.\n"]
     pub fn audit_log_volume(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1531,7 +1340,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
             format!("{}.audit_log_volume", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `privileged_delete` after provisioning.\n"]
     pub fn privileged_delete(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1539,7 +1347,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
             format!("{}.privileged_delete", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `snaplock_type` after provisioning.\n"]
     pub fn snaplock_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1547,7 +1354,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
             format!("{}.snaplock_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_append_mode_enabled` after provisioning.\n"]
     pub fn volume_append_mode_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1555,7 +1361,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
             format!("{}.volume_append_mode_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `autocommit_period` after provisioning.\n"]
     pub fn autocommit_period(
         &self,
@@ -1565,7 +1370,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
             format!("{}.autocommit_period", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retention_period` after provisioning.\n"]
     pub fn retention_period(
         &self,
@@ -1576,7 +1380,6 @@ impl FsxOntapVolumeSnaplockConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeTieringPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1584,24 +1387,20 @@ pub struct FsxOntapVolumeTieringPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
 }
-
 impl FsxOntapVolumeTieringPolicyEl {
     #[doc = "Set the field `cooling_period`.\n"]
     pub fn set_cooling_period(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.cooling_period = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeTieringPolicyEl {
     type O = BlockAssignable<FsxOntapVolumeTieringPolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1610,9 +1409,7 @@ impl ToListMappable for FsxOntapVolumeTieringPolicyEl {
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeTieringPolicyEl {}
-
 impl BuildFsxOntapVolumeTieringPolicyEl {
     pub fn build(self) -> FsxOntapVolumeTieringPolicyEl {
         FsxOntapVolumeTieringPolicyEl {
@@ -1621,12 +1418,10 @@ impl BuildFsxOntapVolumeTieringPolicyEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeTieringPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeTieringPolicyElRef {
     fn new(shared: StackShared, base: String) -> FsxOntapVolumeTieringPolicyElRef {
         FsxOntapVolumeTieringPolicyElRef {
@@ -1635,12 +1430,10 @@ impl Ref for FsxOntapVolumeTieringPolicyElRef {
         }
     }
 }
-
 impl FsxOntapVolumeTieringPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cooling_period` after provisioning.\n"]
     pub fn cooling_period(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1648,13 +1441,11 @@ impl FsxOntapVolumeTieringPolicyElRef {
             format!("{}.cooling_period", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxOntapVolumeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1664,30 +1455,25 @@ pub struct FsxOntapVolumeTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl FsxOntapVolumeTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxOntapVolumeTimeoutsEl {
     type O = BlockAssignable<FsxOntapVolumeTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1696,9 +1482,7 @@ impl ToListMappable for FsxOntapVolumeTimeoutsEl {
         })
     }
 }
-
 pub struct BuildFsxOntapVolumeTimeoutsEl {}
-
 impl BuildFsxOntapVolumeTimeoutsEl {
     pub fn build(self) -> FsxOntapVolumeTimeoutsEl {
         FsxOntapVolumeTimeoutsEl {
@@ -1708,12 +1492,10 @@ impl BuildFsxOntapVolumeTimeoutsEl {
         }
     }
 }
-
 pub struct FsxOntapVolumeTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxOntapVolumeTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> FsxOntapVolumeTimeoutsElRef {
         FsxOntapVolumeTimeoutsElRef {
@@ -1722,28 +1504,23 @@ impl Ref for FsxOntapVolumeTimeoutsElRef {
         }
     }
 }
-
 impl FsxOntapVolumeTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxOntapVolumeDynamic {
     aggregate_configuration: Option<DynamicBlock<FsxOntapVolumeAggregateConfigurationEl>>,

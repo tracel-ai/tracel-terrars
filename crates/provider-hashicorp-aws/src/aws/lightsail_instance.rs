@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LightsailInstanceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -36,47 +35,38 @@ struct LightsailInstanceData {
     add_on: Option<Vec<LightsailInstanceAddOnEl>>,
     dynamic: LightsailInstanceDynamic,
 }
-
 struct LightsailInstance_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LightsailInstanceData>,
 }
-
 #[derive(Clone)]
 pub struct LightsailInstance(Rc<LightsailInstance_>);
-
 impl LightsailInstance {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -95,7 +85,6 @@ impl LightsailInstance {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -105,7 +94,6 @@ impl LightsailInstance {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -115,49 +103,41 @@ impl LightsailInstance {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_address_type`.\n"]
     pub fn set_ip_address_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ip_address_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key_pair_name`.\n"]
     pub fn set_key_pair_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().key_pair_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `user_data`.\n"]
     pub fn set_user_data(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().user_data = Some(v.into());
         self
     }
-
     #[doc = "Set the field `add_on`.\n"]
     pub fn set_add_on(self, v: impl Into<BlockAssignable<LightsailInstanceAddOnEl>>) -> Self {
         match v.into() {
@@ -170,12 +150,10 @@ impl LightsailInstance {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +161,6 @@ impl LightsailInstance {
             format!("{}.availability_zone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `blueprint_id` after provisioning.\n"]
     pub fn blueprint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +168,6 @@ impl LightsailInstance {
             format!("{}.blueprint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +175,6 @@ impl LightsailInstance {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cpu_count` after provisioning.\n"]
     pub fn cpu_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -207,7 +182,6 @@ impl LightsailInstance {
             format!("{}.cpu_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,12 +189,10 @@ impl LightsailInstance {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +200,6 @@ impl LightsailInstance {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ipv6_addresses` after provisioning.\n"]
     pub fn ipv6_addresses(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -236,7 +207,6 @@ impl LightsailInstance {
             format!("{}.ipv6_addresses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_static_ip` after provisioning.\n"]
     pub fn is_static_ip(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -244,7 +214,6 @@ impl LightsailInstance {
             format!("{}.is_static_ip", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair_name` after provisioning.\n"]
     pub fn key_pair_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +221,6 @@ impl LightsailInstance {
             format!("{}.key_pair_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +228,6 @@ impl LightsailInstance {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_ip_address` after provisioning.\n"]
     pub fn private_ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +235,6 @@ impl LightsailInstance {
             format!("{}.private_ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_ip_address` after provisioning.\n"]
     pub fn public_ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +242,6 @@ impl LightsailInstance {
             format!("{}.public_ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ram_size` after provisioning.\n"]
     pub fn ram_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -284,7 +249,6 @@ impl LightsailInstance {
             format!("{}.ram_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -292,7 +256,6 @@ impl LightsailInstance {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -300,7 +263,6 @@ impl LightsailInstance {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -308,7 +270,6 @@ impl LightsailInstance {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_data` after provisioning.\n"]
     pub fn user_data(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,7 +277,6 @@ impl LightsailInstance {
             format!("{}.user_data", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -324,7 +284,6 @@ impl LightsailInstance {
             format!("{}.username", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `add_on` after provisioning.\n"]
     pub fn add_on(&self) -> ListRef<LightsailInstanceAddOnElRef> {
         ListRef::new(
@@ -333,7 +292,6 @@ impl LightsailInstance {
         )
     }
 }
-
 impl Referable for LightsailInstance {
     fn extract_ref(&self) -> String {
         format!(
@@ -343,32 +301,25 @@ impl Referable for LightsailInstance {
         )
     }
 }
-
 impl Resource for LightsailInstance {}
-
 impl ToListMappable for LightsailInstance {
     type O = ListRef<LightsailInstanceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LightsailInstance_ {
     fn extract_resource_type(&self) -> String {
         "aws_lightsail_instance".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLightsailInstance {
     pub tf_id: String,
     #[doc = ""]
@@ -380,7 +331,6 @@ pub struct BuildLightsailInstance {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildLightsailInstance {
     pub fn build(self, stack: &mut Stack) -> LightsailInstance {
         let out = LightsailInstance(Rc::new(LightsailInstance_ {
@@ -410,32 +360,26 @@ impl BuildLightsailInstance {
         out
     }
 }
-
 pub struct LightsailInstanceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailInstanceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LightsailInstanceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +387,6 @@ impl LightsailInstanceRef {
             format!("{}.availability_zone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `blueprint_id` after provisioning.\n"]
     pub fn blueprint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +394,6 @@ impl LightsailInstanceRef {
             format!("{}.blueprint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bundle_id` after provisioning.\n"]
     pub fn bundle_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,7 +401,6 @@ impl LightsailInstanceRef {
             format!("{}.bundle_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cpu_count` after provisioning.\n"]
     pub fn cpu_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -467,7 +408,6 @@ impl LightsailInstanceRef {
             format!("{}.cpu_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,12 +415,10 @@ impl LightsailInstanceRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +426,6 @@ impl LightsailInstanceRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ipv6_addresses` after provisioning.\n"]
     pub fn ipv6_addresses(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -496,7 +433,6 @@ impl LightsailInstanceRef {
             format!("{}.ipv6_addresses", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `is_static_ip` after provisioning.\n"]
     pub fn is_static_ip(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -504,7 +440,6 @@ impl LightsailInstanceRef {
             format!("{}.is_static_ip", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `key_pair_name` after provisioning.\n"]
     pub fn key_pair_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -512,7 +447,6 @@ impl LightsailInstanceRef {
             format!("{}.key_pair_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,7 +454,6 @@ impl LightsailInstanceRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_ip_address` after provisioning.\n"]
     pub fn private_ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -528,7 +461,6 @@ impl LightsailInstanceRef {
             format!("{}.private_ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_ip_address` after provisioning.\n"]
     pub fn public_ip_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,7 +468,6 @@ impl LightsailInstanceRef {
             format!("{}.public_ip_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ram_size` after provisioning.\n"]
     pub fn ram_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -544,7 +475,6 @@ impl LightsailInstanceRef {
             format!("{}.ram_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -552,7 +482,6 @@ impl LightsailInstanceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -560,7 +489,6 @@ impl LightsailInstanceRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -568,7 +496,6 @@ impl LightsailInstanceRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_data` after provisioning.\n"]
     pub fn user_data(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -576,7 +503,6 @@ impl LightsailInstanceRef {
             format!("{}.user_data", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -584,7 +510,6 @@ impl LightsailInstanceRef {
             format!("{}.username", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `add_on` after provisioning.\n"]
     pub fn add_on(&self) -> ListRef<LightsailInstanceAddOnElRef> {
         ListRef::new(
@@ -593,7 +518,6 @@ impl LightsailInstanceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LightsailInstanceAddOnEl {
     snapshot_time: PrimField<String>,
@@ -601,12 +525,9 @@ pub struct LightsailInstanceAddOnEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl LightsailInstanceAddOnEl {}
-
 impl ToListMappable for LightsailInstanceAddOnEl {
     type O = BlockAssignable<LightsailInstanceAddOnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -615,7 +536,6 @@ impl ToListMappable for LightsailInstanceAddOnEl {
         })
     }
 }
-
 pub struct BuildLightsailInstanceAddOnEl {
     #[doc = ""]
     pub snapshot_time: PrimField<String>,
@@ -624,7 +544,6 @@ pub struct BuildLightsailInstanceAddOnEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildLightsailInstanceAddOnEl {
     pub fn build(self) -> LightsailInstanceAddOnEl {
         LightsailInstanceAddOnEl {
@@ -634,12 +553,10 @@ impl BuildLightsailInstanceAddOnEl {
         }
     }
 }
-
 pub struct LightsailInstanceAddOnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailInstanceAddOnElRef {
     fn new(shared: StackShared, base: String) -> LightsailInstanceAddOnElRef {
         LightsailInstanceAddOnElRef {
@@ -648,12 +565,10 @@ impl Ref for LightsailInstanceAddOnElRef {
         }
     }
 }
-
 impl LightsailInstanceAddOnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `snapshot_time` after provisioning.\n"]
     pub fn snapshot_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -661,18 +576,15 @@ impl LightsailInstanceAddOnElRef {
             format!("{}.snapshot_time", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct LightsailInstanceDynamic {
     add_on: Option<DynamicBlock<LightsailInstanceAddOnEl>>,

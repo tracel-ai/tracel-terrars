@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SesReceiptRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -46,47 +45,38 @@ struct SesReceiptRuleData {
     workmail_action: Option<Vec<SesReceiptRuleWorkmailActionEl>>,
     dynamic: SesReceiptRuleDynamic,
 }
-
 struct SesReceiptRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SesReceiptRuleData>,
 }
-
 #[derive(Clone)]
 pub struct SesReceiptRule(Rc<SesReceiptRule_>);
-
 impl SesReceiptRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -105,7 +95,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -115,7 +104,6 @@ impl SesReceiptRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -125,49 +113,41 @@ impl SesReceiptRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `after`.\n"]
     pub fn set_after(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().after = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `recipients`.\n"]
     pub fn set_recipients(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().recipients = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scan_enabled`.\n"]
     pub fn set_scan_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().scan_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tls_policy`.\n"]
     pub fn set_tls_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().tls_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `add_header_action`.\n"]
     pub fn set_add_header_action(
         self,
@@ -183,7 +163,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `bounce_action`.\n"]
     pub fn set_bounce_action(
         self,
@@ -199,7 +178,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `lambda_action`.\n"]
     pub fn set_lambda_action(
         self,
@@ -215,7 +193,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `s3_action`.\n"]
     pub fn set_s3_action(self, v: impl Into<BlockAssignable<SesReceiptRuleS3ActionEl>>) -> Self {
         match v.into() {
@@ -228,7 +205,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `sns_action`.\n"]
     pub fn set_sns_action(self, v: impl Into<BlockAssignable<SesReceiptRuleSnsActionEl>>) -> Self {
         match v.into() {
@@ -241,7 +217,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `stop_action`.\n"]
     pub fn set_stop_action(
         self,
@@ -257,7 +232,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Set the field `workmail_action`.\n"]
     pub fn set_workmail_action(
         self,
@@ -273,7 +247,6 @@ impl SesReceiptRule {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `after` after provisioning.\n"]
     pub fn after(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,12 +254,10 @@ impl SesReceiptRule {
             format!("{}.after", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -294,12 +265,10 @@ impl SesReceiptRule {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +276,6 @@ impl SesReceiptRule {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recipients` after provisioning.\n"]
     pub fn recipients(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -315,7 +283,6 @@ impl SesReceiptRule {
             format!("{}.recipients", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +290,6 @@ impl SesReceiptRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_set_name` after provisioning.\n"]
     pub fn rule_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -331,7 +297,6 @@ impl SesReceiptRule {
             format!("{}.rule_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scan_enabled` after provisioning.\n"]
     pub fn scan_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -339,7 +304,6 @@ impl SesReceiptRule {
             format!("{}.scan_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
     pub fn tls_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -348,7 +312,6 @@ impl SesReceiptRule {
         )
     }
 }
-
 impl Referable for SesReceiptRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -358,32 +321,25 @@ impl Referable for SesReceiptRule {
         )
     }
 }
-
 impl Resource for SesReceiptRule {}
-
 impl ToListMappable for SesReceiptRule {
     type O = ListRef<SesReceiptRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SesReceiptRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_ses_receipt_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSesReceiptRule {
     pub tf_id: String,
     #[doc = ""]
@@ -391,7 +347,6 @@ pub struct BuildSesReceiptRule {
     #[doc = ""]
     pub rule_set_name: PrimField<String>,
 }
-
 impl BuildSesReceiptRule {
     pub fn build(self, stack: &mut Stack) -> SesReceiptRule {
         let out = SesReceiptRule(Rc::new(SesReceiptRule_ {
@@ -425,27 +380,22 @@ impl BuildSesReceiptRule {
         out
     }
 }
-
 pub struct SesReceiptRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SesReceiptRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `after` after provisioning.\n"]
     pub fn after(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -453,12 +403,10 @@ impl SesReceiptRuleRef {
             format!("{}.after", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -466,12 +414,10 @@ impl SesReceiptRuleRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +425,6 @@ impl SesReceiptRuleRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recipients` after provisioning.\n"]
     pub fn recipients(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -487,7 +432,6 @@ impl SesReceiptRuleRef {
             format!("{}.recipients", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -495,7 +439,6 @@ impl SesReceiptRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_set_name` after provisioning.\n"]
     pub fn rule_set_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -503,7 +446,6 @@ impl SesReceiptRuleRef {
             format!("{}.rule_set_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scan_enabled` after provisioning.\n"]
     pub fn scan_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -511,7 +453,6 @@ impl SesReceiptRuleRef {
             format!("{}.scan_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
     pub fn tls_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,19 +461,15 @@ impl SesReceiptRuleRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleAddHeaderActionEl {
     header_name: PrimField<String>,
     header_value: PrimField<String>,
     position: PrimField<f64>,
 }
-
 impl SesReceiptRuleAddHeaderActionEl {}
-
 impl ToListMappable for SesReceiptRuleAddHeaderActionEl {
     type O = BlockAssignable<SesReceiptRuleAddHeaderActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -541,7 +478,6 @@ impl ToListMappable for SesReceiptRuleAddHeaderActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleAddHeaderActionEl {
     #[doc = ""]
     pub header_name: PrimField<String>,
@@ -550,7 +486,6 @@ pub struct BuildSesReceiptRuleAddHeaderActionEl {
     #[doc = ""]
     pub position: PrimField<f64>,
 }
-
 impl BuildSesReceiptRuleAddHeaderActionEl {
     pub fn build(self) -> SesReceiptRuleAddHeaderActionEl {
         SesReceiptRuleAddHeaderActionEl {
@@ -560,12 +495,10 @@ impl BuildSesReceiptRuleAddHeaderActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleAddHeaderActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleAddHeaderActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleAddHeaderActionElRef {
         SesReceiptRuleAddHeaderActionElRef {
@@ -574,28 +507,23 @@ impl Ref for SesReceiptRuleAddHeaderActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleAddHeaderActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `header_name` after provisioning.\n"]
     pub fn header_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.header_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `header_value` after provisioning.\n"]
     pub fn header_value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.header_value", self.base))
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleBounceActionEl {
     message: PrimField<String>,
@@ -607,24 +535,20 @@ pub struct SesReceiptRuleBounceActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic_arn: Option<PrimField<String>>,
 }
-
 impl SesReceiptRuleBounceActionEl {
     #[doc = "Set the field `status_code`.\n"]
     pub fn set_status_code(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status_code = Some(v.into());
         self
     }
-
     #[doc = "Set the field `topic_arn`.\n"]
     pub fn set_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.topic_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleBounceActionEl {
     type O = BlockAssignable<SesReceiptRuleBounceActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -633,7 +557,6 @@ impl ToListMappable for SesReceiptRuleBounceActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleBounceActionEl {
     #[doc = ""]
     pub message: PrimField<String>,
@@ -644,7 +567,6 @@ pub struct BuildSesReceiptRuleBounceActionEl {
     #[doc = ""]
     pub smtp_reply_code: PrimField<String>,
 }
-
 impl BuildSesReceiptRuleBounceActionEl {
     pub fn build(self) -> SesReceiptRuleBounceActionEl {
         SesReceiptRuleBounceActionEl {
@@ -657,12 +579,10 @@ impl BuildSesReceiptRuleBounceActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleBounceActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleBounceActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleBounceActionElRef {
         SesReceiptRuleBounceActionElRef {
@@ -671,27 +591,22 @@ impl Ref for SesReceiptRuleBounceActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleBounceActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `message` after provisioning.\n"]
     pub fn message(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.message", self.base))
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sender` after provisioning.\n"]
     pub fn sender(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.sender", self.base))
     }
-
     #[doc = "Get a reference to the value of field `smtp_reply_code` after provisioning.\n"]
     pub fn smtp_reply_code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -699,18 +614,15 @@ impl SesReceiptRuleBounceActionElRef {
             format!("{}.smtp_reply_code", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status_code", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleLambdaActionEl {
     function_arn: PrimField<String>,
@@ -720,24 +632,20 @@ pub struct SesReceiptRuleLambdaActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic_arn: Option<PrimField<String>>,
 }
-
 impl SesReceiptRuleLambdaActionEl {
     #[doc = "Set the field `invocation_type`.\n"]
     pub fn set_invocation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.invocation_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `topic_arn`.\n"]
     pub fn set_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.topic_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleLambdaActionEl {
     type O = BlockAssignable<SesReceiptRuleLambdaActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -746,14 +654,12 @@ impl ToListMappable for SesReceiptRuleLambdaActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleLambdaActionEl {
     #[doc = ""]
     pub function_arn: PrimField<String>,
     #[doc = ""]
     pub position: PrimField<f64>,
 }
-
 impl BuildSesReceiptRuleLambdaActionEl {
     pub fn build(self) -> SesReceiptRuleLambdaActionEl {
         SesReceiptRuleLambdaActionEl {
@@ -764,12 +670,10 @@ impl BuildSesReceiptRuleLambdaActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleLambdaActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleLambdaActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleLambdaActionElRef {
         SesReceiptRuleLambdaActionElRef {
@@ -778,17 +682,14 @@ impl Ref for SesReceiptRuleLambdaActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleLambdaActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `invocation_type` after provisioning.\n"]
     pub fn invocation_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -796,18 +697,15 @@ impl SesReceiptRuleLambdaActionElRef {
             format!("{}.invocation_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleS3ActionEl {
     bucket_name: PrimField<String>,
@@ -821,36 +719,30 @@ pub struct SesReceiptRuleS3ActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic_arn: Option<PrimField<String>>,
 }
-
 impl SesReceiptRuleS3ActionEl {
     #[doc = "Set the field `iam_role_arn`.\n"]
     pub fn set_iam_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.iam_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `object_key_prefix`.\n"]
     pub fn set_object_key_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.object_key_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `topic_arn`.\n"]
     pub fn set_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.topic_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleS3ActionEl {
     type O = BlockAssignable<SesReceiptRuleS3ActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -859,14 +751,12 @@ impl ToListMappable for SesReceiptRuleS3ActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleS3ActionEl {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
     #[doc = ""]
     pub position: PrimField<f64>,
 }
-
 impl BuildSesReceiptRuleS3ActionEl {
     pub fn build(self) -> SesReceiptRuleS3ActionEl {
         SesReceiptRuleS3ActionEl {
@@ -879,12 +769,10 @@ impl BuildSesReceiptRuleS3ActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleS3ActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleS3ActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleS3ActionElRef {
         SesReceiptRuleS3ActionElRef {
@@ -893,27 +781,22 @@ impl Ref for SesReceiptRuleS3ActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleS3ActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.iam_role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `object_key_prefix` after provisioning.\n"]
     pub fn object_key_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -921,18 +804,15 @@ impl SesReceiptRuleS3ActionElRef {
             format!("{}.object_key_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleSnsActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -940,7 +820,6 @@ pub struct SesReceiptRuleSnsActionEl {
     position: PrimField<f64>,
     topic_arn: PrimField<String>,
 }
-
 impl SesReceiptRuleSnsActionEl {
     #[doc = "Set the field `encoding`.\n"]
     pub fn set_encoding(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -948,10 +827,8 @@ impl SesReceiptRuleSnsActionEl {
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleSnsActionEl {
     type O = BlockAssignable<SesReceiptRuleSnsActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -960,14 +837,12 @@ impl ToListMappable for SesReceiptRuleSnsActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleSnsActionEl {
     #[doc = ""]
     pub position: PrimField<f64>,
     #[doc = ""]
     pub topic_arn: PrimField<String>,
 }
-
 impl BuildSesReceiptRuleSnsActionEl {
     pub fn build(self) -> SesReceiptRuleSnsActionEl {
         SesReceiptRuleSnsActionEl {
@@ -977,12 +852,10 @@ impl BuildSesReceiptRuleSnsActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleSnsActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleSnsActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleSnsActionElRef {
         SesReceiptRuleSnsActionElRef {
@@ -991,28 +864,23 @@ impl Ref for SesReceiptRuleSnsActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleSnsActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `encoding` after provisioning.\n"]
     pub fn encoding(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.encoding", self.base))
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleStopActionEl {
     position: PrimField<f64>,
@@ -1020,7 +888,6 @@ pub struct SesReceiptRuleStopActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic_arn: Option<PrimField<String>>,
 }
-
 impl SesReceiptRuleStopActionEl {
     #[doc = "Set the field `topic_arn`.\n"]
     pub fn set_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1028,10 +895,8 @@ impl SesReceiptRuleStopActionEl {
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleStopActionEl {
     type O = BlockAssignable<SesReceiptRuleStopActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1040,14 +905,12 @@ impl ToListMappable for SesReceiptRuleStopActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleStopActionEl {
     #[doc = ""]
     pub position: PrimField<f64>,
     #[doc = ""]
     pub scope: PrimField<String>,
 }
-
 impl BuildSesReceiptRuleStopActionEl {
     pub fn build(self) -> SesReceiptRuleStopActionEl {
         SesReceiptRuleStopActionEl {
@@ -1057,12 +920,10 @@ impl BuildSesReceiptRuleStopActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleStopActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleStopActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleStopActionElRef {
         SesReceiptRuleStopActionElRef {
@@ -1071,28 +932,23 @@ impl Ref for SesReceiptRuleStopActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleStopActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scope` after provisioning.\n"]
     pub fn scope(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.scope", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesReceiptRuleWorkmailActionEl {
     organization_arn: PrimField<String>,
@@ -1100,7 +956,6 @@ pub struct SesReceiptRuleWorkmailActionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     topic_arn: Option<PrimField<String>>,
 }
-
 impl SesReceiptRuleWorkmailActionEl {
     #[doc = "Set the field `topic_arn`.\n"]
     pub fn set_topic_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1108,10 +963,8 @@ impl SesReceiptRuleWorkmailActionEl {
         self
     }
 }
-
 impl ToListMappable for SesReceiptRuleWorkmailActionEl {
     type O = BlockAssignable<SesReceiptRuleWorkmailActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1120,14 +973,12 @@ impl ToListMappable for SesReceiptRuleWorkmailActionEl {
         })
     }
 }
-
 pub struct BuildSesReceiptRuleWorkmailActionEl {
     #[doc = ""]
     pub organization_arn: PrimField<String>,
     #[doc = ""]
     pub position: PrimField<f64>,
 }
-
 impl BuildSesReceiptRuleWorkmailActionEl {
     pub fn build(self) -> SesReceiptRuleWorkmailActionEl {
         SesReceiptRuleWorkmailActionEl {
@@ -1137,12 +988,10 @@ impl BuildSesReceiptRuleWorkmailActionEl {
         }
     }
 }
-
 pub struct SesReceiptRuleWorkmailActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesReceiptRuleWorkmailActionElRef {
     fn new(shared: StackShared, base: String) -> SesReceiptRuleWorkmailActionElRef {
         SesReceiptRuleWorkmailActionElRef {
@@ -1151,12 +1000,10 @@ impl Ref for SesReceiptRuleWorkmailActionElRef {
         }
     }
 }
-
 impl SesReceiptRuleWorkmailActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `organization_arn` after provisioning.\n"]
     pub fn organization_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1164,18 +1011,15 @@ impl SesReceiptRuleWorkmailActionElRef {
             format!("{}.organization_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `position` after provisioning.\n"]
     pub fn position(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.position", self.base))
     }
-
     #[doc = "Get a reference to the value of field `topic_arn` after provisioning.\n"]
     pub fn topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.topic_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SesReceiptRuleDynamic {
     add_header_action: Option<DynamicBlock<SesReceiptRuleAddHeaderActionEl>>,

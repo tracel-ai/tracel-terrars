@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataRamResourceShareData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,61 +26,50 @@ struct DataRamResourceShareData {
     filter: Option<Vec<DataRamResourceShareFilterEl>>,
     dynamic: DataRamResourceShareDynamic,
 }
-
 struct DataRamResourceShare_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataRamResourceShareData>,
 }
-
 #[derive(Clone)]
 pub struct DataRamResourceShare(Rc<DataRamResourceShare_>);
-
 impl DataRamResourceShare {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_share_status`.\n"]
     pub fn set_resource_share_status(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resource_share_status = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataRamResourceShareFilterEl>>) -> Self {
         match v.into() {
@@ -94,17 +82,14 @@ impl DataRamResourceShare {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -112,7 +97,6 @@ impl DataRamResourceShare {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owning_account_id` after provisioning.\n"]
     pub fn owning_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +104,6 @@ impl DataRamResourceShare {
             format!("{}.owning_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +111,6 @@ impl DataRamResourceShare {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\n"]
     pub fn resource_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -136,7 +118,6 @@ impl DataRamResourceShare {
             format!("{}.resource_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -144,7 +125,6 @@ impl DataRamResourceShare {
             format!("{}.resource_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_share_status` after provisioning.\n"]
     pub fn resource_share_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -152,7 +132,6 @@ impl DataRamResourceShare {
             format!("{}.resource_share_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +139,6 @@ impl DataRamResourceShare {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -169,7 +147,6 @@ impl DataRamResourceShare {
         )
     }
 }
-
 impl Referable for DataRamResourceShare {
     fn extract_ref(&self) -> String {
         format!(
@@ -179,38 +156,30 @@ impl Referable for DataRamResourceShare {
         )
     }
 }
-
 impl Datasource for DataRamResourceShare {}
-
 impl ToListMappable for DataRamResourceShare {
     type O = ListRef<DataRamResourceShareRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataRamResourceShare_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ram_resource_share".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataRamResourceShare {
     pub tf_id: String,
     #[doc = ""]
     pub resource_owner: PrimField<String>,
 }
-
 impl BuildDataRamResourceShare {
     pub fn build(self, stack: &mut Stack) -> DataRamResourceShare {
         let out = DataRamResourceShare(Rc::new(DataRamResourceShare_ {
@@ -234,37 +203,30 @@ impl BuildDataRamResourceShare {
         out
     }
 }
-
 pub struct DataRamResourceShareRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRamResourceShareRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataRamResourceShareRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +234,6 @@ impl DataRamResourceShareRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owning_account_id` after provisioning.\n"]
     pub fn owning_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,7 +241,6 @@ impl DataRamResourceShareRef {
             format!("{}.owning_account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +248,6 @@ impl DataRamResourceShareRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arns` after provisioning.\n"]
     pub fn resource_arns(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -296,7 +255,6 @@ impl DataRamResourceShareRef {
             format!("{}.resource_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -304,7 +262,6 @@ impl DataRamResourceShareRef {
             format!("{}.resource_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_share_status` after provisioning.\n"]
     pub fn resource_share_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -312,7 +269,6 @@ impl DataRamResourceShareRef {
             format!("{}.resource_share_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -320,7 +276,6 @@ impl DataRamResourceShareRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -329,18 +284,14 @@ impl DataRamResourceShareRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataRamResourceShareFilterEl {
     name: PrimField<String>,
     values: ListField<PrimField<String>>,
 }
-
 impl DataRamResourceShareFilterEl {}
-
 impl ToListMappable for DataRamResourceShareFilterEl {
     type O = BlockAssignable<DataRamResourceShareFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -349,14 +300,12 @@ impl ToListMappable for DataRamResourceShareFilterEl {
         })
     }
 }
-
 pub struct BuildDataRamResourceShareFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: ListField<PrimField<String>>,
 }
-
 impl BuildDataRamResourceShareFilterEl {
     pub fn build(self) -> DataRamResourceShareFilterEl {
         DataRamResourceShareFilterEl {
@@ -365,12 +314,10 @@ impl BuildDataRamResourceShareFilterEl {
         }
     }
 }
-
 pub struct DataRamResourceShareFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRamResourceShareFilterElRef {
     fn new(shared: StackShared, base: String) -> DataRamResourceShareFilterElRef {
         DataRamResourceShareFilterElRef {
@@ -379,23 +326,19 @@ impl Ref for DataRamResourceShareFilterElRef {
         }
     }
 }
-
 impl DataRamResourceShareFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataRamResourceShareDynamic {
     filter: Option<DynamicBlock<DataRamResourceShareFilterEl>>,

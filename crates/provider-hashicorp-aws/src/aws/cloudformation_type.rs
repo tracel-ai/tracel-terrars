@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudformationTypeData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct CloudformationTypeData {
     logging_config: Option<Vec<CloudformationTypeLoggingConfigEl>>,
     dynamic: CloudformationTypeDynamic,
 }
-
 struct CloudformationType_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudformationTypeData>,
 }
-
 #[derive(Clone)]
 pub struct CloudformationType(Rc<CloudformationType_>);
-
 impl CloudformationType {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl CloudformationType {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl CloudformationType {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,31 +95,26 @@ impl CloudformationType {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `execution_role_arn`.\n"]
     pub fn set_execution_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().execution_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `logging_config`.\n"]
     pub fn set_logging_config(
         self,
@@ -147,12 +130,10 @@ impl CloudformationType {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_version_id` after provisioning.\n"]
     pub fn default_version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +141,6 @@ impl CloudformationType {
             format!("{}.default_version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deprecated_status` after provisioning.\n"]
     pub fn deprecated_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +148,6 @@ impl CloudformationType {
             format!("{}.deprecated_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +155,6 @@ impl CloudformationType {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `documentation_url` after provisioning.\n"]
     pub fn documentation_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +162,6 @@ impl CloudformationType {
             format!("{}.documentation_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,12 +169,10 @@ impl CloudformationType {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_default_version` after provisioning.\n"]
     pub fn is_default_version(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -205,7 +180,6 @@ impl CloudformationType {
             format!("{}.is_default_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_type` after provisioning.\n"]
     pub fn provisioning_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +187,6 @@ impl CloudformationType {
             format!("{}.provisioning_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +194,6 @@ impl CloudformationType {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +201,6 @@ impl CloudformationType {
             format!("{}.schema", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema_handler_package` after provisioning.\n"]
     pub fn schema_handler_package(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +208,6 @@ impl CloudformationType {
             format!("{}.schema_handler_package", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_url` after provisioning.\n"]
     pub fn source_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +215,6 @@ impl CloudformationType {
             format!("{}.source_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +222,6 @@ impl CloudformationType {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_arn` after provisioning.\n"]
     pub fn type_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +229,6 @@ impl CloudformationType {
             format!("{}.type_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_name` after provisioning.\n"]
     pub fn type_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -269,7 +236,6 @@ impl CloudformationType {
             format!("{}.type_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +243,6 @@ impl CloudformationType {
             format!("{}.version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `visibility` after provisioning.\n"]
     pub fn visibility(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -285,7 +250,6 @@ impl CloudformationType {
             format!("{}.visibility", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<CloudformationTypeLoggingConfigElRef> {
         ListRef::new(
@@ -294,7 +258,6 @@ impl CloudformationType {
         )
     }
 }
-
 impl Referable for CloudformationType {
     fn extract_ref(&self) -> String {
         format!(
@@ -304,32 +267,25 @@ impl Referable for CloudformationType {
         )
     }
 }
-
 impl Resource for CloudformationType {}
-
 impl ToListMappable for CloudformationType {
     type O = ListRef<CloudformationTypeRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudformationType_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudformation_type".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudformationType {
     pub tf_id: String,
     #[doc = ""]
@@ -337,7 +293,6 @@ pub struct BuildCloudformationType {
     #[doc = ""]
     pub type_name: PrimField<String>,
 }
-
 impl BuildCloudformationType {
     pub fn build(self, stack: &mut Stack) -> CloudformationType {
         let out = CloudformationType(Rc::new(CloudformationType_ {
@@ -362,32 +317,26 @@ impl BuildCloudformationType {
         out
     }
 }
-
 pub struct CloudformationTypeRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudformationTypeRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudformationTypeRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_version_id` after provisioning.\n"]
     pub fn default_version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -395,7 +344,6 @@ impl CloudformationTypeRef {
             format!("{}.default_version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deprecated_status` after provisioning.\n"]
     pub fn deprecated_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -403,7 +351,6 @@ impl CloudformationTypeRef {
             format!("{}.deprecated_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -411,7 +358,6 @@ impl CloudformationTypeRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `documentation_url` after provisioning.\n"]
     pub fn documentation_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -419,7 +365,6 @@ impl CloudformationTypeRef {
             format!("{}.documentation_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,12 +372,10 @@ impl CloudformationTypeRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_default_version` after provisioning.\n"]
     pub fn is_default_version(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -440,7 +383,6 @@ impl CloudformationTypeRef {
             format!("{}.is_default_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_type` after provisioning.\n"]
     pub fn provisioning_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -448,7 +390,6 @@ impl CloudformationTypeRef {
             format!("{}.provisioning_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -456,7 +397,6 @@ impl CloudformationTypeRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +404,6 @@ impl CloudformationTypeRef {
             format!("{}.schema", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema_handler_package` after provisioning.\n"]
     pub fn schema_handler_package(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +411,6 @@ impl CloudformationTypeRef {
             format!("{}.schema_handler_package", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_url` after provisioning.\n"]
     pub fn source_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +418,6 @@ impl CloudformationTypeRef {
             format!("{}.source_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +425,6 @@ impl CloudformationTypeRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_arn` after provisioning.\n"]
     pub fn type_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +432,6 @@ impl CloudformationTypeRef {
             format!("{}.type_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_name` after provisioning.\n"]
     pub fn type_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +439,6 @@ impl CloudformationTypeRef {
             format!("{}.type_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version_id` after provisioning.\n"]
     pub fn version_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -512,7 +446,6 @@ impl CloudformationTypeRef {
             format!("{}.version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `visibility` after provisioning.\n"]
     pub fn visibility(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,7 +453,6 @@ impl CloudformationTypeRef {
             format!("{}.visibility", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<CloudformationTypeLoggingConfigElRef> {
         ListRef::new(
@@ -529,18 +461,14 @@ impl CloudformationTypeRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudformationTypeLoggingConfigEl {
     log_group_name: PrimField<String>,
     log_role_arn: PrimField<String>,
 }
-
 impl CloudformationTypeLoggingConfigEl {}
-
 impl ToListMappable for CloudformationTypeLoggingConfigEl {
     type O = BlockAssignable<CloudformationTypeLoggingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -549,14 +477,12 @@ impl ToListMappable for CloudformationTypeLoggingConfigEl {
         })
     }
 }
-
 pub struct BuildCloudformationTypeLoggingConfigEl {
     #[doc = ""]
     pub log_group_name: PrimField<String>,
     #[doc = ""]
     pub log_role_arn: PrimField<String>,
 }
-
 impl BuildCloudformationTypeLoggingConfigEl {
     pub fn build(self) -> CloudformationTypeLoggingConfigEl {
         CloudformationTypeLoggingConfigEl {
@@ -565,12 +491,10 @@ impl BuildCloudformationTypeLoggingConfigEl {
         }
     }
 }
-
 pub struct CloudformationTypeLoggingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudformationTypeLoggingConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudformationTypeLoggingConfigElRef {
         CloudformationTypeLoggingConfigElRef {
@@ -579,12 +503,10 @@ impl Ref for CloudformationTypeLoggingConfigElRef {
         }
     }
 }
-
 impl CloudformationTypeLoggingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -592,13 +514,11 @@ impl CloudformationTypeLoggingConfigElRef {
             format!("{}.log_group_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_role_arn` after provisioning.\n"]
     pub fn log_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_role_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudformationTypeDynamic {
     logging_config: Option<DynamicBlock<CloudformationTypeLoggingConfigEl>>,

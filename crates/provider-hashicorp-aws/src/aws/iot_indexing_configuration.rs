@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IotIndexingConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct IotIndexingConfigurationData {
     thing_indexing_configuration: Option<Vec<IotIndexingConfigurationThingIndexingConfigurationEl>>,
     dynamic: IotIndexingConfigurationDynamic,
 }
-
 struct IotIndexingConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IotIndexingConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct IotIndexingConfiguration(Rc<IotIndexingConfiguration_>);
-
 impl IotIndexingConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl IotIndexingConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl IotIndexingConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl IotIndexingConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `thing_group_indexing_configuration`.\n"]
     pub fn set_thing_group_indexing_configuration(
         self,
@@ -136,7 +121,6 @@ impl IotIndexingConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `thing_indexing_configuration`.\n"]
     pub fn set_thing_indexing_configuration(
         self,
@@ -156,12 +140,10 @@ impl IotIndexingConfiguration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +151,6 @@ impl IotIndexingConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_group_indexing_configuration` after provisioning.\n"]
     pub fn thing_group_indexing_configuration(
         &self,
@@ -179,7 +160,6 @@ impl IotIndexingConfiguration {
             format!("{}.thing_group_indexing_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_indexing_configuration` after provisioning.\n"]
     pub fn thing_indexing_configuration(
         &self,
@@ -190,7 +170,6 @@ impl IotIndexingConfiguration {
         )
     }
 }
-
 impl Referable for IotIndexingConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -200,36 +179,28 @@ impl Referable for IotIndexingConfiguration {
         )
     }
 }
-
 impl Resource for IotIndexingConfiguration {}
-
 impl ToListMappable for IotIndexingConfiguration {
     type O = ListRef<IotIndexingConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IotIndexingConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_iot_indexing_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIotIndexingConfiguration {
     pub tf_id: String,
 }
-
 impl BuildIotIndexingConfiguration {
     pub fn build(self, stack: &mut Stack) -> IotIndexingConfiguration {
         let out = IotIndexingConfiguration(Rc::new(IotIndexingConfiguration_ {
@@ -251,32 +222,26 @@ impl BuildIotIndexingConfiguration {
         out
     }
 }
-
 pub struct IotIndexingConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IotIndexingConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +249,6 @@ impl IotIndexingConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_group_indexing_configuration` after provisioning.\n"]
     pub fn thing_group_indexing_configuration(
         &self,
@@ -294,7 +258,6 @@ impl IotIndexingConfigurationRef {
             format!("{}.thing_group_indexing_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_indexing_configuration` after provisioning.\n"]
     pub fn thing_indexing_configuration(
         &self,
@@ -305,7 +268,6 @@ impl IotIndexingConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -313,25 +275,21 @@ pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldE
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
     type O =
         BlockAssignable<IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -340,9 +298,7 @@ impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationE
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {}
-
 impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
     pub fn build(self) -> IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
         IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl {
@@ -351,12 +307,10 @@ impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldEl
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldElRef {
     fn new(
         shared: StackShared,
@@ -368,23 +322,19 @@ impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFiel
         }
     }
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationElCustomFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -392,25 +342,21 @@ pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElManagedField
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
     type O =
         BlockAssignable<IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -419,9 +365,7 @@ impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationE
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {}
-
 impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
     pub fn build(self) -> IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
         IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl {
@@ -430,12 +374,10 @@ impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldE
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldElRef {
     fn new(
         shared: StackShared,
@@ -447,23 +389,19 @@ impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFie
         }
     }
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotIndexingConfigurationThingGroupIndexingConfigurationElDynamic {
     custom_field: Option<
@@ -473,7 +411,6 @@ struct IotIndexingConfigurationThingGroupIndexingConfigurationElDynamic {
         DynamicBlock<IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationEl {
     thing_group_indexing_mode: PrimField<String>,
@@ -485,7 +422,6 @@ pub struct IotIndexingConfigurationThingGroupIndexingConfigurationEl {
         Option<Vec<IotIndexingConfigurationThingGroupIndexingConfigurationElManagedFieldEl>>,
     dynamic: IotIndexingConfigurationThingGroupIndexingConfigurationElDynamic,
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationEl {
     #[doc = "Set the field `custom_field`.\n"]
     pub fn set_custom_field(
@@ -504,7 +440,6 @@ impl IotIndexingConfigurationThingGroupIndexingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `managed_field`.\n"]
     pub fn set_managed_field(
         mut self,
@@ -525,10 +460,8 @@ impl IotIndexingConfigurationThingGroupIndexingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationEl {
     type O = BlockAssignable<IotIndexingConfigurationThingGroupIndexingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -537,12 +470,10 @@ impl ToListMappable for IotIndexingConfigurationThingGroupIndexingConfigurationE
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingGroupIndexingConfigurationEl {
     #[doc = ""]
     pub thing_group_indexing_mode: PrimField<String>,
 }
-
 impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationEl {
     pub fn build(self) -> IotIndexingConfigurationThingGroupIndexingConfigurationEl {
         IotIndexingConfigurationThingGroupIndexingConfigurationEl {
@@ -553,12 +484,10 @@ impl BuildIotIndexingConfigurationThingGroupIndexingConfigurationEl {
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingGroupIndexingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -570,12 +499,10 @@ impl Ref for IotIndexingConfigurationThingGroupIndexingConfigurationElRef {
         }
     }
 }
-
 impl IotIndexingConfigurationThingGroupIndexingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `thing_group_indexing_mode` after provisioning.\n"]
     pub fn thing_group_indexing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -584,7 +511,6 @@ impl IotIndexingConfigurationThingGroupIndexingConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -592,24 +518,20 @@ pub struct IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
     type O = BlockAssignable<IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -618,9 +540,7 @@ impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElCust
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {}
-
 impl BuildIotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
     pub fn build(self) -> IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
         IotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
@@ -629,12 +549,10 @@ impl BuildIotIndexingConfigurationThingIndexingConfigurationElCustomFieldEl {
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingIndexingConfigurationElCustomFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingIndexingConfigurationElCustomFieldElRef {
     fn new(
         shared: StackShared,
@@ -646,29 +564,24 @@ impl Ref for IotIndexingConfigurationThingIndexingConfigurationElCustomFieldElRe
         }
     }
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElCustomFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     named_shadow_names: Option<SetField<PrimField<String>>>,
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
     #[doc = "Set the field `named_shadow_names`.\n"]
     pub fn set_named_shadow_names(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -676,10 +589,8 @@ impl IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
     type O = BlockAssignable<IotIndexingConfigurationThingIndexingConfigurationElFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -688,9 +599,7 @@ impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElFilt
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingIndexingConfigurationElFilterEl {}
-
 impl BuildIotIndexingConfigurationThingIndexingConfigurationElFilterEl {
     pub fn build(self) -> IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
         IotIndexingConfigurationThingIndexingConfigurationElFilterEl {
@@ -698,12 +607,10 @@ impl BuildIotIndexingConfigurationThingIndexingConfigurationElFilterEl {
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingIndexingConfigurationElFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingIndexingConfigurationElFilterElRef {
     fn new(
         shared: StackShared,
@@ -715,12 +622,10 @@ impl Ref for IotIndexingConfigurationThingIndexingConfigurationElFilterElRef {
         }
     }
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `named_shadow_names` after provisioning.\n"]
     pub fn named_shadow_names(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -729,7 +634,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElFilterElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -737,24 +641,20 @@ pub struct IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
     type O = BlockAssignable<IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -763,9 +663,7 @@ impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationElMana
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {}
-
 impl BuildIotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
     pub fn build(self) -> IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
         IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
@@ -774,12 +672,10 @@ impl BuildIotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl {
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingIndexingConfigurationElManagedFieldElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingIndexingConfigurationElManagedFieldElRef {
     fn new(
         shared: StackShared,
@@ -791,23 +687,19 @@ impl Ref for IotIndexingConfigurationThingIndexingConfigurationElManagedFieldElR
         }
     }
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElManagedFieldElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotIndexingConfigurationThingIndexingConfigurationElDynamic {
     custom_field:
@@ -816,7 +708,6 @@ struct IotIndexingConfigurationThingIndexingConfigurationElDynamic {
     managed_field:
         Option<DynamicBlock<IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl>>,
 }
-
 #[derive(Serialize)]
 pub struct IotIndexingConfigurationThingIndexingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -834,26 +725,22 @@ pub struct IotIndexingConfigurationThingIndexingConfigurationEl {
     managed_field: Option<Vec<IotIndexingConfigurationThingIndexingConfigurationElManagedFieldEl>>,
     dynamic: IotIndexingConfigurationThingIndexingConfigurationElDynamic,
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationEl {
     #[doc = "Set the field `device_defender_indexing_mode`.\n"]
     pub fn set_device_defender_indexing_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.device_defender_indexing_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `named_shadow_indexing_mode`.\n"]
     pub fn set_named_shadow_indexing_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.named_shadow_indexing_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `thing_connectivity_indexing_mode`.\n"]
     pub fn set_thing_connectivity_indexing_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.thing_connectivity_indexing_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_field`.\n"]
     pub fn set_custom_field(
         mut self,
@@ -869,7 +756,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(
         mut self,
@@ -885,7 +771,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `managed_field`.\n"]
     pub fn set_managed_field(
         mut self,
@@ -904,10 +789,8 @@ impl IotIndexingConfigurationThingIndexingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationEl {
     type O = BlockAssignable<IotIndexingConfigurationThingIndexingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -916,12 +799,10 @@ impl ToListMappable for IotIndexingConfigurationThingIndexingConfigurationEl {
         })
     }
 }
-
 pub struct BuildIotIndexingConfigurationThingIndexingConfigurationEl {
     #[doc = ""]
     pub thing_indexing_mode: PrimField<String>,
 }
-
 impl BuildIotIndexingConfigurationThingIndexingConfigurationEl {
     pub fn build(self) -> IotIndexingConfigurationThingIndexingConfigurationEl {
         IotIndexingConfigurationThingIndexingConfigurationEl {
@@ -936,12 +817,10 @@ impl BuildIotIndexingConfigurationThingIndexingConfigurationEl {
         }
     }
 }
-
 pub struct IotIndexingConfigurationThingIndexingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotIndexingConfigurationThingIndexingConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -953,12 +832,10 @@ impl Ref for IotIndexingConfigurationThingIndexingConfigurationElRef {
         }
     }
 }
-
 impl IotIndexingConfigurationThingIndexingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `device_defender_indexing_mode` after provisioning.\n"]
     pub fn device_defender_indexing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -966,7 +843,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElRef {
             format!("{}.device_defender_indexing_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `named_shadow_indexing_mode` after provisioning.\n"]
     pub fn named_shadow_indexing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -974,7 +850,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElRef {
             format!("{}.named_shadow_indexing_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_connectivity_indexing_mode` after provisioning.\n"]
     pub fn thing_connectivity_indexing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -982,7 +857,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElRef {
             format!("{}.thing_connectivity_indexing_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `thing_indexing_mode` after provisioning.\n"]
     pub fn thing_indexing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -990,7 +864,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElRef {
             format!("{}.thing_indexing_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(
         &self,
@@ -998,7 +871,6 @@ impl IotIndexingConfigurationThingIndexingConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.filter", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotIndexingConfigurationDynamic {
     thing_group_indexing_configuration:

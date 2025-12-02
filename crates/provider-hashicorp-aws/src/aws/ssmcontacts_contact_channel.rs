@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsmcontactsContactChannelData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct SsmcontactsContactChannelData {
     delivery_address: Option<Vec<SsmcontactsContactChannelDeliveryAddressEl>>,
     dynamic: SsmcontactsContactChannelDynamic,
 }
-
 struct SsmcontactsContactChannel_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsmcontactsContactChannelData>,
 }
-
 #[derive(Clone)]
 pub struct SsmcontactsContactChannel(Rc<SsmcontactsContactChannel_>);
-
 impl SsmcontactsContactChannel {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl SsmcontactsContactChannel {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl SsmcontactsContactChannel {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,19 +93,16 @@ impl SsmcontactsContactChannel {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delivery_address`.\n"]
     pub fn set_delivery_address(
         self,
@@ -133,7 +118,6 @@ impl SsmcontactsContactChannel {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `activation_status` after provisioning.\n"]
     pub fn activation_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,12 +125,10 @@ impl SsmcontactsContactChannel {
             format!("{}.activation_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `contact_id` after provisioning.\n"]
     pub fn contact_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,12 +136,10 @@ impl SsmcontactsContactChannel {
             format!("{}.contact_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +147,6 @@ impl SsmcontactsContactChannel {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -175,7 +154,6 @@ impl SsmcontactsContactChannel {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +161,6 @@ impl SsmcontactsContactChannel {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delivery_address` after provisioning.\n"]
     pub fn delivery_address(&self) -> ListRef<SsmcontactsContactChannelDeliveryAddressElRef> {
         ListRef::new(
@@ -192,7 +169,6 @@ impl SsmcontactsContactChannel {
         )
     }
 }
-
 impl Referable for SsmcontactsContactChannel {
     fn extract_ref(&self) -> String {
         format!(
@@ -202,32 +178,25 @@ impl Referable for SsmcontactsContactChannel {
         )
     }
 }
-
 impl Resource for SsmcontactsContactChannel {}
-
 impl ToListMappable for SsmcontactsContactChannel {
     type O = ListRef<SsmcontactsContactChannelRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsmcontactsContactChannel_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssmcontacts_contact_channel".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsmcontactsContactChannel {
     pub tf_id: String,
     #[doc = ""]
@@ -237,7 +206,6 @@ pub struct BuildSsmcontactsContactChannel {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildSsmcontactsContactChannel {
     pub fn build(self, stack: &mut Stack) -> SsmcontactsContactChannel {
         let out = SsmcontactsContactChannel(Rc::new(SsmcontactsContactChannel_ {
@@ -261,27 +229,22 @@ impl BuildSsmcontactsContactChannel {
         out
     }
 }
-
 pub struct SsmcontactsContactChannelRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmcontactsContactChannelRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsmcontactsContactChannelRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `activation_status` after provisioning.\n"]
     pub fn activation_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,12 +252,10 @@ impl SsmcontactsContactChannelRef {
             format!("{}.activation_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `contact_id` after provisioning.\n"]
     pub fn contact_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -302,12 +263,10 @@ impl SsmcontactsContactChannelRef {
             format!("{}.contact_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +274,6 @@ impl SsmcontactsContactChannelRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,7 +281,6 @@ impl SsmcontactsContactChannelRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -331,7 +288,6 @@ impl SsmcontactsContactChannelRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delivery_address` after provisioning.\n"]
     pub fn delivery_address(&self) -> ListRef<SsmcontactsContactChannelDeliveryAddressElRef> {
         ListRef::new(
@@ -340,17 +296,13 @@ impl SsmcontactsContactChannelRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SsmcontactsContactChannelDeliveryAddressEl {
     simple_address: PrimField<String>,
 }
-
 impl SsmcontactsContactChannelDeliveryAddressEl {}
-
 impl ToListMappable for SsmcontactsContactChannelDeliveryAddressEl {
     type O = BlockAssignable<SsmcontactsContactChannelDeliveryAddressEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -359,12 +311,10 @@ impl ToListMappable for SsmcontactsContactChannelDeliveryAddressEl {
         })
     }
 }
-
 pub struct BuildSsmcontactsContactChannelDeliveryAddressEl {
     #[doc = ""]
     pub simple_address: PrimField<String>,
 }
-
 impl BuildSsmcontactsContactChannelDeliveryAddressEl {
     pub fn build(self) -> SsmcontactsContactChannelDeliveryAddressEl {
         SsmcontactsContactChannelDeliveryAddressEl {
@@ -372,12 +322,10 @@ impl BuildSsmcontactsContactChannelDeliveryAddressEl {
         }
     }
 }
-
 pub struct SsmcontactsContactChannelDeliveryAddressElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmcontactsContactChannelDeliveryAddressElRef {
     fn new(shared: StackShared, base: String) -> SsmcontactsContactChannelDeliveryAddressElRef {
         SsmcontactsContactChannelDeliveryAddressElRef {
@@ -386,12 +334,10 @@ impl Ref for SsmcontactsContactChannelDeliveryAddressElRef {
         }
     }
 }
-
 impl SsmcontactsContactChannelDeliveryAddressElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `simple_address` after provisioning.\n"]
     pub fn simple_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -400,7 +346,6 @@ impl SsmcontactsContactChannelDeliveryAddressElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsmcontactsContactChannelDynamic {
     delivery_address: Option<DynamicBlock<SsmcontactsContactChannelDeliveryAddressEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueUserDefinedFunctionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct GlueUserDefinedFunctionData {
     resource_uris: Option<Vec<GlueUserDefinedFunctionResourceUrisEl>>,
     dynamic: GlueUserDefinedFunctionDynamic,
 }
-
 struct GlueUserDefinedFunction_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueUserDefinedFunctionData>,
 }
-
 #[derive(Clone)]
 pub struct GlueUserDefinedFunction(Rc<GlueUserDefinedFunction_>);
-
 impl GlueUserDefinedFunction {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl GlueUserDefinedFunction {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl GlueUserDefinedFunction {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,25 +96,21 @@ impl GlueUserDefinedFunction {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_uris`.\n"]
     pub fn set_resource_uris(
         self,
@@ -142,12 +126,10 @@ impl GlueUserDefinedFunction {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -155,7 +137,6 @@ impl GlueUserDefinedFunction {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `class_name` after provisioning.\n"]
     pub fn class_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -163,7 +144,6 @@ impl GlueUserDefinedFunction {
             format!("{}.class_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -171,7 +151,6 @@ impl GlueUserDefinedFunction {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,12 +158,10 @@ impl GlueUserDefinedFunction {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,7 +169,6 @@ impl GlueUserDefinedFunction {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_name` after provisioning.\n"]
     pub fn owner_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +176,6 @@ impl GlueUserDefinedFunction {
             format!("{}.owner_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_type` after provisioning.\n"]
     pub fn owner_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +183,6 @@ impl GlueUserDefinedFunction {
             format!("{}.owner_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,7 +191,6 @@ impl GlueUserDefinedFunction {
         )
     }
 }
-
 impl Referable for GlueUserDefinedFunction {
     fn extract_ref(&self) -> String {
         format!(
@@ -227,32 +200,25 @@ impl Referable for GlueUserDefinedFunction {
         )
     }
 }
-
 impl Resource for GlueUserDefinedFunction {}
-
 impl ToListMappable for GlueUserDefinedFunction {
     type O = ListRef<GlueUserDefinedFunctionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueUserDefinedFunction_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_user_defined_function".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueUserDefinedFunction {
     pub tf_id: String,
     #[doc = ""]
@@ -266,7 +232,6 @@ pub struct BuildGlueUserDefinedFunction {
     #[doc = ""]
     pub owner_type: PrimField<String>,
 }
-
 impl BuildGlueUserDefinedFunction {
     pub fn build(self, stack: &mut Stack) -> GlueUserDefinedFunction {
         let out = GlueUserDefinedFunction(Rc::new(GlueUserDefinedFunction_ {
@@ -293,32 +258,26 @@ impl BuildGlueUserDefinedFunction {
         out
     }
 }
-
 pub struct GlueUserDefinedFunctionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueUserDefinedFunctionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueUserDefinedFunctionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -326,7 +285,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.catalog_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `class_name` after provisioning.\n"]
     pub fn class_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -334,7 +292,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.class_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -342,7 +299,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,12 +306,10 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +317,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_name` after provisioning.\n"]
     pub fn owner_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +324,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.owner_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_type` after provisioning.\n"]
     pub fn owner_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,7 +331,6 @@ impl GlueUserDefinedFunctionRef {
             format!("{}.owner_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -388,18 +339,14 @@ impl GlueUserDefinedFunctionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueUserDefinedFunctionResourceUrisEl {
     resource_type: PrimField<String>,
     uri: PrimField<String>,
 }
-
 impl GlueUserDefinedFunctionResourceUrisEl {}
-
 impl ToListMappable for GlueUserDefinedFunctionResourceUrisEl {
     type O = BlockAssignable<GlueUserDefinedFunctionResourceUrisEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -408,14 +355,12 @@ impl ToListMappable for GlueUserDefinedFunctionResourceUrisEl {
         })
     }
 }
-
 pub struct BuildGlueUserDefinedFunctionResourceUrisEl {
     #[doc = ""]
     pub resource_type: PrimField<String>,
     #[doc = ""]
     pub uri: PrimField<String>,
 }
-
 impl BuildGlueUserDefinedFunctionResourceUrisEl {
     pub fn build(self) -> GlueUserDefinedFunctionResourceUrisEl {
         GlueUserDefinedFunctionResourceUrisEl {
@@ -424,12 +369,10 @@ impl BuildGlueUserDefinedFunctionResourceUrisEl {
         }
     }
 }
-
 pub struct GlueUserDefinedFunctionResourceUrisElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueUserDefinedFunctionResourceUrisElRef {
     fn new(shared: StackShared, base: String) -> GlueUserDefinedFunctionResourceUrisElRef {
         GlueUserDefinedFunctionResourceUrisElRef {
@@ -438,12 +381,10 @@ impl Ref for GlueUserDefinedFunctionResourceUrisElRef {
         }
     }
 }
-
 impl GlueUserDefinedFunctionResourceUrisElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,13 +392,11 @@ impl GlueUserDefinedFunctionResourceUrisElRef {
             format!("{}.resource_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueUserDefinedFunctionDynamic {
     resource_uris: Option<DynamicBlock<GlueUserDefinedFunctionResourceUrisEl>>,

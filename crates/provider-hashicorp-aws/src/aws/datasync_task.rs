@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DatasyncTaskData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -44,47 +43,38 @@ struct DatasyncTaskData {
     timeouts: Option<DatasyncTaskTimeoutsEl>,
     dynamic: DatasyncTaskDynamic,
 }
-
 struct DatasyncTask_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DatasyncTaskData>,
 }
-
 #[derive(Clone)]
 pub struct DatasyncTask(Rc<DatasyncTask_>);
-
 impl DatasyncTask {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -103,7 +93,6 @@ impl DatasyncTask {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -113,7 +102,6 @@ impl DatasyncTask {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -123,49 +111,41 @@ impl DatasyncTask {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `cloudwatch_log_group_arn`.\n"]
     pub fn set_cloudwatch_log_group_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cloudwatch_log_group_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `task_mode`.\n"]
     pub fn set_task_mode(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().task_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `excludes`.\n"]
     pub fn set_excludes(self, v: impl Into<BlockAssignable<DatasyncTaskExcludesEl>>) -> Self {
         match v.into() {
@@ -178,7 +158,6 @@ impl DatasyncTask {
         }
         self
     }
-
     #[doc = "Set the field `includes`.\n"]
     pub fn set_includes(self, v: impl Into<BlockAssignable<DatasyncTaskIncludesEl>>) -> Self {
         match v.into() {
@@ -191,7 +170,6 @@ impl DatasyncTask {
         }
         self
     }
-
     #[doc = "Set the field `options`.\n"]
     pub fn set_options(self, v: impl Into<BlockAssignable<DatasyncTaskOptionsEl>>) -> Self {
         match v.into() {
@@ -204,7 +182,6 @@ impl DatasyncTask {
         }
         self
     }
-
     #[doc = "Set the field `schedule`.\n"]
     pub fn set_schedule(self, v: impl Into<BlockAssignable<DatasyncTaskScheduleEl>>) -> Self {
         match v.into() {
@@ -217,7 +194,6 @@ impl DatasyncTask {
         }
         self
     }
-
     #[doc = "Set the field `task_report_config`.\n"]
     pub fn set_task_report_config(
         self,
@@ -233,18 +209,15 @@ impl DatasyncTask {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DatasyncTaskTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +225,6 @@ impl DatasyncTask {
             format!("{}.cloudwatch_log_group_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_location_arn` after provisioning.\n"]
     pub fn destination_location_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,12 +232,10 @@ impl DatasyncTask {
             format!("{}.destination_location_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +243,6 @@ impl DatasyncTask {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +250,6 @@ impl DatasyncTask {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +257,6 @@ impl DatasyncTask {
             format!("{}.source_location_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -297,7 +264,6 @@ impl DatasyncTask {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -305,7 +271,6 @@ impl DatasyncTask {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_mode` after provisioning.\n"]
     pub fn task_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +278,6 @@ impl DatasyncTask {
             format!("{}.task_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
     pub fn excludes(&self) -> ListRef<DatasyncTaskExcludesElRef> {
         ListRef::new(
@@ -321,7 +285,6 @@ impl DatasyncTask {
             format!("{}.excludes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
     pub fn includes(&self) -> ListRef<DatasyncTaskIncludesElRef> {
         ListRef::new(
@@ -329,7 +292,6 @@ impl DatasyncTask {
             format!("{}.includes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<DatasyncTaskOptionsElRef> {
         ListRef::new(
@@ -337,7 +299,6 @@ impl DatasyncTask {
             format!("{}.options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<DatasyncTaskScheduleElRef> {
         ListRef::new(
@@ -345,7 +306,6 @@ impl DatasyncTask {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_report_config` after provisioning.\n"]
     pub fn task_report_config(&self) -> ListRef<DatasyncTaskTaskReportConfigElRef> {
         ListRef::new(
@@ -353,7 +313,6 @@ impl DatasyncTask {
             format!("{}.task_report_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DatasyncTaskTimeoutsElRef {
         DatasyncTaskTimeoutsElRef::new(
@@ -362,7 +321,6 @@ impl DatasyncTask {
         )
     }
 }
-
 impl Referable for DatasyncTask {
     fn extract_ref(&self) -> String {
         format!(
@@ -372,32 +330,25 @@ impl Referable for DatasyncTask {
         )
     }
 }
-
 impl Resource for DatasyncTask {}
-
 impl ToListMappable for DatasyncTask {
     type O = ListRef<DatasyncTaskRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DatasyncTask_ {
     fn extract_resource_type(&self) -> String {
         "aws_datasync_task".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDatasyncTask {
     pub tf_id: String,
     #[doc = ""]
@@ -405,7 +356,6 @@ pub struct BuildDatasyncTask {
     #[doc = ""]
     pub source_location_arn: PrimField<String>,
 }
-
 impl BuildDatasyncTask {
     pub fn build(self, stack: &mut Stack) -> DatasyncTask {
         let out = DatasyncTask(Rc::new(DatasyncTask_ {
@@ -438,32 +388,26 @@ impl BuildDatasyncTask {
         out
     }
 }
-
 pub struct DatasyncTaskRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DatasyncTaskRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +415,6 @@ impl DatasyncTaskRef {
             format!("{}.cloudwatch_log_group_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_location_arn` after provisioning.\n"]
     pub fn destination_location_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,12 +422,10 @@ impl DatasyncTaskRef {
             format!("{}.destination_location_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -492,7 +433,6 @@ impl DatasyncTaskRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -500,7 +440,6 @@ impl DatasyncTaskRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_location_arn` after provisioning.\n"]
     pub fn source_location_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -508,7 +447,6 @@ impl DatasyncTaskRef {
             format!("{}.source_location_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -516,7 +454,6 @@ impl DatasyncTaskRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -524,7 +461,6 @@ impl DatasyncTaskRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_mode` after provisioning.\n"]
     pub fn task_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -532,7 +468,6 @@ impl DatasyncTaskRef {
             format!("{}.task_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `excludes` after provisioning.\n"]
     pub fn excludes(&self) -> ListRef<DatasyncTaskExcludesElRef> {
         ListRef::new(
@@ -540,7 +475,6 @@ impl DatasyncTaskRef {
             format!("{}.excludes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `includes` after provisioning.\n"]
     pub fn includes(&self) -> ListRef<DatasyncTaskIncludesElRef> {
         ListRef::new(
@@ -548,7 +482,6 @@ impl DatasyncTaskRef {
             format!("{}.includes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `options` after provisioning.\n"]
     pub fn options(&self) -> ListRef<DatasyncTaskOptionsElRef> {
         ListRef::new(
@@ -556,7 +489,6 @@ impl DatasyncTaskRef {
             format!("{}.options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<DatasyncTaskScheduleElRef> {
         ListRef::new(
@@ -564,7 +496,6 @@ impl DatasyncTaskRef {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_report_config` after provisioning.\n"]
     pub fn task_report_config(&self) -> ListRef<DatasyncTaskTaskReportConfigElRef> {
         ListRef::new(
@@ -572,7 +503,6 @@ impl DatasyncTaskRef {
             format!("{}.task_report_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DatasyncTaskTimeoutsElRef {
         DatasyncTaskTimeoutsElRef::new(
@@ -581,7 +511,6 @@ impl DatasyncTaskRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskExcludesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -589,24 +518,20 @@ pub struct DatasyncTaskExcludesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskExcludesEl {
     #[doc = "Set the field `filter_type`.\n"]
     pub fn set_filter_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskExcludesEl {
     type O = BlockAssignable<DatasyncTaskExcludesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -615,9 +540,7 @@ impl ToListMappable for DatasyncTaskExcludesEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskExcludesEl {}
-
 impl BuildDatasyncTaskExcludesEl {
     pub fn build(self) -> DatasyncTaskExcludesEl {
         DatasyncTaskExcludesEl {
@@ -626,12 +549,10 @@ impl BuildDatasyncTaskExcludesEl {
         }
     }
 }
-
 pub struct DatasyncTaskExcludesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskExcludesElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskExcludesElRef {
         DatasyncTaskExcludesElRef {
@@ -640,23 +561,19 @@ impl Ref for DatasyncTaskExcludesElRef {
         }
     }
 }
-
 impl DatasyncTaskExcludesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter_type` after provisioning.\n"]
     pub fn filter_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskIncludesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -664,24 +581,20 @@ pub struct DatasyncTaskIncludesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskIncludesEl {
     #[doc = "Set the field `filter_type`.\n"]
     pub fn set_filter_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.filter_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskIncludesEl {
     type O = BlockAssignable<DatasyncTaskIncludesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -690,9 +603,7 @@ impl ToListMappable for DatasyncTaskIncludesEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskIncludesEl {}
-
 impl BuildDatasyncTaskIncludesEl {
     pub fn build(self) -> DatasyncTaskIncludesEl {
         DatasyncTaskIncludesEl {
@@ -701,12 +612,10 @@ impl BuildDatasyncTaskIncludesEl {
         }
     }
 }
-
 pub struct DatasyncTaskIncludesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskIncludesElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskIncludesElRef {
         DatasyncTaskIncludesElRef {
@@ -715,23 +624,19 @@ impl Ref for DatasyncTaskIncludesElRef {
         }
     }
 }
-
 impl DatasyncTaskIncludesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter_type` after provisioning.\n"]
     pub fn filter_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -765,102 +670,85 @@ pub struct DatasyncTaskOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     verify_mode: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskOptionsEl {
     #[doc = "Set the field `atime`.\n"]
     pub fn set_atime(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.atime = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bytes_per_second`.\n"]
     pub fn set_bytes_per_second(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.bytes_per_second = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gid`.\n"]
     pub fn set_gid(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gid = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_level`.\n"]
     pub fn set_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_level = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mtime`.\n"]
     pub fn set_mtime(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.mtime = Some(v.into());
         self
     }
-
     #[doc = "Set the field `object_tags`.\n"]
     pub fn set_object_tags(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.object_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `overwrite_mode`.\n"]
     pub fn set_overwrite_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.overwrite_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `posix_permissions`.\n"]
     pub fn set_posix_permissions(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.posix_permissions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preserve_deleted_files`.\n"]
     pub fn set_preserve_deleted_files(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.preserve_deleted_files = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preserve_devices`.\n"]
     pub fn set_preserve_devices(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.preserve_devices = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_descriptor_copy_flags`.\n"]
     pub fn set_security_descriptor_copy_flags(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.security_descriptor_copy_flags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `task_queueing`.\n"]
     pub fn set_task_queueing(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.task_queueing = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transfer_mode`.\n"]
     pub fn set_transfer_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.transfer_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `uid`.\n"]
     pub fn set_uid(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.uid = Some(v.into());
         self
     }
-
     #[doc = "Set the field `verify_mode`.\n"]
     pub fn set_verify_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.verify_mode = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskOptionsEl {
     type O = BlockAssignable<DatasyncTaskOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -869,9 +757,7 @@ impl ToListMappable for DatasyncTaskOptionsEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskOptionsEl {}
-
 impl BuildDatasyncTaskOptionsEl {
     pub fn build(self) -> DatasyncTaskOptionsEl {
         DatasyncTaskOptionsEl {
@@ -893,12 +779,10 @@ impl BuildDatasyncTaskOptionsEl {
         }
     }
 }
-
 pub struct DatasyncTaskOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskOptionsElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskOptionsElRef {
         DatasyncTaskOptionsElRef {
@@ -907,17 +791,14 @@ impl Ref for DatasyncTaskOptionsElRef {
         }
     }
 }
-
 impl DatasyncTaskOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `atime` after provisioning.\n"]
     pub fn atime(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.atime", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bytes_per_second` after provisioning.\n"]
     pub fn bytes_per_second(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -925,27 +806,22 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.bytes_per_second", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `gid` after provisioning.\n"]
     pub fn gid(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gid", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_level` after provisioning.\n"]
     pub fn log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_level", self.base))
     }
-
     #[doc = "Get a reference to the value of field `mtime` after provisioning.\n"]
     pub fn mtime(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mtime", self.base))
     }
-
     #[doc = "Get a reference to the value of field `object_tags` after provisioning.\n"]
     pub fn object_tags(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `overwrite_mode` after provisioning.\n"]
     pub fn overwrite_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -953,7 +829,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.overwrite_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `posix_permissions` after provisioning.\n"]
     pub fn posix_permissions(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -961,7 +836,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.posix_permissions", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_deleted_files` after provisioning.\n"]
     pub fn preserve_deleted_files(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -969,7 +843,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.preserve_deleted_files", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_devices` after provisioning.\n"]
     pub fn preserve_devices(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -977,7 +850,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.preserve_devices", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_descriptor_copy_flags` after provisioning.\n"]
     pub fn security_descriptor_copy_flags(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -985,7 +857,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.security_descriptor_copy_flags", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_queueing` after provisioning.\n"]
     pub fn task_queueing(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -993,7 +864,6 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.task_queueing", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `transfer_mode` after provisioning.\n"]
     pub fn transfer_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1001,28 +871,22 @@ impl DatasyncTaskOptionsElRef {
             format!("{}.transfer_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `uid` after provisioning.\n"]
     pub fn uid(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uid", self.base))
     }
-
     #[doc = "Get a reference to the value of field `verify_mode` after provisioning.\n"]
     pub fn verify_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.verify_mode", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskScheduleEl {
     schedule_expression: PrimField<String>,
 }
-
 impl DatasyncTaskScheduleEl {}
-
 impl ToListMappable for DatasyncTaskScheduleEl {
     type O = BlockAssignable<DatasyncTaskScheduleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1031,12 +895,10 @@ impl ToListMappable for DatasyncTaskScheduleEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskScheduleEl {
     #[doc = ""]
     pub schedule_expression: PrimField<String>,
 }
-
 impl BuildDatasyncTaskScheduleEl {
     pub fn build(self) -> DatasyncTaskScheduleEl {
         DatasyncTaskScheduleEl {
@@ -1044,12 +906,10 @@ impl BuildDatasyncTaskScheduleEl {
         }
     }
 }
-
 pub struct DatasyncTaskScheduleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskScheduleElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskScheduleElRef {
         DatasyncTaskScheduleElRef {
@@ -1058,12 +918,10 @@ impl Ref for DatasyncTaskScheduleElRef {
         }
     }
 }
-
 impl DatasyncTaskScheduleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1072,7 +930,6 @@ impl DatasyncTaskScheduleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskTaskReportConfigElReportOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1084,36 +941,30 @@ pub struct DatasyncTaskTaskReportConfigElReportOverridesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     verified_override: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskTaskReportConfigElReportOverridesEl {
     #[doc = "Set the field `deleted_override`.\n"]
     pub fn set_deleted_override(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.deleted_override = Some(v.into());
         self
     }
-
     #[doc = "Set the field `skipped_override`.\n"]
     pub fn set_skipped_override(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.skipped_override = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transferred_override`.\n"]
     pub fn set_transferred_override(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.transferred_override = Some(v.into());
         self
     }
-
     #[doc = "Set the field `verified_override`.\n"]
     pub fn set_verified_override(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.verified_override = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskTaskReportConfigElReportOverridesEl {
     type O = BlockAssignable<DatasyncTaskTaskReportConfigElReportOverridesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1122,9 +973,7 @@ impl ToListMappable for DatasyncTaskTaskReportConfigElReportOverridesEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskTaskReportConfigElReportOverridesEl {}
-
 impl BuildDatasyncTaskTaskReportConfigElReportOverridesEl {
     pub fn build(self) -> DatasyncTaskTaskReportConfigElReportOverridesEl {
         DatasyncTaskTaskReportConfigElReportOverridesEl {
@@ -1135,12 +984,10 @@ impl BuildDatasyncTaskTaskReportConfigElReportOverridesEl {
         }
     }
 }
-
 pub struct DatasyncTaskTaskReportConfigElReportOverridesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskTaskReportConfigElReportOverridesElRef {
     fn new(
         shared: StackShared,
@@ -1152,12 +999,10 @@ impl Ref for DatasyncTaskTaskReportConfigElReportOverridesElRef {
         }
     }
 }
-
 impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `deleted_override` after provisioning.\n"]
     pub fn deleted_override(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1165,7 +1010,6 @@ impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
             format!("{}.deleted_override", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `skipped_override` after provisioning.\n"]
     pub fn skipped_override(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1173,7 +1017,6 @@ impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
             format!("{}.skipped_override", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `transferred_override` after provisioning.\n"]
     pub fn transferred_override(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1181,7 +1024,6 @@ impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
             format!("{}.transferred_override", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `verified_override` after provisioning.\n"]
     pub fn verified_override(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1190,7 +1032,6 @@ impl DatasyncTaskTaskReportConfigElReportOverridesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskTaskReportConfigElS3DestinationEl {
     bucket_access_role_arn: PrimField<String>,
@@ -1198,7 +1039,6 @@ pub struct DatasyncTaskTaskReportConfigElS3DestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subdirectory: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskTaskReportConfigElS3DestinationEl {
     #[doc = "Set the field `subdirectory`.\n"]
     pub fn set_subdirectory(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1206,10 +1046,8 @@ impl DatasyncTaskTaskReportConfigElS3DestinationEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskTaskReportConfigElS3DestinationEl {
     type O = BlockAssignable<DatasyncTaskTaskReportConfigElS3DestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1218,14 +1056,12 @@ impl ToListMappable for DatasyncTaskTaskReportConfigElS3DestinationEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskTaskReportConfigElS3DestinationEl {
     #[doc = ""]
     pub bucket_access_role_arn: PrimField<String>,
     #[doc = ""]
     pub s3_bucket_arn: PrimField<String>,
 }
-
 impl BuildDatasyncTaskTaskReportConfigElS3DestinationEl {
     pub fn build(self) -> DatasyncTaskTaskReportConfigElS3DestinationEl {
         DatasyncTaskTaskReportConfigElS3DestinationEl {
@@ -1235,12 +1071,10 @@ impl BuildDatasyncTaskTaskReportConfigElS3DestinationEl {
         }
     }
 }
-
 pub struct DatasyncTaskTaskReportConfigElS3DestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskTaskReportConfigElS3DestinationElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskTaskReportConfigElS3DestinationElRef {
         DatasyncTaskTaskReportConfigElS3DestinationElRef {
@@ -1249,12 +1083,10 @@ impl Ref for DatasyncTaskTaskReportConfigElS3DestinationElRef {
         }
     }
 }
-
 impl DatasyncTaskTaskReportConfigElS3DestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_access_role_arn` after provisioning.\n"]
     pub fn bucket_access_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1262,7 +1094,6 @@ impl DatasyncTaskTaskReportConfigElS3DestinationElRef {
             format!("{}.bucket_access_role_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket_arn` after provisioning.\n"]
     pub fn s3_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1270,19 +1101,16 @@ impl DatasyncTaskTaskReportConfigElS3DestinationElRef {
             format!("{}.s3_bucket_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subdirectory", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncTaskTaskReportConfigElDynamic {
     report_overrides: Option<DynamicBlock<DatasyncTaskTaskReportConfigElReportOverridesEl>>,
     s3_destination: Option<DynamicBlock<DatasyncTaskTaskReportConfigElS3DestinationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskTaskReportConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1297,26 +1125,22 @@ pub struct DatasyncTaskTaskReportConfigEl {
     s3_destination: Option<Vec<DatasyncTaskTaskReportConfigElS3DestinationEl>>,
     dynamic: DatasyncTaskTaskReportConfigElDynamic,
 }
-
 impl DatasyncTaskTaskReportConfigEl {
     #[doc = "Set the field `output_type`.\n"]
     pub fn set_output_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.output_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `report_level`.\n"]
     pub fn set_report_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.report_level = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_object_versioning`.\n"]
     pub fn set_s3_object_versioning(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_object_versioning = Some(v.into());
         self
     }
-
     #[doc = "Set the field `report_overrides`.\n"]
     pub fn set_report_overrides(
         mut self,
@@ -1332,7 +1156,6 @@ impl DatasyncTaskTaskReportConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `s3_destination`.\n"]
     pub fn set_s3_destination(
         mut self,
@@ -1349,10 +1172,8 @@ impl DatasyncTaskTaskReportConfigEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskTaskReportConfigEl {
     type O = BlockAssignable<DatasyncTaskTaskReportConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1361,9 +1182,7 @@ impl ToListMappable for DatasyncTaskTaskReportConfigEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskTaskReportConfigEl {}
-
 impl BuildDatasyncTaskTaskReportConfigEl {
     pub fn build(self) -> DatasyncTaskTaskReportConfigEl {
         DatasyncTaskTaskReportConfigEl {
@@ -1376,12 +1195,10 @@ impl BuildDatasyncTaskTaskReportConfigEl {
         }
     }
 }
-
 pub struct DatasyncTaskTaskReportConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskTaskReportConfigElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskTaskReportConfigElRef {
         DatasyncTaskTaskReportConfigElRef {
@@ -1390,22 +1207,18 @@ impl Ref for DatasyncTaskTaskReportConfigElRef {
         }
     }
 }
-
 impl DatasyncTaskTaskReportConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `output_type` after provisioning.\n"]
     pub fn output_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.output_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `report_level` after provisioning.\n"]
     pub fn report_level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.report_level", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_object_versioning` after provisioning.\n"]
     pub fn s3_object_versioning(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1413,7 +1226,6 @@ impl DatasyncTaskTaskReportConfigElRef {
             format!("{}.s3_object_versioning", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `report_overrides` after provisioning.\n"]
     pub fn report_overrides(&self) -> ListRef<DatasyncTaskTaskReportConfigElReportOverridesElRef> {
         ListRef::new(
@@ -1421,7 +1233,6 @@ impl DatasyncTaskTaskReportConfigElRef {
             format!("{}.report_overrides", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_destination` after provisioning.\n"]
     pub fn s3_destination(&self) -> ListRef<DatasyncTaskTaskReportConfigElS3DestinationElRef> {
         ListRef::new(
@@ -1430,13 +1241,11 @@ impl DatasyncTaskTaskReportConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncTaskTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     create: Option<PrimField<String>>,
 }
-
 impl DatasyncTaskTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1444,10 +1253,8 @@ impl DatasyncTaskTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncTaskTimeoutsEl {
     type O = BlockAssignable<DatasyncTaskTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1456,9 +1263,7 @@ impl ToListMappable for DatasyncTaskTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDatasyncTaskTimeoutsEl {}
-
 impl BuildDatasyncTaskTimeoutsEl {
     pub fn build(self) -> DatasyncTaskTimeoutsEl {
         DatasyncTaskTimeoutsEl {
@@ -1466,12 +1271,10 @@ impl BuildDatasyncTaskTimeoutsEl {
         }
     }
 }
-
 pub struct DatasyncTaskTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncTaskTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DatasyncTaskTimeoutsElRef {
         DatasyncTaskTimeoutsElRef {
@@ -1480,18 +1283,15 @@ impl Ref for DatasyncTaskTimeoutsElRef {
         }
     }
 }
-
 impl DatasyncTaskTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncTaskDynamic {
     excludes: Option<DynamicBlock<DatasyncTaskExcludesEl>>,

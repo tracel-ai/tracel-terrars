@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LambdaFunctionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -90,47 +89,38 @@ struct LambdaFunctionData {
     vpc_config: Option<Vec<LambdaFunctionVpcConfigEl>>,
     dynamic: LambdaFunctionDynamic,
 }
-
 struct LambdaFunction_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LambdaFunctionData>,
 }
-
 #[derive(Clone)]
 pub struct LambdaFunction(Rc<LambdaFunction_>);
-
 impl LambdaFunction {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -149,7 +139,6 @@ impl LambdaFunction {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -159,7 +148,6 @@ impl LambdaFunction {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -169,91 +157,76 @@ impl LambdaFunction {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `architectures`.\n"]
     pub fn set_architectures(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().architectures = Some(v.into());
         self
     }
-
     #[doc = "Set the field `code_signing_config_arn`.\n"]
     pub fn set_code_signing_config_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().code_signing_config_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filename`.\n"]
     pub fn set_filename(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().filename = Some(v.into());
         self
     }
-
     #[doc = "Set the field `handler`.\n"]
     pub fn set_handler(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().handler = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image_uri`.\n"]
     pub fn set_image_uri(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().image_uri = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `layers`.\n"]
     pub fn set_layers(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().layers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory_size`.\n"]
     pub fn set_memory_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().memory_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `package_type`.\n"]
     pub fn set_package_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().package_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `publish`.\n"]
     pub fn set_publish(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().publish = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replace_security_groups_on_destroy`.\n"]
     pub fn set_replace_security_groups_on_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().replace_security_groups_on_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replacement_security_group_ids`.\n"]
     pub fn set_replacement_security_group_ids(
         self,
@@ -262,73 +235,61 @@ impl LambdaFunction {
         self.0.data.borrow_mut().replacement_security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `reserved_concurrent_executions`.\n"]
     pub fn set_reserved_concurrent_executions(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().reserved_concurrent_executions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `runtime`.\n"]
     pub fn set_runtime(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().runtime = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_bucket`.\n"]
     pub fn set_s3_bucket(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_bucket = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_key`.\n"]
     pub fn set_s3_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_object_version`.\n"]
     pub fn set_s3_object_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().s3_object_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `skip_destroy`.\n"]
     pub fn set_skip_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().skip_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_code_hash`.\n"]
     pub fn set_source_code_hash(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().source_code_hash = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_kms_key_arn`.\n"]
     pub fn set_source_kms_key_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().source_kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout`.\n"]
     pub fn set_timeout(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dead_letter_config`.\n"]
     pub fn set_dead_letter_config(
         self,
@@ -344,7 +305,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(
         self,
@@ -360,7 +320,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `ephemeral_storage`.\n"]
     pub fn set_ephemeral_storage(
         self,
@@ -376,7 +335,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `file_system_config`.\n"]
     pub fn set_file_system_config(
         self,
@@ -392,7 +350,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `image_config`.\n"]
     pub fn set_image_config(
         self,
@@ -408,7 +365,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `logging_config`.\n"]
     pub fn set_logging_config(
         self,
@@ -424,7 +380,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `snap_start`.\n"]
     pub fn set_snap_start(self, v: impl Into<BlockAssignable<LambdaFunctionSnapStartEl>>) -> Self {
         match v.into() {
@@ -437,13 +392,11 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<LambdaFunctionTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tracing_config`.\n"]
     pub fn set_tracing_config(
         self,
@@ -459,7 +412,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(self, v: impl Into<BlockAssignable<LambdaFunctionVpcConfigEl>>) -> Self {
         match v.into() {
@@ -472,7 +424,6 @@ impl LambdaFunction {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `architectures` after provisioning.\n"]
     pub fn architectures(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -480,12 +431,10 @@ impl LambdaFunction {
             format!("{}.architectures", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `code_sha256` after provisioning.\n"]
     pub fn code_sha256(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -493,7 +442,6 @@ impl LambdaFunction {
             format!("{}.code_sha256", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `code_signing_config_arn` after provisioning.\n"]
     pub fn code_signing_config_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -501,7 +449,6 @@ impl LambdaFunction {
             format!("{}.code_signing_config_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,7 +456,6 @@ impl LambdaFunction {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filename` after provisioning.\n"]
     pub fn filename(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -517,7 +463,6 @@ impl LambdaFunction {
             format!("{}.filename", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -525,7 +470,6 @@ impl LambdaFunction {
             format!("{}.function_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `handler` after provisioning.\n"]
     pub fn handler(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -533,12 +477,10 @@ impl LambdaFunction {
             format!("{}.handler", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_uri` after provisioning.\n"]
     pub fn image_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -546,7 +488,6 @@ impl LambdaFunction {
             format!("{}.image_uri", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invoke_arn` after provisioning.\n"]
     pub fn invoke_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -554,7 +495,6 @@ impl LambdaFunction {
             format!("{}.invoke_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -562,7 +502,6 @@ impl LambdaFunction {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -570,7 +509,6 @@ impl LambdaFunction {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `layers` after provisioning.\n"]
     pub fn layers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -578,7 +516,6 @@ impl LambdaFunction {
             format!("{}.layers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_size` after provisioning.\n"]
     pub fn memory_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -586,7 +523,6 @@ impl LambdaFunction {
             format!("{}.memory_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `package_type` after provisioning.\n"]
     pub fn package_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -594,7 +530,6 @@ impl LambdaFunction {
             format!("{}.package_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publish` after provisioning.\n"]
     pub fn publish(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -602,7 +537,6 @@ impl LambdaFunction {
             format!("{}.publish", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualified_arn` after provisioning.\n"]
     pub fn qualified_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -610,7 +544,6 @@ impl LambdaFunction {
             format!("{}.qualified_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualified_invoke_arn` after provisioning.\n"]
     pub fn qualified_invoke_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -618,7 +551,6 @@ impl LambdaFunction {
             format!("{}.qualified_invoke_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -626,7 +558,6 @@ impl LambdaFunction {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replace_security_groups_on_destroy` after provisioning.\n"]
     pub fn replace_security_groups_on_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -634,7 +565,6 @@ impl LambdaFunction {
             format!("{}.replace_security_groups_on_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replacement_security_group_ids` after provisioning.\n"]
     pub fn replacement_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -642,7 +572,6 @@ impl LambdaFunction {
             format!("{}.replacement_security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reserved_concurrent_executions` after provisioning.\n"]
     pub fn reserved_concurrent_executions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -650,7 +579,6 @@ impl LambdaFunction {
             format!("{}.reserved_concurrent_executions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -658,7 +586,6 @@ impl LambdaFunction {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -666,7 +593,6 @@ impl LambdaFunction {
             format!("{}.runtime", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -674,7 +600,6 @@ impl LambdaFunction {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_key` after provisioning.\n"]
     pub fn s3_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -682,7 +607,6 @@ impl LambdaFunction {
             format!("{}.s3_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_object_version` after provisioning.\n"]
     pub fn s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -690,7 +614,6 @@ impl LambdaFunction {
             format!("{}.s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `signing_job_arn` after provisioning.\n"]
     pub fn signing_job_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -698,7 +621,6 @@ impl LambdaFunction {
             format!("{}.signing_job_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `signing_profile_version_arn` after provisioning.\n"]
     pub fn signing_profile_version_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -706,7 +628,6 @@ impl LambdaFunction {
             format!("{}.signing_profile_version_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -714,7 +635,6 @@ impl LambdaFunction {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_code_hash` after provisioning.\n"]
     pub fn source_code_hash(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -722,7 +642,6 @@ impl LambdaFunction {
             format!("{}.source_code_hash", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_code_size` after provisioning.\n"]
     pub fn source_code_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -730,7 +649,6 @@ impl LambdaFunction {
             format!("{}.source_code_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_kms_key_arn` after provisioning.\n"]
     pub fn source_kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -738,7 +656,6 @@ impl LambdaFunction {
             format!("{}.source_kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -746,7 +663,6 @@ impl LambdaFunction {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -754,7 +670,6 @@ impl LambdaFunction {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -762,7 +677,6 @@ impl LambdaFunction {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -770,7 +684,6 @@ impl LambdaFunction {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<LambdaFunctionDeadLetterConfigElRef> {
         ListRef::new(
@@ -778,7 +691,6 @@ impl LambdaFunction {
             format!("{}.dead_letter_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> ListRef<LambdaFunctionEnvironmentElRef> {
         ListRef::new(
@@ -786,7 +698,6 @@ impl LambdaFunction {
             format!("{}.environment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(&self) -> ListRef<LambdaFunctionEphemeralStorageElRef> {
         ListRef::new(
@@ -794,7 +705,6 @@ impl LambdaFunction {
             format!("{}.ephemeral_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_config` after provisioning.\n"]
     pub fn file_system_config(&self) -> ListRef<LambdaFunctionFileSystemConfigElRef> {
         ListRef::new(
@@ -802,7 +712,6 @@ impl LambdaFunction {
             format!("{}.file_system_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_config` after provisioning.\n"]
     pub fn image_config(&self) -> ListRef<LambdaFunctionImageConfigElRef> {
         ListRef::new(
@@ -810,7 +719,6 @@ impl LambdaFunction {
             format!("{}.image_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<LambdaFunctionLoggingConfigElRef> {
         ListRef::new(
@@ -818,7 +726,6 @@ impl LambdaFunction {
             format!("{}.logging_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snap_start` after provisioning.\n"]
     pub fn snap_start(&self) -> ListRef<LambdaFunctionSnapStartElRef> {
         ListRef::new(
@@ -826,7 +733,6 @@ impl LambdaFunction {
             format!("{}.snap_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LambdaFunctionTimeoutsElRef {
         LambdaFunctionTimeoutsElRef::new(
@@ -834,7 +740,6 @@ impl LambdaFunction {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracing_config` after provisioning.\n"]
     pub fn tracing_config(&self) -> ListRef<LambdaFunctionTracingConfigElRef> {
         ListRef::new(
@@ -842,7 +747,6 @@ impl LambdaFunction {
             format!("{}.tracing_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<LambdaFunctionVpcConfigElRef> {
         ListRef::new(
@@ -851,7 +755,6 @@ impl LambdaFunction {
         )
     }
 }
-
 impl Referable for LambdaFunction {
     fn extract_ref(&self) -> String {
         format!(
@@ -861,32 +764,25 @@ impl Referable for LambdaFunction {
         )
     }
 }
-
 impl Resource for LambdaFunction {}
-
 impl ToListMappable for LambdaFunction {
     type O = ListRef<LambdaFunctionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LambdaFunction_ {
     fn extract_resource_type(&self) -> String {
         "aws_lambda_function".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLambdaFunction {
     pub tf_id: String,
     #[doc = ""]
@@ -894,7 +790,6 @@ pub struct BuildLambdaFunction {
     #[doc = ""]
     pub role: PrimField<String>,
 }
-
 impl BuildLambdaFunction {
     pub fn build(self, stack: &mut Stack) -> LambdaFunction {
         let out = LambdaFunction(Rc::new(LambdaFunction_ {
@@ -950,27 +845,22 @@ impl BuildLambdaFunction {
         out
     }
 }
-
 pub struct LambdaFunctionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LambdaFunctionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `architectures` after provisioning.\n"]
     pub fn architectures(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -978,12 +868,10 @@ impl LambdaFunctionRef {
             format!("{}.architectures", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `code_sha256` after provisioning.\n"]
     pub fn code_sha256(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -991,7 +879,6 @@ impl LambdaFunctionRef {
             format!("{}.code_sha256", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `code_signing_config_arn` after provisioning.\n"]
     pub fn code_signing_config_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -999,7 +886,6 @@ impl LambdaFunctionRef {
             format!("{}.code_signing_config_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1007,7 +893,6 @@ impl LambdaFunctionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filename` after provisioning.\n"]
     pub fn filename(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1015,7 +900,6 @@ impl LambdaFunctionRef {
             format!("{}.filename", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_name` after provisioning.\n"]
     pub fn function_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1023,7 +907,6 @@ impl LambdaFunctionRef {
             format!("{}.function_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `handler` after provisioning.\n"]
     pub fn handler(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1031,12 +914,10 @@ impl LambdaFunctionRef {
             format!("{}.handler", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_uri` after provisioning.\n"]
     pub fn image_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1044,7 +925,6 @@ impl LambdaFunctionRef {
             format!("{}.image_uri", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invoke_arn` after provisioning.\n"]
     pub fn invoke_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1052,7 +932,6 @@ impl LambdaFunctionRef {
             format!("{}.invoke_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1060,7 +939,6 @@ impl LambdaFunctionRef {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1068,7 +946,6 @@ impl LambdaFunctionRef {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `layers` after provisioning.\n"]
     pub fn layers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1076,7 +953,6 @@ impl LambdaFunctionRef {
             format!("{}.layers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_size` after provisioning.\n"]
     pub fn memory_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1084,7 +960,6 @@ impl LambdaFunctionRef {
             format!("{}.memory_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `package_type` after provisioning.\n"]
     pub fn package_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1092,7 +967,6 @@ impl LambdaFunctionRef {
             format!("{}.package_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `publish` after provisioning.\n"]
     pub fn publish(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1100,7 +974,6 @@ impl LambdaFunctionRef {
             format!("{}.publish", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualified_arn` after provisioning.\n"]
     pub fn qualified_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1108,7 +981,6 @@ impl LambdaFunctionRef {
             format!("{}.qualified_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `qualified_invoke_arn` after provisioning.\n"]
     pub fn qualified_invoke_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1116,7 +988,6 @@ impl LambdaFunctionRef {
             format!("{}.qualified_invoke_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1124,7 +995,6 @@ impl LambdaFunctionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replace_security_groups_on_destroy` after provisioning.\n"]
     pub fn replace_security_groups_on_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1132,7 +1002,6 @@ impl LambdaFunctionRef {
             format!("{}.replace_security_groups_on_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replacement_security_group_ids` after provisioning.\n"]
     pub fn replacement_security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1140,7 +1009,6 @@ impl LambdaFunctionRef {
             format!("{}.replacement_security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reserved_concurrent_executions` after provisioning.\n"]
     pub fn reserved_concurrent_executions(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1148,7 +1016,6 @@ impl LambdaFunctionRef {
             format!("{}.reserved_concurrent_executions", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1156,7 +1023,6 @@ impl LambdaFunctionRef {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1164,7 +1030,6 @@ impl LambdaFunctionRef {
             format!("{}.runtime", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1172,7 +1037,6 @@ impl LambdaFunctionRef {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_key` after provisioning.\n"]
     pub fn s3_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1180,7 +1044,6 @@ impl LambdaFunctionRef {
             format!("{}.s3_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_object_version` after provisioning.\n"]
     pub fn s3_object_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1188,7 +1051,6 @@ impl LambdaFunctionRef {
             format!("{}.s3_object_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `signing_job_arn` after provisioning.\n"]
     pub fn signing_job_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1196,7 +1058,6 @@ impl LambdaFunctionRef {
             format!("{}.signing_job_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `signing_profile_version_arn` after provisioning.\n"]
     pub fn signing_profile_version_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1204,7 +1065,6 @@ impl LambdaFunctionRef {
             format!("{}.signing_profile_version_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1212,7 +1072,6 @@ impl LambdaFunctionRef {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_code_hash` after provisioning.\n"]
     pub fn source_code_hash(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1220,7 +1079,6 @@ impl LambdaFunctionRef {
             format!("{}.source_code_hash", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_code_size` after provisioning.\n"]
     pub fn source_code_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1228,7 +1086,6 @@ impl LambdaFunctionRef {
             format!("{}.source_code_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_kms_key_arn` after provisioning.\n"]
     pub fn source_kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1236,7 +1093,6 @@ impl LambdaFunctionRef {
             format!("{}.source_kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -1244,7 +1100,6 @@ impl LambdaFunctionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -1252,7 +1107,6 @@ impl LambdaFunctionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1260,7 +1114,6 @@ impl LambdaFunctionRef {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1268,7 +1121,6 @@ impl LambdaFunctionRef {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<LambdaFunctionDeadLetterConfigElRef> {
         ListRef::new(
@@ -1276,7 +1128,6 @@ impl LambdaFunctionRef {
             format!("{}.dead_letter_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> ListRef<LambdaFunctionEnvironmentElRef> {
         ListRef::new(
@@ -1284,7 +1135,6 @@ impl LambdaFunctionRef {
             format!("{}.environment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ephemeral_storage` after provisioning.\n"]
     pub fn ephemeral_storage(&self) -> ListRef<LambdaFunctionEphemeralStorageElRef> {
         ListRef::new(
@@ -1292,7 +1142,6 @@ impl LambdaFunctionRef {
             format!("{}.ephemeral_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_config` after provisioning.\n"]
     pub fn file_system_config(&self) -> ListRef<LambdaFunctionFileSystemConfigElRef> {
         ListRef::new(
@@ -1300,7 +1149,6 @@ impl LambdaFunctionRef {
             format!("{}.file_system_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_config` after provisioning.\n"]
     pub fn image_config(&self) -> ListRef<LambdaFunctionImageConfigElRef> {
         ListRef::new(
@@ -1308,7 +1156,6 @@ impl LambdaFunctionRef {
             format!("{}.image_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_config` after provisioning.\n"]
     pub fn logging_config(&self) -> ListRef<LambdaFunctionLoggingConfigElRef> {
         ListRef::new(
@@ -1316,7 +1163,6 @@ impl LambdaFunctionRef {
             format!("{}.logging_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snap_start` after provisioning.\n"]
     pub fn snap_start(&self) -> ListRef<LambdaFunctionSnapStartElRef> {
         ListRef::new(
@@ -1324,7 +1170,6 @@ impl LambdaFunctionRef {
             format!("{}.snap_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> LambdaFunctionTimeoutsElRef {
         LambdaFunctionTimeoutsElRef::new(
@@ -1332,7 +1177,6 @@ impl LambdaFunctionRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracing_config` after provisioning.\n"]
     pub fn tracing_config(&self) -> ListRef<LambdaFunctionTracingConfigElRef> {
         ListRef::new(
@@ -1340,7 +1184,6 @@ impl LambdaFunctionRef {
             format!("{}.tracing_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<LambdaFunctionVpcConfigElRef> {
         ListRef::new(
@@ -1349,17 +1192,13 @@ impl LambdaFunctionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionDeadLetterConfigEl {
     target_arn: PrimField<String>,
 }
-
 impl LambdaFunctionDeadLetterConfigEl {}
-
 impl ToListMappable for LambdaFunctionDeadLetterConfigEl {
     type O = BlockAssignable<LambdaFunctionDeadLetterConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1368,12 +1207,10 @@ impl ToListMappable for LambdaFunctionDeadLetterConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionDeadLetterConfigEl {
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildLambdaFunctionDeadLetterConfigEl {
     pub fn build(self) -> LambdaFunctionDeadLetterConfigEl {
         LambdaFunctionDeadLetterConfigEl {
@@ -1381,12 +1218,10 @@ impl BuildLambdaFunctionDeadLetterConfigEl {
         }
     }
 }
-
 pub struct LambdaFunctionDeadLetterConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionDeadLetterConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionDeadLetterConfigElRef {
         LambdaFunctionDeadLetterConfigElRef {
@@ -1395,24 +1230,20 @@ impl Ref for LambdaFunctionDeadLetterConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionDeadLetterConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionEnvironmentEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     variables: Option<RecField<PrimField<String>>>,
 }
-
 impl LambdaFunctionEnvironmentEl {
     #[doc = "Set the field `variables`.\n"]
     pub fn set_variables(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
@@ -1420,10 +1251,8 @@ impl LambdaFunctionEnvironmentEl {
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionEnvironmentEl {
     type O = BlockAssignable<LambdaFunctionEnvironmentEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1432,9 +1261,7 @@ impl ToListMappable for LambdaFunctionEnvironmentEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionEnvironmentEl {}
-
 impl BuildLambdaFunctionEnvironmentEl {
     pub fn build(self) -> LambdaFunctionEnvironmentEl {
         LambdaFunctionEnvironmentEl {
@@ -1442,12 +1269,10 @@ impl BuildLambdaFunctionEnvironmentEl {
         }
     }
 }
-
 pub struct LambdaFunctionEnvironmentElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionEnvironmentElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionEnvironmentElRef {
         LambdaFunctionEnvironmentElRef {
@@ -1456,24 +1281,20 @@ impl Ref for LambdaFunctionEnvironmentElRef {
         }
     }
 }
-
 impl LambdaFunctionEnvironmentElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `variables` after provisioning.\n"]
     pub fn variables(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.variables", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionEphemeralStorageEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     size: Option<PrimField<f64>>,
 }
-
 impl LambdaFunctionEphemeralStorageEl {
     #[doc = "Set the field `size`.\n"]
     pub fn set_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1481,10 +1302,8 @@ impl LambdaFunctionEphemeralStorageEl {
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionEphemeralStorageEl {
     type O = BlockAssignable<LambdaFunctionEphemeralStorageEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1493,9 +1312,7 @@ impl ToListMappable for LambdaFunctionEphemeralStorageEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionEphemeralStorageEl {}
-
 impl BuildLambdaFunctionEphemeralStorageEl {
     pub fn build(self) -> LambdaFunctionEphemeralStorageEl {
         LambdaFunctionEphemeralStorageEl {
@@ -1503,12 +1320,10 @@ impl BuildLambdaFunctionEphemeralStorageEl {
         }
     }
 }
-
 pub struct LambdaFunctionEphemeralStorageElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionEphemeralStorageElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionEphemeralStorageElRef {
         LambdaFunctionEphemeralStorageElRef {
@@ -1517,29 +1332,23 @@ impl Ref for LambdaFunctionEphemeralStorageElRef {
         }
     }
 }
-
 impl LambdaFunctionEphemeralStorageElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.size", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionFileSystemConfigEl {
     arn: PrimField<String>,
     local_mount_path: PrimField<String>,
 }
-
 impl LambdaFunctionFileSystemConfigEl {}
-
 impl ToListMappable for LambdaFunctionFileSystemConfigEl {
     type O = BlockAssignable<LambdaFunctionFileSystemConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1548,14 +1357,12 @@ impl ToListMappable for LambdaFunctionFileSystemConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionFileSystemConfigEl {
     #[doc = ""]
     pub arn: PrimField<String>,
     #[doc = ""]
     pub local_mount_path: PrimField<String>,
 }
-
 impl BuildLambdaFunctionFileSystemConfigEl {
     pub fn build(self) -> LambdaFunctionFileSystemConfigEl {
         LambdaFunctionFileSystemConfigEl {
@@ -1564,12 +1371,10 @@ impl BuildLambdaFunctionFileSystemConfigEl {
         }
     }
 }
-
 pub struct LambdaFunctionFileSystemConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionFileSystemConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionFileSystemConfigElRef {
         LambdaFunctionFileSystemConfigElRef {
@@ -1578,17 +1383,14 @@ impl Ref for LambdaFunctionFileSystemConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionFileSystemConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `local_mount_path` after provisioning.\n"]
     pub fn local_mount_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1597,7 +1399,6 @@ impl LambdaFunctionFileSystemConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionImageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1607,30 +1408,25 @@ pub struct LambdaFunctionImageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     working_directory: Option<PrimField<String>>,
 }
-
 impl LambdaFunctionImageConfigEl {
     #[doc = "Set the field `command`.\n"]
     pub fn set_command(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.command = Some(v.into());
         self
     }
-
     #[doc = "Set the field `entry_point`.\n"]
     pub fn set_entry_point(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.entry_point = Some(v.into());
         self
     }
-
     #[doc = "Set the field `working_directory`.\n"]
     pub fn set_working_directory(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.working_directory = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionImageConfigEl {
     type O = BlockAssignable<LambdaFunctionImageConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1639,9 +1435,7 @@ impl ToListMappable for LambdaFunctionImageConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionImageConfigEl {}
-
 impl BuildLambdaFunctionImageConfigEl {
     pub fn build(self) -> LambdaFunctionImageConfigEl {
         LambdaFunctionImageConfigEl {
@@ -1651,12 +1445,10 @@ impl BuildLambdaFunctionImageConfigEl {
         }
     }
 }
-
 pub struct LambdaFunctionImageConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionImageConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionImageConfigElRef {
         LambdaFunctionImageConfigElRef {
@@ -1665,22 +1457,18 @@ impl Ref for LambdaFunctionImageConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionImageConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `command` after provisioning.\n"]
     pub fn command(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.command", self.base))
     }
-
     #[doc = "Get a reference to the value of field `entry_point` after provisioning.\n"]
     pub fn entry_point(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.entry_point", self.base))
     }
-
     #[doc = "Get a reference to the value of field `working_directory` after provisioning.\n"]
     pub fn working_directory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1689,7 +1477,6 @@ impl LambdaFunctionImageConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionLoggingConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1700,30 +1487,25 @@ pub struct LambdaFunctionLoggingConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     system_log_level: Option<PrimField<String>>,
 }
-
 impl LambdaFunctionLoggingConfigEl {
     #[doc = "Set the field `application_log_level`.\n"]
     pub fn set_application_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.application_log_level = Some(v.into());
         self
     }
-
     #[doc = "Set the field `log_group`.\n"]
     pub fn set_log_group(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.log_group = Some(v.into());
         self
     }
-
     #[doc = "Set the field `system_log_level`.\n"]
     pub fn set_system_log_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.system_log_level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionLoggingConfigEl {
     type O = BlockAssignable<LambdaFunctionLoggingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1732,12 +1514,10 @@ impl ToListMappable for LambdaFunctionLoggingConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionLoggingConfigEl {
     #[doc = ""]
     pub log_format: PrimField<String>,
 }
-
 impl BuildLambdaFunctionLoggingConfigEl {
     pub fn build(self) -> LambdaFunctionLoggingConfigEl {
         LambdaFunctionLoggingConfigEl {
@@ -1748,12 +1528,10 @@ impl BuildLambdaFunctionLoggingConfigEl {
         }
     }
 }
-
 pub struct LambdaFunctionLoggingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionLoggingConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionLoggingConfigElRef {
         LambdaFunctionLoggingConfigElRef {
@@ -1762,12 +1540,10 @@ impl Ref for LambdaFunctionLoggingConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionLoggingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `application_log_level` after provisioning.\n"]
     pub fn application_log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1775,17 +1551,14 @@ impl LambdaFunctionLoggingConfigElRef {
             format!("{}.application_log_level", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_format` after provisioning.\n"]
     pub fn log_format(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_format", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_group` after provisioning.\n"]
     pub fn log_group(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_group", self.base))
     }
-
     #[doc = "Get a reference to the value of field `system_log_level` after provisioning.\n"]
     pub fn system_log_level(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1794,17 +1567,13 @@ impl LambdaFunctionLoggingConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionSnapStartEl {
     apply_on: PrimField<String>,
 }
-
 impl LambdaFunctionSnapStartEl {}
-
 impl ToListMappable for LambdaFunctionSnapStartEl {
     type O = BlockAssignable<LambdaFunctionSnapStartEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1813,12 +1582,10 @@ impl ToListMappable for LambdaFunctionSnapStartEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionSnapStartEl {
     #[doc = ""]
     pub apply_on: PrimField<String>,
 }
-
 impl BuildLambdaFunctionSnapStartEl {
     pub fn build(self) -> LambdaFunctionSnapStartEl {
         LambdaFunctionSnapStartEl {
@@ -1826,12 +1593,10 @@ impl BuildLambdaFunctionSnapStartEl {
         }
     }
 }
-
 pub struct LambdaFunctionSnapStartElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionSnapStartElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionSnapStartElRef {
         LambdaFunctionSnapStartElRef {
@@ -1840,17 +1605,14 @@ impl Ref for LambdaFunctionSnapStartElRef {
         }
     }
 }
-
 impl LambdaFunctionSnapStartElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `apply_on` after provisioning.\n"]
     pub fn apply_on(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.apply_on", self.base))
     }
-
     #[doc = "Get a reference to the value of field `optimization_status` after provisioning.\n"]
     pub fn optimization_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1859,7 +1621,6 @@ impl LambdaFunctionSnapStartElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1869,30 +1630,25 @@ pub struct LambdaFunctionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl LambdaFunctionTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionTimeoutsEl {
     type O = BlockAssignable<LambdaFunctionTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1901,9 +1657,7 @@ impl ToListMappable for LambdaFunctionTimeoutsEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionTimeoutsEl {}
-
 impl BuildLambdaFunctionTimeoutsEl {
     pub fn build(self) -> LambdaFunctionTimeoutsEl {
         LambdaFunctionTimeoutsEl {
@@ -1913,12 +1667,10 @@ impl BuildLambdaFunctionTimeoutsEl {
         }
     }
 }
-
 pub struct LambdaFunctionTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionTimeoutsElRef {
         LambdaFunctionTimeoutsElRef {
@@ -1927,38 +1679,30 @@ impl Ref for LambdaFunctionTimeoutsElRef {
         }
     }
 }
-
 impl LambdaFunctionTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionTracingConfigEl {
     mode: PrimField<String>,
 }
-
 impl LambdaFunctionTracingConfigEl {}
-
 impl ToListMappable for LambdaFunctionTracingConfigEl {
     type O = BlockAssignable<LambdaFunctionTracingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1967,23 +1711,19 @@ impl ToListMappable for LambdaFunctionTracingConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionTracingConfigEl {
     #[doc = ""]
     pub mode: PrimField<String>,
 }
-
 impl BuildLambdaFunctionTracingConfigEl {
     pub fn build(self) -> LambdaFunctionTracingConfigEl {
         LambdaFunctionTracingConfigEl { mode: self.mode }
     }
 }
-
 pub struct LambdaFunctionTracingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionTracingConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionTracingConfigElRef {
         LambdaFunctionTracingConfigElRef {
@@ -1992,18 +1732,15 @@ impl Ref for LambdaFunctionTracingConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionTracingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaFunctionVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2011,7 +1748,6 @@ pub struct LambdaFunctionVpcConfigEl {
     security_group_ids: SetField<PrimField<String>>,
     subnet_ids: SetField<PrimField<String>>,
 }
-
 impl LambdaFunctionVpcConfigEl {
     #[doc = "Set the field `ipv6_allowed_for_dual_stack`.\n"]
     pub fn set_ipv6_allowed_for_dual_stack(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -2019,10 +1755,8 @@ impl LambdaFunctionVpcConfigEl {
         self
     }
 }
-
 impl ToListMappable for LambdaFunctionVpcConfigEl {
     type O = BlockAssignable<LambdaFunctionVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2031,14 +1765,12 @@ impl ToListMappable for LambdaFunctionVpcConfigEl {
         })
     }
 }
-
 pub struct BuildLambdaFunctionVpcConfigEl {
     #[doc = ""]
     pub security_group_ids: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildLambdaFunctionVpcConfigEl {
     pub fn build(self) -> LambdaFunctionVpcConfigEl {
         LambdaFunctionVpcConfigEl {
@@ -2048,12 +1780,10 @@ impl BuildLambdaFunctionVpcConfigEl {
         }
     }
 }
-
 pub struct LambdaFunctionVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaFunctionVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> LambdaFunctionVpcConfigElRef {
         LambdaFunctionVpcConfigElRef {
@@ -2062,12 +1792,10 @@ impl Ref for LambdaFunctionVpcConfigElRef {
         }
     }
 }
-
 impl LambdaFunctionVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ipv6_allowed_for_dual_stack` after provisioning.\n"]
     pub fn ipv6_allowed_for_dual_stack(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2075,7 +1803,6 @@ impl LambdaFunctionVpcConfigElRef {
             format!("{}.ipv6_allowed_for_dual_stack", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2083,18 +1810,15 @@ impl LambdaFunctionVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct LambdaFunctionDynamic {
     dead_letter_config: Option<DynamicBlock<LambdaFunctionDeadLetterConfigEl>>,

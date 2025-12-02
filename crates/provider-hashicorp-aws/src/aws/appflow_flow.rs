@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppflowFlowData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -39,47 +38,38 @@ struct AppflowFlowData {
     trigger_config: Option<Vec<AppflowFlowTriggerConfigEl>>,
     dynamic: AppflowFlowDynamic,
 }
-
 struct AppflowFlow_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppflowFlowData>,
 }
-
 #[derive(Clone)]
 pub struct AppflowFlow(Rc<AppflowFlow_>);
-
 impl AppflowFlow {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -98,7 +88,6 @@ impl AppflowFlow {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -108,7 +97,6 @@ impl AppflowFlow {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -118,43 +106,36 @@ impl AppflowFlow {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_arn`.\n"]
     pub fn set_kms_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_flow_config`.\n"]
     pub fn set_destination_flow_config(
         self,
@@ -170,7 +151,6 @@ impl AppflowFlow {
         }
         self
     }
-
     #[doc = "Set the field `metadata_catalog_config`.\n"]
     pub fn set_metadata_catalog_config(
         self,
@@ -186,7 +166,6 @@ impl AppflowFlow {
         }
         self
     }
-
     #[doc = "Set the field `source_flow_config`.\n"]
     pub fn set_source_flow_config(
         self,
@@ -202,7 +181,6 @@ impl AppflowFlow {
         }
         self
     }
-
     #[doc = "Set the field `task`.\n"]
     pub fn set_task(self, v: impl Into<BlockAssignable<AppflowFlowTaskEl>>) -> Self {
         match v.into() {
@@ -215,7 +193,6 @@ impl AppflowFlow {
         }
         self
     }
-
     #[doc = "Set the field `trigger_config`.\n"]
     pub fn set_trigger_config(
         self,
@@ -231,12 +208,10 @@ impl AppflowFlow {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +219,6 @@ impl AppflowFlow {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `flow_status` after provisioning.\n"]
     pub fn flow_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,12 +226,10 @@ impl AppflowFlow {
             format!("{}.flow_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_arn` after provisioning.\n"]
     pub fn kms_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +237,6 @@ impl AppflowFlow {
             format!("{}.kms_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +244,6 @@ impl AppflowFlow {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +251,6 @@ impl AppflowFlow {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -289,7 +258,6 @@ impl AppflowFlow {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -297,7 +265,6 @@ impl AppflowFlow {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_flow_config` after provisioning.\n"]
     pub fn destination_flow_config(&self) -> ListRef<AppflowFlowDestinationFlowConfigElRef> {
         ListRef::new(
@@ -305,7 +272,6 @@ impl AppflowFlow {
             format!("{}.destination_flow_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `metadata_catalog_config` after provisioning.\n"]
     pub fn metadata_catalog_config(&self) -> ListRef<AppflowFlowMetadataCatalogConfigElRef> {
         ListRef::new(
@@ -313,7 +279,6 @@ impl AppflowFlow {
             format!("{}.metadata_catalog_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_flow_config` after provisioning.\n"]
     pub fn source_flow_config(&self) -> ListRef<AppflowFlowSourceFlowConfigElRef> {
         ListRef::new(
@@ -321,7 +286,6 @@ impl AppflowFlow {
             format!("{}.source_flow_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trigger_config` after provisioning.\n"]
     pub fn trigger_config(&self) -> ListRef<AppflowFlowTriggerConfigElRef> {
         ListRef::new(
@@ -330,7 +294,6 @@ impl AppflowFlow {
         )
     }
 }
-
 impl Referable for AppflowFlow {
     fn extract_ref(&self) -> String {
         format!(
@@ -340,38 +303,30 @@ impl Referable for AppflowFlow {
         )
     }
 }
-
 impl Resource for AppflowFlow {}
-
 impl ToListMappable for AppflowFlow {
     type O = ListRef<AppflowFlowRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppflowFlow_ {
     fn extract_resource_type(&self) -> String {
         "aws_appflow_flow".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppflowFlow {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAppflowFlow {
     pub fn build(self, stack: &mut Stack) -> AppflowFlow {
         let out = AppflowFlow(Rc::new(AppflowFlow_ {
@@ -401,32 +356,26 @@ impl BuildAppflowFlow {
         out
     }
 }
-
 pub struct AppflowFlowRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppflowFlowRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -434,7 +383,6 @@ impl AppflowFlowRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `flow_status` after provisioning.\n"]
     pub fn flow_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -442,12 +390,10 @@ impl AppflowFlowRef {
             format!("{}.flow_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_arn` after provisioning.\n"]
     pub fn kms_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -455,7 +401,6 @@ impl AppflowFlowRef {
             format!("{}.kms_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -463,7 +408,6 @@ impl AppflowFlowRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +415,6 @@ impl AppflowFlowRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -479,7 +422,6 @@ impl AppflowFlowRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -487,7 +429,6 @@ impl AppflowFlowRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_flow_config` after provisioning.\n"]
     pub fn destination_flow_config(&self) -> ListRef<AppflowFlowDestinationFlowConfigElRef> {
         ListRef::new(
@@ -495,7 +436,6 @@ impl AppflowFlowRef {
             format!("{}.destination_flow_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `metadata_catalog_config` after provisioning.\n"]
     pub fn metadata_catalog_config(&self) -> ListRef<AppflowFlowMetadataCatalogConfigElRef> {
         ListRef::new(
@@ -503,7 +443,6 @@ impl AppflowFlowRef {
             format!("{}.metadata_catalog_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_flow_config` after provisioning.\n"]
     pub fn source_flow_config(&self) -> ListRef<AppflowFlowSourceFlowConfigElRef> {
         ListRef::new(
@@ -511,7 +450,6 @@ impl AppflowFlowRef {
             format!("{}.source_flow_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `trigger_config` after provisioning.\n"]
     pub fn trigger_config(&self) -> ListRef<AppflowFlowTriggerConfigElRef> {
         ListRef::new(
@@ -520,7 +458,6 @@ impl AppflowFlowRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl
 {
@@ -531,151 +468,42 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCus
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    custom_properties: Option<RecField<PrimField<String>>>,
-    entity_name: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    id_field_names: Option<ListField<PrimField<String>>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    write_operation_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl { # [serde (skip_serializing_if = "Option::is_none")] custom_properties : Option < RecField < PrimField < String > > > , entity_name : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] id_field_names : Option < ListField < PrimField < String > > > , # [serde (skip_serializing_if = "Option::is_none")] write_operation_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl {
     #[doc = "Set the field `custom_properties`.\n"]
     pub fn set_custom_properties(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.custom_properties = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id_field_names`.\n"]
     pub fn set_id_field_names(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.id_field_names = Some(v.into());
         self
     }
-
     #[doc = "Set the field `write_operation_type`.\n"]
     pub fn set_write_operation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.write_operation_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -688,14 +516,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomCon
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -704,13 +530,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl
 {
     #[doc = ""]
     pub entity_name: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorEl {
     pub fn build(
         self,
@@ -725,12 +549,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCust
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElRef
 {
@@ -745,12 +567,10 @@ impl Ref
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_properties` after provisioning.\n"]
     pub fn custom_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -758,12 +578,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomCon
             format!("{}.custom_properties", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `entity_name` after provisioning.\n"]
     pub fn entity_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `id_field_names` after provisioning.\n"]
     pub fn id_field_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -771,7 +589,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomCon
             format!("{}.id_field_names", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `write_operation_type` after provisioning.\n"]
     pub fn write_operation_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -779,27 +596,19 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomCon
             format!("{}.write_operation_type", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomConnectorElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl {
     domain_name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     object_type_name: Option<PrimField<String>>,
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl {
     #[doc = "Set the field `object_type_name`.\n"]
     pub fn set_object_type_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -807,14 +616,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerP
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -823,13 +630,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl
 {
     #[doc = ""]
     pub domain_name: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl {
     pub fn build(
         self,
@@ -840,12 +645,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCust
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesElRef
 {
@@ -860,17 +663,14 @@ impl Ref
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.domain_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `object_type_name` after provisioning.\n"]
     pub fn object_type_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -879,7 +679,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerP
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl
 {
@@ -890,127 +689,27 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEve
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl {
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl { object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl {
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1023,14 +722,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBrid
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1039,12 +736,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeEl {
     pub fn build(
         self,
@@ -1056,12 +751,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEven
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElRef {
     fn new(
         shared: StackShared,
@@ -1073,30 +766,21 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElE
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElEventBridgeElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl
 {
@@ -1107,127 +791,27 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHon
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl {
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl { object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl {
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1240,14 +824,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycode
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1256,12 +838,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeEl {
     pub fn build(
         self,
@@ -1273,12 +853,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHone
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElRef {
     fn new(
         shared: StackShared,
@@ -1290,42 +868,30 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElH
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElHoneycodeElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl {}
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl {}
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1334,10 +900,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl
 {}
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl {
     pub fn build(
         self,
@@ -1345,12 +909,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLook
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsEl {}
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsElRef {
     fn new(
         shared: StackShared,
@@ -1362,13 +924,11 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElL
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElLookoutMetricsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl
 {
@@ -1379,7 +939,6 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMar
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
 impl
     AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl
 {
@@ -1388,118 +947,37 @@ impl
         self.bucket_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `fail_on_first_destination_error`.\n"]
     pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.fail_on_first_destination_error = Some(v.into());
         self
     }
 }
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl>,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl {
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl { object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl {
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1512,14 +990,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1528,12 +1004,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoEl {
     pub fn build(
         self,
@@ -1545,12 +1019,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMark
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElRef {
     fn new(
         shared: StackShared,
@@ -1562,28 +1034,21 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElM
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef>{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElMarketoElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl
 {
@@ -1594,136 +1059,32 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRed
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    bucket_prefix: Option<PrimField<String>>,
-    intermediate_bucket_name: PrimField<String>,
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl { # [serde (skip_serializing_if = "Option::is_none")] bucket_prefix : Option < PrimField < String > > , intermediate_bucket_name : PrimField < String > , object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl {
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1736,14 +1097,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftE
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1752,14 +1111,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl {
     #[doc = ""]
     pub intermediate_bucket_name: PrimField<String>,
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftEl {
     pub fn build(
         self,
@@ -1773,12 +1130,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElReds
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElRef {
     fn new(
         shared: StackShared,
@@ -1790,12 +1145,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElR
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1803,7 +1156,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftE
             format!("{}.bucket_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `intermediate_bucket_name` after provisioning.\n"]
     pub fn intermediate_bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1811,25 +1163,17 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftE
             format!("{}.intermediate_bucket_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRedshiftElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl
 {
@@ -1838,84 +1182,18 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3E
     #[serde(skip_serializing_if = "Option::is_none")]
     target_file_size: Option<PrimField<f64>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl {
-    #[doc = "Set the field `aggregation_type`.\n"]
-    pub fn set_aggregation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.aggregation_type = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `target_file_size`.\n"]
-    pub fn set_target_file_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.target_file_size = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl { # [doc = "Set the field `aggregation_type`.\n"] pub fn set_aggregation_type (mut self , v : impl Into < PrimField < String > >) -> Self { self . aggregation_type = Some (v . into ()) ; self } # [doc = "Set the field `target_file_size`.\n"] pub fn set_target_file_size (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . target_file_size = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl {
-            aggregation_type: core::default::Default::default(),
-            target_file_size: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl { aggregation_type : core :: default :: Default :: default () , target_file_size : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `aggregation_type` after provisioning.\n"]
-    pub fn aggregation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aggregation_type", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `target_file_size` after provisioning.\n"]
-    pub fn target_file_size(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.target_file_size", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `aggregation_type` after provisioning.\n"] pub fn aggregation_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.aggregation_type" , self . base)) } # [doc = "Get a reference to the value of field `target_file_size` after provisioning.\n"] pub fn target_file_size (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.target_file_size" , self . base)) } }
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl
 {
@@ -1926,155 +1204,37 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3E
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix_type: Option<PrimField<String>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl {
-    #[doc = "Set the field `prefix_format`.\n"]
-    pub fn set_prefix_format(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.prefix_format = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `prefix_hierarchy`.\n"]
-    pub fn set_prefix_hierarchy(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
-        self.prefix_hierarchy = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `prefix_type`.\n"]
-    pub fn set_prefix_type(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.prefix_type = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl { # [doc = "Set the field `prefix_format`.\n"] pub fn set_prefix_format (mut self , v : impl Into < PrimField < String > >) -> Self { self . prefix_format = Some (v . into ()) ; self } # [doc = "Set the field `prefix_hierarchy`.\n"] pub fn set_prefix_hierarchy (mut self , v : impl Into < ListField < PrimField < String > > >) -> Self { self . prefix_hierarchy = Some (v . into ()) ; self } # [doc = "Set the field `prefix_type`.\n"] pub fn set_prefix_type (mut self , v : impl Into < PrimField < String > >) -> Self { self . prefix_type = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl {
-            prefix_format: core::default::Default::default(),
-            prefix_hierarchy: core::default::Default::default(),
-            prefix_type: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl { prefix_format : core :: default :: Default :: default () , prefix_hierarchy : core :: default :: Default :: default () , prefix_type : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_format` after provisioning.\n"]
-    pub fn prefix_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_format", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_hierarchy` after provisioning.\n"]
-    pub fn prefix_hierarchy(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.prefix_hierarchy", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_type` after provisioning.\n"]
-    pub fn prefix_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_type", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `prefix_format` after provisioning.\n"] pub fn prefix_format (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.prefix_format" , self . base)) } # [doc = "Get a reference to the value of field `prefix_hierarchy` after provisioning.\n"] pub fn prefix_hierarchy (& self) -> ListRef < PrimExpr < String > > { ListRef :: new (self . shared () . clone () , format ! ("{}.prefix_hierarchy" , self . base)) } # [doc = "Get a reference to the value of field `prefix_type` after provisioning.\n"] pub fn prefix_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.prefix_type" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElDynamic {
-    aggregation_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl,
-        >,
-    >,
-    prefix_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElDynamic { aggregation_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl >> , prefix_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    file_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    preserve_source_data_typing: Option<PrimField<bool>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    aggregation_config: Option<
-        Vec<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl,
-        >,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    prefix_config: Option<
-        Vec<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl,
-        >,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl { # [serde (skip_serializing_if = "Option::is_none")] file_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] preserve_source_data_typing : Option < PrimField < bool > > , # [serde (skip_serializing_if = "Option::is_none")] aggregation_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl > > , # [serde (skip_serializing_if = "Option::is_none")] prefix_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl {
     #[doc = "Set the field `file_type`.\n"]
     pub fn set_file_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.file_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preserve_source_data_typing`.\n"]
     pub fn set_preserve_source_data_typing(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.preserve_source_data_typing = Some(v.into());
         self
     }
-
     #[doc = "Set the field `aggregation_config`.\n"]
     pub fn set_aggregation_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2086,18 +1246,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3Out
         }
         self
     }
-
     #[doc = "Set the field `prefix_config`.\n"]
     pub fn set_prefix_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2110,15 +1262,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3Out
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl
 {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl,
-        >;
-
+    type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl > ;
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2127,54 +1274,25 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl {
-            file_type: core::default::Default::default(),
-            preserve_source_data_typing: core::default::Default::default(),
-            aggregation_config: core::default::Default::default(),
-            prefix_config: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl { file_type : core :: default :: Default :: default () , preserve_source_data_typing : core :: default :: Default :: default () , aggregation_config : core :: default :: Default :: default () , prefix_config : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef { shared : shared , base : base . to_string () , } } }
 impl
     AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef
 {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `file_type` after provisioning.\n"]
     pub fn file_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.file_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `preserve_source_data_typing` after provisioning.\n"]
     pub fn preserve_source_data_typing(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2182,69 +1300,33 @@ impl
             format!("{}.preserve_source_data_typing", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `aggregation_config` after provisioning.\n"]
-    pub fn aggregation_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `aggregation_config` after provisioning.\n"]    pub fn aggregation_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElAggregationConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.aggregation_config", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `prefix_config` after provisioning.\n"]
-    pub fn prefix_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `prefix_config` after provisioning.\n"]    pub fn prefix_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElPrefixConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.prefix_config", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElDynamic {
-    s3_output_format_config: Option<
-        DynamicBlock<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl>,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElDynamic { s3_output_format_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
-    bucket_name: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    bucket_prefix: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_output_format_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El { bucket_name : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] bucket_prefix : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] s3_output_format_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_output_format_config`.\n"]
     pub fn set_s3_output_format_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2257,11 +1339,9 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
     type O =
         BlockAssignable<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2270,12 +1350,10 @@ impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPr
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
     pub fn build(self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El {
@@ -2286,12 +1364,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3El
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElRef {
     fn new(
         shared: StackShared,
@@ -2303,17 +1379,14 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2321,18 +1394,13 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElRef {
             format!("{}.bucket_prefix", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `s3_output_format_config` after provisioning.\n"]
-    pub fn s3_output_format_config(
-        &self,
-    ) -> ListRef<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef>{
+    #[doc = "Get a reference to the value of field `s3_output_format_config` after provisioning.\n"]    pub fn s3_output_format_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElS3OutputFormatConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.s3_output_format_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl
 {
@@ -2343,151 +1411,42 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSal
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    data_transfer_api: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    id_field_names: Option<ListField<PrimField<String>>>,
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    write_operation_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl { # [serde (skip_serializing_if = "Option::is_none")] data_transfer_api : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] id_field_names : Option < ListField < PrimField < String > > > , object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] write_operation_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl {
     #[doc = "Set the field `data_transfer_api`.\n"]
     pub fn set_data_transfer_api(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_transfer_api = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id_field_names`.\n"]
     pub fn set_id_field_names(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.id_field_names = Some(v.into());
         self
     }
-
     #[doc = "Set the field `write_operation_type`.\n"]
     pub fn set_write_operation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.write_operation_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2500,14 +1459,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforc
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2516,12 +1473,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceEl {
     pub fn build(
         self,
@@ -2536,12 +1491,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSale
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElRef {
     fn new(
         shared: StackShared,
@@ -2553,12 +1506,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_transfer_api` after provisioning.\n"]
     pub fn data_transfer_api(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2566,7 +1517,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforc
             format!("{}.data_transfer_api", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id_field_names` after provisioning.\n"]
     pub fn id_field_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -2574,12 +1524,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforc
             format!("{}.id_field_names", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
     #[doc = "Get a reference to the value of field `write_operation_type` after provisioning.\n"]
     pub fn write_operation_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2587,20 +1535,13 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforc
             format!("{}.write_operation_type", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSalesforceElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl
 {
@@ -2611,96 +1552,18 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSap
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl
 {
@@ -2709,142 +1572,37 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSap
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_prefix: Option<PrimField<String>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl,
-        >,
-    >,
-    success_response_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl >> , success_response_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    id_field_names: Option<ListField<PrimField<String>>>,
-    object_path: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    write_operation_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl>,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    success_response_handling_config: Option<
-        Vec<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl,
-        >,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl { # [serde (skip_serializing_if = "Option::is_none")] id_field_names : Option < ListField < PrimField < String > > > , object_path : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] write_operation_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl > > , # [serde (skip_serializing_if = "Option::is_none")] success_response_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl {
     #[doc = "Set the field `id_field_names`.\n"]
     pub fn set_id_field_names(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.id_field_names = Some(v.into());
         self
     }
-
     #[doc = "Set the field `write_operation_type`.\n"]
     pub fn set_write_operation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.write_operation_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2856,18 +1614,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataE
         }
         self
     }
-
     #[doc = "Set the field `success_response_handling_config`.\n"]
     pub fn set_success_response_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2880,14 +1630,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataE
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2896,12 +1644,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl {
     #[doc = ""]
     pub object_path: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataEl {
     pub fn build(
         self,
@@ -2916,12 +1662,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapo
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElRef {
     fn new(
         shared: StackShared,
@@ -2933,12 +1677,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id_field_names` after provisioning.\n"]
     pub fn id_field_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -2946,12 +1688,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataE
             format!("{}.id_field_names", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object_path` after provisioning.\n"]
     pub fn object_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `write_operation_type` after provisioning.\n"]
     pub fn write_operation_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2959,32 +1699,19 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataE
             format!("{}.write_operation_type", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `success_response_handling_config` after provisioning.\n"]
-    pub fn success_response_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `success_response_handling_config` after provisioning.\n"]    pub fn success_response_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSapoDataElSuccessResponseHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.success_response_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl
 {
@@ -2995,136 +1722,32 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSno
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl {
-    #[doc = "Set the field `bucket_name`.\n"]
-    pub fn set_bucket_name(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_name = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `bucket_prefix`.\n"]
-    pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.bucket_prefix = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `fail_on_first_destination_error`.\n"]
-    pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
-        self.fail_on_first_destination_error = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl { # [doc = "Set the field `bucket_name`.\n"] pub fn set_bucket_name (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_name = Some (v . into ()) ; self } # [doc = "Set the field `bucket_prefix`.\n"] pub fn set_bucket_prefix (mut self , v : impl Into < PrimField < String > >) -> Self { self . bucket_prefix = Some (v . into ()) ; self } # [doc = "Set the field `fail_on_first_destination_error`.\n"] pub fn set_fail_on_first_destination_error (mut self , v : impl Into < PrimField < bool > >) -> Self { self . fail_on_first_destination_error = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    bucket_prefix: Option<PrimField<String>>,
-    intermediate_bucket_name: PrimField<String>,
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl { # [serde (skip_serializing_if = "Option::is_none")] bucket_prefix : Option < PrimField < String > > , intermediate_bucket_name : PrimField < String > , object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl {
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3137,14 +1760,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflake
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3153,14 +1774,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl {
     #[doc = ""]
     pub intermediate_bucket_name: PrimField<String>,
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeEl {
     pub fn build(
         self,
@@ -3174,12 +1793,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnow
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElRef {
     fn new(
         shared: StackShared,
@@ -3191,12 +1808,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3204,7 +1819,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflake
             format!("{}.bucket_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `intermediate_bucket_name` after provisioning.\n"]
     pub fn intermediate_bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3212,97 +1826,35 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflake
             format!("{}.intermediate_bucket_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElSnowflakeElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl
 {
     #[serde(skip_serializing_if = "Option::is_none")]
     aggregation_type: Option<PrimField<String>>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl {
-    #[doc = "Set the field `aggregation_type`.\n"]
-    pub fn set_aggregation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.aggregation_type = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl { # [doc = "Set the field `aggregation_type`.\n"] pub fn set_aggregation_type (mut self , v : impl Into < PrimField < String > >) -> Self { self . aggregation_type = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl {
-            aggregation_type: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl { aggregation_type : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `aggregation_type` after provisioning.\n"]
-    pub fn aggregation_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.aggregation_type", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `aggregation_type` after provisioning.\n"] pub fn aggregation_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.aggregation_type" , self . base)) } }
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl
 {
@@ -3312,297 +1864,51 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUps
     prefix_hierarchy: Option<ListField<PrimField<String>>>,
     prefix_type: PrimField<String>,
 }
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl {
-    #[doc = "Set the field `prefix_format`.\n"]
-    pub fn set_prefix_format(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.prefix_format = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `prefix_hierarchy`.\n"]
-    pub fn set_prefix_hierarchy(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
-        self.prefix_hierarchy = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl { # [doc = "Set the field `prefix_format`.\n"] pub fn set_prefix_format (mut self , v : impl Into < PrimField < String > >) -> Self { self . prefix_format = Some (v . into ()) ; self } # [doc = "Set the field `prefix_hierarchy`.\n"] pub fn set_prefix_hierarchy (mut self , v : impl Into < ListField < PrimField < String > > >) -> Self { self . prefix_hierarchy = Some (v . into ()) ; self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl
 {
     #[doc = ""]
     pub prefix_type: PrimField<String>,
 }
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl {
-            prefix_format: core::default::Default::default(),
-            prefix_hierarchy: core::default::Default::default(),
-            prefix_type: self.prefix_type,
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl { prefix_format : core :: default :: Default :: default () , prefix_hierarchy : core :: default :: Default :: default () , prefix_type : self . prefix_type , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_format` after provisioning.\n"]
-    pub fn prefix_format(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_format", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_hierarchy` after provisioning.\n"]
-    pub fn prefix_hierarchy(&self) -> ListRef<PrimExpr<String>> {
-        ListRef::new(self.shared().clone(), format!("{}.prefix_hierarchy", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_type` after provisioning.\n"]
-    pub fn prefix_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.prefix_type", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `prefix_format` after provisioning.\n"] pub fn prefix_format (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.prefix_format" , self . base)) } # [doc = "Get a reference to the value of field `prefix_hierarchy` after provisioning.\n"] pub fn prefix_hierarchy (& self) -> ListRef < PrimExpr < String > > { ListRef :: new (self . shared () . clone () , format ! ("{}.prefix_hierarchy" , self . base)) } # [doc = "Get a reference to the value of field `prefix_type` after provisioning.\n"] pub fn prefix_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.prefix_type" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElDynamic {
-    aggregation_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl,
-        >,
-    >,
-    prefix_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElDynamic { aggregation_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl >> , prefix_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    file_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    aggregation_config: Option<
-        Vec<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl,
-        >,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    prefix_config: Option<
-        Vec<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl,
-        >,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElDynamic,
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-    #[doc = "Set the field `file_type`.\n"]
-    pub fn set_file_type(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.file_type = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `aggregation_config`.\n"]
-    pub fn set_aggregation_config(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.aggregation_config = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.aggregation_config = Some(d);
-            },
-        }
-        self
-    }
-
-    #[doc = "Set the field `prefix_config`.\n"]
-    pub fn set_prefix_config(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.prefix_config = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.prefix_config = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { # [serde (skip_serializing_if = "Option::is_none")] file_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] aggregation_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl > > , # [serde (skip_serializing_if = "Option::is_none")] prefix_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElDynamic , }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { # [doc = "Set the field `file_type`.\n"] pub fn set_file_type (mut self , v : impl Into < PrimField < String > >) -> Self { self . file_type = Some (v . into ()) ; self } # [doc = "Set the field `aggregation_config`.\n"] pub fn set_aggregation_config (mut self , v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . aggregation_config = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . aggregation_config = Some (d) ; } } self } # [doc = "Set the field `prefix_config`.\n"] pub fn set_prefix_config (mut self , v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . prefix_config = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . prefix_config = Some (d) ; } } self } }
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl {
-            file_type: core::default::Default::default(),
-            aggregation_config: core::default::Default::default(),
-            prefix_config: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl { file_type : core :: default :: Default :: default () , aggregation_config : core :: default :: Default :: default () , prefix_config : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `file_type` after provisioning.\n"]
-    pub fn file_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.file_type", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `aggregation_config` after provisioning.\n"]
-    pub fn aggregation_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.aggregation_config", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `prefix_config` after provisioning.\n"]
-    pub fn prefix_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.prefix_config", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `file_type` after provisioning.\n"] pub fn file_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.file_type" , self . base)) } # [doc = "Get a reference to the value of field `aggregation_config` after provisioning.\n"] pub fn aggregation_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElAggregationConfigElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.aggregation_config" , self . base)) } # [doc = "Get a reference to the value of field `prefix_config` after provisioning.\n"] pub fn prefix_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElPrefixConfigElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.prefix_config" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElDynamic {
-    s3_output_format_config: Option<
-        DynamicBlock<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl,
-        >,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElDynamic { s3_output_format_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl {
-    bucket_name: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    bucket_prefix: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_output_format_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl { bucket_name : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] bucket_prefix : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] s3_output_format_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl {
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_output_format_config`.\n"]
     pub fn set_s3_output_format_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3615,14 +1921,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverE
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3631,12 +1935,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverEl {
     pub fn build(
         self,
@@ -3649,12 +1951,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpso
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElRef {
     fn new(
         shared: StackShared,
@@ -3666,17 +1966,14 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElU
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3684,20 +1981,13 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverE
             format!("{}.bucket_prefix", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `s3_output_format_config` after provisioning.\n"]
-    pub fn s3_output_format_config(
-        &self,
-    ) -> ListRef<
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef,
-    >{
+    #[doc = "Get a reference to the value of field `s3_output_format_config` after provisioning.\n"]    pub fn s3_output_format_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElUpsolverElS3OutputFormatConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.s3_output_format_config", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl
 {
@@ -3708,7 +1998,6 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZen
     #[serde(skip_serializing_if = "Option::is_none")]
     fail_on_first_destination_error: Option<PrimField<bool>>,
 }
-
 impl
     AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl
 {
@@ -3717,134 +2006,47 @@ impl
         self.bucket_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bucket_prefix`.\n"]
     pub fn set_bucket_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `fail_on_first_destination_error`.\n"]
     pub fn set_fail_on_first_destination_error(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.fail_on_first_destination_error = Some(v.into());
         self
     }
 }
-
-impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl {
-    type O =
-        BlockAssignable<
-            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl { type O = BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl
 {}
-
-impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl {
-    pub fn build(
-        self,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl {
-            bucket_name: core::default::Default::default(),
-            bucket_prefix: core::default::Default::default(),
-            fail_on_first_destination_error: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl { pub fn build (self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl { bucket_name : core :: default :: Default :: default () , bucket_prefix : core :: default :: Default :: default () , fail_on_first_destination_error : core :: default :: Default :: default () , } } }
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef {
-        AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
-    pub fn bucket_name(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
-    pub fn bucket_prefix(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.bucket_prefix", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"]
-    pub fn fail_on_first_destination_error(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.fail_on_first_destination_error", self.base))
-    }
-}
-
+impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef { fn new (shared : StackShared , base : String) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef { AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef { shared : shared , base : base . to_string () , } } }
+impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"] pub fn bucket_name (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_name" , self . base)) } # [doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"] pub fn bucket_prefix (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.bucket_prefix" , self . base)) } # [doc = "Get a reference to the value of field `fail_on_first_destination_error` after provisioning.\n"] pub fn fail_on_first_destination_error (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.fail_on_first_destination_error" , self . base)) } }
 #[derive(Serialize, Default)]
-struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElDynamic {
-    error_handling_config: Option<
-        DynamicBlock<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl>,
-    >,
-}
-
+struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElDynamic { error_handling_config : Option < DynamicBlock < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl >> , }
 #[derive(Serialize)]
-pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    id_field_names: Option<ListField<PrimField<String>>>,
-    object: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    write_operation_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    error_handling_config: Option<
-        Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl>,
-    >,
-    dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElDynamic,
-}
-
+pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl { # [serde (skip_serializing_if = "Option::is_none")] id_field_names : Option < ListField < PrimField < String > > > , object : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] write_operation_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] error_handling_config : Option < Vec < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl > > , dynamic : AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElDynamic , }
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl {
     #[doc = "Set the field `id_field_names`.\n"]
     pub fn set_id_field_names(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.id_field_names = Some(v.into());
         self
     }
-
     #[doc = "Set the field `write_operation_type`.\n"]
     pub fn set_write_operation_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.write_operation_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `error_handling_config`.\n"]
     pub fn set_error_handling_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -3857,14 +2059,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl
 {
     type O = BlockAssignable<
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3873,12 +2073,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl {
     pub fn build(
         self,
@@ -3892,12 +2090,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZend
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElRef {
     fn new(
         shared: StackShared,
@@ -3909,12 +2105,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZ
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id_field_names` after provisioning.\n"]
     pub fn id_field_names(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -3922,12 +2116,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl
             format!("{}.id_field_names", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
-
     #[doc = "Get a reference to the value of field `write_operation_type` after provisioning.\n"]
     pub fn write_operation_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3935,18 +2127,13 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl
             format!("{}.write_operation_type", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]
-    pub fn error_handling_config(
-        &self,
-    ) -> ListRef<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef>{
+    #[doc = "Get a reference to the value of field `error_handling_config` after provisioning.\n"]    pub fn error_handling_config (& self) -> ListRef < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskElErrorHandlingConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.error_handling_config", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElDynamic {
     custom_connector: Option<
@@ -3999,7 +2186,6 @@ struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElDynamic
         DynamicBlock<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4046,7 +2232,6 @@ pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         Option<Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElZendeskEl>>,
     dynamic: AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElDynamic,
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
     #[doc = "Set the field `custom_connector`.\n"]
     pub fn set_custom_connector(
@@ -4067,18 +2252,10 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `customer_profiles`.\n"]
     pub fn set_customer_profiles(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElCustomerProfilesEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -4090,7 +2267,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `event_bridge`.\n"]
     pub fn set_event_bridge(
         mut self,
@@ -4110,7 +2286,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `honeycode`.\n"]
     pub fn set_honeycode(
         mut self,
@@ -4130,7 +2305,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `lookout_metrics`.\n"]
     pub fn set_lookout_metrics(
         mut self,
@@ -4150,7 +2324,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `marketo`.\n"]
     pub fn set_marketo(
         mut self,
@@ -4170,7 +2343,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `redshift`.\n"]
     pub fn set_redshift(
         mut self,
@@ -4190,7 +2362,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
@@ -4208,7 +2379,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `salesforce`.\n"]
     pub fn set_salesforce(
         mut self,
@@ -4228,7 +2398,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `sapo_data`.\n"]
     pub fn set_sapo_data(
         mut self,
@@ -4248,7 +2417,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `snowflake`.\n"]
     pub fn set_snowflake(
         mut self,
@@ -4268,7 +2436,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `upsolver`.\n"]
     pub fn set_upsolver(
         mut self,
@@ -4288,7 +2455,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `zendesk`.\n"]
     pub fn set_zendesk(
         mut self,
@@ -4309,10 +2475,8 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
     type O = BlockAssignable<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4321,9 +2485,7 @@ impl ToListMappable for AppflowFlowDestinationFlowConfigElDestinationConnectorPr
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {}
-
 impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
     pub fn build(self) -> AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
@@ -4344,12 +2506,10 @@ impl BuildAppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl {
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     fn new(
         shared: StackShared,
@@ -4361,12 +2521,10 @@ impl Ref for AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElR
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_connector` after provisioning.\n"]
     pub fn custom_connector(
         &self,
@@ -4378,7 +2536,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
             format!("{}.custom_connector", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_profiles` after provisioning.\n"]
     pub fn customer_profiles(
         &self,
@@ -4390,7 +2547,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
             format!("{}.customer_profiles", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_bridge` after provisioning.\n"]
     pub fn event_bridge(
         &self,
@@ -4398,7 +2554,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.event_bridge", self.base))
     }
-
     #[doc = "Get a reference to the value of field `honeycode` after provisioning.\n"]
     pub fn honeycode(
         &self,
@@ -4406,7 +2561,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.honeycode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lookout_metrics` after provisioning.\n"]
     pub fn lookout_metrics(
         &self,
@@ -4418,7 +2572,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
             format!("{}.lookout_metrics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `marketo` after provisioning.\n"]
     pub fn marketo(
         &self,
@@ -4426,7 +2579,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.marketo", self.base))
     }
-
     #[doc = "Get a reference to the value of field `redshift` after provisioning.\n"]
     pub fn redshift(
         &self,
@@ -4434,14 +2586,12 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.redshift", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(
         &self,
     ) -> ListRef<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
-
     #[doc = "Get a reference to the value of field `salesforce` after provisioning.\n"]
     pub fn salesforce(
         &self,
@@ -4449,7 +2599,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.salesforce", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sapo_data` after provisioning.\n"]
     pub fn sapo_data(
         &self,
@@ -4457,7 +2606,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.sapo_data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `snowflake` after provisioning.\n"]
     pub fn snowflake(
         &self,
@@ -4465,7 +2613,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.snowflake", self.base))
     }
-
     #[doc = "Get a reference to the value of field `upsolver` after provisioning.\n"]
     pub fn upsolver(
         &self,
@@ -4473,7 +2620,6 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.upsolver", self.base))
     }
-
     #[doc = "Get a reference to the value of field `zendesk` after provisioning.\n"]
     pub fn zendesk(
         &self,
@@ -4482,13 +2628,11 @@ impl AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesElRef {
         ListRef::new(self.shared().clone(), format!("{}.zendesk", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowDestinationFlowConfigElDynamic {
     destination_connector_properties:
         Option<DynamicBlock<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowDestinationFlowConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4501,20 +2645,17 @@ pub struct AppflowFlowDestinationFlowConfigEl {
         Option<Vec<AppflowFlowDestinationFlowConfigElDestinationConnectorPropertiesEl>>,
     dynamic: AppflowFlowDestinationFlowConfigElDynamic,
 }
-
 impl AppflowFlowDestinationFlowConfigEl {
     #[doc = "Set the field `api_version`.\n"]
     pub fn set_api_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.api_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connector_profile_name`.\n"]
     pub fn set_connector_profile_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connector_profile_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `destination_connector_properties`.\n"]
     pub fn set_destination_connector_properties(
         mut self,
@@ -4533,10 +2674,8 @@ impl AppflowFlowDestinationFlowConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowDestinationFlowConfigEl {
     type O = BlockAssignable<AppflowFlowDestinationFlowConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4545,12 +2684,10 @@ impl ToListMappable for AppflowFlowDestinationFlowConfigEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowDestinationFlowConfigEl {
     #[doc = ""]
     pub connector_type: PrimField<String>,
 }
-
 impl BuildAppflowFlowDestinationFlowConfigEl {
     pub fn build(self) -> AppflowFlowDestinationFlowConfigEl {
         AppflowFlowDestinationFlowConfigEl {
@@ -4562,12 +2699,10 @@ impl BuildAppflowFlowDestinationFlowConfigEl {
         }
     }
 }
-
 pub struct AppflowFlowDestinationFlowConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowDestinationFlowConfigElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowDestinationFlowConfigElRef {
         AppflowFlowDestinationFlowConfigElRef {
@@ -4576,17 +2711,14 @@ impl Ref for AppflowFlowDestinationFlowConfigElRef {
         }
     }
 }
-
 impl AppflowFlowDestinationFlowConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_version` after provisioning.\n"]
     pub fn api_version(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.api_version", self.base))
     }
-
     #[doc = "Get a reference to the value of field `connector_profile_name` after provisioning.\n"]
     pub fn connector_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4594,7 +2726,6 @@ impl AppflowFlowDestinationFlowConfigElRef {
             format!("{}.connector_profile_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `connector_type` after provisioning.\n"]
     pub fn connector_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4602,7 +2733,6 @@ impl AppflowFlowDestinationFlowConfigElRef {
             format!("{}.connector_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `destination_connector_properties` after provisioning.\n"]
     pub fn destination_connector_properties(
         &self,
@@ -4613,19 +2743,15 @@ impl AppflowFlowDestinationFlowConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
     database_name: PrimField<String>,
     role_arn: PrimField<String>,
     table_prefix: PrimField<String>,
 }
-
 impl AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {}
-
 impl ToListMappable for AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
     type O = BlockAssignable<AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4634,7 +2760,6 @@ impl ToListMappable for AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
@@ -4643,7 +2768,6 @@ pub struct BuildAppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
     #[doc = ""]
     pub table_prefix: PrimField<String>,
 }
-
 impl BuildAppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
     pub fn build(self) -> AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
         AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
@@ -4653,12 +2777,10 @@ impl BuildAppflowFlowMetadataCatalogConfigElGlueDataCatalogEl {
         }
     }
 }
-
 pub struct AppflowFlowMetadataCatalogConfigElGlueDataCatalogElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowMetadataCatalogConfigElGlueDataCatalogElRef {
     fn new(
         shared: StackShared,
@@ -4670,12 +2792,10 @@ impl Ref for AppflowFlowMetadataCatalogConfigElGlueDataCatalogElRef {
         }
     }
 }
-
 impl AppflowFlowMetadataCatalogConfigElGlueDataCatalogElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4683,30 +2803,25 @@ impl AppflowFlowMetadataCatalogConfigElGlueDataCatalogElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_prefix` after provisioning.\n"]
     pub fn table_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_prefix", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowMetadataCatalogConfigElDynamic {
     glue_data_catalog: Option<DynamicBlock<AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowMetadataCatalogConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     glue_data_catalog: Option<Vec<AppflowFlowMetadataCatalogConfigElGlueDataCatalogEl>>,
     dynamic: AppflowFlowMetadataCatalogConfigElDynamic,
 }
-
 impl AppflowFlowMetadataCatalogConfigEl {
     #[doc = "Set the field `glue_data_catalog`.\n"]
     pub fn set_glue_data_catalog(
@@ -4724,10 +2839,8 @@ impl AppflowFlowMetadataCatalogConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowMetadataCatalogConfigEl {
     type O = BlockAssignable<AppflowFlowMetadataCatalogConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4736,9 +2849,7 @@ impl ToListMappable for AppflowFlowMetadataCatalogConfigEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowMetadataCatalogConfigEl {}
-
 impl BuildAppflowFlowMetadataCatalogConfigEl {
     pub fn build(self) -> AppflowFlowMetadataCatalogConfigEl {
         AppflowFlowMetadataCatalogConfigEl {
@@ -4747,12 +2858,10 @@ impl BuildAppflowFlowMetadataCatalogConfigEl {
         }
     }
 }
-
 pub struct AppflowFlowMetadataCatalogConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowMetadataCatalogConfigElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowMetadataCatalogConfigElRef {
         AppflowFlowMetadataCatalogConfigElRef {
@@ -4761,12 +2870,10 @@ impl Ref for AppflowFlowMetadataCatalogConfigElRef {
         }
     }
 }
-
 impl AppflowFlowMetadataCatalogConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `glue_data_catalog` after provisioning.\n"]
     pub fn glue_data_catalog(
         &self,
@@ -4777,13 +2884,11 @@ impl AppflowFlowMetadataCatalogConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     datetime_type_field_name: Option<PrimField<String>>,
 }
-
 impl AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
     #[doc = "Set the field `datetime_type_field_name`.\n"]
     pub fn set_datetime_type_field_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -4791,10 +2896,8 @@ impl AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElIncrementalPullConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4803,9 +2906,7 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElIncrementalPullConfigEl {}
-
 impl BuildAppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
         AppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
@@ -4813,12 +2914,10 @@ impl BuildAppflowFlowSourceFlowConfigElIncrementalPullConfigEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElIncrementalPullConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElIncrementalPullConfigElRef {
     fn new(
         shared: StackShared,
@@ -4830,12 +2929,10 @@ impl Ref for AppflowFlowSourceFlowConfigElIncrementalPullConfigElRef {
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElIncrementalPullConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `datetime_type_field_name` after provisioning.\n"]
     pub fn datetime_type_field_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -4844,17 +2941,13 @@ impl AppflowFlowSourceFlowConfigElIncrementalPullConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4863,12 +2956,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
@@ -4876,12 +2967,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeElRef {
     fn new(
         shared: StackShared,
@@ -4893,25 +2982,21 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeEl
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     custom_properties: Option<RecField<PrimField<String>>>,
     entity_name: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
     #[doc = "Set the field `custom_properties`.\n"]
     pub fn set_custom_properties(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
@@ -4919,11 +3004,9 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
     type O =
         BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4932,12 +3015,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
     #[doc = ""]
     pub entity_name: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorEl {
     pub fn build(
         self,
@@ -4948,12 +3029,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnecto
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorElRef {
     fn new(
         shared: StackShared,
@@ -4965,12 +3044,10 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConne
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_properties` after provisioning.\n"]
     pub fn custom_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -4978,23 +3055,18 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElCustomConnectorElRe
             format!("{}.custom_properties", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `entity_name` after provisioning.\n"]
     pub fn entity_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5003,12 +3075,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
@@ -5016,12 +3086,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogElRef {
     fn new(
         shared: StackShared,
@@ -5033,28 +3101,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogElRe
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5063,12 +3125,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
@@ -5076,12 +3136,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceElRef {
     fn new(
         shared: StackShared,
@@ -5093,29 +3151,23 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceEl
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl {
     type O =
         BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5124,12 +3176,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsEl {
     pub fn build(
         self,
@@ -5139,12 +3189,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalytic
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsElRef {
     fn new(
         shared: StackShared,
@@ -5156,28 +3204,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnaly
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElGoogleAnalyticsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5186,12 +3228,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
@@ -5199,12 +3239,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusElRef {
     fn new(
         shared: StackShared,
@@ -5216,28 +3254,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusE
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5246,12 +3278,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
@@ -5259,12 +3289,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoElRef {
     fn new(
         shared: StackShared,
@@ -5276,24 +3304,20 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoElRe
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_input_file_type: Option<PrimField<String>>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl {
     #[doc = "Set the field `s3_input_file_type`.\n"]
     pub fn set_s3_input_file_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -5301,14 +3325,12 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatCo
         self
     }
 }
-
 impl ToListMappable
     for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl
 {
     type O = BlockAssignable<
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5317,10 +3339,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl {
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigEl {
     pub fn build(
         self,
@@ -5330,12 +3350,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFor
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigElRef {
     fn new(
         shared: StackShared,
@@ -5347,12 +3365,10 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3Input
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_input_file_type` after provisioning.\n"]
     pub fn s3_input_file_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5361,7 +3377,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElS3InputFormatCo
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElDynamic {
     s3_input_format_config: Option<
@@ -5370,7 +3385,6 @@ struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     bucket_name: PrimField<String>,
@@ -5381,7 +3395,6 @@ pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     >,
     dynamic: AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElDynamic,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     #[doc = "Set the field `s3_input_format_config`.\n"]
     pub fn set_s3_input_format_config(
@@ -5403,10 +3416,8 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5415,14 +3426,12 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     #[doc = ""]
     pub bucket_name: PrimField<String>,
     #[doc = ""]
     pub bucket_prefix: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
@@ -5433,12 +3442,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3El {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
     fn new(
         shared: StackShared,
@@ -5450,17 +3457,14 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket_prefix` after provisioning.\n"]
     pub fn bucket_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5468,7 +3472,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
             format!("{}.bucket_prefix", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_input_format_config` after provisioning.\n"]
     pub fn s3_input_format_config(
         &self,
@@ -5480,7 +3483,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5491,30 +3493,25 @@ pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl 
     include_deleted_records: Option<PrimField<bool>>,
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
     #[doc = "Set the field `data_transfer_api`.\n"]
     pub fn set_data_transfer_api(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_transfer_api = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_dynamic_field_update`.\n"]
     pub fn set_enable_dynamic_field_update(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_dynamic_field_update = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_deleted_records`.\n"]
     pub fn set_include_deleted_records(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_deleted_records = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5523,12 +3520,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
@@ -5539,12 +3534,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
     fn new(
         shared: StackShared,
@@ -5556,12 +3549,10 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceE
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_transfer_api` after provisioning.\n"]
     pub fn data_transfer_api(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -5569,7 +3560,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
             format!("{}.data_transfer_api", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_dynamic_field_update` after provisioning.\n"]
     pub fn enable_dynamic_field_update(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -5577,7 +3567,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
             format!("{}.enable_dynamic_field_update", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_deleted_records` after provisioning.\n"]
     pub fn include_deleted_records(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -5585,27 +3574,22 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef {
             format!("{}.include_deleted_records", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl {
     max_page_size: PrimField<f64>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl {}
-
 impl ToListMappable
     for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl
 {
     type O = BlockAssignable<
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5614,13 +3598,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl
 {
     #[doc = ""]
     pub max_page_size: PrimField<f64>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl {
     pub fn build(
         self,
@@ -5630,12 +3612,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPagi
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigElRef
 {
@@ -5650,12 +3630,10 @@ impl Ref
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_page_size` after provisioning.\n"]
     pub fn max_page_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -5664,21 +3642,17 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginatio
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl {
     max_page_size: PrimField<f64>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl {}
-
 impl ToListMappable
     for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl
 {
     type O = BlockAssignable<
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5687,13 +3661,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl
 {
     #[doc = ""]
     pub max_page_size: PrimField<f64>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl {
     pub fn build(
         self,
@@ -5703,13 +3675,11 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPara
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigElRef
 {
@@ -5724,12 +3694,10 @@ impl Ref
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_page_size` after provisioning.\n"]
     pub fn max_page_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -5738,7 +3706,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParalleli
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElDynamic {
     pagination_config: Option<
@@ -5752,7 +3719,6 @@ struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElDynamic
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     object_path: PrimField<String>,
@@ -5766,19 +3732,11 @@ pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     >,
     dynamic: AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElDynamic,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     #[doc = "Set the field `pagination_config`.\n"]
     pub fn set_pagination_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElPaginationConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -5790,18 +3748,10 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
         }
         self
     }
-
     #[doc = "Set the field `parallelism_config`.\n"]
     pub fn set_parallelism_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElParallelismConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -5814,10 +3764,8 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5826,12 +3774,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     #[doc = ""]
     pub object_path: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
@@ -5842,12 +3788,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef {
     fn new(
         shared: StackShared,
@@ -5859,17 +3803,14 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElR
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object_path` after provisioning.\n"]
     pub fn object_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `pagination_config` after provisioning.\n"]
     pub fn pagination_config(
         &self,
@@ -5881,7 +3822,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef {
             format!("{}.pagination_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `parallelism_config` after provisioning.\n"]
     pub fn parallelism_config(
         &self,
@@ -5894,17 +3834,13 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5913,12 +3849,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
@@ -5926,12 +3860,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowElRef {
     fn new(
         shared: StackShared,
@@ -5943,28 +3875,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowE
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5973,12 +3899,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
@@ -5986,12 +3910,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularElRef {
     fn new(
         shared: StackShared,
@@ -6003,28 +3925,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularElR
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6033,12 +3949,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
@@ -6046,12 +3960,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackElRef {
     fn new(
         shared: StackShared,
@@ -6063,28 +3975,22 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackElRef 
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6093,12 +3999,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
@@ -6106,12 +4010,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroElRef {
     fn new(
         shared: StackShared,
@@ -6123,18 +4025,15 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroE
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6147,36 +4046,30 @@ pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     include_source_files: Option<PrimField<bool>>,
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     #[doc = "Set the field `document_type`.\n"]
     pub fn set_document_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.document_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_all_versions`.\n"]
     pub fn set_include_all_versions(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_all_versions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_renditions`.\n"]
     pub fn set_include_renditions(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_renditions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_source_files`.\n"]
     pub fn set_include_source_files(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_source_files = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6185,12 +4078,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
@@ -6202,12 +4093,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
     fn new(
         shared: StackShared,
@@ -6219,12 +4108,10 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef 
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `document_type` after provisioning.\n"]
     pub fn document_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -6232,7 +4119,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
             format!("{}.document_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_all_versions` after provisioning.\n"]
     pub fn include_all_versions(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -6240,7 +4126,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
             format!("{}.include_all_versions", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_renditions` after provisioning.\n"]
     pub fn include_renditions(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -6248,7 +4133,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
             format!("{}.include_renditions", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_source_files` after provisioning.\n"]
     pub fn include_source_files(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -6256,23 +4140,18 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef {
             format!("{}.include_source_files", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
     object: PrimField<String>,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {}
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6281,12 +4160,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
     #[doc = ""]
     pub object: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
@@ -6294,12 +4171,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskElRef {
     fn new(
         shared: StackShared,
@@ -6311,18 +4186,15 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskElRe
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `object` after provisioning.\n"]
     pub fn object(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.object", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynamic {
     amplitude:
@@ -6357,7 +4229,6 @@ struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynamic {
     zendesk:
         Option<DynamicBlock<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6396,7 +4267,6 @@ pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
     zendesk: Option<Vec<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElZendeskEl>>,
     dynamic: AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynamic,
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
     #[doc = "Set the field `amplitude`.\n"]
     pub fn set_amplitude(
@@ -6415,7 +4285,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `custom_connector`.\n"]
     pub fn set_custom_connector(
         mut self,
@@ -6435,7 +4304,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `datadog`.\n"]
     pub fn set_datadog(
         mut self,
@@ -6451,7 +4319,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `dynatrace`.\n"]
     pub fn set_dynatrace(
         mut self,
@@ -6469,7 +4336,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `google_analytics`.\n"]
     pub fn set_google_analytics(
         mut self,
@@ -6489,7 +4355,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `infor_nexus`.\n"]
     pub fn set_infor_nexus(
         mut self,
@@ -6507,7 +4372,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `marketo`.\n"]
     pub fn set_marketo(
         mut self,
@@ -6523,7 +4387,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(
         mut self,
@@ -6539,7 +4402,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `salesforce`.\n"]
     pub fn set_salesforce(
         mut self,
@@ -6557,7 +4419,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `sapo_data`.\n"]
     pub fn set_sapo_data(
         mut self,
@@ -6575,7 +4436,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `service_now`.\n"]
     pub fn set_service_now(
         mut self,
@@ -6593,7 +4453,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `singular`.\n"]
     pub fn set_singular(
         mut self,
@@ -6611,7 +4470,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `slack`.\n"]
     pub fn set_slack(
         mut self,
@@ -6627,7 +4485,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `trendmicro`.\n"]
     pub fn set_trendmicro(
         mut self,
@@ -6645,7 +4502,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `veeva`.\n"]
     pub fn set_veeva(
         mut self,
@@ -6661,7 +4517,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
         self
     }
-
     #[doc = "Set the field `zendesk`.\n"]
     pub fn set_zendesk(
         mut self,
@@ -6678,10 +4533,8 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6690,9 +4543,7 @@ impl ToListMappable for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {}
-
 impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
@@ -6716,12 +4567,10 @@ impl BuildAppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
     fn new(
         shared: StackShared,
@@ -6733,19 +4582,16 @@ impl Ref for AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `amplitude` after provisioning.\n"]
     pub fn amplitude(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElAmplitudeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.amplitude", self.base))
     }
-
     #[doc = "Get a reference to the value of field `custom_connector` after provisioning.\n"]
     pub fn custom_connector(
         &self,
@@ -6755,21 +4601,18 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
             format!("{}.custom_connector", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `datadog` after provisioning.\n"]
     pub fn datadog(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDatadogElRef> {
         ListRef::new(self.shared().clone(), format!("{}.datadog", self.base))
     }
-
     #[doc = "Get a reference to the value of field `dynatrace` after provisioning.\n"]
     pub fn dynatrace(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElDynatraceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dynatrace", self.base))
     }
-
     #[doc = "Get a reference to the value of field `google_analytics` after provisioning.\n"]
     pub fn google_analytics(
         &self,
@@ -6779,75 +4622,64 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
             format!("{}.google_analytics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `infor_nexus` after provisioning.\n"]
     pub fn infor_nexus(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElInforNexusElRef> {
         ListRef::new(self.shared().clone(), format!("{}.infor_nexus", self.base))
     }
-
     #[doc = "Get a reference to the value of field `marketo` after provisioning.\n"]
     pub fn marketo(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElMarketoElRef> {
         ListRef::new(self.shared().clone(), format!("{}.marketo", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(&self) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElS3ElRef> {
         ListRef::new(self.shared().clone(), format!("{}.s3", self.base))
     }
-
     #[doc = "Get a reference to the value of field `salesforce` after provisioning.\n"]
     pub fn salesforce(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSalesforceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.salesforce", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sapo_data` after provisioning.\n"]
     pub fn sapo_data(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSapoDataElRef> {
         ListRef::new(self.shared().clone(), format!("{}.sapo_data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `service_now` after provisioning.\n"]
     pub fn service_now(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElServiceNowElRef> {
         ListRef::new(self.shared().clone(), format!("{}.service_now", self.base))
     }
-
     #[doc = "Get a reference to the value of field `singular` after provisioning.\n"]
     pub fn singular(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSingularElRef> {
         ListRef::new(self.shared().clone(), format!("{}.singular", self.base))
     }
-
     #[doc = "Get a reference to the value of field `slack` after provisioning.\n"]
     pub fn slack(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElSlackElRef> {
         ListRef::new(self.shared().clone(), format!("{}.slack", self.base))
     }
-
     #[doc = "Get a reference to the value of field `trendmicro` after provisioning.\n"]
     pub fn trendmicro(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElTrendmicroElRef> {
         ListRef::new(self.shared().clone(), format!("{}.trendmicro", self.base))
     }
-
     #[doc = "Get a reference to the value of field `veeva` after provisioning.\n"]
     pub fn veeva(
         &self,
     ) -> ListRef<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElVeevaElRef> {
         ListRef::new(self.shared().clone(), format!("{}.veeva", self.base))
     }
-
     #[doc = "Get a reference to the value of field `zendesk` after provisioning.\n"]
     pub fn zendesk(
         &self,
@@ -6855,7 +4687,6 @@ impl AppflowFlowSourceFlowConfigElSourceConnectorPropertiesElRef {
         ListRef::new(self.shared().clone(), format!("{}.zendesk", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowSourceFlowConfigElDynamic {
     incremental_pull_config:
@@ -6863,7 +4694,6 @@ struct AppflowFlowSourceFlowConfigElDynamic {
     source_connector_properties:
         Option<DynamicBlock<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowSourceFlowConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6878,20 +4708,17 @@ pub struct AppflowFlowSourceFlowConfigEl {
         Option<Vec<AppflowFlowSourceFlowConfigElSourceConnectorPropertiesEl>>,
     dynamic: AppflowFlowSourceFlowConfigElDynamic,
 }
-
 impl AppflowFlowSourceFlowConfigEl {
     #[doc = "Set the field `api_version`.\n"]
     pub fn set_api_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.api_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connector_profile_name`.\n"]
     pub fn set_connector_profile_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connector_profile_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `incremental_pull_config`.\n"]
     pub fn set_incremental_pull_config(
         mut self,
@@ -6907,7 +4734,6 @@ impl AppflowFlowSourceFlowConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `source_connector_properties`.\n"]
     pub fn set_source_connector_properties(
         mut self,
@@ -6924,10 +4750,8 @@ impl AppflowFlowSourceFlowConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowSourceFlowConfigEl {
     type O = BlockAssignable<AppflowFlowSourceFlowConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6936,12 +4760,10 @@ impl ToListMappable for AppflowFlowSourceFlowConfigEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowSourceFlowConfigEl {
     #[doc = ""]
     pub connector_type: PrimField<String>,
 }
-
 impl BuildAppflowFlowSourceFlowConfigEl {
     pub fn build(self) -> AppflowFlowSourceFlowConfigEl {
         AppflowFlowSourceFlowConfigEl {
@@ -6954,12 +4776,10 @@ impl BuildAppflowFlowSourceFlowConfigEl {
         }
     }
 }
-
 pub struct AppflowFlowSourceFlowConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowSourceFlowConfigElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowSourceFlowConfigElRef {
         AppflowFlowSourceFlowConfigElRef {
@@ -6968,17 +4788,14 @@ impl Ref for AppflowFlowSourceFlowConfigElRef {
         }
     }
 }
-
 impl AppflowFlowSourceFlowConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_version` after provisioning.\n"]
     pub fn api_version(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.api_version", self.base))
     }
-
     #[doc = "Get a reference to the value of field `connector_profile_name` after provisioning.\n"]
     pub fn connector_profile_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -6986,7 +4803,6 @@ impl AppflowFlowSourceFlowConfigElRef {
             format!("{}.connector_profile_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `connector_type` after provisioning.\n"]
     pub fn connector_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -6994,7 +4810,6 @@ impl AppflowFlowSourceFlowConfigElRef {
             format!("{}.connector_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `incremental_pull_config` after provisioning.\n"]
     pub fn incremental_pull_config(
         &self,
@@ -7004,7 +4819,6 @@ impl AppflowFlowSourceFlowConfigElRef {
             format!("{}.incremental_pull_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_connector_properties` after provisioning.\n"]
     pub fn source_connector_properties(
         &self,
@@ -7015,7 +4829,6 @@ impl AppflowFlowSourceFlowConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowTaskElConnectorOperatorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7051,108 +4864,90 @@ pub struct AppflowFlowTaskElConnectorOperatorEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     zendesk: Option<PrimField<String>>,
 }
-
 impl AppflowFlowTaskElConnectorOperatorEl {
     #[doc = "Set the field `amplitude`.\n"]
     pub fn set_amplitude(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.amplitude = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_connector`.\n"]
     pub fn set_custom_connector(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.custom_connector = Some(v.into());
         self
     }
-
     #[doc = "Set the field `datadog`.\n"]
     pub fn set_datadog(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.datadog = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dynatrace`.\n"]
     pub fn set_dynatrace(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dynatrace = Some(v.into());
         self
     }
-
     #[doc = "Set the field `google_analytics`.\n"]
     pub fn set_google_analytics(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.google_analytics = Some(v.into());
         self
     }
-
     #[doc = "Set the field `infor_nexus`.\n"]
     pub fn set_infor_nexus(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.infor_nexus = Some(v.into());
         self
     }
-
     #[doc = "Set the field `marketo`.\n"]
     pub fn set_marketo(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.marketo = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3`.\n"]
     pub fn set_s3(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `salesforce`.\n"]
     pub fn set_salesforce(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.salesforce = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sapo_data`.\n"]
     pub fn set_sapo_data(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.sapo_data = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_now`.\n"]
     pub fn set_service_now(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_now = Some(v.into());
         self
     }
-
     #[doc = "Set the field `singular`.\n"]
     pub fn set_singular(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.singular = Some(v.into());
         self
     }
-
     #[doc = "Set the field `slack`.\n"]
     pub fn set_slack(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.slack = Some(v.into());
         self
     }
-
     #[doc = "Set the field `trendmicro`.\n"]
     pub fn set_trendmicro(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.trendmicro = Some(v.into());
         self
     }
-
     #[doc = "Set the field `veeva`.\n"]
     pub fn set_veeva(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.veeva = Some(v.into());
         self
     }
-
     #[doc = "Set the field `zendesk`.\n"]
     pub fn set_zendesk(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.zendesk = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppflowFlowTaskElConnectorOperatorEl {
     type O = BlockAssignable<AppflowFlowTaskElConnectorOperatorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7161,9 +4956,7 @@ impl ToListMappable for AppflowFlowTaskElConnectorOperatorEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowTaskElConnectorOperatorEl {}
-
 impl BuildAppflowFlowTaskElConnectorOperatorEl {
     pub fn build(self) -> AppflowFlowTaskElConnectorOperatorEl {
         AppflowFlowTaskElConnectorOperatorEl {
@@ -7186,12 +4979,10 @@ impl BuildAppflowFlowTaskElConnectorOperatorEl {
         }
     }
 }
-
 pub struct AppflowFlowTaskElConnectorOperatorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowTaskElConnectorOperatorElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowTaskElConnectorOperatorElRef {
         AppflowFlowTaskElConnectorOperatorElRef {
@@ -7200,17 +4991,14 @@ impl Ref for AppflowFlowTaskElConnectorOperatorElRef {
         }
     }
 }
-
 impl AppflowFlowTaskElConnectorOperatorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `amplitude` after provisioning.\n"]
     pub fn amplitude(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.amplitude", self.base))
     }
-
     #[doc = "Get a reference to the value of field `custom_connector` after provisioning.\n"]
     pub fn custom_connector(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7218,17 +5006,14 @@ impl AppflowFlowTaskElConnectorOperatorElRef {
             format!("{}.custom_connector", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `datadog` after provisioning.\n"]
     pub fn datadog(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.datadog", self.base))
     }
-
     #[doc = "Get a reference to the value of field `dynatrace` after provisioning.\n"]
     pub fn dynatrace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.dynatrace", self.base))
     }
-
     #[doc = "Get a reference to the value of field `google_analytics` after provisioning.\n"]
     pub fn google_analytics(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7236,68 +5021,55 @@ impl AppflowFlowTaskElConnectorOperatorElRef {
             format!("{}.google_analytics", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `infor_nexus` after provisioning.\n"]
     pub fn infor_nexus(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.infor_nexus", self.base))
     }
-
     #[doc = "Get a reference to the value of field `marketo` after provisioning.\n"]
     pub fn marketo(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.marketo", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3` after provisioning.\n"]
     pub fn s3(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3", self.base))
     }
-
     #[doc = "Get a reference to the value of field `salesforce` after provisioning.\n"]
     pub fn salesforce(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.salesforce", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sapo_data` after provisioning.\n"]
     pub fn sapo_data(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.sapo_data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `service_now` after provisioning.\n"]
     pub fn service_now(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.service_now", self.base))
     }
-
     #[doc = "Get a reference to the value of field `singular` after provisioning.\n"]
     pub fn singular(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.singular", self.base))
     }
-
     #[doc = "Get a reference to the value of field `slack` after provisioning.\n"]
     pub fn slack(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.slack", self.base))
     }
-
     #[doc = "Get a reference to the value of field `trendmicro` after provisioning.\n"]
     pub fn trendmicro(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.trendmicro", self.base))
     }
-
     #[doc = "Get a reference to the value of field `veeva` after provisioning.\n"]
     pub fn veeva(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.veeva", self.base))
     }
-
     #[doc = "Get a reference to the value of field `zendesk` after provisioning.\n"]
     pub fn zendesk(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.zendesk", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowTaskElDynamic {
     connector_operator: Option<DynamicBlock<AppflowFlowTaskElConnectorOperatorEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowTaskEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7311,26 +5083,22 @@ pub struct AppflowFlowTaskEl {
     connector_operator: Option<Vec<AppflowFlowTaskElConnectorOperatorEl>>,
     dynamic: AppflowFlowTaskElDynamic,
 }
-
 impl AppflowFlowTaskEl {
     #[doc = "Set the field `destination_field`.\n"]
     pub fn set_destination_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.destination_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_fields`.\n"]
     pub fn set_source_fields(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.source_fields = Some(v.into());
         self
     }
-
     #[doc = "Set the field `task_properties`.\n"]
     pub fn set_task_properties(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.task_properties = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connector_operator`.\n"]
     pub fn set_connector_operator(
         mut self,
@@ -7347,10 +5115,8 @@ impl AppflowFlowTaskEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowTaskEl {
     type O = BlockAssignable<AppflowFlowTaskEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7359,12 +5125,10 @@ impl ToListMappable for AppflowFlowTaskEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowTaskEl {
     #[doc = ""]
     pub task_type: PrimField<String>,
 }
-
 impl BuildAppflowFlowTaskEl {
     pub fn build(self) -> AppflowFlowTaskEl {
         AppflowFlowTaskEl {
@@ -7377,12 +5141,10 @@ impl BuildAppflowFlowTaskEl {
         }
     }
 }
-
 pub struct AppflowFlowTaskElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowTaskElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowTaskElRef {
         AppflowFlowTaskElRef {
@@ -7391,12 +5153,10 @@ impl Ref for AppflowFlowTaskElRef {
         }
     }
 }
-
 impl AppflowFlowTaskElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination_field` after provisioning.\n"]
     pub fn destination_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7404,7 +5164,6 @@ impl AppflowFlowTaskElRef {
             format!("{}.destination_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_fields` after provisioning.\n"]
     pub fn source_fields(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -7412,7 +5171,6 @@ impl AppflowFlowTaskElRef {
             format!("{}.source_fields", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_properties` after provisioning.\n"]
     pub fn task_properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -7420,12 +5178,10 @@ impl AppflowFlowTaskElRef {
             format!("{}.task_properties", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `task_type` after provisioning.\n"]
     pub fn task_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.task_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `connector_operator` after provisioning.\n"]
     pub fn connector_operator(&self) -> ListRef<AppflowFlowTaskElConnectorOperatorElRef> {
         ListRef::new(
@@ -7434,7 +5190,6 @@ impl AppflowFlowTaskElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7451,48 +5206,40 @@ pub struct AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     timezone: Option<PrimField<String>>,
 }
-
 impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     #[doc = "Set the field `data_pull_mode`.\n"]
     pub fn set_data_pull_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_pull_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `first_execution_from`.\n"]
     pub fn set_first_execution_from(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.first_execution_from = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule_end_time`.\n"]
     pub fn set_schedule_end_time(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.schedule_end_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule_offset`.\n"]
     pub fn set_schedule_offset(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.schedule_offset = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule_start_time`.\n"]
     pub fn set_schedule_start_time(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.schedule_start_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timezone`.\n"]
     pub fn set_timezone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.timezone = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     type O = BlockAssignable<AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7501,12 +5248,10 @@ impl ToListMappable for AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl
         })
     }
 }
-
 pub struct BuildAppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     #[doc = ""]
     pub schedule_expression: PrimField<String>,
 }
-
 impl BuildAppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
     pub fn build(self) -> AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
         AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
@@ -7520,12 +5265,10 @@ impl BuildAppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl {
         }
     }
 }
-
 pub struct AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
     fn new(
         shared: StackShared,
@@ -7537,12 +5280,10 @@ impl Ref for AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
         }
     }
 }
-
 impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_pull_mode` after provisioning.\n"]
     pub fn data_pull_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7550,7 +5291,6 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.data_pull_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `first_execution_from` after provisioning.\n"]
     pub fn first_execution_from(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7558,7 +5298,6 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.first_execution_from", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_end_time` after provisioning.\n"]
     pub fn schedule_end_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7566,7 +5305,6 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.schedule_end_time", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_expression` after provisioning.\n"]
     pub fn schedule_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7574,7 +5312,6 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.schedule_expression", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_offset` after provisioning.\n"]
     pub fn schedule_offset(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -7582,7 +5319,6 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.schedule_offset", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_start_time` after provisioning.\n"]
     pub fn schedule_start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -7590,25 +5326,21 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElScheduledElRef {
             format!("{}.schedule_start_time", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timezone` after provisioning.\n"]
     pub fn timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.timezone", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowTriggerConfigElTriggerPropertiesElDynamic {
     scheduled: Option<DynamicBlock<AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowTriggerConfigElTriggerPropertiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     scheduled: Option<Vec<AppflowFlowTriggerConfigElTriggerPropertiesElScheduledEl>>,
     dynamic: AppflowFlowTriggerConfigElTriggerPropertiesElDynamic,
 }
-
 impl AppflowFlowTriggerConfigElTriggerPropertiesEl {
     #[doc = "Set the field `scheduled`.\n"]
     pub fn set_scheduled(
@@ -7626,10 +5358,8 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowTriggerConfigElTriggerPropertiesEl {
     type O = BlockAssignable<AppflowFlowTriggerConfigElTriggerPropertiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7638,9 +5368,7 @@ impl ToListMappable for AppflowFlowTriggerConfigElTriggerPropertiesEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowTriggerConfigElTriggerPropertiesEl {}
-
 impl BuildAppflowFlowTriggerConfigElTriggerPropertiesEl {
     pub fn build(self) -> AppflowFlowTriggerConfigElTriggerPropertiesEl {
         AppflowFlowTriggerConfigElTriggerPropertiesEl {
@@ -7649,12 +5377,10 @@ impl BuildAppflowFlowTriggerConfigElTriggerPropertiesEl {
         }
     }
 }
-
 pub struct AppflowFlowTriggerConfigElTriggerPropertiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowTriggerConfigElTriggerPropertiesElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowTriggerConfigElTriggerPropertiesElRef {
         AppflowFlowTriggerConfigElTriggerPropertiesElRef {
@@ -7663,12 +5389,10 @@ impl Ref for AppflowFlowTriggerConfigElTriggerPropertiesElRef {
         }
     }
 }
-
 impl AppflowFlowTriggerConfigElTriggerPropertiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `scheduled` after provisioning.\n"]
     pub fn scheduled(
         &self,
@@ -7676,12 +5400,10 @@ impl AppflowFlowTriggerConfigElTriggerPropertiesElRef {
         ListRef::new(self.shared().clone(), format!("{}.scheduled", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowTriggerConfigElDynamic {
     trigger_properties: Option<DynamicBlock<AppflowFlowTriggerConfigElTriggerPropertiesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppflowFlowTriggerConfigEl {
     trigger_type: PrimField<String>,
@@ -7689,7 +5411,6 @@ pub struct AppflowFlowTriggerConfigEl {
     trigger_properties: Option<Vec<AppflowFlowTriggerConfigElTriggerPropertiesEl>>,
     dynamic: AppflowFlowTriggerConfigElDynamic,
 }
-
 impl AppflowFlowTriggerConfigEl {
     #[doc = "Set the field `trigger_properties`.\n"]
     pub fn set_trigger_properties(
@@ -7707,10 +5428,8 @@ impl AppflowFlowTriggerConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppflowFlowTriggerConfigEl {
     type O = BlockAssignable<AppflowFlowTriggerConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7719,12 +5438,10 @@ impl ToListMappable for AppflowFlowTriggerConfigEl {
         })
     }
 }
-
 pub struct BuildAppflowFlowTriggerConfigEl {
     #[doc = ""]
     pub trigger_type: PrimField<String>,
 }
-
 impl BuildAppflowFlowTriggerConfigEl {
     pub fn build(self) -> AppflowFlowTriggerConfigEl {
         AppflowFlowTriggerConfigEl {
@@ -7734,12 +5451,10 @@ impl BuildAppflowFlowTriggerConfigEl {
         }
     }
 }
-
 pub struct AppflowFlowTriggerConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppflowFlowTriggerConfigElRef {
     fn new(shared: StackShared, base: String) -> AppflowFlowTriggerConfigElRef {
         AppflowFlowTriggerConfigElRef {
@@ -7748,17 +5463,14 @@ impl Ref for AppflowFlowTriggerConfigElRef {
         }
     }
 }
-
 impl AppflowFlowTriggerConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `trigger_type` after provisioning.\n"]
     pub fn trigger_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.trigger_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `trigger_properties` after provisioning.\n"]
     pub fn trigger_properties(&self) -> ListRef<AppflowFlowTriggerConfigElTriggerPropertiesElRef> {
         ListRef::new(
@@ -7767,7 +5479,6 @@ impl AppflowFlowTriggerConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppflowFlowDynamic {
     destination_flow_config: Option<DynamicBlock<AppflowFlowDestinationFlowConfigEl>>,

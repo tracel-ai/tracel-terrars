@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EmrInstanceFleetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct EmrInstanceFleetData {
     launch_specifications: Option<Vec<EmrInstanceFleetLaunchSpecificationsEl>>,
     dynamic: EmrInstanceFleetDynamic,
 }
-
 struct EmrInstanceFleet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EmrInstanceFleetData>,
 }
-
 #[derive(Clone)]
 pub struct EmrInstanceFleet(Rc<EmrInstanceFleet_>);
-
 impl EmrInstanceFleet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl EmrInstanceFleet {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl EmrInstanceFleet {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,37 +98,31 @@ impl EmrInstanceFleet {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_on_demand_capacity`.\n"]
     pub fn set_target_on_demand_capacity(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().target_on_demand_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_spot_capacity`.\n"]
     pub fn set_target_spot_capacity(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().target_spot_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type_configs`.\n"]
     pub fn set_instance_type_configs(
         self,
@@ -156,7 +138,6 @@ impl EmrInstanceFleet {
         }
         self
     }
-
     #[doc = "Set the field `launch_specifications`.\n"]
     pub fn set_launch_specifications(
         self,
@@ -172,7 +153,6 @@ impl EmrInstanceFleet {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,12 +160,10 @@ impl EmrInstanceFleet {
             format!("{}.cluster_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +171,6 @@ impl EmrInstanceFleet {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_on_demand_capacity` after provisioning.\n"]
     pub fn provisioned_on_demand_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -201,7 +178,6 @@ impl EmrInstanceFleet {
             format!("{}.provisioned_on_demand_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_spot_capacity` after provisioning.\n"]
     pub fn provisioned_spot_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -209,7 +185,6 @@ impl EmrInstanceFleet {
             format!("{}.provisioned_spot_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,7 +192,6 @@ impl EmrInstanceFleet {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_on_demand_capacity` after provisioning.\n"]
     pub fn target_on_demand_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -225,7 +199,6 @@ impl EmrInstanceFleet {
             format!("{}.target_on_demand_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_spot_capacity` after provisioning.\n"]
     pub fn target_spot_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -233,7 +206,6 @@ impl EmrInstanceFleet {
             format!("{}.target_spot_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `launch_specifications` after provisioning.\n"]
     pub fn launch_specifications(&self) -> ListRef<EmrInstanceFleetLaunchSpecificationsElRef> {
         ListRef::new(
@@ -242,7 +214,6 @@ impl EmrInstanceFleet {
         )
     }
 }
-
 impl Referable for EmrInstanceFleet {
     fn extract_ref(&self) -> String {
         format!(
@@ -252,38 +223,30 @@ impl Referable for EmrInstanceFleet {
         )
     }
 }
-
 impl Resource for EmrInstanceFleet {}
-
 impl ToListMappable for EmrInstanceFleet {
     type O = ListRef<EmrInstanceFleetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EmrInstanceFleet_ {
     fn extract_resource_type(&self) -> String {
         "aws_emr_instance_fleet".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEmrInstanceFleet {
     pub tf_id: String,
     #[doc = ""]
     pub cluster_id: PrimField<String>,
 }
-
 impl BuildEmrInstanceFleet {
     pub fn build(self, stack: &mut Stack) -> EmrInstanceFleet {
         let out = EmrInstanceFleet(Rc::new(EmrInstanceFleet_ {
@@ -309,27 +272,22 @@ impl BuildEmrInstanceFleet {
         out
     }
 }
-
 pub struct EmrInstanceFleetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EmrInstanceFleetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,12 +295,10 @@ impl EmrInstanceFleetRef {
             format!("{}.cluster_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +306,6 @@ impl EmrInstanceFleetRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_on_demand_capacity` after provisioning.\n"]
     pub fn provisioned_on_demand_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -358,7 +313,6 @@ impl EmrInstanceFleetRef {
             format!("{}.provisioned_on_demand_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_spot_capacity` after provisioning.\n"]
     pub fn provisioned_spot_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -366,7 +320,6 @@ impl EmrInstanceFleetRef {
             format!("{}.provisioned_spot_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -374,7 +327,6 @@ impl EmrInstanceFleetRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_on_demand_capacity` after provisioning.\n"]
     pub fn target_on_demand_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -382,7 +334,6 @@ impl EmrInstanceFleetRef {
             format!("{}.target_on_demand_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_spot_capacity` after provisioning.\n"]
     pub fn target_spot_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -390,7 +341,6 @@ impl EmrInstanceFleetRef {
             format!("{}.target_spot_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `launch_specifications` after provisioning.\n"]
     pub fn launch_specifications(&self) -> ListRef<EmrInstanceFleetLaunchSpecificationsElRef> {
         ListRef::new(
@@ -399,7 +349,6 @@ impl EmrInstanceFleetRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -407,24 +356,20 @@ pub struct EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     properties: Option<RecField<PrimField<String>>>,
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
     #[doc = "Set the field `classification`.\n"]
     pub fn set_classification(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.classification = Some(v.into());
         self
     }
-
     #[doc = "Set the field `properties`.\n"]
     pub fn set_properties(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.properties = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
     type O = BlockAssignable<EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -433,9 +378,7 @@ impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {}
-
 impl BuildEmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
     pub fn build(self) -> EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
         EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
@@ -444,12 +387,10 @@ impl BuildEmrInstanceFleetInstanceTypeConfigsElConfigurationsEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetInstanceTypeConfigsElConfigurationsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetInstanceTypeConfigsElConfigurationsElRef {
     fn new(
         shared: StackShared,
@@ -461,12 +402,10 @@ impl Ref for EmrInstanceFleetInstanceTypeConfigsElConfigurationsElRef {
         }
     }
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsElConfigurationsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -474,13 +413,11 @@ impl EmrInstanceFleetInstanceTypeConfigsElConfigurationsElRef {
             format!("{}.classification", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `properties` after provisioning.\n"]
     pub fn properties(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.properties", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -491,24 +428,20 @@ pub struct EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     volumes_per_instance: Option<PrimField<f64>>,
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     #[doc = "Set the field `iops`.\n"]
     pub fn set_iops(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.iops = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volumes_per_instance`.\n"]
     pub fn set_volumes_per_instance(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.volumes_per_instance = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     type O = BlockAssignable<EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -517,14 +450,12 @@ impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     #[doc = ""]
     pub size: PrimField<f64>,
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildEmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
     pub fn build(self) -> EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
         EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
@@ -535,12 +466,10 @@ impl BuildEmrInstanceFleetInstanceTypeConfigsElEbsConfigEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetInstanceTypeConfigsElEbsConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetInstanceTypeConfigsElEbsConfigElRef {
     fn new(
         shared: StackShared,
@@ -552,27 +481,22 @@ impl Ref for EmrInstanceFleetInstanceTypeConfigsElEbsConfigElRef {
         }
     }
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsElEbsConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.iops", self.base))
     }
-
     #[doc = "Get a reference to the value of field `size` after provisioning.\n"]
     pub fn size(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.size", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `volumes_per_instance` after provisioning.\n"]
     pub fn volumes_per_instance(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -581,13 +505,11 @@ impl EmrInstanceFleetInstanceTypeConfigsElEbsConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct EmrInstanceFleetInstanceTypeConfigsElDynamic {
     configurations: Option<DynamicBlock<EmrInstanceFleetInstanceTypeConfigsElConfigurationsEl>>,
     ebs_config: Option<DynamicBlock<EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetInstanceTypeConfigsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -603,14 +525,12 @@ pub struct EmrInstanceFleetInstanceTypeConfigsEl {
     ebs_config: Option<Vec<EmrInstanceFleetInstanceTypeConfigsElEbsConfigEl>>,
     dynamic: EmrInstanceFleetInstanceTypeConfigsElDynamic,
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsEl {
     #[doc = "Set the field `bid_price`.\n"]
     pub fn set_bid_price(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bid_price = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bid_price_as_percentage_of_on_demand_price`.\n"]
     pub fn set_bid_price_as_percentage_of_on_demand_price(
         mut self,
@@ -619,13 +539,11 @@ impl EmrInstanceFleetInstanceTypeConfigsEl {
         self.bid_price_as_percentage_of_on_demand_price = Some(v.into());
         self
     }
-
     #[doc = "Set the field `weighted_capacity`.\n"]
     pub fn set_weighted_capacity(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.weighted_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configurations`.\n"]
     pub fn set_configurations(
         mut self,
@@ -641,7 +559,6 @@ impl EmrInstanceFleetInstanceTypeConfigsEl {
         }
         self
     }
-
     #[doc = "Set the field `ebs_config`.\n"]
     pub fn set_ebs_config(
         mut self,
@@ -658,10 +575,8 @@ impl EmrInstanceFleetInstanceTypeConfigsEl {
         self
     }
 }
-
 impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsEl {
     type O = BlockAssignable<EmrInstanceFleetInstanceTypeConfigsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -670,12 +585,10 @@ impl ToListMappable for EmrInstanceFleetInstanceTypeConfigsEl {
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetInstanceTypeConfigsEl {
     #[doc = ""]
     pub instance_type: PrimField<String>,
 }
-
 impl BuildEmrInstanceFleetInstanceTypeConfigsEl {
     pub fn build(self) -> EmrInstanceFleetInstanceTypeConfigsEl {
         EmrInstanceFleetInstanceTypeConfigsEl {
@@ -689,12 +602,10 @@ impl BuildEmrInstanceFleetInstanceTypeConfigsEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetInstanceTypeConfigsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetInstanceTypeConfigsElRef {
     fn new(shared: StackShared, base: String) -> EmrInstanceFleetInstanceTypeConfigsElRef {
         EmrInstanceFleetInstanceTypeConfigsElRef {
@@ -703,17 +614,14 @@ impl Ref for EmrInstanceFleetInstanceTypeConfigsElRef {
         }
     }
 }
-
 impl EmrInstanceFleetInstanceTypeConfigsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bid_price` after provisioning.\n"]
     pub fn bid_price(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bid_price", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bid_price_as_percentage_of_on_demand_price` after provisioning.\n"]
     pub fn bid_price_as_percentage_of_on_demand_price(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -721,7 +629,6 @@ impl EmrInstanceFleetInstanceTypeConfigsElRef {
             format!("{}.bid_price_as_percentage_of_on_demand_price", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -729,7 +636,6 @@ impl EmrInstanceFleetInstanceTypeConfigsElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `weighted_capacity` after provisioning.\n"]
     pub fn weighted_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -738,17 +644,13 @@ impl EmrInstanceFleetInstanceTypeConfigsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
     allocation_strategy: PrimField<String>,
 }
-
 impl EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {}
-
 impl ToListMappable for EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
     type O = BlockAssignable<EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -757,12 +659,10 @@ impl ToListMappable for EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificat
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
     #[doc = ""]
     pub allocation_strategy: PrimField<String>,
 }
-
 impl BuildEmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
     pub fn build(self) -> EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
         EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
@@ -770,12 +670,10 @@ impl BuildEmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationElRef {
     fn new(
         shared: StackShared,
@@ -787,12 +685,10 @@ impl Ref for EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationElRef {
         }
     }
 }
-
 impl EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -801,7 +697,6 @@ impl EmrInstanceFleetLaunchSpecificationsElOnDemandSpecificationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     allocation_strategy: PrimField<String>,
@@ -810,7 +705,6 @@ pub struct EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     timeout_action: PrimField<String>,
     timeout_duration_minutes: PrimField<f64>,
 }
-
 impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     #[doc = "Set the field `block_duration_minutes`.\n"]
     pub fn set_block_duration_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -818,10 +712,8 @@ impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
         self
     }
 }
-
 impl ToListMappable for EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     type O = BlockAssignable<EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -830,7 +722,6 @@ impl ToListMappable for EmrInstanceFleetLaunchSpecificationsElSpotSpecificationE
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     #[doc = ""]
     pub allocation_strategy: PrimField<String>,
@@ -839,7 +730,6 @@ pub struct BuildEmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     #[doc = ""]
     pub timeout_duration_minutes: PrimField<f64>,
 }
-
 impl BuildEmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
     pub fn build(self) -> EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
         EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
@@ -850,12 +740,10 @@ impl BuildEmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
     fn new(
         shared: StackShared,
@@ -867,12 +755,10 @@ impl Ref for EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
         }
     }
 }
-
 impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allocation_strategy` after provisioning.\n"]
     pub fn allocation_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -880,7 +766,6 @@ impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
             format!("{}.allocation_strategy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_duration_minutes` after provisioning.\n"]
     pub fn block_duration_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -888,7 +773,6 @@ impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
             format!("{}.block_duration_minutes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout_action` after provisioning.\n"]
     pub fn timeout_action(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -896,7 +780,6 @@ impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
             format!("{}.timeout_action", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout_duration_minutes` after provisioning.\n"]
     pub fn timeout_duration_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -905,7 +788,6 @@ impl EmrInstanceFleetLaunchSpecificationsElSpotSpecificationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct EmrInstanceFleetLaunchSpecificationsElDynamic {
     on_demand_specification:
@@ -913,7 +795,6 @@ struct EmrInstanceFleetLaunchSpecificationsElDynamic {
     spot_specification:
         Option<DynamicBlock<EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct EmrInstanceFleetLaunchSpecificationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -923,7 +804,6 @@ pub struct EmrInstanceFleetLaunchSpecificationsEl {
     spot_specification: Option<Vec<EmrInstanceFleetLaunchSpecificationsElSpotSpecificationEl>>,
     dynamic: EmrInstanceFleetLaunchSpecificationsElDynamic,
 }
-
 impl EmrInstanceFleetLaunchSpecificationsEl {
     #[doc = "Set the field `on_demand_specification`.\n"]
     pub fn set_on_demand_specification(
@@ -940,7 +820,6 @@ impl EmrInstanceFleetLaunchSpecificationsEl {
         }
         self
     }
-
     #[doc = "Set the field `spot_specification`.\n"]
     pub fn set_spot_specification(
         mut self,
@@ -957,10 +836,8 @@ impl EmrInstanceFleetLaunchSpecificationsEl {
         self
     }
 }
-
 impl ToListMappable for EmrInstanceFleetLaunchSpecificationsEl {
     type O = BlockAssignable<EmrInstanceFleetLaunchSpecificationsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -969,9 +846,7 @@ impl ToListMappable for EmrInstanceFleetLaunchSpecificationsEl {
         })
     }
 }
-
 pub struct BuildEmrInstanceFleetLaunchSpecificationsEl {}
-
 impl BuildEmrInstanceFleetLaunchSpecificationsEl {
     pub fn build(self) -> EmrInstanceFleetLaunchSpecificationsEl {
         EmrInstanceFleetLaunchSpecificationsEl {
@@ -981,12 +856,10 @@ impl BuildEmrInstanceFleetLaunchSpecificationsEl {
         }
     }
 }
-
 pub struct EmrInstanceFleetLaunchSpecificationsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EmrInstanceFleetLaunchSpecificationsElRef {
     fn new(shared: StackShared, base: String) -> EmrInstanceFleetLaunchSpecificationsElRef {
         EmrInstanceFleetLaunchSpecificationsElRef {
@@ -995,12 +868,10 @@ impl Ref for EmrInstanceFleetLaunchSpecificationsElRef {
         }
     }
 }
-
 impl EmrInstanceFleetLaunchSpecificationsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `on_demand_specification` after provisioning.\n"]
     pub fn on_demand_specification(
         &self,
@@ -1010,7 +881,6 @@ impl EmrInstanceFleetLaunchSpecificationsElRef {
             format!("{}.on_demand_specification", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `spot_specification` after provisioning.\n"]
     pub fn spot_specification(
         &self,
@@ -1021,7 +891,6 @@ impl EmrInstanceFleetLaunchSpecificationsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct EmrInstanceFleetDynamic {
     instance_type_configs: Option<DynamicBlock<EmrInstanceFleetInstanceTypeConfigsEl>>,

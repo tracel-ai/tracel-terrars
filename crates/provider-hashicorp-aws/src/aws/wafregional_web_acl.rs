@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WafregionalWebAclData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -32,47 +31,38 @@ struct WafregionalWebAclData {
     rule: Option<Vec<WafregionalWebAclRuleEl>>,
     dynamic: WafregionalWebAclDynamic,
 }
-
 struct WafregionalWebAcl_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WafregionalWebAclData>,
 }
-
 #[derive(Clone)]
 pub struct WafregionalWebAcl(Rc<WafregionalWebAcl_>);
-
 impl WafregionalWebAcl {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -91,7 +81,6 @@ impl WafregionalWebAcl {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -101,7 +90,6 @@ impl WafregionalWebAcl {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -111,31 +99,26 @@ impl WafregionalWebAcl {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_action`.\n"]
     pub fn set_default_action(
         self,
@@ -151,7 +134,6 @@ impl WafregionalWebAcl {
         }
         self
     }
-
     #[doc = "Set the field `logging_configuration`.\n"]
     pub fn set_logging_configuration(
         self,
@@ -167,7 +149,6 @@ impl WafregionalWebAcl {
         }
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(self, v: impl Into<BlockAssignable<WafregionalWebAclRuleEl>>) -> Self {
         match v.into() {
@@ -180,17 +161,14 @@ impl WafregionalWebAcl {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +176,6 @@ impl WafregionalWebAcl {
             format!("{}.metric_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +183,6 @@ impl WafregionalWebAcl {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +190,6 @@ impl WafregionalWebAcl {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -222,7 +197,6 @@ impl WafregionalWebAcl {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -230,7 +204,6 @@ impl WafregionalWebAcl {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<WafregionalWebAclDefaultActionElRef> {
         ListRef::new(
@@ -238,7 +211,6 @@ impl WafregionalWebAcl {
             format!("{}.default_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<WafregionalWebAclLoggingConfigurationElRef> {
         ListRef::new(
@@ -247,7 +219,6 @@ impl WafregionalWebAcl {
         )
     }
 }
-
 impl Referable for WafregionalWebAcl {
     fn extract_ref(&self) -> String {
         format!(
@@ -257,32 +228,25 @@ impl Referable for WafregionalWebAcl {
         )
     }
 }
-
 impl Resource for WafregionalWebAcl {}
-
 impl ToListMappable for WafregionalWebAcl {
     type O = ListRef<WafregionalWebAclRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WafregionalWebAcl_ {
     fn extract_resource_type(&self) -> String {
         "aws_wafregional_web_acl".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWafregionalWebAcl {
     pub tf_id: String,
     #[doc = ""]
@@ -290,7 +254,6 @@ pub struct BuildWafregionalWebAcl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildWafregionalWebAcl {
     pub fn build(self, stack: &mut Stack) -> WafregionalWebAcl {
         let out = WafregionalWebAcl(Rc::new(WafregionalWebAcl_ {
@@ -317,37 +280,30 @@ impl BuildWafregionalWebAcl {
         out
     }
 }
-
 pub struct WafregionalWebAclRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WafregionalWebAclRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `metric_name` after provisioning.\n"]
     pub fn metric_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -355,7 +311,6 @@ impl WafregionalWebAclRef {
             format!("{}.metric_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +318,6 @@ impl WafregionalWebAclRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +325,6 @@ impl WafregionalWebAclRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -379,7 +332,6 @@ impl WafregionalWebAclRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -387,7 +339,6 @@ impl WafregionalWebAclRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_action` after provisioning.\n"]
     pub fn default_action(&self) -> ListRef<WafregionalWebAclDefaultActionElRef> {
         ListRef::new(
@@ -395,7 +346,6 @@ impl WafregionalWebAclRef {
             format!("{}.default_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `logging_configuration` after provisioning.\n"]
     pub fn logging_configuration(&self) -> ListRef<WafregionalWebAclLoggingConfigurationElRef> {
         ListRef::new(
@@ -404,18 +354,14 @@ impl WafregionalWebAclRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclDefaultActionEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafregionalWebAclDefaultActionEl {}
-
 impl ToListMappable for WafregionalWebAclDefaultActionEl {
     type O = BlockAssignable<WafregionalWebAclDefaultActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -424,23 +370,19 @@ impl ToListMappable for WafregionalWebAclDefaultActionEl {
         })
     }
 }
-
 pub struct BuildWafregionalWebAclDefaultActionEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclDefaultActionEl {
     pub fn build(self) -> WafregionalWebAclDefaultActionEl {
         WafregionalWebAclDefaultActionEl { type_: self.type_ }
     }
 }
-
 pub struct WafregionalWebAclDefaultActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclDefaultActionElRef {
     fn new(shared: StackShared, base: String) -> WafregionalWebAclDefaultActionElRef {
         WafregionalWebAclDefaultActionElRef {
@@ -449,18 +391,15 @@ impl Ref for WafregionalWebAclDefaultActionElRef {
         }
     }
 }
-
 impl WafregionalWebAclDefaultActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -468,7 +407,6 @@ pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
     #[doc = "Set the field `data`.\n"]
     pub fn set_data(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -476,10 +414,8 @@ impl WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
     type O = BlockAssignable<WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -488,12 +424,10 @@ impl ToListMappable for WafregionalWebAclLoggingConfigurationElRedactedFieldsElF
         })
     }
 }
-
 pub struct BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
     pub fn build(self) -> WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
         WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl {
@@ -502,12 +436,10 @@ impl BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl 
         }
     }
 }
-
 pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchElRef {
     fn new(
         shared: StackShared,
@@ -519,29 +451,24 @@ impl Ref for WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatch
         }
     }
 }
-
 impl WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data` after provisioning.\n"]
     pub fn data(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalWebAclLoggingConfigurationElRedactedFieldsElDynamic {
     field_to_match:
         Option<DynamicBlock<WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl>>,
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -549,7 +476,6 @@ pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
         Option<Vec<WafregionalWebAclLoggingConfigurationElRedactedFieldsElFieldToMatchEl>>,
     dynamic: WafregionalWebAclLoggingConfigurationElRedactedFieldsElDynamic,
 }
-
 impl WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
     #[doc = "Set the field `field_to_match`.\n"]
     pub fn set_field_to_match(
@@ -569,10 +495,8 @@ impl WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
     type O = BlockAssignable<WafregionalWebAclLoggingConfigurationElRedactedFieldsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -581,9 +505,7 @@ impl ToListMappable for WafregionalWebAclLoggingConfigurationElRedactedFieldsEl 
         })
     }
 }
-
 pub struct BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsEl {}
-
 impl BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
     pub fn build(self) -> WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
         WafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
@@ -592,12 +514,10 @@ impl BuildWafregionalWebAclLoggingConfigurationElRedactedFieldsEl {
         }
     }
 }
-
 pub struct WafregionalWebAclLoggingConfigurationElRedactedFieldsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclLoggingConfigurationElRedactedFieldsElRef {
     fn new(
         shared: StackShared,
@@ -609,18 +529,15 @@ impl Ref for WafregionalWebAclLoggingConfigurationElRedactedFieldsElRef {
         }
     }
 }
-
 impl WafregionalWebAclLoggingConfigurationElRedactedFieldsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalWebAclLoggingConfigurationElDynamic {
     redacted_fields: Option<DynamicBlock<WafregionalWebAclLoggingConfigurationElRedactedFieldsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclLoggingConfigurationEl {
     log_destination: PrimField<String>,
@@ -628,7 +545,6 @@ pub struct WafregionalWebAclLoggingConfigurationEl {
     redacted_fields: Option<Vec<WafregionalWebAclLoggingConfigurationElRedactedFieldsEl>>,
     dynamic: WafregionalWebAclLoggingConfigurationElDynamic,
 }
-
 impl WafregionalWebAclLoggingConfigurationEl {
     #[doc = "Set the field `redacted_fields`.\n"]
     pub fn set_redacted_fields(
@@ -646,10 +562,8 @@ impl WafregionalWebAclLoggingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalWebAclLoggingConfigurationEl {
     type O = BlockAssignable<WafregionalWebAclLoggingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -658,12 +572,10 @@ impl ToListMappable for WafregionalWebAclLoggingConfigurationEl {
         })
     }
 }
-
 pub struct BuildWafregionalWebAclLoggingConfigurationEl {
     #[doc = ""]
     pub log_destination: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclLoggingConfigurationEl {
     pub fn build(self) -> WafregionalWebAclLoggingConfigurationEl {
         WafregionalWebAclLoggingConfigurationEl {
@@ -673,12 +585,10 @@ impl BuildWafregionalWebAclLoggingConfigurationEl {
         }
     }
 }
-
 pub struct WafregionalWebAclLoggingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclLoggingConfigurationElRef {
     fn new(shared: StackShared, base: String) -> WafregionalWebAclLoggingConfigurationElRef {
         WafregionalWebAclLoggingConfigurationElRef {
@@ -687,12 +597,10 @@ impl Ref for WafregionalWebAclLoggingConfigurationElRef {
         }
     }
 }
-
 impl WafregionalWebAclLoggingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `log_destination` after provisioning.\n"]
     pub fn log_destination(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -700,7 +608,6 @@ impl WafregionalWebAclLoggingConfigurationElRef {
             format!("{}.log_destination", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `redacted_fields` after provisioning.\n"]
     pub fn redacted_fields(
         &self,
@@ -711,18 +618,14 @@ impl WafregionalWebAclLoggingConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclRuleElActionEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafregionalWebAclRuleElActionEl {}
-
 impl ToListMappable for WafregionalWebAclRuleElActionEl {
     type O = BlockAssignable<WafregionalWebAclRuleElActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -731,23 +634,19 @@ impl ToListMappable for WafregionalWebAclRuleElActionEl {
         })
     }
 }
-
 pub struct BuildWafregionalWebAclRuleElActionEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclRuleElActionEl {
     pub fn build(self) -> WafregionalWebAclRuleElActionEl {
         WafregionalWebAclRuleElActionEl { type_: self.type_ }
     }
 }
-
 pub struct WafregionalWebAclRuleElActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclRuleElActionElRef {
     fn new(shared: StackShared, base: String) -> WafregionalWebAclRuleElActionElRef {
         WafregionalWebAclRuleElActionElRef {
@@ -756,29 +655,23 @@ impl Ref for WafregionalWebAclRuleElActionElRef {
         }
     }
 }
-
 impl WafregionalWebAclRuleElActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclRuleElOverrideActionEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafregionalWebAclRuleElOverrideActionEl {}
-
 impl ToListMappable for WafregionalWebAclRuleElOverrideActionEl {
     type O = BlockAssignable<WafregionalWebAclRuleElOverrideActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -787,23 +680,19 @@ impl ToListMappable for WafregionalWebAclRuleElOverrideActionEl {
         })
     }
 }
-
 pub struct BuildWafregionalWebAclRuleElOverrideActionEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclRuleElOverrideActionEl {
     pub fn build(self) -> WafregionalWebAclRuleElOverrideActionEl {
         WafregionalWebAclRuleElOverrideActionEl { type_: self.type_ }
     }
 }
-
 pub struct WafregionalWebAclRuleElOverrideActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclRuleElOverrideActionElRef {
     fn new(shared: StackShared, base: String) -> WafregionalWebAclRuleElOverrideActionElRef {
         WafregionalWebAclRuleElOverrideActionElRef {
@@ -812,24 +701,20 @@ impl Ref for WafregionalWebAclRuleElOverrideActionElRef {
         }
     }
 }
-
 impl WafregionalWebAclRuleElOverrideActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalWebAclRuleElDynamic {
     action: Option<DynamicBlock<WafregionalWebAclRuleElActionEl>>,
     override_action: Option<DynamicBlock<WafregionalWebAclRuleElOverrideActionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct WafregionalWebAclRuleEl {
     priority: PrimField<f64>,
@@ -842,14 +727,12 @@ pub struct WafregionalWebAclRuleEl {
     override_action: Option<Vec<WafregionalWebAclRuleElOverrideActionEl>>,
     dynamic: WafregionalWebAclRuleElDynamic,
 }
-
 impl WafregionalWebAclRuleEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         mut self,
@@ -865,7 +748,6 @@ impl WafregionalWebAclRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `override_action`.\n"]
     pub fn set_override_action(
         mut self,
@@ -882,10 +764,8 @@ impl WafregionalWebAclRuleEl {
         self
     }
 }
-
 impl ToListMappable for WafregionalWebAclRuleEl {
     type O = BlockAssignable<WafregionalWebAclRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -894,14 +774,12 @@ impl ToListMappable for WafregionalWebAclRuleEl {
         })
     }
 }
-
 pub struct BuildWafregionalWebAclRuleEl {
     #[doc = ""]
     pub priority: PrimField<f64>,
     #[doc = ""]
     pub rule_id: PrimField<String>,
 }
-
 impl BuildWafregionalWebAclRuleEl {
     pub fn build(self) -> WafregionalWebAclRuleEl {
         WafregionalWebAclRuleEl {
@@ -914,12 +792,10 @@ impl BuildWafregionalWebAclRuleEl {
         }
     }
 }
-
 pub struct WafregionalWebAclRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafregionalWebAclRuleElRef {
     fn new(shared: StackShared, base: String) -> WafregionalWebAclRuleElRef {
         WafregionalWebAclRuleElRef {
@@ -928,32 +804,26 @@ impl Ref for WafregionalWebAclRuleElRef {
         }
     }
 }
-
 impl WafregionalWebAclRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.priority", self.base))
     }
-
     #[doc = "Get a reference to the value of field `rule_id` after provisioning.\n"]
     pub fn rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.rule_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<WafregionalWebAclRuleElActionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `override_action` after provisioning.\n"]
     pub fn override_action(&self) -> ListRef<WafregionalWebAclRuleElOverrideActionElRef> {
         ListRef::new(
@@ -962,7 +832,6 @@ impl WafregionalWebAclRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafregionalWebAclDynamic {
     default_action: Option<DynamicBlock<WafregionalWebAclDefaultActionEl>>,

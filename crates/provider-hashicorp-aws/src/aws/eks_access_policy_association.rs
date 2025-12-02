@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EksAccessPolicyAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct EksAccessPolicyAssociationData {
     timeouts: Option<EksAccessPolicyAssociationTimeoutsEl>,
     dynamic: EksAccessPolicyAssociationDynamic,
 }
-
 struct EksAccessPolicyAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EksAccessPolicyAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct EksAccessPolicyAssociation(Rc<EksAccessPolicyAssociation_>);
-
 impl EksAccessPolicyAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl EksAccessPolicyAssociation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl EksAccessPolicyAssociation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,19 +94,16 @@ impl EksAccessPolicyAssociation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `access_scope`.\n"]
     pub fn set_access_scope(
         self,
@@ -134,13 +119,11 @@ impl EksAccessPolicyAssociation {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<EksAccessPolicyAssociationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `associated_at` after provisioning.\n"]
     pub fn associated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -148,7 +131,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.associated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,12 +138,10 @@ impl EksAccessPolicyAssociation {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +149,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.modified_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +156,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `principal_arn` after provisioning.\n"]
     pub fn principal_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +163,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.principal_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +170,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_scope` after provisioning.\n"]
     pub fn access_scope(&self) -> ListRef<EksAccessPolicyAssociationAccessScopeElRef> {
         ListRef::new(
@@ -201,7 +177,6 @@ impl EksAccessPolicyAssociation {
             format!("{}.access_scope", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksAccessPolicyAssociationTimeoutsElRef {
         EksAccessPolicyAssociationTimeoutsElRef::new(
@@ -210,7 +185,6 @@ impl EksAccessPolicyAssociation {
         )
     }
 }
-
 impl Referable for EksAccessPolicyAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -220,32 +194,25 @@ impl Referable for EksAccessPolicyAssociation {
         )
     }
 }
-
 impl Resource for EksAccessPolicyAssociation {}
-
 impl ToListMappable for EksAccessPolicyAssociation {
     type O = ListRef<EksAccessPolicyAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EksAccessPolicyAssociation_ {
     fn extract_resource_type(&self) -> String {
         "aws_eks_access_policy_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEksAccessPolicyAssociation {
     pub tf_id: String,
     #[doc = ""]
@@ -255,7 +222,6 @@ pub struct BuildEksAccessPolicyAssociation {
     #[doc = ""]
     pub principal_arn: PrimField<String>,
 }
-
 impl BuildEksAccessPolicyAssociation {
     pub fn build(self, stack: &mut Stack) -> EksAccessPolicyAssociation {
         let out = EksAccessPolicyAssociation(Rc::new(EksAccessPolicyAssociation_ {
@@ -280,27 +246,22 @@ impl BuildEksAccessPolicyAssociation {
         out
     }
 }
-
 pub struct EksAccessPolicyAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksAccessPolicyAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EksAccessPolicyAssociationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `associated_at` after provisioning.\n"]
     pub fn associated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -308,7 +269,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.associated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,12 +276,10 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `modified_at` after provisioning.\n"]
     pub fn modified_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,7 +287,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.modified_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +294,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `principal_arn` after provisioning.\n"]
     pub fn principal_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +301,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.principal_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,7 +308,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_scope` after provisioning.\n"]
     pub fn access_scope(&self) -> ListRef<EksAccessPolicyAssociationAccessScopeElRef> {
         ListRef::new(
@@ -361,7 +315,6 @@ impl EksAccessPolicyAssociationRef {
             format!("{}.access_scope", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> EksAccessPolicyAssociationTimeoutsElRef {
         EksAccessPolicyAssociationTimeoutsElRef::new(
@@ -370,7 +323,6 @@ impl EksAccessPolicyAssociationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EksAccessPolicyAssociationAccessScopeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -378,7 +330,6 @@ pub struct EksAccessPolicyAssociationAccessScopeEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl EksAccessPolicyAssociationAccessScopeEl {
     #[doc = "Set the field `namespaces`.\n"]
     pub fn set_namespaces(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -386,10 +337,8 @@ impl EksAccessPolicyAssociationAccessScopeEl {
         self
     }
 }
-
 impl ToListMappable for EksAccessPolicyAssociationAccessScopeEl {
     type O = BlockAssignable<EksAccessPolicyAssociationAccessScopeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -398,12 +347,10 @@ impl ToListMappable for EksAccessPolicyAssociationAccessScopeEl {
         })
     }
 }
-
 pub struct BuildEksAccessPolicyAssociationAccessScopeEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildEksAccessPolicyAssociationAccessScopeEl {
     pub fn build(self) -> EksAccessPolicyAssociationAccessScopeEl {
         EksAccessPolicyAssociationAccessScopeEl {
@@ -412,12 +359,10 @@ impl BuildEksAccessPolicyAssociationAccessScopeEl {
         }
     }
 }
-
 pub struct EksAccessPolicyAssociationAccessScopeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksAccessPolicyAssociationAccessScopeElRef {
     fn new(shared: StackShared, base: String) -> EksAccessPolicyAssociationAccessScopeElRef {
         EksAccessPolicyAssociationAccessScopeElRef {
@@ -426,23 +371,19 @@ impl Ref for EksAccessPolicyAssociationAccessScopeElRef {
         }
     }
 }
-
 impl EksAccessPolicyAssociationAccessScopeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `namespaces` after provisioning.\n"]
     pub fn namespaces(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.namespaces", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct EksAccessPolicyAssociationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -450,24 +391,20 @@ pub struct EksAccessPolicyAssociationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl EksAccessPolicyAssociationTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for EksAccessPolicyAssociationTimeoutsEl {
     type O = BlockAssignable<EksAccessPolicyAssociationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -476,9 +413,7 @@ impl ToListMappable for EksAccessPolicyAssociationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildEksAccessPolicyAssociationTimeoutsEl {}
-
 impl BuildEksAccessPolicyAssociationTimeoutsEl {
     pub fn build(self) -> EksAccessPolicyAssociationTimeoutsEl {
         EksAccessPolicyAssociationTimeoutsEl {
@@ -487,12 +422,10 @@ impl BuildEksAccessPolicyAssociationTimeoutsEl {
         }
     }
 }
-
 pub struct EksAccessPolicyAssociationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EksAccessPolicyAssociationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> EksAccessPolicyAssociationTimeoutsElRef {
         EksAccessPolicyAssociationTimeoutsElRef {
@@ -501,23 +434,19 @@ impl Ref for EksAccessPolicyAssociationTimeoutsElRef {
         }
     }
 }
-
 impl EksAccessPolicyAssociationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct EksAccessPolicyAssociationDynamic {
     access_scope: Option<DynamicBlock<EksAccessPolicyAssociationAccessScopeEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct Route53ResolverFirewallRuleGroupAssociationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,49 +28,40 @@ struct Route53ResolverFirewallRuleGroupAssociationData {
     tags_all: Option<RecField<PrimField<String>>>,
     vpc_id: PrimField<String>,
 }
-
 struct Route53ResolverFirewallRuleGroupAssociation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<Route53ResolverFirewallRuleGroupAssociationData>,
 }
-
 #[derive(Clone)]
 pub struct Route53ResolverFirewallRuleGroupAssociation(
     Rc<Route53ResolverFirewallRuleGroupAssociation_>,
 );
-
 impl Route53ResolverFirewallRuleGroupAssociation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,42 +98,35 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mutation_protection`.\n"]
     pub fn set_mutation_protection(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().mutation_protection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `firewall_rule_group_id` after provisioning.\n"]
     pub fn firewall_rule_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,12 +134,10 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.firewall_rule_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `mutation_protection` after provisioning.\n"]
     pub fn mutation_protection(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +145,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.mutation_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +152,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -182,7 +159,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +166,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -198,7 +173,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -206,7 +180,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -215,7 +188,6 @@ impl Route53ResolverFirewallRuleGroupAssociation {
         )
     }
 }
-
 impl Referable for Route53ResolverFirewallRuleGroupAssociation {
     fn extract_ref(&self) -> String {
         format!(
@@ -225,32 +197,25 @@ impl Referable for Route53ResolverFirewallRuleGroupAssociation {
         )
     }
 }
-
 impl Resource for Route53ResolverFirewallRuleGroupAssociation {}
-
 impl ToListMappable for Route53ResolverFirewallRuleGroupAssociation {
     type O = ListRef<Route53ResolverFirewallRuleGroupAssociationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for Route53ResolverFirewallRuleGroupAssociation_ {
     fn extract_resource_type(&self) -> String {
         "aws_route53_resolver_firewall_rule_group_association".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildRoute53ResolverFirewallRuleGroupAssociation {
     pub tf_id: String,
     #[doc = ""]
@@ -262,7 +227,6 @@ pub struct BuildRoute53ResolverFirewallRuleGroupAssociation {
     #[doc = ""]
     pub vpc_id: PrimField<String>,
 }
-
 impl BuildRoute53ResolverFirewallRuleGroupAssociation {
     pub fn build(self, stack: &mut Stack) -> Route53ResolverFirewallRuleGroupAssociation {
         let out = Route53ResolverFirewallRuleGroupAssociation(Rc::new(
@@ -290,32 +254,26 @@ impl BuildRoute53ResolverFirewallRuleGroupAssociation {
         out
     }
 }
-
 pub struct Route53ResolverFirewallRuleGroupAssociationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for Route53ResolverFirewallRuleGroupAssociationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl Route53ResolverFirewallRuleGroupAssociationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `firewall_rule_group_id` after provisioning.\n"]
     pub fn firewall_rule_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,12 +281,10 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.firewall_rule_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `mutation_protection` after provisioning.\n"]
     pub fn mutation_protection(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +292,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.mutation_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -344,7 +299,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -352,7 +306,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -360,7 +313,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -368,7 +320,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -376,7 +327,6 @@ impl Route53ResolverFirewallRuleGroupAssociationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(

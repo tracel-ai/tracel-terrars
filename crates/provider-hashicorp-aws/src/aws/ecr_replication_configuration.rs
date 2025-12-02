@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EcrReplicationConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -22,47 +21,38 @@ struct EcrReplicationConfigurationData {
     replication_configuration: Option<Vec<EcrReplicationConfigurationReplicationConfigurationEl>>,
     dynamic: EcrReplicationConfigurationDynamic,
 }
-
 struct EcrReplicationConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EcrReplicationConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct EcrReplicationConfiguration(Rc<EcrReplicationConfiguration_>);
-
 impl EcrReplicationConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -81,7 +71,6 @@ impl EcrReplicationConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -91,7 +80,6 @@ impl EcrReplicationConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -101,19 +89,16 @@ impl EcrReplicationConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `replication_configuration`.\n"]
     pub fn set_replication_configuration(
         self,
@@ -129,12 +114,10 @@ impl EcrReplicationConfiguration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -142,7 +125,6 @@ impl EcrReplicationConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +132,6 @@ impl EcrReplicationConfiguration {
             format!("{}.registry_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_configuration` after provisioning.\n"]
     pub fn replication_configuration(
         &self,
@@ -161,7 +142,6 @@ impl EcrReplicationConfiguration {
         )
     }
 }
-
 impl Referable for EcrReplicationConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -171,36 +151,28 @@ impl Referable for EcrReplicationConfiguration {
         )
     }
 }
-
 impl Resource for EcrReplicationConfiguration {}
-
 impl ToListMappable for EcrReplicationConfiguration {
     type O = ListRef<EcrReplicationConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EcrReplicationConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_ecr_replication_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEcrReplicationConfiguration {
     pub tf_id: String,
 }
-
 impl BuildEcrReplicationConfiguration {
     pub fn build(self, stack: &mut Stack) -> EcrReplicationConfiguration {
         let out = EcrReplicationConfiguration(Rc::new(EcrReplicationConfiguration_ {
@@ -221,32 +193,26 @@ impl BuildEcrReplicationConfiguration {
         out
     }
 }
-
 pub struct EcrReplicationConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrReplicationConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EcrReplicationConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -254,7 +220,6 @@ impl EcrReplicationConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -262,7 +227,6 @@ impl EcrReplicationConfigurationRef {
             format!("{}.registry_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_configuration` after provisioning.\n"]
     pub fn replication_configuration(
         &self,
@@ -273,19 +237,15 @@ impl EcrReplicationConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
     region: PrimField<String>,
     registry_id: PrimField<String>,
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {}
-
 impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
     type O =
         BlockAssignable<EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -294,14 +254,12 @@ impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationElRul
         })
     }
 }
-
 pub struct BuildEcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
     #[doc = ""]
     pub region: PrimField<String>,
     #[doc = ""]
     pub registry_id: PrimField<String>,
 }
-
 impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
     pub fn build(self) -> EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
         EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationEl {
@@ -310,12 +268,10 @@ impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleElDestination
         }
     }
 }
-
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationElRef {
     fn new(
         shared: StackShared,
@@ -327,38 +283,31 @@ impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElDestinat
         }
     }
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `registry_id` after provisioning.\n"]
     pub fn registry_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.registry_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl {
     filter: PrimField<String>,
     filter_type: PrimField<String>,
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl {}
-
 impl ToListMappable
     for EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl
 {
     type O = BlockAssignable<
         EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -367,14 +316,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildEcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl {
     #[doc = ""]
     pub filter: PrimField<String>,
     #[doc = ""]
     pub filter_type: PrimField<String>,
 }
-
 impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl {
     pub fn build(
         self,
@@ -385,12 +332,10 @@ impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryF
         }
     }
 }
-
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterElRef {
     fn new(
         shared: StackShared,
@@ -402,23 +347,19 @@ impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElReposito
         }
     }
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `filter` after provisioning.\n"]
     pub fn filter(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `filter_type` after provisioning.\n"]
     pub fn filter_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.filter_type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct EcrReplicationConfigurationReplicationConfigurationElRuleElDynamic {
     destination: Option<
@@ -428,7 +369,6 @@ struct EcrReplicationConfigurationReplicationConfigurationElRuleElDynamic {
         DynamicBlock<EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -439,7 +379,6 @@ pub struct EcrReplicationConfigurationReplicationConfigurationElRuleEl {
         Option<Vec<EcrReplicationConfigurationReplicationConfigurationElRuleElRepositoryFilterEl>>,
     dynamic: EcrReplicationConfigurationReplicationConfigurationElRuleElDynamic,
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleEl {
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(
@@ -460,7 +399,6 @@ impl EcrReplicationConfigurationReplicationConfigurationElRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `repository_filter`.\n"]
     pub fn set_repository_filter(
         mut self,
@@ -481,10 +419,8 @@ impl EcrReplicationConfigurationReplicationConfigurationElRuleEl {
         self
     }
 }
-
 impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationElRuleEl {
     type O = BlockAssignable<EcrReplicationConfigurationReplicationConfigurationElRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -493,9 +429,7 @@ impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationElRul
         })
     }
 }
-
 pub struct BuildEcrReplicationConfigurationReplicationConfigurationElRuleEl {}
-
 impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleEl {
     pub fn build(self) -> EcrReplicationConfigurationReplicationConfigurationElRuleEl {
         EcrReplicationConfigurationReplicationConfigurationElRuleEl {
@@ -505,12 +439,10 @@ impl BuildEcrReplicationConfigurationReplicationConfigurationElRuleEl {
         }
     }
 }
-
 pub struct EcrReplicationConfigurationReplicationConfigurationElRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElRef {
     fn new(
         shared: StackShared,
@@ -522,19 +454,16 @@ impl Ref for EcrReplicationConfigurationReplicationConfigurationElRuleElRef {
         }
     }
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(
         &self,
     ) -> ListRef<EcrReplicationConfigurationReplicationConfigurationElRuleElDestinationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.destination", self.base))
     }
-
     #[doc = "Get a reference to the value of field `repository_filter` after provisioning.\n"]
     pub fn repository_filter(
         &self,
@@ -546,19 +475,16 @@ impl EcrReplicationConfigurationReplicationConfigurationElRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct EcrReplicationConfigurationReplicationConfigurationElDynamic {
     rule: Option<DynamicBlock<EcrReplicationConfigurationReplicationConfigurationElRuleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct EcrReplicationConfigurationReplicationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     rule: Option<Vec<EcrReplicationConfigurationReplicationConfigurationElRuleEl>>,
     dynamic: EcrReplicationConfigurationReplicationConfigurationElDynamic,
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationEl {
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(
@@ -576,10 +502,8 @@ impl EcrReplicationConfigurationReplicationConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationEl {
     type O = BlockAssignable<EcrReplicationConfigurationReplicationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -588,9 +512,7 @@ impl ToListMappable for EcrReplicationConfigurationReplicationConfigurationEl {
         })
     }
 }
-
 pub struct BuildEcrReplicationConfigurationReplicationConfigurationEl {}
-
 impl BuildEcrReplicationConfigurationReplicationConfigurationEl {
     pub fn build(self) -> EcrReplicationConfigurationReplicationConfigurationEl {
         EcrReplicationConfigurationReplicationConfigurationEl {
@@ -599,12 +521,10 @@ impl BuildEcrReplicationConfigurationReplicationConfigurationEl {
         }
     }
 }
-
 pub struct EcrReplicationConfigurationReplicationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EcrReplicationConfigurationReplicationConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -616,18 +536,15 @@ impl Ref for EcrReplicationConfigurationReplicationConfigurationElRef {
         }
     }
 }
-
 impl EcrReplicationConfigurationReplicationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<EcrReplicationConfigurationReplicationConfigurationElRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct EcrReplicationConfigurationDynamic {
     replication_configuration:

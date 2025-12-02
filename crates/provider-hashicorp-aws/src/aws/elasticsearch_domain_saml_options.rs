@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ElasticsearchDomainSamlOptionsData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct ElasticsearchDomainSamlOptionsData {
     timeouts: Option<ElasticsearchDomainSamlOptionsTimeoutsEl>,
     dynamic: ElasticsearchDomainSamlOptionsDynamic,
 }
-
 struct ElasticsearchDomainSamlOptions_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ElasticsearchDomainSamlOptionsData>,
 }
-
 #[derive(Clone)]
 pub struct ElasticsearchDomainSamlOptions(Rc<ElasticsearchDomainSamlOptions_>);
-
 impl ElasticsearchDomainSamlOptions {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl ElasticsearchDomainSamlOptions {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl ElasticsearchDomainSamlOptions {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl ElasticsearchDomainSamlOptions {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `saml_options`.\n"]
     pub fn set_saml_options(
         self,
@@ -132,13 +117,11 @@ impl ElasticsearchDomainSamlOptions {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<ElasticsearchDomainSamlOptionsTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,12 +129,10 @@ impl ElasticsearchDomainSamlOptions {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +140,6 @@ impl ElasticsearchDomainSamlOptions {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<ElasticsearchDomainSamlOptionsSamlOptionsElRef> {
         ListRef::new(
@@ -167,7 +147,6 @@ impl ElasticsearchDomainSamlOptions {
             format!("{}.saml_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ElasticsearchDomainSamlOptionsTimeoutsElRef {
         ElasticsearchDomainSamlOptionsTimeoutsElRef::new(
@@ -176,7 +155,6 @@ impl ElasticsearchDomainSamlOptions {
         )
     }
 }
-
 impl Referable for ElasticsearchDomainSamlOptions {
     fn extract_ref(&self) -> String {
         format!(
@@ -186,38 +164,30 @@ impl Referable for ElasticsearchDomainSamlOptions {
         )
     }
 }
-
 impl Resource for ElasticsearchDomainSamlOptions {}
-
 impl ToListMappable for ElasticsearchDomainSamlOptions {
     type O = ListRef<ElasticsearchDomainSamlOptionsRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ElasticsearchDomainSamlOptions_ {
     fn extract_resource_type(&self) -> String {
         "aws_elasticsearch_domain_saml_options".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildElasticsearchDomainSamlOptions {
     pub tf_id: String,
     #[doc = ""]
     pub domain_name: PrimField<String>,
 }
-
 impl BuildElasticsearchDomainSamlOptions {
     pub fn build(self, stack: &mut Stack) -> ElasticsearchDomainSamlOptions {
         let out = ElasticsearchDomainSamlOptions(Rc::new(ElasticsearchDomainSamlOptions_ {
@@ -240,27 +210,22 @@ impl BuildElasticsearchDomainSamlOptions {
         out
     }
 }
-
 pub struct ElasticsearchDomainSamlOptionsRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ElasticsearchDomainSamlOptionsRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ElasticsearchDomainSamlOptionsRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,12 +233,10 @@ impl ElasticsearchDomainSamlOptionsRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +244,6 @@ impl ElasticsearchDomainSamlOptionsRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `saml_options` after provisioning.\n"]
     pub fn saml_options(&self) -> ListRef<ElasticsearchDomainSamlOptionsSamlOptionsElRef> {
         ListRef::new(
@@ -289,7 +251,6 @@ impl ElasticsearchDomainSamlOptionsRef {
             format!("{}.saml_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ElasticsearchDomainSamlOptionsTimeoutsElRef {
         ElasticsearchDomainSamlOptionsTimeoutsElRef::new(
@@ -298,18 +259,14 @@ impl ElasticsearchDomainSamlOptionsRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
     entity_id: PrimField<String>,
     metadata_content: PrimField<String>,
 }
-
 impl ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {}
-
 impl ToListMappable for ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
     type O = BlockAssignable<ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -318,14 +275,12 @@ impl ToListMappable for ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
         })
     }
 }
-
 pub struct BuildElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
     #[doc = ""]
     pub entity_id: PrimField<String>,
     #[doc = ""]
     pub metadata_content: PrimField<String>,
 }
-
 impl BuildElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
     pub fn build(self) -> ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
         ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
@@ -334,12 +289,10 @@ impl BuildElasticsearchDomainSamlOptionsSamlOptionsElIdpEl {
         }
     }
 }
-
 pub struct ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef {
     fn new(
         shared: StackShared,
@@ -351,17 +304,14 @@ impl Ref for ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef {
         }
     }
 }
-
 impl ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `entity_id` after provisioning.\n"]
     pub fn entity_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entity_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `metadata_content` after provisioning.\n"]
     pub fn metadata_content(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,12 +320,10 @@ impl ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ElasticsearchDomainSamlOptionsSamlOptionsElDynamic {
     idp: Option<DynamicBlock<ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ElasticsearchDomainSamlOptionsSamlOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -394,44 +342,37 @@ pub struct ElasticsearchDomainSamlOptionsSamlOptionsEl {
     idp: Option<Vec<ElasticsearchDomainSamlOptionsSamlOptionsElIdpEl>>,
     dynamic: ElasticsearchDomainSamlOptionsSamlOptionsElDynamic,
 }
-
 impl ElasticsearchDomainSamlOptionsSamlOptionsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `master_backend_role`.\n"]
     pub fn set_master_backend_role(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.master_backend_role = Some(v.into());
         self
     }
-
     #[doc = "Set the field `master_user_name`.\n"]
     pub fn set_master_user_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.master_user_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `roles_key`.\n"]
     pub fn set_roles_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.roles_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `session_timeout_minutes`.\n"]
     pub fn set_session_timeout_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.session_timeout_minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subject_key`.\n"]
     pub fn set_subject_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.subject_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `idp`.\n"]
     pub fn set_idp(
         mut self,
@@ -448,10 +389,8 @@ impl ElasticsearchDomainSamlOptionsSamlOptionsEl {
         self
     }
 }
-
 impl ToListMappable for ElasticsearchDomainSamlOptionsSamlOptionsEl {
     type O = BlockAssignable<ElasticsearchDomainSamlOptionsSamlOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -460,9 +399,7 @@ impl ToListMappable for ElasticsearchDomainSamlOptionsSamlOptionsEl {
         })
     }
 }
-
 pub struct BuildElasticsearchDomainSamlOptionsSamlOptionsEl {}
-
 impl BuildElasticsearchDomainSamlOptionsSamlOptionsEl {
     pub fn build(self) -> ElasticsearchDomainSamlOptionsSamlOptionsEl {
         ElasticsearchDomainSamlOptionsSamlOptionsEl {
@@ -477,12 +414,10 @@ impl BuildElasticsearchDomainSamlOptionsSamlOptionsEl {
         }
     }
 }
-
 pub struct ElasticsearchDomainSamlOptionsSamlOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ElasticsearchDomainSamlOptionsSamlOptionsElRef {
     fn new(shared: StackShared, base: String) -> ElasticsearchDomainSamlOptionsSamlOptionsElRef {
         ElasticsearchDomainSamlOptionsSamlOptionsElRef {
@@ -491,17 +426,14 @@ impl Ref for ElasticsearchDomainSamlOptionsSamlOptionsElRef {
         }
     }
 }
-
 impl ElasticsearchDomainSamlOptionsSamlOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `master_backend_role` after provisioning.\n"]
     pub fn master_backend_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,7 +441,6 @@ impl ElasticsearchDomainSamlOptionsSamlOptionsElRef {
             format!("{}.master_backend_role", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `master_user_name` after provisioning.\n"]
     pub fn master_user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -517,12 +448,10 @@ impl ElasticsearchDomainSamlOptionsSamlOptionsElRef {
             format!("{}.master_user_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `roles_key` after provisioning.\n"]
     pub fn roles_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.roles_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `session_timeout_minutes` after provisioning.\n"]
     pub fn session_timeout_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -530,18 +459,15 @@ impl ElasticsearchDomainSamlOptionsSamlOptionsElRef {
             format!("{}.session_timeout_minutes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subject_key` after provisioning.\n"]
     pub fn subject_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subject_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `idp` after provisioning.\n"]
     pub fn idp(&self) -> ListRef<ElasticsearchDomainSamlOptionsSamlOptionsElIdpElRef> {
         ListRef::new(self.shared().clone(), format!("{}.idp", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ElasticsearchDomainSamlOptionsTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -549,24 +475,20 @@ pub struct ElasticsearchDomainSamlOptionsTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl ElasticsearchDomainSamlOptionsTimeoutsEl {
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ElasticsearchDomainSamlOptionsTimeoutsEl {
     type O = BlockAssignable<ElasticsearchDomainSamlOptionsTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -575,9 +497,7 @@ impl ToListMappable for ElasticsearchDomainSamlOptionsTimeoutsEl {
         })
     }
 }
-
 pub struct BuildElasticsearchDomainSamlOptionsTimeoutsEl {}
-
 impl BuildElasticsearchDomainSamlOptionsTimeoutsEl {
     pub fn build(self) -> ElasticsearchDomainSamlOptionsTimeoutsEl {
         ElasticsearchDomainSamlOptionsTimeoutsEl {
@@ -586,12 +506,10 @@ impl BuildElasticsearchDomainSamlOptionsTimeoutsEl {
         }
     }
 }
-
 pub struct ElasticsearchDomainSamlOptionsTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ElasticsearchDomainSamlOptionsTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> ElasticsearchDomainSamlOptionsTimeoutsElRef {
         ElasticsearchDomainSamlOptionsTimeoutsElRef {
@@ -600,23 +518,19 @@ impl Ref for ElasticsearchDomainSamlOptionsTimeoutsElRef {
         }
     }
 }
-
 impl ElasticsearchDomainSamlOptionsTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ElasticsearchDomainSamlOptionsDynamic {
     saml_options: Option<DynamicBlock<ElasticsearchDomainSamlOptionsSamlOptionsEl>>,

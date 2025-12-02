@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CurReportDefinitionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct CurReportDefinitionData {
     tags_all: Option<RecField<PrimField<String>>>,
     time_unit: PrimField<String>,
 }
-
 struct CurReportDefinition_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CurReportDefinitionData>,
 }
-
 #[derive(Clone)]
 pub struct CurReportDefinition(Rc<CurReportDefinition_>);
-
 impl CurReportDefinition {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl CurReportDefinition {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl CurReportDefinition {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,43 +102,36 @@ impl CurReportDefinition {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `additional_artifacts`.\n"]
     pub fn set_additional_artifacts(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().additional_artifacts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `refresh_closed_reports`.\n"]
     pub fn set_refresh_closed_reports(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().refresh_closed_reports = Some(v.into());
         self
     }
-
     #[doc = "Set the field `report_versioning`.\n"]
     pub fn set_report_versioning(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().report_versioning = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `additional_artifacts` after provisioning.\n"]
     pub fn additional_artifacts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -158,7 +139,6 @@ impl CurReportDefinition {
             format!("{}.additional_artifacts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `additional_schema_elements` after provisioning.\n"]
     pub fn additional_schema_elements(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -166,12 +146,10 @@ impl CurReportDefinition {
             format!("{}.additional_schema_elements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `compression` after provisioning.\n"]
     pub fn compression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +157,6 @@ impl CurReportDefinition {
             format!("{}.compression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,12 +164,10 @@ impl CurReportDefinition {
             format!("{}.format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `refresh_closed_reports` after provisioning.\n"]
     pub fn refresh_closed_reports(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -200,7 +175,6 @@ impl CurReportDefinition {
             format!("{}.refresh_closed_reports", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `report_name` after provisioning.\n"]
     pub fn report_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +182,6 @@ impl CurReportDefinition {
             format!("{}.report_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `report_versioning` after provisioning.\n"]
     pub fn report_versioning(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +189,6 @@ impl CurReportDefinition {
             format!("{}.report_versioning", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -224,7 +196,6 @@ impl CurReportDefinition {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +203,6 @@ impl CurReportDefinition {
             format!("{}.s3_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_region` after provisioning.\n"]
     pub fn s3_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +210,6 @@ impl CurReportDefinition {
             format!("{}.s3_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -248,7 +217,6 @@ impl CurReportDefinition {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -256,7 +224,6 @@ impl CurReportDefinition {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +232,6 @@ impl CurReportDefinition {
         )
     }
 }
-
 impl Referable for CurReportDefinition {
     fn extract_ref(&self) -> String {
         format!(
@@ -275,32 +241,25 @@ impl Referable for CurReportDefinition {
         )
     }
 }
-
 impl Resource for CurReportDefinition {}
-
 impl ToListMappable for CurReportDefinition {
     type O = ListRef<CurReportDefinitionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CurReportDefinition_ {
     fn extract_resource_type(&self) -> String {
         "aws_cur_report_definition".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCurReportDefinition {
     pub tf_id: String,
     #[doc = ""]
@@ -320,7 +279,6 @@ pub struct BuildCurReportDefinition {
     #[doc = ""]
     pub time_unit: PrimField<String>,
 }
-
 impl BuildCurReportDefinition {
     pub fn build(self, stack: &mut Stack) -> CurReportDefinition {
         let out = CurReportDefinition(Rc::new(CurReportDefinition_ {
@@ -351,27 +309,22 @@ impl BuildCurReportDefinition {
         out
     }
 }
-
 pub struct CurReportDefinitionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CurReportDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CurReportDefinitionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_artifacts` after provisioning.\n"]
     pub fn additional_artifacts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -379,7 +332,6 @@ impl CurReportDefinitionRef {
             format!("{}.additional_artifacts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `additional_schema_elements` after provisioning.\n"]
     pub fn additional_schema_elements(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -387,12 +339,10 @@ impl CurReportDefinitionRef {
             format!("{}.additional_schema_elements", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `compression` after provisioning.\n"]
     pub fn compression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -400,7 +350,6 @@ impl CurReportDefinitionRef {
             format!("{}.compression", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `format` after provisioning.\n"]
     pub fn format(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,12 +357,10 @@ impl CurReportDefinitionRef {
             format!("{}.format", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `refresh_closed_reports` after provisioning.\n"]
     pub fn refresh_closed_reports(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -421,7 +368,6 @@ impl CurReportDefinitionRef {
             format!("{}.refresh_closed_reports", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `report_name` after provisioning.\n"]
     pub fn report_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -429,7 +375,6 @@ impl CurReportDefinitionRef {
             format!("{}.report_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `report_versioning` after provisioning.\n"]
     pub fn report_versioning(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -437,7 +382,6 @@ impl CurReportDefinitionRef {
             format!("{}.report_versioning", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_bucket` after provisioning.\n"]
     pub fn s3_bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -445,7 +389,6 @@ impl CurReportDefinitionRef {
             format!("{}.s3_bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_prefix` after provisioning.\n"]
     pub fn s3_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -453,7 +396,6 @@ impl CurReportDefinitionRef {
             format!("{}.s3_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_region` after provisioning.\n"]
     pub fn s3_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -461,7 +403,6 @@ impl CurReportDefinitionRef {
             format!("{}.s3_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -469,7 +410,6 @@ impl CurReportDefinitionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -477,7 +417,6 @@ impl CurReportDefinitionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_unit` after provisioning.\n"]
     pub fn time_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(

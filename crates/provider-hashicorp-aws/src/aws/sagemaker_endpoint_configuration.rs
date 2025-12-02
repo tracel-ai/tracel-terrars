@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerEndpointConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -41,47 +40,38 @@ struct SagemakerEndpointConfigurationData {
         Option<Vec<SagemakerEndpointConfigurationShadowProductionVariantsEl>>,
     dynamic: SagemakerEndpointConfigurationDynamic,
 }
-
 struct SagemakerEndpointConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerEndpointConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerEndpointConfiguration(Rc<SagemakerEndpointConfiguration_>);
-
 impl SagemakerEndpointConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -100,7 +90,6 @@ impl SagemakerEndpointConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -110,7 +99,6 @@ impl SagemakerEndpointConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -120,55 +108,46 @@ impl SagemakerEndpointConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `execution_role_arn`.\n"]
     pub fn set_execution_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().execution_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `async_inference_config`.\n"]
     pub fn set_async_inference_config(
         self,
@@ -184,7 +163,6 @@ impl SagemakerEndpointConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `data_capture_config`.\n"]
     pub fn set_data_capture_config(
         self,
@@ -200,7 +178,6 @@ impl SagemakerEndpointConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `production_variants`.\n"]
     pub fn set_production_variants(
         self,
@@ -216,7 +193,6 @@ impl SagemakerEndpointConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `shadow_production_variants`.\n"]
     pub fn set_shadow_production_variants(
         self,
@@ -232,12 +208,10 @@ impl SagemakerEndpointConfiguration {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,12 +219,10 @@ impl SagemakerEndpointConfiguration {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +230,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +237,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +244,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,7 +251,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -290,7 +258,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -298,7 +265,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `async_inference_config` after provisioning.\n"]
     pub fn async_inference_config(
         &self,
@@ -308,7 +274,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.async_inference_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_capture_config` after provisioning.\n"]
     pub fn data_capture_config(
         &self,
@@ -318,7 +283,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.data_capture_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `production_variants` after provisioning.\n"]
     pub fn production_variants(
         &self,
@@ -328,7 +292,6 @@ impl SagemakerEndpointConfiguration {
             format!("{}.production_variants", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `shadow_production_variants` after provisioning.\n"]
     pub fn shadow_production_variants(
         &self,
@@ -339,7 +302,6 @@ impl SagemakerEndpointConfiguration {
         )
     }
 }
-
 impl Referable for SagemakerEndpointConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -349,36 +311,28 @@ impl Referable for SagemakerEndpointConfiguration {
         )
     }
 }
-
 impl Resource for SagemakerEndpointConfiguration {}
-
 impl ToListMappable for SagemakerEndpointConfiguration {
     type O = ListRef<SagemakerEndpointConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerEndpointConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_endpoint_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerEndpointConfiguration {
     pub tf_id: String,
 }
-
 impl BuildSagemakerEndpointConfiguration {
     pub fn build(self, stack: &mut Stack) -> SagemakerEndpointConfiguration {
         let out = SagemakerEndpointConfiguration(Rc::new(SagemakerEndpointConfiguration_ {
@@ -408,32 +362,26 @@ impl BuildSagemakerEndpointConfiguration {
         out
     }
 }
-
 pub struct SagemakerEndpointConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerEndpointConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -441,12 +389,10 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -454,7 +400,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.kms_key_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,7 +407,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -470,7 +414,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -478,7 +421,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -486,7 +428,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -494,7 +435,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `async_inference_config` after provisioning.\n"]
     pub fn async_inference_config(
         &self,
@@ -504,7 +444,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.async_inference_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_capture_config` after provisioning.\n"]
     pub fn data_capture_config(
         &self,
@@ -514,7 +453,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.data_capture_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `production_variants` after provisioning.\n"]
     pub fn production_variants(
         &self,
@@ -524,7 +462,6 @@ impl SagemakerEndpointConfigurationRef {
             format!("{}.production_variants", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `shadow_production_variants` after provisioning.\n"]
     pub fn shadow_production_variants(
         &self,
@@ -535,13 +472,11 @@ impl SagemakerEndpointConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_concurrent_invocations_per_instance: Option<PrimField<f64>>,
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
     #[doc = "Set the field `max_concurrent_invocations_per_instance`.\n"]
     pub fn set_max_concurrent_invocations_per_instance(
@@ -552,10 +487,8 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -564,9 +497,7 @@ impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigElClie
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {}
-
 impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
         SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
@@ -574,12 +505,10 @@ impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigElRef {
     fn new(
         shared: StackShared,
@@ -591,12 +520,10 @@ impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigElR
         }
     }
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_concurrent_invocations_per_instance` after provisioning.\n"]
     pub fn max_concurrent_invocations_per_instance(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -605,7 +532,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElClientConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -615,14 +541,12 @@ pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNot
     #[serde(skip_serializing_if = "Option::is_none")]
     success_topic: Option<PrimField<String>>,
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl {
     #[doc = "Set the field `error_topic`.\n"]
     pub fn set_error_topic(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.error_topic = Some(v.into());
         self
     }
-
     #[doc = "Set the field `include_inference_response_in`.\n"]
     pub fn set_include_inference_response_in(
         mut self,
@@ -631,21 +555,18 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificat
         self.include_inference_response_in = Some(v.into());
         self
     }
-
     #[doc = "Set the field `success_topic`.\n"]
     pub fn set_success_topic(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.success_topic = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl
 {
     type O = BlockAssignable<
         SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -654,10 +575,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl
 {}
-
 impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl {
     pub fn build(
         self,
@@ -670,13 +589,11 @@ impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNoti
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigElRef
 {
@@ -691,17 +608,14 @@ impl Ref
         }
     }
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `error_topic` after provisioning.\n"]
     pub fn error_topic(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.error_topic", self.base))
     }
-
     #[doc = "Get a reference to the value of field `include_inference_response_in` after provisioning.\n"]
     pub fn include_inference_response_in(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -709,7 +623,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificat
             format!("{}.include_inference_response_in", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `success_topic` after provisioning.\n"]
     pub fn success_topic(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -718,7 +631,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificat
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElDynamic {
     notification_config: Option<
@@ -727,7 +639,6 @@ struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElDynamic
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -741,31 +652,21 @@ pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     >,
     dynamic: SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElDynamic,
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_failure_path`.\n"]
     pub fn set_s3_failure_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_failure_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `notification_config`.\n"]
     pub fn set_notification_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElNotificationConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -778,10 +679,8 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -790,12 +689,10 @@ impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigElOutp
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     #[doc = ""]
     pub s3_output_path: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
         SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
@@ -807,12 +704,10 @@ impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
     fn new(
         shared: StackShared,
@@ -824,17 +719,14 @@ impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElR
         }
     }
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_failure_path` after provisioning.\n"]
     pub fn s3_failure_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -842,7 +734,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
             format!("{}.s3_failure_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_output_path` after provisioning.\n"]
     pub fn s3_output_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -850,7 +741,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
             format!("{}.s3_output_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification_config` after provisioning.\n"]
     pub fn notification_config(
         &self,
@@ -863,7 +753,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationAsyncInferenceConfigElDynamic {
     client_config:
@@ -871,7 +760,6 @@ struct SagemakerEndpointConfigurationAsyncInferenceConfigElDynamic {
     output_config:
         Option<DynamicBlock<SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -880,7 +768,6 @@ pub struct SagemakerEndpointConfigurationAsyncInferenceConfigEl {
     output_config: Option<Vec<SagemakerEndpointConfigurationAsyncInferenceConfigElOutputConfigEl>>,
     dynamic: SagemakerEndpointConfigurationAsyncInferenceConfigElDynamic,
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigEl {
     #[doc = "Set the field `client_config`.\n"]
     pub fn set_client_config(
@@ -899,7 +786,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `output_config`.\n"]
     pub fn set_output_config(
         mut self,
@@ -918,10 +804,8 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationAsyncInferenceConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -930,9 +814,7 @@ impl ToListMappable for SagemakerEndpointConfigurationAsyncInferenceConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationAsyncInferenceConfigEl {}
-
 impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationAsyncInferenceConfigEl {
         SagemakerEndpointConfigurationAsyncInferenceConfigEl {
@@ -942,12 +824,10 @@ impl BuildSagemakerEndpointConfigurationAsyncInferenceConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
     fn new(
         shared: StackShared,
@@ -959,12 +839,10 @@ impl Ref for SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
         }
     }
 }
-
 impl SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `client_config` after provisioning.\n"]
     pub fn client_config(
         &self,
@@ -974,7 +852,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
             format!("{}.client_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `output_config` after provisioning.\n"]
     pub fn output_config(
         &self,
@@ -985,7 +862,6 @@ impl SagemakerEndpointConfigurationAsyncInferenceConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -993,28 +869,24 @@ pub struct SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHe
     #[serde(skip_serializing_if = "Option::is_none")]
     json_content_types: Option<SetField<PrimField<String>>>,
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl {
     #[doc = "Set the field `csv_content_types`.\n"]
     pub fn set_csv_content_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.csv_content_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `json_content_types`.\n"]
     pub fn set_json_content_types(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.json_content_types = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl
 {
     type O = BlockAssignable<
         SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1023,9 +895,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl {}
-
 impl BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl {
     pub fn build(
         self,
@@ -1036,12 +906,10 @@ impl BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHea
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderElRef {
     fn new(
         shared: StackShared,
@@ -1053,12 +921,10 @@ impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentType
         }
     }
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `csv_content_types` after provisioning.\n"]
     pub fn csv_content_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1066,7 +932,6 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl
             format!("{}.csv_content_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `json_content_types` after provisioning.\n"]
     pub fn json_content_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1075,17 +940,13 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureContentTypeHeaderEl
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
     capture_mode: PrimField<String>,
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {}
-
 impl ToListMappable for SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1094,12 +955,10 @@ impl ToListMappable for SagemakerEndpointConfigurationDataCaptureConfigElCapture
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
     #[doc = ""]
     pub capture_mode: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
     pub fn build(self) -> SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
         SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
@@ -1107,12 +966,10 @@ impl BuildSagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1124,18 +981,15 @@ impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsElRe
         }
     }
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `capture_mode` after provisioning.\n"]
     pub fn capture_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.capture_mode", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationDataCaptureConfigElDynamic {
     capture_content_type_header: Option<
@@ -1144,7 +998,6 @@ struct SagemakerEndpointConfigurationDataCaptureConfigElDynamic {
     capture_options:
         Option<DynamicBlock<SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationDataCaptureConfigEl {
     destination_s3_uri: PrimField<String>,
@@ -1160,20 +1013,17 @@ pub struct SagemakerEndpointConfigurationDataCaptureConfigEl {
     capture_options: Option<Vec<SagemakerEndpointConfigurationDataCaptureConfigElCaptureOptionsEl>>,
     dynamic: SagemakerEndpointConfigurationDataCaptureConfigElDynamic,
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigEl {
     #[doc = "Set the field `enable_capture`.\n"]
     pub fn set_enable_capture(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_capture = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `capture_content_type_header`.\n"]
     pub fn set_capture_content_type_header(
         mut self,
@@ -1193,7 +1043,6 @@ impl SagemakerEndpointConfigurationDataCaptureConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `capture_options`.\n"]
     pub fn set_capture_options(
         mut self,
@@ -1210,10 +1059,8 @@ impl SagemakerEndpointConfigurationDataCaptureConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationDataCaptureConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationDataCaptureConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1222,14 +1069,12 @@ impl ToListMappable for SagemakerEndpointConfigurationDataCaptureConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationDataCaptureConfigEl {
     #[doc = ""]
     pub destination_s3_uri: PrimField<String>,
     #[doc = ""]
     pub initial_sampling_percentage: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointConfigurationDataCaptureConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationDataCaptureConfigEl {
         SagemakerEndpointConfigurationDataCaptureConfigEl {
@@ -1243,12 +1088,10 @@ impl BuildSagemakerEndpointConfigurationDataCaptureConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationDataCaptureConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElRef {
     fn new(
         shared: StackShared,
@@ -1260,12 +1103,10 @@ impl Ref for SagemakerEndpointConfigurationDataCaptureConfigElRef {
         }
     }
 }
-
 impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination_s3_uri` after provisioning.\n"]
     pub fn destination_s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1273,7 +1114,6 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
             format!("{}.destination_s3_uri", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_capture` after provisioning.\n"]
     pub fn enable_capture(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1281,7 +1121,6 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
             format!("{}.enable_capture", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `initial_sampling_percentage` after provisioning.\n"]
     pub fn initial_sampling_percentage(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1289,12 +1128,10 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
             format!("{}.initial_sampling_percentage", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `capture_content_type_header` after provisioning.\n"]
     pub fn capture_content_type_header(
         &self,
@@ -1305,7 +1142,6 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
             format!("{}.capture_content_type_header", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `capture_options` after provisioning.\n"]
     pub fn capture_options(
         &self,
@@ -1316,14 +1152,12 @@ impl SagemakerEndpointConfigurationDataCaptureConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
     destination_s3_uri: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_id: Option<PrimField<String>>,
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1331,10 +1165,8 @@ impl SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1343,12 +1175,10 @@ impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElCoreDu
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
     #[doc = ""]
     pub destination_s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
         SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
@@ -1357,12 +1187,10 @@ impl BuildSagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigElRef {
     fn new(
         shared: StackShared,
@@ -1374,12 +1202,10 @@ impl Ref for SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigElR
         }
     }
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination_s3_uri` after provisioning.\n"]
     pub fn destination_s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1387,13 +1213,11 @@ impl SagemakerEndpointConfigurationProductionVariantsElCoreDumpConfigElRef {
             format!("{}.destination_s3_uri", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1403,31 +1227,26 @@ pub struct SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScal
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl {
     #[doc = "Set the field `max_instance_count`.\n"]
     pub fn set_max_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_instance_count`.\n"]
     pub fn set_min_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.min_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl {
     type O =
         BlockAssignable<SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1436,9 +1255,7 @@ impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElManage
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl {}
-
 impl BuildSagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingEl {
     pub fn build(
         self,
@@ -1450,12 +1267,10 @@ impl BuildSagemakerEndpointConfigurationProductionVariantsElManagedInstanceScali
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingElRef {
     fn new(
         shared: StackShared,
@@ -1467,12 +1282,10 @@ impl Ref for SagemakerEndpointConfigurationProductionVariantsElManagedInstanceSc
         }
     }
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_instance_count` after provisioning.\n"]
     pub fn max_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1480,7 +1293,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingElR
             format!("{}.max_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_instance_count` after provisioning.\n"]
     pub fn min_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1488,23 +1300,18 @@ impl SagemakerEndpointConfigurationProductionVariantsElManagedInstanceScalingElR
             format!("{}.min_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
     routing_strategy: PrimField<String>,
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {}
-
 impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1513,12 +1320,10 @@ impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElRoutin
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
     #[doc = ""]
     pub routing_strategy: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
         SagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
@@ -1526,12 +1331,10 @@ impl BuildSagemakerEndpointConfigurationProductionVariantsElRoutingConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationProductionVariantsElRoutingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationProductionVariantsElRoutingConfigElRef {
     fn new(
         shared: StackShared,
@@ -1543,12 +1346,10 @@ impl Ref for SagemakerEndpointConfigurationProductionVariantsElRoutingConfigElRe
         }
     }
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElRoutingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `routing_strategy` after provisioning.\n"]
     pub fn routing_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1557,7 +1358,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRoutingConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
     max_concurrency: PrimField<f64>,
@@ -1565,7 +1365,6 @@ pub struct SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl 
     #[serde(skip_serializing_if = "Option::is_none")]
     provisioned_concurrency: Option<PrimField<f64>>,
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
     #[doc = "Set the field `provisioned_concurrency`.\n"]
     pub fn set_provisioned_concurrency(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1573,10 +1372,8 @@ impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1585,14 +1382,12 @@ impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsElServer
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
     #[doc = ""]
     pub max_concurrency: PrimField<f64>,
     #[doc = ""]
     pub memory_size_in_mb: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
         SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
@@ -1602,12 +1397,10 @@ impl BuildSagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
     fn new(
         shared: StackShared,
@@ -1619,12 +1412,10 @@ impl Ref for SagemakerEndpointConfigurationProductionVariantsElServerlessConfigE
         }
     }
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1632,7 +1423,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
             format!("{}.max_concurrency", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_size_in_mb` after provisioning.\n"]
     pub fn memory_size_in_mb(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1640,7 +1430,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
             format!("{}.memory_size_in_mb", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_concurrency` after provisioning.\n"]
     pub fn provisioned_concurrency(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1649,7 +1438,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElServerlessConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationProductionVariantsElDynamic {
     core_dump_config:
@@ -1662,7 +1450,6 @@ struct SagemakerEndpointConfigurationProductionVariantsElDynamic {
     serverless_config:
         Option<DynamicBlock<SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationProductionVariantsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1700,14 +1487,12 @@ pub struct SagemakerEndpointConfigurationProductionVariantsEl {
         Option<Vec<SagemakerEndpointConfigurationProductionVariantsElServerlessConfigEl>>,
     dynamic: SagemakerEndpointConfigurationProductionVariantsElDynamic,
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsEl {
     #[doc = "Set the field `accelerator_type`.\n"]
     pub fn set_accelerator_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.accelerator_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `container_startup_health_check_timeout_in_seconds`.\n"]
     pub fn set_container_startup_health_check_timeout_in_seconds(
         mut self,
@@ -1716,37 +1501,31 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         self.container_startup_health_check_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_ssm_access`.\n"]
     pub fn set_enable_ssm_access(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_ssm_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inference_ami_version`.\n"]
     pub fn set_inference_ami_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.inference_ami_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `initial_instance_count`.\n"]
     pub fn set_initial_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.initial_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `initial_variant_weight`.\n"]
     pub fn set_initial_variant_weight(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.initial_variant_weight = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type`.\n"]
     pub fn set_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_data_download_timeout_in_seconds`.\n"]
     pub fn set_model_data_download_timeout_in_seconds(
         mut self,
@@ -1755,25 +1534,21 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         self.model_data_download_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_name`.\n"]
     pub fn set_model_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `variant_name`.\n"]
     pub fn set_variant_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.variant_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_size_in_gb`.\n"]
     pub fn set_volume_size_in_gb(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.volume_size_in_gb = Some(v.into());
         self
     }
-
     #[doc = "Set the field `core_dump_config`.\n"]
     pub fn set_core_dump_config(
         mut self,
@@ -1791,7 +1566,6 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `managed_instance_scaling`.\n"]
     pub fn set_managed_instance_scaling(
         mut self,
@@ -1811,7 +1585,6 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `routing_config`.\n"]
     pub fn set_routing_config(
         mut self,
@@ -1827,7 +1600,6 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `serverless_config`.\n"]
     pub fn set_serverless_config(
         mut self,
@@ -1846,10 +1618,8 @@ impl SagemakerEndpointConfigurationProductionVariantsEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationProductionVariantsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1858,9 +1628,7 @@ impl ToListMappable for SagemakerEndpointConfigurationProductionVariantsEl {
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationProductionVariantsEl {}
-
 impl BuildSagemakerEndpointConfigurationProductionVariantsEl {
     pub fn build(self) -> SagemakerEndpointConfigurationProductionVariantsEl {
         SagemakerEndpointConfigurationProductionVariantsEl {
@@ -1883,12 +1651,10 @@ impl BuildSagemakerEndpointConfigurationProductionVariantsEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationProductionVariantsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationProductionVariantsElRef {
     fn new(
         shared: StackShared,
@@ -1900,12 +1666,10 @@ impl Ref for SagemakerEndpointConfigurationProductionVariantsElRef {
         }
     }
 }
-
 impl SagemakerEndpointConfigurationProductionVariantsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accelerator_type` after provisioning.\n"]
     pub fn accelerator_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1913,7 +1677,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.accelerator_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_startup_health_check_timeout_in_seconds` after provisioning.\n"]
     pub fn container_startup_health_check_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1924,7 +1687,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_ssm_access` after provisioning.\n"]
     pub fn enable_ssm_access(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1932,7 +1694,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.enable_ssm_access", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `inference_ami_version` after provisioning.\n"]
     pub fn inference_ami_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1940,7 +1701,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.inference_ami_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `initial_instance_count` after provisioning.\n"]
     pub fn initial_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1948,7 +1708,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.initial_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `initial_variant_weight` after provisioning.\n"]
     pub fn initial_variant_weight(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1956,7 +1715,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.initial_variant_weight", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1964,7 +1722,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_data_download_timeout_in_seconds` after provisioning.\n"]
     pub fn model_data_download_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1972,17 +1729,14 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.model_data_download_timeout_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `variant_name` after provisioning.\n"]
     pub fn variant_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.variant_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `volume_size_in_gb` after provisioning.\n"]
     pub fn volume_size_in_gb(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1990,7 +1744,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.volume_size_in_gb", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_dump_config` after provisioning.\n"]
     pub fn core_dump_config(
         &self,
@@ -2000,7 +1753,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.core_dump_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `managed_instance_scaling` after provisioning.\n"]
     pub fn managed_instance_scaling(
         &self,
@@ -2011,7 +1763,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.managed_instance_scaling", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_config` after provisioning.\n"]
     pub fn routing_config(
         &self,
@@ -2021,7 +1772,6 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
             format!("{}.routing_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `serverless_config` after provisioning.\n"]
     pub fn serverless_config(
         &self,
@@ -2032,19 +1782,15 @@ impl SagemakerEndpointConfigurationProductionVariantsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
     destination_s3_uri: PrimField<String>,
     kms_key_id: PrimField<String>,
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {}
-
 impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
     type O =
         BlockAssignable<SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2053,14 +1799,12 @@ impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
     #[doc = ""]
     pub destination_s3_uri: PrimField<String>,
     #[doc = ""]
     pub kms_key_id: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
         SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigEl {
@@ -2069,12 +1813,10 @@ impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfig
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigElRef {
     fn new(
         shared: StackShared,
@@ -2086,12 +1828,10 @@ impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpCon
         }
     }
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination_s3_uri` after provisioning.\n"]
     pub fn destination_s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2099,13 +1839,11 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElCoreDumpConfigElRef
             format!("{}.destination_s3_uri", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2115,34 +1853,29 @@ pub struct SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstan
     #[serde(skip_serializing_if = "Option::is_none")]
     status: Option<PrimField<String>>,
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl {
     #[doc = "Set the field `max_instance_count`.\n"]
     pub fn set_max_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `min_instance_count`.\n"]
     pub fn set_min_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.min_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status`.\n"]
     pub fn set_status(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl
 {
     type O = BlockAssignable<
         SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2151,10 +1884,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl {
 }
-
 impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingEl {
     pub fn build(
         self,
@@ -2166,12 +1897,10 @@ impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanc
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingElRef {
     fn new(
         shared: StackShared,
@@ -2183,12 +1912,10 @@ impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElManagedInst
         }
     }
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScalingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_instance_count` after provisioning.\n"]
     pub fn max_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2196,7 +1923,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScal
             format!("{}.max_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `min_instance_count` after provisioning.\n"]
     pub fn min_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2204,24 +1930,19 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElManagedInstanceScal
             format!("{}.min_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
     routing_strategy: PrimField<String>,
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {}
-
 impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
     type O =
         BlockAssignable<SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2230,12 +1951,10 @@ impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
     #[doc = ""]
     pub routing_strategy: PrimField<String>,
 }
-
 impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
     pub fn build(self) -> SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
         SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigEl {
@@ -2243,12 +1962,10 @@ impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigE
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigElRef {
     fn new(
         shared: StackShared,
@@ -2260,12 +1977,10 @@ impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConf
         }
     }
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `routing_strategy` after provisioning.\n"]
     pub fn routing_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2274,7 +1989,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRoutingConfigElRef 
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl {
     max_concurrency: PrimField<f64>,
@@ -2282,7 +1996,6 @@ pub struct SagemakerEndpointConfigurationShadowProductionVariantsElServerlessCon
     #[serde(skip_serializing_if = "Option::is_none")]
     provisioned_concurrency: Option<PrimField<f64>>,
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl {
     #[doc = "Set the field `provisioned_concurrency`.\n"]
     pub fn set_provisioned_concurrency(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -2290,11 +2003,9 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl 
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl {
     type O =
         BlockAssignable<SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2303,14 +2014,12 @@ impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl {
     #[doc = ""]
     pub max_concurrency: PrimField<f64>,
     #[doc = ""]
     pub memory_size_in_mb: PrimField<f64>,
 }
-
 impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl {
     pub fn build(
         self,
@@ -2322,12 +2031,10 @@ impl BuildSagemakerEndpointConfigurationShadowProductionVariantsElServerlessConf
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElRef {
     fn new(
         shared: StackShared,
@@ -2339,12 +2046,10 @@ impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElServerlessC
         }
     }
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_concurrency` after provisioning.\n"]
     pub fn max_concurrency(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2352,7 +2057,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElR
             format!("{}.max_concurrency", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_size_in_mb` after provisioning.\n"]
     pub fn memory_size_in_mb(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2360,7 +2064,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElR
             format!("{}.memory_size_in_mb", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioned_concurrency` after provisioning.\n"]
     pub fn provisioned_concurrency(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2369,7 +2072,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigElR
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationShadowProductionVariantsElDynamic {
     core_dump_config: Option<
@@ -2387,7 +2089,6 @@ struct SagemakerEndpointConfigurationShadowProductionVariantsElDynamic {
         DynamicBlock<SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2427,14 +2128,12 @@ pub struct SagemakerEndpointConfigurationShadowProductionVariantsEl {
         Option<Vec<SagemakerEndpointConfigurationShadowProductionVariantsElServerlessConfigEl>>,
     dynamic: SagemakerEndpointConfigurationShadowProductionVariantsElDynamic,
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
     #[doc = "Set the field `accelerator_type`.\n"]
     pub fn set_accelerator_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.accelerator_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `container_startup_health_check_timeout_in_seconds`.\n"]
     pub fn set_container_startup_health_check_timeout_in_seconds(
         mut self,
@@ -2443,37 +2142,31 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         self.container_startup_health_check_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_ssm_access`.\n"]
     pub fn set_enable_ssm_access(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_ssm_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inference_ami_version`.\n"]
     pub fn set_inference_ami_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.inference_ami_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `initial_instance_count`.\n"]
     pub fn set_initial_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.initial_instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `initial_variant_weight`.\n"]
     pub fn set_initial_variant_weight(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.initial_variant_weight = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type`.\n"]
     pub fn set_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_data_download_timeout_in_seconds`.\n"]
     pub fn set_model_data_download_timeout_in_seconds(
         mut self,
@@ -2482,25 +2175,21 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         self.model_data_download_timeout_in_seconds = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_name`.\n"]
     pub fn set_model_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `variant_name`.\n"]
     pub fn set_variant_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.variant_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_size_in_gb`.\n"]
     pub fn set_volume_size_in_gb(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.volume_size_in_gb = Some(v.into());
         self
     }
-
     #[doc = "Set the field `core_dump_config`.\n"]
     pub fn set_core_dump_config(
         mut self,
@@ -2520,7 +2209,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `managed_instance_scaling`.\n"]
     pub fn set_managed_instance_scaling(
         mut self,
@@ -2540,7 +2228,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `routing_config`.\n"]
     pub fn set_routing_config(
         mut self,
@@ -2560,7 +2247,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         }
         self
     }
-
     #[doc = "Set the field `serverless_config`.\n"]
     pub fn set_serverless_config(
         mut self,
@@ -2581,10 +2267,8 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsEl {
     type O = BlockAssignable<SagemakerEndpointConfigurationShadowProductionVariantsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2593,9 +2277,7 @@ impl ToListMappable for SagemakerEndpointConfigurationShadowProductionVariantsEl
         })
     }
 }
-
 pub struct BuildSagemakerEndpointConfigurationShadowProductionVariantsEl {}
-
 impl BuildSagemakerEndpointConfigurationShadowProductionVariantsEl {
     pub fn build(self) -> SagemakerEndpointConfigurationShadowProductionVariantsEl {
         SagemakerEndpointConfigurationShadowProductionVariantsEl {
@@ -2618,12 +2300,10 @@ impl BuildSagemakerEndpointConfigurationShadowProductionVariantsEl {
         }
     }
 }
-
 pub struct SagemakerEndpointConfigurationShadowProductionVariantsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElRef {
     fn new(
         shared: StackShared,
@@ -2635,12 +2315,10 @@ impl Ref for SagemakerEndpointConfigurationShadowProductionVariantsElRef {
         }
     }
 }
-
 impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accelerator_type` after provisioning.\n"]
     pub fn accelerator_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2648,7 +2326,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.accelerator_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_startup_health_check_timeout_in_seconds` after provisioning.\n"]
     pub fn container_startup_health_check_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2659,7 +2336,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_ssm_access` after provisioning.\n"]
     pub fn enable_ssm_access(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2667,7 +2343,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.enable_ssm_access", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `inference_ami_version` after provisioning.\n"]
     pub fn inference_ami_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2675,7 +2350,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.inference_ami_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `initial_instance_count` after provisioning.\n"]
     pub fn initial_instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2683,7 +2357,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.initial_instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `initial_variant_weight` after provisioning.\n"]
     pub fn initial_variant_weight(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2691,7 +2364,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.initial_variant_weight", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2699,7 +2371,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_data_download_timeout_in_seconds` after provisioning.\n"]
     pub fn model_data_download_timeout_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2707,17 +2378,14 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.model_data_download_timeout_in_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_name` after provisioning.\n"]
     pub fn model_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.model_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `variant_name` after provisioning.\n"]
     pub fn variant_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.variant_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `volume_size_in_gb` after provisioning.\n"]
     pub fn volume_size_in_gb(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2725,7 +2393,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.volume_size_in_gb", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_dump_config` after provisioning.\n"]
     pub fn core_dump_config(
         &self,
@@ -2735,7 +2402,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.core_dump_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `managed_instance_scaling` after provisioning.\n"]
     pub fn managed_instance_scaling(
         &self,
@@ -2746,7 +2412,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.managed_instance_scaling", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_config` after provisioning.\n"]
     pub fn routing_config(
         &self,
@@ -2756,7 +2421,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
             format!("{}.routing_config", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `serverless_config` after provisioning.\n"]
     pub fn serverless_config(
         &self,
@@ -2768,7 +2432,6 @@ impl SagemakerEndpointConfigurationShadowProductionVariantsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerEndpointConfigurationDynamic {
     async_inference_config:

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IamOpenidConnectProviderData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct IamOpenidConnectProviderData {
     thumbprint_list: Option<ListField<PrimField<String>>>,
     url: PrimField<String>,
 }
-
 struct IamOpenidConnectProvider_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IamOpenidConnectProviderData>,
 }
-
 #[derive(Clone)]
 pub struct IamOpenidConnectProvider(Rc<IamOpenidConnectProvider_>);
-
 impl IamOpenidConnectProvider {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl IamOpenidConnectProvider {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl IamOpenidConnectProvider {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,36 +92,30 @@ impl IamOpenidConnectProvider {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `thumbprint_list`.\n"]
     pub fn set_thumbprint_list(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().thumbprint_list = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `client_id_list` after provisioning.\n"]
     pub fn client_id_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -141,12 +123,10 @@ impl IamOpenidConnectProvider {
             format!("{}.client_id_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -154,7 +134,6 @@ impl IamOpenidConnectProvider {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -162,7 +141,6 @@ impl IamOpenidConnectProvider {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thumbprint_list` after provisioning.\n"]
     pub fn thumbprint_list(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -170,13 +148,11 @@ impl IamOpenidConnectProvider {
             format!("{}.thumbprint_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))
     }
 }
-
 impl Referable for IamOpenidConnectProvider {
     fn extract_ref(&self) -> String {
         format!(
@@ -186,32 +162,25 @@ impl Referable for IamOpenidConnectProvider {
         )
     }
 }
-
 impl Resource for IamOpenidConnectProvider {}
-
 impl ToListMappable for IamOpenidConnectProvider {
     type O = ListRef<IamOpenidConnectProviderRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IamOpenidConnectProvider_ {
     fn extract_resource_type(&self) -> String {
         "aws_iam_openid_connect_provider".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIamOpenidConnectProvider {
     pub tf_id: String,
     #[doc = ""]
@@ -219,7 +188,6 @@ pub struct BuildIamOpenidConnectProvider {
     #[doc = ""]
     pub url: PrimField<String>,
 }
-
 impl BuildIamOpenidConnectProvider {
     pub fn build(self, stack: &mut Stack) -> IamOpenidConnectProvider {
         let out = IamOpenidConnectProvider(Rc::new(IamOpenidConnectProvider_ {
@@ -242,32 +210,26 @@ impl BuildIamOpenidConnectProvider {
         out
     }
 }
-
 pub struct IamOpenidConnectProviderRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IamOpenidConnectProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IamOpenidConnectProviderRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `client_id_list` after provisioning.\n"]
     pub fn client_id_list(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -275,12 +237,10 @@ impl IamOpenidConnectProviderRef {
             format!("{}.client_id_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -288,7 +248,6 @@ impl IamOpenidConnectProviderRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -296,7 +255,6 @@ impl IamOpenidConnectProviderRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `thumbprint_list` after provisioning.\n"]
     pub fn thumbprint_list(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -304,7 +262,6 @@ impl IamOpenidConnectProviderRef {
             format!("{}.thumbprint_list", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url` after provisioning.\n"]
     pub fn url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.url", self.extract_ref()))

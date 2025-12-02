@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataSsmcontactsPlanData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -18,43 +17,35 @@ struct DataSsmcontactsPlanData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct DataSsmcontactsPlan_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataSsmcontactsPlanData>,
 }
-
 #[derive(Clone)]
 pub struct DataSsmcontactsPlan(Rc<DataSsmcontactsPlan_>);
-
 impl DataSsmcontactsPlan {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `contact_id` after provisioning.\n"]
     pub fn contact_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -62,12 +53,10 @@ impl DataSsmcontactsPlan {
             format!("{}.contact_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -75,7 +64,6 @@ impl DataSsmcontactsPlan {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stage` after provisioning.\n"]
     pub fn stage(&self) -> ListRef<DataSsmcontactsPlanStageElRef> {
         ListRef::new(
@@ -84,7 +72,6 @@ impl DataSsmcontactsPlan {
         )
     }
 }
-
 impl Referable for DataSsmcontactsPlan {
     fn extract_ref(&self) -> String {
         format!(
@@ -94,38 +81,30 @@ impl Referable for DataSsmcontactsPlan {
         )
     }
 }
-
 impl Datasource for DataSsmcontactsPlan {}
-
 impl ToListMappable for DataSsmcontactsPlan {
     type O = ListRef<DataSsmcontactsPlanRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataSsmcontactsPlan_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ssmcontacts_plan".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataSsmcontactsPlan {
     pub tf_id: String,
     #[doc = ""]
     pub contact_id: PrimField<String>,
 }
-
 impl BuildDataSsmcontactsPlan {
     pub fn build(self, stack: &mut Stack) -> DataSsmcontactsPlan {
         let out = DataSsmcontactsPlan(Rc::new(DataSsmcontactsPlan_ {
@@ -144,27 +123,22 @@ impl BuildDataSsmcontactsPlan {
         out
     }
 }
-
 pub struct DataSsmcontactsPlanRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsmcontactsPlanRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataSsmcontactsPlanRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `contact_id` after provisioning.\n"]
     pub fn contact_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,12 +146,10 @@ impl DataSsmcontactsPlanRef {
             format!("{}.contact_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +157,6 @@ impl DataSsmcontactsPlanRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stage` after provisioning.\n"]
     pub fn stage(&self) -> ListRef<DataSsmcontactsPlanStageElRef> {
         ListRef::new(
@@ -194,7 +165,6 @@ impl DataSsmcontactsPlanRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -202,24 +172,20 @@ pub struct DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     retry_interval_in_minutes: Option<PrimField<f64>>,
 }
-
 impl DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
     #[doc = "Set the field `contact_channel_id`.\n"]
     pub fn set_contact_channel_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.contact_channel_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `retry_interval_in_minutes`.\n"]
     pub fn set_retry_interval_in_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.retry_interval_in_minutes = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
     type O = BlockAssignable<DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -228,9 +194,7 @@ impl ToListMappable for DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
         })
     }
 }
-
 pub struct BuildDataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {}
-
 impl BuildDataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
     pub fn build(self) -> DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
         DataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
@@ -239,12 +203,10 @@ impl BuildDataSsmcontactsPlanStageElTargetElChannelTargetInfoEl {
         }
     }
 }
-
 pub struct DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
     fn new(
         shared: StackShared,
@@ -256,12 +218,10 @@ impl Ref for DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
         }
     }
 }
-
 impl DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `contact_channel_id` after provisioning.\n"]
     pub fn contact_channel_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -269,7 +229,6 @@ impl DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
             format!("{}.contact_channel_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retry_interval_in_minutes` after provisioning.\n"]
     pub fn retry_interval_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -278,7 +237,6 @@ impl DataSsmcontactsPlanStageElTargetElChannelTargetInfoElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -286,24 +244,20 @@ pub struct DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     is_essential: Option<PrimField<bool>>,
 }
-
 impl DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
     #[doc = "Set the field `contact_id`.\n"]
     pub fn set_contact_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.contact_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `is_essential`.\n"]
     pub fn set_is_essential(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_essential = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
     type O = BlockAssignable<DataSsmcontactsPlanStageElTargetElContactTargetInfoEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -312,9 +266,7 @@ impl ToListMappable for DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
         })
     }
 }
-
 pub struct BuildDataSsmcontactsPlanStageElTargetElContactTargetInfoEl {}
-
 impl BuildDataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
     pub fn build(self) -> DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
         DataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
@@ -323,12 +275,10 @@ impl BuildDataSsmcontactsPlanStageElTargetElContactTargetInfoEl {
         }
     }
 }
-
 pub struct DataSsmcontactsPlanStageElTargetElContactTargetInfoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsmcontactsPlanStageElTargetElContactTargetInfoElRef {
     fn new(
         shared: StackShared,
@@ -340,23 +290,19 @@ impl Ref for DataSsmcontactsPlanStageElTargetElContactTargetInfoElRef {
         }
     }
 }
-
 impl DataSsmcontactsPlanStageElTargetElContactTargetInfoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `contact_id` after provisioning.\n"]
     pub fn contact_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.contact_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `is_essential` after provisioning.\n"]
     pub fn is_essential(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.is_essential", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataSsmcontactsPlanStageElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -364,7 +310,6 @@ pub struct DataSsmcontactsPlanStageElTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     contact_target_info: Option<ListField<DataSsmcontactsPlanStageElTargetElContactTargetInfoEl>>,
 }
-
 impl DataSsmcontactsPlanStageElTargetEl {
     #[doc = "Set the field `channel_target_info`.\n"]
     pub fn set_channel_target_info(
@@ -374,7 +319,6 @@ impl DataSsmcontactsPlanStageElTargetEl {
         self.channel_target_info = Some(v.into());
         self
     }
-
     #[doc = "Set the field `contact_target_info`.\n"]
     pub fn set_contact_target_info(
         mut self,
@@ -384,10 +328,8 @@ impl DataSsmcontactsPlanStageElTargetEl {
         self
     }
 }
-
 impl ToListMappable for DataSsmcontactsPlanStageElTargetEl {
     type O = BlockAssignable<DataSsmcontactsPlanStageElTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -396,9 +338,7 @@ impl ToListMappable for DataSsmcontactsPlanStageElTargetEl {
         })
     }
 }
-
 pub struct BuildDataSsmcontactsPlanStageElTargetEl {}
-
 impl BuildDataSsmcontactsPlanStageElTargetEl {
     pub fn build(self) -> DataSsmcontactsPlanStageElTargetEl {
         DataSsmcontactsPlanStageElTargetEl {
@@ -407,12 +347,10 @@ impl BuildDataSsmcontactsPlanStageElTargetEl {
         }
     }
 }
-
 pub struct DataSsmcontactsPlanStageElTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsmcontactsPlanStageElTargetElRef {
     fn new(shared: StackShared, base: String) -> DataSsmcontactsPlanStageElTargetElRef {
         DataSsmcontactsPlanStageElTargetElRef {
@@ -421,12 +359,10 @@ impl Ref for DataSsmcontactsPlanStageElTargetElRef {
         }
     }
 }
-
 impl DataSsmcontactsPlanStageElTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `channel_target_info` after provisioning.\n"]
     pub fn channel_target_info(
         &self,
@@ -436,7 +372,6 @@ impl DataSsmcontactsPlanStageElTargetElRef {
             format!("{}.channel_target_info", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `contact_target_info` after provisioning.\n"]
     pub fn contact_target_info(
         &self,
@@ -447,7 +382,6 @@ impl DataSsmcontactsPlanStageElTargetElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataSsmcontactsPlanStageEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -455,14 +389,12 @@ pub struct DataSsmcontactsPlanStageEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target: Option<ListField<DataSsmcontactsPlanStageElTargetEl>>,
 }
-
 impl DataSsmcontactsPlanStageEl {
     #[doc = "Set the field `duration_in_minutes`.\n"]
     pub fn set_duration_in_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.duration_in_minutes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target`.\n"]
     pub fn set_target(
         mut self,
@@ -472,10 +404,8 @@ impl DataSsmcontactsPlanStageEl {
         self
     }
 }
-
 impl ToListMappable for DataSsmcontactsPlanStageEl {
     type O = BlockAssignable<DataSsmcontactsPlanStageEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -484,9 +414,7 @@ impl ToListMappable for DataSsmcontactsPlanStageEl {
         })
     }
 }
-
 pub struct BuildDataSsmcontactsPlanStageEl {}
-
 impl BuildDataSsmcontactsPlanStageEl {
     pub fn build(self) -> DataSsmcontactsPlanStageEl {
         DataSsmcontactsPlanStageEl {
@@ -495,12 +423,10 @@ impl BuildDataSsmcontactsPlanStageEl {
         }
     }
 }
-
 pub struct DataSsmcontactsPlanStageElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsmcontactsPlanStageElRef {
     fn new(shared: StackShared, base: String) -> DataSsmcontactsPlanStageElRef {
         DataSsmcontactsPlanStageElRef {
@@ -509,12 +435,10 @@ impl Ref for DataSsmcontactsPlanStageElRef {
         }
     }
 }
-
 impl DataSsmcontactsPlanStageElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `duration_in_minutes` after provisioning.\n"]
     pub fn duration_in_minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -522,7 +446,6 @@ impl DataSsmcontactsPlanStageElRef {
             format!("{}.duration_in_minutes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> ListRef<DataSsmcontactsPlanStageElTargetElRef> {
         ListRef::new(self.shared().clone(), format!("{}.target", self.base))

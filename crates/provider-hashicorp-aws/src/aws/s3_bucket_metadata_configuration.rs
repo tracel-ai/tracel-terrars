@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3BucketMetadataConfigurationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct S3BucketMetadataConfigurationData {
     timeouts: Option<S3BucketMetadataConfigurationTimeoutsEl>,
     dynamic: S3BucketMetadataConfigurationDynamic,
 }
-
 struct S3BucketMetadataConfiguration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3BucketMetadataConfigurationData>,
 }
-
 #[derive(Clone)]
 pub struct S3BucketMetadataConfiguration(Rc<S3BucketMetadataConfiguration_>);
-
 impl S3BucketMetadataConfiguration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl S3BucketMetadataConfiguration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl S3BucketMetadataConfiguration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,19 +92,16 @@ impl S3BucketMetadataConfiguration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `expected_bucket_owner`.\n"]
     pub fn set_expected_bucket_owner(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().expected_bucket_owner = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `metadata_configuration`.\n"]
     pub fn set_metadata_configuration(
         self,
@@ -132,13 +117,11 @@ impl S3BucketMetadataConfiguration {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<S3BucketMetadataConfigurationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,7 +129,6 @@ impl S3BucketMetadataConfiguration {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,7 +136,6 @@ impl S3BucketMetadataConfiguration {
             format!("{}.expected_bucket_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,7 +143,6 @@ impl S3BucketMetadataConfiguration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `metadata_configuration` after provisioning.\n"]
     pub fn metadata_configuration(
         &self,
@@ -172,7 +152,6 @@ impl S3BucketMetadataConfiguration {
             format!("{}.metadata_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3BucketMetadataConfigurationTimeoutsElRef {
         S3BucketMetadataConfigurationTimeoutsElRef::new(
@@ -181,7 +160,6 @@ impl S3BucketMetadataConfiguration {
         )
     }
 }
-
 impl Referable for S3BucketMetadataConfiguration {
     fn extract_ref(&self) -> String {
         format!(
@@ -191,38 +169,30 @@ impl Referable for S3BucketMetadataConfiguration {
         )
     }
 }
-
 impl Resource for S3BucketMetadataConfiguration {}
-
 impl ToListMappable for S3BucketMetadataConfiguration {
     type O = ListRef<S3BucketMetadataConfigurationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3BucketMetadataConfiguration_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3_bucket_metadata_configuration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3BucketMetadataConfiguration {
     pub tf_id: String,
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
-
 impl BuildS3BucketMetadataConfiguration {
     pub fn build(self, stack: &mut Stack) -> S3BucketMetadataConfiguration {
         let out = S3BucketMetadataConfiguration(Rc::new(S3BucketMetadataConfiguration_ {
@@ -245,27 +215,22 @@ impl BuildS3BucketMetadataConfiguration {
         out
     }
 }
-
 pub struct S3BucketMetadataConfigurationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3BucketMetadataConfigurationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +238,6 @@ impl S3BucketMetadataConfigurationRef {
             format!("{}.bucket", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +245,6 @@ impl S3BucketMetadataConfigurationRef {
             format!("{}.expected_bucket_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -289,7 +252,6 @@ impl S3BucketMetadataConfigurationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `metadata_configuration` after provisioning.\n"]
     pub fn metadata_configuration(
         &self,
@@ -299,7 +261,6 @@ impl S3BucketMetadataConfigurationRef {
             format!("{}.metadata_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3BucketMetadataConfigurationTimeoutsElRef {
         S3BucketMetadataConfigurationTimeoutsElRef::new(
@@ -308,7 +269,6 @@ impl S3BucketMetadataConfigurationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -318,30 +278,25 @@ pub struct S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     table_namespace: Option<PrimField<String>>,
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
     #[doc = "Set the field `table_bucket_arn`.\n"]
     pub fn set_table_bucket_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.table_bucket_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_bucket_type`.\n"]
     pub fn set_table_bucket_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.table_bucket_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_namespace`.\n"]
     pub fn set_table_namespace(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.table_namespace = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
     type O = BlockAssignable<S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -350,9 +305,7 @@ impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElDest
         })
     }
 }
-
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {}
-
 impl BuildS3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
     pub fn build(self) -> S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
         S3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
@@ -362,12 +315,10 @@ impl BuildS3BucketMetadataConfigurationMetadataConfigurationElDestinationEl {
         }
     }
 }
-
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
     fn new(
         shared: StackShared,
@@ -379,12 +330,10 @@ impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRe
         }
     }
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `table_bucket_arn` after provisioning.\n"]
     pub fn table_bucket_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,7 +341,6 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
             format!("{}.table_bucket_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_bucket_type` after provisioning.\n"]
     pub fn table_bucket_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -400,7 +348,6 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
             format!("{}.table_bucket_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_namespace` after provisioning.\n"]
     pub fn table_namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -409,7 +356,6 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl
 {
@@ -417,114 +363,30 @@ pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableCon
     kms_key_arn: Option<PrimField<String>>,
     sse_algorithm: PrimField<String>,
 }
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl {
-    #[doc = "Set the field `kms_key_arn`.\n"]
-    pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.kms_key_arn = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl {
-    type O =
-        BlockAssignable<
-            S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl { # [doc = "Set the field `kms_key_arn`.\n"] pub fn set_kms_key_arn (mut self , v : impl Into < PrimField < String > >) -> Self { self . kms_key_arn = Some (v . into ()) ; self } }
+impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl { type O = BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl
 {
     #[doc = ""]
     pub sse_algorithm: PrimField<String>,
 }
-
-impl BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl {
-    pub fn build(
-        self,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl {
-        S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl {
-            kms_key_arn: core::default::Default::default(),
-            sse_algorithm: self.sse_algorithm,
-        }
-    }
-}
-
+impl BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl { pub fn build (self) -> S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl { S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl { kms_key_arn : core :: default :: Default :: default () , sse_algorithm : self . sse_algorithm , } } }
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef {
-        S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
-    pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"]
-    pub fn sse_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sse_algorithm", self.base))
-    }
-}
-
+impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef { fn new (shared : StackShared , base : String) -> S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef { S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"] pub fn kms_key_arn (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.kms_key_arn" , self . base)) } # [doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"] pub fn sse_algorithm (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.sse_algorithm" , self . base)) } }
 #[derive(Serialize, Default)]
-struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElDynamic {
-    encryption_configuration: Option<
-        DynamicBlock<
-            S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl,
-        >,
-    >,
-}
-
+struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElDynamic { encryption_configuration : Option < DynamicBlock < S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl {
-    configuration_state: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    encryption_configuration: Option<
-        Vec<
-            S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl,
-        >,
-    >,
-    dynamic: S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElDynamic,
-}
-
+pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl { configuration_state : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] encryption_configuration : Option < Vec < S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl > > , dynamic : S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElDynamic , }
 impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl {
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -537,14 +399,12 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigura
         self
     }
 }
-
 impl ToListMappable
     for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl
 {
     type O = BlockAssignable<
         S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -553,12 +413,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl {
     #[doc = ""]
     pub configuration_state: PrimField<String>,
 }
-
 impl BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationEl {
     pub fn build(
         self,
@@ -570,12 +428,10 @@ impl BuildS3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConf
         }
     }
 }
-
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -587,12 +443,10 @@ impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableC
         }
     }
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `configuration_state` after provisioning.\n"]
     pub fn configuration_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -600,30 +454,21 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigura
             format!("{}.configuration_state", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_arn` after provisioning.\n"]
     pub fn table_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(
-        &self,
-    ) -> ListRef<
-        S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]    pub fn encryption_configuration (& self) -> ListRef < S3BucketMetadataConfigurationMetadataConfigurationElInventoryTableConfigurationElEncryptionConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.encryption_configuration", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl
 {
@@ -631,81 +476,21 @@ pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfi
     kms_key_arn: Option<PrimField<String>>,
     sse_algorithm: PrimField<String>,
 }
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl {
-    #[doc = "Set the field `kms_key_arn`.\n"]
-    pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.kms_key_arn = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl {
-    type O =
-        BlockAssignable<
-            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl { # [doc = "Set the field `kms_key_arn`.\n"] pub fn set_kms_key_arn (mut self , v : impl Into < PrimField < String > >) -> Self { self . kms_key_arn = Some (v . into ()) ; self } }
+impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl { type O = BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl
 {
     #[doc = ""]
     pub sse_algorithm: PrimField<String>,
 }
-
-impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl {
-    pub fn build(
-        self,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl {
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl {
-            kms_key_arn: core::default::Default::default(),
-            sse_algorithm: self.sse_algorithm,
-        }
-    }
-}
-
+impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl { pub fn build (self) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl { S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl { kms_key_arn : core :: default :: Default :: default () , sse_algorithm : self . sse_algorithm , } } }
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef {
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
-    pub fn kms_key_arn(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"]
-    pub fn sse_algorithm(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.sse_algorithm", self.base))
-    }
-}
-
+impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef { fn new (shared : StackShared , base : String) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef { S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"] pub fn kms_key_arn (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.kms_key_arn" , self . base)) } # [doc = "Get a reference to the value of field `sse_algorithm` after provisioning.\n"] pub fn sse_algorithm (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.sse_algorithm" , self . base)) } }
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl
 {
@@ -713,120 +498,30 @@ pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfi
     days: Option<PrimField<f64>>,
     expiration: PrimField<String>,
 }
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl {
-    #[doc = "Set the field `days`.\n"]
-    pub fn set_days(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.days = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl {
-    type O =
-        BlockAssignable<
-            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl { # [doc = "Set the field `days`.\n"] pub fn set_days (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . days = Some (v . into ()) ; self } }
+impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl { type O = BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl
 {
     #[doc = ""]
     pub expiration: PrimField<String>,
 }
-
-impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl {
-    pub fn build(
-        self,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl {
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl {
-            days: core::default::Default::default(),
-            expiration: self.expiration,
-        }
-    }
-}
-
+impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl { pub fn build (self) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl { S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl { days : core :: default :: Default :: default () , expiration : self . expiration , } } }
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef {
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `days` after provisioning.\n"]
-    pub fn days(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.days", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
-    pub fn expiration(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.expiration", self.base))
-    }
-}
-
+impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef { fn new (shared : StackShared , base : String) -> S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef { S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef { shared : shared , base : base . to_string () , } } }
+impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `days` after provisioning.\n"] pub fn days (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.days" , self . base)) } # [doc = "Get a reference to the value of field `expiration` after provisioning.\n"] pub fn expiration (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.expiration" , self . base)) } }
 #[derive(Serialize, Default)]
-struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElDynamic {
-    encryption_configuration: Option<
-        DynamicBlock<
-            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl,
-        >,
-    >,
-    record_expiration: Option<
-        DynamicBlock<
-            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl,
-        >,
-    >,
-}
-
+struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElDynamic { encryption_configuration : Option < DynamicBlock < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl >> , record_expiration : Option < DynamicBlock < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl >> , }
 #[derive(Serialize)]
-pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    encryption_configuration: Option<
-        Vec<S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl>,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    record_expiration: Option<
-        Vec<S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl>,
-    >,
-    dynamic: S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElDynamic,
-}
-
+pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] encryption_configuration : Option < Vec < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl > > , # [serde (skip_serializing_if = "Option::is_none")] record_expiration : Option < Vec < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl > > , dynamic : S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElDynamic , }
 impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl {
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -838,18 +533,10 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurati
         }
         self
     }
-
     #[doc = "Set the field `record_expiration`.\n"]
     pub fn set_record_expiration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -862,14 +549,12 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurati
         self
     }
 }
-
 impl ToListMappable
     for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl
 {
     type O = BlockAssignable<
         S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -878,9 +563,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl {}
-
 impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationEl {
     pub fn build(
         self,
@@ -892,12 +575,10 @@ impl BuildS3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfig
         }
     }
 }
-
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -909,47 +590,31 @@ impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElJournalTableCon
         }
     }
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `table_arn` after provisioning.\n"]
     pub fn table_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
-    pub fn encryption_configuration(
-        &self,
-    ) -> ListRef<
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]    pub fn encryption_configuration (& self) -> ListRef < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElEncryptionConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.encryption_configuration", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `record_expiration` after provisioning.\n"]
-    pub fn record_expiration(
-        &self,
-    ) -> ListRef<
-        S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `record_expiration` after provisioning.\n"]    pub fn record_expiration (& self) -> ListRef < S3BucketMetadataConfigurationMetadataConfigurationElJournalTableConfigurationElRecordExpirationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.record_expiration", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketMetadataConfigurationMetadataConfigurationElDynamic {
     inventory_table_configuration: Option<
@@ -963,7 +628,6 @@ struct S3BucketMetadataConfigurationMetadataConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationMetadataConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -976,7 +640,6 @@ pub struct S3BucketMetadataConfigurationMetadataConfigurationEl {
     >,
     dynamic: S3BucketMetadataConfigurationMetadataConfigurationElDynamic,
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationEl {
     #[doc = "Set the field `inventory_table_configuration`.\n"]
     pub fn set_inventory_table_configuration(
@@ -997,7 +660,6 @@ impl S3BucketMetadataConfigurationMetadataConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `journal_table_configuration`.\n"]
     pub fn set_journal_table_configuration(
         mut self,
@@ -1018,10 +680,8 @@ impl S3BucketMetadataConfigurationMetadataConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationEl {
     type O = BlockAssignable<S3BucketMetadataConfigurationMetadataConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1030,9 +690,7 @@ impl ToListMappable for S3BucketMetadataConfigurationMetadataConfigurationEl {
         })
     }
 }
-
 pub struct BuildS3BucketMetadataConfigurationMetadataConfigurationEl {}
-
 impl BuildS3BucketMetadataConfigurationMetadataConfigurationEl {
     pub fn build(self) -> S3BucketMetadataConfigurationMetadataConfigurationEl {
         S3BucketMetadataConfigurationMetadataConfigurationEl {
@@ -1042,12 +700,10 @@ impl BuildS3BucketMetadataConfigurationMetadataConfigurationEl {
         }
     }
 }
-
 pub struct S3BucketMetadataConfigurationMetadataConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1059,19 +715,16 @@ impl Ref for S3BucketMetadataConfigurationMetadataConfigurationElRef {
         }
     }
 }
-
 impl S3BucketMetadataConfigurationMetadataConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(
         &self,
     ) -> ListRef<S3BucketMetadataConfigurationMetadataConfigurationElDestinationElRef> {
         ListRef::new(self.shared().clone(), format!("{}.destination", self.base))
     }
-
     #[doc = "Get a reference to the value of field `inventory_table_configuration` after provisioning.\n"]
     pub fn inventory_table_configuration(
         &self,
@@ -1082,7 +735,6 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElRef {
             format!("{}.inventory_table_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `journal_table_configuration` after provisioning.\n"]
     pub fn journal_table_configuration(
         &self,
@@ -1094,13 +746,11 @@ impl S3BucketMetadataConfigurationMetadataConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3BucketMetadataConfigurationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     create: Option<PrimField<String>>,
 }
-
 impl S3BucketMetadataConfigurationTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1108,10 +758,8 @@ impl S3BucketMetadataConfigurationTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for S3BucketMetadataConfigurationTimeoutsEl {
     type O = BlockAssignable<S3BucketMetadataConfigurationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1120,9 +768,7 @@ impl ToListMappable for S3BucketMetadataConfigurationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildS3BucketMetadataConfigurationTimeoutsEl {}
-
 impl BuildS3BucketMetadataConfigurationTimeoutsEl {
     pub fn build(self) -> S3BucketMetadataConfigurationTimeoutsEl {
         S3BucketMetadataConfigurationTimeoutsEl {
@@ -1130,12 +776,10 @@ impl BuildS3BucketMetadataConfigurationTimeoutsEl {
         }
     }
 }
-
 pub struct S3BucketMetadataConfigurationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3BucketMetadataConfigurationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> S3BucketMetadataConfigurationTimeoutsElRef {
         S3BucketMetadataConfigurationTimeoutsElRef {
@@ -1144,18 +788,15 @@ impl Ref for S3BucketMetadataConfigurationTimeoutsElRef {
         }
     }
 }
-
 impl S3BucketMetadataConfigurationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3BucketMetadataConfigurationDynamic {
     metadata_configuration:

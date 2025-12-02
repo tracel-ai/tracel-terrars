@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerDataQualityJobDefinitionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -44,47 +43,38 @@ struct SagemakerDataQualityJobDefinitionData {
     stopping_condition: Option<Vec<SagemakerDataQualityJobDefinitionStoppingConditionEl>>,
     dynamic: SagemakerDataQualityJobDefinitionDynamic,
 }
-
 struct SagemakerDataQualityJobDefinition_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerDataQualityJobDefinitionData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerDataQualityJobDefinition(Rc<SagemakerDataQualityJobDefinition_>);
-
 impl SagemakerDataQualityJobDefinition {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -103,7 +93,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -113,7 +102,6 @@ impl SagemakerDataQualityJobDefinition {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -123,37 +111,31 @@ impl SagemakerDataQualityJobDefinition {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `data_quality_app_specification`.\n"]
     pub fn set_data_quality_app_specification(
         self,
@@ -173,7 +155,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `data_quality_baseline_config`.\n"]
     pub fn set_data_quality_baseline_config(
         self,
@@ -193,7 +174,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `data_quality_job_input`.\n"]
     pub fn set_data_quality_job_input(
         self,
@@ -209,7 +189,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `data_quality_job_output_config`.\n"]
     pub fn set_data_quality_job_output_config(
         self,
@@ -229,7 +208,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `job_resources`.\n"]
     pub fn set_job_resources(
         self,
@@ -245,7 +223,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `network_config`.\n"]
     pub fn set_network_config(
         self,
@@ -261,7 +238,6 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Set the field `stopping_condition`.\n"]
     pub fn set_stopping_condition(
         self,
@@ -277,17 +253,14 @@ impl SagemakerDataQualityJobDefinition {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +268,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,7 +275,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -311,7 +282,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -319,7 +289,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -327,7 +296,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_app_specification` after provisioning.\n"]
     pub fn data_quality_app_specification(
         &self,
@@ -337,7 +305,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.data_quality_app_specification", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_baseline_config` after provisioning.\n"]
     pub fn data_quality_baseline_config(
         &self,
@@ -347,7 +314,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.data_quality_baseline_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_job_input` after provisioning.\n"]
     pub fn data_quality_job_input(
         &self,
@@ -357,7 +323,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.data_quality_job_input", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_job_output_config` after provisioning.\n"]
     pub fn data_quality_job_output_config(
         &self,
@@ -367,7 +332,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.data_quality_job_output_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_resources` after provisioning.\n"]
     pub fn job_resources(&self) -> ListRef<SagemakerDataQualityJobDefinitionJobResourcesElRef> {
         ListRef::new(
@@ -375,7 +339,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.job_resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_config` after provisioning.\n"]
     pub fn network_config(&self) -> ListRef<SagemakerDataQualityJobDefinitionNetworkConfigElRef> {
         ListRef::new(
@@ -383,7 +346,6 @@ impl SagemakerDataQualityJobDefinition {
             format!("{}.network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stopping_condition` after provisioning.\n"]
     pub fn stopping_condition(
         &self,
@@ -394,7 +356,6 @@ impl SagemakerDataQualityJobDefinition {
         )
     }
 }
-
 impl Referable for SagemakerDataQualityJobDefinition {
     fn extract_ref(&self) -> String {
         format!(
@@ -404,38 +365,30 @@ impl Referable for SagemakerDataQualityJobDefinition {
         )
     }
 }
-
 impl Resource for SagemakerDataQualityJobDefinition {}
-
 impl ToListMappable for SagemakerDataQualityJobDefinition {
     type O = ListRef<SagemakerDataQualityJobDefinitionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerDataQualityJobDefinition_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_data_quality_job_definition".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinition {
     pub tf_id: String,
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildSagemakerDataQualityJobDefinition {
     pub fn build(self, stack: &mut Stack) -> SagemakerDataQualityJobDefinition {
         let out = SagemakerDataQualityJobDefinition(Rc::new(SagemakerDataQualityJobDefinition_ {
@@ -466,37 +419,30 @@ impl BuildSagemakerDataQualityJobDefinition {
         out
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +450,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -512,7 +457,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -520,7 +464,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -528,7 +471,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -536,7 +478,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_app_specification` after provisioning.\n"]
     pub fn data_quality_app_specification(
         &self,
@@ -546,7 +487,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.data_quality_app_specification", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_baseline_config` after provisioning.\n"]
     pub fn data_quality_baseline_config(
         &self,
@@ -556,7 +496,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.data_quality_baseline_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_job_input` after provisioning.\n"]
     pub fn data_quality_job_input(
         &self,
@@ -566,7 +505,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.data_quality_job_input", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_quality_job_output_config` after provisioning.\n"]
     pub fn data_quality_job_output_config(
         &self,
@@ -576,7 +514,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.data_quality_job_output_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_resources` after provisioning.\n"]
     pub fn job_resources(&self) -> ListRef<SagemakerDataQualityJobDefinitionJobResourcesElRef> {
         ListRef::new(
@@ -584,7 +521,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.job_resources", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_config` after provisioning.\n"]
     pub fn network_config(&self) -> ListRef<SagemakerDataQualityJobDefinitionNetworkConfigElRef> {
         ListRef::new(
@@ -592,7 +528,6 @@ impl SagemakerDataQualityJobDefinitionRef {
             format!("{}.network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `stopping_condition` after provisioning.\n"]
     pub fn stopping_condition(
         &self,
@@ -603,7 +538,6 @@ impl SagemakerDataQualityJobDefinitionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -614,14 +548,12 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     record_preprocessor_source_uri: Option<PrimField<String>>,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.environment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `post_analytics_processor_source_uri`.\n"]
     pub fn set_post_analytics_processor_source_uri(
         mut self,
@@ -630,17 +562,14 @@ impl SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
         self.post_analytics_processor_source_uri = Some(v.into());
         self
     }
-
     #[doc = "Set the field `record_preprocessor_source_uri`.\n"]
     pub fn set_record_preprocessor_source_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.record_preprocessor_source_uri = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -649,12 +578,10 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityAppSpecifica
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     #[doc = ""]
     pub image_uri: PrimField<String>,
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
         SagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
@@ -665,12 +592,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityAppSpecificationEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
     fn new(
         shared: StackShared,
@@ -682,22 +607,18 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `image_uri` after provisioning.\n"]
     pub fn image_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.image_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `post_analytics_processor_source_uri` after provisioning.\n"]
     pub fn post_analytics_processor_source_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -705,7 +626,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
             format!("{}.post_analytics_processor_source_uri", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `record_preprocessor_source_uri` after provisioning.\n"]
     pub fn record_preprocessor_source_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -714,13 +634,11 @@ impl SagemakerDataQualityJobDefinitionDataQualityAppSpecificationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_uri: Option<PrimField<String>>,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl {
     #[doc = "Set the field `s3_uri`.\n"]
     pub fn set_s3_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -728,14 +646,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsReso
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -744,10 +660,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl {
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceEl {
     pub fn build(
         self,
@@ -757,12 +671,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraint
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceElRef {
     fn new(
         shared: StackShared,
@@ -774,24 +686,20 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstra
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElConstraintsResourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_uri: Option<PrimField<String>>,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl {
     #[doc = "Set the field `s3_uri`.\n"]
     pub fn set_s3_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -799,14 +707,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResou
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -815,10 +721,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl {
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceEl {
     pub fn build(
         self,
@@ -828,12 +732,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatistics
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceElRef {
     fn new(
         shared: StackShared,
@@ -845,18 +747,15 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatist
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElStatisticsResourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElDynamic {
     constraints_resource: Option<
@@ -870,7 +769,6 @@ struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -883,7 +781,6 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
     >,
     dynamic: SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElDynamic,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
     #[doc = "Set the field `constraints_resource`.\n"]
     pub fn set_constraints_resource(
@@ -904,7 +801,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `statistics_resource`.\n"]
     pub fn set_statistics_resource(
         mut self,
@@ -925,10 +821,8 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -937,9 +831,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityBaselineConf
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
         SagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
@@ -949,12 +841,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityBaselineConfigEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
     fn new(
         shared: StackShared,
@@ -966,12 +856,10 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `constraints_resource` after provisioning.\n"]
     pub fn constraints_resource(
         &self,
@@ -982,7 +870,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
             format!("{}.constraints_resource", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `statistics_resource` after provisioning.\n"]
     pub fn statistics_resource(
         &self,
@@ -994,14 +881,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityBaselineConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl
 {
     #[serde(skip_serializing_if = "Option::is_none")]
     header: Option<PrimField<bool>>,
 }
-
 impl
     SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl
 {
@@ -1011,71 +896,23 @@ impl
         self
     }
 }
-
-impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl {
-    type O =
-        BlockAssignable<
-            SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl { type O = BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl
 {}
-
-impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl {
-    pub fn build(
-        self,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl {
-        SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl {
-            header: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl { pub fn build (self) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl { SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl { header : core :: default :: Default :: default () , } } }
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef {
-        SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
-    pub fn header(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.header", self.base))
-    }
-}
-
+impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef { fn new (shared : StackShared , base : String) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef { SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef { shared : shared , base : base . to_string () , } } }
+impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `header` after provisioning.\n"] pub fn header (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.header" , self . base)) } }
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl
 {
     #[serde(skip_serializing_if = "Option::is_none")]
     line: Option<PrimField<bool>>,
 }
-
 impl
     SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl
 {
@@ -1085,95 +922,26 @@ impl
         self
     }
 }
-
-impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl {
-    type O =
-        BlockAssignable<
-            SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl { type O = BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl
 {}
-
-impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl {
-    pub fn build(
-        self,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl {
-        SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl {
-            line: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl { pub fn build (self) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl { SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl { line : core :: default :: Default :: default () , } } }
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef {
-        SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `line` after provisioning.\n"]
-    pub fn line(&self) -> PrimExpr<bool> {
-        PrimExpr::new(self.shared().clone(), format!("{}.line", self.base))
-    }
-}
-
+impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef { fn new (shared : StackShared , base : String) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef { SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef { shared : shared , base : base . to_string () , } } }
+impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `line` after provisioning.\n"] pub fn line (& self) -> PrimExpr < bool > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.line" , self . base)) } }
 #[derive(Serialize, Default)]
-struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElDynamic {
-    csv: Option<
-        DynamicBlock<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl>,
-    >,
-    json: Option<
-        DynamicBlock<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl>,
-    >,
-}
-
+struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElDynamic { csv : Option < DynamicBlock < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl >> , json : Option < DynamicBlock < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl >> , }
 #[derive(Serialize)]
-pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    csv: Option<Vec<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    json: Option<Vec<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl>>,
-    dynamic: SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElDynamic,
-}
-
+pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl { # [serde (skip_serializing_if = "Option::is_none")] csv : Option < Vec < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl > > , # [serde (skip_serializing_if = "Option::is_none")] json : Option < Vec < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl > > , dynamic : SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElDynamic , }
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl {
     #[doc = "Set the field `csv`.\n"]
     pub fn set_csv(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1185,18 +953,10 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
         }
         self
     }
-
     #[doc = "Set the field `json`.\n"]
     pub fn set_json(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1209,14 +969,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1225,10 +983,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl
 {}
-
 impl
     BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl
 {
@@ -1243,98 +999,47 @@ impl
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef {
-        SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef { fn new (shared : StackShared , base : String) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef { SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef { shared : shared , base : base . to_string () , } } }
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `csv` after provisioning.\n"]
-    pub fn csv(
-        &self,
-    ) -> ListRef<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef>{
+    #[doc = "Get a reference to the value of field `csv` after provisioning.\n"]    pub fn csv (& self) -> ListRef < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElCsvElRef >{
         ListRef::new(self.shared().clone(), format!("{}.csv", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `json` after provisioning.\n"]
-    pub fn json(
-        &self,
-    ) -> ListRef<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef>{
+    #[doc = "Get a reference to the value of field `json` after provisioning.\n"]    pub fn json (& self) -> ListRef < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElJsonElRef >{
         ListRef::new(self.shared().clone(), format!("{}.json", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
-struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDynamic {
-    dataset_format: Option<
-        DynamicBlock<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl>,
-    >,
-}
-
+struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDynamic { dataset_format : Option < DynamicBlock < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl >> , }
 #[derive(Serialize)]
-pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl {
-    data_captured_destination_s3_uri: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    local_path: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_data_distribution_type: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_input_mode: Option<PrimField<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    dataset_format: Option<
-        Vec<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl>,
-    >,
-    dynamic: SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDynamic,
-}
-
+pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl { data_captured_destination_s3_uri : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] local_path : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] s3_data_distribution_type : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] s3_input_mode : Option < PrimField < String > > , # [serde (skip_serializing_if = "Option::is_none")] dataset_format : Option < Vec < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl > > , dynamic : SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDynamic , }
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl {
     #[doc = "Set the field `local_path`.\n"]
     pub fn set_local_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.local_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_data_distribution_type`.\n"]
     pub fn set_s3_data_distribution_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_data_distribution_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_input_mode`.\n"]
     pub fn set_s3_input_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_input_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dataset_format`.\n"]
     pub fn set_dataset_format(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1347,14 +1052,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1363,12 +1066,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl {
     #[doc = ""]
     pub data_captured_destination_s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl {
     pub fn build(
         self,
@@ -1383,12 +1084,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformIn
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElRef {
     fn new(
         shared: StackShared,
@@ -1400,12 +1099,10 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransfor
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_captured_destination_s3_uri` after provisioning.\n"]
     pub fn data_captured_destination_s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1413,12 +1110,10 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
             format!("{}.data_captured_destination_s3_uri", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `local_path` after provisioning.\n"]
     pub fn local_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.local_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_data_distribution_type` after provisioning.\n"]
     pub fn s3_data_distribution_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1426,7 +1121,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
             format!("{}.s3_data_distribution_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_input_mode` after provisioning.\n"]
     pub fn s3_input_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1434,18 +1128,13 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputEl
             format!("{}.s3_input_mode", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `dataset_format` after provisioning.\n"]
-    pub fn dataset_format(
-        &self,
-    ) -> ListRef<SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef>{
+    #[doc = "Get a reference to the value of field `dataset_format` after provisioning.\n"]    pub fn dataset_format (& self) -> ListRef < SagemakerDataQualityJobDefinitionDataQualityJobInputElBatchTransformInputElDatasetFormatElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.dataset_format", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
     endpoint_name: PrimField<String>,
@@ -1456,30 +1145,25 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_input_mode: Option<PrimField<String>>,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
     #[doc = "Set the field `local_path`.\n"]
     pub fn set_local_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.local_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_data_distribution_type`.\n"]
     pub fn set_s3_data_distribution_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_data_distribution_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_input_mode`.\n"]
     pub fn set_s3_input_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_input_mode = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1488,12 +1172,10 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputElEn
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
     #[doc = ""]
     pub endpoint_name: PrimField<String>,
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
         SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl {
@@ -1504,12 +1186,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl 
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
     fn new(
         shared: StackShared,
@@ -1521,12 +1201,10 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInput
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint_name` after provisioning.\n"]
     pub fn endpoint_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1534,12 +1212,10 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
             format!("{}.endpoint_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `local_path` after provisioning.\n"]
     pub fn local_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.local_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_data_distribution_type` after provisioning.\n"]
     pub fn s3_data_distribution_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1547,7 +1223,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
             format!("{}.s3_data_distribution_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_input_mode` after provisioning.\n"]
     pub fn s3_input_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1556,7 +1231,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionDataQualityJobInputElDynamic {
     batch_transform_input: Option<
@@ -1565,7 +1239,6 @@ struct SagemakerDataQualityJobDefinitionDataQualityJobInputElDynamic {
     endpoint_input:
         Option<DynamicBlock<SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1576,7 +1249,6 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         Option<Vec<SagemakerDataQualityJobDefinitionDataQualityJobInputElEndpointInputEl>>,
     dynamic: SagemakerDataQualityJobDefinitionDataQualityJobInputElDynamic,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
     #[doc = "Set the field `batch_transform_input`.\n"]
     pub fn set_batch_transform_input(
@@ -1597,7 +1269,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         }
         self
     }
-
     #[doc = "Set the field `endpoint_input`.\n"]
     pub fn set_endpoint_input(
         mut self,
@@ -1616,10 +1287,8 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionDataQualityJobInputEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1628,9 +1297,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobInputEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         SagemakerDataQualityJobDefinitionDataQualityJobInputEl {
@@ -1640,12 +1307,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityJobInputEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
     fn new(
         shared: StackShared,
@@ -1657,12 +1322,10 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `batch_transform_input` after provisioning.\n"]
     pub fn batch_transform_input(
         &self,
@@ -1673,7 +1336,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
             format!("{}.batch_transform_input", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_input` after provisioning.\n"]
     pub fn endpoint_input(
         &self,
@@ -1684,7 +1346,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobInputElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl
 {
@@ -1694,28 +1355,24 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitori
     s3_upload_mode: Option<PrimField<String>>,
     s3_uri: PrimField<String>,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl {
     #[doc = "Set the field `local_path`.\n"]
     pub fn set_local_path(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.local_path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `s3_upload_mode`.\n"]
     pub fn set_s3_upload_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.s3_upload_mode = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1724,13 +1381,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl
 {
     #[doc = ""]
     pub s3_uri: PrimField<String>,
 }
-
 impl
     BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl
 {
@@ -1745,35 +1400,20 @@ impl
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef {
-        SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef { fn new (shared : StackShared , base : String) -> SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef { SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef { shared : shared , base : base . to_string () , } } }
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `local_path` after provisioning.\n"]
     pub fn local_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.local_path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_upload_mode` after provisioning.\n"]
     pub fn s3_upload_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1781,39 +1421,20 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutp
             format!("{}.s3_upload_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
-struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElDynamic {
-    s3_output: Option<
-        DynamicBlock<SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl>,
-    >,
-}
-
+struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElDynamic { s3_output : Option < DynamicBlock < SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl >> , }
 #[derive(Serialize)]
-pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_output: Option<Vec<SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl>>,
-    dynamic: SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElDynamic,
-}
-
+pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl { # [serde (skip_serializing_if = "Option::is_none")] s3_output : Option < Vec < SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl > > , dynamic : SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElDynamic , }
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl {
     #[doc = "Set the field `s3_output`.\n"]
     pub fn set_s3_output(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1826,14 +1447,12 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutp
         self
     }
 }
-
 impl ToListMappable
     for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl
 {
     type O = BlockAssignable<
         SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1842,10 +1461,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl {
 }
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsEl {
     pub fn build(
         self,
@@ -1856,12 +1473,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitorin
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElRef {
     fn new(
         shared: StackShared,
@@ -1873,20 +1488,14 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonito
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `s3_output` after provisioning.\n"]
-    pub fn s3_output(
-        &self,
-    ) -> ListRef<SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef>{
+    #[doc = "Get a reference to the value of field `s3_output` after provisioning.\n"]    pub fn s3_output (& self) -> ListRef < SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElMonitoringOutputsElS3OutputElRef >{
         ListRef::new(self.shared().clone(), format!("{}.s3_output", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElDynamic {
     monitoring_outputs: Option<
@@ -1895,7 +1504,6 @@ struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1906,14 +1514,12 @@ pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
     >,
     dynamic: SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElDynamic,
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `monitoring_outputs`.\n"]
     pub fn set_monitoring_outputs(
         mut self,
@@ -1934,10 +1540,8 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1946,9 +1550,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionDataQualityJobOutputCon
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
         SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
@@ -1958,12 +1560,10 @@ impl BuildSagemakerDataQualityJobDefinitionDataQualityJobOutputConfigEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElRef {
     fn new(
         shared: StackShared,
@@ -1975,17 +1575,14 @@ impl Ref for SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `monitoring_outputs` after provisioning.\n"]
     pub fn monitoring_outputs(
         &self,
@@ -1997,7 +1594,6 @@ impl SagemakerDataQualityJobDefinitionDataQualityJobOutputConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     instance_count: PrimField<f64>,
@@ -2006,7 +1602,6 @@ pub struct SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     volume_kms_key_id: Option<PrimField<String>>,
     volume_size_in_gb: PrimField<f64>,
 }
-
 impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     #[doc = "Set the field `volume_kms_key_id`.\n"]
     pub fn set_volume_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -2014,10 +1609,8 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2026,7 +1619,6 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionJobResourcesElClusterCo
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     #[doc = ""]
     pub instance_count: PrimField<f64>,
@@ -2035,7 +1627,6 @@ pub struct BuildSagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     #[doc = ""]
     pub volume_size_in_gb: PrimField<f64>,
 }
-
 impl BuildSagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
         SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
@@ -2046,12 +1637,10 @@ impl BuildSagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
     fn new(
         shared: StackShared,
@@ -2063,12 +1652,10 @@ impl Ref for SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `instance_count` after provisioning.\n"]
     pub fn instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2076,7 +1663,6 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
             format!("{}.instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2084,7 +1670,6 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_kms_key_id` after provisioning.\n"]
     pub fn volume_kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2092,7 +1677,6 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
             format!("{}.volume_kms_key_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `volume_size_in_gb` after provisioning.\n"]
     pub fn volume_size_in_gb(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2101,20 +1685,17 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionJobResourcesElDynamic {
     cluster_config:
         Option<DynamicBlock<SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionJobResourcesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cluster_config: Option<Vec<SagemakerDataQualityJobDefinitionJobResourcesElClusterConfigEl>>,
     dynamic: SagemakerDataQualityJobDefinitionJobResourcesElDynamic,
 }
-
 impl SagemakerDataQualityJobDefinitionJobResourcesEl {
     #[doc = "Set the field `cluster_config`.\n"]
     pub fn set_cluster_config(
@@ -2132,10 +1713,8 @@ impl SagemakerDataQualityJobDefinitionJobResourcesEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionJobResourcesEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionJobResourcesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2144,9 +1723,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionJobResourcesEl {
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionJobResourcesEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionJobResourcesEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionJobResourcesEl {
         SagemakerDataQualityJobDefinitionJobResourcesEl {
@@ -2155,12 +1732,10 @@ impl BuildSagemakerDataQualityJobDefinitionJobResourcesEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionJobResourcesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionJobResourcesElRef {
     fn new(
         shared: StackShared,
@@ -2172,12 +1747,10 @@ impl Ref for SagemakerDataQualityJobDefinitionJobResourcesElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionJobResourcesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cluster_config` after provisioning.\n"]
     pub fn cluster_config(
         &self,
@@ -2188,18 +1761,14 @@ impl SagemakerDataQualityJobDefinitionJobResourcesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
     security_group_ids: SetField<PrimField<String>>,
     subnets: SetField<PrimField<String>>,
 }
-
 impl SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {}
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2208,14 +1777,12 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfi
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
     #[doc = ""]
     pub security_group_ids: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
-
 impl BuildSagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
         SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
@@ -2224,12 +1791,10 @@ impl BuildSagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigElRef {
     fn new(
         shared: StackShared,
@@ -2241,12 +1806,10 @@ impl Ref for SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2254,18 +1817,15 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionNetworkConfigElDynamic {
     vpc_config: Option<DynamicBlock<SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionNetworkConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2276,7 +1836,6 @@ pub struct SagemakerDataQualityJobDefinitionNetworkConfigEl {
     vpc_config: Option<Vec<SagemakerDataQualityJobDefinitionNetworkConfigElVpcConfigEl>>,
     dynamic: SagemakerDataQualityJobDefinitionNetworkConfigElDynamic,
 }
-
 impl SagemakerDataQualityJobDefinitionNetworkConfigEl {
     #[doc = "Set the field `enable_inter_container_traffic_encryption`.\n"]
     pub fn set_enable_inter_container_traffic_encryption(
@@ -2286,13 +1845,11 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigEl {
         self.enable_inter_container_traffic_encryption = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enable_network_isolation`.\n"]
     pub fn set_enable_network_isolation(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_network_isolation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(
         mut self,
@@ -2309,10 +1866,8 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionNetworkConfigEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionNetworkConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2321,9 +1876,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionNetworkConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionNetworkConfigEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionNetworkConfigEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionNetworkConfigEl {
         SagemakerDataQualityJobDefinitionNetworkConfigEl {
@@ -2334,12 +1887,10 @@ impl BuildSagemakerDataQualityJobDefinitionNetworkConfigEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionNetworkConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionNetworkConfigElRef {
     fn new(
         shared: StackShared,
@@ -2351,12 +1902,10 @@ impl Ref for SagemakerDataQualityJobDefinitionNetworkConfigElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionNetworkConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable_inter_container_traffic_encryption` after provisioning.\n"]
     pub fn enable_inter_container_traffic_encryption(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2364,7 +1913,6 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigElRef {
             format!("{}.enable_inter_container_traffic_encryption", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_network_isolation` after provisioning.\n"]
     pub fn enable_network_isolation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2372,7 +1920,6 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigElRef {
             format!("{}.enable_network_isolation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(
         &self,
@@ -2380,13 +1927,11 @@ impl SagemakerDataQualityJobDefinitionNetworkConfigElRef {
         ListRef::new(self.shared().clone(), format!("{}.vpc_config", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDataQualityJobDefinitionStoppingConditionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_runtime_in_seconds: Option<PrimField<f64>>,
 }
-
 impl SagemakerDataQualityJobDefinitionStoppingConditionEl {
     #[doc = "Set the field `max_runtime_in_seconds`.\n"]
     pub fn set_max_runtime_in_seconds(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -2394,10 +1939,8 @@ impl SagemakerDataQualityJobDefinitionStoppingConditionEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerDataQualityJobDefinitionStoppingConditionEl {
     type O = BlockAssignable<SagemakerDataQualityJobDefinitionStoppingConditionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2406,9 +1949,7 @@ impl ToListMappable for SagemakerDataQualityJobDefinitionStoppingConditionEl {
         })
     }
 }
-
 pub struct BuildSagemakerDataQualityJobDefinitionStoppingConditionEl {}
-
 impl BuildSagemakerDataQualityJobDefinitionStoppingConditionEl {
     pub fn build(self) -> SagemakerDataQualityJobDefinitionStoppingConditionEl {
         SagemakerDataQualityJobDefinitionStoppingConditionEl {
@@ -2416,12 +1957,10 @@ impl BuildSagemakerDataQualityJobDefinitionStoppingConditionEl {
         }
     }
 }
-
 pub struct SagemakerDataQualityJobDefinitionStoppingConditionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDataQualityJobDefinitionStoppingConditionElRef {
     fn new(
         shared: StackShared,
@@ -2433,12 +1972,10 @@ impl Ref for SagemakerDataQualityJobDefinitionStoppingConditionElRef {
         }
     }
 }
-
 impl SagemakerDataQualityJobDefinitionStoppingConditionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_runtime_in_seconds` after provisioning.\n"]
     pub fn max_runtime_in_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2447,7 +1984,6 @@ impl SagemakerDataQualityJobDefinitionStoppingConditionElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDataQualityJobDefinitionDynamic {
     data_quality_app_specification:

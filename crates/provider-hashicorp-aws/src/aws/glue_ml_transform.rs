@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueMlTransformData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -44,47 +43,38 @@ struct GlueMlTransformData {
     parameters: Option<Vec<GlueMlTransformParametersEl>>,
     dynamic: GlueMlTransformDynamic,
 }
-
 struct GlueMlTransform_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueMlTransformData>,
 }
-
 #[derive(Clone)]
 pub struct GlueMlTransform(Rc<GlueMlTransform_>);
-
 impl GlueMlTransform {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -103,7 +93,6 @@ impl GlueMlTransform {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -113,7 +102,6 @@ impl GlueMlTransform {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -123,73 +111,61 @@ impl GlueMlTransform {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `glue_version`.\n"]
     pub fn set_glue_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().glue_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_capacity`.\n"]
     pub fn set_max_capacity(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_retries`.\n"]
     pub fn set_max_retries(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_retries = Some(v.into());
         self
     }
-
     #[doc = "Set the field `number_of_workers`.\n"]
     pub fn set_number_of_workers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().number_of_workers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout`.\n"]
     pub fn set_timeout(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `worker_type`.\n"]
     pub fn set_worker_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().worker_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `input_record_tables`.\n"]
     pub fn set_input_record_tables(
         self,
@@ -205,7 +181,6 @@ impl GlueMlTransform {
         }
         self
     }
-
     #[doc = "Set the field `parameters`.\n"]
     pub fn set_parameters(
         self,
@@ -221,12 +196,10 @@ impl GlueMlTransform {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +207,6 @@ impl GlueMlTransform {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `glue_version` after provisioning.\n"]
     pub fn glue_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,12 +214,10 @@ impl GlueMlTransform {
             format!("{}.glue_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `label_count` after provisioning.\n"]
     pub fn label_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -255,7 +225,6 @@ impl GlueMlTransform {
             format!("{}.label_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -263,7 +232,6 @@ impl GlueMlTransform {
             format!("{}.max_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_retries` after provisioning.\n"]
     pub fn max_retries(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -271,7 +239,6 @@ impl GlueMlTransform {
             format!("{}.max_retries", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +246,6 @@ impl GlueMlTransform {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `number_of_workers` after provisioning.\n"]
     pub fn number_of_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -287,7 +253,6 @@ impl GlueMlTransform {
             format!("{}.number_of_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +260,6 @@ impl GlueMlTransform {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,7 +267,6 @@ impl GlueMlTransform {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> ListRef<GlueMlTransformSchemaElRef> {
         ListRef::new(
@@ -311,7 +274,6 @@ impl GlueMlTransform {
             format!("{}.schema", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -319,7 +281,6 @@ impl GlueMlTransform {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -327,7 +288,6 @@ impl GlueMlTransform {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -335,7 +295,6 @@ impl GlueMlTransform {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_type` after provisioning.\n"]
     pub fn worker_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -343,7 +302,6 @@ impl GlueMlTransform {
             format!("{}.worker_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `input_record_tables` after provisioning.\n"]
     pub fn input_record_tables(&self) -> ListRef<GlueMlTransformInputRecordTablesElRef> {
         ListRef::new(
@@ -351,7 +309,6 @@ impl GlueMlTransform {
             format!("{}.input_record_tables", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> ListRef<GlueMlTransformParametersElRef> {
         ListRef::new(
@@ -360,7 +317,6 @@ impl GlueMlTransform {
         )
     }
 }
-
 impl Referable for GlueMlTransform {
     fn extract_ref(&self) -> String {
         format!(
@@ -370,32 +326,25 @@ impl Referable for GlueMlTransform {
         )
     }
 }
-
 impl Resource for GlueMlTransform {}
-
 impl ToListMappable for GlueMlTransform {
     type O = ListRef<GlueMlTransformRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueMlTransform_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_ml_transform".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueMlTransform {
     pub tf_id: String,
     #[doc = ""]
@@ -403,7 +352,6 @@ pub struct BuildGlueMlTransform {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildGlueMlTransform {
     pub fn build(self, stack: &mut Stack) -> GlueMlTransform {
         let out = GlueMlTransform(Rc::new(GlueMlTransform_ {
@@ -436,32 +384,26 @@ impl BuildGlueMlTransform {
         out
     }
 }
-
 pub struct GlueMlTransformRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueMlTransformRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueMlTransformRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -469,7 +411,6 @@ impl GlueMlTransformRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `glue_version` after provisioning.\n"]
     pub fn glue_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -477,12 +418,10 @@ impl GlueMlTransformRef {
             format!("{}.glue_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `label_count` after provisioning.\n"]
     pub fn label_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -490,7 +429,6 @@ impl GlueMlTransformRef {
             format!("{}.label_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -498,7 +436,6 @@ impl GlueMlTransformRef {
             format!("{}.max_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_retries` after provisioning.\n"]
     pub fn max_retries(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -506,7 +443,6 @@ impl GlueMlTransformRef {
             format!("{}.max_retries", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -514,7 +450,6 @@ impl GlueMlTransformRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `number_of_workers` after provisioning.\n"]
     pub fn number_of_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -522,7 +457,6 @@ impl GlueMlTransformRef {
             format!("{}.number_of_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -530,7 +464,6 @@ impl GlueMlTransformRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -538,7 +471,6 @@ impl GlueMlTransformRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> ListRef<GlueMlTransformSchemaElRef> {
         ListRef::new(
@@ -546,7 +478,6 @@ impl GlueMlTransformRef {
             format!("{}.schema", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -554,7 +485,6 @@ impl GlueMlTransformRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -562,7 +492,6 @@ impl GlueMlTransformRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -570,7 +499,6 @@ impl GlueMlTransformRef {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_type` after provisioning.\n"]
     pub fn worker_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -578,7 +506,6 @@ impl GlueMlTransformRef {
             format!("{}.worker_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `input_record_tables` after provisioning.\n"]
     pub fn input_record_tables(&self) -> ListRef<GlueMlTransformInputRecordTablesElRef> {
         ListRef::new(
@@ -586,7 +513,6 @@ impl GlueMlTransformRef {
             format!("{}.input_record_tables", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> ListRef<GlueMlTransformParametersElRef> {
         ListRef::new(
@@ -595,7 +521,6 @@ impl GlueMlTransformRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueMlTransformSchemaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -603,24 +528,20 @@ pub struct GlueMlTransformSchemaEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     name: Option<PrimField<String>>,
 }
-
 impl GlueMlTransformSchemaEl {
     #[doc = "Set the field `data_type`.\n"]
     pub fn set_data_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueMlTransformSchemaEl {
     type O = BlockAssignable<GlueMlTransformSchemaEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -629,9 +550,7 @@ impl ToListMappable for GlueMlTransformSchemaEl {
         })
     }
 }
-
 pub struct BuildGlueMlTransformSchemaEl {}
-
 impl BuildGlueMlTransformSchemaEl {
     pub fn build(self) -> GlueMlTransformSchemaEl {
         GlueMlTransformSchemaEl {
@@ -640,12 +559,10 @@ impl BuildGlueMlTransformSchemaEl {
         }
     }
 }
-
 pub struct GlueMlTransformSchemaElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueMlTransformSchemaElRef {
     fn new(shared: StackShared, base: String) -> GlueMlTransformSchemaElRef {
         GlueMlTransformSchemaElRef {
@@ -654,23 +571,19 @@ impl Ref for GlueMlTransformSchemaElRef {
         }
     }
 }
-
 impl GlueMlTransformSchemaElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_type` after provisioning.\n"]
     pub fn data_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueMlTransformInputRecordTablesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -680,24 +593,20 @@ pub struct GlueMlTransformInputRecordTablesEl {
     database_name: PrimField<String>,
     table_name: PrimField<String>,
 }
-
 impl GlueMlTransformInputRecordTablesEl {
     #[doc = "Set the field `catalog_id`.\n"]
     pub fn set_catalog_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.catalog_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueMlTransformInputRecordTablesEl {
     type O = BlockAssignable<GlueMlTransformInputRecordTablesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -706,14 +615,12 @@ impl ToListMappable for GlueMlTransformInputRecordTablesEl {
         })
     }
 }
-
 pub struct BuildGlueMlTransformInputRecordTablesEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildGlueMlTransformInputRecordTablesEl {
     pub fn build(self) -> GlueMlTransformInputRecordTablesEl {
         GlueMlTransformInputRecordTablesEl {
@@ -724,12 +631,10 @@ impl BuildGlueMlTransformInputRecordTablesEl {
         }
     }
 }
-
 pub struct GlueMlTransformInputRecordTablesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueMlTransformInputRecordTablesElRef {
     fn new(shared: StackShared, base: String) -> GlueMlTransformInputRecordTablesElRef {
         GlueMlTransformInputRecordTablesElRef {
@@ -738,17 +643,14 @@ impl Ref for GlueMlTransformInputRecordTablesElRef {
         }
     }
 }
-
 impl GlueMlTransformInputRecordTablesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `catalog_id` after provisioning.\n"]
     pub fn catalog_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.catalog_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -756,7 +658,6 @@ impl GlueMlTransformInputRecordTablesElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -764,13 +665,11 @@ impl GlueMlTransformInputRecordTablesElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueMlTransformParametersElFindMatchesParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -782,36 +681,30 @@ pub struct GlueMlTransformParametersElFindMatchesParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     primary_key_column_name: Option<PrimField<String>>,
 }
-
 impl GlueMlTransformParametersElFindMatchesParametersEl {
     #[doc = "Set the field `accuracy_cost_trade_off`.\n"]
     pub fn set_accuracy_cost_trade_off(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.accuracy_cost_trade_off = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enforce_provided_labels`.\n"]
     pub fn set_enforce_provided_labels(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enforce_provided_labels = Some(v.into());
         self
     }
-
     #[doc = "Set the field `precision_recall_trade_off`.\n"]
     pub fn set_precision_recall_trade_off(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.precision_recall_trade_off = Some(v.into());
         self
     }
-
     #[doc = "Set the field `primary_key_column_name`.\n"]
     pub fn set_primary_key_column_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.primary_key_column_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueMlTransformParametersElFindMatchesParametersEl {
     type O = BlockAssignable<GlueMlTransformParametersElFindMatchesParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -820,9 +713,7 @@ impl ToListMappable for GlueMlTransformParametersElFindMatchesParametersEl {
         })
     }
 }
-
 pub struct BuildGlueMlTransformParametersElFindMatchesParametersEl {}
-
 impl BuildGlueMlTransformParametersElFindMatchesParametersEl {
     pub fn build(self) -> GlueMlTransformParametersElFindMatchesParametersEl {
         GlueMlTransformParametersElFindMatchesParametersEl {
@@ -833,12 +724,10 @@ impl BuildGlueMlTransformParametersElFindMatchesParametersEl {
         }
     }
 }
-
 pub struct GlueMlTransformParametersElFindMatchesParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueMlTransformParametersElFindMatchesParametersElRef {
     fn new(
         shared: StackShared,
@@ -850,12 +739,10 @@ impl Ref for GlueMlTransformParametersElFindMatchesParametersElRef {
         }
     }
 }
-
 impl GlueMlTransformParametersElFindMatchesParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accuracy_cost_trade_off` after provisioning.\n"]
     pub fn accuracy_cost_trade_off(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -863,7 +750,6 @@ impl GlueMlTransformParametersElFindMatchesParametersElRef {
             format!("{}.accuracy_cost_trade_off", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enforce_provided_labels` after provisioning.\n"]
     pub fn enforce_provided_labels(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -871,7 +757,6 @@ impl GlueMlTransformParametersElFindMatchesParametersElRef {
             format!("{}.enforce_provided_labels", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `precision_recall_trade_off` after provisioning.\n"]
     pub fn precision_recall_trade_off(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -879,7 +764,6 @@ impl GlueMlTransformParametersElFindMatchesParametersElRef {
             format!("{}.precision_recall_trade_off", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_key_column_name` after provisioning.\n"]
     pub fn primary_key_column_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -888,13 +772,11 @@ impl GlueMlTransformParametersElFindMatchesParametersElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueMlTransformParametersElDynamic {
     find_matches_parameters:
         Option<DynamicBlock<GlueMlTransformParametersElFindMatchesParametersEl>>,
 }
-
 #[derive(Serialize)]
 pub struct GlueMlTransformParametersEl {
     transform_type: PrimField<String>,
@@ -902,7 +784,6 @@ pub struct GlueMlTransformParametersEl {
     find_matches_parameters: Option<Vec<GlueMlTransformParametersElFindMatchesParametersEl>>,
     dynamic: GlueMlTransformParametersElDynamic,
 }
-
 impl GlueMlTransformParametersEl {
     #[doc = "Set the field `find_matches_parameters`.\n"]
     pub fn set_find_matches_parameters(
@@ -920,10 +801,8 @@ impl GlueMlTransformParametersEl {
         self
     }
 }
-
 impl ToListMappable for GlueMlTransformParametersEl {
     type O = BlockAssignable<GlueMlTransformParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -932,12 +811,10 @@ impl ToListMappable for GlueMlTransformParametersEl {
         })
     }
 }
-
 pub struct BuildGlueMlTransformParametersEl {
     #[doc = ""]
     pub transform_type: PrimField<String>,
 }
-
 impl BuildGlueMlTransformParametersEl {
     pub fn build(self) -> GlueMlTransformParametersEl {
         GlueMlTransformParametersEl {
@@ -947,12 +824,10 @@ impl BuildGlueMlTransformParametersEl {
         }
     }
 }
-
 pub struct GlueMlTransformParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueMlTransformParametersElRef {
     fn new(shared: StackShared, base: String) -> GlueMlTransformParametersElRef {
         GlueMlTransformParametersElRef {
@@ -961,12 +836,10 @@ impl Ref for GlueMlTransformParametersElRef {
         }
     }
 }
-
 impl GlueMlTransformParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `transform_type` after provisioning.\n"]
     pub fn transform_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -974,7 +847,6 @@ impl GlueMlTransformParametersElRef {
             format!("{}.transform_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `find_matches_parameters` after provisioning.\n"]
     pub fn find_matches_parameters(
         &self,
@@ -985,7 +857,6 @@ impl GlueMlTransformParametersElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueMlTransformDynamic {
     input_record_tables: Option<DynamicBlock<GlueMlTransformInputRecordTablesEl>>,

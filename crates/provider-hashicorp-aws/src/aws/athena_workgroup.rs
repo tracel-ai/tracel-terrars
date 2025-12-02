@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AthenaWorkgroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct AthenaWorkgroupData {
     configuration: Option<Vec<AthenaWorkgroupConfigurationEl>>,
     dynamic: AthenaWorkgroupDynamic,
 }
-
 struct AthenaWorkgroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AthenaWorkgroupData>,
 }
-
 #[derive(Clone)]
 pub struct AthenaWorkgroup(Rc<AthenaWorkgroup_>);
-
 impl AthenaWorkgroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl AthenaWorkgroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl AthenaWorkgroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,49 +100,41 @@ impl AthenaWorkgroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `force_destroy`.\n"]
     pub fn set_force_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().force_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `state`.\n"]
     pub fn set_state(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().state = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -170,12 +150,10 @@ impl AthenaWorkgroup {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +161,6 @@ impl AthenaWorkgroup {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -191,12 +168,10 @@ impl AthenaWorkgroup {
             format!("{}.force_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -204,7 +179,6 @@ impl AthenaWorkgroup {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -212,7 +186,6 @@ impl AthenaWorkgroup {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +193,6 @@ impl AthenaWorkgroup {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -228,7 +200,6 @@ impl AthenaWorkgroup {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -236,7 +207,6 @@ impl AthenaWorkgroup {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<AthenaWorkgroupConfigurationElRef> {
         ListRef::new(
@@ -245,7 +215,6 @@ impl AthenaWorkgroup {
         )
     }
 }
-
 impl Referable for AthenaWorkgroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -255,38 +224,30 @@ impl Referable for AthenaWorkgroup {
         )
     }
 }
-
 impl Resource for AthenaWorkgroup {}
-
 impl ToListMappable for AthenaWorkgroup {
     type O = ListRef<AthenaWorkgroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AthenaWorkgroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_athena_workgroup".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAthenaWorkgroup {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAthenaWorkgroup {
     pub fn build(self, stack: &mut Stack) -> AthenaWorkgroup {
         let out = AthenaWorkgroup(Rc::new(AthenaWorkgroup_ {
@@ -313,32 +274,26 @@ impl BuildAthenaWorkgroup {
         out
     }
 }
-
 pub struct AthenaWorkgroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AthenaWorkgroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +301,6 @@ impl AthenaWorkgroupRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `force_destroy` after provisioning.\n"]
     pub fn force_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -354,12 +308,10 @@ impl AthenaWorkgroupRef {
             format!("{}.force_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +319,6 @@ impl AthenaWorkgroupRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -375,7 +326,6 @@ impl AthenaWorkgroupRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +333,6 @@ impl AthenaWorkgroupRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -391,7 +340,6 @@ impl AthenaWorkgroupRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -399,7 +347,6 @@ impl AthenaWorkgroupRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<AthenaWorkgroupConfigurationElRef> {
         ListRef::new(
@@ -408,13 +355,11 @@ impl AthenaWorkgroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationElEngineVersionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     selected_engine_version: Option<PrimField<String>>,
 }
-
 impl AthenaWorkgroupConfigurationElEngineVersionEl {
     #[doc = "Set the field `selected_engine_version`.\n"]
     pub fn set_selected_engine_version(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -422,10 +367,8 @@ impl AthenaWorkgroupConfigurationElEngineVersionEl {
         self
     }
 }
-
 impl ToListMappable for AthenaWorkgroupConfigurationElEngineVersionEl {
     type O = BlockAssignable<AthenaWorkgroupConfigurationElEngineVersionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -434,9 +377,7 @@ impl ToListMappable for AthenaWorkgroupConfigurationElEngineVersionEl {
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationElEngineVersionEl {}
-
 impl BuildAthenaWorkgroupConfigurationElEngineVersionEl {
     pub fn build(self) -> AthenaWorkgroupConfigurationElEngineVersionEl {
         AthenaWorkgroupConfigurationElEngineVersionEl {
@@ -444,12 +385,10 @@ impl BuildAthenaWorkgroupConfigurationElEngineVersionEl {
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElEngineVersionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElEngineVersionElRef {
     fn new(shared: StackShared, base: String) -> AthenaWorkgroupConfigurationElEngineVersionElRef {
         AthenaWorkgroupConfigurationElEngineVersionElRef {
@@ -458,12 +397,10 @@ impl Ref for AthenaWorkgroupConfigurationElEngineVersionElRef {
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElEngineVersionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `effective_engine_version` after provisioning.\n"]
     pub fn effective_engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -471,7 +408,6 @@ impl AthenaWorkgroupConfigurationElEngineVersionElRef {
             format!("{}.effective_engine_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `selected_engine_version` after provisioning.\n"]
     pub fn selected_engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +416,6 @@ impl AthenaWorkgroupConfigurationElEngineVersionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -488,24 +423,20 @@ pub struct AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     identity_center_instance_arn: Option<PrimField<String>>,
 }
-
 impl AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
     #[doc = "Set the field `enable_identity_center`.\n"]
     pub fn set_enable_identity_center(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enable_identity_center = Some(v.into());
         self
     }
-
     #[doc = "Set the field `identity_center_instance_arn`.\n"]
     pub fn set_identity_center_instance_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.identity_center_instance_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
     type O = BlockAssignable<AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -514,9 +445,7 @@ impl ToListMappable for AthenaWorkgroupConfigurationElIdentityCenterConfiguratio
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {}
-
 impl BuildAthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
     pub fn build(self) -> AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
         AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
@@ -525,12 +454,10 @@ impl BuildAthenaWorkgroupConfigurationElIdentityCenterConfigurationEl {
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -542,12 +469,10 @@ impl Ref for AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enable_identity_center` after provisioning.\n"]
     pub fn enable_identity_center(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -555,7 +480,6 @@ impl AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
             format!("{}.enable_identity_center", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_center_instance_arn` after provisioning.\n"]
     pub fn identity_center_instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -564,17 +488,13 @@ impl AthenaWorkgroupConfigurationElIdentityCenterConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
     s3_acl_option: PrimField<String>,
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {}
-
 impl ToListMappable for AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
     type O = BlockAssignable<AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -583,12 +503,10 @@ impl ToListMappable for AthenaWorkgroupConfigurationElResultConfigurationElAclCo
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
     #[doc = ""]
     pub s3_acl_option: PrimField<String>,
 }
-
 impl BuildAthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
     pub fn build(self) -> AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
         AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl {
@@ -596,12 +514,10 @@ impl BuildAthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationEl 
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -613,12 +529,10 @@ impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElAclConfiguration
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_acl_option` after provisioning.\n"]
     pub fn s3_acl_option(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -627,7 +541,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElAclConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -635,28 +548,24 @@ pub struct AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigur
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_arn: Option<PrimField<String>>,
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl {
     #[doc = "Set the field `encryption_option`.\n"]
     pub fn set_encryption_option(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.encryption_option = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_arn`.\n"]
     pub fn set_kms_key_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.kms_key_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl
 {
     type O = BlockAssignable<
         AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -665,9 +574,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl {}
-
 impl BuildAthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl {
     pub fn build(
         self,
@@ -678,12 +585,10 @@ impl BuildAthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigura
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -695,12 +600,10 @@ impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfig
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `encryption_option` after provisioning.\n"]
     pub fn encryption_option(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -708,13 +611,11 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationE
             format!("{}.encryption_option", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_arn` after provisioning.\n"]
     pub fn kms_key_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AthenaWorkgroupConfigurationElResultConfigurationElDynamic {
     acl_configuration:
@@ -723,7 +624,6 @@ struct AthenaWorkgroupConfigurationElResultConfigurationElDynamic {
         DynamicBlock<AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationElResultConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -738,20 +638,17 @@ pub struct AthenaWorkgroupConfigurationElResultConfigurationEl {
         Option<Vec<AthenaWorkgroupConfigurationElResultConfigurationElEncryptionConfigurationEl>>,
     dynamic: AthenaWorkgroupConfigurationElResultConfigurationElDynamic,
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationEl {
     #[doc = "Set the field `expected_bucket_owner`.\n"]
     pub fn set_expected_bucket_owner(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.expected_bucket_owner = Some(v.into());
         self
     }
-
     #[doc = "Set the field `output_location`.\n"]
     pub fn set_output_location(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.output_location = Some(v.into());
         self
     }
-
     #[doc = "Set the field `acl_configuration`.\n"]
     pub fn set_acl_configuration(
         mut self,
@@ -769,7 +666,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
         mut self,
@@ -790,10 +686,8 @@ impl AthenaWorkgroupConfigurationElResultConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for AthenaWorkgroupConfigurationElResultConfigurationEl {
     type O = BlockAssignable<AthenaWorkgroupConfigurationElResultConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -802,9 +696,7 @@ impl ToListMappable for AthenaWorkgroupConfigurationElResultConfigurationEl {
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationElResultConfigurationEl {}
-
 impl BuildAthenaWorkgroupConfigurationElResultConfigurationEl {
     pub fn build(self) -> AthenaWorkgroupConfigurationElResultConfigurationEl {
         AthenaWorkgroupConfigurationElResultConfigurationEl {
@@ -816,12 +708,10 @@ impl BuildAthenaWorkgroupConfigurationElResultConfigurationEl {
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElResultConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -833,12 +723,10 @@ impl Ref for AthenaWorkgroupConfigurationElResultConfigurationElRef {
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElResultConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `expected_bucket_owner` after provisioning.\n"]
     pub fn expected_bucket_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -846,7 +734,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElRef {
             format!("{}.expected_bucket_owner", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `output_location` after provisioning.\n"]
     pub fn output_location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -854,7 +741,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElRef {
             format!("{}.output_location", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `acl_configuration` after provisioning.\n"]
     pub fn acl_configuration(
         &self,
@@ -864,7 +750,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElRef {
             format!("{}.acl_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -876,7 +761,6 @@ impl AthenaWorkgroupConfigurationElResultConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AthenaWorkgroupConfigurationElDynamic {
     engine_version: Option<DynamicBlock<AthenaWorkgroupConfigurationElEngineVersionEl>>,
@@ -884,7 +768,6 @@ struct AthenaWorkgroupConfigurationElDynamic {
         Option<DynamicBlock<AthenaWorkgroupConfigurationElIdentityCenterConfigurationEl>>,
     result_configuration: Option<DynamicBlock<AthenaWorkgroupConfigurationElResultConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AthenaWorkgroupConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -906,38 +789,32 @@ pub struct AthenaWorkgroupConfigurationEl {
     result_configuration: Option<Vec<AthenaWorkgroupConfigurationElResultConfigurationEl>>,
     dynamic: AthenaWorkgroupConfigurationElDynamic,
 }
-
 impl AthenaWorkgroupConfigurationEl {
     #[doc = "Set the field `bytes_scanned_cutoff_per_query`.\n"]
     pub fn set_bytes_scanned_cutoff_per_query(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.bytes_scanned_cutoff_per_query = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enforce_workgroup_configuration`.\n"]
     pub fn set_enforce_workgroup_configuration(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enforce_workgroup_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_role`.\n"]
     pub fn set_execution_role(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.execution_role = Some(v.into());
         self
     }
-
     #[doc = "Set the field `publish_cloudwatch_metrics_enabled`.\n"]
     pub fn set_publish_cloudwatch_metrics_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.publish_cloudwatch_metrics_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `requester_pays_enabled`.\n"]
     pub fn set_requester_pays_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.requester_pays_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `engine_version`.\n"]
     pub fn set_engine_version(
         mut self,
@@ -953,7 +830,6 @@ impl AthenaWorkgroupConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `identity_center_configuration`.\n"]
     pub fn set_identity_center_configuration(
         mut self,
@@ -969,7 +845,6 @@ impl AthenaWorkgroupConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `result_configuration`.\n"]
     pub fn set_result_configuration(
         mut self,
@@ -986,10 +861,8 @@ impl AthenaWorkgroupConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for AthenaWorkgroupConfigurationEl {
     type O = BlockAssignable<AthenaWorkgroupConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -998,9 +871,7 @@ impl ToListMappable for AthenaWorkgroupConfigurationEl {
         })
     }
 }
-
 pub struct BuildAthenaWorkgroupConfigurationEl {}
-
 impl BuildAthenaWorkgroupConfigurationEl {
     pub fn build(self) -> AthenaWorkgroupConfigurationEl {
         AthenaWorkgroupConfigurationEl {
@@ -1016,12 +887,10 @@ impl BuildAthenaWorkgroupConfigurationEl {
         }
     }
 }
-
 pub struct AthenaWorkgroupConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AthenaWorkgroupConfigurationElRef {
     fn new(shared: StackShared, base: String) -> AthenaWorkgroupConfigurationElRef {
         AthenaWorkgroupConfigurationElRef {
@@ -1030,12 +899,10 @@ impl Ref for AthenaWorkgroupConfigurationElRef {
         }
     }
 }
-
 impl AthenaWorkgroupConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bytes_scanned_cutoff_per_query` after provisioning.\n"]
     pub fn bytes_scanned_cutoff_per_query(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1043,7 +910,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.bytes_scanned_cutoff_per_query", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enforce_workgroup_configuration` after provisioning.\n"]
     pub fn enforce_workgroup_configuration(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1051,7 +917,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.enforce_workgroup_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role` after provisioning.\n"]
     pub fn execution_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1059,7 +924,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.execution_role", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `publish_cloudwatch_metrics_enabled` after provisioning.\n"]
     pub fn publish_cloudwatch_metrics_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1067,7 +931,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.publish_cloudwatch_metrics_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `requester_pays_enabled` after provisioning.\n"]
     pub fn requester_pays_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1075,7 +938,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.requester_pays_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> ListRef<AthenaWorkgroupConfigurationElEngineVersionElRef> {
         ListRef::new(
@@ -1083,7 +945,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.engine_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_center_configuration` after provisioning.\n"]
     pub fn identity_center_configuration(
         &self,
@@ -1093,7 +954,6 @@ impl AthenaWorkgroupConfigurationElRef {
             format!("{}.identity_center_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `result_configuration` after provisioning.\n"]
     pub fn result_configuration(
         &self,
@@ -1104,7 +964,6 @@ impl AthenaWorkgroupConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AthenaWorkgroupDynamic {
     configuration: Option<DynamicBlock<AthenaWorkgroupConfigurationEl>>,

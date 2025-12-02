@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppsyncFunctionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -39,47 +38,38 @@ struct AppsyncFunctionData {
     sync_config: Option<Vec<AppsyncFunctionSyncConfigEl>>,
     dynamic: AppsyncFunctionDynamic,
 }
-
 struct AppsyncFunction_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppsyncFunctionData>,
 }
-
 #[derive(Clone)]
 pub struct AppsyncFunction(Rc<AppsyncFunction_>);
-
 impl AppsyncFunction {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -98,7 +88,6 @@ impl AppsyncFunction {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -108,7 +97,6 @@ impl AppsyncFunction {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -118,55 +106,46 @@ impl AppsyncFunction {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `code`.\n"]
     pub fn set_code(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().code = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `function_version`.\n"]
     pub fn set_function_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().function_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_batch_size`.\n"]
     pub fn set_max_batch_size(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_batch_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `request_mapping_template`.\n"]
     pub fn set_request_mapping_template(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().request_mapping_template = Some(v.into());
         self
     }
-
     #[doc = "Set the field `response_mapping_template`.\n"]
     pub fn set_response_mapping_template(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().response_mapping_template = Some(v.into());
         self
     }
-
     #[doc = "Set the field `runtime`.\n"]
     pub fn set_runtime(self, v: impl Into<BlockAssignable<AppsyncFunctionRuntimeEl>>) -> Self {
         match v.into() {
@@ -179,7 +158,6 @@ impl AppsyncFunction {
         }
         self
     }
-
     #[doc = "Set the field `sync_config`.\n"]
     pub fn set_sync_config(
         self,
@@ -195,7 +173,6 @@ impl AppsyncFunction {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -203,12 +180,10 @@ impl AppsyncFunction {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +191,6 @@ impl AppsyncFunction {
             format!("{}.code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -224,7 +198,6 @@ impl AppsyncFunction {
             format!("{}.data_source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +205,6 @@ impl AppsyncFunction {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_id` after provisioning.\n"]
     pub fn function_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +212,6 @@ impl AppsyncFunction {
             format!("{}.function_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_version` after provisioning.\n"]
     pub fn function_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,12 +219,10 @@ impl AppsyncFunction {
             format!("{}.function_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\n"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -261,7 +230,6 @@ impl AppsyncFunction {
             format!("{}.max_batch_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -269,7 +237,6 @@ impl AppsyncFunction {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +244,6 @@ impl AppsyncFunction {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_mapping_template` after provisioning.\n"]
     pub fn request_mapping_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -285,7 +251,6 @@ impl AppsyncFunction {
             format!("{}.request_mapping_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_mapping_template` after provisioning.\n"]
     pub fn response_mapping_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,7 +258,6 @@ impl AppsyncFunction {
             format!("{}.response_mapping_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> ListRef<AppsyncFunctionRuntimeElRef> {
         ListRef::new(
@@ -301,7 +265,6 @@ impl AppsyncFunction {
             format!("{}.runtime", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sync_config` after provisioning.\n"]
     pub fn sync_config(&self) -> ListRef<AppsyncFunctionSyncConfigElRef> {
         ListRef::new(
@@ -310,7 +273,6 @@ impl AppsyncFunction {
         )
     }
 }
-
 impl Referable for AppsyncFunction {
     fn extract_ref(&self) -> String {
         format!(
@@ -320,32 +282,25 @@ impl Referable for AppsyncFunction {
         )
     }
 }
-
 impl Resource for AppsyncFunction {}
-
 impl ToListMappable for AppsyncFunction {
     type O = ListRef<AppsyncFunctionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppsyncFunction_ {
     fn extract_resource_type(&self) -> String {
         "aws_appsync_function".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppsyncFunction {
     pub tf_id: String,
     #[doc = ""]
@@ -355,7 +310,6 @@ pub struct BuildAppsyncFunction {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAppsyncFunction {
     pub fn build(self, stack: &mut Stack) -> AppsyncFunction {
         let out = AppsyncFunction(Rc::new(AppsyncFunction_ {
@@ -386,27 +340,22 @@ impl BuildAppsyncFunction {
         out
     }
 }
-
 pub struct AppsyncFunctionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncFunctionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppsyncFunctionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,12 +363,10 @@ impl AppsyncFunctionRef {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `code` after provisioning.\n"]
     pub fn code(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,7 +374,6 @@ impl AppsyncFunctionRef {
             format!("{}.code", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -435,7 +381,6 @@ impl AppsyncFunctionRef {
             format!("{}.data_source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +388,6 @@ impl AppsyncFunctionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_id` after provisioning.\n"]
     pub fn function_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +395,6 @@ impl AppsyncFunctionRef {
             format!("{}.function_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `function_version` after provisioning.\n"]
     pub fn function_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,12 +402,10 @@ impl AppsyncFunctionRef {
             format!("{}.function_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `max_batch_size` after provisioning.\n"]
     pub fn max_batch_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -472,7 +413,6 @@ impl AppsyncFunctionRef {
             format!("{}.max_batch_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +420,6 @@ impl AppsyncFunctionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +427,6 @@ impl AppsyncFunctionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `request_mapping_template` after provisioning.\n"]
     pub fn request_mapping_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +434,6 @@ impl AppsyncFunctionRef {
             format!("{}.request_mapping_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `response_mapping_template` after provisioning.\n"]
     pub fn response_mapping_template(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +441,6 @@ impl AppsyncFunctionRef {
             format!("{}.response_mapping_template", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> ListRef<AppsyncFunctionRuntimeElRef> {
         ListRef::new(
@@ -512,7 +448,6 @@ impl AppsyncFunctionRef {
             format!("{}.runtime", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sync_config` after provisioning.\n"]
     pub fn sync_config(&self) -> ListRef<AppsyncFunctionSyncConfigElRef> {
         ListRef::new(
@@ -521,18 +456,14 @@ impl AppsyncFunctionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncFunctionRuntimeEl {
     name: PrimField<String>,
     runtime_version: PrimField<String>,
 }
-
 impl AppsyncFunctionRuntimeEl {}
-
 impl ToListMappable for AppsyncFunctionRuntimeEl {
     type O = BlockAssignable<AppsyncFunctionRuntimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -541,14 +472,12 @@ impl ToListMappable for AppsyncFunctionRuntimeEl {
         })
     }
 }
-
 pub struct BuildAppsyncFunctionRuntimeEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub runtime_version: PrimField<String>,
 }
-
 impl BuildAppsyncFunctionRuntimeEl {
     pub fn build(self) -> AppsyncFunctionRuntimeEl {
         AppsyncFunctionRuntimeEl {
@@ -557,12 +486,10 @@ impl BuildAppsyncFunctionRuntimeEl {
         }
     }
 }
-
 pub struct AppsyncFunctionRuntimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncFunctionRuntimeElRef {
     fn new(shared: StackShared, base: String) -> AppsyncFunctionRuntimeElRef {
         AppsyncFunctionRuntimeElRef {
@@ -571,17 +498,14 @@ impl Ref for AppsyncFunctionRuntimeElRef {
         }
     }
 }
-
 impl AppsyncFunctionRuntimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `runtime_version` after provisioning.\n"]
     pub fn runtime_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -590,13 +514,11 @@ impl AppsyncFunctionRuntimeElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lambda_conflict_handler_arn: Option<PrimField<String>>,
 }
-
 impl AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
     #[doc = "Set the field `lambda_conflict_handler_arn`.\n"]
     pub fn set_lambda_conflict_handler_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -604,10 +526,8 @@ impl AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
     type O = BlockAssignable<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -616,9 +536,7 @@ impl ToListMappable for AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl
         })
     }
 }
-
 pub struct BuildAppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {}
-
 impl BuildAppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
     pub fn build(self) -> AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
         AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
@@ -626,12 +544,10 @@ impl BuildAppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl {
         }
     }
 }
-
 pub struct AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
     fn new(
         shared: StackShared,
@@ -643,12 +559,10 @@ impl Ref for AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
         }
     }
 }
-
 impl AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `lambda_conflict_handler_arn` after provisioning.\n"]
     pub fn lambda_conflict_handler_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -657,13 +571,11 @@ impl AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncFunctionSyncConfigElDynamic {
     lambda_conflict_handler_config:
         Option<DynamicBlock<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppsyncFunctionSyncConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -675,20 +587,17 @@ pub struct AppsyncFunctionSyncConfigEl {
         Option<Vec<AppsyncFunctionSyncConfigElLambdaConflictHandlerConfigEl>>,
     dynamic: AppsyncFunctionSyncConfigElDynamic,
 }
-
 impl AppsyncFunctionSyncConfigEl {
     #[doc = "Set the field `conflict_detection`.\n"]
     pub fn set_conflict_detection(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.conflict_detection = Some(v.into());
         self
     }
-
     #[doc = "Set the field `conflict_handler`.\n"]
     pub fn set_conflict_handler(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.conflict_handler = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lambda_conflict_handler_config`.\n"]
     pub fn set_lambda_conflict_handler_config(
         mut self,
@@ -705,10 +614,8 @@ impl AppsyncFunctionSyncConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncFunctionSyncConfigEl {
     type O = BlockAssignable<AppsyncFunctionSyncConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -717,9 +624,7 @@ impl ToListMappable for AppsyncFunctionSyncConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncFunctionSyncConfigEl {}
-
 impl BuildAppsyncFunctionSyncConfigEl {
     pub fn build(self) -> AppsyncFunctionSyncConfigEl {
         AppsyncFunctionSyncConfigEl {
@@ -730,12 +635,10 @@ impl BuildAppsyncFunctionSyncConfigEl {
         }
     }
 }
-
 pub struct AppsyncFunctionSyncConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncFunctionSyncConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncFunctionSyncConfigElRef {
         AppsyncFunctionSyncConfigElRef {
@@ -744,12 +647,10 @@ impl Ref for AppsyncFunctionSyncConfigElRef {
         }
     }
 }
-
 impl AppsyncFunctionSyncConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `conflict_detection` after provisioning.\n"]
     pub fn conflict_detection(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -757,7 +658,6 @@ impl AppsyncFunctionSyncConfigElRef {
             format!("{}.conflict_detection", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `conflict_handler` after provisioning.\n"]
     pub fn conflict_handler(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -765,7 +665,6 @@ impl AppsyncFunctionSyncConfigElRef {
             format!("{}.conflict_handler", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_conflict_handler_config` after provisioning.\n"]
     pub fn lambda_conflict_handler_config(
         &self,
@@ -776,7 +675,6 @@ impl AppsyncFunctionSyncConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncFunctionDynamic {
     runtime: Option<DynamicBlock<AppsyncFunctionRuntimeEl>>,

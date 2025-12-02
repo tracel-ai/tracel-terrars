@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CodebuildFleetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -38,47 +37,38 @@ struct CodebuildFleetData {
     vpc_config: Option<Vec<CodebuildFleetVpcConfigEl>>,
     dynamic: CodebuildFleetDynamic,
 }
-
 struct CodebuildFleet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CodebuildFleetData>,
 }
-
 #[derive(Clone)]
 pub struct CodebuildFleet(Rc<CodebuildFleet_>);
-
 impl CodebuildFleet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -97,7 +87,6 @@ impl CodebuildFleet {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -107,7 +96,6 @@ impl CodebuildFleet {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -117,43 +105,36 @@ impl CodebuildFleet {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `fleet_service_role`.\n"]
     pub fn set_fleet_service_role(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().fleet_service_role = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image_id`.\n"]
     pub fn set_image_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().image_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `overflow_behavior`.\n"]
     pub fn set_overflow_behavior(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().overflow_behavior = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `compute_configuration`.\n"]
     pub fn set_compute_configuration(
         self,
@@ -169,7 +150,6 @@ impl CodebuildFleet {
         }
         self
     }
-
     #[doc = "Set the field `scaling_configuration`.\n"]
     pub fn set_scaling_configuration(
         self,
@@ -185,7 +165,6 @@ impl CodebuildFleet {
         }
         self
     }
-
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(self, v: impl Into<BlockAssignable<CodebuildFleetVpcConfigEl>>) -> Self {
         match v.into() {
@@ -198,12 +177,10 @@ impl CodebuildFleet {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `base_capacity` after provisioning.\n"]
     pub fn base_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -211,7 +188,6 @@ impl CodebuildFleet {
             format!("{}.base_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -219,7 +195,6 @@ impl CodebuildFleet {
             format!("{}.compute_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -227,7 +202,6 @@ impl CodebuildFleet {
             format!("{}.created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_type` after provisioning.\n"]
     pub fn environment_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +209,6 @@ impl CodebuildFleet {
             format!("{}.environment_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fleet_service_role` after provisioning.\n"]
     pub fn fleet_service_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -243,12 +216,10 @@ impl CodebuildFleet {
             format!("{}.fleet_service_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +227,6 @@ impl CodebuildFleet {
             format!("{}.image_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -264,7 +234,6 @@ impl CodebuildFleet {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -272,7 +241,6 @@ impl CodebuildFleet {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `overflow_behavior` after provisioning.\n"]
     pub fn overflow_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,7 +248,6 @@ impl CodebuildFleet {
             format!("{}.overflow_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -288,7 +255,6 @@ impl CodebuildFleet {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> SetRef<CodebuildFleetStatusElRef> {
         SetRef::new(
@@ -296,7 +262,6 @@ impl CodebuildFleet {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -304,7 +269,6 @@ impl CodebuildFleet {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -312,7 +276,6 @@ impl CodebuildFleet {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_configuration` after provisioning.\n"]
     pub fn compute_configuration(&self) -> ListRef<CodebuildFleetComputeConfigurationElRef> {
         ListRef::new(
@@ -320,7 +283,6 @@ impl CodebuildFleet {
             format!("{}.compute_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scaling_configuration` after provisioning.\n"]
     pub fn scaling_configuration(&self) -> ListRef<CodebuildFleetScalingConfigurationElRef> {
         ListRef::new(
@@ -328,7 +290,6 @@ impl CodebuildFleet {
             format!("{}.scaling_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<CodebuildFleetVpcConfigElRef> {
         ListRef::new(
@@ -337,7 +298,6 @@ impl CodebuildFleet {
         )
     }
 }
-
 impl Referable for CodebuildFleet {
     fn extract_ref(&self) -> String {
         format!(
@@ -347,32 +307,25 @@ impl Referable for CodebuildFleet {
         )
     }
 }
-
 impl Resource for CodebuildFleet {}
-
 impl ToListMappable for CodebuildFleet {
     type O = ListRef<CodebuildFleetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CodebuildFleet_ {
     fn extract_resource_type(&self) -> String {
         "aws_codebuild_fleet".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCodebuildFleet {
     pub tf_id: String,
     #[doc = ""]
@@ -384,7 +337,6 @@ pub struct BuildCodebuildFleet {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCodebuildFleet {
     pub fn build(self, stack: &mut Stack) -> CodebuildFleet {
         let out = CodebuildFleet(Rc::new(CodebuildFleet_ {
@@ -415,32 +367,26 @@ impl BuildCodebuildFleet {
         out
     }
 }
-
 pub struct CodebuildFleetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CodebuildFleetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `base_capacity` after provisioning.\n"]
     pub fn base_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -448,7 +394,6 @@ impl CodebuildFleetRef {
             format!("{}.base_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_type` after provisioning.\n"]
     pub fn compute_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -456,7 +401,6 @@ impl CodebuildFleetRef {
             format!("{}.compute_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created` after provisioning.\n"]
     pub fn created(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +408,6 @@ impl CodebuildFleetRef {
             format!("{}.created", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment_type` after provisioning.\n"]
     pub fn environment_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +415,6 @@ impl CodebuildFleetRef {
             format!("{}.environment_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fleet_service_role` after provisioning.\n"]
     pub fn fleet_service_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,12 +422,10 @@ impl CodebuildFleetRef {
             format!("{}.fleet_service_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `image_id` after provisioning.\n"]
     pub fn image_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -493,7 +433,6 @@ impl CodebuildFleetRef {
             format!("{}.image_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -501,7 +440,6 @@ impl CodebuildFleetRef {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,7 +447,6 @@ impl CodebuildFleetRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `overflow_behavior` after provisioning.\n"]
     pub fn overflow_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -517,7 +454,6 @@ impl CodebuildFleetRef {
             format!("{}.overflow_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -525,7 +461,6 @@ impl CodebuildFleetRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> SetRef<CodebuildFleetStatusElRef> {
         SetRef::new(
@@ -533,7 +468,6 @@ impl CodebuildFleetRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -541,7 +475,6 @@ impl CodebuildFleetRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -549,7 +482,6 @@ impl CodebuildFleetRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_configuration` after provisioning.\n"]
     pub fn compute_configuration(&self) -> ListRef<CodebuildFleetComputeConfigurationElRef> {
         ListRef::new(
@@ -557,7 +489,6 @@ impl CodebuildFleetRef {
             format!("{}.compute_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scaling_configuration` after provisioning.\n"]
     pub fn scaling_configuration(&self) -> ListRef<CodebuildFleetScalingConfigurationElRef> {
         ListRef::new(
@@ -565,7 +496,6 @@ impl CodebuildFleetRef {
             format!("{}.scaling_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<CodebuildFleetVpcConfigElRef> {
         ListRef::new(
@@ -574,7 +504,6 @@ impl CodebuildFleetRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildFleetStatusEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -584,30 +513,25 @@ pub struct CodebuildFleetStatusEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     status_code: Option<PrimField<String>>,
 }
-
 impl CodebuildFleetStatusEl {
     #[doc = "Set the field `context`.\n"]
     pub fn set_context(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.context = Some(v.into());
         self
     }
-
     #[doc = "Set the field `message`.\n"]
     pub fn set_message(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.message = Some(v.into());
         self
     }
-
     #[doc = "Set the field `status_code`.\n"]
     pub fn set_status_code(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.status_code = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CodebuildFleetStatusEl {
     type O = BlockAssignable<CodebuildFleetStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -616,9 +540,7 @@ impl ToListMappable for CodebuildFleetStatusEl {
         })
     }
 }
-
 pub struct BuildCodebuildFleetStatusEl {}
-
 impl BuildCodebuildFleetStatusEl {
     pub fn build(self) -> CodebuildFleetStatusEl {
         CodebuildFleetStatusEl {
@@ -628,12 +550,10 @@ impl BuildCodebuildFleetStatusEl {
         }
     }
 }
-
 pub struct CodebuildFleetStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetStatusElRef {
     fn new(shared: StackShared, base: String) -> CodebuildFleetStatusElRef {
         CodebuildFleetStatusElRef {
@@ -642,28 +562,23 @@ impl Ref for CodebuildFleetStatusElRef {
         }
     }
 }
-
 impl CodebuildFleetStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `context` after provisioning.\n"]
     pub fn context(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.context", self.base))
     }
-
     #[doc = "Get a reference to the value of field `message` after provisioning.\n"]
     pub fn message(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.message", self.base))
     }
-
     #[doc = "Get a reference to the value of field `status_code` after provisioning.\n"]
     pub fn status_code(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status_code", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildFleetComputeConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -677,42 +592,35 @@ pub struct CodebuildFleetComputeConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     vcpu: Option<PrimField<f64>>,
 }
-
 impl CodebuildFleetComputeConfigurationEl {
     #[doc = "Set the field `disk`.\n"]
     pub fn set_disk(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.disk = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type`.\n"]
     pub fn set_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `machine_type`.\n"]
     pub fn set_machine_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.machine_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory`.\n"]
     pub fn set_memory(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.memory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vcpu`.\n"]
     pub fn set_vcpu(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.vcpu = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CodebuildFleetComputeConfigurationEl {
     type O = BlockAssignable<CodebuildFleetComputeConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -721,9 +629,7 @@ impl ToListMappable for CodebuildFleetComputeConfigurationEl {
         })
     }
 }
-
 pub struct BuildCodebuildFleetComputeConfigurationEl {}
-
 impl BuildCodebuildFleetComputeConfigurationEl {
     pub fn build(self) -> CodebuildFleetComputeConfigurationEl {
         CodebuildFleetComputeConfigurationEl {
@@ -735,12 +641,10 @@ impl BuildCodebuildFleetComputeConfigurationEl {
         }
     }
 }
-
 pub struct CodebuildFleetComputeConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetComputeConfigurationElRef {
     fn new(shared: StackShared, base: String) -> CodebuildFleetComputeConfigurationElRef {
         CodebuildFleetComputeConfigurationElRef {
@@ -749,17 +653,14 @@ impl Ref for CodebuildFleetComputeConfigurationElRef {
         }
     }
 }
-
 impl CodebuildFleetComputeConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `disk` after provisioning.\n"]
     pub fn disk(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.disk", self.base))
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -767,23 +668,19 @@ impl CodebuildFleetComputeConfigurationElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `machine_type` after provisioning.\n"]
     pub fn machine_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.machine_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `memory` after provisioning.\n"]
     pub fn memory(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.memory", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vcpu` after provisioning.\n"]
     pub fn vcpu(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.vcpu", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -791,24 +688,20 @@ pub struct CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     target_value: Option<PrimField<f64>>,
 }
-
 impl CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
     #[doc = "Set the field `metric_type`.\n"]
     pub fn set_metric_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.metric_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_value`.\n"]
     pub fn set_target_value(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.target_value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
     type O = BlockAssignable<CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -817,9 +710,7 @@ impl ToListMappable for CodebuildFleetScalingConfigurationElTargetTrackingScalin
         })
     }
 }
-
 pub struct BuildCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {}
-
 impl BuildCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
     pub fn build(self) -> CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
         CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
@@ -828,12 +719,10 @@ impl BuildCodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl {
         }
     }
 }
-
 pub struct CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsElRef {
     fn new(
         shared: StackShared,
@@ -845,29 +734,24 @@ impl Ref for CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsElR
         }
     }
 }
-
 impl CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metric_type` after provisioning.\n"]
     pub fn metric_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.metric_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_value` after provisioning.\n"]
     pub fn target_value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.target_value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CodebuildFleetScalingConfigurationElDynamic {
     target_tracking_scaling_configs:
         Option<DynamicBlock<CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CodebuildFleetScalingConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -879,20 +763,17 @@ pub struct CodebuildFleetScalingConfigurationEl {
         Option<Vec<CodebuildFleetScalingConfigurationElTargetTrackingScalingConfigsEl>>,
     dynamic: CodebuildFleetScalingConfigurationElDynamic,
 }
-
 impl CodebuildFleetScalingConfigurationEl {
     #[doc = "Set the field `max_capacity`.\n"]
     pub fn set_max_capacity(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.max_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scaling_type`.\n"]
     pub fn set_scaling_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.scaling_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_tracking_scaling_configs`.\n"]
     pub fn set_target_tracking_scaling_configs(
         mut self,
@@ -911,10 +792,8 @@ impl CodebuildFleetScalingConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for CodebuildFleetScalingConfigurationEl {
     type O = BlockAssignable<CodebuildFleetScalingConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -923,9 +802,7 @@ impl ToListMappable for CodebuildFleetScalingConfigurationEl {
         })
     }
 }
-
 pub struct BuildCodebuildFleetScalingConfigurationEl {}
-
 impl BuildCodebuildFleetScalingConfigurationEl {
     pub fn build(self) -> CodebuildFleetScalingConfigurationEl {
         CodebuildFleetScalingConfigurationEl {
@@ -936,12 +813,10 @@ impl BuildCodebuildFleetScalingConfigurationEl {
         }
     }
 }
-
 pub struct CodebuildFleetScalingConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetScalingConfigurationElRef {
     fn new(shared: StackShared, base: String) -> CodebuildFleetScalingConfigurationElRef {
         CodebuildFleetScalingConfigurationElRef {
@@ -950,12 +825,10 @@ impl Ref for CodebuildFleetScalingConfigurationElRef {
         }
     }
 }
-
 impl CodebuildFleetScalingConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `desired_capacity` after provisioning.\n"]
     pub fn desired_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -963,17 +836,14 @@ impl CodebuildFleetScalingConfigurationElRef {
             format!("{}.desired_capacity", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.max_capacity", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scaling_type` after provisioning.\n"]
     pub fn scaling_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.scaling_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_tracking_scaling_configs` after provisioning.\n"]
     pub fn target_tracking_scaling_configs(
         &self,
@@ -984,19 +854,15 @@ impl CodebuildFleetScalingConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CodebuildFleetVpcConfigEl {
     security_group_ids: SetField<PrimField<String>>,
     subnets: SetField<PrimField<String>>,
     vpc_id: PrimField<String>,
 }
-
 impl CodebuildFleetVpcConfigEl {}
-
 impl ToListMappable for CodebuildFleetVpcConfigEl {
     type O = BlockAssignable<CodebuildFleetVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1005,7 +871,6 @@ impl ToListMappable for CodebuildFleetVpcConfigEl {
         })
     }
 }
-
 pub struct BuildCodebuildFleetVpcConfigEl {
     #[doc = ""]
     pub security_group_ids: SetField<PrimField<String>>,
@@ -1014,7 +879,6 @@ pub struct BuildCodebuildFleetVpcConfigEl {
     #[doc = ""]
     pub vpc_id: PrimField<String>,
 }
-
 impl BuildCodebuildFleetVpcConfigEl {
     pub fn build(self) -> CodebuildFleetVpcConfigEl {
         CodebuildFleetVpcConfigEl {
@@ -1024,12 +888,10 @@ impl BuildCodebuildFleetVpcConfigEl {
         }
     }
 }
-
 pub struct CodebuildFleetVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CodebuildFleetVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> CodebuildFleetVpcConfigElRef {
         CodebuildFleetVpcConfigElRef {
@@ -1038,12 +900,10 @@ impl Ref for CodebuildFleetVpcConfigElRef {
         }
     }
 }
-
 impl CodebuildFleetVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1051,18 +911,15 @@ impl CodebuildFleetVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CodebuildFleetDynamic {
     compute_configuration: Option<DynamicBlock<CodebuildFleetComputeConfigurationEl>>,

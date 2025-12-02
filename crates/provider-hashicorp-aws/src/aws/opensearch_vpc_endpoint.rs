@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct OpensearchVpcEndpointData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,47 +24,38 @@ struct OpensearchVpcEndpointData {
     vpc_options: Option<Vec<OpensearchVpcEndpointVpcOptionsEl>>,
     dynamic: OpensearchVpcEndpointDynamic,
 }
-
 struct OpensearchVpcEndpoint_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<OpensearchVpcEndpointData>,
 }
-
 #[derive(Clone)]
 pub struct OpensearchVpcEndpoint(Rc<OpensearchVpcEndpoint_>);
-
 impl OpensearchVpcEndpoint {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -84,7 +74,6 @@ impl OpensearchVpcEndpoint {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -94,7 +83,6 @@ impl OpensearchVpcEndpoint {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -104,25 +92,21 @@ impl OpensearchVpcEndpoint {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<OpensearchVpcEndpointTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_options`.\n"]
     pub fn set_vpc_options(
         self,
@@ -138,7 +122,6 @@ impl OpensearchVpcEndpoint {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `domain_arn` after provisioning.\n"]
     pub fn domain_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,7 +129,6 @@ impl OpensearchVpcEndpoint {
             format!("{}.domain_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,12 +136,10 @@ impl OpensearchVpcEndpoint {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +147,6 @@ impl OpensearchVpcEndpoint {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchVpcEndpointTimeoutsElRef {
         OpensearchVpcEndpointTimeoutsElRef::new(
@@ -175,7 +154,6 @@ impl OpensearchVpcEndpoint {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OpensearchVpcEndpointVpcOptionsElRef> {
         ListRef::new(
@@ -184,7 +162,6 @@ impl OpensearchVpcEndpoint {
         )
     }
 }
-
 impl Referable for OpensearchVpcEndpoint {
     fn extract_ref(&self) -> String {
         format!(
@@ -194,38 +171,30 @@ impl Referable for OpensearchVpcEndpoint {
         )
     }
 }
-
 impl Resource for OpensearchVpcEndpoint {}
-
 impl ToListMappable for OpensearchVpcEndpoint {
     type O = ListRef<OpensearchVpcEndpointRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for OpensearchVpcEndpoint_ {
     fn extract_resource_type(&self) -> String {
         "aws_opensearch_vpc_endpoint".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildOpensearchVpcEndpoint {
     pub tf_id: String,
     #[doc = ""]
     pub domain_arn: PrimField<String>,
 }
-
 impl BuildOpensearchVpcEndpoint {
     pub fn build(self, stack: &mut Stack) -> OpensearchVpcEndpoint {
         let out = OpensearchVpcEndpoint(Rc::new(OpensearchVpcEndpoint_ {
@@ -248,27 +217,22 @@ impl BuildOpensearchVpcEndpoint {
         out
     }
 }
-
 pub struct OpensearchVpcEndpointRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchVpcEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl OpensearchVpcEndpointRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain_arn` after provisioning.\n"]
     pub fn domain_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +240,6 @@ impl OpensearchVpcEndpointRef {
             format!("{}.domain_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,12 +247,10 @@ impl OpensearchVpcEndpointRef {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +258,6 @@ impl OpensearchVpcEndpointRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchVpcEndpointTimeoutsElRef {
         OpensearchVpcEndpointTimeoutsElRef::new(
@@ -305,7 +265,6 @@ impl OpensearchVpcEndpointRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OpensearchVpcEndpointVpcOptionsElRef> {
         ListRef::new(
@@ -314,7 +273,6 @@ impl OpensearchVpcEndpointRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchVpcEndpointTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -324,30 +282,25 @@ pub struct OpensearchVpcEndpointTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl OpensearchVpcEndpointTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchVpcEndpointTimeoutsEl {
     type O = BlockAssignable<OpensearchVpcEndpointTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -356,9 +309,7 @@ impl ToListMappable for OpensearchVpcEndpointTimeoutsEl {
         })
     }
 }
-
 pub struct BuildOpensearchVpcEndpointTimeoutsEl {}
-
 impl BuildOpensearchVpcEndpointTimeoutsEl {
     pub fn build(self) -> OpensearchVpcEndpointTimeoutsEl {
         OpensearchVpcEndpointTimeoutsEl {
@@ -368,12 +319,10 @@ impl BuildOpensearchVpcEndpointTimeoutsEl {
         }
     }
 }
-
 pub struct OpensearchVpcEndpointTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchVpcEndpointTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchVpcEndpointTimeoutsElRef {
         OpensearchVpcEndpointTimeoutsElRef {
@@ -382,35 +331,29 @@ impl Ref for OpensearchVpcEndpointTimeoutsElRef {
         }
     }
 }
-
 impl OpensearchVpcEndpointTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchVpcEndpointVpcOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     security_group_ids: Option<SetField<PrimField<String>>>,
     subnet_ids: SetField<PrimField<String>>,
 }
-
 impl OpensearchVpcEndpointVpcOptionsEl {
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -418,10 +361,8 @@ impl OpensearchVpcEndpointVpcOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchVpcEndpointVpcOptionsEl {
     type O = BlockAssignable<OpensearchVpcEndpointVpcOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -430,12 +371,10 @@ impl ToListMappable for OpensearchVpcEndpointVpcOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchVpcEndpointVpcOptionsEl {
     #[doc = ""]
     pub subnet_ids: SetField<PrimField<String>>,
 }
-
 impl BuildOpensearchVpcEndpointVpcOptionsEl {
     pub fn build(self) -> OpensearchVpcEndpointVpcOptionsEl {
         OpensearchVpcEndpointVpcOptionsEl {
@@ -444,12 +383,10 @@ impl BuildOpensearchVpcEndpointVpcOptionsEl {
         }
     }
 }
-
 pub struct OpensearchVpcEndpointVpcOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchVpcEndpointVpcOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchVpcEndpointVpcOptionsElRef {
         OpensearchVpcEndpointVpcOptionsElRef {
@@ -458,12 +395,10 @@ impl Ref for OpensearchVpcEndpointVpcOptionsElRef {
         }
     }
 }
-
 impl OpensearchVpcEndpointVpcOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -471,7 +406,6 @@ impl OpensearchVpcEndpointVpcOptionsElRef {
             format!("{}.availability_zones", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -479,18 +413,15 @@ impl OpensearchVpcEndpointVpcOptionsElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchVpcEndpointDynamic {
     vpc_options: Option<DynamicBlock<OpensearchVpcEndpointVpcOptionsEl>>,

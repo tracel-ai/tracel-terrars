@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudfrontMonitoringSubscriptionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct CloudfrontMonitoringSubscriptionData {
     monitoring_subscription: Option<Vec<CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl>>,
     dynamic: CloudfrontMonitoringSubscriptionDynamic,
 }
-
 struct CloudfrontMonitoringSubscription_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudfrontMonitoringSubscriptionData>,
 }
-
 #[derive(Clone)]
 pub struct CloudfrontMonitoringSubscription(Rc<CloudfrontMonitoringSubscription_>);
-
 impl CloudfrontMonitoringSubscription {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl CloudfrontMonitoringSubscription {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl CloudfrontMonitoringSubscription {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,13 +88,11 @@ impl CloudfrontMonitoringSubscription {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `monitoring_subscription`.\n"]
     pub fn set_monitoring_subscription(
         self,
@@ -122,7 +108,6 @@ impl CloudfrontMonitoringSubscription {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `distribution_id` after provisioning.\n"]
     pub fn distribution_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,12 +115,10 @@ impl CloudfrontMonitoringSubscription {
             format!("{}.distribution_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `monitoring_subscription` after provisioning.\n"]
     pub fn monitoring_subscription(
         &self,
@@ -146,7 +129,6 @@ impl CloudfrontMonitoringSubscription {
         )
     }
 }
-
 impl Referable for CloudfrontMonitoringSubscription {
     fn extract_ref(&self) -> String {
         format!(
@@ -156,38 +138,30 @@ impl Referable for CloudfrontMonitoringSubscription {
         )
     }
 }
-
 impl Resource for CloudfrontMonitoringSubscription {}
-
 impl ToListMappable for CloudfrontMonitoringSubscription {
     type O = ListRef<CloudfrontMonitoringSubscriptionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudfrontMonitoringSubscription_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudfront_monitoring_subscription".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudfrontMonitoringSubscription {
     pub tf_id: String,
     #[doc = ""]
     pub distribution_id: PrimField<String>,
 }
-
 impl BuildCloudfrontMonitoringSubscription {
     pub fn build(self, stack: &mut Stack) -> CloudfrontMonitoringSubscription {
         let out = CloudfrontMonitoringSubscription(Rc::new(CloudfrontMonitoringSubscription_ {
@@ -208,27 +182,22 @@ impl BuildCloudfrontMonitoringSubscription {
         out
     }
 }
-
 pub struct CloudfrontMonitoringSubscriptionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontMonitoringSubscriptionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudfrontMonitoringSubscriptionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `distribution_id` after provisioning.\n"]
     pub fn distribution_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,12 +205,10 @@ impl CloudfrontMonitoringSubscriptionRef {
             format!("{}.distribution_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `monitoring_subscription` after provisioning.\n"]
     pub fn monitoring_subscription(
         &self,
@@ -252,22 +219,18 @@ impl CloudfrontMonitoringSubscriptionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl
 {
     realtime_metrics_subscription_status: PrimField<String>,
 }
-
 impl CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl {}
-
 impl ToListMappable
     for CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl
 {
     type O = BlockAssignable<
         CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -276,13 +239,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl
 {
     #[doc = ""]
     pub realtime_metrics_subscription_status: PrimField<String>,
 }
-
 impl
     BuildCloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl
 {
@@ -290,37 +251,21 @@ impl
         self,
     ) -> CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl
     {
-        CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl {
-            realtime_metrics_subscription_status: self.realtime_metrics_subscription_status,
-        }
+        CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl { realtime_metrics_subscription_status : self . realtime_metrics_subscription_status , }
     }
 }
-
 pub struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef {
-        CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef { fn new (shared : StackShared , base : String) -> CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef { CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef { shared : shared , base : base . to_string () , } } }
 impl
     CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef
 {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `realtime_metrics_subscription_status` after provisioning.\n"]
     pub fn realtime_metrics_subscription_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -329,35 +274,15 @@ impl
         )
     }
 }
-
 #[derive(Serialize, Default)]
-struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionElDynamic {
-    realtime_metrics_subscription_config: Option<
-        DynamicBlock<CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl>,
-    >,
-}
-
+struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionElDynamic { realtime_metrics_subscription_config : Option < DynamicBlock < CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl >> , }
 #[derive(Serialize)]
-pub struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    realtime_metrics_subscription_config: Option<
-        Vec<CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl>,
-    >,
-    dynamic: CloudfrontMonitoringSubscriptionMonitoringSubscriptionElDynamic,
-}
-
+pub struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl { # [serde (skip_serializing_if = "Option::is_none")] realtime_metrics_subscription_config : Option < Vec < CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl > > , dynamic : CloudfrontMonitoringSubscriptionMonitoringSubscriptionElDynamic , }
 impl CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
     #[doc = "Set the field `realtime_metrics_subscription_config`.\n"]
     pub fn set_realtime_metrics_subscription_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -370,10 +295,8 @@ impl CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
     type O = BlockAssignable<CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -382,9 +305,7 @@ impl ToListMappable for CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl
         })
     }
 }
-
 pub struct BuildCloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {}
-
 impl BuildCloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
     pub fn build(self) -> CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
         CloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
@@ -393,12 +314,10 @@ impl BuildCloudfrontMonitoringSubscriptionMonitoringSubscriptionEl {
         }
     }
 }
-
 pub struct CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRef {
     fn new(
         shared: StackShared,
@@ -410,23 +329,17 @@ impl Ref for CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRef {
         }
     }
 }
-
 impl CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `realtime_metrics_subscription_config` after provisioning.\n"]
-    pub fn realtime_metrics_subscription_config(
-        &self,
-    ) -> ListRef<CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef>{
+    #[doc = "Get a reference to the value of field `realtime_metrics_subscription_config` after provisioning.\n"]    pub fn realtime_metrics_subscription_config (& self) -> ListRef < CloudfrontMonitoringSubscriptionMonitoringSubscriptionElRealtimeMetricsSubscriptionConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.realtime_metrics_subscription_config", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontMonitoringSubscriptionDynamic {
     monitoring_subscription:

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppsyncApiCacheData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -28,47 +27,38 @@ struct AppsyncApiCacheData {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 struct AppsyncApiCache_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppsyncApiCacheData>,
 }
-
 #[derive(Clone)]
 pub struct AppsyncApiCache(Rc<AppsyncApiCache_>);
-
 impl AppsyncApiCache {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -87,7 +77,6 @@ impl AppsyncApiCache {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -97,7 +86,6 @@ impl AppsyncApiCache {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -107,31 +95,26 @@ impl AppsyncApiCache {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `at_rest_encryption_enabled`.\n"]
     pub fn set_at_rest_encryption_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().at_rest_encryption_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `transit_encryption_enabled`.\n"]
     pub fn set_transit_encryption_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().transit_encryption_enabled = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `api_caching_behavior` after provisioning.\n"]
     pub fn api_caching_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,7 +122,6 @@ impl AppsyncApiCache {
             format!("{}.api_caching_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -147,7 +129,6 @@ impl AppsyncApiCache {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `at_rest_encryption_enabled` after provisioning.\n"]
     pub fn at_rest_encryption_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -155,12 +136,10 @@ impl AppsyncApiCache {
             format!("{}.at_rest_encryption_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +147,6 @@ impl AppsyncApiCache {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_encryption_enabled` after provisioning.\n"]
     pub fn transit_encryption_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -176,12 +154,10 @@ impl AppsyncApiCache {
             format!("{}.transit_encryption_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
     pub fn ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.ttl", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +166,6 @@ impl AppsyncApiCache {
         )
     }
 }
-
 impl Referable for AppsyncApiCache {
     fn extract_ref(&self) -> String {
         format!(
@@ -200,32 +175,25 @@ impl Referable for AppsyncApiCache {
         )
     }
 }
-
 impl Resource for AppsyncApiCache {}
-
 impl ToListMappable for AppsyncApiCache {
     type O = ListRef<AppsyncApiCacheRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppsyncApiCache_ {
     fn extract_resource_type(&self) -> String {
         "aws_appsync_api_cache".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppsyncApiCache {
     pub tf_id: String,
     #[doc = ""]
@@ -237,7 +205,6 @@ pub struct BuildAppsyncApiCache {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildAppsyncApiCache {
     pub fn build(self, stack: &mut Stack) -> AppsyncApiCache {
         let out = AppsyncApiCache(Rc::new(AppsyncApiCache_ {
@@ -262,27 +229,22 @@ impl BuildAppsyncApiCache {
         out
     }
 }
-
 pub struct AppsyncApiCacheRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncApiCacheRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppsyncApiCacheRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_caching_behavior` after provisioning.\n"]
     pub fn api_caching_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +252,6 @@ impl AppsyncApiCacheRef {
             format!("{}.api_caching_behavior", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +259,6 @@ impl AppsyncApiCacheRef {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `at_rest_encryption_enabled` after provisioning.\n"]
     pub fn at_rest_encryption_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -306,12 +266,10 @@ impl AppsyncApiCacheRef {
             format!("{}.at_rest_encryption_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -319,7 +277,6 @@ impl AppsyncApiCacheRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `transit_encryption_enabled` after provisioning.\n"]
     pub fn transit_encryption_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -327,12 +284,10 @@ impl AppsyncApiCacheRef {
             format!("{}.transit_encryption_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ttl` after provisioning.\n"]
     pub fn ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.ttl", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(

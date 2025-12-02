@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DbSnapshotData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct DbSnapshotData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<DbSnapshotTimeoutsEl>,
 }
-
 struct DbSnapshot_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DbSnapshotData>,
 }
-
 #[derive(Clone)]
 pub struct DbSnapshot(Rc<DbSnapshot_>);
-
 impl DbSnapshot {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl DbSnapshot {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl DbSnapshot {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,43 +96,36 @@ impl DbSnapshot {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `shared_accounts`.\n"]
     pub fn set_shared_accounts(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().shared_accounts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DbSnapshotTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `allocated_storage` after provisioning.\n"]
     pub fn allocated_storage(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -152,7 +133,6 @@ impl DbSnapshot {
             format!("{}.allocated_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +140,6 @@ impl DbSnapshot {
             format!("{}.availability_zone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_instance_identifier` after provisioning.\n"]
     pub fn db_instance_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +147,6 @@ impl DbSnapshot {
             format!("{}.db_instance_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_snapshot_arn` after provisioning.\n"]
     pub fn db_snapshot_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +154,6 @@ impl DbSnapshot {
             format!("{}.db_snapshot_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_snapshot_identifier` after provisioning.\n"]
     pub fn db_snapshot_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +161,6 @@ impl DbSnapshot {
             format!("{}.db_snapshot_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -192,7 +168,6 @@ impl DbSnapshot {
             format!("{}.encrypted", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +175,6 @@ impl DbSnapshot {
             format!("{}.engine", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,12 +182,10 @@ impl DbSnapshot {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -221,7 +193,6 @@ impl DbSnapshot {
             format!("{}.iops", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +200,6 @@ impl DbSnapshot {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `license_model` after provisioning.\n"]
     pub fn license_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +207,6 @@ impl DbSnapshot {
             format!("{}.license_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `option_group_name` after provisioning.\n"]
     pub fn option_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +214,6 @@ impl DbSnapshot {
             format!("{}.option_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -253,7 +221,6 @@ impl DbSnapshot {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +228,6 @@ impl DbSnapshot {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `shared_accounts` after provisioning.\n"]
     pub fn shared_accounts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -269,7 +235,6 @@ impl DbSnapshot {
             format!("{}.shared_accounts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_type` after provisioning.\n"]
     pub fn snapshot_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +242,6 @@ impl DbSnapshot {
             format!("{}.snapshot_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_db_snapshot_identifier` after provisioning.\n"]
     pub fn source_db_snapshot_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -285,7 +249,6 @@ impl DbSnapshot {
             format!("{}.source_db_snapshot_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_region` after provisioning.\n"]
     pub fn source_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,7 +256,6 @@ impl DbSnapshot {
             format!("{}.source_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,7 +263,6 @@ impl DbSnapshot {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
     pub fn storage_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -309,7 +270,6 @@ impl DbSnapshot {
             format!("{}.storage_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -317,7 +277,6 @@ impl DbSnapshot {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -325,7 +284,6 @@ impl DbSnapshot {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +291,6 @@ impl DbSnapshot {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DbSnapshotTimeoutsElRef {
         DbSnapshotTimeoutsElRef::new(
@@ -342,7 +299,6 @@ impl DbSnapshot {
         )
     }
 }
-
 impl Referable for DbSnapshot {
     fn extract_ref(&self) -> String {
         format!(
@@ -352,32 +308,25 @@ impl Referable for DbSnapshot {
         )
     }
 }
-
 impl Resource for DbSnapshot {}
-
 impl ToListMappable for DbSnapshot {
     type O = ListRef<DbSnapshotRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DbSnapshot_ {
     fn extract_resource_type(&self) -> String {
         "aws_db_snapshot".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDbSnapshot {
     pub tf_id: String,
     #[doc = ""]
@@ -385,7 +334,6 @@ pub struct BuildDbSnapshot {
     #[doc = ""]
     pub db_snapshot_identifier: PrimField<String>,
 }
-
 impl BuildDbSnapshot {
     pub fn build(self, stack: &mut Stack) -> DbSnapshot {
         let out = DbSnapshot(Rc::new(DbSnapshot_ {
@@ -410,27 +358,22 @@ impl BuildDbSnapshot {
         out
     }
 }
-
 pub struct DbSnapshotRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DbSnapshotRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DbSnapshotRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allocated_storage` after provisioning.\n"]
     pub fn allocated_storage(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -438,7 +381,6 @@ impl DbSnapshotRef {
             format!("{}.allocated_storage", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -446,7 +388,6 @@ impl DbSnapshotRef {
             format!("{}.availability_zone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_instance_identifier` after provisioning.\n"]
     pub fn db_instance_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -454,7 +395,6 @@ impl DbSnapshotRef {
             format!("{}.db_instance_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_snapshot_arn` after provisioning.\n"]
     pub fn db_snapshot_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,7 +402,6 @@ impl DbSnapshotRef {
             format!("{}.db_snapshot_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_snapshot_identifier` after provisioning.\n"]
     pub fn db_snapshot_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -470,7 +409,6 @@ impl DbSnapshotRef {
             format!("{}.db_snapshot_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -478,7 +416,6 @@ impl DbSnapshotRef {
             format!("{}.encrypted", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine` after provisioning.\n"]
     pub fn engine(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +423,6 @@ impl DbSnapshotRef {
             format!("{}.engine", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,12 +430,10 @@ impl DbSnapshotRef {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -507,7 +441,6 @@ impl DbSnapshotRef {
             format!("{}.iops", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -515,7 +448,6 @@ impl DbSnapshotRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `license_model` after provisioning.\n"]
     pub fn license_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +455,6 @@ impl DbSnapshotRef {
             format!("{}.license_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `option_group_name` after provisioning.\n"]
     pub fn option_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -531,7 +462,6 @@ impl DbSnapshotRef {
             format!("{}.option_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -539,7 +469,6 @@ impl DbSnapshotRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +476,6 @@ impl DbSnapshotRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `shared_accounts` after provisioning.\n"]
     pub fn shared_accounts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -555,7 +483,6 @@ impl DbSnapshotRef {
             format!("{}.shared_accounts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_type` after provisioning.\n"]
     pub fn snapshot_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -563,7 +490,6 @@ impl DbSnapshotRef {
             format!("{}.snapshot_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_db_snapshot_identifier` after provisioning.\n"]
     pub fn source_db_snapshot_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -571,7 +497,6 @@ impl DbSnapshotRef {
             format!("{}.source_db_snapshot_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_region` after provisioning.\n"]
     pub fn source_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -579,7 +504,6 @@ impl DbSnapshotRef {
             format!("{}.source_region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +511,6 @@ impl DbSnapshotRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_type` after provisioning.\n"]
     pub fn storage_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -595,7 +518,6 @@ impl DbSnapshotRef {
             format!("{}.storage_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -603,7 +525,6 @@ impl DbSnapshotRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -611,7 +532,6 @@ impl DbSnapshotRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -619,7 +539,6 @@ impl DbSnapshotRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DbSnapshotTimeoutsElRef {
         DbSnapshotTimeoutsElRef::new(
@@ -628,13 +547,11 @@ impl DbSnapshotRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DbSnapshotTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     create: Option<PrimField<String>>,
 }
-
 impl DbSnapshotTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -642,10 +559,8 @@ impl DbSnapshotTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DbSnapshotTimeoutsEl {
     type O = BlockAssignable<DbSnapshotTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -654,9 +569,7 @@ impl ToListMappable for DbSnapshotTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDbSnapshotTimeoutsEl {}
-
 impl BuildDbSnapshotTimeoutsEl {
     pub fn build(self) -> DbSnapshotTimeoutsEl {
         DbSnapshotTimeoutsEl {
@@ -664,12 +577,10 @@ impl BuildDbSnapshotTimeoutsEl {
         }
     }
 }
-
 pub struct DbSnapshotTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DbSnapshotTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DbSnapshotTimeoutsElRef {
         DbSnapshotTimeoutsElRef {
@@ -678,12 +589,10 @@ impl Ref for DbSnapshotTimeoutsElRef {
         }
     }
 }
-
 impl DbSnapshotTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))

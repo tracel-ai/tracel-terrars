@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreWorkloadIdentityData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,47 +19,38 @@ struct BedrockagentcoreWorkloadIdentityData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct BedrockagentcoreWorkloadIdentity_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreWorkloadIdentityData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreWorkloadIdentity(Rc<BedrockagentcoreWorkloadIdentity_>);
-
 impl BedrockagentcoreWorkloadIdentity {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -79,7 +69,6 @@ impl BedrockagentcoreWorkloadIdentity {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -89,7 +78,6 @@ impl BedrockagentcoreWorkloadIdentity {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -99,7 +87,6 @@ impl BedrockagentcoreWorkloadIdentity {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `allowed_resource_oauth2_return_urls`.\n"]
     pub fn set_allowed_resource_oauth2_return_urls(
         self,
@@ -108,13 +95,11 @@ impl BedrockagentcoreWorkloadIdentity {
         self.0.data.borrow_mut().allowed_resource_oauth2_return_urls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `allowed_resource_oauth2_return_urls` after provisioning.\n"]
     pub fn allowed_resource_oauth2_return_urls(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -122,7 +107,6 @@ impl BedrockagentcoreWorkloadIdentity {
             format!("{}.allowed_resource_oauth2_return_urls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,7 +114,6 @@ impl BedrockagentcoreWorkloadIdentity {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,7 +121,6 @@ impl BedrockagentcoreWorkloadIdentity {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_arn` after provisioning.\n"]
     pub fn workload_identity_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -147,7 +129,6 @@ impl BedrockagentcoreWorkloadIdentity {
         )
     }
 }
-
 impl Referable for BedrockagentcoreWorkloadIdentity {
     fn extract_ref(&self) -> String {
         format!(
@@ -157,38 +138,30 @@ impl Referable for BedrockagentcoreWorkloadIdentity {
         )
     }
 }
-
 impl Resource for BedrockagentcoreWorkloadIdentity {}
-
 impl ToListMappable for BedrockagentcoreWorkloadIdentity {
     type O = ListRef<BedrockagentcoreWorkloadIdentityRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreWorkloadIdentity_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_workload_identity".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreWorkloadIdentity {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreWorkloadIdentity {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreWorkloadIdentity {
         let out = BedrockagentcoreWorkloadIdentity(Rc::new(BedrockagentcoreWorkloadIdentity_ {
@@ -208,27 +181,22 @@ impl BuildBedrockagentcoreWorkloadIdentity {
         out
     }
 }
-
 pub struct BedrockagentcoreWorkloadIdentityRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreWorkloadIdentityRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreWorkloadIdentityRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allowed_resource_oauth2_return_urls` after provisioning.\n"]
     pub fn allowed_resource_oauth2_return_urls(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -236,7 +204,6 @@ impl BedrockagentcoreWorkloadIdentityRef {
             format!("{}.allowed_resource_oauth2_return_urls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +211,6 @@ impl BedrockagentcoreWorkloadIdentityRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +218,6 @@ impl BedrockagentcoreWorkloadIdentityRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `workload_identity_arn` after provisioning.\n"]
     pub fn workload_identity_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(

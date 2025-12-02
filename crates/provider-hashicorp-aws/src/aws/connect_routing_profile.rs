@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ConnectRoutingProfileData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -32,47 +31,38 @@ struct ConnectRoutingProfileData {
     queue_configs: Option<Vec<ConnectRoutingProfileQueueConfigsEl>>,
     dynamic: ConnectRoutingProfileDynamic,
 }
-
 struct ConnectRoutingProfile_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ConnectRoutingProfileData>,
 }
-
 #[derive(Clone)]
 pub struct ConnectRoutingProfile(Rc<ConnectRoutingProfile_>);
-
 impl ConnectRoutingProfile {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -91,7 +81,6 @@ impl ConnectRoutingProfile {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -101,7 +90,6 @@ impl ConnectRoutingProfile {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -111,31 +99,26 @@ impl ConnectRoutingProfile {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `media_concurrencies`.\n"]
     pub fn set_media_concurrencies(
         self,
@@ -151,7 +134,6 @@ impl ConnectRoutingProfile {
         }
         self
     }
-
     #[doc = "Set the field `queue_configs`.\n"]
     pub fn set_queue_configs(
         self,
@@ -167,12 +149,10 @@ impl ConnectRoutingProfile {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_outbound_queue_id` after provisioning.\n"]
     pub fn default_outbound_queue_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +160,6 @@ impl ConnectRoutingProfile {
             format!("{}.default_outbound_queue_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,12 +167,10 @@ impl ConnectRoutingProfile {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +178,6 @@ impl ConnectRoutingProfile {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,7 +185,6 @@ impl ConnectRoutingProfile {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,7 +192,6 @@ impl ConnectRoutingProfile {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_profile_id` after provisioning.\n"]
     pub fn routing_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -225,7 +199,6 @@ impl ConnectRoutingProfile {
             format!("{}.routing_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -233,7 +206,6 @@ impl ConnectRoutingProfile {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -242,7 +214,6 @@ impl ConnectRoutingProfile {
         )
     }
 }
-
 impl Referable for ConnectRoutingProfile {
     fn extract_ref(&self) -> String {
         format!(
@@ -252,32 +223,25 @@ impl Referable for ConnectRoutingProfile {
         )
     }
 }
-
 impl Resource for ConnectRoutingProfile {}
-
 impl ToListMappable for ConnectRoutingProfile {
     type O = ListRef<ConnectRoutingProfileRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ConnectRoutingProfile_ {
     fn extract_resource_type(&self) -> String {
         "aws_connect_routing_profile".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildConnectRoutingProfile {
     pub tf_id: String,
     #[doc = ""]
@@ -289,7 +253,6 @@ pub struct BuildConnectRoutingProfile {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildConnectRoutingProfile {
     pub fn build(self, stack: &mut Stack) -> ConnectRoutingProfile {
         let out = ConnectRoutingProfile(Rc::new(ConnectRoutingProfile_ {
@@ -317,32 +280,26 @@ impl BuildConnectRoutingProfile {
         out
     }
 }
-
 pub struct ConnectRoutingProfileRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectRoutingProfileRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ConnectRoutingProfileRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_outbound_queue_id` after provisioning.\n"]
     pub fn default_outbound_queue_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +307,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.default_outbound_queue_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,12 +314,10 @@ impl ConnectRoutingProfileRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +325,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -379,7 +332,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -387,7 +339,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_profile_id` after provisioning.\n"]
     pub fn routing_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -395,7 +346,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.routing_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -403,7 +353,6 @@ impl ConnectRoutingProfileRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -412,17 +361,13 @@ impl ConnectRoutingProfileRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
     behavior_type: PrimField<String>,
 }
-
 impl ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {}
-
 impl ToListMappable for ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
     type O = BlockAssignable<ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -431,12 +376,10 @@ impl ToListMappable for ConnectRoutingProfileMediaConcurrenciesElCrossChannelBeh
         })
     }
 }
-
 pub struct BuildConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
     #[doc = ""]
     pub behavior_type: PrimField<String>,
 }
-
 impl BuildConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
     pub fn build(self) -> ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
         ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
@@ -444,12 +387,10 @@ impl BuildConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl {
         }
     }
 }
-
 pub struct ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorElRef {
     fn new(
         shared: StackShared,
@@ -461,12 +402,10 @@ impl Ref for ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorElRef 
         }
     }
 }
-
 impl ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `behavior_type` after provisioning.\n"]
     pub fn behavior_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,13 +414,11 @@ impl ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectRoutingProfileMediaConcurrenciesElDynamic {
     cross_channel_behavior:
         Option<DynamicBlock<ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ConnectRoutingProfileMediaConcurrenciesEl {
     channel: PrimField<String>,
@@ -491,7 +428,6 @@ pub struct ConnectRoutingProfileMediaConcurrenciesEl {
         Option<Vec<ConnectRoutingProfileMediaConcurrenciesElCrossChannelBehaviorEl>>,
     dynamic: ConnectRoutingProfileMediaConcurrenciesElDynamic,
 }
-
 impl ConnectRoutingProfileMediaConcurrenciesEl {
     #[doc = "Set the field `cross_channel_behavior`.\n"]
     pub fn set_cross_channel_behavior(
@@ -509,10 +445,8 @@ impl ConnectRoutingProfileMediaConcurrenciesEl {
         self
     }
 }
-
 impl ToListMappable for ConnectRoutingProfileMediaConcurrenciesEl {
     type O = BlockAssignable<ConnectRoutingProfileMediaConcurrenciesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -521,14 +455,12 @@ impl ToListMappable for ConnectRoutingProfileMediaConcurrenciesEl {
         })
     }
 }
-
 pub struct BuildConnectRoutingProfileMediaConcurrenciesEl {
     #[doc = ""]
     pub channel: PrimField<String>,
     #[doc = ""]
     pub concurrency: PrimField<f64>,
 }
-
 impl BuildConnectRoutingProfileMediaConcurrenciesEl {
     pub fn build(self) -> ConnectRoutingProfileMediaConcurrenciesEl {
         ConnectRoutingProfileMediaConcurrenciesEl {
@@ -539,12 +471,10 @@ impl BuildConnectRoutingProfileMediaConcurrenciesEl {
         }
     }
 }
-
 pub struct ConnectRoutingProfileMediaConcurrenciesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectRoutingProfileMediaConcurrenciesElRef {
     fn new(shared: StackShared, base: String) -> ConnectRoutingProfileMediaConcurrenciesElRef {
         ConnectRoutingProfileMediaConcurrenciesElRef {
@@ -553,22 +483,18 @@ impl Ref for ConnectRoutingProfileMediaConcurrenciesElRef {
         }
     }
 }
-
 impl ConnectRoutingProfileMediaConcurrenciesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `channel` after provisioning.\n"]
     pub fn channel(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel", self.base))
     }
-
     #[doc = "Get a reference to the value of field `concurrency` after provisioning.\n"]
     pub fn concurrency(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.concurrency", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cross_channel_behavior` after provisioning.\n"]
     pub fn cross_channel_behavior(
         &self,
@@ -579,7 +505,6 @@ impl ConnectRoutingProfileMediaConcurrenciesElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectRoutingProfileQueueConfigsEl {
     channel: PrimField<String>,
@@ -587,12 +512,9 @@ pub struct ConnectRoutingProfileQueueConfigsEl {
     priority: PrimField<f64>,
     queue_id: PrimField<String>,
 }
-
 impl ConnectRoutingProfileQueueConfigsEl {}
-
 impl ToListMappable for ConnectRoutingProfileQueueConfigsEl {
     type O = BlockAssignable<ConnectRoutingProfileQueueConfigsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -601,7 +523,6 @@ impl ToListMappable for ConnectRoutingProfileQueueConfigsEl {
         })
     }
 }
-
 pub struct BuildConnectRoutingProfileQueueConfigsEl {
     #[doc = ""]
     pub channel: PrimField<String>,
@@ -612,7 +533,6 @@ pub struct BuildConnectRoutingProfileQueueConfigsEl {
     #[doc = ""]
     pub queue_id: PrimField<String>,
 }
-
 impl BuildConnectRoutingProfileQueueConfigsEl {
     pub fn build(self) -> ConnectRoutingProfileQueueConfigsEl {
         ConnectRoutingProfileQueueConfigsEl {
@@ -623,12 +543,10 @@ impl BuildConnectRoutingProfileQueueConfigsEl {
         }
     }
 }
-
 pub struct ConnectRoutingProfileQueueConfigsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectRoutingProfileQueueConfigsElRef {
     fn new(shared: StackShared, base: String) -> ConnectRoutingProfileQueueConfigsElRef {
         ConnectRoutingProfileQueueConfigsElRef {
@@ -637,43 +555,35 @@ impl Ref for ConnectRoutingProfileQueueConfigsElRef {
         }
     }
 }
-
 impl ConnectRoutingProfileQueueConfigsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `channel` after provisioning.\n"]
     pub fn channel(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delay` after provisioning.\n"]
     pub fn delay(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.delay", self.base))
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.priority", self.base))
     }
-
     #[doc = "Get a reference to the value of field `queue_arn` after provisioning.\n"]
     pub fn queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `queue_id` after provisioning.\n"]
     pub fn queue_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `queue_name` after provisioning.\n"]
     pub fn queue_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.queue_name", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectRoutingProfileDynamic {
     media_concurrencies: Option<DynamicBlock<ConnectRoutingProfileMediaConcurrenciesEl>>,

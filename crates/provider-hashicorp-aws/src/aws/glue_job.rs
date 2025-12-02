@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueJobData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -64,47 +63,38 @@ struct GlueJobData {
     source_control_details: Option<Vec<GlueJobSourceControlDetailsEl>>,
     dynamic: GlueJobDynamic,
 }
-
 struct GlueJob_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueJobData>,
 }
-
 #[derive(Clone)]
 pub struct GlueJob(Rc<GlueJob_>);
-
 impl GlueJob {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -123,7 +113,6 @@ impl GlueJob {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -133,7 +122,6 @@ impl GlueJob {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -143,121 +131,101 @@ impl GlueJob {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `connections`.\n"]
     pub fn set_connections(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().connections = Some(v.into());
         self
     }
-
     #[doc = "Set the field `default_arguments`.\n"]
     pub fn set_default_arguments(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().default_arguments = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_class`.\n"]
     pub fn set_execution_class(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().execution_class = Some(v.into());
         self
     }
-
     #[doc = "Set the field `glue_version`.\n"]
     pub fn set_glue_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().glue_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `job_mode`.\n"]
     pub fn set_job_mode(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().job_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `job_run_queuing_enabled`.\n"]
     pub fn set_job_run_queuing_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().job_run_queuing_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maintenance_window`.\n"]
     pub fn set_maintenance_window(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().maintenance_window = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_capacity`.\n"]
     pub fn set_max_capacity(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_capacity = Some(v.into());
         self
     }
-
     #[doc = "Set the field `max_retries`.\n"]
     pub fn set_max_retries(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().max_retries = Some(v.into());
         self
     }
-
     #[doc = "Set the field `non_overridable_arguments`.\n"]
     pub fn set_non_overridable_arguments(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().non_overridable_arguments = Some(v.into());
         self
     }
-
     #[doc = "Set the field `number_of_workers`.\n"]
     pub fn set_number_of_workers(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().number_of_workers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_configuration`.\n"]
     pub fn set_security_configuration(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().security_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeout`.\n"]
     pub fn set_timeout(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `worker_type`.\n"]
     pub fn set_worker_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().worker_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `command`.\n"]
     pub fn set_command(self, v: impl Into<BlockAssignable<GlueJobCommandEl>>) -> Self {
         match v.into() {
@@ -270,7 +238,6 @@ impl GlueJob {
         }
         self
     }
-
     #[doc = "Set the field `execution_property`.\n"]
     pub fn set_execution_property(
         self,
@@ -286,7 +253,6 @@ impl GlueJob {
         }
         self
     }
-
     #[doc = "Set the field `notification_property`.\n"]
     pub fn set_notification_property(
         self,
@@ -302,7 +268,6 @@ impl GlueJob {
         }
         self
     }
-
     #[doc = "Set the field `source_control_details`.\n"]
     pub fn set_source_control_details(
         self,
@@ -318,12 +283,10 @@ impl GlueJob {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `connections` after provisioning.\n"]
     pub fn connections(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -331,7 +294,6 @@ impl GlueJob {
             format!("{}.connections", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_arguments` after provisioning.\n"]
     pub fn default_arguments(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -339,7 +301,6 @@ impl GlueJob {
             format!("{}.default_arguments", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -347,7 +308,6 @@ impl GlueJob {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_class` after provisioning.\n"]
     pub fn execution_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -355,7 +315,6 @@ impl GlueJob {
             format!("{}.execution_class", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `glue_version` after provisioning.\n"]
     pub fn glue_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,12 +322,10 @@ impl GlueJob {
             format!("{}.glue_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `job_mode` after provisioning.\n"]
     pub fn job_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -376,7 +333,6 @@ impl GlueJob {
             format!("{}.job_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_run_queuing_enabled` after provisioning.\n"]
     pub fn job_run_queuing_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -384,7 +340,6 @@ impl GlueJob {
             format!("{}.job_run_queuing_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
     pub fn maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,7 +347,6 @@ impl GlueJob {
             format!("{}.maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -400,7 +354,6 @@ impl GlueJob {
             format!("{}.max_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_retries` after provisioning.\n"]
     pub fn max_retries(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -408,7 +361,6 @@ impl GlueJob {
             format!("{}.max_retries", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -416,7 +368,6 @@ impl GlueJob {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `non_overridable_arguments` after provisioning.\n"]
     pub fn non_overridable_arguments(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -424,7 +375,6 @@ impl GlueJob {
             format!("{}.non_overridable_arguments", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `number_of_workers` after provisioning.\n"]
     pub fn number_of_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -432,7 +382,6 @@ impl GlueJob {
             format!("{}.number_of_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -440,7 +389,6 @@ impl GlueJob {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -448,7 +396,6 @@ impl GlueJob {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -456,7 +403,6 @@ impl GlueJob {
             format!("{}.security_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -464,7 +410,6 @@ impl GlueJob {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -472,7 +417,6 @@ impl GlueJob {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -480,7 +424,6 @@ impl GlueJob {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_type` after provisioning.\n"]
     pub fn worker_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -488,7 +431,6 @@ impl GlueJob {
             format!("{}.worker_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `command` after provisioning.\n"]
     pub fn command(&self) -> ListRef<GlueJobCommandElRef> {
         ListRef::new(
@@ -496,7 +438,6 @@ impl GlueJob {
             format!("{}.command", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_property` after provisioning.\n"]
     pub fn execution_property(&self) -> ListRef<GlueJobExecutionPropertyElRef> {
         ListRef::new(
@@ -504,7 +445,6 @@ impl GlueJob {
             format!("{}.execution_property", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification_property` after provisioning.\n"]
     pub fn notification_property(&self) -> ListRef<GlueJobNotificationPropertyElRef> {
         ListRef::new(
@@ -512,7 +452,6 @@ impl GlueJob {
             format!("{}.notification_property", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_control_details` after provisioning.\n"]
     pub fn source_control_details(&self) -> ListRef<GlueJobSourceControlDetailsElRef> {
         ListRef::new(
@@ -521,7 +460,6 @@ impl GlueJob {
         )
     }
 }
-
 impl Referable for GlueJob {
     fn extract_ref(&self) -> String {
         format!(
@@ -531,32 +469,25 @@ impl Referable for GlueJob {
         )
     }
 }
-
 impl Resource for GlueJob {}
-
 impl ToListMappable for GlueJob {
     type O = ListRef<GlueJobRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueJob_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_job".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueJob {
     pub tf_id: String,
     #[doc = ""]
@@ -564,7 +495,6 @@ pub struct BuildGlueJob {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildGlueJob {
     pub fn build(self, stack: &mut Stack) -> GlueJob {
         let out = GlueJob(Rc::new(GlueJob_ {
@@ -607,32 +537,26 @@ impl BuildGlueJob {
         out
     }
 }
-
 pub struct GlueJobRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueJobRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueJobRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `connections` after provisioning.\n"]
     pub fn connections(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -640,7 +564,6 @@ impl GlueJobRef {
             format!("{}.connections", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_arguments` after provisioning.\n"]
     pub fn default_arguments(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -648,7 +571,6 @@ impl GlueJobRef {
             format!("{}.default_arguments", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -656,7 +578,6 @@ impl GlueJobRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_class` after provisioning.\n"]
     pub fn execution_class(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -664,7 +585,6 @@ impl GlueJobRef {
             format!("{}.execution_class", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `glue_version` after provisioning.\n"]
     pub fn glue_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -672,12 +592,10 @@ impl GlueJobRef {
             format!("{}.glue_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `job_mode` after provisioning.\n"]
     pub fn job_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -685,7 +603,6 @@ impl GlueJobRef {
             format!("{}.job_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_run_queuing_enabled` after provisioning.\n"]
     pub fn job_run_queuing_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -693,7 +610,6 @@ impl GlueJobRef {
             format!("{}.job_run_queuing_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
     pub fn maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -701,7 +617,6 @@ impl GlueJobRef {
             format!("{}.maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_capacity` after provisioning.\n"]
     pub fn max_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -709,7 +624,6 @@ impl GlueJobRef {
             format!("{}.max_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `max_retries` after provisioning.\n"]
     pub fn max_retries(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -717,7 +631,6 @@ impl GlueJobRef {
             format!("{}.max_retries", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -725,7 +638,6 @@ impl GlueJobRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `non_overridable_arguments` after provisioning.\n"]
     pub fn non_overridable_arguments(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -733,7 +645,6 @@ impl GlueJobRef {
             format!("{}.non_overridable_arguments", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `number_of_workers` after provisioning.\n"]
     pub fn number_of_workers(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -741,7 +652,6 @@ impl GlueJobRef {
             format!("{}.number_of_workers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -749,7 +659,6 @@ impl GlueJobRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -757,7 +666,6 @@ impl GlueJobRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -765,7 +673,6 @@ impl GlueJobRef {
             format!("{}.security_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -773,7 +680,6 @@ impl GlueJobRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -781,7 +687,6 @@ impl GlueJobRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeout` after provisioning.\n"]
     pub fn timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -789,7 +694,6 @@ impl GlueJobRef {
             format!("{}.timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `worker_type` after provisioning.\n"]
     pub fn worker_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -797,7 +701,6 @@ impl GlueJobRef {
             format!("{}.worker_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `command` after provisioning.\n"]
     pub fn command(&self) -> ListRef<GlueJobCommandElRef> {
         ListRef::new(
@@ -805,7 +708,6 @@ impl GlueJobRef {
             format!("{}.command", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_property` after provisioning.\n"]
     pub fn execution_property(&self) -> ListRef<GlueJobExecutionPropertyElRef> {
         ListRef::new(
@@ -813,7 +715,6 @@ impl GlueJobRef {
             format!("{}.execution_property", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification_property` after provisioning.\n"]
     pub fn notification_property(&self) -> ListRef<GlueJobNotificationPropertyElRef> {
         ListRef::new(
@@ -821,7 +722,6 @@ impl GlueJobRef {
             format!("{}.notification_property", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_control_details` after provisioning.\n"]
     pub fn source_control_details(&self) -> ListRef<GlueJobSourceControlDetailsElRef> {
         ListRef::new(
@@ -830,7 +730,6 @@ impl GlueJobRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueJobCommandEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -841,30 +740,25 @@ pub struct GlueJobCommandEl {
     runtime: Option<PrimField<String>>,
     script_location: PrimField<String>,
 }
-
 impl GlueJobCommandEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `python_version`.\n"]
     pub fn set_python_version(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.python_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `runtime`.\n"]
     pub fn set_runtime(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.runtime = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueJobCommandEl {
     type O = BlockAssignable<GlueJobCommandEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -873,12 +767,10 @@ impl ToListMappable for GlueJobCommandEl {
         })
     }
 }
-
 pub struct BuildGlueJobCommandEl {
     #[doc = ""]
     pub script_location: PrimField<String>,
 }
-
 impl BuildGlueJobCommandEl {
     pub fn build(self) -> GlueJobCommandEl {
         GlueJobCommandEl {
@@ -889,12 +781,10 @@ impl BuildGlueJobCommandEl {
         }
     }
 }
-
 pub struct GlueJobCommandElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueJobCommandElRef {
     fn new(shared: StackShared, base: String) -> GlueJobCommandElRef {
         GlueJobCommandElRef {
@@ -903,17 +793,14 @@ impl Ref for GlueJobCommandElRef {
         }
     }
 }
-
 impl GlueJobCommandElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `python_version` after provisioning.\n"]
     pub fn python_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -921,12 +808,10 @@ impl GlueJobCommandElRef {
             format!("{}.python_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `runtime` after provisioning.\n"]
     pub fn runtime(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.runtime", self.base))
     }
-
     #[doc = "Get a reference to the value of field `script_location` after provisioning.\n"]
     pub fn script_location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -935,13 +820,11 @@ impl GlueJobCommandElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueJobExecutionPropertyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     max_concurrent_runs: Option<PrimField<f64>>,
 }
-
 impl GlueJobExecutionPropertyEl {
     #[doc = "Set the field `max_concurrent_runs`.\n"]
     pub fn set_max_concurrent_runs(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -949,10 +832,8 @@ impl GlueJobExecutionPropertyEl {
         self
     }
 }
-
 impl ToListMappable for GlueJobExecutionPropertyEl {
     type O = BlockAssignable<GlueJobExecutionPropertyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -961,9 +842,7 @@ impl ToListMappable for GlueJobExecutionPropertyEl {
         })
     }
 }
-
 pub struct BuildGlueJobExecutionPropertyEl {}
-
 impl BuildGlueJobExecutionPropertyEl {
     pub fn build(self) -> GlueJobExecutionPropertyEl {
         GlueJobExecutionPropertyEl {
@@ -971,12 +850,10 @@ impl BuildGlueJobExecutionPropertyEl {
         }
     }
 }
-
 pub struct GlueJobExecutionPropertyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueJobExecutionPropertyElRef {
     fn new(shared: StackShared, base: String) -> GlueJobExecutionPropertyElRef {
         GlueJobExecutionPropertyElRef {
@@ -985,12 +862,10 @@ impl Ref for GlueJobExecutionPropertyElRef {
         }
     }
 }
-
 impl GlueJobExecutionPropertyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `max_concurrent_runs` after provisioning.\n"]
     pub fn max_concurrent_runs(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -999,13 +874,11 @@ impl GlueJobExecutionPropertyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueJobNotificationPropertyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     notify_delay_after: Option<PrimField<f64>>,
 }
-
 impl GlueJobNotificationPropertyEl {
     #[doc = "Set the field `notify_delay_after`.\n"]
     pub fn set_notify_delay_after(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -1013,10 +886,8 @@ impl GlueJobNotificationPropertyEl {
         self
     }
 }
-
 impl ToListMappable for GlueJobNotificationPropertyEl {
     type O = BlockAssignable<GlueJobNotificationPropertyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1025,9 +896,7 @@ impl ToListMappable for GlueJobNotificationPropertyEl {
         })
     }
 }
-
 pub struct BuildGlueJobNotificationPropertyEl {}
-
 impl BuildGlueJobNotificationPropertyEl {
     pub fn build(self) -> GlueJobNotificationPropertyEl {
         GlueJobNotificationPropertyEl {
@@ -1035,12 +904,10 @@ impl BuildGlueJobNotificationPropertyEl {
         }
     }
 }
-
 pub struct GlueJobNotificationPropertyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueJobNotificationPropertyElRef {
     fn new(shared: StackShared, base: String) -> GlueJobNotificationPropertyElRef {
         GlueJobNotificationPropertyElRef {
@@ -1049,12 +916,10 @@ impl Ref for GlueJobNotificationPropertyElRef {
         }
     }
 }
-
 impl GlueJobNotificationPropertyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `notify_delay_after` after provisioning.\n"]
     pub fn notify_delay_after(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1063,7 +928,6 @@ impl GlueJobNotificationPropertyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueJobSourceControlDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1083,60 +947,50 @@ pub struct GlueJobSourceControlDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     repository: Option<PrimField<String>>,
 }
-
 impl GlueJobSourceControlDetailsEl {
     #[doc = "Set the field `auth_strategy`.\n"]
     pub fn set_auth_strategy(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_strategy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_token`.\n"]
     pub fn set_auth_token(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.auth_token = Some(v.into());
         self
     }
-
     #[doc = "Set the field `branch`.\n"]
     pub fn set_branch(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.branch = Some(v.into());
         self
     }
-
     #[doc = "Set the field `folder`.\n"]
     pub fn set_folder(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.folder = Some(v.into());
         self
     }
-
     #[doc = "Set the field `last_commit_id`.\n"]
     pub fn set_last_commit_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.last_commit_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `owner`.\n"]
     pub fn set_owner(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.owner = Some(v.into());
         self
     }
-
     #[doc = "Set the field `provider`.\n"]
     pub fn set_provider(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.provider = Some(v.into());
         self
     }
-
     #[doc = "Set the field `repository`.\n"]
     pub fn set_repository(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.repository = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueJobSourceControlDetailsEl {
     type O = BlockAssignable<GlueJobSourceControlDetailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1145,9 +999,7 @@ impl ToListMappable for GlueJobSourceControlDetailsEl {
         })
     }
 }
-
 pub struct BuildGlueJobSourceControlDetailsEl {}
-
 impl BuildGlueJobSourceControlDetailsEl {
     pub fn build(self) -> GlueJobSourceControlDetailsEl {
         GlueJobSourceControlDetailsEl {
@@ -1162,12 +1014,10 @@ impl BuildGlueJobSourceControlDetailsEl {
         }
     }
 }
-
 pub struct GlueJobSourceControlDetailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueJobSourceControlDetailsElRef {
     fn new(shared: StackShared, base: String) -> GlueJobSourceControlDetailsElRef {
         GlueJobSourceControlDetailsElRef {
@@ -1176,12 +1026,10 @@ impl Ref for GlueJobSourceControlDetailsElRef {
         }
     }
 }
-
 impl GlueJobSourceControlDetailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `auth_strategy` after provisioning.\n"]
     pub fn auth_strategy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1189,22 +1037,18 @@ impl GlueJobSourceControlDetailsElRef {
             format!("{}.auth_strategy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `auth_token` after provisioning.\n"]
     pub fn auth_token(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.auth_token", self.base))
     }
-
     #[doc = "Get a reference to the value of field `branch` after provisioning.\n"]
     pub fn branch(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.branch", self.base))
     }
-
     #[doc = "Get a reference to the value of field `folder` after provisioning.\n"]
     pub fn folder(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.folder", self.base))
     }
-
     #[doc = "Get a reference to the value of field `last_commit_id` after provisioning.\n"]
     pub fn last_commit_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1212,23 +1056,19 @@ impl GlueJobSourceControlDetailsElRef {
             format!("{}.last_commit_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.owner", self.base))
     }
-
     #[doc = "Get a reference to the value of field `provider` after provisioning.\n"]
     pub fn provider(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.provider", self.base))
     }
-
     #[doc = "Get a reference to the value of field `repository` after provisioning.\n"]
     pub fn repository(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.repository", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueJobDynamic {
     command: Option<DynamicBlock<GlueJobCommandEl>>,

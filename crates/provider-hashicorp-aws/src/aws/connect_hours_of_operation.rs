@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ConnectHoursOfOperationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct ConnectHoursOfOperationData {
     config: Option<Vec<ConnectHoursOfOperationConfigEl>>,
     dynamic: ConnectHoursOfOperationDynamic,
 }
-
 struct ConnectHoursOfOperation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ConnectHoursOfOperationData>,
 }
-
 #[derive(Clone)]
 pub struct ConnectHoursOfOperation(Rc<ConnectHoursOfOperation_>);
-
 impl ConnectHoursOfOperation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl ConnectHoursOfOperation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl ConnectHoursOfOperation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,37 +98,31 @@ impl ConnectHoursOfOperation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `config`.\n"]
     pub fn set_config(
         self,
@@ -156,12 +138,10 @@ impl ConnectHoursOfOperation {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +149,6 @@ impl ConnectHoursOfOperation {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hours_of_operation_id` after provisioning.\n"]
     pub fn hours_of_operation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,12 +156,10 @@ impl ConnectHoursOfOperation {
             format!("{}.hours_of_operation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +167,6 @@ impl ConnectHoursOfOperation {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +174,6 @@ impl ConnectHoursOfOperation {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +181,6 @@ impl ConnectHoursOfOperation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -214,7 +188,6 @@ impl ConnectHoursOfOperation {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -222,7 +195,6 @@ impl ConnectHoursOfOperation {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +203,6 @@ impl ConnectHoursOfOperation {
         )
     }
 }
-
 impl Referable for ConnectHoursOfOperation {
     fn extract_ref(&self) -> String {
         format!(
@@ -241,32 +212,25 @@ impl Referable for ConnectHoursOfOperation {
         )
     }
 }
-
 impl Resource for ConnectHoursOfOperation {}
-
 impl ToListMappable for ConnectHoursOfOperation {
     type O = ListRef<ConnectHoursOfOperationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ConnectHoursOfOperation_ {
     fn extract_resource_type(&self) -> String {
         "aws_connect_hours_of_operation".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildConnectHoursOfOperation {
     pub tf_id: String,
     #[doc = ""]
@@ -276,7 +240,6 @@ pub struct BuildConnectHoursOfOperation {
     #[doc = ""]
     pub time_zone: PrimField<String>,
 }
-
 impl BuildConnectHoursOfOperation {
     pub fn build(self, stack: &mut Stack) -> ConnectHoursOfOperation {
         let out = ConnectHoursOfOperation(Rc::new(ConnectHoursOfOperation_ {
@@ -303,32 +266,26 @@ impl BuildConnectHoursOfOperation {
         out
     }
 }
-
 pub struct ConnectHoursOfOperationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectHoursOfOperationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ConnectHoursOfOperationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +293,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hours_of_operation_id` after provisioning.\n"]
     pub fn hours_of_operation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -344,12 +300,10 @@ impl ConnectHoursOfOperationRef {
             format!("{}.hours_of_operation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -357,7 +311,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -365,7 +318,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,7 +325,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -381,7 +332,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -389,7 +339,6 @@ impl ConnectHoursOfOperationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `time_zone` after provisioning.\n"]
     pub fn time_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -398,18 +347,14 @@ impl ConnectHoursOfOperationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectHoursOfOperationConfigElEndTimeEl {
     hours: PrimField<f64>,
     minutes: PrimField<f64>,
 }
-
 impl ConnectHoursOfOperationConfigElEndTimeEl {}
-
 impl ToListMappable for ConnectHoursOfOperationConfigElEndTimeEl {
     type O = BlockAssignable<ConnectHoursOfOperationConfigElEndTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -418,14 +363,12 @@ impl ToListMappable for ConnectHoursOfOperationConfigElEndTimeEl {
         })
     }
 }
-
 pub struct BuildConnectHoursOfOperationConfigElEndTimeEl {
     #[doc = ""]
     pub hours: PrimField<f64>,
     #[doc = ""]
     pub minutes: PrimField<f64>,
 }
-
 impl BuildConnectHoursOfOperationConfigElEndTimeEl {
     pub fn build(self) -> ConnectHoursOfOperationConfigElEndTimeEl {
         ConnectHoursOfOperationConfigElEndTimeEl {
@@ -434,12 +377,10 @@ impl BuildConnectHoursOfOperationConfigElEndTimeEl {
         }
     }
 }
-
 pub struct ConnectHoursOfOperationConfigElEndTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectHoursOfOperationConfigElEndTimeElRef {
     fn new(shared: StackShared, base: String) -> ConnectHoursOfOperationConfigElEndTimeElRef {
         ConnectHoursOfOperationConfigElEndTimeElRef {
@@ -448,34 +389,27 @@ impl Ref for ConnectHoursOfOperationConfigElEndTimeElRef {
         }
     }
 }
-
 impl ConnectHoursOfOperationConfigElEndTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hours` after provisioning.\n"]
     pub fn hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.hours", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectHoursOfOperationConfigElStartTimeEl {
     hours: PrimField<f64>,
     minutes: PrimField<f64>,
 }
-
 impl ConnectHoursOfOperationConfigElStartTimeEl {}
-
 impl ToListMappable for ConnectHoursOfOperationConfigElStartTimeEl {
     type O = BlockAssignable<ConnectHoursOfOperationConfigElStartTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -484,14 +418,12 @@ impl ToListMappable for ConnectHoursOfOperationConfigElStartTimeEl {
         })
     }
 }
-
 pub struct BuildConnectHoursOfOperationConfigElStartTimeEl {
     #[doc = ""]
     pub hours: PrimField<f64>,
     #[doc = ""]
     pub minutes: PrimField<f64>,
 }
-
 impl BuildConnectHoursOfOperationConfigElStartTimeEl {
     pub fn build(self) -> ConnectHoursOfOperationConfigElStartTimeEl {
         ConnectHoursOfOperationConfigElStartTimeEl {
@@ -500,12 +432,10 @@ impl BuildConnectHoursOfOperationConfigElStartTimeEl {
         }
     }
 }
-
 pub struct ConnectHoursOfOperationConfigElStartTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectHoursOfOperationConfigElStartTimeElRef {
     fn new(shared: StackShared, base: String) -> ConnectHoursOfOperationConfigElStartTimeElRef {
         ConnectHoursOfOperationConfigElStartTimeElRef {
@@ -514,29 +444,24 @@ impl Ref for ConnectHoursOfOperationConfigElStartTimeElRef {
         }
     }
 }
-
 impl ConnectHoursOfOperationConfigElStartTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hours` after provisioning.\n"]
     pub fn hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.hours", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectHoursOfOperationConfigElDynamic {
     end_time: Option<DynamicBlock<ConnectHoursOfOperationConfigElEndTimeEl>>,
     start_time: Option<DynamicBlock<ConnectHoursOfOperationConfigElStartTimeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct ConnectHoursOfOperationConfigEl {
     day: PrimField<String>,
@@ -546,7 +471,6 @@ pub struct ConnectHoursOfOperationConfigEl {
     start_time: Option<Vec<ConnectHoursOfOperationConfigElStartTimeEl>>,
     dynamic: ConnectHoursOfOperationConfigElDynamic,
 }
-
 impl ConnectHoursOfOperationConfigEl {
     #[doc = "Set the field `end_time`.\n"]
     pub fn set_end_time(
@@ -563,7 +487,6 @@ impl ConnectHoursOfOperationConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `start_time`.\n"]
     pub fn set_start_time(
         mut self,
@@ -580,10 +503,8 @@ impl ConnectHoursOfOperationConfigEl {
         self
     }
 }
-
 impl ToListMappable for ConnectHoursOfOperationConfigEl {
     type O = BlockAssignable<ConnectHoursOfOperationConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -592,12 +513,10 @@ impl ToListMappable for ConnectHoursOfOperationConfigEl {
         })
     }
 }
-
 pub struct BuildConnectHoursOfOperationConfigEl {
     #[doc = ""]
     pub day: PrimField<String>,
 }
-
 impl BuildConnectHoursOfOperationConfigEl {
     pub fn build(self) -> ConnectHoursOfOperationConfigEl {
         ConnectHoursOfOperationConfigEl {
@@ -608,12 +527,10 @@ impl BuildConnectHoursOfOperationConfigEl {
         }
     }
 }
-
 pub struct ConnectHoursOfOperationConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectHoursOfOperationConfigElRef {
     fn new(shared: StackShared, base: String) -> ConnectHoursOfOperationConfigElRef {
         ConnectHoursOfOperationConfigElRef {
@@ -622,28 +539,23 @@ impl Ref for ConnectHoursOfOperationConfigElRef {
         }
     }
 }
-
 impl ConnectHoursOfOperationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `day` after provisioning.\n"]
     pub fn day(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.day", self.base))
     }
-
     #[doc = "Get a reference to the value of field `end_time` after provisioning.\n"]
     pub fn end_time(&self) -> ListRef<ConnectHoursOfOperationConfigElEndTimeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.end_time", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start_time` after provisioning.\n"]
     pub fn start_time(&self) -> ListRef<ConnectHoursOfOperationConfigElStartTimeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.start_time", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectHoursOfOperationDynamic {
     config: Option<DynamicBlock<ConnectHoursOfOperationConfigEl>>,

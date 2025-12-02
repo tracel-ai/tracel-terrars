@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3controlMultiRegionAccessPointData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct S3controlMultiRegionAccessPointData {
     timeouts: Option<S3controlMultiRegionAccessPointTimeoutsEl>,
     dynamic: S3controlMultiRegionAccessPointDynamic,
 }
-
 struct S3controlMultiRegionAccessPoint_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3controlMultiRegionAccessPointData>,
 }
-
 #[derive(Clone)]
 pub struct S3controlMultiRegionAccessPoint(Rc<S3controlMultiRegionAccessPoint_>);
-
 impl S3controlMultiRegionAccessPoint {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl S3controlMultiRegionAccessPoint {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl S3controlMultiRegionAccessPoint {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,25 +93,21 @@ impl S3controlMultiRegionAccessPoint {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `details`.\n"]
     pub fn set_details(
         self,
@@ -139,13 +123,11 @@ impl S3controlMultiRegionAccessPoint {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<S3controlMultiRegionAccessPointTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +135,6 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -161,12 +142,10 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,12 +153,10 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,7 +164,6 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -195,7 +171,6 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `details` after provisioning.\n"]
     pub fn details(&self) -> ListRef<S3controlMultiRegionAccessPointDetailsElRef> {
         ListRef::new(
@@ -203,7 +178,6 @@ impl S3controlMultiRegionAccessPoint {
             format!("{}.details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3controlMultiRegionAccessPointTimeoutsElRef {
         S3controlMultiRegionAccessPointTimeoutsElRef::new(
@@ -212,7 +186,6 @@ impl S3controlMultiRegionAccessPoint {
         )
     }
 }
-
 impl Referable for S3controlMultiRegionAccessPoint {
     fn extract_ref(&self) -> String {
         format!(
@@ -222,36 +195,28 @@ impl Referable for S3controlMultiRegionAccessPoint {
         )
     }
 }
-
 impl Resource for S3controlMultiRegionAccessPoint {}
-
 impl ToListMappable for S3controlMultiRegionAccessPoint {
     type O = ListRef<S3controlMultiRegionAccessPointRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3controlMultiRegionAccessPoint_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3control_multi_region_access_point".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3controlMultiRegionAccessPoint {
     pub tf_id: String,
 }
-
 impl BuildS3controlMultiRegionAccessPoint {
     pub fn build(self, stack: &mut Stack) -> S3controlMultiRegionAccessPoint {
         let out = S3controlMultiRegionAccessPoint(Rc::new(S3controlMultiRegionAccessPoint_ {
@@ -274,27 +239,22 @@ impl BuildS3controlMultiRegionAccessPoint {
         out
     }
 }
-
 pub struct S3controlMultiRegionAccessPointRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3controlMultiRegionAccessPointRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3controlMultiRegionAccessPointRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -302,7 +262,6 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `alias` after provisioning.\n"]
     pub fn alias(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -310,12 +269,10 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -323,12 +280,10 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -336,7 +291,6 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -344,7 +298,6 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `details` after provisioning.\n"]
     pub fn details(&self) -> ListRef<S3controlMultiRegionAccessPointDetailsElRef> {
         ListRef::new(
@@ -352,7 +305,6 @@ impl S3controlMultiRegionAccessPointRef {
             format!("{}.details", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> S3controlMultiRegionAccessPointTimeoutsElRef {
         S3controlMultiRegionAccessPointTimeoutsElRef::new(
@@ -361,7 +313,6 @@ impl S3controlMultiRegionAccessPointRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -373,36 +324,30 @@ pub struct S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     restrict_public_buckets: Option<PrimField<bool>>,
 }
-
 impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
     #[doc = "Set the field `block_public_acls`.\n"]
     pub fn set_block_public_acls(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.block_public_acls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `block_public_policy`.\n"]
     pub fn set_block_public_policy(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.block_public_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ignore_public_acls`.\n"]
     pub fn set_ignore_public_acls(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.ignore_public_acls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `restrict_public_buckets`.\n"]
     pub fn set_restrict_public_buckets(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.restrict_public_buckets = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
     type O = BlockAssignable<S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -411,9 +356,7 @@ impl ToListMappable for S3controlMultiRegionAccessPointDetailsElPublicAccessBloc
         })
     }
 }
-
 pub struct BuildS3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {}
-
 impl BuildS3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
     pub fn build(self) -> S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
         S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
@@ -424,12 +367,10 @@ impl BuildS3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl {
         }
     }
 }
-
 pub struct S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
     fn new(
         shared: StackShared,
@@ -441,12 +382,10 @@ impl Ref for S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
         }
     }
 }
-
 impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `block_public_acls` after provisioning.\n"]
     pub fn block_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -454,7 +393,6 @@ impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
             format!("{}.block_public_acls", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_public_policy` after provisioning.\n"]
     pub fn block_public_policy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -462,7 +400,6 @@ impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
             format!("{}.block_public_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ignore_public_acls` after provisioning.\n"]
     pub fn ignore_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -470,7 +407,6 @@ impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
             format!("{}.ignore_public_acls", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `restrict_public_buckets` after provisioning.\n"]
     pub fn restrict_public_buckets(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -479,14 +415,12 @@ impl S3controlMultiRegionAccessPointDetailsElPublicAccessBlockElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3controlMultiRegionAccessPointDetailsElRegionEl {
     bucket: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     bucket_account_id: Option<PrimField<String>>,
 }
-
 impl S3controlMultiRegionAccessPointDetailsElRegionEl {
     #[doc = "Set the field `bucket_account_id`.\n"]
     pub fn set_bucket_account_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -494,10 +428,8 @@ impl S3controlMultiRegionAccessPointDetailsElRegionEl {
         self
     }
 }
-
 impl ToListMappable for S3controlMultiRegionAccessPointDetailsElRegionEl {
     type O = BlockAssignable<S3controlMultiRegionAccessPointDetailsElRegionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -506,12 +438,10 @@ impl ToListMappable for S3controlMultiRegionAccessPointDetailsElRegionEl {
         })
     }
 }
-
 pub struct BuildS3controlMultiRegionAccessPointDetailsElRegionEl {
     #[doc = ""]
     pub bucket: PrimField<String>,
 }
-
 impl BuildS3controlMultiRegionAccessPointDetailsElRegionEl {
     pub fn build(self) -> S3controlMultiRegionAccessPointDetailsElRegionEl {
         S3controlMultiRegionAccessPointDetailsElRegionEl {
@@ -520,12 +450,10 @@ impl BuildS3controlMultiRegionAccessPointDetailsElRegionEl {
         }
     }
 }
-
 pub struct S3controlMultiRegionAccessPointDetailsElRegionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3controlMultiRegionAccessPointDetailsElRegionElRef {
     fn new(
         shared: StackShared,
@@ -537,17 +465,14 @@ impl Ref for S3controlMultiRegionAccessPointDetailsElRegionElRef {
         }
     }
 }
-
 impl S3controlMultiRegionAccessPointDetailsElRegionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `bucket_account_id` after provisioning.\n"]
     pub fn bucket_account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -555,20 +480,17 @@ impl S3controlMultiRegionAccessPointDetailsElRegionElRef {
             format!("{}.bucket_account_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3controlMultiRegionAccessPointDetailsElDynamic {
     public_access_block:
         Option<DynamicBlock<S3controlMultiRegionAccessPointDetailsElPublicAccessBlockEl>>,
     region: Option<DynamicBlock<S3controlMultiRegionAccessPointDetailsElRegionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct S3controlMultiRegionAccessPointDetailsEl {
     name: PrimField<String>,
@@ -578,7 +500,6 @@ pub struct S3controlMultiRegionAccessPointDetailsEl {
     region: Option<Vec<S3controlMultiRegionAccessPointDetailsElRegionEl>>,
     dynamic: S3controlMultiRegionAccessPointDetailsElDynamic,
 }
-
 impl S3controlMultiRegionAccessPointDetailsEl {
     #[doc = "Set the field `public_access_block`.\n"]
     pub fn set_public_access_block(
@@ -595,7 +516,6 @@ impl S3controlMultiRegionAccessPointDetailsEl {
         }
         self
     }
-
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(
         mut self,
@@ -612,10 +532,8 @@ impl S3controlMultiRegionAccessPointDetailsEl {
         self
     }
 }
-
 impl ToListMappable for S3controlMultiRegionAccessPointDetailsEl {
     type O = BlockAssignable<S3controlMultiRegionAccessPointDetailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -624,12 +542,10 @@ impl ToListMappable for S3controlMultiRegionAccessPointDetailsEl {
         })
     }
 }
-
 pub struct BuildS3controlMultiRegionAccessPointDetailsEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildS3controlMultiRegionAccessPointDetailsEl {
     pub fn build(self) -> S3controlMultiRegionAccessPointDetailsEl {
         S3controlMultiRegionAccessPointDetailsEl {
@@ -640,12 +556,10 @@ impl BuildS3controlMultiRegionAccessPointDetailsEl {
         }
     }
 }
-
 pub struct S3controlMultiRegionAccessPointDetailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3controlMultiRegionAccessPointDetailsElRef {
     fn new(shared: StackShared, base: String) -> S3controlMultiRegionAccessPointDetailsElRef {
         S3controlMultiRegionAccessPointDetailsElRef {
@@ -654,17 +568,14 @@ impl Ref for S3controlMultiRegionAccessPointDetailsElRef {
         }
     }
 }
-
 impl S3controlMultiRegionAccessPointDetailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `public_access_block` after provisioning.\n"]
     pub fn public_access_block(
         &self,
@@ -675,7 +586,6 @@ impl S3controlMultiRegionAccessPointDetailsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct S3controlMultiRegionAccessPointTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -683,24 +593,20 @@ pub struct S3controlMultiRegionAccessPointTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl S3controlMultiRegionAccessPointTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for S3controlMultiRegionAccessPointTimeoutsEl {
     type O = BlockAssignable<S3controlMultiRegionAccessPointTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -709,9 +615,7 @@ impl ToListMappable for S3controlMultiRegionAccessPointTimeoutsEl {
         })
     }
 }
-
 pub struct BuildS3controlMultiRegionAccessPointTimeoutsEl {}
-
 impl BuildS3controlMultiRegionAccessPointTimeoutsEl {
     pub fn build(self) -> S3controlMultiRegionAccessPointTimeoutsEl {
         S3controlMultiRegionAccessPointTimeoutsEl {
@@ -720,12 +624,10 @@ impl BuildS3controlMultiRegionAccessPointTimeoutsEl {
         }
     }
 }
-
 pub struct S3controlMultiRegionAccessPointTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3controlMultiRegionAccessPointTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> S3controlMultiRegionAccessPointTimeoutsElRef {
         S3controlMultiRegionAccessPointTimeoutsElRef {
@@ -734,23 +636,19 @@ impl Ref for S3controlMultiRegionAccessPointTimeoutsElRef {
         }
     }
 }
-
 impl S3controlMultiRegionAccessPointTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct S3controlMultiRegionAccessPointDynamic {
     details: Option<DynamicBlock<S3controlMultiRegionAccessPointDetailsEl>>,

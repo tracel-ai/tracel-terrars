@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueCrawlerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -63,47 +62,38 @@ struct GlueCrawlerData {
     schema_change_policy: Option<Vec<GlueCrawlerSchemaChangePolicyEl>>,
     dynamic: GlueCrawlerDynamic,
 }
-
 struct GlueCrawler_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueCrawlerData>,
 }
-
 #[derive(Clone)]
 pub struct GlueCrawler(Rc<GlueCrawler_>);
-
 impl GlueCrawler {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -122,7 +112,6 @@ impl GlueCrawler {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -132,7 +121,6 @@ impl GlueCrawler {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -142,67 +130,56 @@ impl GlueCrawler {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `classifiers`.\n"]
     pub fn set_classifiers(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().classifiers = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule`.\n"]
     pub fn set_schedule(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().schedule = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_configuration`.\n"]
     pub fn set_security_configuration(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().security_configuration = Some(v.into());
         self
     }
-
     #[doc = "Set the field `table_prefix`.\n"]
     pub fn set_table_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().table_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `catalog_target`.\n"]
     pub fn set_catalog_target(
         self,
@@ -218,7 +195,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `delta_target`.\n"]
     pub fn set_delta_target(self, v: impl Into<BlockAssignable<GlueCrawlerDeltaTargetEl>>) -> Self {
         match v.into() {
@@ -231,7 +207,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `dynamodb_target`.\n"]
     pub fn set_dynamodb_target(
         self,
@@ -247,7 +222,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `hudi_target`.\n"]
     pub fn set_hudi_target(self, v: impl Into<BlockAssignable<GlueCrawlerHudiTargetEl>>) -> Self {
         match v.into() {
@@ -260,7 +234,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `iceberg_target`.\n"]
     pub fn set_iceberg_target(
         self,
@@ -276,7 +249,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `jdbc_target`.\n"]
     pub fn set_jdbc_target(self, v: impl Into<BlockAssignable<GlueCrawlerJdbcTargetEl>>) -> Self {
         match v.into() {
@@ -289,7 +261,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `lake_formation_configuration`.\n"]
     pub fn set_lake_formation_configuration(
         self,
@@ -309,7 +280,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `lineage_configuration`.\n"]
     pub fn set_lineage_configuration(
         self,
@@ -325,7 +295,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `mongodb_target`.\n"]
     pub fn set_mongodb_target(
         self,
@@ -341,7 +310,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `recrawl_policy`.\n"]
     pub fn set_recrawl_policy(
         self,
@@ -357,7 +325,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `s3_target`.\n"]
     pub fn set_s3_target(self, v: impl Into<BlockAssignable<GlueCrawlerS3TargetEl>>) -> Self {
         match v.into() {
@@ -370,7 +337,6 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Set the field `schema_change_policy`.\n"]
     pub fn set_schema_change_policy(
         self,
@@ -386,12 +352,10 @@ impl GlueCrawler {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `classifiers` after provisioning.\n"]
     pub fn classifiers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -399,7 +363,6 @@ impl GlueCrawler {
             format!("{}.classifiers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,7 +370,6 @@ impl GlueCrawler {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -415,7 +377,6 @@ impl GlueCrawler {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -423,12 +384,10 @@ impl GlueCrawler {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -436,7 +395,6 @@ impl GlueCrawler {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -444,7 +402,6 @@ impl GlueCrawler {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -452,7 +409,6 @@ impl GlueCrawler {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -460,7 +416,6 @@ impl GlueCrawler {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -468,7 +423,6 @@ impl GlueCrawler {
             format!("{}.security_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_prefix` after provisioning.\n"]
     pub fn table_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -476,7 +430,6 @@ impl GlueCrawler {
             format!("{}.table_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -484,7 +437,6 @@ impl GlueCrawler {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -492,7 +444,6 @@ impl GlueCrawler {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `catalog_target` after provisioning.\n"]
     pub fn catalog_target(&self) -> ListRef<GlueCrawlerCatalogTargetElRef> {
         ListRef::new(
@@ -500,7 +451,6 @@ impl GlueCrawler {
             format!("{}.catalog_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delta_target` after provisioning.\n"]
     pub fn delta_target(&self) -> ListRef<GlueCrawlerDeltaTargetElRef> {
         ListRef::new(
@@ -508,7 +458,6 @@ impl GlueCrawler {
             format!("{}.delta_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamodb_target` after provisioning.\n"]
     pub fn dynamodb_target(&self) -> ListRef<GlueCrawlerDynamodbTargetElRef> {
         ListRef::new(
@@ -516,7 +465,6 @@ impl GlueCrawler {
             format!("{}.dynamodb_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hudi_target` after provisioning.\n"]
     pub fn hudi_target(&self) -> ListRef<GlueCrawlerHudiTargetElRef> {
         ListRef::new(
@@ -524,7 +472,6 @@ impl GlueCrawler {
             format!("{}.hudi_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `iceberg_target` after provisioning.\n"]
     pub fn iceberg_target(&self) -> ListRef<GlueCrawlerIcebergTargetElRef> {
         ListRef::new(
@@ -532,7 +479,6 @@ impl GlueCrawler {
             format!("{}.iceberg_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `jdbc_target` after provisioning.\n"]
     pub fn jdbc_target(&self) -> ListRef<GlueCrawlerJdbcTargetElRef> {
         ListRef::new(
@@ -540,7 +486,6 @@ impl GlueCrawler {
             format!("{}.jdbc_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lake_formation_configuration` after provisioning.\n"]
     pub fn lake_formation_configuration(
         &self,
@@ -550,7 +495,6 @@ impl GlueCrawler {
             format!("{}.lake_formation_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lineage_configuration` after provisioning.\n"]
     pub fn lineage_configuration(&self) -> ListRef<GlueCrawlerLineageConfigurationElRef> {
         ListRef::new(
@@ -558,7 +502,6 @@ impl GlueCrawler {
             format!("{}.lineage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mongodb_target` after provisioning.\n"]
     pub fn mongodb_target(&self) -> ListRef<GlueCrawlerMongodbTargetElRef> {
         ListRef::new(
@@ -566,7 +509,6 @@ impl GlueCrawler {
             format!("{}.mongodb_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recrawl_policy` after provisioning.\n"]
     pub fn recrawl_policy(&self) -> ListRef<GlueCrawlerRecrawlPolicyElRef> {
         ListRef::new(
@@ -574,7 +516,6 @@ impl GlueCrawler {
             format!("{}.recrawl_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_target` after provisioning.\n"]
     pub fn s3_target(&self) -> ListRef<GlueCrawlerS3TargetElRef> {
         ListRef::new(
@@ -582,7 +523,6 @@ impl GlueCrawler {
             format!("{}.s3_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema_change_policy` after provisioning.\n"]
     pub fn schema_change_policy(&self) -> ListRef<GlueCrawlerSchemaChangePolicyElRef> {
         ListRef::new(
@@ -591,7 +531,6 @@ impl GlueCrawler {
         )
     }
 }
-
 impl Referable for GlueCrawler {
     fn extract_ref(&self) -> String {
         format!(
@@ -601,32 +540,25 @@ impl Referable for GlueCrawler {
         )
     }
 }
-
 impl Resource for GlueCrawler {}
-
 impl ToListMappable for GlueCrawler {
     type O = ListRef<GlueCrawlerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueCrawler_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_crawler".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueCrawler {
     pub tf_id: String,
     #[doc = ""]
@@ -636,7 +568,6 @@ pub struct BuildGlueCrawler {
     #[doc = ""]
     pub role: PrimField<String>,
 }
-
 impl BuildGlueCrawler {
     pub fn build(self, stack: &mut Stack) -> GlueCrawler {
         let out = GlueCrawler(Rc::new(GlueCrawler_ {
@@ -679,32 +610,26 @@ impl BuildGlueCrawler {
         out
     }
 }
-
 pub struct GlueCrawlerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueCrawlerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `classifiers` after provisioning.\n"]
     pub fn classifiers(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -712,7 +637,6 @@ impl GlueCrawlerRef {
             format!("{}.classifiers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -720,7 +644,6 @@ impl GlueCrawlerRef {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -728,7 +651,6 @@ impl GlueCrawlerRef {
             format!("{}.database_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -736,12 +658,10 @@ impl GlueCrawlerRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -749,7 +669,6 @@ impl GlueCrawlerRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -757,7 +676,6 @@ impl GlueCrawlerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -765,7 +683,6 @@ impl GlueCrawlerRef {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -773,7 +690,6 @@ impl GlueCrawlerRef {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_configuration` after provisioning.\n"]
     pub fn security_configuration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -781,7 +697,6 @@ impl GlueCrawlerRef {
             format!("{}.security_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `table_prefix` after provisioning.\n"]
     pub fn table_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -789,7 +704,6 @@ impl GlueCrawlerRef {
             format!("{}.table_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -797,7 +711,6 @@ impl GlueCrawlerRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -805,7 +718,6 @@ impl GlueCrawlerRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `catalog_target` after provisioning.\n"]
     pub fn catalog_target(&self) -> ListRef<GlueCrawlerCatalogTargetElRef> {
         ListRef::new(
@@ -813,7 +725,6 @@ impl GlueCrawlerRef {
             format!("{}.catalog_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delta_target` after provisioning.\n"]
     pub fn delta_target(&self) -> ListRef<GlueCrawlerDeltaTargetElRef> {
         ListRef::new(
@@ -821,7 +732,6 @@ impl GlueCrawlerRef {
             format!("{}.delta_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamodb_target` after provisioning.\n"]
     pub fn dynamodb_target(&self) -> ListRef<GlueCrawlerDynamodbTargetElRef> {
         ListRef::new(
@@ -829,7 +739,6 @@ impl GlueCrawlerRef {
             format!("{}.dynamodb_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hudi_target` after provisioning.\n"]
     pub fn hudi_target(&self) -> ListRef<GlueCrawlerHudiTargetElRef> {
         ListRef::new(
@@ -837,7 +746,6 @@ impl GlueCrawlerRef {
             format!("{}.hudi_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `iceberg_target` after provisioning.\n"]
     pub fn iceberg_target(&self) -> ListRef<GlueCrawlerIcebergTargetElRef> {
         ListRef::new(
@@ -845,7 +753,6 @@ impl GlueCrawlerRef {
             format!("{}.iceberg_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `jdbc_target` after provisioning.\n"]
     pub fn jdbc_target(&self) -> ListRef<GlueCrawlerJdbcTargetElRef> {
         ListRef::new(
@@ -853,7 +760,6 @@ impl GlueCrawlerRef {
             format!("{}.jdbc_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lake_formation_configuration` after provisioning.\n"]
     pub fn lake_formation_configuration(
         &self,
@@ -863,7 +769,6 @@ impl GlueCrawlerRef {
             format!("{}.lake_formation_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lineage_configuration` after provisioning.\n"]
     pub fn lineage_configuration(&self) -> ListRef<GlueCrawlerLineageConfigurationElRef> {
         ListRef::new(
@@ -871,7 +776,6 @@ impl GlueCrawlerRef {
             format!("{}.lineage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mongodb_target` after provisioning.\n"]
     pub fn mongodb_target(&self) -> ListRef<GlueCrawlerMongodbTargetElRef> {
         ListRef::new(
@@ -879,7 +783,6 @@ impl GlueCrawlerRef {
             format!("{}.mongodb_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `recrawl_policy` after provisioning.\n"]
     pub fn recrawl_policy(&self) -> ListRef<GlueCrawlerRecrawlPolicyElRef> {
         ListRef::new(
@@ -887,7 +790,6 @@ impl GlueCrawlerRef {
             format!("{}.recrawl_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_target` after provisioning.\n"]
     pub fn s3_target(&self) -> ListRef<GlueCrawlerS3TargetElRef> {
         ListRef::new(
@@ -895,7 +797,6 @@ impl GlueCrawlerRef {
             format!("{}.s3_target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schema_change_policy` after provisioning.\n"]
     pub fn schema_change_policy(&self) -> ListRef<GlueCrawlerSchemaChangePolicyElRef> {
         ListRef::new(
@@ -904,7 +805,6 @@ impl GlueCrawlerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerCatalogTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -916,30 +816,25 @@ pub struct GlueCrawlerCatalogTargetEl {
     event_queue_arn: Option<PrimField<String>>,
     tables: ListField<PrimField<String>>,
 }
-
 impl GlueCrawlerCatalogTargetEl {
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dlq_event_queue_arn`.\n"]
     pub fn set_dlq_event_queue_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dlq_event_queue_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_queue_arn`.\n"]
     pub fn set_event_queue_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.event_queue_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerCatalogTargetEl {
     type O = BlockAssignable<GlueCrawlerCatalogTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -948,14 +843,12 @@ impl ToListMappable for GlueCrawlerCatalogTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerCatalogTargetEl {
     #[doc = ""]
     pub database_name: PrimField<String>,
     #[doc = ""]
     pub tables: ListField<PrimField<String>>,
 }
-
 impl BuildGlueCrawlerCatalogTargetEl {
     pub fn build(self) -> GlueCrawlerCatalogTargetEl {
         GlueCrawlerCatalogTargetEl {
@@ -967,12 +860,10 @@ impl BuildGlueCrawlerCatalogTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerCatalogTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerCatalogTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerCatalogTargetElRef {
         GlueCrawlerCatalogTargetElRef {
@@ -981,12 +872,10 @@ impl Ref for GlueCrawlerCatalogTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerCatalogTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -994,7 +883,6 @@ impl GlueCrawlerCatalogTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1002,7 +890,6 @@ impl GlueCrawlerCatalogTargetElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dlq_event_queue_arn` after provisioning.\n"]
     pub fn dlq_event_queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1010,7 +897,6 @@ impl GlueCrawlerCatalogTargetElRef {
             format!("{}.dlq_event_queue_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_queue_arn` after provisioning.\n"]
     pub fn event_queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1018,13 +904,11 @@ impl GlueCrawlerCatalogTargetElRef {
             format!("{}.event_queue_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tables` after provisioning.\n"]
     pub fn tables(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.tables", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerDeltaTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1034,24 +918,20 @@ pub struct GlueCrawlerDeltaTargetEl {
     delta_tables: SetField<PrimField<String>>,
     write_manifest: PrimField<bool>,
 }
-
 impl GlueCrawlerDeltaTargetEl {
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `create_native_delta_table`.\n"]
     pub fn set_create_native_delta_table(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.create_native_delta_table = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerDeltaTargetEl {
     type O = BlockAssignable<GlueCrawlerDeltaTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1060,14 +940,12 @@ impl ToListMappable for GlueCrawlerDeltaTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerDeltaTargetEl {
     #[doc = ""]
     pub delta_tables: SetField<PrimField<String>>,
     #[doc = ""]
     pub write_manifest: PrimField<bool>,
 }
-
 impl BuildGlueCrawlerDeltaTargetEl {
     pub fn build(self) -> GlueCrawlerDeltaTargetEl {
         GlueCrawlerDeltaTargetEl {
@@ -1078,12 +956,10 @@ impl BuildGlueCrawlerDeltaTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerDeltaTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerDeltaTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerDeltaTargetElRef {
         GlueCrawlerDeltaTargetElRef {
@@ -1092,12 +968,10 @@ impl Ref for GlueCrawlerDeltaTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerDeltaTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1105,7 +979,6 @@ impl GlueCrawlerDeltaTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_native_delta_table` after provisioning.\n"]
     pub fn create_native_delta_table(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1113,12 +986,10 @@ impl GlueCrawlerDeltaTargetElRef {
             format!("{}.create_native_delta_table", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `delta_tables` after provisioning.\n"]
     pub fn delta_tables(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.delta_tables", self.base))
     }
-
     #[doc = "Get a reference to the value of field `write_manifest` after provisioning.\n"]
     pub fn write_manifest(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1127,7 +998,6 @@ impl GlueCrawlerDeltaTargetElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerDynamodbTargetEl {
     path: PrimField<String>,
@@ -1136,24 +1006,20 @@ pub struct GlueCrawlerDynamodbTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     scan_rate: Option<PrimField<f64>>,
 }
-
 impl GlueCrawlerDynamodbTargetEl {
     #[doc = "Set the field `scan_all`.\n"]
     pub fn set_scan_all(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.scan_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scan_rate`.\n"]
     pub fn set_scan_rate(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.scan_rate = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerDynamodbTargetEl {
     type O = BlockAssignable<GlueCrawlerDynamodbTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1162,12 +1028,10 @@ impl ToListMappable for GlueCrawlerDynamodbTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerDynamodbTargetEl {
     #[doc = ""]
     pub path: PrimField<String>,
 }
-
 impl BuildGlueCrawlerDynamodbTargetEl {
     pub fn build(self) -> GlueCrawlerDynamodbTargetEl {
         GlueCrawlerDynamodbTargetEl {
@@ -1177,12 +1041,10 @@ impl BuildGlueCrawlerDynamodbTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerDynamodbTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerDynamodbTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerDynamodbTargetElRef {
         GlueCrawlerDynamodbTargetElRef {
@@ -1191,28 +1053,23 @@ impl Ref for GlueCrawlerDynamodbTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerDynamodbTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scan_all` after provisioning.\n"]
     pub fn scan_all(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.scan_all", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scan_rate` after provisioning.\n"]
     pub fn scan_rate(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.scan_rate", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerHudiTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1222,24 +1079,20 @@ pub struct GlueCrawlerHudiTargetEl {
     maximum_traversal_depth: PrimField<f64>,
     paths: SetField<PrimField<String>>,
 }
-
 impl GlueCrawlerHudiTargetEl {
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclusions`.\n"]
     pub fn set_exclusions(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.exclusions = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerHudiTargetEl {
     type O = BlockAssignable<GlueCrawlerHudiTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1248,14 +1101,12 @@ impl ToListMappable for GlueCrawlerHudiTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerHudiTargetEl {
     #[doc = ""]
     pub maximum_traversal_depth: PrimField<f64>,
     #[doc = ""]
     pub paths: SetField<PrimField<String>>,
 }
-
 impl BuildGlueCrawlerHudiTargetEl {
     pub fn build(self) -> GlueCrawlerHudiTargetEl {
         GlueCrawlerHudiTargetEl {
@@ -1266,12 +1117,10 @@ impl BuildGlueCrawlerHudiTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerHudiTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerHudiTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerHudiTargetElRef {
         GlueCrawlerHudiTargetElRef {
@@ -1280,12 +1129,10 @@ impl Ref for GlueCrawlerHudiTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerHudiTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1293,12 +1140,10 @@ impl GlueCrawlerHudiTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
     pub fn exclusions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.exclusions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `maximum_traversal_depth` after provisioning.\n"]
     pub fn maximum_traversal_depth(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1306,13 +1151,11 @@ impl GlueCrawlerHudiTargetElRef {
             format!("{}.maximum_traversal_depth", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
     pub fn paths(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.paths", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerIcebergTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1322,24 +1165,20 @@ pub struct GlueCrawlerIcebergTargetEl {
     maximum_traversal_depth: PrimField<f64>,
     paths: SetField<PrimField<String>>,
 }
-
 impl GlueCrawlerIcebergTargetEl {
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclusions`.\n"]
     pub fn set_exclusions(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.exclusions = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerIcebergTargetEl {
     type O = BlockAssignable<GlueCrawlerIcebergTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1348,14 +1187,12 @@ impl ToListMappable for GlueCrawlerIcebergTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerIcebergTargetEl {
     #[doc = ""]
     pub maximum_traversal_depth: PrimField<f64>,
     #[doc = ""]
     pub paths: SetField<PrimField<String>>,
 }
-
 impl BuildGlueCrawlerIcebergTargetEl {
     pub fn build(self) -> GlueCrawlerIcebergTargetEl {
         GlueCrawlerIcebergTargetEl {
@@ -1366,12 +1203,10 @@ impl BuildGlueCrawlerIcebergTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerIcebergTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerIcebergTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerIcebergTargetElRef {
         GlueCrawlerIcebergTargetElRef {
@@ -1380,12 +1215,10 @@ impl Ref for GlueCrawlerIcebergTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerIcebergTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1393,12 +1226,10 @@ impl GlueCrawlerIcebergTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
     pub fn exclusions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.exclusions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `maximum_traversal_depth` after provisioning.\n"]
     pub fn maximum_traversal_depth(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1406,13 +1237,11 @@ impl GlueCrawlerIcebergTargetElRef {
             format!("{}.maximum_traversal_depth", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `paths` after provisioning.\n"]
     pub fn paths(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.paths", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerJdbcTargetEl {
     connection_name: PrimField<String>,
@@ -1422,7 +1251,6 @@ pub struct GlueCrawlerJdbcTargetEl {
     exclusions: Option<ListField<PrimField<String>>>,
     path: PrimField<String>,
 }
-
 impl GlueCrawlerJdbcTargetEl {
     #[doc = "Set the field `enable_additional_metadata`.\n"]
     pub fn set_enable_additional_metadata(
@@ -1432,17 +1260,14 @@ impl GlueCrawlerJdbcTargetEl {
         self.enable_additional_metadata = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclusions`.\n"]
     pub fn set_exclusions(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.exclusions = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerJdbcTargetEl {
     type O = BlockAssignable<GlueCrawlerJdbcTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1451,14 +1276,12 @@ impl ToListMappable for GlueCrawlerJdbcTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerJdbcTargetEl {
     #[doc = ""]
     pub connection_name: PrimField<String>,
     #[doc = ""]
     pub path: PrimField<String>,
 }
-
 impl BuildGlueCrawlerJdbcTargetEl {
     pub fn build(self) -> GlueCrawlerJdbcTargetEl {
         GlueCrawlerJdbcTargetEl {
@@ -1469,12 +1292,10 @@ impl BuildGlueCrawlerJdbcTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerJdbcTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerJdbcTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerJdbcTargetElRef {
         GlueCrawlerJdbcTargetElRef {
@@ -1483,12 +1304,10 @@ impl Ref for GlueCrawlerJdbcTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerJdbcTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1496,7 +1315,6 @@ impl GlueCrawlerJdbcTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_additional_metadata` after provisioning.\n"]
     pub fn enable_additional_metadata(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1504,18 +1322,15 @@ impl GlueCrawlerJdbcTargetElRef {
             format!("{}.enable_additional_metadata", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
     pub fn exclusions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.exclusions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerLakeFormationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1523,24 +1338,20 @@ pub struct GlueCrawlerLakeFormationConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     use_lake_formation_credentials: Option<PrimField<bool>>,
 }
-
 impl GlueCrawlerLakeFormationConfigurationEl {
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_lake_formation_credentials`.\n"]
     pub fn set_use_lake_formation_credentials(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.use_lake_formation_credentials = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerLakeFormationConfigurationEl {
     type O = BlockAssignable<GlueCrawlerLakeFormationConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1549,9 +1360,7 @@ impl ToListMappable for GlueCrawlerLakeFormationConfigurationEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerLakeFormationConfigurationEl {}
-
 impl BuildGlueCrawlerLakeFormationConfigurationEl {
     pub fn build(self) -> GlueCrawlerLakeFormationConfigurationEl {
         GlueCrawlerLakeFormationConfigurationEl {
@@ -1560,12 +1369,10 @@ impl BuildGlueCrawlerLakeFormationConfigurationEl {
         }
     }
 }
-
 pub struct GlueCrawlerLakeFormationConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerLakeFormationConfigurationElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerLakeFormationConfigurationElRef {
         GlueCrawlerLakeFormationConfigurationElRef {
@@ -1574,17 +1381,14 @@ impl Ref for GlueCrawlerLakeFormationConfigurationElRef {
         }
     }
 }
-
 impl GlueCrawlerLakeFormationConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.account_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_lake_formation_credentials` after provisioning.\n"]
     pub fn use_lake_formation_credentials(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1593,13 +1397,11 @@ impl GlueCrawlerLakeFormationConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerLineageConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     crawler_lineage_settings: Option<PrimField<String>>,
 }
-
 impl GlueCrawlerLineageConfigurationEl {
     #[doc = "Set the field `crawler_lineage_settings`.\n"]
     pub fn set_crawler_lineage_settings(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1607,10 +1409,8 @@ impl GlueCrawlerLineageConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerLineageConfigurationEl {
     type O = BlockAssignable<GlueCrawlerLineageConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1619,9 +1419,7 @@ impl ToListMappable for GlueCrawlerLineageConfigurationEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerLineageConfigurationEl {}
-
 impl BuildGlueCrawlerLineageConfigurationEl {
     pub fn build(self) -> GlueCrawlerLineageConfigurationEl {
         GlueCrawlerLineageConfigurationEl {
@@ -1629,12 +1427,10 @@ impl BuildGlueCrawlerLineageConfigurationEl {
         }
     }
 }
-
 pub struct GlueCrawlerLineageConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerLineageConfigurationElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerLineageConfigurationElRef {
         GlueCrawlerLineageConfigurationElRef {
@@ -1643,12 +1439,10 @@ impl Ref for GlueCrawlerLineageConfigurationElRef {
         }
     }
 }
-
 impl GlueCrawlerLineageConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `crawler_lineage_settings` after provisioning.\n"]
     pub fn crawler_lineage_settings(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1657,7 +1451,6 @@ impl GlueCrawlerLineageConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerMongodbTargetEl {
     connection_name: PrimField<String>,
@@ -1665,7 +1458,6 @@ pub struct GlueCrawlerMongodbTargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     scan_all: Option<PrimField<bool>>,
 }
-
 impl GlueCrawlerMongodbTargetEl {
     #[doc = "Set the field `scan_all`.\n"]
     pub fn set_scan_all(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1673,10 +1465,8 @@ impl GlueCrawlerMongodbTargetEl {
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerMongodbTargetEl {
     type O = BlockAssignable<GlueCrawlerMongodbTargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1685,14 +1475,12 @@ impl ToListMappable for GlueCrawlerMongodbTargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerMongodbTargetEl {
     #[doc = ""]
     pub connection_name: PrimField<String>,
     #[doc = ""]
     pub path: PrimField<String>,
 }
-
 impl BuildGlueCrawlerMongodbTargetEl {
     pub fn build(self) -> GlueCrawlerMongodbTargetEl {
         GlueCrawlerMongodbTargetEl {
@@ -1702,12 +1490,10 @@ impl BuildGlueCrawlerMongodbTargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerMongodbTargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerMongodbTargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerMongodbTargetElRef {
         GlueCrawlerMongodbTargetElRef {
@@ -1716,12 +1502,10 @@ impl Ref for GlueCrawlerMongodbTargetElRef {
         }
     }
 }
-
 impl GlueCrawlerMongodbTargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1729,24 +1513,20 @@ impl GlueCrawlerMongodbTargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scan_all` after provisioning.\n"]
     pub fn scan_all(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.scan_all", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerRecrawlPolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     recrawl_behavior: Option<PrimField<String>>,
 }
-
 impl GlueCrawlerRecrawlPolicyEl {
     #[doc = "Set the field `recrawl_behavior`.\n"]
     pub fn set_recrawl_behavior(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1754,10 +1534,8 @@ impl GlueCrawlerRecrawlPolicyEl {
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerRecrawlPolicyEl {
     type O = BlockAssignable<GlueCrawlerRecrawlPolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1766,9 +1544,7 @@ impl ToListMappable for GlueCrawlerRecrawlPolicyEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerRecrawlPolicyEl {}
-
 impl BuildGlueCrawlerRecrawlPolicyEl {
     pub fn build(self) -> GlueCrawlerRecrawlPolicyEl {
         GlueCrawlerRecrawlPolicyEl {
@@ -1776,12 +1552,10 @@ impl BuildGlueCrawlerRecrawlPolicyEl {
         }
     }
 }
-
 pub struct GlueCrawlerRecrawlPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerRecrawlPolicyElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerRecrawlPolicyElRef {
         GlueCrawlerRecrawlPolicyElRef {
@@ -1790,12 +1564,10 @@ impl Ref for GlueCrawlerRecrawlPolicyElRef {
         }
     }
 }
-
 impl GlueCrawlerRecrawlPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `recrawl_behavior` after provisioning.\n"]
     pub fn recrawl_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1804,7 +1576,6 @@ impl GlueCrawlerRecrawlPolicyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerS3TargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1819,42 +1590,35 @@ pub struct GlueCrawlerS3TargetEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     sample_size: Option<PrimField<f64>>,
 }
-
 impl GlueCrawlerS3TargetEl {
     #[doc = "Set the field `connection_name`.\n"]
     pub fn set_connection_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.connection_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dlq_event_queue_arn`.\n"]
     pub fn set_dlq_event_queue_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dlq_event_queue_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_queue_arn`.\n"]
     pub fn set_event_queue_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.event_queue_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclusions`.\n"]
     pub fn set_exclusions(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.exclusions = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sample_size`.\n"]
     pub fn set_sample_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.sample_size = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerS3TargetEl {
     type O = BlockAssignable<GlueCrawlerS3TargetEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1863,12 +1627,10 @@ impl ToListMappable for GlueCrawlerS3TargetEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerS3TargetEl {
     #[doc = ""]
     pub path: PrimField<String>,
 }
-
 impl BuildGlueCrawlerS3TargetEl {
     pub fn build(self) -> GlueCrawlerS3TargetEl {
         GlueCrawlerS3TargetEl {
@@ -1881,12 +1643,10 @@ impl BuildGlueCrawlerS3TargetEl {
         }
     }
 }
-
 pub struct GlueCrawlerS3TargetElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerS3TargetElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerS3TargetElRef {
         GlueCrawlerS3TargetElRef {
@@ -1895,12 +1655,10 @@ impl Ref for GlueCrawlerS3TargetElRef {
         }
     }
 }
-
 impl GlueCrawlerS3TargetElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_name` after provisioning.\n"]
     pub fn connection_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1908,7 +1666,6 @@ impl GlueCrawlerS3TargetElRef {
             format!("{}.connection_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dlq_event_queue_arn` after provisioning.\n"]
     pub fn dlq_event_queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1916,7 +1673,6 @@ impl GlueCrawlerS3TargetElRef {
             format!("{}.dlq_event_queue_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_queue_arn` after provisioning.\n"]
     pub fn event_queue_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1924,23 +1680,19 @@ impl GlueCrawlerS3TargetElRef {
             format!("{}.event_queue_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
     pub fn exclusions(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.exclusions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sample_size` after provisioning.\n"]
     pub fn sample_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.sample_size", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueCrawlerSchemaChangePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1948,24 +1700,20 @@ pub struct GlueCrawlerSchemaChangePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update_behavior: Option<PrimField<String>>,
 }
-
 impl GlueCrawlerSchemaChangePolicyEl {
     #[doc = "Set the field `delete_behavior`.\n"]
     pub fn set_delete_behavior(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete_behavior = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update_behavior`.\n"]
     pub fn set_update_behavior(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update_behavior = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueCrawlerSchemaChangePolicyEl {
     type O = BlockAssignable<GlueCrawlerSchemaChangePolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1974,9 +1722,7 @@ impl ToListMappable for GlueCrawlerSchemaChangePolicyEl {
         })
     }
 }
-
 pub struct BuildGlueCrawlerSchemaChangePolicyEl {}
-
 impl BuildGlueCrawlerSchemaChangePolicyEl {
     pub fn build(self) -> GlueCrawlerSchemaChangePolicyEl {
         GlueCrawlerSchemaChangePolicyEl {
@@ -1985,12 +1731,10 @@ impl BuildGlueCrawlerSchemaChangePolicyEl {
         }
     }
 }
-
 pub struct GlueCrawlerSchemaChangePolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueCrawlerSchemaChangePolicyElRef {
     fn new(shared: StackShared, base: String) -> GlueCrawlerSchemaChangePolicyElRef {
         GlueCrawlerSchemaChangePolicyElRef {
@@ -1999,12 +1743,10 @@ impl Ref for GlueCrawlerSchemaChangePolicyElRef {
         }
     }
 }
-
 impl GlueCrawlerSchemaChangePolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delete_behavior` after provisioning.\n"]
     pub fn delete_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2012,7 +1754,6 @@ impl GlueCrawlerSchemaChangePolicyElRef {
             format!("{}.delete_behavior", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_behavior` after provisioning.\n"]
     pub fn update_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2021,7 +1762,6 @@ impl GlueCrawlerSchemaChangePolicyElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueCrawlerDynamic {
     catalog_target: Option<DynamicBlock<GlueCrawlerCatalogTargetEl>>,

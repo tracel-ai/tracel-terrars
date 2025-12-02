@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerModelData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -37,47 +36,38 @@ struct SagemakerModelData {
     vpc_config: Option<Vec<SagemakerModelVpcConfigEl>>,
     dynamic: SagemakerModelDynamic,
 }
-
 struct SagemakerModel_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerModelData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerModel(Rc<SagemakerModel_>);
-
 impl SagemakerModel {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -96,7 +86,6 @@ impl SagemakerModel {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -106,7 +95,6 @@ impl SagemakerModel {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -116,43 +104,36 @@ impl SagemakerModel {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `enable_network_isolation`.\n"]
     pub fn set_enable_network_isolation(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enable_network_isolation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `container`.\n"]
     pub fn set_container(self, v: impl Into<BlockAssignable<SagemakerModelContainerEl>>) -> Self {
         match v.into() {
@@ -165,7 +146,6 @@ impl SagemakerModel {
         }
         self
     }
-
     #[doc = "Set the field `inference_execution_config`.\n"]
     pub fn set_inference_execution_config(
         self,
@@ -181,7 +161,6 @@ impl SagemakerModel {
         }
         self
     }
-
     #[doc = "Set the field `primary_container`.\n"]
     pub fn set_primary_container(
         self,
@@ -197,7 +176,6 @@ impl SagemakerModel {
         }
         self
     }
-
     #[doc = "Set the field `vpc_config`.\n"]
     pub fn set_vpc_config(self, v: impl Into<BlockAssignable<SagemakerModelVpcConfigEl>>) -> Self {
         match v.into() {
@@ -210,12 +188,10 @@ impl SagemakerModel {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enable_network_isolation` after provisioning.\n"]
     pub fn enable_network_isolation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -223,7 +199,6 @@ impl SagemakerModel {
             format!("{}.enable_network_isolation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,12 +206,10 @@ impl SagemakerModel {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,7 +217,6 @@ impl SagemakerModel {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +224,6 @@ impl SagemakerModel {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -260,7 +231,6 @@ impl SagemakerModel {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -268,7 +238,6 @@ impl SagemakerModel {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `container` after provisioning.\n"]
     pub fn container(&self) -> ListRef<SagemakerModelContainerElRef> {
         ListRef::new(
@@ -276,7 +245,6 @@ impl SagemakerModel {
             format!("{}.container", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `inference_execution_config` after provisioning.\n"]
     pub fn inference_execution_config(
         &self,
@@ -286,7 +254,6 @@ impl SagemakerModel {
             format!("{}.inference_execution_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_container` after provisioning.\n"]
     pub fn primary_container(&self) -> ListRef<SagemakerModelPrimaryContainerElRef> {
         ListRef::new(
@@ -294,7 +261,6 @@ impl SagemakerModel {
             format!("{}.primary_container", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<SagemakerModelVpcConfigElRef> {
         ListRef::new(
@@ -303,7 +269,6 @@ impl SagemakerModel {
         )
     }
 }
-
 impl Referable for SagemakerModel {
     fn extract_ref(&self) -> String {
         format!(
@@ -313,38 +278,30 @@ impl Referable for SagemakerModel {
         )
     }
 }
-
 impl Resource for SagemakerModel {}
-
 impl ToListMappable for SagemakerModel {
     type O = ListRef<SagemakerModelRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerModel_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_model".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerModel {
     pub tf_id: String,
     #[doc = ""]
     pub execution_role_arn: PrimField<String>,
 }
-
 impl BuildSagemakerModel {
     pub fn build(self, stack: &mut Stack) -> SagemakerModel {
         let out = SagemakerModel(Rc::new(SagemakerModel_ {
@@ -373,32 +330,26 @@ impl BuildSagemakerModel {
         out
     }
 }
-
 pub struct SagemakerModelRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerModelRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `enable_network_isolation` after provisioning.\n"]
     pub fn enable_network_isolation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -406,7 +357,6 @@ impl SagemakerModelRef {
             format!("{}.enable_network_isolation", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,12 +364,10 @@ impl SagemakerModelRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,7 +375,6 @@ impl SagemakerModelRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -435,7 +382,6 @@ impl SagemakerModelRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -443,7 +389,6 @@ impl SagemakerModelRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -451,7 +396,6 @@ impl SagemakerModelRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `container` after provisioning.\n"]
     pub fn container(&self) -> ListRef<SagemakerModelContainerElRef> {
         ListRef::new(
@@ -459,7 +403,6 @@ impl SagemakerModelRef {
             format!("{}.container", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `inference_execution_config` after provisioning.\n"]
     pub fn inference_execution_config(
         &self,
@@ -469,7 +412,6 @@ impl SagemakerModelRef {
             format!("{}.inference_execution_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_container` after provisioning.\n"]
     pub fn primary_container(&self) -> ListRef<SagemakerModelPrimaryContainerElRef> {
         ListRef::new(
@@ -477,7 +419,6 @@ impl SagemakerModelRef {
             format!("{}.primary_container", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<SagemakerModelVpcConfigElRef> {
         ListRef::new(
@@ -486,21 +427,17 @@ impl SagemakerModelRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {
     accept_eula: PrimField<bool>,
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {}
-
 impl ToListMappable
     for SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     type O = BlockAssignable<
         SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -509,13 +446,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     #[doc = ""]
     pub accept_eula: PrimField<bool>,
 }
-
 impl BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {
     pub fn build(
         self,
@@ -525,13 +460,11 @@ impl BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElMode
         }
     }
 }
-
 pub struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef
 {
@@ -546,18 +479,15 @@ impl Ref
         }
     }
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accept_eula` after provisioning.\n"]
     pub fn accept_eula(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.accept_eula", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElDynamic {
     model_access_config: Option<
@@ -566,7 +496,6 @@ struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElDynamic
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     compression_type: PrimField<String>,
@@ -578,19 +507,11 @@ pub struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     >,
     dynamic: SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElDynamic,
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     #[doc = "Set the field `model_access_config`.\n"]
     pub fn set_model_access_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -603,10 +524,8 @@ impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     type O = BlockAssignable<SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -615,7 +534,6 @@ impl ToListMappable for SagemakerModelContainerElAdditionalModelDataSourceElS3Da
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     #[doc = ""]
     pub compression_type: PrimField<String>,
@@ -624,7 +542,6 @@ pub struct BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSource
     #[doc = ""]
     pub s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
     pub fn build(self) -> SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
         SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
@@ -636,12 +553,10 @@ impl BuildSagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     fn new(
         shared: StackShared,
@@ -653,12 +568,10 @@ impl Ref for SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElR
         }
     }
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `compression_type` after provisioning.\n"]
     pub fn compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -666,17 +579,14 @@ impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElRef {
             format!("{}.compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_data_type` after provisioning.\n"]
     pub fn s3_data_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_data_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_access_config` after provisioning.\n"]
     pub fn model_access_config(
         &self,
@@ -689,13 +599,11 @@ impl SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElAdditionalModelDataSourceElDynamic {
     s3_data_source:
         Option<DynamicBlock<SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElAdditionalModelDataSourceEl {
     channel_name: PrimField<String>,
@@ -703,7 +611,6 @@ pub struct SagemakerModelContainerElAdditionalModelDataSourceEl {
     s3_data_source: Option<Vec<SagemakerModelContainerElAdditionalModelDataSourceElS3DataSourceEl>>,
     dynamic: SagemakerModelContainerElAdditionalModelDataSourceElDynamic,
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceEl {
     #[doc = "Set the field `s3_data_source`.\n"]
     pub fn set_s3_data_source(
@@ -723,10 +630,8 @@ impl SagemakerModelContainerElAdditionalModelDataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElAdditionalModelDataSourceEl {
     type O = BlockAssignable<SagemakerModelContainerElAdditionalModelDataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -735,12 +640,10 @@ impl ToListMappable for SagemakerModelContainerElAdditionalModelDataSourceEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElAdditionalModelDataSourceEl {
     #[doc = ""]
     pub channel_name: PrimField<String>,
 }
-
 impl BuildSagemakerModelContainerElAdditionalModelDataSourceEl {
     pub fn build(self) -> SagemakerModelContainerElAdditionalModelDataSourceEl {
         SagemakerModelContainerElAdditionalModelDataSourceEl {
@@ -750,12 +653,10 @@ impl BuildSagemakerModelContainerElAdditionalModelDataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElAdditionalModelDataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElAdditionalModelDataSourceElRef {
     fn new(
         shared: StackShared,
@@ -767,17 +668,14 @@ impl Ref for SagemakerModelContainerElAdditionalModelDataSourceElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElAdditionalModelDataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `channel_name` after provisioning.\n"]
     pub fn channel_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_data_source` after provisioning.\n"]
     pub fn s3_data_source(
         &self,
@@ -788,17 +686,13 @@ impl SagemakerModelContainerElAdditionalModelDataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
     repository_credentials_provider_arn: PrimField<String>,
 }
-
 impl SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {}
-
 impl ToListMappable for SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
     type O = BlockAssignable<SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -807,12 +701,10 @@ impl ToListMappable for SagemakerModelContainerElImageConfigElRepositoryAuthConf
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
     #[doc = ""]
     pub repository_credentials_provider_arn: PrimField<String>,
 }
-
 impl BuildSagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
     pub fn build(self) -> SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
         SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
@@ -820,12 +712,10 @@ impl BuildSagemakerModelContainerElImageConfigElRepositoryAuthConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElImageConfigElRepositoryAuthConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElImageConfigElRepositoryAuthConfigElRef {
     fn new(
         shared: StackShared,
@@ -837,12 +727,10 @@ impl Ref for SagemakerModelContainerElImageConfigElRepositoryAuthConfigElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElImageConfigElRepositoryAuthConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `repository_credentials_provider_arn` after provisioning.\n"]
     pub fn repository_credentials_provider_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -851,13 +739,11 @@ impl SagemakerModelContainerElImageConfigElRepositoryAuthConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElImageConfigElDynamic {
     repository_auth_config:
         Option<DynamicBlock<SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElImageConfigEl {
     repository_access_mode: PrimField<String>,
@@ -866,7 +752,6 @@ pub struct SagemakerModelContainerElImageConfigEl {
         Option<Vec<SagemakerModelContainerElImageConfigElRepositoryAuthConfigEl>>,
     dynamic: SagemakerModelContainerElImageConfigElDynamic,
 }
-
 impl SagemakerModelContainerElImageConfigEl {
     #[doc = "Set the field `repository_auth_config`.\n"]
     pub fn set_repository_auth_config(
@@ -884,10 +769,8 @@ impl SagemakerModelContainerElImageConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElImageConfigEl {
     type O = BlockAssignable<SagemakerModelContainerElImageConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -896,12 +779,10 @@ impl ToListMappable for SagemakerModelContainerElImageConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElImageConfigEl {
     #[doc = ""]
     pub repository_access_mode: PrimField<String>,
 }
-
 impl BuildSagemakerModelContainerElImageConfigEl {
     pub fn build(self) -> SagemakerModelContainerElImageConfigEl {
         SagemakerModelContainerElImageConfigEl {
@@ -911,12 +792,10 @@ impl BuildSagemakerModelContainerElImageConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElImageConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElImageConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelContainerElImageConfigElRef {
         SagemakerModelContainerElImageConfigElRef {
@@ -925,12 +804,10 @@ impl Ref for SagemakerModelContainerElImageConfigElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElImageConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `repository_access_mode` after provisioning.\n"]
     pub fn repository_access_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -938,7 +815,6 @@ impl SagemakerModelContainerElImageConfigElRef {
             format!("{}.repository_access_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `repository_auth_config` after provisioning.\n"]
     pub fn repository_auth_config(
         &self,
@@ -949,21 +825,17 @@ impl SagemakerModelContainerElImageConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     accept_eula: PrimField<bool>,
 }
-
 impl SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {}
-
 impl ToListMappable
     for SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     type O = BlockAssignable<
         SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -972,12 +844,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     #[doc = ""]
     pub accept_eula: PrimField<bool>,
 }
-
 impl BuildSagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     pub fn build(
         self,
@@ -987,12 +857,10 @@ impl BuildSagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessCon
         }
     }
 }
-
 pub struct SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     fn new(
         shared: StackShared,
@@ -1004,25 +872,21 @@ impl Ref for SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccess
         }
     }
 }
-
 impl SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accept_eula` after provisioning.\n"]
     pub fn accept_eula(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.accept_eula", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElModelDataSourceElS3DataSourceElDynamic {
     model_access_config: Option<
         DynamicBlock<SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     compression_type: PrimField<String>,
@@ -1033,7 +897,6 @@ pub struct SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
         Option<Vec<SagemakerModelContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl>>,
     dynamic: SagemakerModelContainerElModelDataSourceElS3DataSourceElDynamic,
 }
-
 impl SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     #[doc = "Set the field `model_access_config`.\n"]
     pub fn set_model_access_config(
@@ -1055,10 +918,8 @@ impl SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     type O = BlockAssignable<SagemakerModelContainerElModelDataSourceElS3DataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1067,7 +928,6 @@ impl ToListMappable for SagemakerModelContainerElModelDataSourceElS3DataSourceEl
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     #[doc = ""]
     pub compression_type: PrimField<String>,
@@ -1076,7 +936,6 @@ pub struct BuildSagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     #[doc = ""]
     pub s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerModelContainerElModelDataSourceElS3DataSourceEl {
     pub fn build(self) -> SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
         SagemakerModelContainerElModelDataSourceElS3DataSourceEl {
@@ -1088,12 +947,10 @@ impl BuildSagemakerModelContainerElModelDataSourceElS3DataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
     fn new(
         shared: StackShared,
@@ -1105,12 +962,10 @@ impl Ref for SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `compression_type` after provisioning.\n"]
     pub fn compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1118,17 +973,14 @@ impl SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
             format!("{}.compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_data_type` after provisioning.\n"]
     pub fn s3_data_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_data_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_access_config` after provisioning.\n"]
     pub fn model_access_config(
         &self,
@@ -1140,19 +992,16 @@ impl SagemakerModelContainerElModelDataSourceElS3DataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElModelDataSourceElDynamic {
     s3_data_source: Option<DynamicBlock<SagemakerModelContainerElModelDataSourceElS3DataSourceEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElModelDataSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_data_source: Option<Vec<SagemakerModelContainerElModelDataSourceElS3DataSourceEl>>,
     dynamic: SagemakerModelContainerElModelDataSourceElDynamic,
 }
-
 impl SagemakerModelContainerElModelDataSourceEl {
     #[doc = "Set the field `s3_data_source`.\n"]
     pub fn set_s3_data_source(
@@ -1170,10 +1019,8 @@ impl SagemakerModelContainerElModelDataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElModelDataSourceEl {
     type O = BlockAssignable<SagemakerModelContainerElModelDataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1182,9 +1029,7 @@ impl ToListMappable for SagemakerModelContainerElModelDataSourceEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElModelDataSourceEl {}
-
 impl BuildSagemakerModelContainerElModelDataSourceEl {
     pub fn build(self) -> SagemakerModelContainerElModelDataSourceEl {
         SagemakerModelContainerElModelDataSourceEl {
@@ -1193,12 +1038,10 @@ impl BuildSagemakerModelContainerElModelDataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElModelDataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElModelDataSourceElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelContainerElModelDataSourceElRef {
         SagemakerModelContainerElModelDataSourceElRef {
@@ -1207,12 +1050,10 @@ impl Ref for SagemakerModelContainerElModelDataSourceElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElModelDataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_data_source` after provisioning.\n"]
     pub fn s3_data_source(
         &self,
@@ -1223,13 +1064,11 @@ impl SagemakerModelContainerElModelDataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerElMultiModelConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     model_cache_setting: Option<PrimField<String>>,
 }
-
 impl SagemakerModelContainerElMultiModelConfigEl {
     #[doc = "Set the field `model_cache_setting`.\n"]
     pub fn set_model_cache_setting(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1237,10 +1076,8 @@ impl SagemakerModelContainerElMultiModelConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerElMultiModelConfigEl {
     type O = BlockAssignable<SagemakerModelContainerElMultiModelConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1249,9 +1086,7 @@ impl ToListMappable for SagemakerModelContainerElMultiModelConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerElMultiModelConfigEl {}
-
 impl BuildSagemakerModelContainerElMultiModelConfigEl {
     pub fn build(self) -> SagemakerModelContainerElMultiModelConfigEl {
         SagemakerModelContainerElMultiModelConfigEl {
@@ -1259,12 +1094,10 @@ impl BuildSagemakerModelContainerElMultiModelConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElMultiModelConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElMultiModelConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelContainerElMultiModelConfigElRef {
         SagemakerModelContainerElMultiModelConfigElRef {
@@ -1273,12 +1106,10 @@ impl Ref for SagemakerModelContainerElMultiModelConfigElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElMultiModelConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `model_cache_setting` after provisioning.\n"]
     pub fn model_cache_setting(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1287,7 +1118,6 @@ impl SagemakerModelContainerElMultiModelConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelContainerElDynamic {
     additional_model_data_source:
@@ -1296,7 +1126,6 @@ struct SagemakerModelContainerElDynamic {
     model_data_source: Option<DynamicBlock<SagemakerModelContainerElModelDataSourceEl>>,
     multi_model_config: Option<DynamicBlock<SagemakerModelContainerElMultiModelConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelContainerEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1323,50 +1152,42 @@ pub struct SagemakerModelContainerEl {
     multi_model_config: Option<Vec<SagemakerModelContainerElMultiModelConfigEl>>,
     dynamic: SagemakerModelContainerElDynamic,
 }
-
 impl SagemakerModelContainerEl {
     #[doc = "Set the field `container_hostname`.\n"]
     pub fn set_container_hostname(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.container_hostname = Some(v.into());
         self
     }
-
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.environment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image`.\n"]
     pub fn set_image(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.image = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inference_specification_name`.\n"]
     pub fn set_inference_specification_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.inference_specification_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mode`.\n"]
     pub fn set_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_data_url`.\n"]
     pub fn set_model_data_url(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_data_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_package_name`.\n"]
     pub fn set_model_package_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_package_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `additional_model_data_source`.\n"]
     pub fn set_additional_model_data_source(
         mut self,
@@ -1382,7 +1203,6 @@ impl SagemakerModelContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `image_config`.\n"]
     pub fn set_image_config(
         mut self,
@@ -1398,7 +1218,6 @@ impl SagemakerModelContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `model_data_source`.\n"]
     pub fn set_model_data_source(
         mut self,
@@ -1414,7 +1233,6 @@ impl SagemakerModelContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `multi_model_config`.\n"]
     pub fn set_multi_model_config(
         mut self,
@@ -1431,10 +1249,8 @@ impl SagemakerModelContainerEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelContainerEl {
     type O = BlockAssignable<SagemakerModelContainerEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1443,9 +1259,7 @@ impl ToListMappable for SagemakerModelContainerEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelContainerEl {}
-
 impl BuildSagemakerModelContainerEl {
     pub fn build(self) -> SagemakerModelContainerEl {
         SagemakerModelContainerEl {
@@ -1464,12 +1278,10 @@ impl BuildSagemakerModelContainerEl {
         }
     }
 }
-
 pub struct SagemakerModelContainerElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelContainerElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelContainerElRef {
         SagemakerModelContainerElRef {
@@ -1478,12 +1290,10 @@ impl Ref for SagemakerModelContainerElRef {
         }
     }
 }
-
 impl SagemakerModelContainerElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `container_hostname` after provisioning.\n"]
     pub fn container_hostname(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1491,17 +1301,14 @@ impl SagemakerModelContainerElRef {
             format!("{}.container_hostname", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `image` after provisioning.\n"]
     pub fn image(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.image", self.base))
     }
-
     #[doc = "Get a reference to the value of field `inference_specification_name` after provisioning.\n"]
     pub fn inference_specification_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1509,12 +1316,10 @@ impl SagemakerModelContainerElRef {
             format!("{}.inference_specification_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_data_url` after provisioning.\n"]
     pub fn model_data_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1522,7 +1327,6 @@ impl SagemakerModelContainerElRef {
             format!("{}.model_data_url", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_package_name` after provisioning.\n"]
     pub fn model_package_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1530,7 +1334,6 @@ impl SagemakerModelContainerElRef {
             format!("{}.model_package_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `additional_model_data_source` after provisioning.\n"]
     pub fn additional_model_data_source(
         &self,
@@ -1540,12 +1343,10 @@ impl SagemakerModelContainerElRef {
             format!("{}.additional_model_data_source", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_config` after provisioning.\n"]
     pub fn image_config(&self) -> ListRef<SagemakerModelContainerElImageConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.image_config", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_data_source` after provisioning.\n"]
     pub fn model_data_source(&self) -> ListRef<SagemakerModelContainerElModelDataSourceElRef> {
         ListRef::new(
@@ -1553,7 +1354,6 @@ impl SagemakerModelContainerElRef {
             format!("{}.model_data_source", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `multi_model_config` after provisioning.\n"]
     pub fn multi_model_config(&self) -> ListRef<SagemakerModelContainerElMultiModelConfigElRef> {
         ListRef::new(
@@ -1562,17 +1362,13 @@ impl SagemakerModelContainerElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelInferenceExecutionConfigEl {
     mode: PrimField<String>,
 }
-
 impl SagemakerModelInferenceExecutionConfigEl {}
-
 impl ToListMappable for SagemakerModelInferenceExecutionConfigEl {
     type O = BlockAssignable<SagemakerModelInferenceExecutionConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1581,23 +1377,19 @@ impl ToListMappable for SagemakerModelInferenceExecutionConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelInferenceExecutionConfigEl {
     #[doc = ""]
     pub mode: PrimField<String>,
 }
-
 impl BuildSagemakerModelInferenceExecutionConfigEl {
     pub fn build(self) -> SagemakerModelInferenceExecutionConfigEl {
         SagemakerModelInferenceExecutionConfigEl { mode: self.mode }
     }
 }
-
 pub struct SagemakerModelInferenceExecutionConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelInferenceExecutionConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelInferenceExecutionConfigElRef {
         SagemakerModelInferenceExecutionConfigElRef {
@@ -1606,34 +1398,25 @@ impl Ref for SagemakerModelInferenceExecutionConfigElRef {
         }
     }
 }
-
 impl SagemakerModelInferenceExecutionConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     accept_eula: PrimField<bool>,
 }
-
 impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {}
-
 impl ToListMappable
     for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
-    type O =
-        BlockAssignable<
-            SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl,
-        >;
-
+    type O = BlockAssignable < SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl > ;
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1642,85 +1425,38 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     #[doc = ""]
     pub accept_eula: PrimField<bool>,
 }
-
-impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {
-    pub fn build(
-        self,
-    ) -> SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {
-        SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl {
-            accept_eula: self.accept_eula,
-        }
-    }
-}
-
+impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl { pub fn build (self) -> SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl { SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl { accept_eula : self . accept_eula , } } }
 pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef {
-        SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
+impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef { fn new (shared : StackShared , base : String) -> SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef { SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef { shared : shared , base : base . to_string () , } } }
 impl
     SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef
 {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accept_eula` after provisioning.\n"]
     pub fn accept_eula(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.accept_eula", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
-struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElDynamic {
-    model_access_config: Option<
-        DynamicBlock<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl>,
-    >,
-}
-
+struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElDynamic { model_access_config : Option < DynamicBlock < SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl >> , }
 #[derive(Serialize)]
-pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
-    compression_type: PrimField<String>,
-    s3_data_type: PrimField<String>,
-    s3_uri: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    model_access_config: Option<
-        Vec<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl>,
-    >,
-    dynamic: SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElDynamic,
-}
-
+pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl { compression_type : PrimField < String > , s3_data_type : PrimField < String > , s3_uri : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] model_access_config : Option < Vec < SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl > > , dynamic : SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElDynamic , }
 impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
     #[doc = "Set the field `model_access_config`.\n"]
     pub fn set_model_access_config(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1733,11 +1469,9 @@ impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
     type O =
         BlockAssignable<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1746,7 +1480,6 @@ impl ToListMappable for SagemakerModelPrimaryContainerElAdditionalModelDataSourc
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
     #[doc = ""]
     pub compression_type: PrimField<String>,
@@ -1755,7 +1488,6 @@ pub struct BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3Dat
     #[doc = ""]
     pub s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl {
     pub fn build(
         self,
@@ -1769,12 +1501,10 @@ impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourc
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     fn new(
         shared: StackShared,
@@ -1786,12 +1516,10 @@ impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSo
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `compression_type` after provisioning.\n"]
     pub fn compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1799,35 +1527,27 @@ impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElRe
             format!("{}.compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_data_type` after provisioning.\n"]
     pub fn s3_data_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_data_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
-
-    #[doc = "Get a reference to the value of field `model_access_config` after provisioning.\n"]
-    pub fn model_access_config(
-        &self,
-    ) -> ListRef<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef>{
+    #[doc = "Get a reference to the value of field `model_access_config` after provisioning.\n"]    pub fn model_access_config (& self) -> ListRef < SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceElModelAccessConfigElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.model_access_config", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElDynamic {
     s3_data_source: Option<
         DynamicBlock<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
     channel_name: PrimField<String>,
@@ -1836,7 +1556,6 @@ pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
         Option<Vec<SagemakerModelPrimaryContainerElAdditionalModelDataSourceElS3DataSourceEl>>,
     dynamic: SagemakerModelPrimaryContainerElAdditionalModelDataSourceElDynamic,
 }
-
 impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
     #[doc = "Set the field `s3_data_source`.\n"]
     pub fn set_s3_data_source(
@@ -1858,10 +1577,8 @@ impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1870,12 +1587,10 @@ impl ToListMappable for SagemakerModelPrimaryContainerElAdditionalModelDataSourc
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
     #[doc = ""]
     pub channel_name: PrimField<String>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
         SagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
@@ -1885,12 +1600,10 @@ impl BuildSagemakerModelPrimaryContainerElAdditionalModelDataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElAdditionalModelDataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElRef {
     fn new(
         shared: StackShared,
@@ -1902,17 +1615,14 @@ impl Ref for SagemakerModelPrimaryContainerElAdditionalModelDataSourceElRef {
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `channel_name` after provisioning.\n"]
     pub fn channel_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.channel_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_data_source` after provisioning.\n"]
     pub fn s3_data_source(
         &self,
@@ -1923,17 +1633,13 @@ impl SagemakerModelPrimaryContainerElAdditionalModelDataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
     repository_credentials_provider_arn: PrimField<String>,
 }
-
 impl SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {}
-
 impl ToListMappable for SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1942,12 +1648,10 @@ impl ToListMappable for SagemakerModelPrimaryContainerElImageConfigElRepositoryA
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
     #[doc = ""]
     pub repository_credentials_provider_arn: PrimField<String>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
         SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
@@ -1955,12 +1659,10 @@ impl BuildSagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigElRef {
     fn new(
         shared: StackShared,
@@ -1972,12 +1674,10 @@ impl Ref for SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `repository_credentials_provider_arn` after provisioning.\n"]
     pub fn repository_credentials_provider_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1986,13 +1686,11 @@ impl SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelPrimaryContainerElImageConfigElDynamic {
     repository_auth_config:
         Option<DynamicBlock<SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElImageConfigEl {
     repository_access_mode: PrimField<String>,
@@ -2001,7 +1699,6 @@ pub struct SagemakerModelPrimaryContainerElImageConfigEl {
         Option<Vec<SagemakerModelPrimaryContainerElImageConfigElRepositoryAuthConfigEl>>,
     dynamic: SagemakerModelPrimaryContainerElImageConfigElDynamic,
 }
-
 impl SagemakerModelPrimaryContainerElImageConfigEl {
     #[doc = "Set the field `repository_auth_config`.\n"]
     pub fn set_repository_auth_config(
@@ -2021,10 +1718,8 @@ impl SagemakerModelPrimaryContainerElImageConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElImageConfigEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElImageConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2033,12 +1728,10 @@ impl ToListMappable for SagemakerModelPrimaryContainerElImageConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElImageConfigEl {
     #[doc = ""]
     pub repository_access_mode: PrimField<String>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElImageConfigEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElImageConfigEl {
         SagemakerModelPrimaryContainerElImageConfigEl {
@@ -2048,12 +1741,10 @@ impl BuildSagemakerModelPrimaryContainerElImageConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElImageConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElImageConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelPrimaryContainerElImageConfigElRef {
         SagemakerModelPrimaryContainerElImageConfigElRef {
@@ -2062,12 +1753,10 @@ impl Ref for SagemakerModelPrimaryContainerElImageConfigElRef {
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElImageConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `repository_access_mode` after provisioning.\n"]
     pub fn repository_access_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2075,7 +1764,6 @@ impl SagemakerModelPrimaryContainerElImageConfigElRef {
             format!("{}.repository_access_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `repository_auth_config` after provisioning.\n"]
     pub fn repository_auth_config(
         &self,
@@ -2086,21 +1774,17 @@ impl SagemakerModelPrimaryContainerElImageConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     accept_eula: PrimField<bool>,
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {}
-
 impl ToListMappable
     for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl
 {
     type O = BlockAssignable<
         SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2109,12 +1793,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     #[doc = ""]
     pub accept_eula: PrimField<bool>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigEl {
     pub fn build(
         self,
@@ -2124,12 +1806,10 @@ impl BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAc
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     fn new(
         shared: StackShared,
@@ -2141,18 +1821,15 @@ impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElMode
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElModelAccessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accept_eula` after provisioning.\n"]
     pub fn accept_eula(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.accept_eula", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElDynamic {
     model_access_config: Option<
@@ -2161,7 +1838,6 @@ struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     compression_type: PrimField<String>,
@@ -2173,7 +1849,6 @@ pub struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     >,
     dynamic: SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElDynamic,
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     #[doc = "Set the field `model_access_config`.\n"]
     pub fn set_model_access_config(
@@ -2195,10 +1870,8 @@ impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2207,7 +1880,6 @@ impl ToListMappable for SagemakerModelPrimaryContainerElModelDataSourceElS3DataS
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     #[doc = ""]
     pub compression_type: PrimField<String>,
@@ -2216,7 +1888,6 @@ pub struct BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl 
     #[doc = ""]
     pub s3_uri: PrimField<String>,
 }
-
 impl BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
         SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
@@ -2228,12 +1899,10 @@ impl BuildSagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef {
     fn new(
         shared: StackShared,
@@ -2245,12 +1914,10 @@ impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef 
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `compression_type` after provisioning.\n"]
     pub fn compression_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2258,17 +1925,14 @@ impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef {
             format!("{}.compression_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_data_type` after provisioning.\n"]
     pub fn s3_data_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_data_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `s3_uri` after provisioning.\n"]
     pub fn s3_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.s3_uri", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_access_config` after provisioning.\n"]
     pub fn model_access_config(
         &self,
@@ -2281,20 +1945,17 @@ impl SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelPrimaryContainerElModelDataSourceElDynamic {
     s3_data_source:
         Option<DynamicBlock<SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElModelDataSourceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     s3_data_source: Option<Vec<SagemakerModelPrimaryContainerElModelDataSourceElS3DataSourceEl>>,
     dynamic: SagemakerModelPrimaryContainerElModelDataSourceElDynamic,
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceEl {
     #[doc = "Set the field `s3_data_source`.\n"]
     pub fn set_s3_data_source(
@@ -2312,10 +1973,8 @@ impl SagemakerModelPrimaryContainerElModelDataSourceEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElModelDataSourceEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElModelDataSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2324,9 +1983,7 @@ impl ToListMappable for SagemakerModelPrimaryContainerElModelDataSourceEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElModelDataSourceEl {}
-
 impl BuildSagemakerModelPrimaryContainerElModelDataSourceEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElModelDataSourceEl {
         SagemakerModelPrimaryContainerElModelDataSourceEl {
@@ -2335,12 +1992,10 @@ impl BuildSagemakerModelPrimaryContainerElModelDataSourceEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElModelDataSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElRef {
     fn new(
         shared: StackShared,
@@ -2352,12 +2007,10 @@ impl Ref for SagemakerModelPrimaryContainerElModelDataSourceElRef {
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElModelDataSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `s3_data_source` after provisioning.\n"]
     pub fn s3_data_source(
         &self,
@@ -2368,13 +2021,11 @@ impl SagemakerModelPrimaryContainerElModelDataSourceElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerElMultiModelConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     model_cache_setting: Option<PrimField<String>>,
 }
-
 impl SagemakerModelPrimaryContainerElMultiModelConfigEl {
     #[doc = "Set the field `model_cache_setting`.\n"]
     pub fn set_model_cache_setting(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -2382,10 +2033,8 @@ impl SagemakerModelPrimaryContainerElMultiModelConfigEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerElMultiModelConfigEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerElMultiModelConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2394,9 +2043,7 @@ impl ToListMappable for SagemakerModelPrimaryContainerElMultiModelConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerElMultiModelConfigEl {}
-
 impl BuildSagemakerModelPrimaryContainerElMultiModelConfigEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerElMultiModelConfigEl {
         SagemakerModelPrimaryContainerElMultiModelConfigEl {
@@ -2404,12 +2051,10 @@ impl BuildSagemakerModelPrimaryContainerElMultiModelConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElMultiModelConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElMultiModelConfigElRef {
     fn new(
         shared: StackShared,
@@ -2421,12 +2066,10 @@ impl Ref for SagemakerModelPrimaryContainerElMultiModelConfigElRef {
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElMultiModelConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `model_cache_setting` after provisioning.\n"]
     pub fn model_cache_setting(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2435,7 +2078,6 @@ impl SagemakerModelPrimaryContainerElMultiModelConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelPrimaryContainerElDynamic {
     additional_model_data_source:
@@ -2444,7 +2086,6 @@ struct SagemakerModelPrimaryContainerElDynamic {
     model_data_source: Option<DynamicBlock<SagemakerModelPrimaryContainerElModelDataSourceEl>>,
     multi_model_config: Option<DynamicBlock<SagemakerModelPrimaryContainerElMultiModelConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelPrimaryContainerEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2472,50 +2113,42 @@ pub struct SagemakerModelPrimaryContainerEl {
     multi_model_config: Option<Vec<SagemakerModelPrimaryContainerElMultiModelConfigEl>>,
     dynamic: SagemakerModelPrimaryContainerElDynamic,
 }
-
 impl SagemakerModelPrimaryContainerEl {
     #[doc = "Set the field `container_hostname`.\n"]
     pub fn set_container_hostname(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.container_hostname = Some(v.into());
         self
     }
-
     #[doc = "Set the field `environment`.\n"]
     pub fn set_environment(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.environment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `image`.\n"]
     pub fn set_image(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.image = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inference_specification_name`.\n"]
     pub fn set_inference_specification_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.inference_specification_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mode`.\n"]
     pub fn set_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_data_url`.\n"]
     pub fn set_model_data_url(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_data_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `model_package_name`.\n"]
     pub fn set_model_package_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.model_package_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `additional_model_data_source`.\n"]
     pub fn set_additional_model_data_source(
         mut self,
@@ -2531,7 +2164,6 @@ impl SagemakerModelPrimaryContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `image_config`.\n"]
     pub fn set_image_config(
         mut self,
@@ -2547,7 +2179,6 @@ impl SagemakerModelPrimaryContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `model_data_source`.\n"]
     pub fn set_model_data_source(
         mut self,
@@ -2563,7 +2194,6 @@ impl SagemakerModelPrimaryContainerEl {
         }
         self
     }
-
     #[doc = "Set the field `multi_model_config`.\n"]
     pub fn set_multi_model_config(
         mut self,
@@ -2580,10 +2210,8 @@ impl SagemakerModelPrimaryContainerEl {
         self
     }
 }
-
 impl ToListMappable for SagemakerModelPrimaryContainerEl {
     type O = BlockAssignable<SagemakerModelPrimaryContainerEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2592,9 +2220,7 @@ impl ToListMappable for SagemakerModelPrimaryContainerEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelPrimaryContainerEl {}
-
 impl BuildSagemakerModelPrimaryContainerEl {
     pub fn build(self) -> SagemakerModelPrimaryContainerEl {
         SagemakerModelPrimaryContainerEl {
@@ -2613,12 +2239,10 @@ impl BuildSagemakerModelPrimaryContainerEl {
         }
     }
 }
-
 pub struct SagemakerModelPrimaryContainerElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelPrimaryContainerElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelPrimaryContainerElRef {
         SagemakerModelPrimaryContainerElRef {
@@ -2627,12 +2251,10 @@ impl Ref for SagemakerModelPrimaryContainerElRef {
         }
     }
 }
-
 impl SagemakerModelPrimaryContainerElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `container_hostname` after provisioning.\n"]
     pub fn container_hostname(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2640,17 +2262,14 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.container_hostname", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `environment` after provisioning.\n"]
     pub fn environment(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.environment", self.base))
     }
-
     #[doc = "Get a reference to the value of field `image` after provisioning.\n"]
     pub fn image(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.image", self.base))
     }
-
     #[doc = "Get a reference to the value of field `inference_specification_name` after provisioning.\n"]
     pub fn inference_specification_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2658,12 +2277,10 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.inference_specification_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `mode` after provisioning.\n"]
     pub fn mode(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_data_url` after provisioning.\n"]
     pub fn model_data_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2671,7 +2288,6 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.model_data_url", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_package_name` after provisioning.\n"]
     pub fn model_package_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2679,7 +2295,6 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.model_package_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `additional_model_data_source` after provisioning.\n"]
     pub fn additional_model_data_source(
         &self,
@@ -2689,12 +2304,10 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.additional_model_data_source", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `image_config` after provisioning.\n"]
     pub fn image_config(&self) -> ListRef<SagemakerModelPrimaryContainerElImageConfigElRef> {
         ListRef::new(self.shared().clone(), format!("{}.image_config", self.base))
     }
-
     #[doc = "Get a reference to the value of field `model_data_source` after provisioning.\n"]
     pub fn model_data_source(
         &self,
@@ -2704,7 +2317,6 @@ impl SagemakerModelPrimaryContainerElRef {
             format!("{}.model_data_source", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `multi_model_config` after provisioning.\n"]
     pub fn multi_model_config(
         &self,
@@ -2715,18 +2327,14 @@ impl SagemakerModelPrimaryContainerElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerModelVpcConfigEl {
     security_group_ids: SetField<PrimField<String>>,
     subnets: SetField<PrimField<String>>,
 }
-
 impl SagemakerModelVpcConfigEl {}
-
 impl ToListMappable for SagemakerModelVpcConfigEl {
     type O = BlockAssignable<SagemakerModelVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2735,14 +2343,12 @@ impl ToListMappable for SagemakerModelVpcConfigEl {
         })
     }
 }
-
 pub struct BuildSagemakerModelVpcConfigEl {
     #[doc = ""]
     pub security_group_ids: SetField<PrimField<String>>,
     #[doc = ""]
     pub subnets: SetField<PrimField<String>>,
 }
-
 impl BuildSagemakerModelVpcConfigEl {
     pub fn build(self) -> SagemakerModelVpcConfigEl {
         SagemakerModelVpcConfigEl {
@@ -2751,12 +2357,10 @@ impl BuildSagemakerModelVpcConfigEl {
         }
     }
 }
-
 pub struct SagemakerModelVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerModelVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> SagemakerModelVpcConfigElRef {
         SagemakerModelVpcConfigElRef {
@@ -2765,12 +2369,10 @@ impl Ref for SagemakerModelVpcConfigElRef {
         }
     }
 }
-
 impl SagemakerModelVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2778,13 +2380,11 @@ impl SagemakerModelVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnets", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerModelDynamic {
     container: Option<DynamicBlock<SagemakerModelContainerEl>>,

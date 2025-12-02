@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataEcsClusterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,54 +19,44 @@ struct DataEcsClusterData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataEcsCluster_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataEcsClusterData>,
 }
-
 #[derive(Clone)]
 pub struct DataEcsCluster(Rc<DataEcsCluster_>);
-
 impl DataEcsCluster {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -75,12 +64,10 @@ impl DataEcsCluster {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pending_tasks_count` after provisioning.\n"]
     pub fn pending_tasks_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -88,7 +75,6 @@ impl DataEcsCluster {
             format!("{}.pending_tasks_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -96,7 +82,6 @@ impl DataEcsCluster {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registered_container_instances_count` after provisioning.\n"]
     pub fn registered_container_instances_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -107,7 +92,6 @@ impl DataEcsCluster {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `running_tasks_count` after provisioning.\n"]
     pub fn running_tasks_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -115,7 +99,6 @@ impl DataEcsCluster {
             format!("{}.running_tasks_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_connect_defaults` after provisioning.\n"]
     pub fn service_connect_defaults(&self) -> ListRef<DataEcsClusterServiceConnectDefaultsElRef> {
         ListRef::new(
@@ -123,7 +106,6 @@ impl DataEcsCluster {
             format!("{}.service_connect_defaults", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `setting` after provisioning.\n"]
     pub fn setting(&self) -> SetRef<DataEcsClusterSettingElRef> {
         SetRef::new(
@@ -131,7 +113,6 @@ impl DataEcsCluster {
             format!("{}.setting", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -139,7 +120,6 @@ impl DataEcsCluster {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -148,7 +128,6 @@ impl DataEcsCluster {
         )
     }
 }
-
 impl Referable for DataEcsCluster {
     fn extract_ref(&self) -> String {
         format!(
@@ -158,38 +137,30 @@ impl Referable for DataEcsCluster {
         )
     }
 }
-
 impl Datasource for DataEcsCluster {}
-
 impl ToListMappable for DataEcsCluster {
     type O = ListRef<DataEcsClusterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataEcsCluster_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ecs_cluster".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataEcsCluster {
     pub tf_id: String,
     #[doc = ""]
     pub cluster_name: PrimField<String>,
 }
-
 impl BuildDataEcsCluster {
     pub fn build(self, stack: &mut Stack) -> DataEcsCluster {
         let out = DataEcsCluster(Rc::new(DataEcsCluster_ {
@@ -209,32 +180,26 @@ impl BuildDataEcsCluster {
         out
     }
 }
-
 pub struct DataEcsClusterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataEcsClusterRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,12 +207,10 @@ impl DataEcsClusterRef {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `pending_tasks_count` after provisioning.\n"]
     pub fn pending_tasks_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -255,7 +218,6 @@ impl DataEcsClusterRef {
             format!("{}.pending_tasks_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +225,6 @@ impl DataEcsClusterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registered_container_instances_count` after provisioning.\n"]
     pub fn registered_container_instances_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -274,7 +235,6 @@ impl DataEcsClusterRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `running_tasks_count` after provisioning.\n"]
     pub fn running_tasks_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -282,7 +242,6 @@ impl DataEcsClusterRef {
             format!("{}.running_tasks_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_connect_defaults` after provisioning.\n"]
     pub fn service_connect_defaults(&self) -> ListRef<DataEcsClusterServiceConnectDefaultsElRef> {
         ListRef::new(
@@ -290,7 +249,6 @@ impl DataEcsClusterRef {
             format!("{}.service_connect_defaults", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `setting` after provisioning.\n"]
     pub fn setting(&self) -> SetRef<DataEcsClusterSettingElRef> {
         SetRef::new(
@@ -298,7 +256,6 @@ impl DataEcsClusterRef {
             format!("{}.setting", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -306,7 +263,6 @@ impl DataEcsClusterRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -315,13 +271,11 @@ impl DataEcsClusterRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsClusterServiceConnectDefaultsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     namespace: Option<PrimField<String>>,
 }
-
 impl DataEcsClusterServiceConnectDefaultsEl {
     #[doc = "Set the field `namespace`.\n"]
     pub fn set_namespace(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -329,10 +283,8 @@ impl DataEcsClusterServiceConnectDefaultsEl {
         self
     }
 }
-
 impl ToListMappable for DataEcsClusterServiceConnectDefaultsEl {
     type O = BlockAssignable<DataEcsClusterServiceConnectDefaultsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -341,9 +293,7 @@ impl ToListMappable for DataEcsClusterServiceConnectDefaultsEl {
         })
     }
 }
-
 pub struct BuildDataEcsClusterServiceConnectDefaultsEl {}
-
 impl BuildDataEcsClusterServiceConnectDefaultsEl {
     pub fn build(self) -> DataEcsClusterServiceConnectDefaultsEl {
         DataEcsClusterServiceConnectDefaultsEl {
@@ -351,12 +301,10 @@ impl BuildDataEcsClusterServiceConnectDefaultsEl {
         }
     }
 }
-
 pub struct DataEcsClusterServiceConnectDefaultsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsClusterServiceConnectDefaultsElRef {
     fn new(shared: StackShared, base: String) -> DataEcsClusterServiceConnectDefaultsElRef {
         DataEcsClusterServiceConnectDefaultsElRef {
@@ -365,18 +313,15 @@ impl Ref for DataEcsClusterServiceConnectDefaultsElRef {
         }
     }
 }
-
 impl DataEcsClusterServiceConnectDefaultsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEcsClusterSettingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -384,24 +329,20 @@ pub struct DataEcsClusterSettingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DataEcsClusterSettingEl {
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEcsClusterSettingEl {
     type O = BlockAssignable<DataEcsClusterSettingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -410,9 +351,7 @@ impl ToListMappable for DataEcsClusterSettingEl {
         })
     }
 }
-
 pub struct BuildDataEcsClusterSettingEl {}
-
 impl BuildDataEcsClusterSettingEl {
     pub fn build(self) -> DataEcsClusterSettingEl {
         DataEcsClusterSettingEl {
@@ -421,12 +360,10 @@ impl BuildDataEcsClusterSettingEl {
         }
     }
 }
-
 pub struct DataEcsClusterSettingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEcsClusterSettingElRef {
     fn new(shared: StackShared, base: String) -> DataEcsClusterSettingElRef {
         DataEcsClusterSettingElRef {
@@ -435,17 +372,14 @@ impl Ref for DataEcsClusterSettingElRef {
         }
     }
 }
-
 impl DataEcsClusterSettingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))

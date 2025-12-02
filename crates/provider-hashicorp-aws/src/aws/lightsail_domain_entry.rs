@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LightsailDomainEntryData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct LightsailDomainEntryData {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 struct LightsailDomainEntry_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LightsailDomainEntryData>,
 }
-
 #[derive(Clone)]
 pub struct LightsailDomainEntry(Rc<LightsailDomainEntry_>);
-
 impl LightsailDomainEntry {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl LightsailDomainEntry {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl LightsailDomainEntry {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,25 +93,21 @@ impl LightsailDomainEntry {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `is_alias`.\n"]
     pub fn set_is_alias(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().is_alias = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -131,12 +115,10 @@ impl LightsailDomainEntry {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_alias` after provisioning.\n"]
     pub fn is_alias(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -144,7 +126,6 @@ impl LightsailDomainEntry {
             format!("{}.is_alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -152,7 +133,6 @@ impl LightsailDomainEntry {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +140,6 @@ impl LightsailDomainEntry {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +147,6 @@ impl LightsailDomainEntry {
             format!("{}.target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +155,6 @@ impl LightsailDomainEntry {
         )
     }
 }
-
 impl Referable for LightsailDomainEntry {
     fn extract_ref(&self) -> String {
         format!(
@@ -187,32 +164,25 @@ impl Referable for LightsailDomainEntry {
         )
     }
 }
-
 impl Resource for LightsailDomainEntry {}
-
 impl ToListMappable for LightsailDomainEntry {
     type O = ListRef<LightsailDomainEntryRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LightsailDomainEntry_ {
     fn extract_resource_type(&self) -> String {
         "aws_lightsail_domain_entry".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLightsailDomainEntry {
     pub tf_id: String,
     #[doc = ""]
@@ -224,7 +194,6 @@ pub struct BuildLightsailDomainEntry {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildLightsailDomainEntry {
     pub fn build(self, stack: &mut Stack) -> LightsailDomainEntry {
         let out = LightsailDomainEntry(Rc::new(LightsailDomainEntry_ {
@@ -248,27 +217,22 @@ impl BuildLightsailDomainEntry {
         out
     }
 }
-
 pub struct LightsailDomainEntryRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailDomainEntryRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LightsailDomainEntryRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,12 +240,10 @@ impl LightsailDomainEntryRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `is_alias` after provisioning.\n"]
     pub fn is_alias(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -289,7 +251,6 @@ impl LightsailDomainEntryRef {
             format!("{}.is_alias", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +258,6 @@ impl LightsailDomainEntryRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -305,7 +265,6 @@ impl LightsailDomainEntryRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +272,6 @@ impl LightsailDomainEntryRef {
             format!("{}.target", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudwatchEventBusData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct CloudwatchEventBusData {
     log_config: Option<Vec<CloudwatchEventBusLogConfigEl>>,
     dynamic: CloudwatchEventBusDynamic,
 }
-
 struct CloudwatchEventBus_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudwatchEventBusData>,
 }
-
 #[derive(Clone)]
 pub struct CloudwatchEventBus(Rc<CloudwatchEventBus_>);
-
 impl CloudwatchEventBus {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl CloudwatchEventBus {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl CloudwatchEventBus {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,49 +102,41 @@ impl CloudwatchEventBus {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_source_name`.\n"]
     pub fn set_event_source_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().event_source_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_identifier`.\n"]
     pub fn set_kms_key_identifier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dead_letter_config`.\n"]
     pub fn set_dead_letter_config(
         self,
@@ -172,7 +152,6 @@ impl CloudwatchEventBus {
         }
         self
     }
-
     #[doc = "Set the field `log_config`.\n"]
     pub fn set_log_config(
         self,
@@ -188,12 +167,10 @@ impl CloudwatchEventBus {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +178,6 @@ impl CloudwatchEventBus {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_source_name` after provisioning.\n"]
     pub fn event_source_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,12 +185,10 @@ impl CloudwatchEventBus {
             format!("{}.event_source_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +196,6 @@ impl CloudwatchEventBus {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +203,6 @@ impl CloudwatchEventBus {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -238,7 +210,6 @@ impl CloudwatchEventBus {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -246,7 +217,6 @@ impl CloudwatchEventBus {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -254,7 +224,6 @@ impl CloudwatchEventBus {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<CloudwatchEventBusDeadLetterConfigElRef> {
         ListRef::new(
@@ -262,7 +231,6 @@ impl CloudwatchEventBus {
             format!("{}.dead_letter_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_config` after provisioning.\n"]
     pub fn log_config(&self) -> ListRef<CloudwatchEventBusLogConfigElRef> {
         ListRef::new(
@@ -271,7 +239,6 @@ impl CloudwatchEventBus {
         )
     }
 }
-
 impl Referable for CloudwatchEventBus {
     fn extract_ref(&self) -> String {
         format!(
@@ -281,38 +248,30 @@ impl Referable for CloudwatchEventBus {
         )
     }
 }
-
 impl Resource for CloudwatchEventBus {}
-
 impl ToListMappable for CloudwatchEventBus {
     type O = ListRef<CloudwatchEventBusRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudwatchEventBus_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudwatch_event_bus".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudwatchEventBus {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCloudwatchEventBus {
     pub fn build(self, stack: &mut Stack) -> CloudwatchEventBus {
         let out = CloudwatchEventBus(Rc::new(CloudwatchEventBus_ {
@@ -340,32 +299,26 @@ impl BuildCloudwatchEventBus {
         out
     }
 }
-
 pub struct CloudwatchEventBusRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventBusRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudwatchEventBusRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,7 +326,6 @@ impl CloudwatchEventBusRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_source_name` after provisioning.\n"]
     pub fn event_source_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -381,12 +333,10 @@ impl CloudwatchEventBusRef {
             format!("{}.event_source_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +344,6 @@ impl CloudwatchEventBusRef {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +351,6 @@ impl CloudwatchEventBusRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -410,7 +358,6 @@ impl CloudwatchEventBusRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -418,7 +365,6 @@ impl CloudwatchEventBusRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -426,7 +372,6 @@ impl CloudwatchEventBusRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dead_letter_config` after provisioning.\n"]
     pub fn dead_letter_config(&self) -> ListRef<CloudwatchEventBusDeadLetterConfigElRef> {
         ListRef::new(
@@ -434,7 +379,6 @@ impl CloudwatchEventBusRef {
             format!("{}.dead_letter_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_config` after provisioning.\n"]
     pub fn log_config(&self) -> ListRef<CloudwatchEventBusLogConfigElRef> {
         ListRef::new(
@@ -443,13 +387,11 @@ impl CloudwatchEventBusRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventBusDeadLetterConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     arn: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventBusDeadLetterConfigEl {
     #[doc = "Set the field `arn`.\n"]
     pub fn set_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -457,10 +399,8 @@ impl CloudwatchEventBusDeadLetterConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventBusDeadLetterConfigEl {
     type O = BlockAssignable<CloudwatchEventBusDeadLetterConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -469,9 +409,7 @@ impl ToListMappable for CloudwatchEventBusDeadLetterConfigEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventBusDeadLetterConfigEl {}
-
 impl BuildCloudwatchEventBusDeadLetterConfigEl {
     pub fn build(self) -> CloudwatchEventBusDeadLetterConfigEl {
         CloudwatchEventBusDeadLetterConfigEl {
@@ -479,12 +417,10 @@ impl BuildCloudwatchEventBusDeadLetterConfigEl {
         }
     }
 }
-
 pub struct CloudwatchEventBusDeadLetterConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventBusDeadLetterConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchEventBusDeadLetterConfigElRef {
         CloudwatchEventBusDeadLetterConfigElRef {
@@ -493,18 +429,15 @@ impl Ref for CloudwatchEventBusDeadLetterConfigElRef {
         }
     }
 }
-
 impl CloudwatchEventBusDeadLetterConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventBusLogConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -512,24 +445,20 @@ pub struct CloudwatchEventBusLogConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     level: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventBusLogConfigEl {
     #[doc = "Set the field `include_detail`.\n"]
     pub fn set_include_detail(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.include_detail = Some(v.into());
         self
     }
-
     #[doc = "Set the field `level`.\n"]
     pub fn set_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventBusLogConfigEl {
     type O = BlockAssignable<CloudwatchEventBusLogConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -538,9 +467,7 @@ impl ToListMappable for CloudwatchEventBusLogConfigEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventBusLogConfigEl {}
-
 impl BuildCloudwatchEventBusLogConfigEl {
     pub fn build(self) -> CloudwatchEventBusLogConfigEl {
         CloudwatchEventBusLogConfigEl {
@@ -549,12 +476,10 @@ impl BuildCloudwatchEventBusLogConfigEl {
         }
     }
 }
-
 pub struct CloudwatchEventBusLogConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventBusLogConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchEventBusLogConfigElRef {
         CloudwatchEventBusLogConfigElRef {
@@ -563,12 +488,10 @@ impl Ref for CloudwatchEventBusLogConfigElRef {
         }
     }
 }
-
 impl CloudwatchEventBusLogConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `include_detail` after provisioning.\n"]
     pub fn include_detail(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -576,13 +499,11 @@ impl CloudwatchEventBusLogConfigElRef {
             format!("{}.include_detail", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `level` after provisioning.\n"]
     pub fn level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.level", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventBusDynamic {
     dead_letter_config: Option<DynamicBlock<CloudwatchEventBusDeadLetterConfigEl>>,

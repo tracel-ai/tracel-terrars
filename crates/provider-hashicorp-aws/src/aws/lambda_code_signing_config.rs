@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LambdaCodeSigningConfigData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct LambdaCodeSigningConfigData {
     policies: Option<Vec<LambdaCodeSigningConfigPoliciesEl>>,
     dynamic: LambdaCodeSigningConfigDynamic,
 }
-
 struct LambdaCodeSigningConfig_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LambdaCodeSigningConfigData>,
 }
-
 #[derive(Clone)]
 pub struct LambdaCodeSigningConfig(Rc<LambdaCodeSigningConfig_>);
-
 impl LambdaCodeSigningConfig {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl LambdaCodeSigningConfig {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl LambdaCodeSigningConfig {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,37 +97,31 @@ impl LambdaCodeSigningConfig {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `allowed_publishers`.\n"]
     pub fn set_allowed_publishers(
         self,
@@ -155,7 +137,6 @@ impl LambdaCodeSigningConfig {
         }
         self
     }
-
     #[doc = "Set the field `policies`.\n"]
     pub fn set_policies(
         self,
@@ -171,12 +152,10 @@ impl LambdaCodeSigningConfig {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +163,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.config_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,12 +170,10 @@ impl LambdaCodeSigningConfig {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +181,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +188,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -221,7 +195,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -229,7 +202,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_publishers` after provisioning.\n"]
     pub fn allowed_publishers(&self) -> ListRef<LambdaCodeSigningConfigAllowedPublishersElRef> {
         ListRef::new(
@@ -237,7 +209,6 @@ impl LambdaCodeSigningConfig {
             format!("{}.allowed_publishers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policies` after provisioning.\n"]
     pub fn policies(&self) -> ListRef<LambdaCodeSigningConfigPoliciesElRef> {
         ListRef::new(
@@ -246,7 +217,6 @@ impl LambdaCodeSigningConfig {
         )
     }
 }
-
 impl Referable for LambdaCodeSigningConfig {
     fn extract_ref(&self) -> String {
         format!(
@@ -256,36 +226,28 @@ impl Referable for LambdaCodeSigningConfig {
         )
     }
 }
-
 impl Resource for LambdaCodeSigningConfig {}
-
 impl ToListMappable for LambdaCodeSigningConfig {
     type O = ListRef<LambdaCodeSigningConfigRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LambdaCodeSigningConfig_ {
     fn extract_resource_type(&self) -> String {
         "aws_lambda_code_signing_config".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLambdaCodeSigningConfig {
     pub tf_id: String,
 }
-
 impl BuildLambdaCodeSigningConfig {
     pub fn build(self, stack: &mut Stack) -> LambdaCodeSigningConfig {
         let out = LambdaCodeSigningConfig(Rc::new(LambdaCodeSigningConfig_ {
@@ -310,32 +272,26 @@ impl BuildLambdaCodeSigningConfig {
         out
     }
 }
-
 pub struct LambdaCodeSigningConfigRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaCodeSigningConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LambdaCodeSigningConfigRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `config_id` after provisioning.\n"]
     pub fn config_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -343,7 +299,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.config_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -351,12 +306,10 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_modified` after provisioning.\n"]
     pub fn last_modified(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -364,7 +317,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.last_modified", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -372,7 +324,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -380,7 +331,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -388,7 +338,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `allowed_publishers` after provisioning.\n"]
     pub fn allowed_publishers(&self) -> ListRef<LambdaCodeSigningConfigAllowedPublishersElRef> {
         ListRef::new(
@@ -396,7 +345,6 @@ impl LambdaCodeSigningConfigRef {
             format!("{}.allowed_publishers", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policies` after provisioning.\n"]
     pub fn policies(&self) -> ListRef<LambdaCodeSigningConfigPoliciesElRef> {
         ListRef::new(
@@ -405,17 +353,13 @@ impl LambdaCodeSigningConfigRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaCodeSigningConfigAllowedPublishersEl {
     signing_profile_version_arns: SetField<PrimField<String>>,
 }
-
 impl LambdaCodeSigningConfigAllowedPublishersEl {}
-
 impl ToListMappable for LambdaCodeSigningConfigAllowedPublishersEl {
     type O = BlockAssignable<LambdaCodeSigningConfigAllowedPublishersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -424,12 +368,10 @@ impl ToListMappable for LambdaCodeSigningConfigAllowedPublishersEl {
         })
     }
 }
-
 pub struct BuildLambdaCodeSigningConfigAllowedPublishersEl {
     #[doc = ""]
     pub signing_profile_version_arns: SetField<PrimField<String>>,
 }
-
 impl BuildLambdaCodeSigningConfigAllowedPublishersEl {
     pub fn build(self) -> LambdaCodeSigningConfigAllowedPublishersEl {
         LambdaCodeSigningConfigAllowedPublishersEl {
@@ -437,12 +379,10 @@ impl BuildLambdaCodeSigningConfigAllowedPublishersEl {
         }
     }
 }
-
 pub struct LambdaCodeSigningConfigAllowedPublishersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaCodeSigningConfigAllowedPublishersElRef {
     fn new(shared: StackShared, base: String) -> LambdaCodeSigningConfigAllowedPublishersElRef {
         LambdaCodeSigningConfigAllowedPublishersElRef {
@@ -451,12 +391,10 @@ impl Ref for LambdaCodeSigningConfigAllowedPublishersElRef {
         }
     }
 }
-
 impl LambdaCodeSigningConfigAllowedPublishersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `signing_profile_version_arns` after provisioning.\n"]
     pub fn signing_profile_version_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -465,17 +403,13 @@ impl LambdaCodeSigningConfigAllowedPublishersElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct LambdaCodeSigningConfigPoliciesEl {
     untrusted_artifact_on_deployment: PrimField<String>,
 }
-
 impl LambdaCodeSigningConfigPoliciesEl {}
-
 impl ToListMappable for LambdaCodeSigningConfigPoliciesEl {
     type O = BlockAssignable<LambdaCodeSigningConfigPoliciesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -484,12 +418,10 @@ impl ToListMappable for LambdaCodeSigningConfigPoliciesEl {
         })
     }
 }
-
 pub struct BuildLambdaCodeSigningConfigPoliciesEl {
     #[doc = ""]
     pub untrusted_artifact_on_deployment: PrimField<String>,
 }
-
 impl BuildLambdaCodeSigningConfigPoliciesEl {
     pub fn build(self) -> LambdaCodeSigningConfigPoliciesEl {
         LambdaCodeSigningConfigPoliciesEl {
@@ -497,12 +429,10 @@ impl BuildLambdaCodeSigningConfigPoliciesEl {
         }
     }
 }
-
 pub struct LambdaCodeSigningConfigPoliciesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LambdaCodeSigningConfigPoliciesElRef {
     fn new(shared: StackShared, base: String) -> LambdaCodeSigningConfigPoliciesElRef {
         LambdaCodeSigningConfigPoliciesElRef {
@@ -511,12 +441,10 @@ impl Ref for LambdaCodeSigningConfigPoliciesElRef {
         }
     }
 }
-
 impl LambdaCodeSigningConfigPoliciesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `untrusted_artifact_on_deployment` after provisioning.\n"]
     pub fn untrusted_artifact_on_deployment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -525,7 +453,6 @@ impl LambdaCodeSigningConfigPoliciesElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct LambdaCodeSigningConfigDynamic {
     allowed_publishers: Option<DynamicBlock<LambdaCodeSigningConfigAllowedPublishersEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct TransferUserData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -39,47 +38,38 @@ struct TransferUserData {
     timeouts: Option<TransferUserTimeoutsEl>,
     dynamic: TransferUserDynamic,
 }
-
 struct TransferUser_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<TransferUserData>,
 }
-
 #[derive(Clone)]
 pub struct TransferUser(Rc<TransferUser_>);
-
 impl TransferUser {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -98,7 +88,6 @@ impl TransferUser {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -108,7 +97,6 @@ impl TransferUser {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -118,49 +106,41 @@ impl TransferUser {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `home_directory`.\n"]
     pub fn set_home_directory(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().home_directory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `home_directory_type`.\n"]
     pub fn set_home_directory_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().home_directory_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy`.\n"]
     pub fn set_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `home_directory_mappings`.\n"]
     pub fn set_home_directory_mappings(
         self,
@@ -176,7 +156,6 @@ impl TransferUser {
         }
         self
     }
-
     #[doc = "Set the field `posix_profile`.\n"]
     pub fn set_posix_profile(
         self,
@@ -192,18 +171,15 @@ impl TransferUser {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<TransferUserTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `home_directory` after provisioning.\n"]
     pub fn home_directory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -211,7 +187,6 @@ impl TransferUser {
             format!("{}.home_directory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `home_directory_type` after provisioning.\n"]
     pub fn home_directory_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -219,12 +194,10 @@ impl TransferUser {
             format!("{}.home_directory_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,7 +205,6 @@ impl TransferUser {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +212,6 @@ impl TransferUser {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -248,7 +219,6 @@ impl TransferUser {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -256,7 +226,6 @@ impl TransferUser {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -264,7 +233,6 @@ impl TransferUser {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -272,7 +240,6 @@ impl TransferUser {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,7 +247,6 @@ impl TransferUser {
             format!("{}.user_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `home_directory_mappings` after provisioning.\n"]
     pub fn home_directory_mappings(&self) -> ListRef<TransferUserHomeDirectoryMappingsElRef> {
         ListRef::new(
@@ -288,7 +254,6 @@ impl TransferUser {
             format!("{}.home_directory_mappings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `posix_profile` after provisioning.\n"]
     pub fn posix_profile(&self) -> ListRef<TransferUserPosixProfileElRef> {
         ListRef::new(
@@ -296,7 +261,6 @@ impl TransferUser {
             format!("{}.posix_profile", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> TransferUserTimeoutsElRef {
         TransferUserTimeoutsElRef::new(
@@ -305,7 +269,6 @@ impl TransferUser {
         )
     }
 }
-
 impl Referable for TransferUser {
     fn extract_ref(&self) -> String {
         format!(
@@ -315,32 +278,25 @@ impl Referable for TransferUser {
         )
     }
 }
-
 impl Resource for TransferUser {}
-
 impl ToListMappable for TransferUser {
     type O = ListRef<TransferUserRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for TransferUser_ {
     fn extract_resource_type(&self) -> String {
         "aws_transfer_user".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildTransferUser {
     pub tf_id: String,
     #[doc = ""]
@@ -350,7 +306,6 @@ pub struct BuildTransferUser {
     #[doc = ""]
     pub user_name: PrimField<String>,
 }
-
 impl BuildTransferUser {
     pub fn build(self, stack: &mut Stack) -> TransferUser {
         let out = TransferUser(Rc::new(TransferUser_ {
@@ -381,32 +336,26 @@ impl BuildTransferUser {
         out
     }
 }
-
 pub struct TransferUserRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferUserRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl TransferUserRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `home_directory` after provisioning.\n"]
     pub fn home_directory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +363,6 @@ impl TransferUserRef {
             format!("{}.home_directory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `home_directory_type` after provisioning.\n"]
     pub fn home_directory_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,12 +370,10 @@ impl TransferUserRef {
             format!("{}.home_directory_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -435,7 +381,6 @@ impl TransferUserRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +388,6 @@ impl TransferUserRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role` after provisioning.\n"]
     pub fn role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +395,6 @@ impl TransferUserRef {
             format!("{}.role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,7 +402,6 @@ impl TransferUserRef {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -467,7 +409,6 @@ impl TransferUserRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -475,7 +416,6 @@ impl TransferUserRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_name` after provisioning.\n"]
     pub fn user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -483,7 +423,6 @@ impl TransferUserRef {
             format!("{}.user_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `home_directory_mappings` after provisioning.\n"]
     pub fn home_directory_mappings(&self) -> ListRef<TransferUserHomeDirectoryMappingsElRef> {
         ListRef::new(
@@ -491,7 +430,6 @@ impl TransferUserRef {
             format!("{}.home_directory_mappings", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `posix_profile` after provisioning.\n"]
     pub fn posix_profile(&self) -> ListRef<TransferUserPosixProfileElRef> {
         ListRef::new(
@@ -499,7 +437,6 @@ impl TransferUserRef {
             format!("{}.posix_profile", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> TransferUserTimeoutsElRef {
         TransferUserTimeoutsElRef::new(
@@ -508,18 +445,14 @@ impl TransferUserRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct TransferUserHomeDirectoryMappingsEl {
     entry: PrimField<String>,
     target: PrimField<String>,
 }
-
 impl TransferUserHomeDirectoryMappingsEl {}
-
 impl ToListMappable for TransferUserHomeDirectoryMappingsEl {
     type O = BlockAssignable<TransferUserHomeDirectoryMappingsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -528,14 +461,12 @@ impl ToListMappable for TransferUserHomeDirectoryMappingsEl {
         })
     }
 }
-
 pub struct BuildTransferUserHomeDirectoryMappingsEl {
     #[doc = ""]
     pub entry: PrimField<String>,
     #[doc = ""]
     pub target: PrimField<String>,
 }
-
 impl BuildTransferUserHomeDirectoryMappingsEl {
     pub fn build(self) -> TransferUserHomeDirectoryMappingsEl {
         TransferUserHomeDirectoryMappingsEl {
@@ -544,12 +475,10 @@ impl BuildTransferUserHomeDirectoryMappingsEl {
         }
     }
 }
-
 pub struct TransferUserHomeDirectoryMappingsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferUserHomeDirectoryMappingsElRef {
     fn new(shared: StackShared, base: String) -> TransferUserHomeDirectoryMappingsElRef {
         TransferUserHomeDirectoryMappingsElRef {
@@ -558,23 +487,19 @@ impl Ref for TransferUserHomeDirectoryMappingsElRef {
         }
     }
 }
-
 impl TransferUserHomeDirectoryMappingsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `entry` after provisioning.\n"]
     pub fn entry(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.entry", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct TransferUserPosixProfileEl {
     gid: PrimField<f64>,
@@ -582,7 +507,6 @@ pub struct TransferUserPosixProfileEl {
     secondary_gids: Option<SetField<PrimField<f64>>>,
     uid: PrimField<f64>,
 }
-
 impl TransferUserPosixProfileEl {
     #[doc = "Set the field `secondary_gids`.\n"]
     pub fn set_secondary_gids(mut self, v: impl Into<SetField<PrimField<f64>>>) -> Self {
@@ -590,10 +514,8 @@ impl TransferUserPosixProfileEl {
         self
     }
 }
-
 impl ToListMappable for TransferUserPosixProfileEl {
     type O = BlockAssignable<TransferUserPosixProfileEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -602,14 +524,12 @@ impl ToListMappable for TransferUserPosixProfileEl {
         })
     }
 }
-
 pub struct BuildTransferUserPosixProfileEl {
     #[doc = ""]
     pub gid: PrimField<f64>,
     #[doc = ""]
     pub uid: PrimField<f64>,
 }
-
 impl BuildTransferUserPosixProfileEl {
     pub fn build(self) -> TransferUserPosixProfileEl {
         TransferUserPosixProfileEl {
@@ -619,12 +539,10 @@ impl BuildTransferUserPosixProfileEl {
         }
     }
 }
-
 pub struct TransferUserPosixProfileElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferUserPosixProfileElRef {
     fn new(shared: StackShared, base: String) -> TransferUserPosixProfileElRef {
         TransferUserPosixProfileElRef {
@@ -633,17 +551,14 @@ impl Ref for TransferUserPosixProfileElRef {
         }
     }
 }
-
 impl TransferUserPosixProfileElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `gid` after provisioning.\n"]
     pub fn gid(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.gid", self.base))
     }
-
     #[doc = "Get a reference to the value of field `secondary_gids` after provisioning.\n"]
     pub fn secondary_gids(&self) -> SetRef<PrimExpr<f64>> {
         SetRef::new(
@@ -651,19 +566,16 @@ impl TransferUserPosixProfileElRef {
             format!("{}.secondary_gids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `uid` after provisioning.\n"]
     pub fn uid(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.uid", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct TransferUserTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl TransferUserTimeoutsEl {
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -671,10 +583,8 @@ impl TransferUserTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for TransferUserTimeoutsEl {
     type O = BlockAssignable<TransferUserTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -683,9 +593,7 @@ impl ToListMappable for TransferUserTimeoutsEl {
         })
     }
 }
-
 pub struct BuildTransferUserTimeoutsEl {}
-
 impl BuildTransferUserTimeoutsEl {
     pub fn build(self) -> TransferUserTimeoutsEl {
         TransferUserTimeoutsEl {
@@ -693,12 +601,10 @@ impl BuildTransferUserTimeoutsEl {
         }
     }
 }
-
 pub struct TransferUserTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferUserTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> TransferUserTimeoutsElRef {
         TransferUserTimeoutsElRef {
@@ -707,18 +613,15 @@ impl Ref for TransferUserTimeoutsElRef {
         }
     }
 }
-
 impl TransferUserTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct TransferUserDynamic {
     home_directory_mappings: Option<DynamicBlock<TransferUserHomeDirectoryMappingsEl>>,

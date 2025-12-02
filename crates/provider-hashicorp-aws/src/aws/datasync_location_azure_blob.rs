@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DatasyncLocationAzureBlobData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct DatasyncLocationAzureBlobData {
     sas_configuration: Option<Vec<DatasyncLocationAzureBlobSasConfigurationEl>>,
     dynamic: DatasyncLocationAzureBlobDynamic,
 }
-
 struct DatasyncLocationAzureBlob_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DatasyncLocationAzureBlobData>,
 }
-
 #[derive(Clone)]
 pub struct DatasyncLocationAzureBlob(Rc<DatasyncLocationAzureBlob_>);
-
 impl DatasyncLocationAzureBlob {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl DatasyncLocationAzureBlob {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl DatasyncLocationAzureBlob {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,49 +102,41 @@ impl DatasyncLocationAzureBlob {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `access_tier`.\n"]
     pub fn set_access_tier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().access_tier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `blob_type`.\n"]
     pub fn set_blob_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().blob_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subdirectory`.\n"]
     pub fn set_subdirectory(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().subdirectory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sas_configuration`.\n"]
     pub fn set_sas_configuration(
         self,
@@ -172,7 +152,6 @@ impl DatasyncLocationAzureBlob {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `access_tier` after provisioning.\n"]
     pub fn access_tier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +159,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.access_tier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -188,12 +166,10 @@ impl DatasyncLocationAzureBlob {
             format!("{}.agent_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +177,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.authentication_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `blob_type` after provisioning.\n"]
     pub fn blob_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,7 +184,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.blob_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_url` after provisioning.\n"]
     pub fn container_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,12 +191,10 @@ impl DatasyncLocationAzureBlob {
             format!("{}.container_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +202,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -238,7 +209,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.subdirectory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -246,7 +216,6 @@ impl DatasyncLocationAzureBlob {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -254,12 +223,10 @@ impl DatasyncLocationAzureBlob {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `sas_configuration` after provisioning.\n"]
     pub fn sas_configuration(&self) -> ListRef<DatasyncLocationAzureBlobSasConfigurationElRef> {
         ListRef::new(
@@ -268,7 +235,6 @@ impl DatasyncLocationAzureBlob {
         )
     }
 }
-
 impl Referable for DatasyncLocationAzureBlob {
     fn extract_ref(&self) -> String {
         format!(
@@ -278,32 +244,25 @@ impl Referable for DatasyncLocationAzureBlob {
         )
     }
 }
-
 impl Resource for DatasyncLocationAzureBlob {}
-
 impl ToListMappable for DatasyncLocationAzureBlob {
     type O = ListRef<DatasyncLocationAzureBlobRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DatasyncLocationAzureBlob_ {
     fn extract_resource_type(&self) -> String {
         "aws_datasync_location_azure_blob".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDatasyncLocationAzureBlob {
     pub tf_id: String,
     #[doc = ""]
@@ -313,7 +272,6 @@ pub struct BuildDatasyncLocationAzureBlob {
     #[doc = ""]
     pub container_url: PrimField<String>,
 }
-
 impl BuildDatasyncLocationAzureBlob {
     pub fn build(self, stack: &mut Stack) -> DatasyncLocationAzureBlob {
         let out = DatasyncLocationAzureBlob(Rc::new(DatasyncLocationAzureBlob_ {
@@ -342,27 +300,22 @@ impl BuildDatasyncLocationAzureBlob {
         out
     }
 }
-
 pub struct DatasyncLocationAzureBlobRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationAzureBlobRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DatasyncLocationAzureBlobRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_tier` after provisioning.\n"]
     pub fn access_tier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +323,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.access_tier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agent_arns` after provisioning.\n"]
     pub fn agent_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -378,12 +330,10 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.agent_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authentication_type` after provisioning.\n"]
     pub fn authentication_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +341,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.authentication_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `blob_type` after provisioning.\n"]
     pub fn blob_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +348,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.blob_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `container_url` after provisioning.\n"]
     pub fn container_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,12 +355,10 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.container_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -420,7 +366,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -428,7 +373,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.subdirectory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -436,7 +380,6 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -444,12 +387,10 @@ impl DatasyncLocationAzureBlobRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `sas_configuration` after provisioning.\n"]
     pub fn sas_configuration(&self) -> ListRef<DatasyncLocationAzureBlobSasConfigurationElRef> {
         ListRef::new(
@@ -458,17 +399,13 @@ impl DatasyncLocationAzureBlobRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationAzureBlobSasConfigurationEl {
     token: PrimField<String>,
 }
-
 impl DatasyncLocationAzureBlobSasConfigurationEl {}
-
 impl ToListMappable for DatasyncLocationAzureBlobSasConfigurationEl {
     type O = BlockAssignable<DatasyncLocationAzureBlobSasConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -477,23 +414,19 @@ impl ToListMappable for DatasyncLocationAzureBlobSasConfigurationEl {
         })
     }
 }
-
 pub struct BuildDatasyncLocationAzureBlobSasConfigurationEl {
     #[doc = ""]
     pub token: PrimField<String>,
 }
-
 impl BuildDatasyncLocationAzureBlobSasConfigurationEl {
     pub fn build(self) -> DatasyncLocationAzureBlobSasConfigurationEl {
         DatasyncLocationAzureBlobSasConfigurationEl { token: self.token }
     }
 }
-
 pub struct DatasyncLocationAzureBlobSasConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationAzureBlobSasConfigurationElRef {
     fn new(shared: StackShared, base: String) -> DatasyncLocationAzureBlobSasConfigurationElRef {
         DatasyncLocationAzureBlobSasConfigurationElRef {
@@ -502,18 +435,15 @@ impl Ref for DatasyncLocationAzureBlobSasConfigurationElRef {
         }
     }
 }
-
 impl DatasyncLocationAzureBlobSasConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `token` after provisioning.\n"]
     pub fn token(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.token", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncLocationAzureBlobDynamic {
     sas_configuration: Option<DynamicBlock<DatasyncLocationAzureBlobSasConfigurationEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreApiKeyCredentialProviderData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct BedrockagentcoreApiKeyCredentialProviderData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct BedrockagentcoreApiKeyCredentialProvider_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreApiKeyCredentialProviderData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreApiKeyCredentialProvider(Rc<BedrockagentcoreApiKeyCredentialProvider_>);
-
 impl BedrockagentcoreApiKeyCredentialProvider {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,31 +91,26 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `api_key`.\n"]
     pub fn set_api_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().api_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `api_key_wo`.\n"]
     pub fn set_api_key_wo(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().api_key_wo = Some(v.into());
         self
     }
-
     #[doc = "Set the field `api_key_wo_version`.\n"]
     pub fn set_api_key_wo_version(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().api_key_wo_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `api_key` after provisioning.\n"]
     pub fn api_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -135,7 +118,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.api_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_secret_arn` after provisioning.\n"]
     pub fn api_key_secret_arn(
         &self,
@@ -145,7 +127,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.api_key_secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_wo` after provisioning.\n"]
     pub fn api_key_wo(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +134,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.api_key_wo", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_wo_version` after provisioning.\n"]
     pub fn api_key_wo_version(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -161,7 +141,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.api_key_wo_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `credential_provider_arn` after provisioning.\n"]
     pub fn credential_provider_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +148,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.credential_provider_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +155,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -186,7 +163,6 @@ impl BedrockagentcoreApiKeyCredentialProvider {
         )
     }
 }
-
 impl Referable for BedrockagentcoreApiKeyCredentialProvider {
     fn extract_ref(&self) -> String {
         format!(
@@ -196,38 +172,30 @@ impl Referable for BedrockagentcoreApiKeyCredentialProvider {
         )
     }
 }
-
 impl Resource for BedrockagentcoreApiKeyCredentialProvider {}
-
 impl ToListMappable for BedrockagentcoreApiKeyCredentialProvider {
     type O = ListRef<BedrockagentcoreApiKeyCredentialProviderRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreApiKeyCredentialProvider_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_api_key_credential_provider".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreApiKeyCredentialProvider {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreApiKeyCredentialProvider {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreApiKeyCredentialProvider {
         let out = BedrockagentcoreApiKeyCredentialProvider(Rc::new(
@@ -251,27 +219,22 @@ impl BuildBedrockagentcoreApiKeyCredentialProvider {
         out
     }
 }
-
 pub struct BedrockagentcoreApiKeyCredentialProviderRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreApiKeyCredentialProviderRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreApiKeyCredentialProviderRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_key` after provisioning.\n"]
     pub fn api_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +242,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.api_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_secret_arn` after provisioning.\n"]
     pub fn api_key_secret_arn(
         &self,
@@ -289,7 +251,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.api_key_secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_wo` after provisioning.\n"]
     pub fn api_key_wo(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -297,7 +258,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.api_key_wo", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `api_key_wo_version` after provisioning.\n"]
     pub fn api_key_wo_version(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -305,7 +265,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.api_key_wo_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `credential_provider_arn` after provisioning.\n"]
     pub fn credential_provider_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -313,7 +272,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.credential_provider_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -321,7 +279,6 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,13 +287,11 @@ impl BedrockagentcoreApiKeyCredentialProviderRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     secret_arn: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
     #[doc = "Set the field `secret_arn`.\n"]
     pub fn set_secret_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -344,10 +299,8 @@ impl BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
     type O = BlockAssignable<BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -356,9 +309,7 @@ impl ToListMappable for BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnE
         })
     }
 }
-
 pub struct BuildBedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {}
-
 impl BuildBedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
     pub fn build(self) -> BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
         BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
@@ -366,12 +317,10 @@ impl BuildBedrockagentcoreApiKeyCredentialProviderApiKeySecretArnEl {
         }
     }
 }
-
 pub struct BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnElRef {
     fn new(
         shared: StackShared,
@@ -383,12 +332,10 @@ impl Ref for BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnElRef {
         }
     }
 }
-
 impl BedrockagentcoreApiKeyCredentialProviderApiKeySecretArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.secret_arn", self.base))

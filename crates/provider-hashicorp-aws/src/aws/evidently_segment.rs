@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct EvidentlySegmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct EvidentlySegmentData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
 }
-
 struct EvidentlySegment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<EvidentlySegmentData>,
 }
-
 #[derive(Clone)]
 pub struct EvidentlySegment(Rc<EvidentlySegment_>);
-
 impl EvidentlySegment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl EvidentlySegment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl EvidentlySegment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,42 +94,35 @@ impl EvidentlySegment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -149,7 +130,6 @@ impl EvidentlySegment {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -157,7 +137,6 @@ impl EvidentlySegment {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `experiment_count` after provisioning.\n"]
     pub fn experiment_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -165,12 +144,10 @@ impl EvidentlySegment {
             format!("{}.experiment_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -178,7 +155,6 @@ impl EvidentlySegment {
             format!("{}.last_updated_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `launch_count` after provisioning.\n"]
     pub fn launch_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -186,7 +162,6 @@ impl EvidentlySegment {
             format!("{}.launch_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -194,7 +169,6 @@ impl EvidentlySegment {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +176,6 @@ impl EvidentlySegment {
             format!("{}.pattern", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +183,6 @@ impl EvidentlySegment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -218,7 +190,6 @@ impl EvidentlySegment {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -227,7 +198,6 @@ impl EvidentlySegment {
         )
     }
 }
-
 impl Referable for EvidentlySegment {
     fn extract_ref(&self) -> String {
         format!(
@@ -237,32 +207,25 @@ impl Referable for EvidentlySegment {
         )
     }
 }
-
 impl Resource for EvidentlySegment {}
-
 impl ToListMappable for EvidentlySegment {
     type O = ListRef<EvidentlySegmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for EvidentlySegment_ {
     fn extract_resource_type(&self) -> String {
         "aws_evidently_segment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildEvidentlySegment {
     pub tf_id: String,
     #[doc = ""]
@@ -270,7 +233,6 @@ pub struct BuildEvidentlySegment {
     #[doc = ""]
     pub pattern: PrimField<String>,
 }
-
 impl BuildEvidentlySegment {
     pub fn build(self, stack: &mut Stack) -> EvidentlySegment {
         let out = EvidentlySegment(Rc::new(EvidentlySegment_ {
@@ -294,32 +256,26 @@ impl BuildEvidentlySegment {
         out
     }
 }
-
 pub struct EvidentlySegmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for EvidentlySegmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl EvidentlySegmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -327,7 +283,6 @@ impl EvidentlySegmentRef {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -335,7 +290,6 @@ impl EvidentlySegmentRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `experiment_count` after provisioning.\n"]
     pub fn experiment_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -343,12 +297,10 @@ impl EvidentlySegmentRef {
             format!("{}.experiment_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_time` after provisioning.\n"]
     pub fn last_updated_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -356,7 +308,6 @@ impl EvidentlySegmentRef {
             format!("{}.last_updated_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `launch_count` after provisioning.\n"]
     pub fn launch_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -364,7 +315,6 @@ impl EvidentlySegmentRef {
             format!("{}.launch_count", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -372,7 +322,6 @@ impl EvidentlySegmentRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pattern` after provisioning.\n"]
     pub fn pattern(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -380,7 +329,6 @@ impl EvidentlySegmentRef {
             format!("{}.pattern", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -388,7 +336,6 @@ impl EvidentlySegmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -396,7 +343,6 @@ impl EvidentlySegmentRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

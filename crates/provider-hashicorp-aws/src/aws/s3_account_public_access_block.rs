@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct S3AccountPublicAccessBlockData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct S3AccountPublicAccessBlockData {
     #[serde(skip_serializing_if = "Option::is_none")]
     restrict_public_buckets: Option<PrimField<bool>>,
 }
-
 struct S3AccountPublicAccessBlock_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<S3AccountPublicAccessBlockData>,
 }
-
 #[derive(Clone)]
 pub struct S3AccountPublicAccessBlock(Rc<S3AccountPublicAccessBlock_>);
-
 impl S3AccountPublicAccessBlock {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl S3AccountPublicAccessBlock {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl S3AccountPublicAccessBlock {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,43 +94,36 @@ impl S3AccountPublicAccessBlock {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `block_public_acls`.\n"]
     pub fn set_block_public_acls(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().block_public_acls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `block_public_policy`.\n"]
     pub fn set_block_public_policy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().block_public_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ignore_public_acls`.\n"]
     pub fn set_ignore_public_acls(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().ignore_public_acls = Some(v.into());
         self
     }
-
     #[doc = "Set the field `restrict_public_buckets`.\n"]
     pub fn set_restrict_public_buckets(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().restrict_public_buckets = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -150,7 +131,6 @@ impl S3AccountPublicAccessBlock {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_public_acls` after provisioning.\n"]
     pub fn block_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -158,7 +138,6 @@ impl S3AccountPublicAccessBlock {
             format!("{}.block_public_acls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_public_policy` after provisioning.\n"]
     pub fn block_public_policy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -166,12 +145,10 @@ impl S3AccountPublicAccessBlock {
             format!("{}.block_public_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ignore_public_acls` after provisioning.\n"]
     pub fn ignore_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -179,7 +156,6 @@ impl S3AccountPublicAccessBlock {
             format!("{}.ignore_public_acls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `restrict_public_buckets` after provisioning.\n"]
     pub fn restrict_public_buckets(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -188,7 +164,6 @@ impl S3AccountPublicAccessBlock {
         )
     }
 }
-
 impl Referable for S3AccountPublicAccessBlock {
     fn extract_ref(&self) -> String {
         format!(
@@ -198,36 +173,28 @@ impl Referable for S3AccountPublicAccessBlock {
         )
     }
 }
-
 impl Resource for S3AccountPublicAccessBlock {}
-
 impl ToListMappable for S3AccountPublicAccessBlock {
     type O = ListRef<S3AccountPublicAccessBlockRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for S3AccountPublicAccessBlock_ {
     fn extract_resource_type(&self) -> String {
         "aws_s3_account_public_access_block".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildS3AccountPublicAccessBlock {
     pub tf_id: String,
 }
-
 impl BuildS3AccountPublicAccessBlock {
     pub fn build(self, stack: &mut Stack) -> S3AccountPublicAccessBlock {
         let out = S3AccountPublicAccessBlock(Rc::new(S3AccountPublicAccessBlock_ {
@@ -250,27 +217,22 @@ impl BuildS3AccountPublicAccessBlock {
         out
     }
 }
-
 pub struct S3AccountPublicAccessBlockRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for S3AccountPublicAccessBlockRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl S3AccountPublicAccessBlockRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +240,6 @@ impl S3AccountPublicAccessBlockRef {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_public_acls` after provisioning.\n"]
     pub fn block_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -286,7 +247,6 @@ impl S3AccountPublicAccessBlockRef {
             format!("{}.block_public_acls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `block_public_policy` after provisioning.\n"]
     pub fn block_public_policy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -294,12 +254,10 @@ impl S3AccountPublicAccessBlockRef {
             format!("{}.block_public_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ignore_public_acls` after provisioning.\n"]
     pub fn ignore_public_acls(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -307,7 +265,6 @@ impl S3AccountPublicAccessBlockRef {
             format!("{}.ignore_public_acls", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `restrict_public_buckets` after provisioning.\n"]
     pub fn restrict_public_buckets(&self) -> PrimExpr<bool> {
         PrimExpr::new(

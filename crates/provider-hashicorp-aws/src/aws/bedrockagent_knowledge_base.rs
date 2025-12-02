@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentKnowledgeBaseData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct BedrockagentKnowledgeBaseData {
     timeouts: Option<BedrockagentKnowledgeBaseTimeoutsEl>,
     dynamic: BedrockagentKnowledgeBaseDynamic,
 }
-
 struct BedrockagentKnowledgeBase_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentKnowledgeBaseData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentKnowledgeBase(Rc<BedrockagentKnowledgeBase_>);
-
 impl BedrockagentKnowledgeBase {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl BedrockagentKnowledgeBase {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl BedrockagentKnowledgeBase {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl BedrockagentKnowledgeBase {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `knowledge_base_configuration`.\n"]
     pub fn set_knowledge_base_configuration(
         self,
@@ -148,7 +132,6 @@ impl BedrockagentKnowledgeBase {
         }
         self
     }
-
     #[doc = "Set the field `storage_configuration`.\n"]
     pub fn set_storage_configuration(
         self,
@@ -164,18 +147,15 @@ impl BedrockagentKnowledgeBase {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BedrockagentKnowledgeBaseTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +163,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,7 +170,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `failure_reasons` after provisioning.\n"]
     pub fn failure_reasons(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -199,12 +177,10 @@ impl BedrockagentKnowledgeBase {
             format!("{}.failure_reasons", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -212,7 +188,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +195,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +202,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -236,7 +209,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -244,7 +216,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -252,7 +223,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `knowledge_base_configuration` after provisioning.\n"]
     pub fn knowledge_base_configuration(
         &self,
@@ -262,7 +232,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.knowledge_base_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_configuration` after provisioning.\n"]
     pub fn storage_configuration(
         &self,
@@ -272,7 +241,6 @@ impl BedrockagentKnowledgeBase {
             format!("{}.storage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentKnowledgeBaseTimeoutsElRef {
         BedrockagentKnowledgeBaseTimeoutsElRef::new(
@@ -281,7 +249,6 @@ impl BedrockagentKnowledgeBase {
         )
     }
 }
-
 impl Referable for BedrockagentKnowledgeBase {
     fn extract_ref(&self) -> String {
         format!(
@@ -291,32 +258,25 @@ impl Referable for BedrockagentKnowledgeBase {
         )
     }
 }
-
 impl Resource for BedrockagentKnowledgeBase {}
-
 impl ToListMappable for BedrockagentKnowledgeBase {
     type O = ListRef<BedrockagentKnowledgeBaseRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentKnowledgeBase_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagent_knowledge_base".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBase {
     pub tf_id: String,
     #[doc = ""]
@@ -324,7 +284,6 @@ pub struct BuildBedrockagentKnowledgeBase {
     #[doc = ""]
     pub role_arn: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBase {
     pub fn build(self, stack: &mut Stack) -> BedrockagentKnowledgeBase {
         let out = BedrockagentKnowledgeBase(Rc::new(BedrockagentKnowledgeBase_ {
@@ -350,32 +309,26 @@ impl BuildBedrockagentKnowledgeBase {
         out
     }
 }
-
 pub struct BedrockagentKnowledgeBaseRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentKnowledgeBaseRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +336,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +343,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `failure_reasons` after provisioning.\n"]
     pub fn failure_reasons(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -399,12 +350,10 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.failure_reasons", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -412,7 +361,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -420,7 +368,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -428,7 +375,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -436,7 +382,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -444,7 +389,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `updated_at` after provisioning.\n"]
     pub fn updated_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -452,7 +396,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.updated_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `knowledge_base_configuration` after provisioning.\n"]
     pub fn knowledge_base_configuration(
         &self,
@@ -462,7 +405,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.knowledge_base_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_configuration` after provisioning.\n"]
     pub fn storage_configuration(
         &self,
@@ -472,7 +414,6 @@ impl BedrockagentKnowledgeBaseRef {
             format!("{}.storage_configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentKnowledgeBaseTimeoutsElRef {
         BedrockagentKnowledgeBaseTimeoutsElRef::new(
@@ -481,7 +422,6 @@ impl BedrockagentKnowledgeBaseRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl
 {
@@ -490,530 +430,98 @@ pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeB
     #[serde(skip_serializing_if = "Option::is_none")]
     embedding_data_type: Option<PrimField<String>>,
 }
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl {
-    #[doc = "Set the field `dimensions`.\n"]
-    pub fn set_dimensions(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.dimensions = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `embedding_data_type`.\n"]
-    pub fn set_embedding_data_type(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.embedding_data_type = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl { # [doc = "Set the field `dimensions`.\n"] pub fn set_dimensions (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . dimensions = Some (v . into ()) ; self } # [doc = "Set the field `embedding_data_type`.\n"] pub fn set_embedding_data_type (mut self , v : impl Into < PrimField < String > >) -> Self { self . embedding_data_type = Some (v . into ()) ; self } }
+impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl { type O = BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl
 {}
-
-impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl {
-            dimensions: core::default::Default::default(),
-            embedding_data_type: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl { pub fn build (self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl { dimensions : core :: default :: Default :: default () , embedding_data_type : core :: default :: Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `dimensions` after provisioning.\n"]
-    pub fn dimensions(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.dimensions", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `embedding_data_type` after provisioning.\n"]
-    pub fn embedding_data_type(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.embedding_data_type", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `dimensions` after provisioning.\n"] pub fn dimensions (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.dimensions" , self . base)) } # [doc = "Get a reference to the value of field `embedding_data_type` after provisioning.\n"] pub fn embedding_data_type (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.embedding_data_type" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElDynamic {
-    bedrock_embedding_model_configuration: Option<
-        DynamicBlock<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl,
-        >,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElDynamic { bedrock_embedding_model_configuration : Option < DynamicBlock < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    bedrock_embedding_model_configuration: Option<
-        Vec<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl,
-        >,
-    >,
-    dynamic: BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElDynamic,
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-    #[doc = "Set the field `bedrock_embedding_model_configuration`.\n"]
-    pub fn set_bedrock_embedding_model_configuration(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.bedrock_embedding_model_configuration = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.bedrock_embedding_model_configuration = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] bedrock_embedding_model_configuration : Option < Vec < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl > > , dynamic : BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElDynamic , }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { # [doc = "Set the field `bedrock_embedding_model_configuration`.\n"] pub fn set_bedrock_embedding_model_configuration (mut self , v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . bedrock_embedding_model_configuration = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . bedrock_embedding_model_configuration = Some (d) ; } } self } }
+impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { type O = BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl
 {}
-
-impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl {
-            bedrock_embedding_model_configuration: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { pub fn build (self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl { bedrock_embedding_model_configuration : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `bedrock_embedding_model_configuration` after provisioning.\n"]
-    pub fn bedrock_embedding_model_configuration(
-        &self,
-    ) -> ListRef<
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.bedrock_embedding_model_configuration", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `bedrock_embedding_model_configuration` after provisioning.\n"] pub fn bedrock_embedding_model_configuration (& self) -> ListRef < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElBedrockEmbeddingModelConfigurationElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.bedrock_embedding_model_configuration" , self . base)) } }
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl
 {
     uri: PrimField<String>,
 }
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl {
-
-}
-
-impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl { }
+impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl { type O = BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl
 {
     #[doc = ""]
     pub uri: PrimField<String>,
 }
-
-impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl {
-            uri: self.uri,
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl { pub fn build (self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl { uri : self . uri , } } }
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
-    pub fn uri(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.uri", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `uri` after provisioning.\n"] pub fn uri (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.uri" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElDynamic {
-    s3_location: Option<
-        DynamicBlock<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl,
-        >,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElDynamic { s3_location : Option < DynamicBlock < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-    #[serde(rename = "type")]
-    type_: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    s3_location: Option<
-        Vec<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl,
-        >,
-    >,
-    dynamic: BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElDynamic,
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-    #[doc = "Set the field `s3_location`.\n"]
-    pub fn set_s3_location(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.s3_location = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.s3_location = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { # [serde (rename = "type")] type_ : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] s3_location : Option < Vec < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl > > , dynamic : BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElDynamic , }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { # [doc = "Set the field `s3_location`.\n"] pub fn set_s3_location (mut self , v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . s3_location = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . s3_location = Some (d) ; } } self } }
+impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { type O = BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl
 {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
-impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl {
-            type_: self.type_,
-            s3_location: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { pub fn build (self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl { type_ : self . type_ , s3_location : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
-    pub fn type_(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `s3_location` after provisioning.\n"]
-    pub fn s3_location(
-        &self,
-    ) -> ListRef<
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.s3_location", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `type_` after provisioning.\n"] pub fn type_ (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.type" , self . base)) } # [doc = "Get a reference to the value of field `s3_location` after provisioning.\n"] pub fn s3_location (& self) -> ListRef < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElS3LocationElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.s3_location" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElDynamic {
-    storage_location: Option<
-        DynamicBlock<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl,
-        >,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElDynamic { storage_location : Option < DynamicBlock < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    storage_location: Option<
-        Vec<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl,
-        >,
-    >,
-    dynamic: BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElDynamic,
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-    #[doc = "Set the field `storage_location`.\n"]
-    pub fn set_storage_location(
-        mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl,
-                        >,
-                    >,
-    ) -> Self {
-        match v.into() {
-            BlockAssignable::Literal(v) => {
-                self.storage_location = Some(v);
-            },
-            BlockAssignable::Dynamic(d) => {
-                self.dynamic.storage_location = Some(d);
-            },
-        }
-        self
-    }
-}
-
-impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { # [serde (skip_serializing_if = "Option::is_none")] storage_location : Option < Vec < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl > > , dynamic : BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElDynamic , }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { # [doc = "Set the field `storage_location`.\n"] pub fn set_storage_location (mut self , v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationEl >>) -> Self { match v . into () { BlockAssignable :: Literal (v) => { self . storage_location = Some (v) ; } , BlockAssignable :: Dynamic (d) => { self . dynamic . storage_location = Some (d) ; } } self } }
+impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { type O = BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl
 {}
-
-impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl {
-            storage_location: core::default::Default::default(),
-            dynamic: Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { pub fn build (self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl { storage_location : core :: default :: Default :: default () , dynamic : Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef {
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `storage_location` after provisioning.\n"]
-    pub fn storage_location(
-        &self,
-    ) -> ListRef<
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef,
-    > {
-        ListRef::new(self.shared().clone(), format!("{}.storage_location", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef { BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `storage_location` after provisioning.\n"] pub fn storage_location (& self) -> ListRef < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElStorageLocationElRef > { ListRef :: new (self . shared () . clone () , format ! ("{}.storage_location" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElDynamic {
-    embedding_model_configuration: Option<
-        DynamicBlock<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl,
-        >,
-    >,
-    supplemental_data_storage_configuration: Option<
-        DynamicBlock<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl,
-        >,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElDynamic { embedding_model_configuration : Option < DynamicBlock < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl >> , supplemental_data_storage_configuration : Option < DynamicBlock < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl {
-    embedding_model_arn: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    embedding_model_configuration: Option<
-        Vec<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl,
-        >,
-    >,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    supplemental_data_storage_configuration: Option<
-        Vec<
-            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl,
-        >,
-    >,
-    dynamic: BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElDynamic,
-}
-
+pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl { embedding_model_arn : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] embedding_model_configuration : Option < Vec < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl > > , # [serde (skip_serializing_if = "Option::is_none")] supplemental_data_storage_configuration : Option < Vec < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl > > , dynamic : BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElDynamic , }
 impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl {
     #[doc = "Set the field `embedding_model_configuration`.\n"]
     pub fn set_embedding_model_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1025,18 +533,10 @@ impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseCon
         }
         self
     }
-
     #[doc = "Set the field `supplemental_data_storage_configuration`.\n"]
     pub fn set_supplemental_data_storage_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1049,14 +549,12 @@ impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseCon
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl
 {
     type O = BlockAssignable<
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1065,13 +563,11 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl
 {
     #[doc = ""]
     pub embedding_model_arn: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl {
     pub fn build(
         self,
@@ -1085,13 +581,11 @@ impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBa
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElRef
 {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElRef
 {
@@ -1106,12 +600,10 @@ impl Ref
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `embedding_model_arn` after provisioning.\n"]
     pub fn embedding_model_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1119,32 +611,19 @@ impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseCon
             format!("{}.embedding_model_arn", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `embedding_model_configuration` after provisioning.\n"]
-    pub fn embedding_model_configuration(
-        &self,
-    ) -> ListRef<
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `embedding_model_configuration` after provisioning.\n"]    pub fn embedding_model_configuration (& self) -> ListRef < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElEmbeddingModelConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.embedding_model_configuration", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `supplemental_data_storage_configuration` after provisioning.\n"]
-    pub fn supplemental_data_storage_configuration(
-        &self,
-    ) -> ListRef<
-        BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef,
-    >{
+    #[doc = "Get a reference to the value of field `supplemental_data_storage_configuration` after provisioning.\n"]    pub fn supplemental_data_storage_configuration (& self) -> ListRef < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationElSupplementalDataStorageConfigurationElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.supplemental_data_storage_configuration", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElDynamic {
     vector_knowledge_base_configuration: Option<
@@ -1153,7 +632,6 @@ struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     #[serde(rename = "type")]
@@ -1166,19 +644,11 @@ pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     >,
     dynamic: BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElDynamic,
 }
-
 impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     #[doc = "Set the field `vector_knowledge_base_configuration`.\n"]
     pub fn set_vector_knowledge_base_configuration(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElVectorKnowledgeBaseConfigurationEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1191,10 +661,8 @@ impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     type O = BlockAssignable<BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1203,12 +671,10 @@ impl ToListMappable for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
     pub fn build(self) -> BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
         BedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
@@ -1218,12 +684,10 @@ impl BuildBedrockagentKnowledgeBaseKnowledgeBaseConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1235,17 +699,14 @@ impl Ref for BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vector_knowledge_base_configuration` after provisioning.\n"]
     pub fn vector_knowledge_base_configuration(
         &self,
@@ -1258,7 +719,6 @@ impl BedrockagentKnowledgeBaseKnowledgeBaseConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl
 {
@@ -1269,7 +729,6 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessCo
     #[serde(skip_serializing_if = "Option::is_none")]
     vector_field: Option<PrimField<String>>,
 }
-
 impl
     BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl
 {
@@ -1278,119 +737,37 @@ impl
         self.metadata_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `text_field`.\n"]
     pub fn set_text_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.text_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vector_field`.\n"]
     pub fn set_vector_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.vector_field = Some(v.into());
         self
     }
 }
-
-impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl { type O = BlockAssignable < BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl
 {}
-
-impl BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl {
-        BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl {
-            metadata_field: core::default::Default::default(),
-            text_field: core::default::Default::default(),
-            vector_field: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl { pub fn build (self) -> BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl { BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl { metadata_field : core :: default :: Default :: default () , text_field : core :: default :: Default :: default () , vector_field : core :: default :: Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef {
-        BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"]
-    pub fn metadata_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metadata_field", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `text_field` after provisioning.\n"]
-    pub fn text_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_field", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `vector_field` after provisioning.\n"]
-    pub fn vector_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vector_field", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef { BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"] pub fn metadata_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.metadata_field" , self . base)) } # [doc = "Get a reference to the value of field `text_field` after provisioning.\n"] pub fn text_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.text_field" , self . base)) } # [doc = "Get a reference to the value of field `vector_field` after provisioning.\n"] pub fn vector_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.vector_field" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElDynamic {
-    field_mapping: Option<
-        DynamicBlock<BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl>,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElDynamic { field_mapping : Option < DynamicBlock < BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl {
-    collection_arn: PrimField<String>,
-    vector_index_name: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    field_mapping: Option<
-        Vec<BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl>,
-    >,
-    dynamic: BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElDynamic,
-}
-
+pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl { collection_arn : PrimField < String > , vector_index_name : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] field_mapping : Option < Vec < BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl > > , dynamic : BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElDynamic , }
 impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl {
     #[doc = "Set the field `field_mapping`.\n"]
     pub fn set_field_mapping(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1403,14 +780,12 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigur
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl
 {
     type O = BlockAssignable<
         BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1419,14 +794,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl {
     #[doc = ""]
     pub collection_arn: PrimField<String>,
     #[doc = ""]
     pub vector_index_name: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationEl {
     pub fn build(
         self,
@@ -1439,12 +812,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessCon
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1456,12 +827,10 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerless
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `collection_arn` after provisioning.\n"]
     pub fn collection_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1469,7 +838,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigur
             format!("{}.collection_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `vector_index_name` after provisioning.\n"]
     pub fn vector_index_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1477,18 +845,13 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigur
             format!("{}.vector_index_name", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]
-    pub fn field_mapping(
-        &self,
-    ) -> ListRef<BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef>{
+    #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]    pub fn field_mapping (& self) -> ListRef < BedrockagentKnowledgeBaseStorageConfigurationElOpensearchServerlessConfigurationElFieldMappingElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.field_mapping", self.base),
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1496,28 +859,24 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationE
     #[serde(skip_serializing_if = "Option::is_none")]
     text_field: Option<PrimField<String>>,
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl {
     #[doc = "Set the field `metadata_field`.\n"]
     pub fn set_metadata_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.metadata_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `text_field`.\n"]
     pub fn set_text_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.text_field = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl
 {
     type O = BlockAssignable<
         BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1526,10 +885,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl
 {}
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl {
     pub fn build(
         self,
@@ -1540,12 +897,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingElRef
 {
@@ -1560,12 +915,10 @@ impl Ref
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"]
     pub fn metadata_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1573,13 +926,11 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElField
             format!("{}.metadata_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `text_field` after provisioning.\n"]
     pub fn text_field(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.text_field", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElDynamic {
     field_mapping: Option<
@@ -1588,7 +939,6 @@ struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElDyn
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
     connection_string: PrimField<String>,
@@ -1601,25 +951,16 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationE
     >,
     dynamic: BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElDynamic,
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
     #[doc = "Set the field `namespace`.\n"]
     pub fn set_namespace(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.namespace = Some(v.into());
         self
     }
-
     #[doc = "Set the field `field_mapping`.\n"]
     pub fn set_field_mapping(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElFieldMappingEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1632,11 +973,9 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
     type O =
         BlockAssignable<BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1645,14 +984,12 @@ impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElPineconeC
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
     #[doc = ""]
     pub connection_string: PrimField<String>,
     #[doc = ""]
     pub credentials_secret_arn: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
     pub fn build(self) -> BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
         BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl {
@@ -1664,12 +1001,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationEl
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1681,12 +1016,10 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfiguratio
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `connection_string` after provisioning.\n"]
     pub fn connection_string(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1694,7 +1027,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
             format!("{}.connection_string", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1702,12 +1034,10 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
             format!("{}.credentials_secret_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `namespace` after provisioning.\n"]
     pub fn namespace(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.namespace", self.base))
     }
-
     #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]
     pub fn field_mapping(
         &self,
@@ -1720,7 +1050,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElPineconeConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1730,7 +1059,6 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFiel
     text_field: PrimField<String>,
     vector_field: PrimField<String>,
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl {
     #[doc = "Set the field `custom_metadata_field`.\n"]
     pub fn set_custom_metadata_field(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1738,14 +1066,12 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappi
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl
 {
     type O = BlockAssignable<
         BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1754,7 +1080,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl {
     #[doc = ""]
     pub metadata_field: PrimField<String>,
@@ -1765,7 +1090,6 @@ pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationE
     #[doc = ""]
     pub vector_field: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingEl {
     pub fn build(
         self,
@@ -1779,12 +1103,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElField
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingElRef {
     fn new(
         shared: StackShared,
@@ -1796,12 +1118,10 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFi
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_metadata_field` after provisioning.\n"]
     pub fn custom_metadata_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1809,7 +1129,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappi
             format!("{}.custom_metadata_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"]
     pub fn metadata_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1817,7 +1136,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappi
             format!("{}.metadata_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `primary_key_field` after provisioning.\n"]
     pub fn primary_key_field(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1825,18 +1143,15 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElFieldMappi
             format!("{}.primary_key_field", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `text_field` after provisioning.\n"]
     pub fn text_field(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.text_field", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vector_field` after provisioning.\n"]
     pub fn vector_field(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vector_field", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElDynamic {
     field_mapping: Option<
@@ -1845,7 +1160,6 @@ struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElDynamic 
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     credentials_secret_arn: PrimField<String>,
@@ -1858,7 +1172,6 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     >,
     dynamic: BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElDynamic,
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     #[doc = "Set the field `field_mapping`.\n"]
     pub fn set_field_mapping(
@@ -1880,10 +1193,8 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     type O = BlockAssignable<BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1892,7 +1203,6 @@ impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfig
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     #[doc = ""]
     pub credentials_secret_arn: PrimField<String>,
@@ -1903,7 +1213,6 @@ pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationE
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
     pub fn build(self) -> BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
         BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
@@ -1916,12 +1225,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -1933,12 +1240,10 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRe
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1946,7 +1251,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
             format!("{}.credentials_secret_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1954,17 +1258,14 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]
     pub fn field_mapping(
         &self,
@@ -1976,7 +1277,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRdsConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl
 {
@@ -1987,7 +1287,6 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudCo
     #[serde(skip_serializing_if = "Option::is_none")]
     vector_field: Option<PrimField<String>>,
 }
-
 impl
     BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl
 {
@@ -1996,120 +1295,37 @@ impl
         self.metadata_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `text_field`.\n"]
     pub fn set_text_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.text_field = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vector_field`.\n"]
     pub fn set_vector_field(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.vector_field = Some(v.into());
         self
     }
 }
-
-impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl {
-    type O =
-        BlockAssignable<
-            BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl { type O = BlockAssignable < BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl
 {}
-
-impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl {
-    pub fn build(
-        self,
-    ) -> BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl {
-        BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl {
-            metadata_field: core::default::Default::default(),
-            text_field: core::default::Default::default(),
-            vector_field: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl { pub fn build (self) -> BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl { BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl { metadata_field : core :: default :: Default :: default () , text_field : core :: default :: Default :: default () , vector_field : core :: default :: Default :: default () , } } }
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef {
-        BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"]
-    pub fn metadata_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.metadata_field", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `text_field` after provisioning.\n"]
-    pub fn text_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.text_field", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `vector_field` after provisioning.\n"]
-    pub fn vector_field(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.vector_field", self.base))
-    }
-}
-
+impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef { fn new (shared : StackShared , base : String) -> BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef { BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef { shared : shared , base : base . to_string () , } } }
+impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `metadata_field` after provisioning.\n"] pub fn metadata_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.metadata_field" , self . base)) } # [doc = "Get a reference to the value of field `text_field` after provisioning.\n"] pub fn text_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.text_field" , self . base)) } # [doc = "Get a reference to the value of field `vector_field` after provisioning.\n"] pub fn vector_field (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.vector_field" , self . base)) } }
 #[derive(Serialize, Default)]
-struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElDynamic {
-    field_mapping: Option<
-        DynamicBlock<BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl>,
-    >,
-}
-
+struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElDynamic { field_mapping : Option < DynamicBlock < BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl >> , }
 #[derive(Serialize)]
-pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl {
-    credentials_secret_arn: PrimField<String>,
-    endpoint: PrimField<String>,
-    vector_index_name: PrimField<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    field_mapping: Option<
-        Vec<BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl>,
-    >,
-    dynamic: BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElDynamic,
-}
-
+pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl { credentials_secret_arn : PrimField < String > , endpoint : PrimField < String > , vector_index_name : PrimField < String > , # [serde (skip_serializing_if = "Option::is_none")] field_mapping : Option < Vec < BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl > > , dynamic : BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElDynamic , }
 impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl {
     #[doc = "Set the field `field_mapping`.\n"]
     pub fn set_field_mapping(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -2122,14 +1338,12 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigur
         self
     }
 }
-
 impl ToListMappable
     for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl
 {
     type O = BlockAssignable<
         BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2138,7 +1352,6 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl {
     #[doc = ""]
     pub credentials_secret_arn: PrimField<String>,
@@ -2147,7 +1360,6 @@ pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCl
     #[doc = ""]
     pub vector_index_name: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationEl {
     pub fn build(
         self,
@@ -2161,12 +1373,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudCon
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -2178,12 +1388,10 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloud
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `credentials_secret_arn` after provisioning.\n"]
     pub fn credentials_secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2191,12 +1399,10 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigur
             format!("{}.credentials_secret_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vector_index_name` after provisioning.\n"]
     pub fn vector_index_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2204,18 +1410,13 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigur
             format!("{}.vector_index_name", self.base),
         )
     }
-
-    #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]
-    pub fn field_mapping(
-        &self,
-    ) -> ListRef<BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef>{
+    #[doc = "Get a reference to the value of field `field_mapping` after provisioning.\n"]    pub fn field_mapping (& self) -> ListRef < BedrockagentKnowledgeBaseStorageConfigurationElRedisEnterpriseCloudConfigurationElFieldMappingElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.field_mapping", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentKnowledgeBaseStorageConfigurationElDynamic {
     opensearch_serverless_configuration: Option<
@@ -2234,7 +1435,6 @@ struct BedrockagentKnowledgeBaseStorageConfigurationElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseStorageConfigurationEl {
     #[serde(rename = "type")]
@@ -2255,7 +1455,6 @@ pub struct BedrockagentKnowledgeBaseStorageConfigurationEl {
     >,
     dynamic: BedrockagentKnowledgeBaseStorageConfigurationElDynamic,
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationEl {
     #[doc = "Set the field `opensearch_serverless_configuration`.\n"]
     pub fn set_opensearch_serverless_configuration(
@@ -2276,7 +1475,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `pinecone_configuration`.\n"]
     pub fn set_pinecone_configuration(
         mut self,
@@ -2294,7 +1492,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `rds_configuration`.\n"]
     pub fn set_rds_configuration(
         mut self,
@@ -2310,7 +1507,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `redis_enterprise_cloud_configuration`.\n"]
     pub fn set_redis_enterprise_cloud_configuration(
         mut self,
@@ -2331,10 +1527,8 @@ impl BedrockagentKnowledgeBaseStorageConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationEl {
     type O = BlockAssignable<BedrockagentKnowledgeBaseStorageConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2343,12 +1537,10 @@ impl ToListMappable for BedrockagentKnowledgeBaseStorageConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseStorageConfigurationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildBedrockagentKnowledgeBaseStorageConfigurationEl {
     pub fn build(self) -> BedrockagentKnowledgeBaseStorageConfigurationEl {
         BedrockagentKnowledgeBaseStorageConfigurationEl {
@@ -2361,12 +1553,10 @@ impl BuildBedrockagentKnowledgeBaseStorageConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseStorageConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -2378,17 +1568,14 @@ impl Ref for BedrockagentKnowledgeBaseStorageConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseStorageConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `opensearch_serverless_configuration` after provisioning.\n"]
     pub fn opensearch_serverless_configuration(
         &self,
@@ -2400,7 +1587,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRef {
             format!("{}.opensearch_serverless_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `pinecone_configuration` after provisioning.\n"]
     pub fn pinecone_configuration(
         &self,
@@ -2410,7 +1596,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRef {
             format!("{}.pinecone_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rds_configuration` after provisioning.\n"]
     pub fn rds_configuration(
         &self,
@@ -2420,7 +1605,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRef {
             format!("{}.rds_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `redis_enterprise_cloud_configuration` after provisioning.\n"]
     pub fn redis_enterprise_cloud_configuration(
         &self,
@@ -2433,7 +1617,6 @@ impl BedrockagentKnowledgeBaseStorageConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentKnowledgeBaseTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2443,30 +1626,25 @@ pub struct BedrockagentKnowledgeBaseTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BedrockagentKnowledgeBaseTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentKnowledgeBaseTimeoutsEl {
     type O = BlockAssignable<BedrockagentKnowledgeBaseTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2475,9 +1653,7 @@ impl ToListMappable for BedrockagentKnowledgeBaseTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentKnowledgeBaseTimeoutsEl {}
-
 impl BuildBedrockagentKnowledgeBaseTimeoutsEl {
     pub fn build(self) -> BedrockagentKnowledgeBaseTimeoutsEl {
         BedrockagentKnowledgeBaseTimeoutsEl {
@@ -2487,12 +1663,10 @@ impl BuildBedrockagentKnowledgeBaseTimeoutsEl {
         }
     }
 }
-
 pub struct BedrockagentKnowledgeBaseTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentKnowledgeBaseTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentKnowledgeBaseTimeoutsElRef {
         BedrockagentKnowledgeBaseTimeoutsElRef {
@@ -2501,28 +1675,23 @@ impl Ref for BedrockagentKnowledgeBaseTimeoutsElRef {
         }
     }
 }
-
 impl BedrockagentKnowledgeBaseTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentKnowledgeBaseDynamic {
     knowledge_base_configuration:

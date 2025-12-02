@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BudgetsBudgetActionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -37,47 +36,38 @@ struct BudgetsBudgetActionData {
     timeouts: Option<BudgetsBudgetActionTimeoutsEl>,
     dynamic: BudgetsBudgetActionDynamic,
 }
-
 struct BudgetsBudgetAction_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BudgetsBudgetActionData>,
 }
-
 #[derive(Clone)]
 pub struct BudgetsBudgetAction(Rc<BudgetsBudgetAction_>);
-
 impl BudgetsBudgetAction {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -96,7 +86,6 @@ impl BudgetsBudgetAction {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -106,7 +95,6 @@ impl BudgetsBudgetAction {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -116,31 +104,26 @@ impl BudgetsBudgetAction {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `account_id`.\n"]
     pub fn set_account_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().account_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action_threshold`.\n"]
     pub fn set_action_threshold(
         self,
@@ -156,7 +139,6 @@ impl BudgetsBudgetAction {
         }
         self
     }
-
     #[doc = "Set the field `definition`.\n"]
     pub fn set_definition(
         self,
@@ -172,7 +154,6 @@ impl BudgetsBudgetAction {
         }
         self
     }
-
     #[doc = "Set the field `subscriber`.\n"]
     pub fn set_subscriber(
         self,
@@ -188,13 +169,11 @@ impl BudgetsBudgetAction {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BudgetsBudgetActionTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +181,6 @@ impl BudgetsBudgetAction {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_id` after provisioning.\n"]
     pub fn action_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +188,6 @@ impl BudgetsBudgetAction {
             format!("{}.action_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_type` after provisioning.\n"]
     pub fn action_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +195,6 @@ impl BudgetsBudgetAction {
             format!("{}.action_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `approval_model` after provisioning.\n"]
     pub fn approval_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,12 +202,10 @@ impl BudgetsBudgetAction {
             format!("{}.approval_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `budget_name` after provisioning.\n"]
     pub fn budget_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -239,7 +213,6 @@ impl BudgetsBudgetAction {
             format!("{}.budget_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,12 +220,10 @@ impl BudgetsBudgetAction {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `notification_type` after provisioning.\n"]
     pub fn notification_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -260,7 +231,6 @@ impl BudgetsBudgetAction {
             format!("{}.notification_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +238,6 @@ impl BudgetsBudgetAction {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -276,7 +245,6 @@ impl BudgetsBudgetAction {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -284,7 +252,6 @@ impl BudgetsBudgetAction {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_threshold` after provisioning.\n"]
     pub fn action_threshold(&self) -> ListRef<BudgetsBudgetActionActionThresholdElRef> {
         ListRef::new(
@@ -292,7 +259,6 @@ impl BudgetsBudgetAction {
             format!("{}.action_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<BudgetsBudgetActionDefinitionElRef> {
         ListRef::new(
@@ -300,7 +266,6 @@ impl BudgetsBudgetAction {
             format!("{}.definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BudgetsBudgetActionTimeoutsElRef {
         BudgetsBudgetActionTimeoutsElRef::new(
@@ -309,7 +274,6 @@ impl BudgetsBudgetAction {
         )
     }
 }
-
 impl Referable for BudgetsBudgetAction {
     fn extract_ref(&self) -> String {
         format!(
@@ -319,32 +283,25 @@ impl Referable for BudgetsBudgetAction {
         )
     }
 }
-
 impl Resource for BudgetsBudgetAction {}
-
 impl ToListMappable for BudgetsBudgetAction {
     type O = ListRef<BudgetsBudgetActionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BudgetsBudgetAction_ {
     fn extract_resource_type(&self) -> String {
         "aws_budgets_budget_action".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBudgetsBudgetAction {
     pub tf_id: String,
     #[doc = ""]
@@ -358,7 +315,6 @@ pub struct BuildBudgetsBudgetAction {
     #[doc = ""]
     pub notification_type: PrimField<String>,
 }
-
 impl BuildBudgetsBudgetAction {
     pub fn build(self, stack: &mut Stack) -> BudgetsBudgetAction {
         let out = BudgetsBudgetAction(Rc::new(BudgetsBudgetAction_ {
@@ -389,27 +345,22 @@ impl BuildBudgetsBudgetAction {
         out
     }
 }
-
 pub struct BudgetsBudgetActionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BudgetsBudgetActionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `account_id` after provisioning.\n"]
     pub fn account_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -417,7 +368,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.account_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_id` after provisioning.\n"]
     pub fn action_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -425,7 +375,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.action_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_type` after provisioning.\n"]
     pub fn action_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -433,7 +382,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.action_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `approval_model` after provisioning.\n"]
     pub fn approval_model(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -441,12 +389,10 @@ impl BudgetsBudgetActionRef {
             format!("{}.approval_model", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `budget_name` after provisioning.\n"]
     pub fn budget_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -454,7 +400,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.budget_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,12 +407,10 @@ impl BudgetsBudgetActionRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `notification_type` after provisioning.\n"]
     pub fn notification_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,7 +418,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.notification_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -483,7 +425,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -491,7 +432,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -499,7 +439,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_threshold` after provisioning.\n"]
     pub fn action_threshold(&self) -> ListRef<BudgetsBudgetActionActionThresholdElRef> {
         ListRef::new(
@@ -507,7 +446,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.action_threshold", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `definition` after provisioning.\n"]
     pub fn definition(&self) -> ListRef<BudgetsBudgetActionDefinitionElRef> {
         ListRef::new(
@@ -515,7 +453,6 @@ impl BudgetsBudgetActionRef {
             format!("{}.definition", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BudgetsBudgetActionTimeoutsElRef {
         BudgetsBudgetActionTimeoutsElRef::new(
@@ -524,18 +461,14 @@ impl BudgetsBudgetActionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionActionThresholdEl {
     action_threshold_type: PrimField<String>,
     action_threshold_value: PrimField<f64>,
 }
-
 impl BudgetsBudgetActionActionThresholdEl {}
-
 impl ToListMappable for BudgetsBudgetActionActionThresholdEl {
     type O = BlockAssignable<BudgetsBudgetActionActionThresholdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -544,14 +477,12 @@ impl ToListMappable for BudgetsBudgetActionActionThresholdEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionActionThresholdEl {
     #[doc = ""]
     pub action_threshold_type: PrimField<String>,
     #[doc = ""]
     pub action_threshold_value: PrimField<f64>,
 }
-
 impl BuildBudgetsBudgetActionActionThresholdEl {
     pub fn build(self) -> BudgetsBudgetActionActionThresholdEl {
         BudgetsBudgetActionActionThresholdEl {
@@ -560,12 +491,10 @@ impl BuildBudgetsBudgetActionActionThresholdEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionActionThresholdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionActionThresholdElRef {
     fn new(shared: StackShared, base: String) -> BudgetsBudgetActionActionThresholdElRef {
         BudgetsBudgetActionActionThresholdElRef {
@@ -574,12 +503,10 @@ impl Ref for BudgetsBudgetActionActionThresholdElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionActionThresholdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action_threshold_type` after provisioning.\n"]
     pub fn action_threshold_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +514,6 @@ impl BudgetsBudgetActionActionThresholdElRef {
             format!("{}.action_threshold_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `action_threshold_value` after provisioning.\n"]
     pub fn action_threshold_value(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -596,7 +522,6 @@ impl BudgetsBudgetActionActionThresholdElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -607,30 +532,25 @@ pub struct BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     users: Option<SetField<PrimField<String>>>,
 }
-
 impl BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     #[doc = "Set the field `groups`.\n"]
     pub fn set_groups(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.groups = Some(v.into());
         self
     }
-
     #[doc = "Set the field `roles`.\n"]
     pub fn set_roles(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.roles = Some(v.into());
         self
     }
-
     #[doc = "Set the field `users`.\n"]
     pub fn set_users(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.users = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     type O = BlockAssignable<BudgetsBudgetActionDefinitionElIamActionDefinitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -639,12 +559,10 @@ impl ToListMappable for BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     #[doc = ""]
     pub policy_arn: PrimField<String>,
 }
-
 impl BuildBudgetsBudgetActionDefinitionElIamActionDefinitionEl {
     pub fn build(self) -> BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
         BudgetsBudgetActionDefinitionElIamActionDefinitionEl {
@@ -655,12 +573,10 @@ impl BuildBudgetsBudgetActionDefinitionElIamActionDefinitionEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionDefinitionElIamActionDefinitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionDefinitionElIamActionDefinitionElRef {
     fn new(
         shared: StackShared,
@@ -672,44 +588,35 @@ impl Ref for BudgetsBudgetActionDefinitionElIamActionDefinitionElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionDefinitionElIamActionDefinitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `groups` after provisioning.\n"]
     pub fn groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.groups", self.base))
     }
-
     #[doc = "Get a reference to the value of field `policy_arn` after provisioning.\n"]
     pub fn policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.policy_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `roles` after provisioning.\n"]
     pub fn roles(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.roles", self.base))
     }
-
     #[doc = "Get a reference to the value of field `users` after provisioning.\n"]
     pub fn users(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.users", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionDefinitionElScpActionDefinitionEl {
     policy_id: PrimField<String>,
     target_ids: SetField<PrimField<String>>,
 }
-
 impl BudgetsBudgetActionDefinitionElScpActionDefinitionEl {}
-
 impl ToListMappable for BudgetsBudgetActionDefinitionElScpActionDefinitionEl {
     type O = BlockAssignable<BudgetsBudgetActionDefinitionElScpActionDefinitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -718,14 +625,12 @@ impl ToListMappable for BudgetsBudgetActionDefinitionElScpActionDefinitionEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionDefinitionElScpActionDefinitionEl {
     #[doc = ""]
     pub policy_id: PrimField<String>,
     #[doc = ""]
     pub target_ids: SetField<PrimField<String>>,
 }
-
 impl BuildBudgetsBudgetActionDefinitionElScpActionDefinitionEl {
     pub fn build(self) -> BudgetsBudgetActionDefinitionElScpActionDefinitionEl {
         BudgetsBudgetActionDefinitionElScpActionDefinitionEl {
@@ -734,12 +639,10 @@ impl BuildBudgetsBudgetActionDefinitionElScpActionDefinitionEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionDefinitionElScpActionDefinitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionDefinitionElScpActionDefinitionElRef {
     fn new(
         shared: StackShared,
@@ -751,35 +654,28 @@ impl Ref for BudgetsBudgetActionDefinitionElScpActionDefinitionElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionDefinitionElScpActionDefinitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `policy_id` after provisioning.\n"]
     pub fn policy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.policy_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_ids` after provisioning.\n"]
     pub fn target_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.target_ids", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
     action_sub_type: PrimField<String>,
     instance_ids: SetField<PrimField<String>>,
     region: PrimField<String>,
 }
-
 impl BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {}
-
 impl ToListMappable for BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
     type O = BlockAssignable<BudgetsBudgetActionDefinitionElSsmActionDefinitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -788,7 +684,6 @@ impl ToListMappable for BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
     #[doc = ""]
     pub action_sub_type: PrimField<String>,
@@ -797,7 +692,6 @@ pub struct BuildBudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
     #[doc = ""]
     pub region: PrimField<String>,
 }
-
 impl BuildBudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
     pub fn build(self) -> BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
         BudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
@@ -807,12 +701,10 @@ impl BuildBudgetsBudgetActionDefinitionElSsmActionDefinitionEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionDefinitionElSsmActionDefinitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionDefinitionElSsmActionDefinitionElRef {
     fn new(
         shared: StackShared,
@@ -824,12 +716,10 @@ impl Ref for BudgetsBudgetActionDefinitionElSsmActionDefinitionElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionDefinitionElSsmActionDefinitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action_sub_type` after provisioning.\n"]
     pub fn action_sub_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -837,18 +727,15 @@ impl BudgetsBudgetActionDefinitionElSsmActionDefinitionElRef {
             format!("{}.action_sub_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_ids` after provisioning.\n"]
     pub fn instance_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.instance_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BudgetsBudgetActionDefinitionElDynamic {
     iam_action_definition:
@@ -858,7 +745,6 @@ struct BudgetsBudgetActionDefinitionElDynamic {
     ssm_action_definition:
         Option<DynamicBlock<BudgetsBudgetActionDefinitionElSsmActionDefinitionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionDefinitionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -869,7 +755,6 @@ pub struct BudgetsBudgetActionDefinitionEl {
     ssm_action_definition: Option<Vec<BudgetsBudgetActionDefinitionElSsmActionDefinitionEl>>,
     dynamic: BudgetsBudgetActionDefinitionElDynamic,
 }
-
 impl BudgetsBudgetActionDefinitionEl {
     #[doc = "Set the field `iam_action_definition`.\n"]
     pub fn set_iam_action_definition(
@@ -886,7 +771,6 @@ impl BudgetsBudgetActionDefinitionEl {
         }
         self
     }
-
     #[doc = "Set the field `scp_action_definition`.\n"]
     pub fn set_scp_action_definition(
         mut self,
@@ -902,7 +786,6 @@ impl BudgetsBudgetActionDefinitionEl {
         }
         self
     }
-
     #[doc = "Set the field `ssm_action_definition`.\n"]
     pub fn set_ssm_action_definition(
         mut self,
@@ -919,10 +802,8 @@ impl BudgetsBudgetActionDefinitionEl {
         self
     }
 }
-
 impl ToListMappable for BudgetsBudgetActionDefinitionEl {
     type O = BlockAssignable<BudgetsBudgetActionDefinitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -931,9 +812,7 @@ impl ToListMappable for BudgetsBudgetActionDefinitionEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionDefinitionEl {}
-
 impl BuildBudgetsBudgetActionDefinitionEl {
     pub fn build(self) -> BudgetsBudgetActionDefinitionEl {
         BudgetsBudgetActionDefinitionEl {
@@ -944,12 +823,10 @@ impl BuildBudgetsBudgetActionDefinitionEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionDefinitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionDefinitionElRef {
     fn new(shared: StackShared, base: String) -> BudgetsBudgetActionDefinitionElRef {
         BudgetsBudgetActionDefinitionElRef {
@@ -958,12 +835,10 @@ impl Ref for BudgetsBudgetActionDefinitionElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionDefinitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `iam_action_definition` after provisioning.\n"]
     pub fn iam_action_definition(
         &self,
@@ -973,7 +848,6 @@ impl BudgetsBudgetActionDefinitionElRef {
             format!("{}.iam_action_definition", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `scp_action_definition` after provisioning.\n"]
     pub fn scp_action_definition(
         &self,
@@ -983,7 +857,6 @@ impl BudgetsBudgetActionDefinitionElRef {
             format!("{}.scp_action_definition", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ssm_action_definition` after provisioning.\n"]
     pub fn ssm_action_definition(
         &self,
@@ -994,18 +867,14 @@ impl BudgetsBudgetActionDefinitionElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionSubscriberEl {
     address: PrimField<String>,
     subscription_type: PrimField<String>,
 }
-
 impl BudgetsBudgetActionSubscriberEl {}
-
 impl ToListMappable for BudgetsBudgetActionSubscriberEl {
     type O = BlockAssignable<BudgetsBudgetActionSubscriberEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1014,14 +883,12 @@ impl ToListMappable for BudgetsBudgetActionSubscriberEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionSubscriberEl {
     #[doc = ""]
     pub address: PrimField<String>,
     #[doc = ""]
     pub subscription_type: PrimField<String>,
 }
-
 impl BuildBudgetsBudgetActionSubscriberEl {
     pub fn build(self) -> BudgetsBudgetActionSubscriberEl {
         BudgetsBudgetActionSubscriberEl {
@@ -1030,12 +897,10 @@ impl BuildBudgetsBudgetActionSubscriberEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionSubscriberElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionSubscriberElRef {
     fn new(shared: StackShared, base: String) -> BudgetsBudgetActionSubscriberElRef {
         BudgetsBudgetActionSubscriberElRef {
@@ -1044,17 +909,14 @@ impl Ref for BudgetsBudgetActionSubscriberElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionSubscriberElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `address` after provisioning.\n"]
     pub fn address(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `subscription_type` after provisioning.\n"]
     pub fn subscription_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1063,7 +925,6 @@ impl BudgetsBudgetActionSubscriberElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BudgetsBudgetActionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1073,30 +934,25 @@ pub struct BudgetsBudgetActionTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BudgetsBudgetActionTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BudgetsBudgetActionTimeoutsEl {
     type O = BlockAssignable<BudgetsBudgetActionTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1105,9 +961,7 @@ impl ToListMappable for BudgetsBudgetActionTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBudgetsBudgetActionTimeoutsEl {}
-
 impl BuildBudgetsBudgetActionTimeoutsEl {
     pub fn build(self) -> BudgetsBudgetActionTimeoutsEl {
         BudgetsBudgetActionTimeoutsEl {
@@ -1117,12 +971,10 @@ impl BuildBudgetsBudgetActionTimeoutsEl {
         }
     }
 }
-
 pub struct BudgetsBudgetActionTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BudgetsBudgetActionTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BudgetsBudgetActionTimeoutsElRef {
         BudgetsBudgetActionTimeoutsElRef {
@@ -1131,28 +983,23 @@ impl Ref for BudgetsBudgetActionTimeoutsElRef {
         }
     }
 }
-
 impl BudgetsBudgetActionTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BudgetsBudgetActionDynamic {
     action_threshold: Option<DynamicBlock<BudgetsBudgetActionActionThresholdEl>>,

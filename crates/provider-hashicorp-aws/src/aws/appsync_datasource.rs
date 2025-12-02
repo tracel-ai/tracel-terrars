@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppsyncDatasourceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -42,47 +41,38 @@ struct AppsyncDatasourceData {
     relational_database_config: Option<Vec<AppsyncDatasourceRelationalDatabaseConfigEl>>,
     dynamic: AppsyncDatasourceDynamic,
 }
-
 struct AppsyncDatasource_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppsyncDatasourceData>,
 }
-
 #[derive(Clone)]
 pub struct AppsyncDatasource(Rc<AppsyncDatasource_>);
-
 impl AppsyncDatasource {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -101,7 +91,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -111,7 +100,6 @@ impl AppsyncDatasource {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -121,31 +109,26 @@ impl AppsyncDatasource {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_role_arn`.\n"]
     pub fn set_service_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().service_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dynamodb_config`.\n"]
     pub fn set_dynamodb_config(
         self,
@@ -161,7 +144,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `elasticsearch_config`.\n"]
     pub fn set_elasticsearch_config(
         self,
@@ -177,7 +159,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `event_bridge_config`.\n"]
     pub fn set_event_bridge_config(
         self,
@@ -193,7 +174,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `http_config`.\n"]
     pub fn set_http_config(
         self,
@@ -209,7 +189,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `lambda_config`.\n"]
     pub fn set_lambda_config(
         self,
@@ -225,7 +204,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `opensearchservice_config`.\n"]
     pub fn set_opensearchservice_config(
         self,
@@ -241,7 +219,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Set the field `relational_database_config`.\n"]
     pub fn set_relational_database_config(
         self,
@@ -257,7 +234,6 @@ impl AppsyncDatasource {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,12 +241,10 @@ impl AppsyncDatasource {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,12 +252,10 @@ impl AppsyncDatasource {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +263,6 @@ impl AppsyncDatasource {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -299,7 +270,6 @@ impl AppsyncDatasource {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -307,7 +277,6 @@ impl AppsyncDatasource {
             format!("{}.service_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -315,7 +284,6 @@ impl AppsyncDatasource {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamodb_config` after provisioning.\n"]
     pub fn dynamodb_config(&self) -> ListRef<AppsyncDatasourceDynamodbConfigElRef> {
         ListRef::new(
@@ -323,7 +291,6 @@ impl AppsyncDatasource {
             format!("{}.dynamodb_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `elasticsearch_config` after provisioning.\n"]
     pub fn elasticsearch_config(&self) -> ListRef<AppsyncDatasourceElasticsearchConfigElRef> {
         ListRef::new(
@@ -331,7 +298,6 @@ impl AppsyncDatasource {
             format!("{}.elasticsearch_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_bridge_config` after provisioning.\n"]
     pub fn event_bridge_config(&self) -> ListRef<AppsyncDatasourceEventBridgeConfigElRef> {
         ListRef::new(
@@ -339,7 +305,6 @@ impl AppsyncDatasource {
             format!("{}.event_bridge_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_config` after provisioning.\n"]
     pub fn http_config(&self) -> ListRef<AppsyncDatasourceHttpConfigElRef> {
         ListRef::new(
@@ -347,7 +312,6 @@ impl AppsyncDatasource {
             format!("{}.http_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(&self) -> ListRef<AppsyncDatasourceLambdaConfigElRef> {
         ListRef::new(
@@ -355,7 +319,6 @@ impl AppsyncDatasource {
             format!("{}.lambda_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `opensearchservice_config` after provisioning.\n"]
     pub fn opensearchservice_config(
         &self,
@@ -365,7 +328,6 @@ impl AppsyncDatasource {
             format!("{}.opensearchservice_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `relational_database_config` after provisioning.\n"]
     pub fn relational_database_config(
         &self,
@@ -376,7 +338,6 @@ impl AppsyncDatasource {
         )
     }
 }
-
 impl Referable for AppsyncDatasource {
     fn extract_ref(&self) -> String {
         format!(
@@ -386,32 +347,25 @@ impl Referable for AppsyncDatasource {
         )
     }
 }
-
 impl Resource for AppsyncDatasource {}
-
 impl ToListMappable for AppsyncDatasource {
     type O = ListRef<AppsyncDatasourceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppsyncDatasource_ {
     fn extract_resource_type(&self) -> String {
         "aws_appsync_datasource".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppsyncDatasource {
     pub tf_id: String,
     #[doc = ""]
@@ -421,7 +375,6 @@ pub struct BuildAppsyncDatasource {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildAppsyncDatasource {
     pub fn build(self, stack: &mut Stack) -> AppsyncDatasource {
         let out = AppsyncDatasource(Rc::new(AppsyncDatasource_ {
@@ -453,27 +406,22 @@ impl BuildAppsyncDatasource {
         out
     }
 }
-
 pub struct AppsyncDatasourceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppsyncDatasourceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_id` after provisioning.\n"]
     pub fn api_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -481,12 +429,10 @@ impl AppsyncDatasourceRef {
             format!("{}.api_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,12 +440,10 @@ impl AppsyncDatasourceRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -507,7 +451,6 @@ impl AppsyncDatasourceRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -515,7 +458,6 @@ impl AppsyncDatasourceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_role_arn` after provisioning.\n"]
     pub fn service_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +465,6 @@ impl AppsyncDatasourceRef {
             format!("{}.service_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -531,7 +472,6 @@ impl AppsyncDatasourceRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dynamodb_config` after provisioning.\n"]
     pub fn dynamodb_config(&self) -> ListRef<AppsyncDatasourceDynamodbConfigElRef> {
         ListRef::new(
@@ -539,7 +479,6 @@ impl AppsyncDatasourceRef {
             format!("{}.dynamodb_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `elasticsearch_config` after provisioning.\n"]
     pub fn elasticsearch_config(&self) -> ListRef<AppsyncDatasourceElasticsearchConfigElRef> {
         ListRef::new(
@@ -547,7 +486,6 @@ impl AppsyncDatasourceRef {
             format!("{}.elasticsearch_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_bridge_config` after provisioning.\n"]
     pub fn event_bridge_config(&self) -> ListRef<AppsyncDatasourceEventBridgeConfigElRef> {
         ListRef::new(
@@ -555,7 +493,6 @@ impl AppsyncDatasourceRef {
             format!("{}.event_bridge_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_config` after provisioning.\n"]
     pub fn http_config(&self) -> ListRef<AppsyncDatasourceHttpConfigElRef> {
         ListRef::new(
@@ -563,7 +500,6 @@ impl AppsyncDatasourceRef {
             format!("{}.http_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `lambda_config` after provisioning.\n"]
     pub fn lambda_config(&self) -> ListRef<AppsyncDatasourceLambdaConfigElRef> {
         ListRef::new(
@@ -571,7 +507,6 @@ impl AppsyncDatasourceRef {
             format!("{}.lambda_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `opensearchservice_config` after provisioning.\n"]
     pub fn opensearchservice_config(
         &self,
@@ -581,7 +516,6 @@ impl AppsyncDatasourceRef {
             format!("{}.opensearchservice_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `relational_database_config` after provisioning.\n"]
     pub fn relational_database_config(
         &self,
@@ -592,7 +526,6 @@ impl AppsyncDatasourceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -601,24 +534,20 @@ pub struct AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delta_sync_table_ttl: Option<PrimField<f64>>,
 }
-
 impl AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     #[doc = "Set the field `base_table_ttl`.\n"]
     pub fn set_base_table_ttl(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.base_table_ttl = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delta_sync_table_ttl`.\n"]
     pub fn set_delta_sync_table_ttl(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.delta_sync_table_ttl = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     type O = BlockAssignable<AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -627,12 +556,10 @@ impl ToListMappable for AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     #[doc = ""]
     pub delta_sync_table_name: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
     pub fn build(self) -> AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
         AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
@@ -642,12 +569,10 @@ impl BuildAppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
     fn new(
         shared: StackShared,
@@ -659,12 +584,10 @@ impl Ref for AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `base_table_ttl` after provisioning.\n"]
     pub fn base_table_ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -672,7 +595,6 @@ impl AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
             format!("{}.base_table_ttl", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `delta_sync_table_name` after provisioning.\n"]
     pub fn delta_sync_table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -680,7 +602,6 @@ impl AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
             format!("{}.delta_sync_table_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `delta_sync_table_ttl` after provisioning.\n"]
     pub fn delta_sync_table_ttl(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -689,12 +610,10 @@ impl AppsyncDatasourceDynamodbConfigElDeltaSyncConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncDatasourceDynamodbConfigElDynamic {
     delta_sync_config: Option<DynamicBlock<AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceDynamodbConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -708,26 +627,22 @@ pub struct AppsyncDatasourceDynamodbConfigEl {
     delta_sync_config: Option<Vec<AppsyncDatasourceDynamodbConfigElDeltaSyncConfigEl>>,
     dynamic: AppsyncDatasourceDynamodbConfigElDynamic,
 }
-
 impl AppsyncDatasourceDynamodbConfigEl {
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_caller_credentials`.\n"]
     pub fn set_use_caller_credentials(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.use_caller_credentials = Some(v.into());
         self
     }
-
     #[doc = "Set the field `versioned`.\n"]
     pub fn set_versioned(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.versioned = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delta_sync_config`.\n"]
     pub fn set_delta_sync_config(
         mut self,
@@ -744,10 +659,8 @@ impl AppsyncDatasourceDynamodbConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceDynamodbConfigEl {
     type O = BlockAssignable<AppsyncDatasourceDynamodbConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -756,12 +669,10 @@ impl ToListMappable for AppsyncDatasourceDynamodbConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceDynamodbConfigEl {
     #[doc = ""]
     pub table_name: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceDynamodbConfigEl {
     pub fn build(self) -> AppsyncDatasourceDynamodbConfigEl {
         AppsyncDatasourceDynamodbConfigEl {
@@ -774,12 +685,10 @@ impl BuildAppsyncDatasourceDynamodbConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceDynamodbConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceDynamodbConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceDynamodbConfigElRef {
         AppsyncDatasourceDynamodbConfigElRef {
@@ -788,22 +697,18 @@ impl Ref for AppsyncDatasourceDynamodbConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceDynamodbConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `table_name` after provisioning.\n"]
     pub fn table_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.table_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `use_caller_credentials` after provisioning.\n"]
     pub fn use_caller_credentials(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -811,12 +716,10 @@ impl AppsyncDatasourceDynamodbConfigElRef {
             format!("{}.use_caller_credentials", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `versioned` after provisioning.\n"]
     pub fn versioned(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.versioned", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delta_sync_config` after provisioning.\n"]
     pub fn delta_sync_config(
         &self,
@@ -827,14 +730,12 @@ impl AppsyncDatasourceDynamodbConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceElasticsearchConfigEl {
     endpoint: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 impl AppsyncDatasourceElasticsearchConfigEl {
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -842,10 +743,8 @@ impl AppsyncDatasourceElasticsearchConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceElasticsearchConfigEl {
     type O = BlockAssignable<AppsyncDatasourceElasticsearchConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -854,12 +753,10 @@ impl ToListMappable for AppsyncDatasourceElasticsearchConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceElasticsearchConfigEl {
     #[doc = ""]
     pub endpoint: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceElasticsearchConfigEl {
     pub fn build(self) -> AppsyncDatasourceElasticsearchConfigEl {
         AppsyncDatasourceElasticsearchConfigEl {
@@ -868,12 +765,10 @@ impl BuildAppsyncDatasourceElasticsearchConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceElasticsearchConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceElasticsearchConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceElasticsearchConfigElRef {
         AppsyncDatasourceElasticsearchConfigElRef {
@@ -882,33 +777,26 @@ impl Ref for AppsyncDatasourceElasticsearchConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceElasticsearchConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceEventBridgeConfigEl {
     event_bus_arn: PrimField<String>,
 }
-
 impl AppsyncDatasourceEventBridgeConfigEl {}
-
 impl ToListMappable for AppsyncDatasourceEventBridgeConfigEl {
     type O = BlockAssignable<AppsyncDatasourceEventBridgeConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -917,12 +805,10 @@ impl ToListMappable for AppsyncDatasourceEventBridgeConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceEventBridgeConfigEl {
     #[doc = ""]
     pub event_bus_arn: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceEventBridgeConfigEl {
     pub fn build(self) -> AppsyncDatasourceEventBridgeConfigEl {
         AppsyncDatasourceEventBridgeConfigEl {
@@ -930,12 +816,10 @@ impl BuildAppsyncDatasourceEventBridgeConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceEventBridgeConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceEventBridgeConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceEventBridgeConfigElRef {
         AppsyncDatasourceEventBridgeConfigElRef {
@@ -944,12 +828,10 @@ impl Ref for AppsyncDatasourceEventBridgeConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceEventBridgeConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `event_bus_arn` after provisioning.\n"]
     pub fn event_bus_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -958,7 +840,6 @@ impl AppsyncDatasourceEventBridgeConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -966,24 +847,20 @@ pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     signing_service_name: Option<PrimField<String>>,
 }
-
 impl AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
     #[doc = "Set the field `signing_region`.\n"]
     pub fn set_signing_region(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.signing_region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `signing_service_name`.\n"]
     pub fn set_signing_service_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.signing_service_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
     type O = BlockAssignable<AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -992,9 +869,7 @@ impl ToListMappable for AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIam
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {}
-
 impl BuildAppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
     pub fn build(self) -> AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
         AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
@@ -1003,12 +878,10 @@ impl BuildAppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef {
     fn new(
         shared: StackShared,
@@ -1020,12 +893,10 @@ impl Ref for AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef
         }
     }
 }
-
 impl AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `signing_region` after provisioning.\n"]
     pub fn signing_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1033,7 +904,6 @@ impl AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef {
             format!("{}.signing_region", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `signing_service_name` after provisioning.\n"]
     pub fn signing_service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1042,13 +912,11 @@ impl AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncDatasourceHttpConfigElAuthorizationConfigElDynamic {
     aws_iam_config:
         Option<DynamicBlock<AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1057,14 +925,12 @@ pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
     aws_iam_config: Option<Vec<AppsyncDatasourceHttpConfigElAuthorizationConfigElAwsIamConfigEl>>,
     dynamic: AppsyncDatasourceHttpConfigElAuthorizationConfigElDynamic,
 }
-
 impl AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
     #[doc = "Set the field `authorization_type`.\n"]
     pub fn set_authorization_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.authorization_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `aws_iam_config`.\n"]
     pub fn set_aws_iam_config(
         mut self,
@@ -1081,10 +947,8 @@ impl AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
     type O = BlockAssignable<AppsyncDatasourceHttpConfigElAuthorizationConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1093,9 +957,7 @@ impl ToListMappable for AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceHttpConfigElAuthorizationConfigEl {}
-
 impl BuildAppsyncDatasourceHttpConfigElAuthorizationConfigEl {
     pub fn build(self) -> AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
         AppsyncDatasourceHttpConfigElAuthorizationConfigEl {
@@ -1105,12 +967,10 @@ impl BuildAppsyncDatasourceHttpConfigElAuthorizationConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
     fn new(
         shared: StackShared,
@@ -1122,12 +982,10 @@ impl Ref for AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1135,7 +993,6 @@ impl AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
             format!("{}.authorization_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `aws_iam_config` after provisioning.\n"]
     pub fn aws_iam_config(
         &self,
@@ -1146,12 +1003,10 @@ impl AppsyncDatasourceHttpConfigElAuthorizationConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncDatasourceHttpConfigElDynamic {
     authorization_config: Option<DynamicBlock<AppsyncDatasourceHttpConfigElAuthorizationConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceHttpConfigEl {
     endpoint: PrimField<String>,
@@ -1159,7 +1014,6 @@ pub struct AppsyncDatasourceHttpConfigEl {
     authorization_config: Option<Vec<AppsyncDatasourceHttpConfigElAuthorizationConfigEl>>,
     dynamic: AppsyncDatasourceHttpConfigElDynamic,
 }
-
 impl AppsyncDatasourceHttpConfigEl {
     #[doc = "Set the field `authorization_config`.\n"]
     pub fn set_authorization_config(
@@ -1177,10 +1031,8 @@ impl AppsyncDatasourceHttpConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceHttpConfigEl {
     type O = BlockAssignable<AppsyncDatasourceHttpConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1189,12 +1041,10 @@ impl ToListMappable for AppsyncDatasourceHttpConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceHttpConfigEl {
     #[doc = ""]
     pub endpoint: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceHttpConfigEl {
     pub fn build(self) -> AppsyncDatasourceHttpConfigEl {
         AppsyncDatasourceHttpConfigEl {
@@ -1204,12 +1054,10 @@ impl BuildAppsyncDatasourceHttpConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceHttpConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceHttpConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceHttpConfigElRef {
         AppsyncDatasourceHttpConfigElRef {
@@ -1218,17 +1066,14 @@ impl Ref for AppsyncDatasourceHttpConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceHttpConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `authorization_config` after provisioning.\n"]
     pub fn authorization_config(
         &self,
@@ -1239,17 +1084,13 @@ impl AppsyncDatasourceHttpConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceLambdaConfigEl {
     function_arn: PrimField<String>,
 }
-
 impl AppsyncDatasourceLambdaConfigEl {}
-
 impl ToListMappable for AppsyncDatasourceLambdaConfigEl {
     type O = BlockAssignable<AppsyncDatasourceLambdaConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1258,12 +1099,10 @@ impl ToListMappable for AppsyncDatasourceLambdaConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceLambdaConfigEl {
     #[doc = ""]
     pub function_arn: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceLambdaConfigEl {
     pub fn build(self) -> AppsyncDatasourceLambdaConfigEl {
         AppsyncDatasourceLambdaConfigEl {
@@ -1271,12 +1110,10 @@ impl BuildAppsyncDatasourceLambdaConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceLambdaConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceLambdaConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceLambdaConfigElRef {
         AppsyncDatasourceLambdaConfigElRef {
@@ -1285,25 +1122,21 @@ impl Ref for AppsyncDatasourceLambdaConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceLambdaConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `function_arn` after provisioning.\n"]
     pub fn function_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.function_arn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceOpensearchserviceConfigEl {
     endpoint: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 impl AppsyncDatasourceOpensearchserviceConfigEl {
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1311,10 +1144,8 @@ impl AppsyncDatasourceOpensearchserviceConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceOpensearchserviceConfigEl {
     type O = BlockAssignable<AppsyncDatasourceOpensearchserviceConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1323,12 +1154,10 @@ impl ToListMappable for AppsyncDatasourceOpensearchserviceConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceOpensearchserviceConfigEl {
     #[doc = ""]
     pub endpoint: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceOpensearchserviceConfigEl {
     pub fn build(self) -> AppsyncDatasourceOpensearchserviceConfigEl {
         AppsyncDatasourceOpensearchserviceConfigEl {
@@ -1337,12 +1166,10 @@ impl BuildAppsyncDatasourceOpensearchserviceConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceOpensearchserviceConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceOpensearchserviceConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceOpensearchserviceConfigElRef {
         AppsyncDatasourceOpensearchserviceConfigElRef {
@@ -1351,23 +1178,19 @@ impl Ref for AppsyncDatasourceOpensearchserviceConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceOpensearchserviceConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.endpoint", self.base))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     aws_secret_store_arn: PrimField<String>,
@@ -1379,30 +1202,25 @@ pub struct AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     schema: Option<PrimField<String>>,
 }
-
 impl AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     #[doc = "Set the field `database_name`.\n"]
     pub fn set_database_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.database_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\n"]
     pub fn set_region(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schema`.\n"]
     pub fn set_schema(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.schema = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     type O = BlockAssignable<AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1411,14 +1229,12 @@ impl ToListMappable for AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointC
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     #[doc = ""]
     pub aws_secret_store_arn: PrimField<String>,
     #[doc = ""]
     pub db_cluster_identifier: PrimField<String>,
 }
-
 impl BuildAppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
     pub fn build(self) -> AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
         AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
@@ -1430,12 +1246,10 @@ impl BuildAppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
     fn new(
         shared: StackShared,
@@ -1447,12 +1261,10 @@ impl Ref for AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef 
         }
     }
 }
-
 impl AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `aws_secret_store_arn` after provisioning.\n"]
     pub fn aws_secret_store_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1460,7 +1272,6 @@ impl AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
             format!("{}.aws_secret_store_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `database_name` after provisioning.\n"]
     pub fn database_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1468,7 +1279,6 @@ impl AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
             format!("{}.database_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `db_cluster_identifier` after provisioning.\n"]
     pub fn db_cluster_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1476,24 +1286,20 @@ impl AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigElRef {
             format!("{}.db_cluster_identifier", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\n"]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.region", self.base))
     }
-
     #[doc = "Get a reference to the value of field `schema` after provisioning.\n"]
     pub fn schema(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.schema", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncDatasourceRelationalDatabaseConfigElDynamic {
     http_endpoint_config:
         Option<DynamicBlock<AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppsyncDatasourceRelationalDatabaseConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1503,14 +1309,12 @@ pub struct AppsyncDatasourceRelationalDatabaseConfigEl {
         Option<Vec<AppsyncDatasourceRelationalDatabaseConfigElHttpEndpointConfigEl>>,
     dynamic: AppsyncDatasourceRelationalDatabaseConfigElDynamic,
 }
-
 impl AppsyncDatasourceRelationalDatabaseConfigEl {
     #[doc = "Set the field `source_type`.\n"]
     pub fn set_source_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.source_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `http_endpoint_config`.\n"]
     pub fn set_http_endpoint_config(
         mut self,
@@ -1527,10 +1331,8 @@ impl AppsyncDatasourceRelationalDatabaseConfigEl {
         self
     }
 }
-
 impl ToListMappable for AppsyncDatasourceRelationalDatabaseConfigEl {
     type O = BlockAssignable<AppsyncDatasourceRelationalDatabaseConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1539,9 +1341,7 @@ impl ToListMappable for AppsyncDatasourceRelationalDatabaseConfigEl {
         })
     }
 }
-
 pub struct BuildAppsyncDatasourceRelationalDatabaseConfigEl {}
-
 impl BuildAppsyncDatasourceRelationalDatabaseConfigEl {
     pub fn build(self) -> AppsyncDatasourceRelationalDatabaseConfigEl {
         AppsyncDatasourceRelationalDatabaseConfigEl {
@@ -1551,12 +1351,10 @@ impl BuildAppsyncDatasourceRelationalDatabaseConfigEl {
         }
     }
 }
-
 pub struct AppsyncDatasourceRelationalDatabaseConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppsyncDatasourceRelationalDatabaseConfigElRef {
     fn new(shared: StackShared, base: String) -> AppsyncDatasourceRelationalDatabaseConfigElRef {
         AppsyncDatasourceRelationalDatabaseConfigElRef {
@@ -1565,17 +1363,14 @@ impl Ref for AppsyncDatasourceRelationalDatabaseConfigElRef {
         }
     }
 }
-
 impl AppsyncDatasourceRelationalDatabaseConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `source_type` after provisioning.\n"]
     pub fn source_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.source_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `http_endpoint_config` after provisioning.\n"]
     pub fn http_endpoint_config(
         &self,
@@ -1586,7 +1381,6 @@ impl AppsyncDatasourceRelationalDatabaseConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppsyncDatasourceDynamic {
     dynamodb_config: Option<DynamicBlock<AppsyncDatasourceDynamodbConfigEl>>,

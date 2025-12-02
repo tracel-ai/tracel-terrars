@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudwatchLogDataProtectionPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct CloudwatchLogDataProtectionPolicyData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct CloudwatchLogDataProtectionPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudwatchLogDataProtectionPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct CloudwatchLogDataProtectionPolicy(Rc<CloudwatchLogDataProtectionPolicy_>);
-
 impl CloudwatchLogDataProtectionPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl CloudwatchLogDataProtectionPolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl CloudwatchLogDataProtectionPolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,24 +88,20 @@ impl CloudwatchLogDataProtectionPolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -125,7 +109,6 @@ impl CloudwatchLogDataProtectionPolicy {
             format!("{}.log_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -133,7 +116,6 @@ impl CloudwatchLogDataProtectionPolicy {
             format!("{}.policy_document", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -142,7 +124,6 @@ impl CloudwatchLogDataProtectionPolicy {
         )
     }
 }
-
 impl Referable for CloudwatchLogDataProtectionPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -152,32 +133,25 @@ impl Referable for CloudwatchLogDataProtectionPolicy {
         )
     }
 }
-
 impl Resource for CloudwatchLogDataProtectionPolicy {}
-
 impl ToListMappable for CloudwatchLogDataProtectionPolicy {
     type O = ListRef<CloudwatchLogDataProtectionPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudwatchLogDataProtectionPolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudwatch_log_data_protection_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudwatchLogDataProtectionPolicy {
     pub tf_id: String,
     #[doc = ""]
@@ -185,7 +159,6 @@ pub struct BuildCloudwatchLogDataProtectionPolicy {
     #[doc = ""]
     pub policy_document: PrimField<String>,
 }
-
 impl BuildCloudwatchLogDataProtectionPolicy {
     pub fn build(self, stack: &mut Stack) -> CloudwatchLogDataProtectionPolicy {
         let out = CloudwatchLogDataProtectionPolicy(Rc::new(CloudwatchLogDataProtectionPolicy_ {
@@ -206,32 +179,26 @@ impl BuildCloudwatchLogDataProtectionPolicy {
         out
     }
 }
-
 pub struct CloudwatchLogDataProtectionPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchLogDataProtectionPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudwatchLogDataProtectionPolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `log_group_name` after provisioning.\n"]
     pub fn log_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -239,7 +206,6 @@ impl CloudwatchLogDataProtectionPolicyRef {
             format!("{}.log_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_document` after provisioning.\n"]
     pub fn policy_document(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,7 +213,6 @@ impl CloudwatchLogDataProtectionPolicyRef {
             format!("{}.policy_document", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(

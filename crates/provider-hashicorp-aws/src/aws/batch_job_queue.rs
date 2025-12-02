@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BatchJobQueueData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct BatchJobQueueData {
     timeouts: Option<BatchJobQueueTimeoutsEl>,
     dynamic: BatchJobQueueDynamic,
 }
-
 struct BatchJobQueue_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BatchJobQueueData>,
 }
-
 #[derive(Clone)]
 pub struct BatchJobQueue(Rc<BatchJobQueue_>);
-
 impl BatchJobQueue {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl BatchJobQueue {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl BatchJobQueue {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl BatchJobQueue {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scheduling_policy_arn`.\n"]
     pub fn set_scheduling_policy_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().scheduling_policy_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `compute_environment_order`.\n"]
     pub fn set_compute_environment_order(
         self,
@@ -144,7 +128,6 @@ impl BatchJobQueue {
         }
         self
     }
-
     #[doc = "Set the field `job_state_time_limit_action`.\n"]
     pub fn set_job_state_time_limit_action(
         self,
@@ -160,23 +143,19 @@ impl BatchJobQueue {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BatchJobQueueTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +163,6 @@ impl BatchJobQueue {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -192,7 +170,6 @@ impl BatchJobQueue {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +177,6 @@ impl BatchJobQueue {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scheduling_policy_arn` after provisioning.\n"]
     pub fn scheduling_policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +184,6 @@ impl BatchJobQueue {
             format!("{}.scheduling_policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +191,6 @@ impl BatchJobQueue {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -224,7 +198,6 @@ impl BatchJobQueue {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -232,7 +205,6 @@ impl BatchJobQueue {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_environment_order` after provisioning.\n"]
     pub fn compute_environment_order(&self) -> ListRef<BatchJobQueueComputeEnvironmentOrderElRef> {
         ListRef::new(
@@ -240,7 +212,6 @@ impl BatchJobQueue {
             format!("{}.compute_environment_order", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_state_time_limit_action` after provisioning.\n"]
     pub fn job_state_time_limit_action(
         &self,
@@ -250,7 +221,6 @@ impl BatchJobQueue {
             format!("{}.job_state_time_limit_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BatchJobQueueTimeoutsElRef {
         BatchJobQueueTimeoutsElRef::new(
@@ -259,7 +229,6 @@ impl BatchJobQueue {
         )
     }
 }
-
 impl Referable for BatchJobQueue {
     fn extract_ref(&self) -> String {
         format!(
@@ -269,32 +238,25 @@ impl Referable for BatchJobQueue {
         )
     }
 }
-
 impl Resource for BatchJobQueue {}
-
 impl ToListMappable for BatchJobQueue {
     type O = ListRef<BatchJobQueueRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BatchJobQueue_ {
     fn extract_resource_type(&self) -> String {
         "aws_batch_job_queue".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBatchJobQueue {
     pub tf_id: String,
     #[doc = ""]
@@ -304,7 +266,6 @@ pub struct BuildBatchJobQueue {
     #[doc = ""]
     pub state: PrimField<String>,
 }
-
 impl BuildBatchJobQueue {
     pub fn build(self, stack: &mut Stack) -> BatchJobQueue {
         let out = BatchJobQueue(Rc::new(BatchJobQueue_ {
@@ -331,37 +292,30 @@ impl BuildBatchJobQueue {
         out
     }
 }
-
 pub struct BatchJobQueueRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BatchJobQueueRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BatchJobQueueRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +323,6 @@ impl BatchJobQueueRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -377,7 +330,6 @@ impl BatchJobQueueRef {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -385,7 +337,6 @@ impl BatchJobQueueRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `scheduling_policy_arn` after provisioning.\n"]
     pub fn scheduling_policy_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,7 +344,6 @@ impl BatchJobQueueRef {
             format!("{}.scheduling_policy_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -401,7 +351,6 @@ impl BatchJobQueueRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -409,7 +358,6 @@ impl BatchJobQueueRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -417,7 +365,6 @@ impl BatchJobQueueRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_environment_order` after provisioning.\n"]
     pub fn compute_environment_order(&self) -> ListRef<BatchJobQueueComputeEnvironmentOrderElRef> {
         ListRef::new(
@@ -425,7 +372,6 @@ impl BatchJobQueueRef {
             format!("{}.compute_environment_order", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `job_state_time_limit_action` after provisioning.\n"]
     pub fn job_state_time_limit_action(
         &self,
@@ -435,7 +381,6 @@ impl BatchJobQueueRef {
             format!("{}.job_state_time_limit_action", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BatchJobQueueTimeoutsElRef {
         BatchJobQueueTimeoutsElRef::new(
@@ -444,18 +389,14 @@ impl BatchJobQueueRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BatchJobQueueComputeEnvironmentOrderEl {
     compute_environment: PrimField<String>,
     order: PrimField<f64>,
 }
-
 impl BatchJobQueueComputeEnvironmentOrderEl {}
-
 impl ToListMappable for BatchJobQueueComputeEnvironmentOrderEl {
     type O = BlockAssignable<BatchJobQueueComputeEnvironmentOrderEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -464,14 +405,12 @@ impl ToListMappable for BatchJobQueueComputeEnvironmentOrderEl {
         })
     }
 }
-
 pub struct BuildBatchJobQueueComputeEnvironmentOrderEl {
     #[doc = ""]
     pub compute_environment: PrimField<String>,
     #[doc = ""]
     pub order: PrimField<f64>,
 }
-
 impl BuildBatchJobQueueComputeEnvironmentOrderEl {
     pub fn build(self) -> BatchJobQueueComputeEnvironmentOrderEl {
         BatchJobQueueComputeEnvironmentOrderEl {
@@ -480,12 +419,10 @@ impl BuildBatchJobQueueComputeEnvironmentOrderEl {
         }
     }
 }
-
 pub struct BatchJobQueueComputeEnvironmentOrderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BatchJobQueueComputeEnvironmentOrderElRef {
     fn new(shared: StackShared, base: String) -> BatchJobQueueComputeEnvironmentOrderElRef {
         BatchJobQueueComputeEnvironmentOrderElRef {
@@ -494,12 +431,10 @@ impl Ref for BatchJobQueueComputeEnvironmentOrderElRef {
         }
     }
 }
-
 impl BatchJobQueueComputeEnvironmentOrderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `compute_environment` after provisioning.\n"]
     pub fn compute_environment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -507,13 +442,11 @@ impl BatchJobQueueComputeEnvironmentOrderElRef {
             format!("{}.compute_environment", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `order` after provisioning.\n"]
     pub fn order(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.order", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BatchJobQueueJobStateTimeLimitActionEl {
     action: PrimField<String>,
@@ -521,12 +454,9 @@ pub struct BatchJobQueueJobStateTimeLimitActionEl {
     reason: PrimField<String>,
     state: PrimField<String>,
 }
-
 impl BatchJobQueueJobStateTimeLimitActionEl {}
-
 impl ToListMappable for BatchJobQueueJobStateTimeLimitActionEl {
     type O = BlockAssignable<BatchJobQueueJobStateTimeLimitActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -535,7 +465,6 @@ impl ToListMappable for BatchJobQueueJobStateTimeLimitActionEl {
         })
     }
 }
-
 pub struct BuildBatchJobQueueJobStateTimeLimitActionEl {
     #[doc = ""]
     pub action: PrimField<String>,
@@ -546,7 +475,6 @@ pub struct BuildBatchJobQueueJobStateTimeLimitActionEl {
     #[doc = ""]
     pub state: PrimField<String>,
 }
-
 impl BuildBatchJobQueueJobStateTimeLimitActionEl {
     pub fn build(self) -> BatchJobQueueJobStateTimeLimitActionEl {
         BatchJobQueueJobStateTimeLimitActionEl {
@@ -557,12 +485,10 @@ impl BuildBatchJobQueueJobStateTimeLimitActionEl {
         }
     }
 }
-
 pub struct BatchJobQueueJobStateTimeLimitActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BatchJobQueueJobStateTimeLimitActionElRef {
     fn new(shared: StackShared, base: String) -> BatchJobQueueJobStateTimeLimitActionElRef {
         BatchJobQueueJobStateTimeLimitActionElRef {
@@ -571,17 +497,14 @@ impl Ref for BatchJobQueueJobStateTimeLimitActionElRef {
         }
     }
 }
-
 impl BatchJobQueueJobStateTimeLimitActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `max_time_seconds` after provisioning.\n"]
     pub fn max_time_seconds(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -589,18 +512,15 @@ impl BatchJobQueueJobStateTimeLimitActionElRef {
             format!("{}.max_time_seconds", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `reason` after provisioning.\n"]
     pub fn reason(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.reason", self.base))
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.state", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BatchJobQueueTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -610,30 +530,25 @@ pub struct BatchJobQueueTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BatchJobQueueTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BatchJobQueueTimeoutsEl {
     type O = BlockAssignable<BatchJobQueueTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -642,9 +557,7 @@ impl ToListMappable for BatchJobQueueTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBatchJobQueueTimeoutsEl {}
-
 impl BuildBatchJobQueueTimeoutsEl {
     pub fn build(self) -> BatchJobQueueTimeoutsEl {
         BatchJobQueueTimeoutsEl {
@@ -654,12 +567,10 @@ impl BuildBatchJobQueueTimeoutsEl {
         }
     }
 }
-
 pub struct BatchJobQueueTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BatchJobQueueTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BatchJobQueueTimeoutsElRef {
         BatchJobQueueTimeoutsElRef {
@@ -668,28 +579,23 @@ impl Ref for BatchJobQueueTimeoutsElRef {
         }
     }
 }
-
 impl BatchJobQueueTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BatchJobQueueDynamic {
     compute_environment_order: Option<DynamicBlock<BatchJobQueueComputeEnvironmentOrderEl>>,

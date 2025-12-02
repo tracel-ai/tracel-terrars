@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ServicecatalogProductData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -45,47 +44,38 @@ struct ServicecatalogProductData {
     timeouts: Option<ServicecatalogProductTimeoutsEl>,
     dynamic: ServicecatalogProductDynamic,
 }
-
 struct ServicecatalogProduct_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ServicecatalogProductData>,
 }
-
 #[derive(Clone)]
 pub struct ServicecatalogProduct(Rc<ServicecatalogProduct_>);
-
 impl ServicecatalogProduct {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -104,7 +94,6 @@ impl ServicecatalogProduct {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -114,7 +103,6 @@ impl ServicecatalogProduct {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -124,67 +112,56 @@ impl ServicecatalogProduct {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `accept_language`.\n"]
     pub fn set_accept_language(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().accept_language = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `distributor`.\n"]
     pub fn set_distributor(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().distributor = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `support_description`.\n"]
     pub fn set_support_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().support_description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `support_email`.\n"]
     pub fn set_support_email(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().support_email = Some(v.into());
         self
     }
-
     #[doc = "Set the field `support_url`.\n"]
     pub fn set_support_url(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().support_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `provisioning_artifact_parameters`.\n"]
     pub fn set_provisioning_artifact_parameters(
         self,
@@ -204,13 +181,11 @@ impl ServicecatalogProduct {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<ServicecatalogProductTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,12 +193,10 @@ impl ServicecatalogProduct {
             format!("{}.accept_language", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +204,6 @@ impl ServicecatalogProduct {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -239,7 +211,6 @@ impl ServicecatalogProduct {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `distributor` after provisioning.\n"]
     pub fn distributor(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,7 +218,6 @@ impl ServicecatalogProduct {
             format!("{}.distributor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_default_path` after provisioning.\n"]
     pub fn has_default_path(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -255,12 +225,10 @@ impl ServicecatalogProduct {
             format!("{}.has_default_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -268,7 +236,6 @@ impl ServicecatalogProduct {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -276,7 +243,6 @@ impl ServicecatalogProduct {
             format!("{}.owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -284,7 +250,6 @@ impl ServicecatalogProduct {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -292,7 +257,6 @@ impl ServicecatalogProduct {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_description` after provisioning.\n"]
     pub fn support_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -300,7 +264,6 @@ impl ServicecatalogProduct {
             format!("{}.support_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_email` after provisioning.\n"]
     pub fn support_email(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -308,7 +271,6 @@ impl ServicecatalogProduct {
             format!("{}.support_email", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_url` after provisioning.\n"]
     pub fn support_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -316,7 +278,6 @@ impl ServicecatalogProduct {
             format!("{}.support_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -324,7 +285,6 @@ impl ServicecatalogProduct {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -332,7 +292,6 @@ impl ServicecatalogProduct {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -340,7 +299,6 @@ impl ServicecatalogProduct {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_artifact_parameters` after provisioning.\n"]
     pub fn provisioning_artifact_parameters(
         &self,
@@ -350,7 +308,6 @@ impl ServicecatalogProduct {
             format!("{}.provisioning_artifact_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ServicecatalogProductTimeoutsElRef {
         ServicecatalogProductTimeoutsElRef::new(
@@ -359,7 +316,6 @@ impl ServicecatalogProduct {
         )
     }
 }
-
 impl Referable for ServicecatalogProduct {
     fn extract_ref(&self) -> String {
         format!(
@@ -369,32 +325,25 @@ impl Referable for ServicecatalogProduct {
         )
     }
 }
-
 impl Resource for ServicecatalogProduct {}
-
 impl ToListMappable for ServicecatalogProduct {
     type O = ListRef<ServicecatalogProductRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ServicecatalogProduct_ {
     fn extract_resource_type(&self) -> String {
         "aws_servicecatalog_product".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildServicecatalogProduct {
     pub tf_id: String,
     #[doc = ""]
@@ -404,7 +353,6 @@ pub struct BuildServicecatalogProduct {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildServicecatalogProduct {
     pub fn build(self, stack: &mut Stack) -> ServicecatalogProduct {
         let out = ServicecatalogProduct(Rc::new(ServicecatalogProduct_ {
@@ -437,27 +385,22 @@ impl BuildServicecatalogProduct {
         out
     }
 }
-
 pub struct ServicecatalogProductRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ServicecatalogProductRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ServicecatalogProductRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `accept_language` after provisioning.\n"]
     pub fn accept_language(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -465,12 +408,10 @@ impl ServicecatalogProductRef {
             format!("{}.accept_language", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_time` after provisioning.\n"]
     pub fn created_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -478,7 +419,6 @@ impl ServicecatalogProductRef {
             format!("{}.created_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +426,6 @@ impl ServicecatalogProductRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `distributor` after provisioning.\n"]
     pub fn distributor(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +433,6 @@ impl ServicecatalogProductRef {
             format!("{}.distributor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `has_default_path` after provisioning.\n"]
     pub fn has_default_path(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -502,12 +440,10 @@ impl ServicecatalogProductRef {
             format!("{}.has_default_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -515,7 +451,6 @@ impl ServicecatalogProductRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner` after provisioning.\n"]
     pub fn owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +458,6 @@ impl ServicecatalogProductRef {
             format!("{}.owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -531,7 +465,6 @@ impl ServicecatalogProductRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -539,7 +472,6 @@ impl ServicecatalogProductRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_description` after provisioning.\n"]
     pub fn support_description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +479,6 @@ impl ServicecatalogProductRef {
             format!("{}.support_description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_email` after provisioning.\n"]
     pub fn support_email(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -555,7 +486,6 @@ impl ServicecatalogProductRef {
             format!("{}.support_email", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `support_url` after provisioning.\n"]
     pub fn support_url(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -563,7 +493,6 @@ impl ServicecatalogProductRef {
             format!("{}.support_url", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -571,7 +500,6 @@ impl ServicecatalogProductRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -579,7 +507,6 @@ impl ServicecatalogProductRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -587,7 +514,6 @@ impl ServicecatalogProductRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_artifact_parameters` after provisioning.\n"]
     pub fn provisioning_artifact_parameters(
         &self,
@@ -597,7 +523,6 @@ impl ServicecatalogProductRef {
             format!("{}.provisioning_artifact_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> ServicecatalogProductTimeoutsElRef {
         ServicecatalogProductTimeoutsElRef::new(
@@ -606,7 +531,6 @@ impl ServicecatalogProductRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ServicecatalogProductProvisioningArtifactParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -622,48 +546,40 @@ pub struct ServicecatalogProductProvisioningArtifactParametersEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl ServicecatalogProductProvisioningArtifactParametersEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `disable_template_validation`.\n"]
     pub fn set_disable_template_validation(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.disable_template_validation = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `template_physical_id`.\n"]
     pub fn set_template_physical_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.template_physical_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `template_url`.\n"]
     pub fn set_template_url(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.template_url = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ServicecatalogProductProvisioningArtifactParametersEl {
     type O = BlockAssignable<ServicecatalogProductProvisioningArtifactParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -672,9 +588,7 @@ impl ToListMappable for ServicecatalogProductProvisioningArtifactParametersEl {
         })
     }
 }
-
 pub struct BuildServicecatalogProductProvisioningArtifactParametersEl {}
-
 impl BuildServicecatalogProductProvisioningArtifactParametersEl {
     pub fn build(self) -> ServicecatalogProductProvisioningArtifactParametersEl {
         ServicecatalogProductProvisioningArtifactParametersEl {
@@ -687,12 +601,10 @@ impl BuildServicecatalogProductProvisioningArtifactParametersEl {
         }
     }
 }
-
 pub struct ServicecatalogProductProvisioningArtifactParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ServicecatalogProductProvisioningArtifactParametersElRef {
     fn new(
         shared: StackShared,
@@ -704,17 +616,14 @@ impl Ref for ServicecatalogProductProvisioningArtifactParametersElRef {
         }
     }
 }
-
 impl ServicecatalogProductProvisioningArtifactParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `disable_template_validation` after provisioning.\n"]
     pub fn disable_template_validation(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -722,12 +631,10 @@ impl ServicecatalogProductProvisioningArtifactParametersElRef {
             format!("{}.disable_template_validation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `template_physical_id` after provisioning.\n"]
     pub fn template_physical_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -735,18 +642,15 @@ impl ServicecatalogProductProvisioningArtifactParametersElRef {
             format!("{}.template_physical_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `template_url` after provisioning.\n"]
     pub fn template_url(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.template_url", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct ServicecatalogProductTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -758,36 +662,30 @@ pub struct ServicecatalogProductTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl ServicecatalogProductTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.read = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ServicecatalogProductTimeoutsEl {
     type O = BlockAssignable<ServicecatalogProductTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -796,9 +694,7 @@ impl ToListMappable for ServicecatalogProductTimeoutsEl {
         })
     }
 }
-
 pub struct BuildServicecatalogProductTimeoutsEl {}
-
 impl BuildServicecatalogProductTimeoutsEl {
     pub fn build(self) -> ServicecatalogProductTimeoutsEl {
         ServicecatalogProductTimeoutsEl {
@@ -809,12 +705,10 @@ impl BuildServicecatalogProductTimeoutsEl {
         }
     }
 }
-
 pub struct ServicecatalogProductTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ServicecatalogProductTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> ServicecatalogProductTimeoutsElRef {
         ServicecatalogProductTimeoutsElRef {
@@ -823,33 +717,27 @@ impl Ref for ServicecatalogProductTimeoutsElRef {
         }
     }
 }
-
 impl ServicecatalogProductTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ServicecatalogProductDynamic {
     provisioning_artifact_parameters:

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataLocationRouteCalculatorData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,49 +19,40 @@ struct DataLocationRouteCalculatorData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataLocationRouteCalculator_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataLocationRouteCalculatorData>,
 }
-
 #[derive(Clone)]
 pub struct DataLocationRouteCalculator(Rc<DataLocationRouteCalculator_>);
-
 impl DataLocationRouteCalculator {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `calculator_arn` after provisioning.\n"]
     pub fn calculator_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -70,7 +60,6 @@ impl DataLocationRouteCalculator {
             format!("{}.calculator_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `calculator_name` after provisioning.\n"]
     pub fn calculator_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -78,7 +67,6 @@ impl DataLocationRouteCalculator {
             format!("{}.calculator_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -86,7 +74,6 @@ impl DataLocationRouteCalculator {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -94,7 +81,6 @@ impl DataLocationRouteCalculator {
             format!("{}.data_source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -102,12 +88,10 @@ impl DataLocationRouteCalculator {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -115,7 +99,6 @@ impl DataLocationRouteCalculator {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -123,7 +106,6 @@ impl DataLocationRouteCalculator {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -132,7 +114,6 @@ impl DataLocationRouteCalculator {
         )
     }
 }
-
 impl Referable for DataLocationRouteCalculator {
     fn extract_ref(&self) -> String {
         format!(
@@ -142,38 +123,30 @@ impl Referable for DataLocationRouteCalculator {
         )
     }
 }
-
 impl Datasource for DataLocationRouteCalculator {}
-
 impl ToListMappable for DataLocationRouteCalculator {
     type O = ListRef<DataLocationRouteCalculatorRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataLocationRouteCalculator_ {
     fn extract_datasource_type(&self) -> String {
         "aws_location_route_calculator".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataLocationRouteCalculator {
     pub tf_id: String,
     #[doc = ""]
     pub calculator_name: PrimField<String>,
 }
-
 impl BuildDataLocationRouteCalculator {
     pub fn build(self, stack: &mut Stack) -> DataLocationRouteCalculator {
         let out = DataLocationRouteCalculator(Rc::new(DataLocationRouteCalculator_ {
@@ -193,27 +166,22 @@ impl BuildDataLocationRouteCalculator {
         out
     }
 }
-
 pub struct DataLocationRouteCalculatorRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataLocationRouteCalculatorRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataLocationRouteCalculatorRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `calculator_arn` after provisioning.\n"]
     pub fn calculator_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +189,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.calculator_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `calculator_name` after provisioning.\n"]
     pub fn calculator_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -229,7 +196,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.calculator_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `create_time` after provisioning.\n"]
     pub fn create_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +203,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.create_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_source` after provisioning.\n"]
     pub fn data_source(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +210,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.data_source", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,12 +217,10 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +228,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -274,7 +235,6 @@ impl DataLocationRouteCalculatorRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `update_time` after provisioning.\n"]
     pub fn update_time(&self) -> PrimExpr<String> {
         PrimExpr::new(

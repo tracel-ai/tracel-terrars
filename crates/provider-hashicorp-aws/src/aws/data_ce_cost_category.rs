@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataCeCostCategoryData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -18,43 +17,35 @@ struct DataCeCostCategoryData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataCeCostCategory_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataCeCostCategoryData>,
 }
-
 #[derive(Clone)]
 pub struct DataCeCostCategory(Rc<DataCeCostCategory_>);
-
 impl DataCeCostCategory {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `cost_category_arn` after provisioning.\n"]
     pub fn cost_category_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -62,7 +53,6 @@ impl DataCeCostCategory {
             format!("{}.cost_category_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -70,7 +60,6 @@ impl DataCeCostCategory {
             format!("{}.default_value", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `effective_end` after provisioning.\n"]
     pub fn effective_end(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -78,7 +67,6 @@ impl DataCeCostCategory {
             format!("{}.effective_end", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `effective_start` after provisioning.\n"]
     pub fn effective_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -86,12 +74,10 @@ impl DataCeCostCategory {
             format!("{}.effective_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -99,7 +85,6 @@ impl DataCeCostCategory {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> SetRef<DataCeCostCategoryRuleElRef> {
         SetRef::new(
@@ -107,7 +92,6 @@ impl DataCeCostCategory {
             format!("{}.rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_version` after provisioning.\n"]
     pub fn rule_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -115,7 +99,6 @@ impl DataCeCostCategory {
             format!("{}.rule_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `split_charge_rule` after provisioning.\n"]
     pub fn split_charge_rule(&self) -> SetRef<DataCeCostCategorySplitChargeRuleElRef> {
         SetRef::new(
@@ -123,7 +106,6 @@ impl DataCeCostCategory {
             format!("{}.split_charge_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -132,7 +114,6 @@ impl DataCeCostCategory {
         )
     }
 }
-
 impl Referable for DataCeCostCategory {
     fn extract_ref(&self) -> String {
         format!(
@@ -142,38 +123,30 @@ impl Referable for DataCeCostCategory {
         )
     }
 }
-
 impl Datasource for DataCeCostCategory {}
-
 impl ToListMappable for DataCeCostCategory {
     type O = ListRef<DataCeCostCategoryRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataCeCostCategory_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ce_cost_category".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataCeCostCategory {
     pub tf_id: String,
     #[doc = ""]
     pub cost_category_arn: PrimField<String>,
 }
-
 impl BuildDataCeCostCategory {
     pub fn build(self, stack: &mut Stack) -> DataCeCostCategory {
         let out = DataCeCostCategory(Rc::new(DataCeCostCategory_ {
@@ -192,27 +165,22 @@ impl BuildDataCeCostCategory {
         out
     }
 }
-
 pub struct DataCeCostCategoryRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataCeCostCategoryRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `cost_category_arn` after provisioning.\n"]
     pub fn cost_category_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +188,6 @@ impl DataCeCostCategoryRef {
             format!("{}.cost_category_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `default_value` after provisioning.\n"]
     pub fn default_value(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +195,6 @@ impl DataCeCostCategoryRef {
             format!("{}.default_value", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `effective_end` after provisioning.\n"]
     pub fn effective_end(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -236,7 +202,6 @@ impl DataCeCostCategoryRef {
             format!("{}.effective_end", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `effective_start` after provisioning.\n"]
     pub fn effective_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -244,12 +209,10 @@ impl DataCeCostCategoryRef {
             format!("{}.effective_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,7 +220,6 @@ impl DataCeCostCategoryRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> SetRef<DataCeCostCategoryRuleElRef> {
         SetRef::new(
@@ -265,7 +227,6 @@ impl DataCeCostCategoryRef {
             format!("{}.rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_version` after provisioning.\n"]
     pub fn rule_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -273,7 +234,6 @@ impl DataCeCostCategoryRef {
             format!("{}.rule_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `split_charge_rule` after provisioning.\n"]
     pub fn split_charge_rule(&self) -> SetRef<DataCeCostCategorySplitChargeRuleElRef> {
         SetRef::new(
@@ -281,7 +241,6 @@ impl DataCeCostCategoryRef {
             format!("{}.split_charge_rule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -290,7 +249,6 @@ impl DataCeCostCategoryRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElInheritedValueEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -298,24 +256,20 @@ pub struct DataCeCostCategoryRuleElInheritedValueEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     dimension_name: Option<PrimField<String>>,
 }
-
 impl DataCeCostCategoryRuleElInheritedValueEl {
     #[doc = "Set the field `dimension_key`.\n"]
     pub fn set_dimension_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dimension_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension_name`.\n"]
     pub fn set_dimension_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dimension_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElInheritedValueEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElInheritedValueEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -324,9 +278,7 @@ impl ToListMappable for DataCeCostCategoryRuleElInheritedValueEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElInheritedValueEl {}
-
 impl BuildDataCeCostCategoryRuleElInheritedValueEl {
     pub fn build(self) -> DataCeCostCategoryRuleElInheritedValueEl {
         DataCeCostCategoryRuleElInheritedValueEl {
@@ -335,12 +287,10 @@ impl BuildDataCeCostCategoryRuleElInheritedValueEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElInheritedValueElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElInheritedValueElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElInheritedValueElRef {
         DataCeCostCategoryRuleElInheritedValueElRef {
@@ -349,12 +299,10 @@ impl Ref for DataCeCostCategoryRuleElInheritedValueElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElInheritedValueElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dimension_key` after provisioning.\n"]
     pub fn dimension_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -362,7 +310,6 @@ impl DataCeCostCategoryRuleElInheritedValueElRef {
             format!("{}.dimension_key", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension_name` after provisioning.\n"]
     pub fn dimension_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,7 +318,6 @@ impl DataCeCostCategoryRuleElInheritedValueElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -381,30 +327,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -413,9 +354,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
@@ -425,12 +364,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElAndElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -442,17 +379,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -460,13 +394,11 @@ impl DataCeCostCategoryRuleElRuleElAndElAndElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -476,30 +408,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -508,9 +435,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
         DataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
@@ -520,12 +445,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElAndElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -537,17 +460,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -555,13 +475,11 @@ impl DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -571,30 +489,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElAndElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -603,9 +516,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElAndElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
         DataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
@@ -615,12 +526,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElAndElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
         DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
@@ -629,17 +538,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -647,13 +553,11 @@ impl DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -663,7 +567,6 @@ pub struct DataCeCostCategoryRuleElRuleElAndElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElAndElAndElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -673,7 +576,6 @@ impl DataCeCostCategoryRuleElRuleElAndElAndEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -682,7 +584,6 @@ impl DataCeCostCategoryRuleElRuleElAndElAndEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -692,10 +593,8 @@ impl DataCeCostCategoryRuleElRuleElAndElAndEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElAndEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -704,9 +603,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElAndEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElAndEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElAndEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElAndEl {
         DataCeCostCategoryRuleElRuleElAndElAndEl {
@@ -716,12 +613,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElAndEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElAndElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElAndElRef {
         DataCeCostCategoryRuleElRuleElAndElAndElRef {
@@ -730,12 +625,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElAndElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElAndElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -745,18 +638,15 @@ impl DataCeCostCategoryRuleElRuleElAndElAndElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElAndElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElAndElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -766,30 +656,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -798,9 +683,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
@@ -810,12 +693,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -827,17 +708,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -845,13 +723,11 @@ impl DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -861,30 +737,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -893,9 +764,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElDimensionEl {
         DataCeCostCategoryRuleElRuleElAndElDimensionEl {
@@ -905,12 +774,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
         DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
@@ -919,17 +786,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -937,13 +801,11 @@ impl DataCeCostCategoryRuleElRuleElAndElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -953,30 +815,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -985,9 +842,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
@@ -997,12 +852,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElNotElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -1014,17 +867,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1032,13 +882,11 @@ impl DataCeCostCategoryRuleElRuleElAndElNotElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1048,30 +896,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1080,9 +923,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
         DataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
@@ -1092,12 +933,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElNotElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -1109,17 +948,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1127,13 +963,11 @@ impl DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1143,30 +977,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElNotElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1175,9 +1004,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElNotElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
         DataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
@@ -1187,12 +1014,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElNotElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
         DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
@@ -1201,17 +1026,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1219,13 +1041,11 @@ impl DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1235,7 +1055,6 @@ pub struct DataCeCostCategoryRuleElRuleElAndElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElAndElNotElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -1245,7 +1064,6 @@ impl DataCeCostCategoryRuleElRuleElAndElNotEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -1254,7 +1072,6 @@ impl DataCeCostCategoryRuleElRuleElAndElNotEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -1264,10 +1081,8 @@ impl DataCeCostCategoryRuleElRuleElAndElNotEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElNotEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1276,9 +1091,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElNotEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElNotEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElNotEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElNotEl {
         DataCeCostCategoryRuleElRuleElAndElNotEl {
@@ -1288,12 +1101,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElNotEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElNotElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElNotElRef {
         DataCeCostCategoryRuleElRuleElAndElNotElRef {
@@ -1302,12 +1113,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElNotElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElNotElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -1317,18 +1126,15 @@ impl DataCeCostCategoryRuleElRuleElAndElNotElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElNotElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElNotElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1338,30 +1144,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1370,9 +1171,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
@@ -1382,12 +1181,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElOrElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -1399,17 +1196,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1417,13 +1211,11 @@ impl DataCeCostCategoryRuleElRuleElAndElOrElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1433,30 +1225,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1465,9 +1252,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
         DataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
@@ -1477,12 +1262,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElOrElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -1494,17 +1277,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1512,13 +1292,11 @@ impl DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1528,30 +1306,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElOrElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1560,9 +1333,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElOrElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
         DataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
@@ -1572,12 +1343,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElOrElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
         DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
@@ -1586,17 +1355,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1604,13 +1370,11 @@ impl DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1620,7 +1384,6 @@ pub struct DataCeCostCategoryRuleElRuleElAndElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElAndElOrElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -1630,7 +1393,6 @@ impl DataCeCostCategoryRuleElRuleElAndElOrEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -1639,7 +1401,6 @@ impl DataCeCostCategoryRuleElRuleElAndElOrEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -1649,10 +1410,8 @@ impl DataCeCostCategoryRuleElRuleElAndElOrEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElOrEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1661,9 +1420,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElOrEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElOrEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElOrEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElOrEl {
         DataCeCostCategoryRuleElRuleElAndElOrEl {
@@ -1673,12 +1430,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElOrEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElOrElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElOrElRef {
         DataCeCostCategoryRuleElRuleElAndElOrElRef {
@@ -1687,12 +1442,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElOrElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElOrElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -1702,18 +1455,15 @@ impl DataCeCostCategoryRuleElRuleElAndElOrElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElOrElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElOrElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1723,30 +1473,25 @@ pub struct DataCeCostCategoryRuleElRuleElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1755,9 +1500,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndElTagsEl {
         DataCeCostCategoryRuleElRuleElAndElTagsEl {
@@ -1767,12 +1510,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElTagsElRef {
         DataCeCostCategoryRuleElRuleElAndElTagsElRef {
@@ -1781,17 +1522,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1799,13 +1537,11 @@ impl DataCeCostCategoryRuleElRuleElAndElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1821,7 +1557,6 @@ pub struct DataCeCostCategoryRuleElRuleElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElAndElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElAndEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(
@@ -1831,7 +1566,6 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self.and = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
         mut self,
@@ -1840,7 +1574,6 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -1849,7 +1582,6 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not`.\n"]
     pub fn set_not(
         mut self,
@@ -1858,7 +1590,6 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self.not = Some(v.into());
         self
     }
-
     #[doc = "Set the field `or`.\n"]
     pub fn set_or(
         mut self,
@@ -1867,7 +1598,6 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self.or = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -1877,10 +1607,8 @@ impl DataCeCostCategoryRuleElRuleElAndEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElAndEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElAndEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1889,9 +1617,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElAndEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElAndEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElAndEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElAndEl {
         DataCeCostCategoryRuleElRuleElAndEl {
@@ -1904,12 +1630,10 @@ impl BuildDataCeCostCategoryRuleElRuleElAndEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElAndElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElAndElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElAndElRef {
         DataCeCostCategoryRuleElRuleElAndElRef {
@@ -1918,17 +1642,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElAndElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElAndElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
     pub fn and(&self) -> SetRef<DataCeCostCategoryRuleElRuleElAndElAndElRef> {
         SetRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElCostCategoryElRef> {
         ListRef::new(
@@ -1936,28 +1657,23 @@ impl DataCeCostCategoryRuleElRuleElAndElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not` after provisioning.\n"]
     pub fn not(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElNotElRef> {
         ListRef::new(self.shared().clone(), format!("{}.not", self.base))
     }
-
     #[doc = "Get a reference to the value of field `or` after provisioning.\n"]
     pub fn or(&self) -> SetRef<DataCeCostCategoryRuleElRuleElAndElOrElRef> {
         SetRef::new(self.shared().clone(), format!("{}.or", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElAndElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1967,30 +1683,25 @@ pub struct DataCeCostCategoryRuleElRuleElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1999,9 +1710,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElCostCategoryEl {
@@ -2011,12 +1720,10 @@ impl BuildDataCeCostCategoryRuleElRuleElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElCostCategoryElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElCostCategoryElRef {
         DataCeCostCategoryRuleElRuleElCostCategoryElRef {
@@ -2025,17 +1732,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2043,13 +1747,11 @@ impl DataCeCostCategoryRuleElRuleElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2059,30 +1761,25 @@ pub struct DataCeCostCategoryRuleElRuleElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2091,9 +1788,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElDimensionEl {
         DataCeCostCategoryRuleElRuleElDimensionEl {
@@ -2103,12 +1798,10 @@ impl BuildDataCeCostCategoryRuleElRuleElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElDimensionElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElDimensionElRef {
         DataCeCostCategoryRuleElRuleElDimensionElRef {
@@ -2117,17 +1810,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2135,13 +1825,11 @@ impl DataCeCostCategoryRuleElRuleElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2151,30 +1839,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2183,9 +1866,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
@@ -2195,12 +1876,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElAndElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -2212,17 +1891,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2230,13 +1906,11 @@ impl DataCeCostCategoryRuleElRuleElNotElAndElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2246,30 +1920,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2278,9 +1947,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
         DataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
@@ -2290,12 +1957,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElAndElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -2307,17 +1972,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2325,13 +1987,11 @@ impl DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2341,30 +2001,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElAndElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2373,9 +2028,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElAndElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
         DataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
@@ -2385,12 +2038,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElAndElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
         DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
@@ -2399,17 +2050,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2417,13 +2065,11 @@ impl DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2433,7 +2079,6 @@ pub struct DataCeCostCategoryRuleElRuleElNotElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElNotElAndElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -2443,7 +2088,6 @@ impl DataCeCostCategoryRuleElRuleElNotElAndEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -2452,7 +2096,6 @@ impl DataCeCostCategoryRuleElRuleElNotElAndEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -2462,10 +2105,8 @@ impl DataCeCostCategoryRuleElRuleElNotElAndEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElAndEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2474,9 +2115,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElAndEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElAndEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElAndEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElAndEl {
         DataCeCostCategoryRuleElRuleElNotElAndEl {
@@ -2486,12 +2125,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElAndEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElAndElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElAndElRef {
         DataCeCostCategoryRuleElRuleElNotElAndElRef {
@@ -2500,12 +2137,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElAndElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElAndElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -2515,18 +2150,15 @@ impl DataCeCostCategoryRuleElRuleElNotElAndElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElAndElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElAndElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2536,30 +2168,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2568,9 +2195,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
@@ -2580,12 +2205,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -2597,17 +2220,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2615,13 +2235,11 @@ impl DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2631,30 +2249,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2663,9 +2276,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElDimensionEl {
         DataCeCostCategoryRuleElRuleElNotElDimensionEl {
@@ -2675,12 +2286,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
         DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
@@ -2689,17 +2298,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2707,13 +2313,11 @@ impl DataCeCostCategoryRuleElRuleElNotElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2723,30 +2327,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2755,9 +2354,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
@@ -2767,12 +2364,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElNotElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -2784,17 +2379,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2802,13 +2394,11 @@ impl DataCeCostCategoryRuleElRuleElNotElNotElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2818,30 +2408,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2850,9 +2435,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
         DataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
@@ -2862,12 +2445,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElNotElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -2879,17 +2460,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2897,13 +2475,11 @@ impl DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2913,30 +2489,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElNotElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2945,9 +2516,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElNotElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
         DataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
@@ -2957,12 +2526,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElNotElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
         DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
@@ -2971,17 +2538,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2989,13 +2553,11 @@ impl DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3005,7 +2567,6 @@ pub struct DataCeCostCategoryRuleElRuleElNotElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElNotElNotElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -3015,7 +2576,6 @@ impl DataCeCostCategoryRuleElRuleElNotElNotEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -3024,7 +2584,6 @@ impl DataCeCostCategoryRuleElRuleElNotElNotEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -3034,10 +2593,8 @@ impl DataCeCostCategoryRuleElRuleElNotElNotEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElNotEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3046,9 +2603,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElNotEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElNotEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElNotEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElNotEl {
         DataCeCostCategoryRuleElRuleElNotElNotEl {
@@ -3058,12 +2613,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElNotEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElNotElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElNotElRef {
         DataCeCostCategoryRuleElRuleElNotElNotElRef {
@@ -3072,12 +2625,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElNotElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElNotElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -3087,18 +2638,15 @@ impl DataCeCostCategoryRuleElRuleElNotElNotElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElNotElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElNotElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3108,30 +2656,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3140,9 +2683,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
@@ -3152,12 +2693,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElOrElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -3169,17 +2708,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3187,13 +2723,11 @@ impl DataCeCostCategoryRuleElRuleElNotElOrElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3203,30 +2737,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3235,9 +2764,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
         DataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
@@ -3247,12 +2774,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElOrElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -3264,17 +2789,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3282,13 +2804,11 @@ impl DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3298,30 +2818,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElOrElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3330,9 +2845,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElOrElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
         DataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
@@ -3342,12 +2855,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElOrElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
         DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
@@ -3356,17 +2867,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3374,13 +2882,11 @@ impl DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3390,7 +2896,6 @@ pub struct DataCeCostCategoryRuleElRuleElNotElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElNotElOrElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -3400,7 +2905,6 @@ impl DataCeCostCategoryRuleElRuleElNotElOrEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -3409,7 +2913,6 @@ impl DataCeCostCategoryRuleElRuleElNotElOrEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -3419,10 +2922,8 @@ impl DataCeCostCategoryRuleElRuleElNotElOrEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElOrEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3431,9 +2932,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElOrEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElOrEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElOrEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElOrEl {
         DataCeCostCategoryRuleElRuleElNotElOrEl {
@@ -3443,12 +2942,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElOrEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElOrElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElOrElRef {
         DataCeCostCategoryRuleElRuleElNotElOrElRef {
@@ -3457,12 +2954,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElOrElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElOrElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -3472,18 +2967,15 @@ impl DataCeCostCategoryRuleElRuleElNotElOrElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElOrElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElOrElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3493,30 +2985,25 @@ pub struct DataCeCostCategoryRuleElRuleElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3525,9 +3012,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotElTagsEl {
         DataCeCostCategoryRuleElRuleElNotElTagsEl {
@@ -3537,12 +3022,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElTagsElRef {
         DataCeCostCategoryRuleElRuleElNotElTagsElRef {
@@ -3551,17 +3034,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3569,13 +3049,11 @@ impl DataCeCostCategoryRuleElRuleElNotElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3591,7 +3069,6 @@ pub struct DataCeCostCategoryRuleElRuleElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElNotElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElNotEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(
@@ -3601,7 +3078,6 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self.and = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
         mut self,
@@ -3610,7 +3086,6 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -3619,7 +3094,6 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not`.\n"]
     pub fn set_not(
         mut self,
@@ -3628,7 +3102,6 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self.not = Some(v.into());
         self
     }
-
     #[doc = "Set the field `or`.\n"]
     pub fn set_or(
         mut self,
@@ -3637,7 +3110,6 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self.or = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -3647,10 +3119,8 @@ impl DataCeCostCategoryRuleElRuleElNotEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElNotEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElNotEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3659,9 +3129,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElNotEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElNotEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElNotEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElNotEl {
         DataCeCostCategoryRuleElRuleElNotEl {
@@ -3674,12 +3142,10 @@ impl BuildDataCeCostCategoryRuleElRuleElNotEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElNotElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElNotElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElNotElRef {
         DataCeCostCategoryRuleElRuleElNotElRef {
@@ -3688,17 +3154,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElNotElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElNotElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
     pub fn and(&self) -> SetRef<DataCeCostCategoryRuleElRuleElNotElAndElRef> {
         SetRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElCostCategoryElRef> {
         ListRef::new(
@@ -3706,28 +3169,23 @@ impl DataCeCostCategoryRuleElRuleElNotElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not` after provisioning.\n"]
     pub fn not(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElNotElRef> {
         ListRef::new(self.shared().clone(), format!("{}.not", self.base))
     }
-
     #[doc = "Get a reference to the value of field `or` after provisioning.\n"]
     pub fn or(&self) -> SetRef<DataCeCostCategoryRuleElRuleElNotElOrElRef> {
         SetRef::new(self.shared().clone(), format!("{}.or", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3737,30 +3195,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3769,9 +3222,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
@@ -3781,12 +3232,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElAndElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -3798,17 +3247,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3816,13 +3262,11 @@ impl DataCeCostCategoryRuleElRuleElOrElAndElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3832,30 +3276,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3864,9 +3303,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
         DataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
@@ -3876,12 +3313,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElAndElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -3893,17 +3328,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3911,13 +3343,11 @@ impl DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3927,30 +3357,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElAndElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3959,9 +3384,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElAndElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
         DataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
@@ -3971,12 +3394,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElAndElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
         DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
@@ -3985,17 +3406,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4003,13 +3421,11 @@ impl DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4019,7 +3435,6 @@ pub struct DataCeCostCategoryRuleElRuleElOrElAndEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElOrElAndElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -4029,7 +3444,6 @@ impl DataCeCostCategoryRuleElRuleElOrElAndEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -4038,7 +3452,6 @@ impl DataCeCostCategoryRuleElRuleElOrElAndEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -4048,10 +3461,8 @@ impl DataCeCostCategoryRuleElRuleElOrElAndEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElAndEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4060,9 +3471,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElAndEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElAndEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElAndEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElAndEl {
         DataCeCostCategoryRuleElRuleElOrElAndEl {
@@ -4072,12 +3481,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElAndEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElAndElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElAndElRef {
         DataCeCostCategoryRuleElRuleElOrElAndElRef {
@@ -4086,12 +3493,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElAndElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElAndElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -4101,18 +3506,15 @@ impl DataCeCostCategoryRuleElRuleElOrElAndElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElAndElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElAndElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4122,30 +3524,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4154,9 +3551,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
@@ -4166,12 +3561,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -4183,17 +3576,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4201,13 +3591,11 @@ impl DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4217,30 +3605,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4249,9 +3632,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElDimensionEl {
         DataCeCostCategoryRuleElRuleElOrElDimensionEl {
@@ -4261,12 +3642,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
         DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
@@ -4275,17 +3654,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4293,13 +3669,11 @@ impl DataCeCostCategoryRuleElRuleElOrElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4309,30 +3683,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4341,9 +3710,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
@@ -4353,12 +3720,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElNotElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -4370,17 +3735,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4388,13 +3750,11 @@ impl DataCeCostCategoryRuleElRuleElOrElNotElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4404,30 +3764,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4436,9 +3791,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
         DataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
@@ -4448,12 +3801,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElNotElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -4465,17 +3816,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4483,13 +3831,11 @@ impl DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4499,30 +3845,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElNotElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4531,9 +3872,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElNotElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
         DataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
@@ -4543,12 +3882,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElNotElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
         DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
@@ -4557,17 +3894,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4575,13 +3909,11 @@ impl DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4591,7 +3923,6 @@ pub struct DataCeCostCategoryRuleElRuleElOrElNotEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElOrElNotElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -4601,7 +3932,6 @@ impl DataCeCostCategoryRuleElRuleElOrElNotEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -4610,7 +3940,6 @@ impl DataCeCostCategoryRuleElRuleElOrElNotEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -4620,10 +3949,8 @@ impl DataCeCostCategoryRuleElRuleElOrElNotEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElNotEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4632,9 +3959,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElNotEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElNotEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElNotEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElNotEl {
         DataCeCostCategoryRuleElRuleElOrElNotEl {
@@ -4644,12 +3969,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElNotEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElNotElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElNotElRef {
         DataCeCostCategoryRuleElRuleElOrElNotElRef {
@@ -4658,12 +3981,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElNotElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElNotElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -4673,18 +3994,15 @@ impl DataCeCostCategoryRuleElRuleElOrElNotElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElNotElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElNotElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4694,30 +4012,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4726,9 +4039,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
         DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
@@ -4738,12 +4049,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElOrElCostCategoryEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryElRef {
     fn new(
         shared: StackShared,
@@ -4755,17 +4064,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4773,13 +4079,11 @@ impl DataCeCostCategoryRuleElRuleElOrElOrElCostCategoryElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4789,30 +4093,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4821,9 +4120,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
         DataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
@@ -4833,12 +4130,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElOrElDimensionEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef {
     fn new(
         shared: StackShared,
@@ -4850,17 +4145,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4868,13 +4160,11 @@ impl DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4884,30 +4174,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElOrElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4916,9 +4201,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElOrElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
         DataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
@@ -4928,12 +4211,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElOrElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
         DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
@@ -4942,17 +4223,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -4960,13 +4238,11 @@ impl DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4976,7 +4252,6 @@ pub struct DataCeCostCategoryRuleElRuleElOrElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElOrElOrElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrEl {
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
@@ -4986,7 +4261,6 @@ impl DataCeCostCategoryRuleElRuleElOrElOrEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -4995,7 +4269,6 @@ impl DataCeCostCategoryRuleElRuleElOrElOrEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -5005,10 +4278,8 @@ impl DataCeCostCategoryRuleElRuleElOrElOrEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElOrEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5017,9 +4288,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElOrEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElOrEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElOrEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElOrEl {
         DataCeCostCategoryRuleElRuleElOrElOrEl {
@@ -5029,12 +4298,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElOrEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElOrElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElOrElRef {
         DataCeCostCategoryRuleElRuleElOrElOrElRef {
@@ -5043,12 +4310,10 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElOrElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElOrElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(
         &self,
@@ -5058,18 +4323,15 @@ impl DataCeCostCategoryRuleElRuleElOrElOrElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElOrElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElOrElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5079,30 +4341,25 @@ pub struct DataCeCostCategoryRuleElRuleElOrElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5111,9 +4368,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrElTagsEl {
         DataCeCostCategoryRuleElRuleElOrElTagsEl {
@@ -5123,12 +4378,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElTagsElRef {
         DataCeCostCategoryRuleElRuleElOrElTagsElRef {
@@ -5137,17 +4390,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -5155,13 +4405,11 @@ impl DataCeCostCategoryRuleElRuleElOrElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5177,7 +4425,6 @@ pub struct DataCeCostCategoryRuleElRuleElOrEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElOrElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElOrEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(
@@ -5187,7 +4434,6 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self.and = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
         mut self,
@@ -5196,7 +4442,6 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -5205,7 +4450,6 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not`.\n"]
     pub fn set_not(
         mut self,
@@ -5214,7 +4458,6 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self.not = Some(v.into());
         self
     }
-
     #[doc = "Set the field `or`.\n"]
     pub fn set_or(
         mut self,
@@ -5223,7 +4466,6 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self.or = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -5233,10 +4475,8 @@ impl DataCeCostCategoryRuleElRuleElOrEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElOrEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElOrEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5245,9 +4485,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElOrEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElOrEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElOrEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElOrEl {
         DataCeCostCategoryRuleElRuleElOrEl {
@@ -5260,12 +4498,10 @@ impl BuildDataCeCostCategoryRuleElRuleElOrEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElOrElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElOrElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElOrElRef {
         DataCeCostCategoryRuleElRuleElOrElRef {
@@ -5274,17 +4510,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElOrElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElOrElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
     pub fn and(&self) -> SetRef<DataCeCostCategoryRuleElRuleElOrElAndElRef> {
         SetRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElCostCategoryElRef> {
         ListRef::new(
@@ -5292,28 +4525,23 @@ impl DataCeCostCategoryRuleElRuleElOrElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not` after provisioning.\n"]
     pub fn not(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElNotElRef> {
         ListRef::new(self.shared().clone(), format!("{}.not", self.base))
     }
-
     #[doc = "Get a reference to the value of field `or` after provisioning.\n"]
     pub fn or(&self) -> SetRef<DataCeCostCategoryRuleElRuleElOrElOrElRef> {
         SetRef::new(self.shared().clone(), format!("{}.or", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElOrElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5323,30 +4551,25 @@ pub struct DataCeCostCategoryRuleElRuleElTagsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategoryRuleElRuleElTagsEl {
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `match_options`.\n"]
     pub fn set_match_options(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.match_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleElTagsEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleElTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5355,9 +4578,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleElTagsEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleElTagsEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleElTagsEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleElTagsEl {
         DataCeCostCategoryRuleElRuleElTagsEl {
@@ -5367,12 +4588,10 @@ impl BuildDataCeCostCategoryRuleElRuleElTagsEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElTagsElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElTagsElRef {
         DataCeCostCategoryRuleElRuleElTagsElRef {
@@ -5381,17 +4600,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElTagsElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `match_options` after provisioning.\n"]
     pub fn match_options(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -5399,13 +4615,11 @@ impl DataCeCostCategoryRuleElRuleElTagsElRef {
             format!("{}.match_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleElRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5421,14 +4635,12 @@ pub struct DataCeCostCategoryRuleElRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<ListField<DataCeCostCategoryRuleElRuleElTagsEl>>,
 }
-
 impl DataCeCostCategoryRuleElRuleEl {
     #[doc = "Set the field `and`.\n"]
     pub fn set_and(mut self, v: impl Into<SetField<DataCeCostCategoryRuleElRuleElAndEl>>) -> Self {
         self.and = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cost_category`.\n"]
     pub fn set_cost_category(
         mut self,
@@ -5437,7 +4649,6 @@ impl DataCeCostCategoryRuleElRuleEl {
         self.cost_category = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dimension`.\n"]
     pub fn set_dimension(
         mut self,
@@ -5446,19 +4657,16 @@ impl DataCeCostCategoryRuleElRuleEl {
         self.dimension = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not`.\n"]
     pub fn set_not(mut self, v: impl Into<ListField<DataCeCostCategoryRuleElRuleElNotEl>>) -> Self {
         self.not = Some(v.into());
         self
     }
-
     #[doc = "Set the field `or`.\n"]
     pub fn set_or(mut self, v: impl Into<SetField<DataCeCostCategoryRuleElRuleElOrEl>>) -> Self {
         self.or = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(
         mut self,
@@ -5468,10 +4676,8 @@ impl DataCeCostCategoryRuleElRuleEl {
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleElRuleEl {
     type O = BlockAssignable<DataCeCostCategoryRuleElRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5480,9 +4686,7 @@ impl ToListMappable for DataCeCostCategoryRuleElRuleEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleElRuleEl {}
-
 impl BuildDataCeCostCategoryRuleElRuleEl {
     pub fn build(self) -> DataCeCostCategoryRuleElRuleEl {
         DataCeCostCategoryRuleElRuleEl {
@@ -5495,12 +4699,10 @@ impl BuildDataCeCostCategoryRuleElRuleEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRuleElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRuleElRef {
         DataCeCostCategoryRuleElRuleElRef {
@@ -5509,17 +4711,14 @@ impl Ref for DataCeCostCategoryRuleElRuleElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `and` after provisioning.\n"]
     pub fn and(&self) -> SetRef<DataCeCostCategoryRuleElRuleElAndElRef> {
         SetRef::new(self.shared().clone(), format!("{}.and", self.base))
     }
-
     #[doc = "Get a reference to the value of field `cost_category` after provisioning.\n"]
     pub fn cost_category(&self) -> ListRef<DataCeCostCategoryRuleElRuleElCostCategoryElRef> {
         ListRef::new(
@@ -5527,28 +4726,23 @@ impl DataCeCostCategoryRuleElRuleElRef {
             format!("{}.cost_category", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dimension` after provisioning.\n"]
     pub fn dimension(&self) -> ListRef<DataCeCostCategoryRuleElRuleElDimensionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.dimension", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not` after provisioning.\n"]
     pub fn not(&self) -> ListRef<DataCeCostCategoryRuleElRuleElNotElRef> {
         ListRef::new(self.shared().clone(), format!("{}.not", self.base))
     }
-
     #[doc = "Get a reference to the value of field `or` after provisioning.\n"]
     pub fn or(&self) -> SetRef<DataCeCostCategoryRuleElRuleElOrElRef> {
         SetRef::new(self.shared().clone(), format!("{}.or", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> ListRef<DataCeCostCategoryRuleElRuleElTagsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategoryRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5560,7 +4754,6 @@ pub struct DataCeCostCategoryRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl DataCeCostCategoryRuleEl {
     #[doc = "Set the field `inherited_value`.\n"]
     pub fn set_inherited_value(
@@ -5570,29 +4763,24 @@ impl DataCeCostCategoryRuleEl {
         self.inherited_value = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule`.\n"]
     pub fn set_rule(mut self, v: impl Into<ListField<DataCeCostCategoryRuleElRuleEl>>) -> Self {
         self.rule = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategoryRuleEl {
     type O = BlockAssignable<DataCeCostCategoryRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5601,9 +4789,7 @@ impl ToListMappable for DataCeCostCategoryRuleEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategoryRuleEl {}
-
 impl BuildDataCeCostCategoryRuleEl {
     pub fn build(self) -> DataCeCostCategoryRuleEl {
         DataCeCostCategoryRuleEl {
@@ -5614,12 +4800,10 @@ impl BuildDataCeCostCategoryRuleEl {
         }
     }
 }
-
 pub struct DataCeCostCategoryRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategoryRuleElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategoryRuleElRef {
         DataCeCostCategoryRuleElRef {
@@ -5628,12 +4812,10 @@ impl Ref for DataCeCostCategoryRuleElRef {
         }
     }
 }
-
 impl DataCeCostCategoryRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `inherited_value` after provisioning.\n"]
     pub fn inherited_value(&self) -> ListRef<DataCeCostCategoryRuleElInheritedValueElRef> {
         ListRef::new(
@@ -5641,23 +4823,19 @@ impl DataCeCostCategoryRuleElRef {
             format!("{}.inherited_value", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule` after provisioning.\n"]
     pub fn rule(&self) -> ListRef<DataCeCostCategoryRuleElRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.rule", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategorySplitChargeRuleElParameterEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
@@ -5665,24 +4843,20 @@ pub struct DataCeCostCategorySplitChargeRuleElParameterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     values: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategorySplitChargeRuleElParameterEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `values`.\n"]
     pub fn set_values(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.values = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategorySplitChargeRuleElParameterEl {
     type O = BlockAssignable<DataCeCostCategorySplitChargeRuleElParameterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5691,9 +4865,7 @@ impl ToListMappable for DataCeCostCategorySplitChargeRuleElParameterEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategorySplitChargeRuleElParameterEl {}
-
 impl BuildDataCeCostCategorySplitChargeRuleElParameterEl {
     pub fn build(self) -> DataCeCostCategorySplitChargeRuleElParameterEl {
         DataCeCostCategorySplitChargeRuleElParameterEl {
@@ -5702,12 +4874,10 @@ impl BuildDataCeCostCategorySplitChargeRuleElParameterEl {
         }
     }
 }
-
 pub struct DataCeCostCategorySplitChargeRuleElParameterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategorySplitChargeRuleElParameterElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategorySplitChargeRuleElParameterElRef {
         DataCeCostCategorySplitChargeRuleElParameterElRef {
@@ -5716,23 +4886,19 @@ impl Ref for DataCeCostCategorySplitChargeRuleElParameterElRef {
         }
     }
 }
-
 impl DataCeCostCategorySplitChargeRuleElParameterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataCeCostCategorySplitChargeRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5744,14 +4910,12 @@ pub struct DataCeCostCategorySplitChargeRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     targets: Option<SetField<PrimField<String>>>,
 }
-
 impl DataCeCostCategorySplitChargeRuleEl {
     #[doc = "Set the field `method`.\n"]
     pub fn set_method(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.method = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(
         mut self,
@@ -5760,23 +4924,19 @@ impl DataCeCostCategorySplitChargeRuleEl {
         self.parameter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source`.\n"]
     pub fn set_source(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.source = Some(v.into());
         self
     }
-
     #[doc = "Set the field `targets`.\n"]
     pub fn set_targets(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.targets = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataCeCostCategorySplitChargeRuleEl {
     type O = BlockAssignable<DataCeCostCategorySplitChargeRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5785,9 +4945,7 @@ impl ToListMappable for DataCeCostCategorySplitChargeRuleEl {
         })
     }
 }
-
 pub struct BuildDataCeCostCategorySplitChargeRuleEl {}
-
 impl BuildDataCeCostCategorySplitChargeRuleEl {
     pub fn build(self) -> DataCeCostCategorySplitChargeRuleEl {
         DataCeCostCategorySplitChargeRuleEl {
@@ -5798,12 +4956,10 @@ impl BuildDataCeCostCategorySplitChargeRuleEl {
         }
     }
 }
-
 pub struct DataCeCostCategorySplitChargeRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataCeCostCategorySplitChargeRuleElRef {
     fn new(shared: StackShared, base: String) -> DataCeCostCategorySplitChargeRuleElRef {
         DataCeCostCategorySplitChargeRuleElRef {
@@ -5812,27 +4968,22 @@ impl Ref for DataCeCostCategorySplitChargeRuleElRef {
         }
     }
 }
-
 impl DataCeCostCategorySplitChargeRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `method` after provisioning.\n"]
     pub fn method(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.method", self.base))
     }
-
     #[doc = "Get a reference to the value of field `parameter` after provisioning.\n"]
     pub fn parameter(&self) -> SetRef<DataCeCostCategorySplitChargeRuleElParameterElRef> {
         SetRef::new(self.shared().clone(), format!("{}.parameter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `source` after provisioning.\n"]
     pub fn source(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.source", self.base))
     }
-
     #[doc = "Get a reference to the value of field `targets` after provisioning.\n"]
     pub fn targets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.targets", self.base))

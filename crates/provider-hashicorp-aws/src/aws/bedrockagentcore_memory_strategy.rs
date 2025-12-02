@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct BedrockagentcoreMemoryStrategyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct BedrockagentcoreMemoryStrategyData {
     timeouts: Option<BedrockagentcoreMemoryStrategyTimeoutsEl>,
     dynamic: BedrockagentcoreMemoryStrategyDynamic,
 }
-
 struct BedrockagentcoreMemoryStrategy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<BedrockagentcoreMemoryStrategyData>,
 }
-
 #[derive(Clone)]
 pub struct BedrockagentcoreMemoryStrategy(Rc<BedrockagentcoreMemoryStrategy_>);
-
 impl BedrockagentcoreMemoryStrategy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl BedrockagentcoreMemoryStrategy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl BedrockagentcoreMemoryStrategy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,25 +98,21 @@ impl BedrockagentcoreMemoryStrategy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `memory_execution_role_arn`.\n"]
     pub fn set_memory_execution_role_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().memory_execution_role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `configuration`.\n"]
     pub fn set_configuration(
         self,
@@ -144,13 +128,11 @@ impl BedrockagentcoreMemoryStrategy {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<BedrockagentcoreMemoryStrategyTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -158,7 +140,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_execution_role_arn` after provisioning.\n"]
     pub fn memory_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -166,7 +147,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.memory_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_id` after provisioning.\n"]
     pub fn memory_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -174,7 +154,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.memory_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_strategy_id` after provisioning.\n"]
     pub fn memory_strategy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +161,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.memory_strategy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +168,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `namespaces` after provisioning.\n"]
     pub fn namespaces(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -198,7 +175,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.namespaces", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -206,7 +182,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +189,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<BedrockagentcoreMemoryStrategyConfigurationElRef> {
         ListRef::new(
@@ -222,7 +196,6 @@ impl BedrockagentcoreMemoryStrategy {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreMemoryStrategyTimeoutsElRef {
         BedrockagentcoreMemoryStrategyTimeoutsElRef::new(
@@ -231,7 +204,6 @@ impl BedrockagentcoreMemoryStrategy {
         )
     }
 }
-
 impl Referable for BedrockagentcoreMemoryStrategy {
     fn extract_ref(&self) -> String {
         format!(
@@ -241,32 +213,25 @@ impl Referable for BedrockagentcoreMemoryStrategy {
         )
     }
 }
-
 impl Resource for BedrockagentcoreMemoryStrategy {}
-
 impl ToListMappable for BedrockagentcoreMemoryStrategy {
     type O = ListRef<BedrockagentcoreMemoryStrategyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for BedrockagentcoreMemoryStrategy_ {
     fn extract_resource_type(&self) -> String {
         "aws_bedrockagentcore_memory_strategy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildBedrockagentcoreMemoryStrategy {
     pub tf_id: String,
     #[doc = ""]
@@ -278,7 +243,6 @@ pub struct BuildBedrockagentcoreMemoryStrategy {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreMemoryStrategy {
     pub fn build(self, stack: &mut Stack) -> BedrockagentcoreMemoryStrategy {
         let out = BedrockagentcoreMemoryStrategy(Rc::new(BedrockagentcoreMemoryStrategy_ {
@@ -305,27 +269,22 @@ impl BuildBedrockagentcoreMemoryStrategy {
         out
     }
 }
-
 pub struct BedrockagentcoreMemoryStrategyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreMemoryStrategyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl BedrockagentcoreMemoryStrategyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +292,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_execution_role_arn` after provisioning.\n"]
     pub fn memory_execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,7 +299,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.memory_execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_id` after provisioning.\n"]
     pub fn memory_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -349,7 +306,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.memory_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `memory_strategy_id` after provisioning.\n"]
     pub fn memory_strategy_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -357,7 +313,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.memory_strategy_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -365,7 +320,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `namespaces` after provisioning.\n"]
     pub fn namespaces(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -373,7 +327,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.namespaces", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -381,7 +334,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -389,7 +341,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<BedrockagentcoreMemoryStrategyConfigurationElRef> {
         ListRef::new(
@@ -397,7 +348,6 @@ impl BedrockagentcoreMemoryStrategyRef {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> BedrockagentcoreMemoryStrategyTimeoutsElRef {
         BedrockagentcoreMemoryStrategyTimeoutsElRef::new(
@@ -406,18 +356,14 @@ impl BedrockagentcoreMemoryStrategyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
     append_to_prompt: PrimField<String>,
     model_id: PrimField<String>,
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {}
-
 impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
     type O = BlockAssignable<BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -426,14 +372,12 @@ impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationElConsolidati
         })
     }
 }
-
 pub struct BuildBedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
     #[doc = ""]
     pub append_to_prompt: PrimField<String>,
     #[doc = ""]
     pub model_id: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
     pub fn build(self) -> BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
         BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
@@ -442,12 +386,10 @@ impl BuildBedrockagentcoreMemoryStrategyConfigurationElConsolidationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreMemoryStrategyConfigurationElConsolidationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreMemoryStrategyConfigurationElConsolidationElRef {
     fn new(
         shared: StackShared,
@@ -459,12 +401,10 @@ impl Ref for BedrockagentcoreMemoryStrategyConfigurationElConsolidationElRef {
         }
     }
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationElConsolidationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `append_to_prompt` after provisioning.\n"]
     pub fn append_to_prompt(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,24 +412,19 @@ impl BedrockagentcoreMemoryStrategyConfigurationElConsolidationElRef {
             format!("{}.append_to_prompt", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
     pub fn model_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.model_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
     append_to_prompt: PrimField<String>,
     model_id: PrimField<String>,
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationElExtractionEl {}
-
 impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
     type O = BlockAssignable<BedrockagentcoreMemoryStrategyConfigurationElExtractionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -498,14 +433,12 @@ impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationElExtractionE
         })
     }
 }
-
 pub struct BuildBedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
     #[doc = ""]
     pub append_to_prompt: PrimField<String>,
     #[doc = ""]
     pub model_id: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
     pub fn build(self) -> BedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
         BedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
@@ -514,12 +447,10 @@ impl BuildBedrockagentcoreMemoryStrategyConfigurationElExtractionEl {
         }
     }
 }
-
 pub struct BedrockagentcoreMemoryStrategyConfigurationElExtractionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreMemoryStrategyConfigurationElExtractionElRef {
     fn new(
         shared: StackShared,
@@ -531,12 +462,10 @@ impl Ref for BedrockagentcoreMemoryStrategyConfigurationElExtractionElRef {
         }
     }
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationElExtractionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `append_to_prompt` after provisioning.\n"]
     pub fn append_to_prompt(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -544,20 +473,17 @@ impl BedrockagentcoreMemoryStrategyConfigurationElExtractionElRef {
             format!("{}.append_to_prompt", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `model_id` after provisioning.\n"]
     pub fn model_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.model_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreMemoryStrategyConfigurationElDynamic {
     consolidation:
         Option<DynamicBlock<BedrockagentcoreMemoryStrategyConfigurationElConsolidationEl>>,
     extraction: Option<DynamicBlock<BedrockagentcoreMemoryStrategyConfigurationElExtractionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreMemoryStrategyConfigurationEl {
     #[serde(rename = "type")]
@@ -568,7 +494,6 @@ pub struct BedrockagentcoreMemoryStrategyConfigurationEl {
     extraction: Option<Vec<BedrockagentcoreMemoryStrategyConfigurationElExtractionEl>>,
     dynamic: BedrockagentcoreMemoryStrategyConfigurationElDynamic,
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationEl {
     #[doc = "Set the field `consolidation`.\n"]
     pub fn set_consolidation(
@@ -585,7 +510,6 @@ impl BedrockagentcoreMemoryStrategyConfigurationEl {
         }
         self
     }
-
     #[doc = "Set the field `extraction`.\n"]
     pub fn set_extraction(
         mut self,
@@ -602,10 +526,8 @@ impl BedrockagentcoreMemoryStrategyConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationEl {
     type O = BlockAssignable<BedrockagentcoreMemoryStrategyConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -614,12 +536,10 @@ impl ToListMappable for BedrockagentcoreMemoryStrategyConfigurationEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreMemoryStrategyConfigurationEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildBedrockagentcoreMemoryStrategyConfigurationEl {
     pub fn build(self) -> BedrockagentcoreMemoryStrategyConfigurationEl {
         BedrockagentcoreMemoryStrategyConfigurationEl {
@@ -630,12 +550,10 @@ impl BuildBedrockagentcoreMemoryStrategyConfigurationEl {
         }
     }
 }
-
 pub struct BedrockagentcoreMemoryStrategyConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreMemoryStrategyConfigurationElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreMemoryStrategyConfigurationElRef {
         BedrockagentcoreMemoryStrategyConfigurationElRef {
@@ -644,17 +562,14 @@ impl Ref for BedrockagentcoreMemoryStrategyConfigurationElRef {
         }
     }
 }
-
 impl BedrockagentcoreMemoryStrategyConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `consolidation` after provisioning.\n"]
     pub fn consolidation(
         &self,
@@ -664,7 +579,6 @@ impl BedrockagentcoreMemoryStrategyConfigurationElRef {
             format!("{}.consolidation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `extraction` after provisioning.\n"]
     pub fn extraction(
         &self,
@@ -672,7 +586,6 @@ impl BedrockagentcoreMemoryStrategyConfigurationElRef {
         ListRef::new(self.shared().clone(), format!("{}.extraction", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct BedrockagentcoreMemoryStrategyTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -682,30 +595,25 @@ pub struct BedrockagentcoreMemoryStrategyTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl BedrockagentcoreMemoryStrategyTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for BedrockagentcoreMemoryStrategyTimeoutsEl {
     type O = BlockAssignable<BedrockagentcoreMemoryStrategyTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -714,9 +622,7 @@ impl ToListMappable for BedrockagentcoreMemoryStrategyTimeoutsEl {
         })
     }
 }
-
 pub struct BuildBedrockagentcoreMemoryStrategyTimeoutsEl {}
-
 impl BuildBedrockagentcoreMemoryStrategyTimeoutsEl {
     pub fn build(self) -> BedrockagentcoreMemoryStrategyTimeoutsEl {
         BedrockagentcoreMemoryStrategyTimeoutsEl {
@@ -726,12 +632,10 @@ impl BuildBedrockagentcoreMemoryStrategyTimeoutsEl {
         }
     }
 }
-
 pub struct BedrockagentcoreMemoryStrategyTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for BedrockagentcoreMemoryStrategyTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> BedrockagentcoreMemoryStrategyTimeoutsElRef {
         BedrockagentcoreMemoryStrategyTimeoutsElRef {
@@ -740,28 +644,23 @@ impl Ref for BedrockagentcoreMemoryStrategyTimeoutsElRef {
         }
     }
 }
-
 impl BedrockagentcoreMemoryStrategyTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct BedrockagentcoreMemoryStrategyDynamic {
     configuration: Option<DynamicBlock<BedrockagentcoreMemoryStrategyConfigurationEl>>,

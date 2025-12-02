@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IotProvisioningTemplateData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct IotProvisioningTemplateData {
     pre_provisioning_hook: Option<Vec<IotProvisioningTemplatePreProvisioningHookEl>>,
     dynamic: IotProvisioningTemplateDynamic,
 }
-
 struct IotProvisioningTemplate_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IotProvisioningTemplateData>,
 }
-
 #[derive(Clone)]
 pub struct IotProvisioningTemplate(Rc<IotProvisioningTemplate_>);
-
 impl IotProvisioningTemplate {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl IotProvisioningTemplate {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl IotProvisioningTemplate {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,49 +102,41 @@ impl IotProvisioningTemplate {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().type_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `pre_provisioning_hook`.\n"]
     pub fn set_pre_provisioning_hook(
         self,
@@ -172,12 +152,10 @@ impl IotProvisioningTemplate {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_version_id` after provisioning.\n"]
     pub fn default_version_id(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -185,7 +163,6 @@ impl IotProvisioningTemplate {
             format!("{}.default_version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +170,6 @@ impl IotProvisioningTemplate {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -201,12 +177,10 @@ impl IotProvisioningTemplate {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -214,7 +188,6 @@ impl IotProvisioningTemplate {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_role_arn` after provisioning.\n"]
     pub fn provisioning_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +195,6 @@ impl IotProvisioningTemplate {
             format!("{}.provisioning_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +202,6 @@ impl IotProvisioningTemplate {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -238,7 +209,6 @@ impl IotProvisioningTemplate {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -246,7 +216,6 @@ impl IotProvisioningTemplate {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `template_body` after provisioning.\n"]
     pub fn template_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -254,7 +223,6 @@ impl IotProvisioningTemplate {
             format!("{}.template_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -262,7 +230,6 @@ impl IotProvisioningTemplate {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pre_provisioning_hook` after provisioning.\n"]
     pub fn pre_provisioning_hook(
         &self,
@@ -273,7 +240,6 @@ impl IotProvisioningTemplate {
         )
     }
 }
-
 impl Referable for IotProvisioningTemplate {
     fn extract_ref(&self) -> String {
         format!(
@@ -283,32 +249,25 @@ impl Referable for IotProvisioningTemplate {
         )
     }
 }
-
 impl Resource for IotProvisioningTemplate {}
-
 impl ToListMappable for IotProvisioningTemplate {
     type O = ListRef<IotProvisioningTemplateRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IotProvisioningTemplate_ {
     fn extract_resource_type(&self) -> String {
         "aws_iot_provisioning_template".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIotProvisioningTemplate {
     pub tf_id: String,
     #[doc = ""]
@@ -318,7 +277,6 @@ pub struct BuildIotProvisioningTemplate {
     #[doc = ""]
     pub template_body: PrimField<String>,
 }
-
 impl BuildIotProvisioningTemplate {
     pub fn build(self, stack: &mut Stack) -> IotProvisioningTemplate {
         let out = IotProvisioningTemplate(Rc::new(IotProvisioningTemplate_ {
@@ -347,32 +305,26 @@ impl BuildIotProvisioningTemplate {
         out
     }
 }
-
 pub struct IotProvisioningTemplateRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotProvisioningTemplateRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IotProvisioningTemplateRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_version_id` after provisioning.\n"]
     pub fn default_version_id(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -380,7 +332,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.default_version_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -388,7 +339,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -396,12 +346,10 @@ impl IotProvisioningTemplateRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -409,7 +357,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `provisioning_role_arn` after provisioning.\n"]
     pub fn provisioning_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -417,7 +364,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.provisioning_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -425,7 +371,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -433,7 +378,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -441,7 +385,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `template_body` after provisioning.\n"]
     pub fn template_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -449,7 +392,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.template_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -457,7 +399,6 @@ impl IotProvisioningTemplateRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `pre_provisioning_hook` after provisioning.\n"]
     pub fn pre_provisioning_hook(
         &self,
@@ -468,14 +409,12 @@ impl IotProvisioningTemplateRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotProvisioningTemplatePreProvisioningHookEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     payload_version: Option<PrimField<String>>,
     target_arn: PrimField<String>,
 }
-
 impl IotProvisioningTemplatePreProvisioningHookEl {
     #[doc = "Set the field `payload_version`.\n"]
     pub fn set_payload_version(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -483,10 +422,8 @@ impl IotProvisioningTemplatePreProvisioningHookEl {
         self
     }
 }
-
 impl ToListMappable for IotProvisioningTemplatePreProvisioningHookEl {
     type O = BlockAssignable<IotProvisioningTemplatePreProvisioningHookEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -495,12 +432,10 @@ impl ToListMappable for IotProvisioningTemplatePreProvisioningHookEl {
         })
     }
 }
-
 pub struct BuildIotProvisioningTemplatePreProvisioningHookEl {
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildIotProvisioningTemplatePreProvisioningHookEl {
     pub fn build(self) -> IotProvisioningTemplatePreProvisioningHookEl {
         IotProvisioningTemplatePreProvisioningHookEl {
@@ -509,12 +444,10 @@ impl BuildIotProvisioningTemplatePreProvisioningHookEl {
         }
     }
 }
-
 pub struct IotProvisioningTemplatePreProvisioningHookElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotProvisioningTemplatePreProvisioningHookElRef {
     fn new(shared: StackShared, base: String) -> IotProvisioningTemplatePreProvisioningHookElRef {
         IotProvisioningTemplatePreProvisioningHookElRef {
@@ -523,12 +456,10 @@ impl Ref for IotProvisioningTemplatePreProvisioningHookElRef {
         }
     }
 }
-
 impl IotProvisioningTemplatePreProvisioningHookElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `payload_version` after provisioning.\n"]
     pub fn payload_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,13 +467,11 @@ impl IotProvisioningTemplatePreProvisioningHookElRef {
             format!("{}.payload_version", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target_arn", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotProvisioningTemplateDynamic {
     pre_provisioning_hook: Option<DynamicBlock<IotProvisioningTemplatePreProvisioningHookEl>>,

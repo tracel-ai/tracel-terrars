@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DbParameterGroupData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct DbParameterGroupData {
     parameter: Option<Vec<DbParameterGroupParameterEl>>,
     dynamic: DbParameterGroupDynamic,
 }
-
 struct DbParameterGroup_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DbParameterGroupData>,
 }
-
 #[derive(Clone)]
 pub struct DbParameterGroup(Rc<DbParameterGroup_>);
-
 impl DbParameterGroup {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl DbParameterGroup {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl DbParameterGroup {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,55 +102,46 @@ impl DbParameterGroup {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `skip_destroy`.\n"]
     pub fn set_skip_destroy(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().skip_destroy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter`.\n"]
     pub fn set_parameter(self, v: impl Into<BlockAssignable<DbParameterGroupParameterEl>>) -> Self {
         match v.into() {
@@ -175,12 +154,10 @@ impl DbParameterGroup {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +165,6 @@ impl DbParameterGroup {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `family` after provisioning.\n"]
     pub fn family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,12 +172,10 @@ impl DbParameterGroup {
             format!("{}.family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,7 +183,6 @@ impl DbParameterGroup {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,7 +190,6 @@ impl DbParameterGroup {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -225,7 +197,6 @@ impl DbParameterGroup {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -233,7 +204,6 @@ impl DbParameterGroup {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -241,7 +211,6 @@ impl DbParameterGroup {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -250,7 +219,6 @@ impl DbParameterGroup {
         )
     }
 }
-
 impl Referable for DbParameterGroup {
     fn extract_ref(&self) -> String {
         format!(
@@ -260,38 +228,30 @@ impl Referable for DbParameterGroup {
         )
     }
 }
-
 impl Resource for DbParameterGroup {}
-
 impl ToListMappable for DbParameterGroup {
     type O = ListRef<DbParameterGroupRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DbParameterGroup_ {
     fn extract_resource_type(&self) -> String {
         "aws_db_parameter_group".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDbParameterGroup {
     pub tf_id: String,
     #[doc = ""]
     pub family: PrimField<String>,
 }
-
 impl BuildDbParameterGroup {
     pub fn build(self, stack: &mut Stack) -> DbParameterGroup {
         let out = DbParameterGroup(Rc::new(DbParameterGroup_ {
@@ -319,32 +279,26 @@ impl BuildDbParameterGroup {
         out
     }
 }
-
 pub struct DbParameterGroupRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DbParameterGroupRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DbParameterGroupRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -352,7 +306,6 @@ impl DbParameterGroupRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `family` after provisioning.\n"]
     pub fn family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -360,12 +313,10 @@ impl DbParameterGroupRef {
             format!("{}.family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -373,7 +324,6 @@ impl DbParameterGroupRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -381,7 +331,6 @@ impl DbParameterGroupRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -389,7 +338,6 @@ impl DbParameterGroupRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `skip_destroy` after provisioning.\n"]
     pub fn skip_destroy(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -397,7 +345,6 @@ impl DbParameterGroupRef {
             format!("{}.skip_destroy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -405,7 +352,6 @@ impl DbParameterGroupRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -414,7 +360,6 @@ impl DbParameterGroupRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DbParameterGroupParameterEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -422,7 +367,6 @@ pub struct DbParameterGroupParameterEl {
     name: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl DbParameterGroupParameterEl {
     #[doc = "Set the field `apply_method`.\n"]
     pub fn set_apply_method(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -430,10 +374,8 @@ impl DbParameterGroupParameterEl {
         self
     }
 }
-
 impl ToListMappable for DbParameterGroupParameterEl {
     type O = BlockAssignable<DbParameterGroupParameterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -442,14 +384,12 @@ impl ToListMappable for DbParameterGroupParameterEl {
         })
     }
 }
-
 pub struct BuildDbParameterGroupParameterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildDbParameterGroupParameterEl {
     pub fn build(self) -> DbParameterGroupParameterEl {
         DbParameterGroupParameterEl {
@@ -459,12 +399,10 @@ impl BuildDbParameterGroupParameterEl {
         }
     }
 }
-
 pub struct DbParameterGroupParameterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DbParameterGroupParameterElRef {
     fn new(shared: StackShared, base: String) -> DbParameterGroupParameterElRef {
         DbParameterGroupParameterElRef {
@@ -473,28 +411,23 @@ impl Ref for DbParameterGroupParameterElRef {
         }
     }
 }
-
 impl DbParameterGroupParameterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `apply_method` after provisioning.\n"]
     pub fn apply_method(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.apply_method", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DbParameterGroupDynamic {
     parameter: Option<DynamicBlock<DbParameterGroupParameterEl>>,

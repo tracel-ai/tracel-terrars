@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VpcRouteServerPropagationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct VpcRouteServerPropagationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<VpcRouteServerPropagationTimeoutsEl>,
 }
-
 struct VpcRouteServerPropagation_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VpcRouteServerPropagationData>,
 }
-
 #[derive(Clone)]
 pub struct VpcRouteServerPropagation(Rc<VpcRouteServerPropagation_>);
-
 impl VpcRouteServerPropagation {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl VpcRouteServerPropagation {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl VpcRouteServerPropagation {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,19 +88,16 @@ impl VpcRouteServerPropagation {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<VpcRouteServerPropagationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +105,6 @@ impl VpcRouteServerPropagation {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_server_id` after provisioning.\n"]
     pub fn route_server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +112,6 @@ impl VpcRouteServerPropagation {
             format!("{}.route_server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_id` after provisioning.\n"]
     pub fn route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +119,6 @@ impl VpcRouteServerPropagation {
             format!("{}.route_table_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcRouteServerPropagationTimeoutsElRef {
         VpcRouteServerPropagationTimeoutsElRef::new(
@@ -145,7 +127,6 @@ impl VpcRouteServerPropagation {
         )
     }
 }
-
 impl Referable for VpcRouteServerPropagation {
     fn extract_ref(&self) -> String {
         format!(
@@ -155,32 +136,25 @@ impl Referable for VpcRouteServerPropagation {
         )
     }
 }
-
 impl Resource for VpcRouteServerPropagation {}
-
 impl ToListMappable for VpcRouteServerPropagation {
     type O = ListRef<VpcRouteServerPropagationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VpcRouteServerPropagation_ {
     fn extract_resource_type(&self) -> String {
         "aws_vpc_route_server_propagation".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVpcRouteServerPropagation {
     pub tf_id: String,
     #[doc = ""]
@@ -188,7 +162,6 @@ pub struct BuildVpcRouteServerPropagation {
     #[doc = ""]
     pub route_table_id: PrimField<String>,
 }
-
 impl BuildVpcRouteServerPropagation {
     pub fn build(self, stack: &mut Stack) -> VpcRouteServerPropagation {
         let out = VpcRouteServerPropagation(Rc::new(VpcRouteServerPropagation_ {
@@ -209,27 +182,22 @@ impl BuildVpcRouteServerPropagation {
         out
     }
 }
-
 pub struct VpcRouteServerPropagationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcRouteServerPropagationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VpcRouteServerPropagationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +205,6 @@ impl VpcRouteServerPropagationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_server_id` after provisioning.\n"]
     pub fn route_server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +212,6 @@ impl VpcRouteServerPropagationRef {
             format!("{}.route_server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_id` after provisioning.\n"]
     pub fn route_table_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +219,6 @@ impl VpcRouteServerPropagationRef {
             format!("{}.route_table_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> VpcRouteServerPropagationTimeoutsElRef {
         VpcRouteServerPropagationTimeoutsElRef::new(
@@ -262,7 +227,6 @@ impl VpcRouteServerPropagationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct VpcRouteServerPropagationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -270,24 +234,20 @@ pub struct VpcRouteServerPropagationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl VpcRouteServerPropagationTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for VpcRouteServerPropagationTimeoutsEl {
     type O = BlockAssignable<VpcRouteServerPropagationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -296,9 +256,7 @@ impl ToListMappable for VpcRouteServerPropagationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildVpcRouteServerPropagationTimeoutsEl {}
-
 impl BuildVpcRouteServerPropagationTimeoutsEl {
     pub fn build(self) -> VpcRouteServerPropagationTimeoutsEl {
         VpcRouteServerPropagationTimeoutsEl {
@@ -307,12 +265,10 @@ impl BuildVpcRouteServerPropagationTimeoutsEl {
         }
     }
 }
-
 pub struct VpcRouteServerPropagationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcRouteServerPropagationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> VpcRouteServerPropagationTimeoutsElRef {
         VpcRouteServerPropagationTimeoutsElRef {
@@ -321,17 +277,14 @@ impl Ref for VpcRouteServerPropagationTimeoutsElRef {
         }
     }
 }
-
 impl VpcRouteServerPropagationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

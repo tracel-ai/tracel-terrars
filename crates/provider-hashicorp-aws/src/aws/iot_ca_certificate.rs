@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IotCaCertificateData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct IotCaCertificateData {
     registration_config: Option<Vec<IotCaCertificateRegistrationConfigEl>>,
     dynamic: IotCaCertificateDynamic,
 }
-
 struct IotCaCertificate_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IotCaCertificateData>,
 }
-
 #[derive(Clone)]
 pub struct IotCaCertificate(Rc<IotCaCertificate_>);
-
 impl IotCaCertificate {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl IotCaCertificate {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl IotCaCertificate {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,43 +100,36 @@ impl IotCaCertificate {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `certificate_mode`.\n"]
     pub fn set_certificate_mode(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().certificate_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `verification_certificate_pem`.\n"]
     pub fn set_verification_certificate_pem(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().verification_certificate_pem = Some(v.into());
         self
     }
-
     #[doc = "Set the field `registration_config`.\n"]
     pub fn set_registration_config(
         self,
@@ -164,7 +145,6 @@ impl IotCaCertificate {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `active` after provisioning.\n"]
     pub fn active(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -172,7 +152,6 @@ impl IotCaCertificate {
             format!("{}.active", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `allow_auto_registration` after provisioning.\n"]
     pub fn allow_auto_registration(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -180,12 +159,10 @@ impl IotCaCertificate {
             format!("{}.allow_auto_registration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ca_certificate_pem` after provisioning.\n"]
     pub fn ca_certificate_pem(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +170,6 @@ impl IotCaCertificate {
             format!("{}.ca_certificate_pem", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_mode` after provisioning.\n"]
     pub fn certificate_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +177,6 @@ impl IotCaCertificate {
             format!("{}.certificate_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_version` after provisioning.\n"]
     pub fn customer_version(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -209,7 +184,6 @@ impl IotCaCertificate {
             format!("{}.customer_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `generation_id` after provisioning.\n"]
     pub fn generation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -217,12 +191,10 @@ impl IotCaCertificate {
             format!("{}.generation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +202,6 @@ impl IotCaCertificate {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -238,7 +209,6 @@ impl IotCaCertificate {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -246,7 +216,6 @@ impl IotCaCertificate {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `validity` after provisioning.\n"]
     pub fn validity(&self) -> ListRef<IotCaCertificateValidityElRef> {
         ListRef::new(
@@ -254,7 +223,6 @@ impl IotCaCertificate {
             format!("{}.validity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `verification_certificate_pem` after provisioning.\n"]
     pub fn verification_certificate_pem(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -262,7 +230,6 @@ impl IotCaCertificate {
             format!("{}.verification_certificate_pem", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registration_config` after provisioning.\n"]
     pub fn registration_config(&self) -> ListRef<IotCaCertificateRegistrationConfigElRef> {
         ListRef::new(
@@ -271,7 +238,6 @@ impl IotCaCertificate {
         )
     }
 }
-
 impl Referable for IotCaCertificate {
     fn extract_ref(&self) -> String {
         format!(
@@ -281,32 +247,25 @@ impl Referable for IotCaCertificate {
         )
     }
 }
-
 impl Resource for IotCaCertificate {}
-
 impl ToListMappable for IotCaCertificate {
     type O = ListRef<IotCaCertificateRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IotCaCertificate_ {
     fn extract_resource_type(&self) -> String {
         "aws_iot_ca_certificate".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIotCaCertificate {
     pub tf_id: String,
     #[doc = ""]
@@ -316,7 +275,6 @@ pub struct BuildIotCaCertificate {
     #[doc = ""]
     pub ca_certificate_pem: PrimField<String>,
 }
-
 impl BuildIotCaCertificate {
     pub fn build(self, stack: &mut Stack) -> IotCaCertificate {
         let out = IotCaCertificate(Rc::new(IotCaCertificate_ {
@@ -344,27 +302,22 @@ impl BuildIotCaCertificate {
         out
     }
 }
-
 pub struct IotCaCertificateRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotCaCertificateRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IotCaCertificateRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `active` after provisioning.\n"]
     pub fn active(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -372,7 +325,6 @@ impl IotCaCertificateRef {
             format!("{}.active", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `allow_auto_registration` after provisioning.\n"]
     pub fn allow_auto_registration(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -380,12 +332,10 @@ impl IotCaCertificateRef {
             format!("{}.allow_auto_registration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ca_certificate_pem` after provisioning.\n"]
     pub fn ca_certificate_pem(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -393,7 +343,6 @@ impl IotCaCertificateRef {
             format!("{}.ca_certificate_pem", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_mode` after provisioning.\n"]
     pub fn certificate_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -401,7 +350,6 @@ impl IotCaCertificateRef {
             format!("{}.certificate_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_version` after provisioning.\n"]
     pub fn customer_version(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -409,7 +357,6 @@ impl IotCaCertificateRef {
             format!("{}.customer_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `generation_id` after provisioning.\n"]
     pub fn generation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -417,12 +364,10 @@ impl IotCaCertificateRef {
             format!("{}.generation_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -430,7 +375,6 @@ impl IotCaCertificateRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -438,7 +382,6 @@ impl IotCaCertificateRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -446,7 +389,6 @@ impl IotCaCertificateRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `validity` after provisioning.\n"]
     pub fn validity(&self) -> ListRef<IotCaCertificateValidityElRef> {
         ListRef::new(
@@ -454,7 +396,6 @@ impl IotCaCertificateRef {
             format!("{}.validity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `verification_certificate_pem` after provisioning.\n"]
     pub fn verification_certificate_pem(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -462,7 +403,6 @@ impl IotCaCertificateRef {
             format!("{}.verification_certificate_pem", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `registration_config` after provisioning.\n"]
     pub fn registration_config(&self) -> ListRef<IotCaCertificateRegistrationConfigElRef> {
         ListRef::new(
@@ -471,7 +411,6 @@ impl IotCaCertificateRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IotCaCertificateValidityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -479,24 +418,20 @@ pub struct IotCaCertificateValidityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     not_before: Option<PrimField<String>>,
 }
-
 impl IotCaCertificateValidityEl {
     #[doc = "Set the field `not_after`.\n"]
     pub fn set_not_after(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.not_after = Some(v.into());
         self
     }
-
     #[doc = "Set the field `not_before`.\n"]
     pub fn set_not_before(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.not_before = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotCaCertificateValidityEl {
     type O = BlockAssignable<IotCaCertificateValidityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -505,9 +440,7 @@ impl ToListMappable for IotCaCertificateValidityEl {
         })
     }
 }
-
 pub struct BuildIotCaCertificateValidityEl {}
-
 impl BuildIotCaCertificateValidityEl {
     pub fn build(self) -> IotCaCertificateValidityEl {
         IotCaCertificateValidityEl {
@@ -516,12 +449,10 @@ impl BuildIotCaCertificateValidityEl {
         }
     }
 }
-
 pub struct IotCaCertificateValidityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotCaCertificateValidityElRef {
     fn new(shared: StackShared, base: String) -> IotCaCertificateValidityElRef {
         IotCaCertificateValidityElRef {
@@ -530,23 +461,19 @@ impl Ref for IotCaCertificateValidityElRef {
         }
     }
 }
-
 impl IotCaCertificateValidityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `not_after` after provisioning.\n"]
     pub fn not_after(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.not_after", self.base))
     }
-
     #[doc = "Get a reference to the value of field `not_before` after provisioning.\n"]
     pub fn not_before(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.not_before", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct IotCaCertificateRegistrationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -556,30 +483,25 @@ pub struct IotCaCertificateRegistrationConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     template_name: Option<PrimField<String>>,
 }
-
 impl IotCaCertificateRegistrationConfigEl {
     #[doc = "Set the field `role_arn`.\n"]
     pub fn set_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.role_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `template_body`.\n"]
     pub fn set_template_body(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.template_body = Some(v.into());
         self
     }
-
     #[doc = "Set the field `template_name`.\n"]
     pub fn set_template_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.template_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for IotCaCertificateRegistrationConfigEl {
     type O = BlockAssignable<IotCaCertificateRegistrationConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -588,9 +510,7 @@ impl ToListMappable for IotCaCertificateRegistrationConfigEl {
         })
     }
 }
-
 pub struct BuildIotCaCertificateRegistrationConfigEl {}
-
 impl BuildIotCaCertificateRegistrationConfigEl {
     pub fn build(self) -> IotCaCertificateRegistrationConfigEl {
         IotCaCertificateRegistrationConfigEl {
@@ -600,12 +520,10 @@ impl BuildIotCaCertificateRegistrationConfigEl {
         }
     }
 }
-
 pub struct IotCaCertificateRegistrationConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IotCaCertificateRegistrationConfigElRef {
     fn new(shared: StackShared, base: String) -> IotCaCertificateRegistrationConfigElRef {
         IotCaCertificateRegistrationConfigElRef {
@@ -614,17 +532,14 @@ impl Ref for IotCaCertificateRegistrationConfigElRef {
         }
     }
 }
-
 impl IotCaCertificateRegistrationConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `template_body` after provisioning.\n"]
     pub fn template_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -632,7 +547,6 @@ impl IotCaCertificateRegistrationConfigElRef {
             format!("{}.template_body", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `template_name` after provisioning.\n"]
     pub fn template_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -641,7 +555,6 @@ impl IotCaCertificateRegistrationConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct IotCaCertificateDynamic {
     registration_config: Option<DynamicBlock<IotCaCertificateRegistrationConfigEl>>,

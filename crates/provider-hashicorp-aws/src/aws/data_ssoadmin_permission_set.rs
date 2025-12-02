@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataSsoadminPermissionSetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,66 +23,54 @@ struct DataSsoadminPermissionSetData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataSsoadminPermissionSet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataSsoadminPermissionSetData>,
 }
-
 #[derive(Clone)]
 pub struct DataSsoadminPermissionSet(Rc<DataSsoadminPermissionSet_>);
-
 impl DataSsoadminPermissionSet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `arn`.\n"]
     pub fn set_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -91,7 +78,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -99,12 +85,10 @@ impl DataSsoadminPermissionSet {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -112,7 +96,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,7 +103,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -128,7 +110,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `relay_state` after provisioning.\n"]
     pub fn relay_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -136,7 +117,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.relay_state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_duration` after provisioning.\n"]
     pub fn session_duration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -144,7 +124,6 @@ impl DataSsoadminPermissionSet {
             format!("{}.session_duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -153,7 +132,6 @@ impl DataSsoadminPermissionSet {
         )
     }
 }
-
 impl Referable for DataSsoadminPermissionSet {
     fn extract_ref(&self) -> String {
         format!(
@@ -163,38 +141,30 @@ impl Referable for DataSsoadminPermissionSet {
         )
     }
 }
-
 impl Datasource for DataSsoadminPermissionSet {}
-
 impl ToListMappable for DataSsoadminPermissionSet {
     type O = ListRef<DataSsoadminPermissionSetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataSsoadminPermissionSet_ {
     fn extract_datasource_type(&self) -> String {
         "aws_ssoadmin_permission_set".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataSsoadminPermissionSet {
     pub tf_id: String,
     #[doc = ""]
     pub instance_arn: PrimField<String>,
 }
-
 impl BuildDataSsoadminPermissionSet {
     pub fn build(self, stack: &mut Stack) -> DataSsoadminPermissionSet {
         let out = DataSsoadminPermissionSet(Rc::new(DataSsoadminPermissionSet_ {
@@ -216,32 +186,26 @@ impl BuildDataSsoadminPermissionSet {
         out
     }
 }
-
 pub struct DataSsoadminPermissionSetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataSsoadminPermissionSetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataSsoadminPermissionSetRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -249,7 +213,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -257,12 +220,10 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -270,7 +231,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -278,7 +238,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,7 +245,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `relay_state` after provisioning.\n"]
     pub fn relay_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -294,7 +252,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.relay_state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `session_duration` after provisioning.\n"]
     pub fn session_duration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -302,7 +259,6 @@ impl DataSsoadminPermissionSetRef {
             format!("{}.session_duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

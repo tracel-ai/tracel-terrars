@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DatasyncLocationFsxOntapFileSystemData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct DatasyncLocationFsxOntapFileSystemData {
     protocol: Option<Vec<DatasyncLocationFsxOntapFileSystemProtocolEl>>,
     dynamic: DatasyncLocationFsxOntapFileSystemDynamic,
 }
-
 struct DatasyncLocationFsxOntapFileSystem_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DatasyncLocationFsxOntapFileSystemData>,
 }
-
 #[derive(Clone)]
 pub struct DatasyncLocationFsxOntapFileSystem(Rc<DatasyncLocationFsxOntapFileSystem_>);
-
 impl DatasyncLocationFsxOntapFileSystem {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl DatasyncLocationFsxOntapFileSystem {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,37 +97,31 @@ impl DatasyncLocationFsxOntapFileSystem {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subdirectory`.\n"]
     pub fn set_subdirectory(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().subdirectory = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `protocol`.\n"]
     pub fn set_protocol(
         self,
@@ -155,12 +137,10 @@ impl DatasyncLocationFsxOntapFileSystem {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +148,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.creation_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fsx_filesystem_arn` after provisioning.\n"]
     pub fn fsx_filesystem_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,12 +155,10 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.fsx_filesystem_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +166,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_arns` after provisioning.\n"]
     pub fn security_group_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -197,7 +173,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.security_group_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_virtual_machine_arn` after provisioning.\n"]
     pub fn storage_virtual_machine_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +180,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.storage_virtual_machine_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +187,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.subdirectory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -221,7 +194,6 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -229,12 +201,10 @@ impl DatasyncLocationFsxOntapFileSystem {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> ListRef<DatasyncLocationFsxOntapFileSystemProtocolElRef> {
         ListRef::new(
@@ -243,7 +213,6 @@ impl DatasyncLocationFsxOntapFileSystem {
         )
     }
 }
-
 impl Referable for DatasyncLocationFsxOntapFileSystem {
     fn extract_ref(&self) -> String {
         format!(
@@ -253,32 +222,25 @@ impl Referable for DatasyncLocationFsxOntapFileSystem {
         )
     }
 }
-
 impl Resource for DatasyncLocationFsxOntapFileSystem {}
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystem {
     type O = ListRef<DatasyncLocationFsxOntapFileSystemRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DatasyncLocationFsxOntapFileSystem_ {
     fn extract_resource_type(&self) -> String {
         "aws_datasync_location_fsx_ontap_file_system".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystem {
     pub tf_id: String,
     #[doc = ""]
@@ -286,7 +248,6 @@ pub struct BuildDatasyncLocationFsxOntapFileSystem {
     #[doc = ""]
     pub storage_virtual_machine_arn: PrimField<String>,
 }
-
 impl BuildDatasyncLocationFsxOntapFileSystem {
     pub fn build(self, stack: &mut Stack) -> DatasyncLocationFsxOntapFileSystem {
         let out =
@@ -313,32 +274,26 @@ impl BuildDatasyncLocationFsxOntapFileSystem {
         out
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `creation_time` after provisioning.\n"]
     pub fn creation_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +301,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.creation_time", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fsx_filesystem_arn` after provisioning.\n"]
     pub fn fsx_filesystem_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,12 +308,10 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.fsx_filesystem_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +319,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_arns` after provisioning.\n"]
     pub fn security_group_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -375,7 +326,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.security_group_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_virtual_machine_arn` after provisioning.\n"]
     pub fn storage_virtual_machine_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +333,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.storage_virtual_machine_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subdirectory` after provisioning.\n"]
     pub fn subdirectory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +340,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.subdirectory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -399,7 +347,6 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -407,12 +354,10 @@ impl DatasyncLocationFsxOntapFileSystemRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `uri` after provisioning.\n"]
     pub fn uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.uri", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> ListRef<DatasyncLocationFsxOntapFileSystemProtocolElRef> {
         ListRef::new(
@@ -421,13 +366,11 @@ impl DatasyncLocationFsxOntapFileSystemRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<PrimField<String>>,
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
     #[doc = "Set the field `version`.\n"]
     pub fn set_version(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -435,10 +378,8 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
     type O = BlockAssignable<DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -447,9 +388,7 @@ impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOp
         })
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {}
-
 impl BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
     pub fn build(self) -> DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
         DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
@@ -457,12 +396,10 @@ impl BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl {
         }
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsElRef {
     fn new(
         shared: StackShared,
@@ -474,31 +411,26 @@ impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsElRef 
         }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.version", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncLocationFsxOntapFileSystemProtocolElNfsElDynamic {
     mount_options:
         Option<DynamicBlock<DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     mount_options: Option<Vec<DatasyncLocationFsxOntapFileSystemProtocolElNfsElMountOptionsEl>>,
     dynamic: DatasyncLocationFsxOntapFileSystemProtocolElNfsElDynamic,
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
     #[doc = "Set the field `mount_options`.\n"]
     pub fn set_mount_options(
@@ -516,10 +448,8 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
     type O = BlockAssignable<DatasyncLocationFsxOntapFileSystemProtocolElNfsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -528,9 +458,7 @@ impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
         })
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsEl {}
-
 impl BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
     pub fn build(self) -> DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
         DatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
@@ -539,12 +467,10 @@ impl BuildDatasyncLocationFsxOntapFileSystemProtocolElNfsEl {
         }
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef {
     fn new(
         shared: StackShared,
@@ -556,12 +482,10 @@ impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef {
         }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(
         &self,
@@ -572,13 +496,11 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     version: Option<PrimField<String>>,
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
     #[doc = "Set the field `version`.\n"]
     pub fn set_version(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -586,10 +508,8 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
     type O = BlockAssignable<DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -598,9 +518,7 @@ impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOp
         })
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {}
-
 impl BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
     pub fn build(self) -> DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
         DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
@@ -608,12 +526,10 @@ impl BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl {
         }
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsElRef {
     fn new(
         shared: StackShared,
@@ -625,24 +541,20 @@ impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsElRef 
         }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.version", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncLocationFsxOntapFileSystemProtocolElSmbElDynamic {
     mount_options:
         Option<DynamicBlock<DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -653,14 +565,12 @@ pub struct DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     mount_options: Option<Vec<DatasyncLocationFsxOntapFileSystemProtocolElSmbElMountOptionsEl>>,
     dynamic: DatasyncLocationFsxOntapFileSystemProtocolElSmbElDynamic,
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     #[doc = "Set the field `domain`.\n"]
     pub fn set_domain(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.domain = Some(v.into());
         self
     }
-
     #[doc = "Set the field `mount_options`.\n"]
     pub fn set_mount_options(
         mut self,
@@ -677,10 +587,8 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     type O = BlockAssignable<DatasyncLocationFsxOntapFileSystemProtocolElSmbEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -689,14 +597,12 @@ impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
         })
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
     pub user: PrimField<String>,
 }
-
 impl BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
     pub fn build(self) -> DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
         DatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
@@ -708,12 +614,10 @@ impl BuildDatasyncLocationFsxOntapFileSystemProtocolElSmbEl {
         }
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef {
     fn new(
         shared: StackShared,
@@ -725,27 +629,22 @@ impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef {
         }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `domain` after provisioning.\n"]
     pub fn domain(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.domain", self.base))
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.password", self.base))
     }
-
     #[doc = "Get a reference to the value of field `user` after provisioning.\n"]
     pub fn user(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.user", self.base))
     }
-
     #[doc = "Get a reference to the value of field `mount_options` after provisioning.\n"]
     pub fn mount_options(
         &self,
@@ -756,13 +655,11 @@ impl DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncLocationFsxOntapFileSystemProtocolElDynamic {
     nfs: Option<DynamicBlock<DatasyncLocationFsxOntapFileSystemProtocolElNfsEl>>,
     smb: Option<DynamicBlock<DatasyncLocationFsxOntapFileSystemProtocolElSmbEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DatasyncLocationFsxOntapFileSystemProtocolEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -771,7 +668,6 @@ pub struct DatasyncLocationFsxOntapFileSystemProtocolEl {
     smb: Option<Vec<DatasyncLocationFsxOntapFileSystemProtocolElSmbEl>>,
     dynamic: DatasyncLocationFsxOntapFileSystemProtocolElDynamic,
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolEl {
     #[doc = "Set the field `nfs`.\n"]
     pub fn set_nfs(
@@ -788,7 +684,6 @@ impl DatasyncLocationFsxOntapFileSystemProtocolEl {
         }
         self
     }
-
     #[doc = "Set the field `smb`.\n"]
     pub fn set_smb(
         mut self,
@@ -805,10 +700,8 @@ impl DatasyncLocationFsxOntapFileSystemProtocolEl {
         self
     }
 }
-
 impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolEl {
     type O = BlockAssignable<DatasyncLocationFsxOntapFileSystemProtocolEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -817,9 +710,7 @@ impl ToListMappable for DatasyncLocationFsxOntapFileSystemProtocolEl {
         })
     }
 }
-
 pub struct BuildDatasyncLocationFsxOntapFileSystemProtocolEl {}
-
 impl BuildDatasyncLocationFsxOntapFileSystemProtocolEl {
     pub fn build(self) -> DatasyncLocationFsxOntapFileSystemProtocolEl {
         DatasyncLocationFsxOntapFileSystemProtocolEl {
@@ -829,12 +720,10 @@ impl BuildDatasyncLocationFsxOntapFileSystemProtocolEl {
         }
     }
 }
-
 pub struct DatasyncLocationFsxOntapFileSystemProtocolElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElRef {
     fn new(shared: StackShared, base: String) -> DatasyncLocationFsxOntapFileSystemProtocolElRef {
         DatasyncLocationFsxOntapFileSystemProtocolElRef {
@@ -843,23 +732,19 @@ impl Ref for DatasyncLocationFsxOntapFileSystemProtocolElRef {
         }
     }
 }
-
 impl DatasyncLocationFsxOntapFileSystemProtocolElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `nfs` after provisioning.\n"]
     pub fn nfs(&self) -> ListRef<DatasyncLocationFsxOntapFileSystemProtocolElNfsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.nfs", self.base))
     }
-
     #[doc = "Get a reference to the value of field `smb` after provisioning.\n"]
     pub fn smb(&self) -> ListRef<DatasyncLocationFsxOntapFileSystemProtocolElSmbElRef> {
         ListRef::new(self.shared().clone(), format!("{}.smb", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DatasyncLocationFsxOntapFileSystemDynamic {
     protocol: Option<DynamicBlock<DatasyncLocationFsxOntapFileSystemProtocolEl>>,

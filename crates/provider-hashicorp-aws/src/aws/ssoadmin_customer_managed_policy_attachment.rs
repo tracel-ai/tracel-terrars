@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsoadminCustomerManagedPolicyAttachmentData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct SsoadminCustomerManagedPolicyAttachmentData {
     timeouts: Option<SsoadminCustomerManagedPolicyAttachmentTimeoutsEl>,
     dynamic: SsoadminCustomerManagedPolicyAttachmentDynamic,
 }
-
 struct SsoadminCustomerManagedPolicyAttachment_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsoadminCustomerManagedPolicyAttachmentData>,
 }
-
 #[derive(Clone)]
 pub struct SsoadminCustomerManagedPolicyAttachment(Rc<SsoadminCustomerManagedPolicyAttachment_>);
-
 impl SsoadminCustomerManagedPolicyAttachment {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,19 +94,16 @@ impl SsoadminCustomerManagedPolicyAttachment {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `customer_managed_policy_reference`.\n"]
     pub fn set_customer_managed_policy_reference(
         self,
@@ -142,7 +127,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(
         self,
@@ -151,12 +135,10 @@ impl SsoadminCustomerManagedPolicyAttachment {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -164,7 +146,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `permission_set_arn` after provisioning.\n"]
     pub fn permission_set_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +153,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
             format!("{}.permission_set_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +160,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_policy_reference` after provisioning.\n"]
     pub fn customer_managed_policy_reference(
         &self,
@@ -190,7 +169,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
             format!("{}.customer_managed_policy_reference", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
         SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef::new(
@@ -199,7 +177,6 @@ impl SsoadminCustomerManagedPolicyAttachment {
         )
     }
 }
-
 impl Referable for SsoadminCustomerManagedPolicyAttachment {
     fn extract_ref(&self) -> String {
         format!(
@@ -209,32 +186,25 @@ impl Referable for SsoadminCustomerManagedPolicyAttachment {
         )
     }
 }
-
 impl Resource for SsoadminCustomerManagedPolicyAttachment {}
-
 impl ToListMappable for SsoadminCustomerManagedPolicyAttachment {
     type O = ListRef<SsoadminCustomerManagedPolicyAttachmentRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsoadminCustomerManagedPolicyAttachment_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssoadmin_customer_managed_policy_attachment".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsoadminCustomerManagedPolicyAttachment {
     pub tf_id: String,
     #[doc = ""]
@@ -242,7 +212,6 @@ pub struct BuildSsoadminCustomerManagedPolicyAttachment {
     #[doc = ""]
     pub permission_set_arn: PrimField<String>,
 }
-
 impl BuildSsoadminCustomerManagedPolicyAttachment {
     pub fn build(self, stack: &mut Stack) -> SsoadminCustomerManagedPolicyAttachment {
         let out = SsoadminCustomerManagedPolicyAttachment(Rc::new(
@@ -268,32 +237,26 @@ impl BuildSsoadminCustomerManagedPolicyAttachment {
         out
     }
 }
-
 pub struct SsoadminCustomerManagedPolicyAttachmentRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminCustomerManagedPolicyAttachmentRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsoadminCustomerManagedPolicyAttachmentRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_arn` after provisioning.\n"]
     pub fn instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,7 +264,6 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
             format!("{}.instance_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `permission_set_arn` after provisioning.\n"]
     pub fn permission_set_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -309,7 +271,6 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
             format!("{}.permission_set_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -317,7 +278,6 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_managed_policy_reference` after provisioning.\n"]
     pub fn customer_managed_policy_reference(
         &self,
@@ -327,7 +287,6 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
             format!("{}.customer_managed_policy_reference", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
         SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef::new(
@@ -336,14 +295,12 @@ impl SsoadminCustomerManagedPolicyAttachmentRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
     name: PrimField<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     path: Option<PrimField<String>>,
 }
-
 impl SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -351,11 +308,9 @@ impl SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
         self
     }
 }
-
 impl ToListMappable for SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
     type O =
         BlockAssignable<SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -364,12 +319,10 @@ impl ToListMappable for SsoadminCustomerManagedPolicyAttachmentCustomerManagedPo
         })
     }
 }
-
 pub struct BuildSsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildSsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
     pub fn build(self) -> SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
         SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceEl {
@@ -378,12 +331,10 @@ impl BuildSsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceE
         }
     }
 }
-
 pub struct SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceElRef {
     fn new(
         shared: StackShared,
@@ -395,23 +346,19 @@ impl Ref for SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferen
         }
     }
 }
-
 impl SsoadminCustomerManagedPolicyAttachmentCustomerManagedPolicyReferenceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -419,24 +366,20 @@ pub struct SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
     type O = BlockAssignable<SsoadminCustomerManagedPolicyAttachmentTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -445,9 +388,7 @@ impl ToListMappable for SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
         })
     }
 }
-
 pub struct BuildSsoadminCustomerManagedPolicyAttachmentTimeoutsEl {}
-
 impl BuildSsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
     pub fn build(self) -> SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
         SsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
@@ -456,12 +397,10 @@ impl BuildSsoadminCustomerManagedPolicyAttachmentTimeoutsEl {
         }
     }
 }
-
 pub struct SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
     fn new(
         shared: StackShared,
@@ -473,23 +412,19 @@ impl Ref for SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
         }
     }
 }
-
 impl SsoadminCustomerManagedPolicyAttachmentTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SsoadminCustomerManagedPolicyAttachmentDynamic {
     customer_managed_policy_reference: Option<

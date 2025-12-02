@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DaxClusterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -48,47 +47,38 @@ struct DaxClusterData {
     timeouts: Option<DaxClusterTimeoutsEl>,
     dynamic: DaxClusterDynamic,
 }
-
 struct DaxCluster_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DaxClusterData>,
 }
-
 #[derive(Clone)]
 pub struct DaxCluster(Rc<DaxCluster_>);
-
 impl DaxCluster {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -107,7 +97,6 @@ impl DaxCluster {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -117,7 +106,6 @@ impl DaxCluster {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -127,79 +115,66 @@ impl DaxCluster {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `availability_zones`.\n"]
     pub fn set_availability_zones(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().availability_zones = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cluster_endpoint_encryption_type`.\n"]
     pub fn set_cluster_endpoint_encryption_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cluster_endpoint_encryption_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maintenance_window`.\n"]
     pub fn set_maintenance_window(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().maintenance_window = Some(v.into());
         self
     }
-
     #[doc = "Set the field `notification_topic_arn`.\n"]
     pub fn set_notification_topic_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().notification_topic_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `parameter_group_name`.\n"]
     pub fn set_parameter_group_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().parameter_group_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_group_name`.\n"]
     pub fn set_subnet_group_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().subnet_group_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `server_side_encryption`.\n"]
     pub fn set_server_side_encryption(
         self,
@@ -215,18 +190,15 @@ impl DaxCluster {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DaxClusterTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -234,7 +206,6 @@ impl DaxCluster {
             format!("{}.availability_zones", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_address` after provisioning.\n"]
     pub fn cluster_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +213,6 @@ impl DaxCluster {
             format!("{}.cluster_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_endpoint_encryption_type` after provisioning.\n"]
     pub fn cluster_endpoint_encryption_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +220,6 @@ impl DaxCluster {
             format!("{}.cluster_endpoint_encryption_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +227,6 @@ impl DaxCluster {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration_endpoint` after provisioning.\n"]
     pub fn configuration_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -266,7 +234,6 @@ impl DaxCluster {
             format!("{}.configuration_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +241,6 @@ impl DaxCluster {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -282,12 +248,10 @@ impl DaxCluster {
             format!("{}.iam_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
     pub fn maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -295,7 +259,6 @@ impl DaxCluster {
             format!("{}.maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `node_type` after provisioning.\n"]
     pub fn node_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -303,7 +266,6 @@ impl DaxCluster {
             format!("{}.node_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nodes` after provisioning.\n"]
     pub fn nodes(&self) -> ListRef<DaxClusterNodesElRef> {
         ListRef::new(
@@ -311,7 +273,6 @@ impl DaxCluster {
             format!("{}.nodes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification_topic_arn` after provisioning.\n"]
     pub fn notification_topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -319,7 +280,6 @@ impl DaxCluster {
             format!("{}.notification_topic_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameter_group_name` after provisioning.\n"]
     pub fn parameter_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -327,7 +287,6 @@ impl DaxCluster {
             format!("{}.parameter_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -335,7 +294,6 @@ impl DaxCluster {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -343,7 +301,6 @@ impl DaxCluster {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_factor` after provisioning.\n"]
     pub fn replication_factor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -351,7 +308,6 @@ impl DaxCluster {
             format!("{}.replication_factor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -359,7 +315,6 @@ impl DaxCluster {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_group_name` after provisioning.\n"]
     pub fn subnet_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +322,6 @@ impl DaxCluster {
             format!("{}.subnet_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -375,7 +329,6 @@ impl DaxCluster {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -383,7 +336,6 @@ impl DaxCluster {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption` after provisioning.\n"]
     pub fn server_side_encryption(&self) -> ListRef<DaxClusterServerSideEncryptionElRef> {
         ListRef::new(
@@ -391,7 +343,6 @@ impl DaxCluster {
             format!("{}.server_side_encryption", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DaxClusterTimeoutsElRef {
         DaxClusterTimeoutsElRef::new(
@@ -400,7 +351,6 @@ impl DaxCluster {
         )
     }
 }
-
 impl Referable for DaxCluster {
     fn extract_ref(&self) -> String {
         format!(
@@ -410,32 +360,25 @@ impl Referable for DaxCluster {
         )
     }
 }
-
 impl Resource for DaxCluster {}
-
 impl ToListMappable for DaxCluster {
     type O = ListRef<DaxClusterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DaxCluster_ {
     fn extract_resource_type(&self) -> String {
         "aws_dax_cluster".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDaxCluster {
     pub tf_id: String,
     #[doc = ""]
@@ -447,7 +390,6 @@ pub struct BuildDaxCluster {
     #[doc = ""]
     pub replication_factor: PrimField<f64>,
 }
-
 impl BuildDaxCluster {
     pub fn build(self, stack: &mut Stack) -> DaxCluster {
         let out = DaxCluster(Rc::new(DaxCluster_ {
@@ -483,32 +425,26 @@ impl BuildDaxCluster {
         out
     }
 }
-
 pub struct DaxClusterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DaxClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DaxClusterRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -516,7 +452,6 @@ impl DaxClusterRef {
             format!("{}.availability_zones", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_address` after provisioning.\n"]
     pub fn cluster_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -524,7 +459,6 @@ impl DaxClusterRef {
             format!("{}.cluster_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_endpoint_encryption_type` after provisioning.\n"]
     pub fn cluster_endpoint_encryption_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -532,7 +466,6 @@ impl DaxClusterRef {
             format!("{}.cluster_endpoint_encryption_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_name` after provisioning.\n"]
     pub fn cluster_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -540,7 +473,6 @@ impl DaxClusterRef {
             format!("{}.cluster_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `configuration_endpoint` after provisioning.\n"]
     pub fn configuration_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -548,7 +480,6 @@ impl DaxClusterRef {
             format!("{}.configuration_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -556,7 +487,6 @@ impl DaxClusterRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `iam_role_arn` after provisioning.\n"]
     pub fn iam_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -564,12 +494,10 @@ impl DaxClusterRef {
             format!("{}.iam_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `maintenance_window` after provisioning.\n"]
     pub fn maintenance_window(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -577,7 +505,6 @@ impl DaxClusterRef {
             format!("{}.maintenance_window", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `node_type` after provisioning.\n"]
     pub fn node_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -585,7 +512,6 @@ impl DaxClusterRef {
             format!("{}.node_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `nodes` after provisioning.\n"]
     pub fn nodes(&self) -> ListRef<DaxClusterNodesElRef> {
         ListRef::new(
@@ -593,7 +519,6 @@ impl DaxClusterRef {
             format!("{}.nodes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `notification_topic_arn` after provisioning.\n"]
     pub fn notification_topic_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -601,7 +526,6 @@ impl DaxClusterRef {
             format!("{}.notification_topic_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `parameter_group_name` after provisioning.\n"]
     pub fn parameter_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -609,7 +533,6 @@ impl DaxClusterRef {
             format!("{}.parameter_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -617,7 +540,6 @@ impl DaxClusterRef {
             format!("{}.port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -625,7 +547,6 @@ impl DaxClusterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `replication_factor` after provisioning.\n"]
     pub fn replication_factor(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -633,7 +554,6 @@ impl DaxClusterRef {
             format!("{}.replication_factor", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -641,7 +561,6 @@ impl DaxClusterRef {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_group_name` after provisioning.\n"]
     pub fn subnet_group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -649,7 +568,6 @@ impl DaxClusterRef {
             format!("{}.subnet_group_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -657,7 +575,6 @@ impl DaxClusterRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -665,7 +582,6 @@ impl DaxClusterRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_side_encryption` after provisioning.\n"]
     pub fn server_side_encryption(&self) -> ListRef<DaxClusterServerSideEncryptionElRef> {
         ListRef::new(
@@ -673,7 +589,6 @@ impl DaxClusterRef {
             format!("{}.server_side_encryption", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DaxClusterTimeoutsElRef {
         DaxClusterTimeoutsElRef::new(
@@ -682,7 +597,6 @@ impl DaxClusterRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DaxClusterNodesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -694,36 +608,30 @@ pub struct DaxClusterNodesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     port: Option<PrimField<f64>>,
 }
-
 impl DaxClusterNodesEl {
     #[doc = "Set the field `address`.\n"]
     pub fn set_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `availability_zone`.\n"]
     pub fn set_availability_zone(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.availability_zone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `port`.\n"]
     pub fn set_port(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.port = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DaxClusterNodesEl {
     type O = BlockAssignable<DaxClusterNodesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -732,9 +640,7 @@ impl ToListMappable for DaxClusterNodesEl {
         })
     }
 }
-
 pub struct BuildDaxClusterNodesEl {}
-
 impl BuildDaxClusterNodesEl {
     pub fn build(self) -> DaxClusterNodesEl {
         DaxClusterNodesEl {
@@ -745,12 +651,10 @@ impl BuildDaxClusterNodesEl {
         }
     }
 }
-
 pub struct DaxClusterNodesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DaxClusterNodesElRef {
     fn new(shared: StackShared, base: String) -> DaxClusterNodesElRef {
         DaxClusterNodesElRef {
@@ -759,17 +663,14 @@ impl Ref for DaxClusterNodesElRef {
         }
     }
 }
-
 impl DaxClusterNodesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `address` after provisioning.\n"]
     pub fn address(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `availability_zone` after provisioning.\n"]
     pub fn availability_zone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -777,24 +678,20 @@ impl DaxClusterNodesElRef {
             format!("{}.availability_zone", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `port` after provisioning.\n"]
     pub fn port(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.port", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DaxClusterServerSideEncryptionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl DaxClusterServerSideEncryptionEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -802,10 +699,8 @@ impl DaxClusterServerSideEncryptionEl {
         self
     }
 }
-
 impl ToListMappable for DaxClusterServerSideEncryptionEl {
     type O = BlockAssignable<DaxClusterServerSideEncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -814,9 +709,7 @@ impl ToListMappable for DaxClusterServerSideEncryptionEl {
         })
     }
 }
-
 pub struct BuildDaxClusterServerSideEncryptionEl {}
-
 impl BuildDaxClusterServerSideEncryptionEl {
     pub fn build(self) -> DaxClusterServerSideEncryptionEl {
         DaxClusterServerSideEncryptionEl {
@@ -824,12 +717,10 @@ impl BuildDaxClusterServerSideEncryptionEl {
         }
     }
 }
-
 pub struct DaxClusterServerSideEncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DaxClusterServerSideEncryptionElRef {
     fn new(shared: StackShared, base: String) -> DaxClusterServerSideEncryptionElRef {
         DaxClusterServerSideEncryptionElRef {
@@ -838,18 +729,15 @@ impl Ref for DaxClusterServerSideEncryptionElRef {
         }
     }
 }
-
 impl DaxClusterServerSideEncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DaxClusterTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -859,30 +747,25 @@ pub struct DaxClusterTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl DaxClusterTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DaxClusterTimeoutsEl {
     type O = BlockAssignable<DaxClusterTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -891,9 +774,7 @@ impl ToListMappable for DaxClusterTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDaxClusterTimeoutsEl {}
-
 impl BuildDaxClusterTimeoutsEl {
     pub fn build(self) -> DaxClusterTimeoutsEl {
         DaxClusterTimeoutsEl {
@@ -903,12 +784,10 @@ impl BuildDaxClusterTimeoutsEl {
         }
     }
 }
-
 pub struct DaxClusterTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DaxClusterTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DaxClusterTimeoutsElRef {
         DaxClusterTimeoutsElRef {
@@ -917,28 +796,23 @@ impl Ref for DaxClusterTimeoutsElRef {
         }
     }
 }
-
 impl DaxClusterTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DaxClusterDynamic {
     server_side_encryption: Option<DynamicBlock<DaxClusterServerSideEncryptionEl>>,

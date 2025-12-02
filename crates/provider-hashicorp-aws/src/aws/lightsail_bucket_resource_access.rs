@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct LightsailBucketResourceAccessData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct LightsailBucketResourceAccessData {
     region: Option<PrimField<String>>,
     resource_name: PrimField<String>,
 }
-
 struct LightsailBucketResourceAccess_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<LightsailBucketResourceAccessData>,
 }
-
 #[derive(Clone)]
 pub struct LightsailBucketResourceAccess(Rc<LightsailBucketResourceAccess_>);
-
 impl LightsailBucketResourceAccess {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl LightsailBucketResourceAccess {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl LightsailBucketResourceAccess {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,19 +88,16 @@ impl LightsailBucketResourceAccess {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -120,12 +105,10 @@ impl LightsailBucketResourceAccess {
             format!("{}.bucket_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -133,7 +116,6 @@ impl LightsailBucketResourceAccess {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_name` after provisioning.\n"]
     pub fn resource_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -142,7 +124,6 @@ impl LightsailBucketResourceAccess {
         )
     }
 }
-
 impl Referable for LightsailBucketResourceAccess {
     fn extract_ref(&self) -> String {
         format!(
@@ -152,32 +133,25 @@ impl Referable for LightsailBucketResourceAccess {
         )
     }
 }
-
 impl Resource for LightsailBucketResourceAccess {}
-
 impl ToListMappable for LightsailBucketResourceAccess {
     type O = ListRef<LightsailBucketResourceAccessRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for LightsailBucketResourceAccess_ {
     fn extract_resource_type(&self) -> String {
         "aws_lightsail_bucket_resource_access".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildLightsailBucketResourceAccess {
     pub tf_id: String,
     #[doc = ""]
@@ -185,7 +159,6 @@ pub struct BuildLightsailBucketResourceAccess {
     #[doc = ""]
     pub resource_name: PrimField<String>,
 }
-
 impl BuildLightsailBucketResourceAccess {
     pub fn build(self, stack: &mut Stack) -> LightsailBucketResourceAccess {
         let out = LightsailBucketResourceAccess(Rc::new(LightsailBucketResourceAccess_ {
@@ -206,27 +179,22 @@ impl BuildLightsailBucketResourceAccess {
         out
     }
 }
-
 pub struct LightsailBucketResourceAccessRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for LightsailBucketResourceAccessRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl LightsailBucketResourceAccessRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket_name` after provisioning.\n"]
     pub fn bucket_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,12 +202,10 @@ impl LightsailBucketResourceAccessRef {
             format!("{}.bucket_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,7 +213,6 @@ impl LightsailBucketResourceAccessRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_name` after provisioning.\n"]
     pub fn resource_name(&self) -> PrimExpr<String> {
         PrimExpr::new(

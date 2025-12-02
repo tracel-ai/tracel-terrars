@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SecurityhubInsightData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -24,47 +23,38 @@ struct SecurityhubInsightData {
     filters: Option<Vec<SecurityhubInsightFiltersEl>>,
     dynamic: SecurityhubInsightDynamic,
 }
-
 struct SecurityhubInsight_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SecurityhubInsightData>,
 }
-
 #[derive(Clone)]
 pub struct SecurityhubInsight(Rc<SecurityhubInsight_>);
-
 impl SecurityhubInsight {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -83,7 +73,6 @@ impl SecurityhubInsight {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -93,7 +82,6 @@ impl SecurityhubInsight {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -103,19 +91,16 @@ impl SecurityhubInsight {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filters`.\n"]
     pub fn set_filters(self, v: impl Into<BlockAssignable<SecurityhubInsightFiltersEl>>) -> Self {
         match v.into() {
@@ -128,12 +113,10 @@ impl SecurityhubInsight {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `group_by_attribute` after provisioning.\n"]
     pub fn group_by_attribute(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,12 +124,10 @@ impl SecurityhubInsight {
             format!("{}.group_by_attribute", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,7 +135,6 @@ impl SecurityhubInsight {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -162,7 +142,6 @@ impl SecurityhubInsight {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<SecurityhubInsightFiltersElRef> {
         ListRef::new(
@@ -171,7 +150,6 @@ impl SecurityhubInsight {
         )
     }
 }
-
 impl Referable for SecurityhubInsight {
     fn extract_ref(&self) -> String {
         format!(
@@ -181,32 +159,25 @@ impl Referable for SecurityhubInsight {
         )
     }
 }
-
 impl Resource for SecurityhubInsight {}
-
 impl ToListMappable for SecurityhubInsight {
     type O = ListRef<SecurityhubInsightRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SecurityhubInsight_ {
     fn extract_resource_type(&self) -> String {
         "aws_securityhub_insight".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSecurityhubInsight {
     pub tf_id: String,
     #[doc = ""]
@@ -214,7 +185,6 @@ pub struct BuildSecurityhubInsight {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildSecurityhubInsight {
     pub fn build(self, stack: &mut Stack) -> SecurityhubInsight {
         let out = SecurityhubInsight(Rc::new(SecurityhubInsight_ {
@@ -237,32 +207,26 @@ impl BuildSecurityhubInsight {
         out
     }
 }
-
 pub struct SecurityhubInsightRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SecurityhubInsightRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `group_by_attribute` after provisioning.\n"]
     pub fn group_by_attribute(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -270,12 +234,10 @@ impl SecurityhubInsightRef {
             format!("{}.group_by_attribute", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -283,7 +245,6 @@ impl SecurityhubInsightRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -291,7 +252,6 @@ impl SecurityhubInsightRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `filters` after provisioning.\n"]
     pub fn filters(&self) -> ListRef<SecurityhubInsightFiltersElRef> {
         ListRef::new(
@@ -300,18 +260,14 @@ impl SecurityhubInsightRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElAwsAccountIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElAwsAccountIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElAwsAccountIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElAwsAccountIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -320,14 +276,12 @@ impl ToListMappable for SecurityhubInsightFiltersElAwsAccountIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElAwsAccountIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElAwsAccountIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElAwsAccountIdEl {
         SecurityhubInsightFiltersElAwsAccountIdEl {
@@ -336,12 +290,10 @@ impl BuildSecurityhubInsightFiltersElAwsAccountIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElAwsAccountIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElAwsAccountIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElAwsAccountIdElRef {
         SecurityhubInsightFiltersElAwsAccountIdElRef {
@@ -350,34 +302,27 @@ impl Ref for SecurityhubInsightFiltersElAwsAccountIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElAwsAccountIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElCompanyNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElCompanyNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElCompanyNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCompanyNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -386,14 +331,12 @@ impl ToListMappable for SecurityhubInsightFiltersElCompanyNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElCompanyNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElCompanyNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElCompanyNameEl {
         SecurityhubInsightFiltersElCompanyNameEl {
@@ -402,12 +345,10 @@ impl BuildSecurityhubInsightFiltersElCompanyNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElCompanyNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElCompanyNameElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElCompanyNameElRef {
         SecurityhubInsightFiltersElCompanyNameElRef {
@@ -416,34 +357,27 @@ impl Ref for SecurityhubInsightFiltersElCompanyNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElCompanyNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElComplianceStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElComplianceStatusEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElComplianceStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElComplianceStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -452,14 +386,12 @@ impl ToListMappable for SecurityhubInsightFiltersElComplianceStatusEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElComplianceStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElComplianceStatusEl {
     pub fn build(self) -> SecurityhubInsightFiltersElComplianceStatusEl {
         SecurityhubInsightFiltersElComplianceStatusEl {
@@ -468,12 +400,10 @@ impl BuildSecurityhubInsightFiltersElComplianceStatusEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElComplianceStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElComplianceStatusElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElComplianceStatusElRef {
         SecurityhubInsightFiltersElComplianceStatusElRef {
@@ -482,23 +412,19 @@ impl Ref for SecurityhubInsightFiltersElComplianceStatusElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElComplianceStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -508,30 +434,25 @@ pub struct SecurityhubInsightFiltersElConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElConfidenceEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElConfidenceEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElConfidenceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -540,9 +461,7 @@ impl ToListMappable for SecurityhubInsightFiltersElConfidenceEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElConfidenceEl {}
-
 impl BuildSecurityhubInsightFiltersElConfidenceEl {
     pub fn build(self) -> SecurityhubInsightFiltersElConfidenceEl {
         SecurityhubInsightFiltersElConfidenceEl {
@@ -552,12 +471,10 @@ impl BuildSecurityhubInsightFiltersElConfidenceEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElConfidenceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElConfidenceElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElConfidenceElRef {
         SecurityhubInsightFiltersElConfidenceElRef {
@@ -566,39 +483,31 @@ impl Ref for SecurityhubInsightFiltersElConfidenceElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElConfidenceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElCreatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCreatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -607,14 +516,12 @@ impl ToListMappable for SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElCreatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
         SecurityhubInsightFiltersElCreatedAtElDateRangeEl {
@@ -623,12 +530,10 @@ impl BuildSecurityhubInsightFiltersElCreatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -640,28 +545,23 @@ impl Ref for SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElCreatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElCreatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElCreatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElCreatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -672,20 +572,17 @@ pub struct SecurityhubInsightFiltersElCreatedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElCreatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElCreatedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElCreatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -702,10 +599,8 @@ impl SecurityhubInsightFiltersElCreatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElCreatedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCreatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -714,9 +609,7 @@ impl ToListMappable for SecurityhubInsightFiltersElCreatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElCreatedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElCreatedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElCreatedAtEl {
         SecurityhubInsightFiltersElCreatedAtEl {
@@ -727,12 +620,10 @@ impl BuildSecurityhubInsightFiltersElCreatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElCreatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElCreatedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElCreatedAtElRef {
         SecurityhubInsightFiltersElCreatedAtElRef {
@@ -741,28 +632,23 @@ impl Ref for SecurityhubInsightFiltersElCreatedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElCreatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElCreatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -772,30 +658,25 @@ pub struct SecurityhubInsightFiltersElCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElCriticalityEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElCriticalityEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElCriticalityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -804,9 +685,7 @@ impl ToListMappable for SecurityhubInsightFiltersElCriticalityEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElCriticalityEl {}
-
 impl BuildSecurityhubInsightFiltersElCriticalityEl {
     pub fn build(self) -> SecurityhubInsightFiltersElCriticalityEl {
         SecurityhubInsightFiltersElCriticalityEl {
@@ -816,12 +695,10 @@ impl BuildSecurityhubInsightFiltersElCriticalityEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElCriticalityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElCriticalityElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElCriticalityElRef {
         SecurityhubInsightFiltersElCriticalityElRef {
@@ -830,39 +707,31 @@ impl Ref for SecurityhubInsightFiltersElCriticalityElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElCriticalityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElDescriptionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElDescriptionEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElDescriptionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElDescriptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -871,14 +740,12 @@ impl ToListMappable for SecurityhubInsightFiltersElDescriptionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElDescriptionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElDescriptionEl {
     pub fn build(self) -> SecurityhubInsightFiltersElDescriptionEl {
         SecurityhubInsightFiltersElDescriptionEl {
@@ -887,12 +754,10 @@ impl BuildSecurityhubInsightFiltersElDescriptionEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElDescriptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElDescriptionElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElDescriptionElRef {
         SecurityhubInsightFiltersElDescriptionElRef {
@@ -901,23 +766,19 @@ impl Ref for SecurityhubInsightFiltersElDescriptionElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElDescriptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -927,30 +788,25 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -959,9 +815,7 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsConfiden
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {}
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
         SecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
@@ -971,12 +825,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsConfidenceEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
     fn new(
         shared: StackShared,
@@ -988,28 +840,23 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsConfidenceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1019,30 +866,25 @@ pub struct SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1051,9 +893,7 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsCritical
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {}
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
         SecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
@@ -1063,12 +903,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsCriticalityEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
     fn new(
         shared: StackShared,
@@ -1080,39 +918,31 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsCriticalityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1121,14 +951,12 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsRelatedF
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
         SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
@@ -1137,12 +965,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdElRef {
     fn new(
         shared: StackShared,
@@ -1154,38 +980,31 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdEl
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {}
-
 impl ToListMappable
     for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl
 {
     type O = BlockAssignable<
         SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1194,14 +1013,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnEl {
     pub fn build(
         self,
@@ -1212,12 +1029,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProduct
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnElRef {
     fn new(
         shared: StackShared,
@@ -1229,34 +1044,27 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProd
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsRelatedFindingsProductArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1265,14 +1073,12 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverity
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
         SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
@@ -1281,12 +1087,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
     fn new(
         shared: StackShared,
@@ -1298,34 +1102,27 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef 
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityLabelElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1334,14 +1131,12 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsSeverity
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
         SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
@@ -1350,12 +1145,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalElRef {
     fn new(
         shared: StackShared,
@@ -1367,34 +1160,27 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalElR
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsSeverityOriginalElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFindingProviderFieldsTypesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1403,14 +1189,12 @@ impl ToListMappable for SecurityhubInsightFiltersElFindingProviderFieldsTypesEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
         SecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
@@ -1419,12 +1203,10 @@ impl BuildSecurityhubInsightFiltersElFindingProviderFieldsTypesEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
     fn new(
         shared: StackShared,
@@ -1436,34 +1218,27 @@ impl Ref for SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFindingProviderFieldsTypesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1472,14 +1247,12 @@ impl ToListMappable for SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
         SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
@@ -1488,12 +1261,10 @@ impl BuildSecurityhubInsightFiltersElFirstObservedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -1505,28 +1276,23 @@ impl Ref for SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFirstObservedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElFirstObservedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElFirstObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1537,20 +1303,17 @@ pub struct SecurityhubInsightFiltersElFirstObservedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElFirstObservedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElFirstObservedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElFirstObservedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -1567,10 +1330,8 @@ impl SecurityhubInsightFiltersElFirstObservedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElFirstObservedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElFirstObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1579,9 +1340,7 @@ impl ToListMappable for SecurityhubInsightFiltersElFirstObservedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElFirstObservedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElFirstObservedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElFirstObservedAtEl {
         SecurityhubInsightFiltersElFirstObservedAtEl {
@@ -1592,12 +1351,10 @@ impl BuildSecurityhubInsightFiltersElFirstObservedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElFirstObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElFirstObservedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElFirstObservedAtElRef {
         SecurityhubInsightFiltersElFirstObservedAtElRef {
@@ -1606,22 +1363,18 @@ impl Ref for SecurityhubInsightFiltersElFirstObservedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElFirstObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -1629,18 +1382,14 @@ impl SecurityhubInsightFiltersElFirstObservedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElGeneratorIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElGeneratorIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElGeneratorIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElGeneratorIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1649,14 +1398,12 @@ impl ToListMappable for SecurityhubInsightFiltersElGeneratorIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElGeneratorIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElGeneratorIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElGeneratorIdEl {
         SecurityhubInsightFiltersElGeneratorIdEl {
@@ -1665,12 +1412,10 @@ impl BuildSecurityhubInsightFiltersElGeneratorIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElGeneratorIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElGeneratorIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElGeneratorIdElRef {
         SecurityhubInsightFiltersElGeneratorIdElRef {
@@ -1679,34 +1424,27 @@ impl Ref for SecurityhubInsightFiltersElGeneratorIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElGeneratorIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1715,14 +1453,12 @@ impl ToListMappable for SecurityhubInsightFiltersElIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElIdEl {
         SecurityhubInsightFiltersElIdEl {
@@ -1731,12 +1467,10 @@ impl BuildSecurityhubInsightFiltersElIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElIdElRef {
         SecurityhubInsightFiltersElIdElRef {
@@ -1745,33 +1479,26 @@ impl Ref for SecurityhubInsightFiltersElIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElKeywordEl {
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElKeywordEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElKeywordEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElKeywordEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1780,23 +1507,19 @@ impl ToListMappable for SecurityhubInsightFiltersElKeywordEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElKeywordEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElKeywordEl {
     pub fn build(self) -> SecurityhubInsightFiltersElKeywordEl {
         SecurityhubInsightFiltersElKeywordEl { value: self.value }
     }
 }
-
 pub struct SecurityhubInsightFiltersElKeywordElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElKeywordElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElKeywordElRef {
         SecurityhubInsightFiltersElKeywordElRef {
@@ -1805,29 +1528,23 @@ impl Ref for SecurityhubInsightFiltersElKeywordElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElKeywordElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElLastObservedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1836,14 +1553,12 @@ impl ToListMappable for SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
         SecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
@@ -1852,12 +1567,10 @@ impl BuildSecurityhubInsightFiltersElLastObservedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -1869,28 +1582,23 @@ impl Ref for SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElLastObservedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElLastObservedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1901,20 +1609,17 @@ pub struct SecurityhubInsightFiltersElLastObservedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElLastObservedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElLastObservedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElLastObservedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -1931,10 +1636,8 @@ impl SecurityhubInsightFiltersElLastObservedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElLastObservedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElLastObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1943,9 +1646,7 @@ impl ToListMappable for SecurityhubInsightFiltersElLastObservedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElLastObservedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElLastObservedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElLastObservedAtEl {
         SecurityhubInsightFiltersElLastObservedAtEl {
@@ -1956,12 +1657,10 @@ impl BuildSecurityhubInsightFiltersElLastObservedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElLastObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElLastObservedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElLastObservedAtElRef {
         SecurityhubInsightFiltersElLastObservedAtElRef {
@@ -1970,39 +1669,31 @@ impl Ref for SecurityhubInsightFiltersElLastObservedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElLastObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElLastObservedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElMalwareNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElMalwareNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElMalwareNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2011,14 +1702,12 @@ impl ToListMappable for SecurityhubInsightFiltersElMalwareNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElMalwareNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElMalwareNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElMalwareNameEl {
         SecurityhubInsightFiltersElMalwareNameEl {
@@ -2027,12 +1716,10 @@ impl BuildSecurityhubInsightFiltersElMalwareNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElMalwareNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElMalwareNameElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElMalwareNameElRef {
         SecurityhubInsightFiltersElMalwareNameElRef {
@@ -2041,34 +1728,27 @@ impl Ref for SecurityhubInsightFiltersElMalwareNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElMalwareNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElMalwarePathEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElMalwarePathEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElMalwarePathEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwarePathEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2077,14 +1757,12 @@ impl ToListMappable for SecurityhubInsightFiltersElMalwarePathEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElMalwarePathEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElMalwarePathEl {
     pub fn build(self) -> SecurityhubInsightFiltersElMalwarePathEl {
         SecurityhubInsightFiltersElMalwarePathEl {
@@ -2093,12 +1771,10 @@ impl BuildSecurityhubInsightFiltersElMalwarePathEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElMalwarePathElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElMalwarePathElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElMalwarePathElRef {
         SecurityhubInsightFiltersElMalwarePathElRef {
@@ -2107,34 +1783,27 @@ impl Ref for SecurityhubInsightFiltersElMalwarePathElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElMalwarePathElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElMalwareStateEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElMalwareStateEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElMalwareStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2143,14 +1812,12 @@ impl ToListMappable for SecurityhubInsightFiltersElMalwareStateEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElMalwareStateEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElMalwareStateEl {
     pub fn build(self) -> SecurityhubInsightFiltersElMalwareStateEl {
         SecurityhubInsightFiltersElMalwareStateEl {
@@ -2159,12 +1826,10 @@ impl BuildSecurityhubInsightFiltersElMalwareStateEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElMalwareStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElMalwareStateElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElMalwareStateElRef {
         SecurityhubInsightFiltersElMalwareStateElRef {
@@ -2173,34 +1838,27 @@ impl Ref for SecurityhubInsightFiltersElMalwareStateElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElMalwareStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElMalwareTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElMalwareTypeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElMalwareTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElMalwareTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2209,14 +1867,12 @@ impl ToListMappable for SecurityhubInsightFiltersElMalwareTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElMalwareTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElMalwareTypeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElMalwareTypeEl {
         SecurityhubInsightFiltersElMalwareTypeEl {
@@ -2225,12 +1881,10 @@ impl BuildSecurityhubInsightFiltersElMalwareTypeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElMalwareTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElMalwareTypeElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElMalwareTypeElRef {
         SecurityhubInsightFiltersElMalwareTypeElRef {
@@ -2239,34 +1893,27 @@ impl Ref for SecurityhubInsightFiltersElMalwareTypeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElMalwareTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkDestinationDomainEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationDomainEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationDomainEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationDomainEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2275,14 +1922,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationDomainEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkDestinationDomainEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkDestinationDomainEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkDestinationDomainEl {
         SecurityhubInsightFiltersElNetworkDestinationDomainEl {
@@ -2291,12 +1936,10 @@ impl BuildSecurityhubInsightFiltersElNetworkDestinationDomainEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
     fn new(
         shared: StackShared,
@@ -2308,33 +1951,26 @@ impl Ref for SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationDomainElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkDestinationIpv4El {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationIpv4El {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv4El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationIpv4El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2343,23 +1979,19 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv4El {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkDestinationIpv4El {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkDestinationIpv4El {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkDestinationIpv4El {
         SecurityhubInsightFiltersElNetworkDestinationIpv4El { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
     fn new(
         shared: StackShared,
@@ -2371,28 +2003,22 @@ impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationIpv4ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkDestinationIpv6El {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationIpv6El {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv6El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationIpv6El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2401,23 +2027,19 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationIpv6El {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkDestinationIpv6El {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkDestinationIpv6El {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkDestinationIpv6El {
         SecurityhubInsightFiltersElNetworkDestinationIpv6El { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
     fn new(
         shared: StackShared,
@@ -2429,18 +2051,15 @@ impl Ref for SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationIpv6ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkDestinationPortEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2450,30 +2069,25 @@ pub struct SecurityhubInsightFiltersElNetworkDestinationPortEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationPortEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationPortEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDestinationPortEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2482,9 +2096,7 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkDestinationPortEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkDestinationPortEl {}
-
 impl BuildSecurityhubInsightFiltersElNetworkDestinationPortEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkDestinationPortEl {
         SecurityhubInsightFiltersElNetworkDestinationPortEl {
@@ -2494,12 +2106,10 @@ impl BuildSecurityhubInsightFiltersElNetworkDestinationPortEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkDestinationPortElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkDestinationPortElRef {
     fn new(
         shared: StackShared,
@@ -2511,39 +2121,31 @@ impl Ref for SecurityhubInsightFiltersElNetworkDestinationPortElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkDestinationPortElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkDirectionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkDirectionEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkDirectionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkDirectionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2552,14 +2154,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkDirectionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkDirectionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkDirectionEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkDirectionEl {
         SecurityhubInsightFiltersElNetworkDirectionEl {
@@ -2568,12 +2168,10 @@ impl BuildSecurityhubInsightFiltersElNetworkDirectionEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkDirectionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkDirectionElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkDirectionElRef {
         SecurityhubInsightFiltersElNetworkDirectionElRef {
@@ -2582,34 +2180,27 @@ impl Ref for SecurityhubInsightFiltersElNetworkDirectionElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkDirectionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkProtocolEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkProtocolEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkProtocolEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkProtocolEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2618,14 +2209,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkProtocolEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkProtocolEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkProtocolEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkProtocolEl {
         SecurityhubInsightFiltersElNetworkProtocolEl {
@@ -2634,12 +2223,10 @@ impl BuildSecurityhubInsightFiltersElNetworkProtocolEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkProtocolElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkProtocolElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkProtocolElRef {
         SecurityhubInsightFiltersElNetworkProtocolElRef {
@@ -2648,34 +2235,27 @@ impl Ref for SecurityhubInsightFiltersElNetworkProtocolElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkProtocolElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkSourceDomainEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceDomainEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceDomainEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceDomainEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2684,14 +2264,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceDomainEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkSourceDomainEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkSourceDomainEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkSourceDomainEl {
         SecurityhubInsightFiltersElNetworkSourceDomainEl {
@@ -2700,12 +2278,10 @@ impl BuildSecurityhubInsightFiltersElNetworkSourceDomainEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkSourceDomainElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkSourceDomainElRef {
     fn new(
         shared: StackShared,
@@ -2717,33 +2293,26 @@ impl Ref for SecurityhubInsightFiltersElNetworkSourceDomainElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceDomainElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkSourceIpv4El {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceIpv4El {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv4El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceIpv4El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2752,23 +2321,19 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv4El {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkSourceIpv4El {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkSourceIpv4El {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkSourceIpv4El {
         SecurityhubInsightFiltersElNetworkSourceIpv4El { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
         SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
@@ -2777,28 +2342,22 @@ impl Ref for SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceIpv4ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkSourceIpv6El {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceIpv6El {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv6El {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceIpv6El>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2807,23 +2366,19 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceIpv6El {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkSourceIpv6El {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkSourceIpv6El {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkSourceIpv6El {
         SecurityhubInsightFiltersElNetworkSourceIpv6El { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
         SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
@@ -2832,29 +2387,23 @@ impl Ref for SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceIpv6ElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkSourceMacEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceMacEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceMacEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourceMacEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2863,14 +2412,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkSourceMacEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkSourceMacEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNetworkSourceMacEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkSourceMacEl {
         SecurityhubInsightFiltersElNetworkSourceMacEl {
@@ -2879,12 +2426,10 @@ impl BuildSecurityhubInsightFiltersElNetworkSourceMacEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkSourceMacElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkSourceMacElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkSourceMacElRef {
         SecurityhubInsightFiltersElNetworkSourceMacElRef {
@@ -2893,23 +2438,19 @@ impl Ref for SecurityhubInsightFiltersElNetworkSourceMacElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkSourceMacElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNetworkSourcePortEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2919,30 +2460,25 @@ pub struct SecurityhubInsightFiltersElNetworkSourcePortEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElNetworkSourcePortEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElNetworkSourcePortEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNetworkSourcePortEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2951,9 +2487,7 @@ impl ToListMappable for SecurityhubInsightFiltersElNetworkSourcePortEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNetworkSourcePortEl {}
-
 impl BuildSecurityhubInsightFiltersElNetworkSourcePortEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNetworkSourcePortEl {
         SecurityhubInsightFiltersElNetworkSourcePortEl {
@@ -2963,12 +2497,10 @@ impl BuildSecurityhubInsightFiltersElNetworkSourcePortEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNetworkSourcePortElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNetworkSourcePortElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNetworkSourcePortElRef {
         SecurityhubInsightFiltersElNetworkSourcePortElRef {
@@ -2977,39 +2509,31 @@ impl Ref for SecurityhubInsightFiltersElNetworkSourcePortElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNetworkSourcePortElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNoteTextEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNoteTextEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNoteTextEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteTextEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3018,14 +2542,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNoteTextEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNoteTextEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNoteTextEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNoteTextEl {
         SecurityhubInsightFiltersElNoteTextEl {
@@ -3034,12 +2556,10 @@ impl BuildSecurityhubInsightFiltersElNoteTextEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNoteTextElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNoteTextElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNoteTextElRef {
         SecurityhubInsightFiltersElNoteTextElRef {
@@ -3048,34 +2568,27 @@ impl Ref for SecurityhubInsightFiltersElNoteTextElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNoteTextElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3084,14 +2597,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
         SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
@@ -3100,12 +2611,10 @@ impl BuildSecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -3117,28 +2626,23 @@ impl Ref for SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElNoteUpdatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNoteUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3149,20 +2653,17 @@ pub struct SecurityhubInsightFiltersElNoteUpdatedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElNoteUpdatedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -3179,10 +2680,8 @@ impl SecurityhubInsightFiltersElNoteUpdatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteUpdatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3191,9 +2690,7 @@ impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNoteUpdatedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElNoteUpdatedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNoteUpdatedAtEl {
         SecurityhubInsightFiltersElNoteUpdatedAtEl {
@@ -3204,12 +2701,10 @@ impl BuildSecurityhubInsightFiltersElNoteUpdatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNoteUpdatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNoteUpdatedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNoteUpdatedAtElRef {
         SecurityhubInsightFiltersElNoteUpdatedAtElRef {
@@ -3218,39 +2713,31 @@ impl Ref for SecurityhubInsightFiltersElNoteUpdatedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElNoteUpdatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElNoteUpdatedByEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedByEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedByEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElNoteUpdatedByEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3259,14 +2746,12 @@ impl ToListMappable for SecurityhubInsightFiltersElNoteUpdatedByEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElNoteUpdatedByEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElNoteUpdatedByEl {
     pub fn build(self) -> SecurityhubInsightFiltersElNoteUpdatedByEl {
         SecurityhubInsightFiltersElNoteUpdatedByEl {
@@ -3275,12 +2760,10 @@ impl BuildSecurityhubInsightFiltersElNoteUpdatedByEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElNoteUpdatedByElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElNoteUpdatedByElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElNoteUpdatedByElRef {
         SecurityhubInsightFiltersElNoteUpdatedByElRef {
@@ -3289,34 +2772,27 @@ impl Ref for SecurityhubInsightFiltersElNoteUpdatedByElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElNoteUpdatedByElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3325,14 +2801,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeE
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
         SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
@@ -3341,12 +2815,10 @@ impl BuildSecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -3358,28 +2830,23 @@ impl Ref for SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElProcessLaunchedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessLaunchedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3390,20 +2857,17 @@ pub struct SecurityhubInsightFiltersElProcessLaunchedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElProcessLaunchedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElProcessLaunchedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElProcessLaunchedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -3420,10 +2884,8 @@ impl SecurityhubInsightFiltersElProcessLaunchedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessLaunchedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessLaunchedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3432,9 +2894,7 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessLaunchedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessLaunchedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElProcessLaunchedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessLaunchedAtEl {
         SecurityhubInsightFiltersElProcessLaunchedAtEl {
@@ -3445,12 +2905,10 @@ impl BuildSecurityhubInsightFiltersElProcessLaunchedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessLaunchedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessLaunchedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessLaunchedAtElRef {
         SecurityhubInsightFiltersElProcessLaunchedAtElRef {
@@ -3459,22 +2917,18 @@ impl Ref for SecurityhubInsightFiltersElProcessLaunchedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessLaunchedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -3482,18 +2936,14 @@ impl SecurityhubInsightFiltersElProcessLaunchedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElProcessNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3502,14 +2952,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElProcessNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessNameEl {
         SecurityhubInsightFiltersElProcessNameEl {
@@ -3518,12 +2966,10 @@ impl BuildSecurityhubInsightFiltersElProcessNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessNameElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessNameElRef {
         SecurityhubInsightFiltersElProcessNameElRef {
@@ -3532,23 +2978,19 @@ impl Ref for SecurityhubInsightFiltersElProcessNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessParentPidEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3558,30 +3000,25 @@ pub struct SecurityhubInsightFiltersElProcessParentPidEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElProcessParentPidEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessParentPidEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessParentPidEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3590,9 +3027,7 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessParentPidEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessParentPidEl {}
-
 impl BuildSecurityhubInsightFiltersElProcessParentPidEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessParentPidEl {
         SecurityhubInsightFiltersElProcessParentPidEl {
@@ -3602,12 +3037,10 @@ impl BuildSecurityhubInsightFiltersElProcessParentPidEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessParentPidElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessParentPidElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessParentPidElRef {
         SecurityhubInsightFiltersElProcessParentPidElRef {
@@ -3616,39 +3049,31 @@ impl Ref for SecurityhubInsightFiltersElProcessParentPidElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessParentPidElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessPathEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElProcessPathEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessPathEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessPathEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3657,14 +3082,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessPathEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessPathEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElProcessPathEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessPathEl {
         SecurityhubInsightFiltersElProcessPathEl {
@@ -3673,12 +3096,10 @@ impl BuildSecurityhubInsightFiltersElProcessPathEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessPathElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessPathElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessPathElRef {
         SecurityhubInsightFiltersElProcessPathElRef {
@@ -3687,23 +3108,19 @@ impl Ref for SecurityhubInsightFiltersElProcessPathElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessPathElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessPidEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3713,30 +3130,25 @@ pub struct SecurityhubInsightFiltersElProcessPidEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     lte: Option<PrimField<String>>,
 }
-
 impl SecurityhubInsightFiltersElProcessPidEl {
     #[doc = "Set the field `eq`.\n"]
     pub fn set_eq(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.eq = Some(v.into());
         self
     }
-
     #[doc = "Set the field `gte`.\n"]
     pub fn set_gte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.gte = Some(v.into());
         self
     }
-
     #[doc = "Set the field `lte`.\n"]
     pub fn set_lte(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.lte = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessPidEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessPidEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3745,9 +3157,7 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessPidEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessPidEl {}
-
 impl BuildSecurityhubInsightFiltersElProcessPidEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessPidEl {
         SecurityhubInsightFiltersElProcessPidEl {
@@ -3757,12 +3167,10 @@ impl BuildSecurityhubInsightFiltersElProcessPidEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessPidElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessPidElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProcessPidElRef {
         SecurityhubInsightFiltersElProcessPidElRef {
@@ -3771,39 +3179,31 @@ impl Ref for SecurityhubInsightFiltersElProcessPidElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessPidElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `eq` after provisioning.\n"]
     pub fn eq(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.eq", self.base))
     }
-
     #[doc = "Get a reference to the value of field `gte` after provisioning.\n"]
     pub fn gte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.gte", self.base))
     }
-
     #[doc = "Get a reference to the value of field `lte` after provisioning.\n"]
     pub fn lte(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.lte", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3812,14 +3212,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessTerminatedAtElDateRang
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
         SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
@@ -3828,12 +3226,10 @@ impl BuildSecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -3845,28 +3241,23 @@ impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElProcessTerminatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProcessTerminatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3877,20 +3268,17 @@ pub struct SecurityhubInsightFiltersElProcessTerminatedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElProcessTerminatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElProcessTerminatedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElProcessTerminatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -3907,10 +3295,8 @@ impl SecurityhubInsightFiltersElProcessTerminatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElProcessTerminatedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProcessTerminatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3919,9 +3305,7 @@ impl ToListMappable for SecurityhubInsightFiltersElProcessTerminatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProcessTerminatedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElProcessTerminatedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProcessTerminatedAtEl {
         SecurityhubInsightFiltersElProcessTerminatedAtEl {
@@ -3932,12 +3316,10 @@ impl BuildSecurityhubInsightFiltersElProcessTerminatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProcessTerminatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElRef {
     fn new(
         shared: StackShared,
@@ -3949,22 +3331,18 @@ impl Ref for SecurityhubInsightFiltersElProcessTerminatedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProcessTerminatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -3972,18 +3350,14 @@ impl SecurityhubInsightFiltersElProcessTerminatedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProductArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElProductArnEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProductArnEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3992,14 +3366,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProductArnEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProductArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElProductArnEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProductArnEl {
         SecurityhubInsightFiltersElProductArnEl {
@@ -4008,12 +3380,10 @@ impl BuildSecurityhubInsightFiltersElProductArnEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProductArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProductArnElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProductArnElRef {
         SecurityhubInsightFiltersElProductArnElRef {
@@ -4022,35 +3392,28 @@ impl Ref for SecurityhubInsightFiltersElProductArnElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProductArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProductFieldsEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElProductFieldsEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProductFieldsEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductFieldsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4059,7 +3422,6 @@ impl ToListMappable for SecurityhubInsightFiltersElProductFieldsEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProductFieldsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -4068,7 +3430,6 @@ pub struct BuildSecurityhubInsightFiltersElProductFieldsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElProductFieldsEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProductFieldsEl {
         SecurityhubInsightFiltersElProductFieldsEl {
@@ -4078,12 +3439,10 @@ impl BuildSecurityhubInsightFiltersElProductFieldsEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProductFieldsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProductFieldsElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProductFieldsElRef {
         SecurityhubInsightFiltersElProductFieldsElRef {
@@ -4092,39 +3451,31 @@ impl Ref for SecurityhubInsightFiltersElProductFieldsElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProductFieldsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElProductNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElProductNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElProductNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElProductNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4133,14 +3484,12 @@ impl ToListMappable for SecurityhubInsightFiltersElProductNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElProductNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElProductNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElProductNameEl {
         SecurityhubInsightFiltersElProductNameEl {
@@ -4149,12 +3498,10 @@ impl BuildSecurityhubInsightFiltersElProductNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElProductNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElProductNameElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElProductNameElRef {
         SecurityhubInsightFiltersElProductNameElRef {
@@ -4163,34 +3510,27 @@ impl Ref for SecurityhubInsightFiltersElProductNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElProductNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElRecommendationTextEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElRecommendationTextEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElRecommendationTextEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRecommendationTextEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4199,14 +3539,12 @@ impl ToListMappable for SecurityhubInsightFiltersElRecommendationTextEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElRecommendationTextEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElRecommendationTextEl {
     pub fn build(self) -> SecurityhubInsightFiltersElRecommendationTextEl {
         SecurityhubInsightFiltersElRecommendationTextEl {
@@ -4215,12 +3553,10 @@ impl BuildSecurityhubInsightFiltersElRecommendationTextEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElRecommendationTextElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElRecommendationTextElRef {
     fn new(
         shared: StackShared,
@@ -4232,34 +3568,27 @@ impl Ref for SecurityhubInsightFiltersElRecommendationTextElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElRecommendationTextElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElRecordStateEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElRecordStateEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElRecordStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRecordStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4268,14 +3597,12 @@ impl ToListMappable for SecurityhubInsightFiltersElRecordStateEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElRecordStateEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElRecordStateEl {
     pub fn build(self) -> SecurityhubInsightFiltersElRecordStateEl {
         SecurityhubInsightFiltersElRecordStateEl {
@@ -4284,12 +3611,10 @@ impl BuildSecurityhubInsightFiltersElRecordStateEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElRecordStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElRecordStateElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElRecordStateElRef {
         SecurityhubInsightFiltersElRecordStateElRef {
@@ -4298,34 +3623,27 @@ impl Ref for SecurityhubInsightFiltersElRecordStateElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElRecordStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElRelatedFindingsIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElRelatedFindingsIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRelatedFindingsIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4334,14 +3652,12 @@ impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElRelatedFindingsIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElRelatedFindingsIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElRelatedFindingsIdEl {
         SecurityhubInsightFiltersElRelatedFindingsIdEl {
@@ -4350,12 +3666,10 @@ impl BuildSecurityhubInsightFiltersElRelatedFindingsIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElRelatedFindingsIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElRelatedFindingsIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElRelatedFindingsIdElRef {
         SecurityhubInsightFiltersElRelatedFindingsIdElRef {
@@ -4364,34 +3678,27 @@ impl Ref for SecurityhubInsightFiltersElRelatedFindingsIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElRelatedFindingsIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElRelatedFindingsProductArnEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElRelatedFindingsProductArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4400,14 +3707,12 @@ impl ToListMappable for SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElRelatedFindingsProductArnEl {
     pub fn build(self) -> SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
         SecurityhubInsightFiltersElRelatedFindingsProductArnEl {
@@ -4416,12 +3721,10 @@ impl BuildSecurityhubInsightFiltersElRelatedFindingsProductArnEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
     fn new(
         shared: StackShared,
@@ -4433,35 +3736,28 @@ impl Ref for SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElRelatedFindingsProductArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
     type O =
         BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4470,14 +3766,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInst
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnEl {
@@ -4486,12 +3780,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArn
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnElRef {
     fn new(
         shared: StackShared,
@@ -4503,34 +3795,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfile
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIamInstanceProfileArnElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4539,14 +3824,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageId
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
@@ -4555,12 +3838,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
     fn new(
         shared: StackShared,
@@ -4572,33 +3853,26 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceImageIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4607,23 +3881,19 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4Add
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesEl { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
     fn new(
         shared: StackShared,
@@ -4635,28 +3905,22 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv4AddressesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     cidr: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4665,23 +3929,19 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6Add
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     #[doc = ""]
     pub cidr: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesEl { cidr: self.cidr }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
     fn new(
         shared: StackShared,
@@ -4693,29 +3953,23 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceIpv6AddressesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr` after provisioning.\n"]
     pub fn cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cidr", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4724,14 +3978,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyName
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
@@ -4740,12 +3992,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
     fn new(
         shared: StackShared,
@@ -4757,35 +4007,28 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceKeyNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
     type O =
         BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4794,14 +4037,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunche
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl {
@@ -4810,12 +4051,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRange
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -4827,30 +4066,25 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRa
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDynamic {
     date_range: Option<
         DynamicBlock<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -4862,20 +4096,17 @@ pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
         Option<Vec<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -4896,10 +4127,8 @@ impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4908,9 +4137,7 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunche
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
@@ -4921,12 +4148,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
     fn new(
         shared: StackShared,
@@ -4938,22 +4163,18 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -4961,18 +4182,14 @@ impl SecurityhubInsightFiltersElResourceAwsEc2InstanceLaunchedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -4981,14 +4198,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetI
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
@@ -4997,12 +4212,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
     fn new(
         shared: StackShared,
@@ -5014,34 +4227,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceSubnetIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5050,14 +4256,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
@@ -5066,12 +4270,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceTypeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
     fn new(
         shared: StackShared,
@@ -5083,34 +4285,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5119,14 +4314,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
         SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
@@ -5135,12 +4328,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
     fn new(
         shared: StackShared,
@@ -5152,35 +4343,28 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsEc2InstanceVpcIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
     type O =
         BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5189,14 +4373,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreate
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl {
@@ -5205,12 +4387,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRange
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -5222,30 +4402,25 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRa
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDynamic {
     date_range: Option<
         DynamicBlock<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5257,20 +4432,17 @@ pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
         Option<Vec<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -5291,10 +4463,8 @@ impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5303,9 +4473,7 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreate
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
@@ -5316,12 +4484,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
     fn new(
         shared: StackShared,
@@ -5333,22 +4499,18 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -5356,18 +4518,14 @@ impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyCreatedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5376,14 +4534,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatus
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
@@ -5392,12 +4548,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
     fn new(
         shared: StackShared,
@@ -5409,34 +4563,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5445,14 +4592,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNa
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
         SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
@@ -5461,12 +4606,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
     fn new(
         shared: StackShared,
@@ -5478,34 +4621,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsIamAccessKeyUserNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5514,14 +4650,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
         SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
@@ -5530,12 +4664,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
     fn new(
         shared: StackShared,
@@ -5547,34 +4679,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5583,14 +4708,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameE
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
         SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
@@ -5599,12 +4722,10 @@ impl BuildSecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
     fn new(
         shared: StackShared,
@@ -5616,34 +4737,27 @@ impl Ref for SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceAwsS3BucketOwnerNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceContainerImageIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceContainerImageIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerImageIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5652,14 +4766,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceContainerImageIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceContainerImageIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceContainerImageIdEl {
         SecurityhubInsightFiltersElResourceContainerImageIdEl {
@@ -5668,12 +4780,10 @@ impl BuildSecurityhubInsightFiltersElResourceContainerImageIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceContainerImageIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceContainerImageIdElRef {
     fn new(
         shared: StackShared,
@@ -5685,34 +4795,27 @@ impl Ref for SecurityhubInsightFiltersElResourceContainerImageIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceContainerImageIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceContainerImageNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceContainerImageNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerImageNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5721,14 +4824,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceContainerImageNameEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceContainerImageNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceContainerImageNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceContainerImageNameEl {
         SecurityhubInsightFiltersElResourceContainerImageNameEl {
@@ -5737,12 +4838,10 @@ impl BuildSecurityhubInsightFiltersElResourceContainerImageNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceContainerImageNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceContainerImageNameElRef {
     fn new(
         shared: StackShared,
@@ -5754,34 +4853,27 @@ impl Ref for SecurityhubInsightFiltersElResourceContainerImageNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceContainerImageNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5790,14 +4882,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceContainerLaunchedAtEl
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
         SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
@@ -5806,12 +4896,10 @@ impl BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -5823,29 +4911,24 @@ impl Ref for SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElDynamic {
     date_range:
         Option<DynamicBlock<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -5856,20 +4939,17 @@ pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElResourceContainerLaunchedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElResourceContainerLaunchedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -5888,10 +4968,8 @@ impl SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerLaunchedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5900,9 +4978,7 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceContainerLaunchedAtEl
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
         SecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
@@ -5913,12 +4989,10 @@ impl BuildSecurityhubInsightFiltersElResourceContainerLaunchedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
     fn new(
         shared: StackShared,
@@ -5930,22 +5004,18 @@ impl Ref for SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -5953,18 +5023,14 @@ impl SecurityhubInsightFiltersElResourceContainerLaunchedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceContainerNameEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceContainerNameEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceContainerNameEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceContainerNameEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -5973,14 +5039,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceContainerNameEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceContainerNameEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceContainerNameEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceContainerNameEl {
         SecurityhubInsightFiltersElResourceContainerNameEl {
@@ -5989,12 +5053,10 @@ impl BuildSecurityhubInsightFiltersElResourceContainerNameEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceContainerNameElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceContainerNameElRef {
     fn new(
         shared: StackShared,
@@ -6006,35 +5068,28 @@ impl Ref for SecurityhubInsightFiltersElResourceContainerNameElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceContainerNameElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceDetailsOtherEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceDetailsOtherEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceDetailsOtherEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceDetailsOtherEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6043,7 +5098,6 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceDetailsOtherEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceDetailsOtherEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -6052,7 +5106,6 @@ pub struct BuildSecurityhubInsightFiltersElResourceDetailsOtherEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceDetailsOtherEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceDetailsOtherEl {
         SecurityhubInsightFiltersElResourceDetailsOtherEl {
@@ -6062,12 +5115,10 @@ impl BuildSecurityhubInsightFiltersElResourceDetailsOtherEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceDetailsOtherElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceDetailsOtherElRef {
     fn new(
         shared: StackShared,
@@ -6079,39 +5130,31 @@ impl Ref for SecurityhubInsightFiltersElResourceDetailsOtherElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceDetailsOtherElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceIdEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceIdEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceIdEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceIdEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6120,14 +5163,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceIdEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceIdEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceIdEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceIdEl {
         SecurityhubInsightFiltersElResourceIdEl {
@@ -6136,12 +5177,10 @@ impl BuildSecurityhubInsightFiltersElResourceIdEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceIdElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceIdElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceIdElRef {
         SecurityhubInsightFiltersElResourceIdElRef {
@@ -6150,34 +5189,27 @@ impl Ref for SecurityhubInsightFiltersElResourceIdElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceIdElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourcePartitionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourcePartitionEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourcePartitionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourcePartitionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6186,14 +5218,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourcePartitionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourcePartitionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourcePartitionEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourcePartitionEl {
         SecurityhubInsightFiltersElResourcePartitionEl {
@@ -6202,12 +5232,10 @@ impl BuildSecurityhubInsightFiltersElResourcePartitionEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourcePartitionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourcePartitionElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourcePartitionElRef {
         SecurityhubInsightFiltersElResourcePartitionElRef {
@@ -6216,34 +5244,27 @@ impl Ref for SecurityhubInsightFiltersElResourcePartitionElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourcePartitionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceRegionEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceRegionEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceRegionEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceRegionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6252,14 +5273,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceRegionEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceRegionEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceRegionEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceRegionEl {
         SecurityhubInsightFiltersElResourceRegionEl {
@@ -6268,12 +5287,10 @@ impl BuildSecurityhubInsightFiltersElResourceRegionEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceRegionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceRegionElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceRegionElRef {
         SecurityhubInsightFiltersElResourceRegionElRef {
@@ -6282,35 +5299,28 @@ impl Ref for SecurityhubInsightFiltersElResourceRegionElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceRegionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceTagsEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceTagsEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceTagsEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceTagsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6319,7 +5329,6 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceTagsEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceTagsEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -6328,7 +5337,6 @@ pub struct BuildSecurityhubInsightFiltersElResourceTagsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceTagsEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceTagsEl {
         SecurityhubInsightFiltersElResourceTagsEl {
@@ -6338,12 +5346,10 @@ impl BuildSecurityhubInsightFiltersElResourceTagsEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceTagsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceTagsElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceTagsElRef {
         SecurityhubInsightFiltersElResourceTagsElRef {
@@ -6352,39 +5358,31 @@ impl Ref for SecurityhubInsightFiltersElResourceTagsElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceTagsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElResourceTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElResourceTypeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElResourceTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElResourceTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6393,14 +5391,12 @@ impl ToListMappable for SecurityhubInsightFiltersElResourceTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElResourceTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElResourceTypeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElResourceTypeEl {
         SecurityhubInsightFiltersElResourceTypeEl {
@@ -6409,12 +5405,10 @@ impl BuildSecurityhubInsightFiltersElResourceTypeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElResourceTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElResourceTypeElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElResourceTypeElRef {
         SecurityhubInsightFiltersElResourceTypeElRef {
@@ -6423,34 +5417,27 @@ impl Ref for SecurityhubInsightFiltersElResourceTypeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElResourceTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElSeverityLabelEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElSeverityLabelEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElSeverityLabelEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElSeverityLabelEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6459,14 +5446,12 @@ impl ToListMappable for SecurityhubInsightFiltersElSeverityLabelEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElSeverityLabelEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElSeverityLabelEl {
     pub fn build(self) -> SecurityhubInsightFiltersElSeverityLabelEl {
         SecurityhubInsightFiltersElSeverityLabelEl {
@@ -6475,12 +5460,10 @@ impl BuildSecurityhubInsightFiltersElSeverityLabelEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElSeverityLabelElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElSeverityLabelElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElSeverityLabelElRef {
         SecurityhubInsightFiltersElSeverityLabelElRef {
@@ -6489,34 +5472,27 @@ impl Ref for SecurityhubInsightFiltersElSeverityLabelElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElSeverityLabelElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElSourceUrlEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElSourceUrlEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElSourceUrlEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElSourceUrlEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6525,14 +5501,12 @@ impl ToListMappable for SecurityhubInsightFiltersElSourceUrlEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElSourceUrlEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElSourceUrlEl {
     pub fn build(self) -> SecurityhubInsightFiltersElSourceUrlEl {
         SecurityhubInsightFiltersElSourceUrlEl {
@@ -6541,12 +5515,10 @@ impl BuildSecurityhubInsightFiltersElSourceUrlEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElSourceUrlElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElSourceUrlElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElSourceUrlElRef {
         SecurityhubInsightFiltersElSourceUrlElRef {
@@ -6555,34 +5527,27 @@ impl Ref for SecurityhubInsightFiltersElSourceUrlElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElSourceUrlElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6591,14 +5556,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryE
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
@@ -6607,12 +5570,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorCategoryEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
     fn new(
         shared: StackShared,
@@ -6624,35 +5585,28 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorCategoryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
     type O =
         BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6661,14 +5615,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorLastObser
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl {
     pub fn build(
         self,
@@ -6679,12 +5631,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRan
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -6696,30 +5646,25 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDate
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDynamic {
     date_range: Option<
         DynamicBlock<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -6731,20 +5676,17 @@ pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
         Option<Vec<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -6765,10 +5707,8 @@ impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6777,9 +5717,7 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorLastObser
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
@@ -6790,12 +5728,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
     fn new(
         shared: StackShared,
@@ -6807,22 +5743,18 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef 
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(
         &self,
@@ -6831,18 +5763,14 @@ impl SecurityhubInsightFiltersElThreatIntelIndicatorLastObservedAtElRef {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6851,14 +5779,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl 
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
@@ -6867,12 +5793,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
     fn new(
         shared: StackShared,
@@ -6884,34 +5808,27 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6920,14 +5837,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrl
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
@@ -6936,12 +5851,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
     fn new(
         shared: StackShared,
@@ -6953,34 +5866,27 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorSourceUrlElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -6989,14 +5895,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
@@ -7005,12 +5909,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorTypeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
     fn new(
         shared: StackShared,
@@ -7022,34 +5924,27 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElThreatIntelIndicatorValueEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7058,14 +5953,12 @@ impl ToListMappable for SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
     pub fn build(self) -> SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
         SecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
@@ -7074,12 +5967,10 @@ impl BuildSecurityhubInsightFiltersElThreatIntelIndicatorValueEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
     fn new(
         shared: StackShared,
@@ -7091,34 +5982,27 @@ impl Ref for SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElThreatIntelIndicatorValueElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElTitleEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElTitleEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElTitleEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElTitleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7127,14 +6011,12 @@ impl ToListMappable for SecurityhubInsightFiltersElTitleEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElTitleEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElTitleEl {
     pub fn build(self) -> SecurityhubInsightFiltersElTitleEl {
         SecurityhubInsightFiltersElTitleEl {
@@ -7143,12 +6025,10 @@ impl BuildSecurityhubInsightFiltersElTitleEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElTitleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElTitleElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElTitleElRef {
         SecurityhubInsightFiltersElTitleElRef {
@@ -7157,34 +6037,27 @@ impl Ref for SecurityhubInsightFiltersElTitleElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElTitleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElTypeEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElTypeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElTypeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElTypeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7193,14 +6066,12 @@ impl ToListMappable for SecurityhubInsightFiltersElTypeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElTypeEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElTypeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElTypeEl {
         SecurityhubInsightFiltersElTypeEl {
@@ -7209,12 +6080,10 @@ impl BuildSecurityhubInsightFiltersElTypeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElTypeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElTypeElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElTypeElRef {
         SecurityhubInsightFiltersElTypeElRef {
@@ -7223,34 +6092,27 @@ impl Ref for SecurityhubInsightFiltersElTypeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElTypeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElUpdatedAtElDateRangeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7259,14 +6121,12 @@ impl ToListMappable for SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildSecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
     pub fn build(self) -> SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
         SecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
@@ -7275,12 +6135,10 @@ impl BuildSecurityhubInsightFiltersElUpdatedAtElDateRangeEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
     fn new(
         shared: StackShared,
@@ -7292,28 +6150,23 @@ impl Ref for SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElUpdatedAtElDynamic {
     date_range: Option<DynamicBlock<SecurityhubInsightFiltersElUpdatedAtElDateRangeEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElUpdatedAtEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7324,20 +6177,17 @@ pub struct SecurityhubInsightFiltersElUpdatedAtEl {
     date_range: Option<Vec<SecurityhubInsightFiltersElUpdatedAtElDateRangeEl>>,
     dynamic: SecurityhubInsightFiltersElUpdatedAtElDynamic,
 }
-
 impl SecurityhubInsightFiltersElUpdatedAtEl {
     #[doc = "Set the field `end`.\n"]
     pub fn set_end(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.end = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start`.\n"]
     pub fn set_start(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.start = Some(v.into());
         self
     }
-
     #[doc = "Set the field `date_range`.\n"]
     pub fn set_date_range(
         mut self,
@@ -7354,10 +6204,8 @@ impl SecurityhubInsightFiltersElUpdatedAtEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersElUpdatedAtEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElUpdatedAtEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7366,9 +6214,7 @@ impl ToListMappable for SecurityhubInsightFiltersElUpdatedAtEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElUpdatedAtEl {}
-
 impl BuildSecurityhubInsightFiltersElUpdatedAtEl {
     pub fn build(self) -> SecurityhubInsightFiltersElUpdatedAtEl {
         SecurityhubInsightFiltersElUpdatedAtEl {
@@ -7379,12 +6225,10 @@ impl BuildSecurityhubInsightFiltersElUpdatedAtEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElUpdatedAtElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElUpdatedAtElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElUpdatedAtElRef {
         SecurityhubInsightFiltersElUpdatedAtElRef {
@@ -7393,40 +6237,32 @@ impl Ref for SecurityhubInsightFiltersElUpdatedAtElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElUpdatedAtElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `end` after provisioning.\n"]
     pub fn end(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.end", self.base))
     }
-
     #[doc = "Get a reference to the value of field `start` after provisioning.\n"]
     pub fn start(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start", self.base))
     }
-
     #[doc = "Get a reference to the value of field `date_range` after provisioning.\n"]
     pub fn date_range(&self) -> ListRef<SecurityhubInsightFiltersElUpdatedAtElDateRangeElRef> {
         ListRef::new(self.shared().clone(), format!("{}.date_range", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElUserDefinedValuesEl {
     comparison: PrimField<String>,
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElUserDefinedValuesEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElUserDefinedValuesEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElUserDefinedValuesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7435,7 +6271,6 @@ impl ToListMappable for SecurityhubInsightFiltersElUserDefinedValuesEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElUserDefinedValuesEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
@@ -7444,7 +6279,6 @@ pub struct BuildSecurityhubInsightFiltersElUserDefinedValuesEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElUserDefinedValuesEl {
     pub fn build(self) -> SecurityhubInsightFiltersElUserDefinedValuesEl {
         SecurityhubInsightFiltersElUserDefinedValuesEl {
@@ -7454,12 +6288,10 @@ impl BuildSecurityhubInsightFiltersElUserDefinedValuesEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElUserDefinedValuesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElUserDefinedValuesElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElUserDefinedValuesElRef {
         SecurityhubInsightFiltersElUserDefinedValuesElRef {
@@ -7468,39 +6300,31 @@ impl Ref for SecurityhubInsightFiltersElUserDefinedValuesElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElUserDefinedValuesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElVerificationStateEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElVerificationStateEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElVerificationStateEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElVerificationStateEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7509,14 +6333,12 @@ impl ToListMappable for SecurityhubInsightFiltersElVerificationStateEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElVerificationStateEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElVerificationStateEl {
     pub fn build(self) -> SecurityhubInsightFiltersElVerificationStateEl {
         SecurityhubInsightFiltersElVerificationStateEl {
@@ -7525,12 +6347,10 @@ impl BuildSecurityhubInsightFiltersElVerificationStateEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElVerificationStateElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElVerificationStateElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElVerificationStateElRef {
         SecurityhubInsightFiltersElVerificationStateElRef {
@@ -7539,34 +6359,27 @@ impl Ref for SecurityhubInsightFiltersElVerificationStateElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElVerificationStateElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersElWorkflowStatusEl {
     comparison: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl SecurityhubInsightFiltersElWorkflowStatusEl {}
-
 impl ToListMappable for SecurityhubInsightFiltersElWorkflowStatusEl {
     type O = BlockAssignable<SecurityhubInsightFiltersElWorkflowStatusEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -7575,14 +6388,12 @@ impl ToListMappable for SecurityhubInsightFiltersElWorkflowStatusEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersElWorkflowStatusEl {
     #[doc = ""]
     pub comparison: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildSecurityhubInsightFiltersElWorkflowStatusEl {
     pub fn build(self) -> SecurityhubInsightFiltersElWorkflowStatusEl {
         SecurityhubInsightFiltersElWorkflowStatusEl {
@@ -7591,12 +6402,10 @@ impl BuildSecurityhubInsightFiltersElWorkflowStatusEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElWorkflowStatusElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElWorkflowStatusElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElWorkflowStatusElRef {
         SecurityhubInsightFiltersElWorkflowStatusElRef {
@@ -7605,23 +6414,19 @@ impl Ref for SecurityhubInsightFiltersElWorkflowStatusElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElWorkflowStatusElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `comparison` after provisioning.\n"]
     pub fn comparison(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.comparison", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightFiltersElDynamic {
     aws_account_id: Option<DynamicBlock<SecurityhubInsightFiltersElAwsAccountIdEl>>,
@@ -7751,7 +6556,6 @@ struct SecurityhubInsightFiltersElDynamic {
     verification_state: Option<DynamicBlock<SecurityhubInsightFiltersElVerificationStateEl>>,
     workflow_status: Option<DynamicBlock<SecurityhubInsightFiltersElWorkflowStatusEl>>,
 }
-
 #[derive(Serialize)]
 pub struct SecurityhubInsightFiltersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -7961,7 +6765,6 @@ pub struct SecurityhubInsightFiltersEl {
     workflow_status: Option<Vec<SecurityhubInsightFiltersElWorkflowStatusEl>>,
     dynamic: SecurityhubInsightFiltersElDynamic,
 }
-
 impl SecurityhubInsightFiltersEl {
     #[doc = "Set the field `aws_account_id`.\n"]
     pub fn set_aws_account_id(
@@ -7978,7 +6781,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `company_name`.\n"]
     pub fn set_company_name(
         mut self,
@@ -7994,7 +6796,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `compliance_status`.\n"]
     pub fn set_compliance_status(
         mut self,
@@ -8010,7 +6811,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `confidence`.\n"]
     pub fn set_confidence(
         mut self,
@@ -8026,7 +6826,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `created_at`.\n"]
     pub fn set_created_at(
         mut self,
@@ -8042,7 +6841,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `criticality`.\n"]
     pub fn set_criticality(
         mut self,
@@ -8058,7 +6856,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(
         mut self,
@@ -8074,7 +6871,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_confidence`.\n"]
     pub fn set_finding_provider_fields_confidence(
         mut self,
@@ -8090,7 +6886,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_criticality`.\n"]
     pub fn set_finding_provider_fields_criticality(
         mut self,
@@ -8106,7 +6901,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_related_findings_id`.\n"]
     pub fn set_finding_provider_fields_related_findings_id(
         mut self,
@@ -8124,7 +6918,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_related_findings_product_arn`.\n"]
     pub fn set_finding_provider_fields_related_findings_product_arn(
         mut self,
@@ -8145,7 +6938,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_severity_label`.\n"]
     pub fn set_finding_provider_fields_severity_label(
         mut self,
@@ -8161,7 +6953,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_severity_original`.\n"]
     pub fn set_finding_provider_fields_severity_original(
         mut self,
@@ -8179,7 +6970,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `finding_provider_fields_types`.\n"]
     pub fn set_finding_provider_fields_types(
         mut self,
@@ -8195,7 +6985,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `first_observed_at`.\n"]
     pub fn set_first_observed_at(
         mut self,
@@ -8211,7 +7000,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `generator_id`.\n"]
     pub fn set_generator_id(
         mut self,
@@ -8227,7 +7015,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(
         mut self,
@@ -8243,7 +7030,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `keyword`.\n"]
     pub fn set_keyword(
         mut self,
@@ -8259,7 +7045,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `last_observed_at`.\n"]
     pub fn set_last_observed_at(
         mut self,
@@ -8275,7 +7060,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `malware_name`.\n"]
     pub fn set_malware_name(
         mut self,
@@ -8291,7 +7075,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `malware_path`.\n"]
     pub fn set_malware_path(
         mut self,
@@ -8307,7 +7090,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `malware_state`.\n"]
     pub fn set_malware_state(
         mut self,
@@ -8323,7 +7105,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `malware_type`.\n"]
     pub fn set_malware_type(
         mut self,
@@ -8339,7 +7120,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_destination_domain`.\n"]
     pub fn set_network_destination_domain(
         mut self,
@@ -8355,7 +7135,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_destination_ipv4`.\n"]
     pub fn set_network_destination_ipv4(
         mut self,
@@ -8371,7 +7150,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_destination_ipv6`.\n"]
     pub fn set_network_destination_ipv6(
         mut self,
@@ -8387,7 +7165,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_destination_port`.\n"]
     pub fn set_network_destination_port(
         mut self,
@@ -8403,7 +7180,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_direction`.\n"]
     pub fn set_network_direction(
         mut self,
@@ -8419,7 +7195,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_protocol`.\n"]
     pub fn set_network_protocol(
         mut self,
@@ -8435,7 +7210,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_source_domain`.\n"]
     pub fn set_network_source_domain(
         mut self,
@@ -8451,7 +7225,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_source_ipv4`.\n"]
     pub fn set_network_source_ipv4(
         mut self,
@@ -8467,7 +7240,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_source_ipv6`.\n"]
     pub fn set_network_source_ipv6(
         mut self,
@@ -8483,7 +7255,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_source_mac`.\n"]
     pub fn set_network_source_mac(
         mut self,
@@ -8499,7 +7270,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `network_source_port`.\n"]
     pub fn set_network_source_port(
         mut self,
@@ -8515,7 +7285,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `note_text`.\n"]
     pub fn set_note_text(
         mut self,
@@ -8531,7 +7300,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `note_updated_at`.\n"]
     pub fn set_note_updated_at(
         mut self,
@@ -8547,7 +7315,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `note_updated_by`.\n"]
     pub fn set_note_updated_by(
         mut self,
@@ -8563,7 +7330,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_launched_at`.\n"]
     pub fn set_process_launched_at(
         mut self,
@@ -8579,7 +7345,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_name`.\n"]
     pub fn set_process_name(
         mut self,
@@ -8595,7 +7360,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_parent_pid`.\n"]
     pub fn set_process_parent_pid(
         mut self,
@@ -8611,7 +7375,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_path`.\n"]
     pub fn set_process_path(
         mut self,
@@ -8627,7 +7390,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_pid`.\n"]
     pub fn set_process_pid(
         mut self,
@@ -8643,7 +7405,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `process_terminated_at`.\n"]
     pub fn set_process_terminated_at(
         mut self,
@@ -8659,7 +7420,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `product_arn`.\n"]
     pub fn set_product_arn(
         mut self,
@@ -8675,7 +7435,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `product_fields`.\n"]
     pub fn set_product_fields(
         mut self,
@@ -8691,7 +7450,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `product_name`.\n"]
     pub fn set_product_name(
         mut self,
@@ -8707,7 +7465,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `recommendation_text`.\n"]
     pub fn set_recommendation_text(
         mut self,
@@ -8723,7 +7480,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `record_state`.\n"]
     pub fn set_record_state(
         mut self,
@@ -8739,7 +7495,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `related_findings_id`.\n"]
     pub fn set_related_findings_id(
         mut self,
@@ -8755,7 +7510,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `related_findings_product_arn`.\n"]
     pub fn set_related_findings_product_arn(
         mut self,
@@ -8771,7 +7525,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_iam_instance_profile_arn`.\n"]
     pub fn set_resource_aws_ec2_instance_iam_instance_profile_arn(
         mut self,
@@ -8792,7 +7545,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_image_id`.\n"]
     pub fn set_resource_aws_ec2_instance_image_id(
         mut self,
@@ -8808,7 +7560,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_ipv4_addresses`.\n"]
     pub fn set_resource_aws_ec2_instance_ipv4_addresses(
         mut self,
@@ -8824,7 +7575,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_ipv6_addresses`.\n"]
     pub fn set_resource_aws_ec2_instance_ipv6_addresses(
         mut self,
@@ -8840,7 +7590,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_key_name`.\n"]
     pub fn set_resource_aws_ec2_instance_key_name(
         mut self,
@@ -8856,7 +7605,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_launched_at`.\n"]
     pub fn set_resource_aws_ec2_instance_launched_at(
         mut self,
@@ -8872,7 +7620,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_subnet_id`.\n"]
     pub fn set_resource_aws_ec2_instance_subnet_id(
         mut self,
@@ -8888,7 +7635,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_type`.\n"]
     pub fn set_resource_aws_ec2_instance_type(
         mut self,
@@ -8904,7 +7650,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_ec2_instance_vpc_id`.\n"]
     pub fn set_resource_aws_ec2_instance_vpc_id(
         mut self,
@@ -8920,7 +7665,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_iam_access_key_created_at`.\n"]
     pub fn set_resource_aws_iam_access_key_created_at(
         mut self,
@@ -8936,7 +7680,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_iam_access_key_status`.\n"]
     pub fn set_resource_aws_iam_access_key_status(
         mut self,
@@ -8952,7 +7695,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_iam_access_key_user_name`.\n"]
     pub fn set_resource_aws_iam_access_key_user_name(
         mut self,
@@ -8968,7 +7710,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_s3_bucket_owner_id`.\n"]
     pub fn set_resource_aws_s3_bucket_owner_id(
         mut self,
@@ -8984,7 +7725,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_aws_s3_bucket_owner_name`.\n"]
     pub fn set_resource_aws_s3_bucket_owner_name(
         mut self,
@@ -9000,7 +7740,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_container_image_id`.\n"]
     pub fn set_resource_container_image_id(
         mut self,
@@ -9016,7 +7755,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_container_image_name`.\n"]
     pub fn set_resource_container_image_name(
         mut self,
@@ -9032,7 +7770,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_container_launched_at`.\n"]
     pub fn set_resource_container_launched_at(
         mut self,
@@ -9048,7 +7785,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_container_name`.\n"]
     pub fn set_resource_container_name(
         mut self,
@@ -9064,7 +7800,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_details_other`.\n"]
     pub fn set_resource_details_other(
         mut self,
@@ -9080,7 +7815,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_id`.\n"]
     pub fn set_resource_id(
         mut self,
@@ -9096,7 +7830,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_partition`.\n"]
     pub fn set_resource_partition(
         mut self,
@@ -9112,7 +7845,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_region`.\n"]
     pub fn set_resource_region(
         mut self,
@@ -9128,7 +7860,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_tags`.\n"]
     pub fn set_resource_tags(
         mut self,
@@ -9144,7 +7875,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `resource_type`.\n"]
     pub fn set_resource_type(
         mut self,
@@ -9160,7 +7890,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `severity_label`.\n"]
     pub fn set_severity_label(
         mut self,
@@ -9176,7 +7905,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `source_url`.\n"]
     pub fn set_source_url(
         mut self,
@@ -9192,7 +7920,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_category`.\n"]
     pub fn set_threat_intel_indicator_category(
         mut self,
@@ -9208,7 +7935,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_last_observed_at`.\n"]
     pub fn set_threat_intel_indicator_last_observed_at(
         mut self,
@@ -9224,7 +7950,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_source`.\n"]
     pub fn set_threat_intel_indicator_source(
         mut self,
@@ -9240,7 +7965,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_source_url`.\n"]
     pub fn set_threat_intel_indicator_source_url(
         mut self,
@@ -9256,7 +7980,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_type`.\n"]
     pub fn set_threat_intel_indicator_type(
         mut self,
@@ -9272,7 +7995,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `threat_intel_indicator_value`.\n"]
     pub fn set_threat_intel_indicator_value(
         mut self,
@@ -9288,7 +8010,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `title`.\n"]
     pub fn set_title(
         mut self,
@@ -9304,7 +8025,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(
         mut self,
@@ -9320,7 +8040,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `updated_at`.\n"]
     pub fn set_updated_at(
         mut self,
@@ -9336,7 +8055,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `user_defined_values`.\n"]
     pub fn set_user_defined_values(
         mut self,
@@ -9352,7 +8070,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `verification_state`.\n"]
     pub fn set_verification_state(
         mut self,
@@ -9368,7 +8085,6 @@ impl SecurityhubInsightFiltersEl {
         }
         self
     }
-
     #[doc = "Set the field `workflow_status`.\n"]
     pub fn set_workflow_status(
         mut self,
@@ -9385,10 +8101,8 @@ impl SecurityhubInsightFiltersEl {
         self
     }
 }
-
 impl ToListMappable for SecurityhubInsightFiltersEl {
     type O = BlockAssignable<SecurityhubInsightFiltersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -9397,9 +8111,7 @@ impl ToListMappable for SecurityhubInsightFiltersEl {
         })
     }
 }
-
 pub struct BuildSecurityhubInsightFiltersEl {}
-
 impl BuildSecurityhubInsightFiltersEl {
     pub fn build(self) -> SecurityhubInsightFiltersEl {
         SecurityhubInsightFiltersEl {
@@ -9495,12 +8207,10 @@ impl BuildSecurityhubInsightFiltersEl {
         }
     }
 }
-
 pub struct SecurityhubInsightFiltersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityhubInsightFiltersElRef {
     fn new(shared: StackShared, base: String) -> SecurityhubInsightFiltersElRef {
         SecurityhubInsightFiltersElRef {
@@ -9509,13 +8219,11 @@ impl Ref for SecurityhubInsightFiltersElRef {
         }
     }
 }
-
 impl SecurityhubInsightFiltersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize, Default)]
 struct SecurityhubInsightDynamic {
     filters: Option<DynamicBlock<SecurityhubInsightFiltersEl>>,

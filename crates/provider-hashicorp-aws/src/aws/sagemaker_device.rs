@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SagemakerDeviceData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -23,47 +22,38 @@ struct SagemakerDeviceData {
     device: Option<Vec<SagemakerDeviceDeviceEl>>,
     dynamic: SagemakerDeviceDynamic,
 }
-
 struct SagemakerDevice_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SagemakerDeviceData>,
 }
-
 #[derive(Clone)]
 pub struct SagemakerDevice(Rc<SagemakerDevice_>);
-
 impl SagemakerDevice {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -82,7 +72,6 @@ impl SagemakerDevice {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -92,7 +81,6 @@ impl SagemakerDevice {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -102,19 +90,16 @@ impl SagemakerDevice {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `device`.\n"]
     pub fn set_device(self, v: impl Into<BlockAssignable<SagemakerDeviceDeviceEl>>) -> Self {
         match v.into() {
@@ -127,7 +112,6 @@ impl SagemakerDevice {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -135,12 +119,10 @@ impl SagemakerDevice {
             format!("{}.agent_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `device_fleet_name` after provisioning.\n"]
     pub fn device_fleet_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -148,12 +130,10 @@ impl SagemakerDevice {
             format!("{}.device_fleet_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -161,7 +141,6 @@ impl SagemakerDevice {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `device` after provisioning.\n"]
     pub fn device(&self) -> ListRef<SagemakerDeviceDeviceElRef> {
         ListRef::new(
@@ -170,7 +149,6 @@ impl SagemakerDevice {
         )
     }
 }
-
 impl Referable for SagemakerDevice {
     fn extract_ref(&self) -> String {
         format!(
@@ -180,38 +158,30 @@ impl Referable for SagemakerDevice {
         )
     }
 }
-
 impl Resource for SagemakerDevice {}
-
 impl ToListMappable for SagemakerDevice {
     type O = ListRef<SagemakerDeviceRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SagemakerDevice_ {
     fn extract_resource_type(&self) -> String {
         "aws_sagemaker_device".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSagemakerDevice {
     pub tf_id: String,
     #[doc = ""]
     pub device_fleet_name: PrimField<String>,
 }
-
 impl BuildSagemakerDevice {
     pub fn build(self, stack: &mut Stack) -> SagemakerDevice {
         let out = SagemakerDevice(Rc::new(SagemakerDevice_ {
@@ -233,27 +203,22 @@ impl BuildSagemakerDevice {
         out
     }
 }
-
 pub struct SagemakerDeviceRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDeviceRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SagemakerDeviceRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `agent_version` after provisioning.\n"]
     pub fn agent_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,12 +226,10 @@ impl SagemakerDeviceRef {
             format!("{}.agent_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `device_fleet_name` after provisioning.\n"]
     pub fn device_fleet_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,12 +237,10 @@ impl SagemakerDeviceRef {
             format!("{}.device_fleet_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -287,7 +248,6 @@ impl SagemakerDeviceRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `device` after provisioning.\n"]
     pub fn device(&self) -> ListRef<SagemakerDeviceDeviceElRef> {
         ListRef::new(
@@ -296,7 +256,6 @@ impl SagemakerDeviceRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SagemakerDeviceDeviceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -305,24 +264,20 @@ pub struct SagemakerDeviceDeviceEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     iot_thing_name: Option<PrimField<String>>,
 }
-
 impl SagemakerDeviceDeviceEl {
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `iot_thing_name`.\n"]
     pub fn set_iot_thing_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.iot_thing_name = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for SagemakerDeviceDeviceEl {
     type O = BlockAssignable<SagemakerDeviceDeviceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -331,12 +286,10 @@ impl ToListMappable for SagemakerDeviceDeviceEl {
         })
     }
 }
-
 pub struct BuildSagemakerDeviceDeviceEl {
     #[doc = ""]
     pub device_name: PrimField<String>,
 }
-
 impl BuildSagemakerDeviceDeviceEl {
     pub fn build(self) -> SagemakerDeviceDeviceEl {
         SagemakerDeviceDeviceEl {
@@ -346,12 +299,10 @@ impl BuildSagemakerDeviceDeviceEl {
         }
     }
 }
-
 pub struct SagemakerDeviceDeviceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SagemakerDeviceDeviceElRef {
     fn new(shared: StackShared, base: String) -> SagemakerDeviceDeviceElRef {
         SagemakerDeviceDeviceElRef {
@@ -360,22 +311,18 @@ impl Ref for SagemakerDeviceDeviceElRef {
         }
     }
 }
-
 impl SagemakerDeviceDeviceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.description", self.base))
     }
-
     #[doc = "Get a reference to the value of field `device_name` after provisioning.\n"]
     pub fn device_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.device_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `iot_thing_name` after provisioning.\n"]
     pub fn iot_thing_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -384,7 +331,6 @@ impl SagemakerDeviceDeviceElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SagemakerDeviceDynamic {
     device: Option<DynamicBlock<SagemakerDeviceDeviceEl>>,

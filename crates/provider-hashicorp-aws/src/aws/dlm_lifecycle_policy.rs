@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DlmLifecyclePolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -32,47 +31,38 @@ struct DlmLifecyclePolicyData {
     policy_details: Option<Vec<DlmLifecyclePolicyPolicyDetailsEl>>,
     dynamic: DlmLifecyclePolicyDynamic,
 }
-
 struct DlmLifecyclePolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DlmLifecyclePolicyData>,
 }
-
 #[derive(Clone)]
 pub struct DlmLifecyclePolicy(Rc<DlmLifecyclePolicy_>);
-
 impl DlmLifecyclePolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -91,7 +81,6 @@ impl DlmLifecyclePolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -101,7 +90,6 @@ impl DlmLifecyclePolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -111,43 +99,36 @@ impl DlmLifecyclePolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `default_policy`.\n"]
     pub fn set_default_policy(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().default_policy = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `state`.\n"]
     pub fn set_state(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().state = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy_details`.\n"]
     pub fn set_policy_details(
         self,
@@ -163,12 +144,10 @@ impl DlmLifecyclePolicy {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_policy` after provisioning.\n"]
     pub fn default_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +155,6 @@ impl DlmLifecyclePolicy {
             format!("{}.default_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +162,6 @@ impl DlmLifecyclePolicy {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,12 +169,10 @@ impl DlmLifecyclePolicy {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +180,6 @@ impl DlmLifecyclePolicy {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +187,6 @@ impl DlmLifecyclePolicy {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -221,7 +194,6 @@ impl DlmLifecyclePolicy {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -229,7 +201,6 @@ impl DlmLifecyclePolicy {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_details` after provisioning.\n"]
     pub fn policy_details(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElRef> {
         ListRef::new(
@@ -238,7 +209,6 @@ impl DlmLifecyclePolicy {
         )
     }
 }
-
 impl Referable for DlmLifecyclePolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -248,32 +218,25 @@ impl Referable for DlmLifecyclePolicy {
         )
     }
 }
-
 impl Resource for DlmLifecyclePolicy {}
-
 impl ToListMappable for DlmLifecyclePolicy {
     type O = ListRef<DlmLifecyclePolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DlmLifecyclePolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_dlm_lifecycle_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDlmLifecyclePolicy {
     pub tf_id: String,
     #[doc = ""]
@@ -281,7 +244,6 @@ pub struct BuildDlmLifecyclePolicy {
     #[doc = ""]
     pub execution_role_arn: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicy {
     pub fn build(self, stack: &mut Stack) -> DlmLifecyclePolicy {
         let out = DlmLifecyclePolicy(Rc::new(DlmLifecyclePolicy_ {
@@ -308,32 +270,26 @@ impl BuildDlmLifecyclePolicy {
         out
     }
 }
-
 pub struct DlmLifecyclePolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DlmLifecyclePolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `default_policy` after provisioning.\n"]
     pub fn default_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,7 +297,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.default_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -349,7 +304,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_role_arn` after provisioning.\n"]
     pub fn execution_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -357,12 +311,10 @@ impl DlmLifecyclePolicyRef {
             format!("{}.execution_role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +322,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +329,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -386,7 +336,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -394,7 +343,6 @@ impl DlmLifecyclePolicyRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_details` after provisioning.\n"]
     pub fn policy_details(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElRef> {
         ListRef::new(
@@ -403,7 +351,6 @@ impl DlmLifecyclePolicyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -411,28 +358,24 @@ pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionC
     #[serde(skip_serializing_if = "Option::is_none")]
     encrypted: Option<PrimField<bool>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl {
     #[doc = "Set the field `cmk_arn`.\n"]
     pub fn set_cmk_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cmk_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `encrypted`.\n"]
     pub fn set_encrypted(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.encrypted = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl
 {
     type O = BlockAssignable<
         DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -441,10 +384,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl
 {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationEl {
     pub fn build(
         self,
@@ -455,12 +396,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionCo
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref
     for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationElRef
 {
@@ -475,35 +414,28 @@ impl Ref
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElEncryptionConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cmk_arn` after provisioning.\n"]
     pub fn cmk_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cmk_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
     interval: PrimField<f64>,
     interval_unit: PrimField<String>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {}
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
     type O =
         BlockAssignable<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -512,14 +444,12 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopy
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
     #[doc = ""]
     pub interval: PrimField<f64>,
     #[doc = ""]
     pub interval_unit: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
         DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl {
@@ -528,12 +458,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleElRef {
     fn new(
         shared: StackShared,
@@ -545,17 +473,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRul
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -564,7 +489,6 @@ impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElDynamic {
     encryption_configuration: Option<
@@ -576,7 +500,6 @@ struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElDynamic {
         DynamicBlock<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
     target: PrimField<String>,
@@ -589,7 +512,6 @@ pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
         Option<Vec<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRetainRuleEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
     #[doc = "Set the field `encryption_configuration`.\n"]
     pub fn set_encryption_configuration(
@@ -610,7 +532,6 @@ impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
         }
         self
     }
-
     #[doc = "Set the field `retain_rule`.\n"]
     pub fn set_retain_rule(
         mut self,
@@ -629,10 +550,8 @@ impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -641,12 +560,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopy
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
     #[doc = ""]
     pub target: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
         DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
@@ -657,12 +574,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
     fn new(
         shared: StackShared,
@@ -674,17 +589,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target", self.base))
     }
-
     #[doc = "Get a reference to the value of field `encryption_configuration` after provisioning.\n"]
     pub fn encryption_configuration(
         &self,
@@ -696,7 +608,6 @@ impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
             format!("{}.encryption_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retain_rule` after provisioning.\n"]
     pub fn retain_rule(
         &self,
@@ -704,13 +615,11 @@ impl DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyElRef {
         ListRef::new(self.shared().clone(), format!("{}.retain_rule", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElActionElDynamic {
     cross_region_copy:
         Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElActionEl {
     name: PrimField<String>,
@@ -718,7 +627,6 @@ pub struct DlmLifecyclePolicyPolicyDetailsElActionEl {
     cross_region_copy: Option<Vec<DlmLifecyclePolicyPolicyDetailsElActionElCrossRegionCopyEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElActionElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionEl {
     #[doc = "Set the field `cross_region_copy`.\n"]
     pub fn set_cross_region_copy(
@@ -736,10 +644,8 @@ impl DlmLifecyclePolicyPolicyDetailsElActionEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElActionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -748,12 +654,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElActionEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElActionEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElActionEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElActionEl {
         DlmLifecyclePolicyPolicyDetailsElActionEl {
@@ -763,12 +667,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElActionEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElActionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElActionElRef {
         DlmLifecyclePolicyPolicyDetailsElActionElRef {
@@ -777,30 +679,24 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElActionElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElActionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
     description_regex: PrimField<String>,
     event_type: PrimField<String>,
     snapshot_owner: SetField<PrimField<String>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {}
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -809,7 +705,6 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElEventSourceElParameters
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
     #[doc = ""]
     pub description_regex: PrimField<String>,
@@ -818,7 +713,6 @@ pub struct BuildDlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
     #[doc = ""]
     pub snapshot_owner: SetField<PrimField<String>>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
         DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
@@ -828,12 +722,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
     fn new(
         shared: StackShared,
@@ -845,12 +737,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `description_regex` after provisioning.\n"]
     pub fn description_regex(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -858,12 +748,10 @@ impl DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
             format!("{}.description_regex", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_type` after provisioning.\n"]
     pub fn event_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.event_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `snapshot_owner` after provisioning.\n"]
     pub fn snapshot_owner(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -872,12 +760,10 @@ impl DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElEventSourceElDynamic {
     parameters: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     #[serde(rename = "type")]
@@ -886,7 +772,6 @@ pub struct DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     parameters: Option<Vec<DlmLifecyclePolicyPolicyDetailsElEventSourceElParametersEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElEventSourceElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     #[doc = "Set the field `parameters`.\n"]
     pub fn set_parameters(
@@ -904,10 +789,8 @@ impl DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElEventSourceEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -916,12 +799,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElEventSourceEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
         DlmLifecyclePolicyPolicyDetailsElEventSourceEl {
@@ -931,12 +812,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElEventSourceEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
         DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
@@ -945,17 +824,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(
         &self,
@@ -963,7 +839,6 @@ impl DlmLifecyclePolicyPolicyDetailsElEventSourceElRef {
         ListRef::new(self.shared().clone(), format!("{}.parameters", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -973,30 +848,25 @@ pub struct DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     exclude_volume_types: Option<ListField<PrimField<String>>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
     #[doc = "Set the field `exclude_boot_volumes`.\n"]
     pub fn set_exclude_boot_volumes(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.exclude_boot_volumes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclude_tags`.\n"]
     pub fn set_exclude_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.exclude_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `exclude_volume_types`.\n"]
     pub fn set_exclude_volume_types(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.exclude_volume_types = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElExclusionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1005,9 +875,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElExclusionsEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElExclusionsEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
         DlmLifecyclePolicyPolicyDetailsElExclusionsEl {
@@ -1017,12 +885,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElExclusionsEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
         DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
@@ -1031,12 +897,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `exclude_boot_volumes` after provisioning.\n"]
     pub fn exclude_boot_volumes(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1044,12 +908,10 @@ impl DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
             format!("{}.exclude_boot_volumes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `exclude_tags` after provisioning.\n"]
     pub fn exclude_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.exclude_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `exclude_volume_types` after provisioning.\n"]
     pub fn exclude_volume_types(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -1058,7 +920,6 @@ impl DlmLifecyclePolicyPolicyDetailsElExclusionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1066,24 +927,20 @@ pub struct DlmLifecyclePolicyPolicyDetailsElParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     no_reboot: Option<PrimField<bool>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElParametersEl {
     #[doc = "Set the field `exclude_boot_volume`.\n"]
     pub fn set_exclude_boot_volume(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.exclude_boot_volume = Some(v.into());
         self
     }
-
     #[doc = "Set the field `no_reboot`.\n"]
     pub fn set_no_reboot(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.no_reboot = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElParametersEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1092,9 +949,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElParametersEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElParametersEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElParametersEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElParametersEl {
         DlmLifecyclePolicyPolicyDetailsElParametersEl {
@@ -1103,12 +958,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElParametersEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElParametersElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElParametersElRef {
         DlmLifecyclePolicyPolicyDetailsElParametersElRef {
@@ -1117,12 +970,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElParametersElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `exclude_boot_volume` after provisioning.\n"]
     pub fn exclude_boot_volume(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1130,13 +981,11 @@ impl DlmLifecyclePolicyPolicyDetailsElParametersElRef {
             format!("{}.exclude_boot_volume", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `no_reboot` after provisioning.\n"]
     pub fn no_reboot(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.no_reboot", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl
 {
@@ -1147,126 +996,27 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetain
     #[serde(skip_serializing_if = "Option::is_none")]
     interval_unit: Option<PrimField<String>>,
 }
-
-impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl {
-    #[doc = "Set the field `count`.\n"]
-    pub fn set_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.count = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `interval`.\n"]
-    pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
-        self.interval = Some(v.into());
-        self
-    }
-
-    #[doc = "Set the field `interval_unit`.\n"]
-    pub fn set_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
-        self.interval_unit = Some(v.into());
-        self
-    }
-}
-
-impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl {
-    type O =
-        BlockAssignable<
-            DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl,
-        >;
-
-    fn do_map(self, base: String) -> Self::O {
-        BlockAssignable::Dynamic(DynamicBlock {
-            for_each: format!("${{{}}}", base),
-            iterator: "each".into(),
-            content: self,
-        })
-    }
-}
-
+impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl { # [doc = "Set the field `count`.\n"] pub fn set_count (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . count = Some (v . into ()) ; self } # [doc = "Set the field `interval`.\n"] pub fn set_interval (mut self , v : impl Into < PrimField < f64 > >) -> Self { self . interval = Some (v . into ()) ; self } # [doc = "Set the field `interval_unit`.\n"] pub fn set_interval_unit (mut self , v : impl Into < PrimField < String > >) -> Self { self . interval_unit = Some (v . into ()) ; self } }
+impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl { type O = BlockAssignable < DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl > ; fn do_map (self , base : String) -> Self :: O { BlockAssignable :: Dynamic (DynamicBlock { for_each : format ! ("${{{}}}" , base) , iterator : "each" . into () , content : self , }) } }
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl
 {}
-
-impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl {
-    pub fn build(
-        self,
-    ) -> DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl {
-        DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl {
-            count: core::default::Default::default(),
-            interval: core::default::Default::default(),
-            interval_unit: core::default::Default::default(),
-        }
-    }
-}
-
+impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl { pub fn build (self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl { DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl { count : core :: default :: Default :: default () , interval : core :: default :: Default :: default () , interval_unit : core :: default :: Default :: default () , } } }
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef
 {
     shared: StackShared,
     base: String,
 }
-
-impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef {
-    fn new(
-        shared: StackShared,
-        base: String,
-    ) -> DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef {
-        DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef {
-            shared: shared,
-            base: base.to_string(),
-        }
-    }
-}
-
-impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef {
-    fn shared(&self) -> &StackShared {
-        &self.shared
-    }
-
-    #[doc = "Get a reference to the value of field `count` after provisioning.\n"]
-    pub fn count(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.count", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
-    pub fn interval(&self) -> PrimExpr<f64> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
-    }
-
-    #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
-    pub fn interval_unit(&self) -> PrimExpr<String> {
-        PrimExpr::new(self.shared().clone(), format!("{}.interval_unit", self.base))
-    }
-}
-
+impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef { fn new (shared : StackShared , base : String) -> DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef { DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef { shared : shared , base : base . to_string () , } } }
+impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef { fn shared (& self) -> & StackShared { & self . shared } # [doc = "Get a reference to the value of field `count` after provisioning.\n"] pub fn count (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.count" , self . base)) } # [doc = "Get a reference to the value of field `interval` after provisioning.\n"] pub fn interval (& self) -> PrimExpr < f64 > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.interval" , self . base)) } # [doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"] pub fn interval_unit (& self) -> PrimExpr < String > { PrimExpr :: new (self . shared () . clone () , format ! ("{}.interval_unit" , self . base)) } }
 #[derive(Serialize, Default)]
-struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElDynamic {
-    retention_archive_tier: Option<
-        DynamicBlock<
-            DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl,
-        >,
-    >,
-}
-
+struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElDynamic { retention_archive_tier : Option < DynamicBlock < DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl >> , }
 #[derive(Serialize)]
-pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    retention_archive_tier: Option<
-        Vec<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl>,
-    >,
-    dynamic: DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElDynamic,
-}
-
+pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl { # [serde (skip_serializing_if = "Option::is_none")] retention_archive_tier : Option < Vec < DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl > > , dynamic : DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElDynamic , }
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl {
     #[doc = "Set the field `retention_archive_tier`.\n"]
     pub fn set_retention_archive_tier(
         mut self,
-        v:
-            impl
-
-                    Into<
-                        BlockAssignable<
-                            DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl,
-                        >,
-                    >,
+        v : impl Into < BlockAssignable < DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierEl >>,
     ) -> Self {
         match v.into() {
             BlockAssignable::Literal(v) => {
@@ -1279,14 +1029,12 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl
         self
     }
 }
-
 impl ToListMappable
     for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl
 {
     type O = BlockAssignable<
         DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1295,9 +1043,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl {
     pub fn build(
         self,
@@ -1308,12 +1054,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainR
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRef {
     fn new(
         shared: StackShared,
@@ -1325,32 +1069,23 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveReta
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
-    #[doc = "Get a reference to the value of field `retention_archive_tier` after provisioning.\n"]
-    pub fn retention_archive_tier(
-        &self,
-    ) -> ListRef<
-        DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef,
-    >{
+    #[doc = "Get a reference to the value of field `retention_archive_tier` after provisioning.\n"]    pub fn retention_archive_tier (& self) -> ListRef < DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleElRetentionArchiveTierElRef >{
         ListRef::new(
             self.shared().clone(),
             format!("{}.retention_archive_tier", self.base),
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElDynamic {
     archive_retain_rule: Option<
         DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1358,7 +1093,6 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
         Option<Vec<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElArchiveRetainRuleEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
     #[doc = "Set the field `archive_retain_rule`.\n"]
     pub fn set_archive_retain_rule(
@@ -1380,10 +1114,8 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1392,9 +1124,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
@@ -1403,12 +1133,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef {
     fn new(
         shared: StackShared,
@@ -1420,12 +1148,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `archive_retain_rule` after provisioning.\n"]
     pub fn archive_retain_rule(
         &self,
@@ -1437,7 +1163,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1452,7 +1177,6 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     stages: Option<ListField<PrimField<String>>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     #[doc = "Set the field `execute_operation_on_script_failure`.\n"]
     pub fn set_execute_operation_on_script_failure(
@@ -1462,35 +1186,29 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
         self.execute_operation_on_script_failure = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_handler_service`.\n"]
     pub fn set_execution_handler_service(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.execution_handler_service = Some(v.into());
         self
     }
-
     #[doc = "Set the field `execution_timeout`.\n"]
     pub fn set_execution_timeout(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.execution_timeout = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maximum_retry_count`.\n"]
     pub fn set_maximum_retry_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.maximum_retry_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `stages`.\n"]
     pub fn set_stages(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.stages = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1499,12 +1217,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElS
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     #[doc = ""]
     pub execution_handler: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
@@ -1517,12 +1233,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
     fn new(
         shared: StackShared,
@@ -1534,12 +1248,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `execute_operation_on_script_failure` after provisioning.\n"]
     pub fn execute_operation_on_script_failure(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1547,7 +1259,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
             format!("{}.execute_operation_on_script_failure", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_handler` after provisioning.\n"]
     pub fn execution_handler(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1555,7 +1266,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
             format!("{}.execution_handler", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_handler_service` after provisioning.\n"]
     pub fn execution_handler_service(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1563,7 +1273,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
             format!("{}.execution_handler_service", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `execution_timeout` after provisioning.\n"]
     pub fn execution_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1571,7 +1280,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
             format!("{}.execution_timeout", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `maximum_retry_count` after provisioning.\n"]
     pub fn maximum_retry_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1579,18 +1287,15 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsElRef {
             format!("{}.maximum_retry_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `stages` after provisioning.\n"]
     pub fn stages(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.stages", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElDynamic {
     scripts: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1607,38 +1312,32 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
     scripts: Option<Vec<DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElScriptsEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
     #[doc = "Set the field `cron_expression`.\n"]
     pub fn set_cron_expression(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cron_expression = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval`.\n"]
     pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval_unit`.\n"]
     pub fn set_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.interval_unit = Some(v.into());
         self
     }
-
     #[doc = "Set the field `location`.\n"]
     pub fn set_location(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.location = Some(v.into());
         self
     }
-
     #[doc = "Set the field `times`.\n"]
     pub fn set_times(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.times = Some(v.into());
         self
     }
-
     #[doc = "Set the field `scripts`.\n"]
     pub fn set_scripts(
         mut self,
@@ -1655,10 +1354,8 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1667,9 +1364,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl 
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
@@ -1683,12 +1378,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
     fn new(
         shared: StackShared,
@@ -1700,12 +1393,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cron_expression` after provisioning.\n"]
     pub fn cron_expression(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1713,12 +1404,10 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
             format!("{}.cron_expression", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1726,17 +1415,14 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
             format!("{}.interval_unit", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `location` after provisioning.\n"]
     pub fn location(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.location", self.base))
     }
-
     #[doc = "Get a reference to the value of field `times` after provisioning.\n"]
     pub fn times(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.times", self.base))
     }
-
     #[doc = "Get a reference to the value of field `scripts` after provisioning.\n"]
     pub fn scripts(
         &self,
@@ -1744,22 +1430,18 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef {
         ListRef::new(self.shared().clone(), format!("{}.scripts", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl {
     interval: PrimField<f64>,
     interval_unit: PrimField<String>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl {}
-
 impl ToListMappable
     for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl
 {
     type O = BlockAssignable<
         DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1768,14 +1450,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl {
     #[doc = ""]
     pub interval: PrimField<f64>,
     #[doc = ""]
     pub interval_unit: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleEl {
     pub fn build(
         self,
@@ -1786,12 +1466,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprec
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleElRef {
     fn new(
         shared: StackShared,
@@ -1803,17 +1481,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDep
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1822,22 +1497,18 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDeprecateRu
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl {
     interval: PrimField<f64>,
     interval_unit: PrimField<String>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl {}
-
 impl ToListMappable
     for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl
 {
     type O = BlockAssignable<
         DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1846,14 +1517,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl {
     #[doc = ""]
     pub interval: PrimField<f64>,
     #[doc = ""]
     pub interval_unit: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl {
     pub fn build(
         self,
@@ -1864,12 +1533,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetain
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleElRef {
     fn new(
         shared: StackShared,
@@ -1881,17 +1548,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRet
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1900,7 +1564,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleE
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDynamic {
     deprecate_rule: Option<
@@ -1912,7 +1575,6 @@ struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDynamic {
         DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1933,32 +1595,27 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
         Option<Vec<DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRetainRuleEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
     #[doc = "Set the field `cmk_arn`.\n"]
     pub fn set_cmk_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cmk_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `copy_tags`.\n"]
     pub fn set_copy_tags(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.copy_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target`.\n"]
     pub fn set_target(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_region`.\n"]
     pub fn set_target_region(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.target_region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `deprecate_rule`.\n"]
     pub fn set_deprecate_rule(
         mut self,
@@ -1978,7 +1635,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
         }
         self
     }
-
     #[doc = "Set the field `retain_rule`.\n"]
     pub fn set_retain_rule(
         mut self,
@@ -1999,10 +1655,8 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2011,12 +1665,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCo
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
     #[doc = ""]
     pub encrypted: PrimField<bool>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
@@ -2031,12 +1683,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
     fn new(
         shared: StackShared,
@@ -2048,32 +1698,26 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cmk_arn` after provisioning.\n"]
     pub fn cmk_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.cmk_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `copy_tags` after provisioning.\n"]
     pub fn copy_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.copy_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `encrypted` after provisioning.\n"]
     pub fn encrypted(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.encrypted", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target` after provisioning.\n"]
     pub fn target(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.target", self.base))
     }
-
     #[doc = "Get a reference to the value of field `target_region` after provisioning.\n"]
     pub fn target_region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2081,7 +1725,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
             format!("{}.target_region", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `deprecate_rule` after provisioning.\n"]
     pub fn deprecate_rule(
         &self,
@@ -2092,7 +1735,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
             format!("{}.deprecate_rule", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retain_rule` after provisioning.\n"]
     pub fn retain_rule(
         &self,
@@ -2101,7 +1743,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElCrossRegionCopyRuleElRef {
         ListRef::new(self.shared().clone(), format!("{}.retain_rule", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2111,30 +1752,25 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     interval_unit: Option<PrimField<String>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
     #[doc = "Set the field `count`.\n"]
     pub fn set_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval`.\n"]
     pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval_unit`.\n"]
     pub fn set_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.interval_unit = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2143,9 +1779,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRule
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
@@ -2155,12 +1789,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleElRef {
     fn new(
         shared: StackShared,
@@ -2172,22 +1804,18 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `count` after provisioning.\n"]
     pub fn count(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.count", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2196,7 +1824,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElDeprecateRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     availability_zones: SetField<PrimField<String>>,
@@ -2207,30 +1834,25 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     interval_unit: Option<PrimField<String>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     #[doc = "Set the field `count`.\n"]
     pub fn set_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval`.\n"]
     pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval_unit`.\n"]
     pub fn set_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.interval_unit = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2239,12 +1861,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRu
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     #[doc = ""]
     pub availability_zones: SetField<PrimField<String>>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
@@ -2255,12 +1875,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
     fn new(
         shared: StackShared,
@@ -2272,12 +1890,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2285,17 +1901,14 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
             format!("{}.availability_zones", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `count` after provisioning.\n"]
     pub fn count(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.count", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2304,7 +1917,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElFastRestoreRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2314,30 +1926,25 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     interval_unit: Option<PrimField<String>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
     #[doc = "Set the field `count`.\n"]
     pub fn set_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval`.\n"]
     pub fn set_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `interval_unit`.\n"]
     pub fn set_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.interval_unit = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2346,9 +1953,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl 
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
@@ -2358,12 +1963,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef {
     fn new(
         shared: StackShared,
@@ -2375,22 +1978,18 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `count` after provisioning.\n"]
     pub fn count(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.count", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval` after provisioning.\n"]
     pub fn interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.interval", self.base))
     }
-
     #[doc = "Get a reference to the value of field `interval_unit` after provisioning.\n"]
     pub fn interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2399,7 +1998,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     target_accounts: SetField<PrimField<String>>,
@@ -2408,24 +2006,20 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     unshare_interval_unit: Option<PrimField<String>>,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     #[doc = "Set the field `unshare_interval`.\n"]
     pub fn set_unshare_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.unshare_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `unshare_interval_unit`.\n"]
     pub fn set_unshare_interval_unit(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.unshare_interval_unit = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2434,12 +2028,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     #[doc = ""]
     pub target_accounts: SetField<PrimField<String>>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
@@ -2449,12 +2041,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
     fn new(
         shared: StackShared,
@@ -2466,12 +2056,10 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `target_accounts` after provisioning.\n"]
     pub fn target_accounts(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -2479,7 +2067,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
             format!("{}.target_accounts", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `unshare_interval` after provisioning.\n"]
     pub fn unshare_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2487,7 +2074,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
             format!("{}.unshare_interval", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `unshare_interval_unit` after provisioning.\n"]
     pub fn unshare_interval_unit(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2496,7 +2082,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElScheduleElDynamic {
     archive_rule: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleEl>>,
@@ -2510,7 +2095,6 @@ struct DlmLifecyclePolicyPolicyDetailsElScheduleElDynamic {
     retain_rule: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleEl>>,
     share_rule: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2537,26 +2121,22 @@ pub struct DlmLifecyclePolicyPolicyDetailsElScheduleEl {
     share_rule: Option<Vec<DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElScheduleElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
     #[doc = "Set the field `copy_tags`.\n"]
     pub fn set_copy_tags(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.copy_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_to_add`.\n"]
     pub fn set_tags_to_add(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.tags_to_add = Some(v.into());
         self
     }
-
     #[doc = "Set the field `variable_tags`.\n"]
     pub fn set_variable_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.variable_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `archive_rule`.\n"]
     pub fn set_archive_rule(
         mut self,
@@ -2572,7 +2152,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `create_rule`.\n"]
     pub fn set_create_rule(
         mut self,
@@ -2588,7 +2167,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `cross_region_copy_rule`.\n"]
     pub fn set_cross_region_copy_rule(
         mut self,
@@ -2604,7 +2182,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `deprecate_rule`.\n"]
     pub fn set_deprecate_rule(
         mut self,
@@ -2620,7 +2197,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `fast_restore_rule`.\n"]
     pub fn set_fast_restore_rule(
         mut self,
@@ -2636,7 +2212,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `retain_rule`.\n"]
     pub fn set_retain_rule(
         mut self,
@@ -2652,7 +2227,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
         self
     }
-
     #[doc = "Set the field `share_rule`.\n"]
     pub fn set_share_rule(
         mut self,
@@ -2669,10 +2243,8 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsElScheduleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2681,12 +2253,10 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsElScheduleEl {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsElScheduleEl {
         DlmLifecyclePolicyPolicyDetailsElScheduleEl {
@@ -2705,12 +2275,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsElScheduleEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
         DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
@@ -2719,27 +2287,22 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `copy_tags` after provisioning.\n"]
     pub fn copy_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.copy_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags_to_add` after provisioning.\n"]
     pub fn tags_to_add(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.tags_to_add", self.base))
     }
-
     #[doc = "Get a reference to the value of field `variable_tags` after provisioning.\n"]
     pub fn variable_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -2747,21 +2310,18 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
             format!("{}.variable_tags", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `archive_rule` after provisioning.\n"]
     pub fn archive_rule(
         &self,
     ) -> ListRef<DlmLifecyclePolicyPolicyDetailsElScheduleElArchiveRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.archive_rule", self.base))
     }
-
     #[doc = "Get a reference to the value of field `create_rule` after provisioning.\n"]
     pub fn create_rule(
         &self,
     ) -> ListRef<DlmLifecyclePolicyPolicyDetailsElScheduleElCreateRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.create_rule", self.base))
     }
-
     #[doc = "Get a reference to the value of field `deprecate_rule` after provisioning.\n"]
     pub fn deprecate_rule(
         &self,
@@ -2771,7 +2331,6 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
             format!("{}.deprecate_rule", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `fast_restore_rule` after provisioning.\n"]
     pub fn fast_restore_rule(
         &self,
@@ -2781,20 +2340,17 @@ impl DlmLifecyclePolicyPolicyDetailsElScheduleElRef {
             format!("{}.fast_restore_rule", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retain_rule` after provisioning.\n"]
     pub fn retain_rule(
         &self,
     ) -> ListRef<DlmLifecyclePolicyPolicyDetailsElScheduleElRetainRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.retain_rule", self.base))
     }
-
     #[doc = "Get a reference to the value of field `share_rule` after provisioning.\n"]
     pub fn share_rule(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElScheduleElShareRuleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.share_rule", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyPolicyDetailsElDynamic {
     action: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElActionEl>>,
@@ -2803,7 +2359,6 @@ struct DlmLifecyclePolicyPolicyDetailsElDynamic {
     parameters: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElParametersEl>>,
     schedule: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsElScheduleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DlmLifecyclePolicyPolicyDetailsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2838,68 +2393,57 @@ pub struct DlmLifecyclePolicyPolicyDetailsEl {
     schedule: Option<Vec<DlmLifecyclePolicyPolicyDetailsElScheduleEl>>,
     dynamic: DlmLifecyclePolicyPolicyDetailsElDynamic,
 }
-
 impl DlmLifecyclePolicyPolicyDetailsEl {
     #[doc = "Set the field `copy_tags`.\n"]
     pub fn set_copy_tags(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.copy_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `create_interval`.\n"]
     pub fn set_create_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.create_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `extend_deletion`.\n"]
     pub fn set_extend_deletion(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.extend_deletion = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy_language`.\n"]
     pub fn set_policy_language(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.policy_language = Some(v.into());
         self
     }
-
     #[doc = "Set the field `policy_type`.\n"]
     pub fn set_policy_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.policy_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_locations`.\n"]
     pub fn set_resource_locations(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.resource_locations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_type`.\n"]
     pub fn set_resource_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.resource_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resource_types`.\n"]
     pub fn set_resource_types(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.resource_types = Some(v.into());
         self
     }
-
     #[doc = "Set the field `retain_interval`.\n"]
     pub fn set_retain_interval(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.retain_interval = Some(v.into());
         self
     }
-
     #[doc = "Set the field `target_tags`.\n"]
     pub fn set_target_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.target_tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `action`.\n"]
     pub fn set_action(
         mut self,
@@ -2915,7 +2459,6 @@ impl DlmLifecyclePolicyPolicyDetailsEl {
         }
         self
     }
-
     #[doc = "Set the field `event_source`.\n"]
     pub fn set_event_source(
         mut self,
@@ -2931,7 +2474,6 @@ impl DlmLifecyclePolicyPolicyDetailsEl {
         }
         self
     }
-
     #[doc = "Set the field `exclusions`.\n"]
     pub fn set_exclusions(
         mut self,
@@ -2947,7 +2489,6 @@ impl DlmLifecyclePolicyPolicyDetailsEl {
         }
         self
     }
-
     #[doc = "Set the field `parameters`.\n"]
     pub fn set_parameters(
         mut self,
@@ -2963,7 +2504,6 @@ impl DlmLifecyclePolicyPolicyDetailsEl {
         }
         self
     }
-
     #[doc = "Set the field `schedule`.\n"]
     pub fn set_schedule(
         mut self,
@@ -2980,10 +2520,8 @@ impl DlmLifecyclePolicyPolicyDetailsEl {
         self
     }
 }
-
 impl ToListMappable for DlmLifecyclePolicyPolicyDetailsEl {
     type O = BlockAssignable<DlmLifecyclePolicyPolicyDetailsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2992,9 +2530,7 @@ impl ToListMappable for DlmLifecyclePolicyPolicyDetailsEl {
         })
     }
 }
-
 pub struct BuildDlmLifecyclePolicyPolicyDetailsEl {}
-
 impl BuildDlmLifecyclePolicyPolicyDetailsEl {
     pub fn build(self) -> DlmLifecyclePolicyPolicyDetailsEl {
         DlmLifecyclePolicyPolicyDetailsEl {
@@ -3017,12 +2553,10 @@ impl BuildDlmLifecyclePolicyPolicyDetailsEl {
         }
     }
 }
-
 pub struct DlmLifecyclePolicyPolicyDetailsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DlmLifecyclePolicyPolicyDetailsElRef {
     fn new(shared: StackShared, base: String) -> DlmLifecyclePolicyPolicyDetailsElRef {
         DlmLifecyclePolicyPolicyDetailsElRef {
@@ -3031,17 +2565,14 @@ impl Ref for DlmLifecyclePolicyPolicyDetailsElRef {
         }
     }
 }
-
 impl DlmLifecyclePolicyPolicyDetailsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `copy_tags` after provisioning.\n"]
     pub fn copy_tags(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.copy_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `create_interval` after provisioning.\n"]
     pub fn create_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -3049,7 +2580,6 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.create_interval", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `extend_deletion` after provisioning.\n"]
     pub fn extend_deletion(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -3057,7 +2587,6 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.extend_deletion", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_language` after provisioning.\n"]
     pub fn policy_language(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3065,12 +2594,10 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.policy_language", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy_type` after provisioning.\n"]
     pub fn policy_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.policy_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `resource_locations` after provisioning.\n"]
     pub fn resource_locations(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -3078,7 +2605,6 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.resource_locations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_type` after provisioning.\n"]
     pub fn resource_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3086,7 +2612,6 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.resource_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_types` after provisioning.\n"]
     pub fn resource_types(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -3094,7 +2619,6 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.resource_types", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `retain_interval` after provisioning.\n"]
     pub fn retain_interval(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -3102,38 +2626,31 @@ impl DlmLifecyclePolicyPolicyDetailsElRef {
             format!("{}.retain_interval", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_tags` after provisioning.\n"]
     pub fn target_tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.target_tags", self.base))
     }
-
     #[doc = "Get a reference to the value of field `action` after provisioning.\n"]
     pub fn action(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElActionElRef> {
         ListRef::new(self.shared().clone(), format!("{}.action", self.base))
     }
-
     #[doc = "Get a reference to the value of field `event_source` after provisioning.\n"]
     pub fn event_source(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElEventSourceElRef> {
         ListRef::new(self.shared().clone(), format!("{}.event_source", self.base))
     }
-
     #[doc = "Get a reference to the value of field `exclusions` after provisioning.\n"]
     pub fn exclusions(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElExclusionsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.exclusions", self.base))
     }
-
     #[doc = "Get a reference to the value of field `parameters` after provisioning.\n"]
     pub fn parameters(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElParametersElRef> {
         ListRef::new(self.shared().clone(), format!("{}.parameters", self.base))
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> ListRef<DlmLifecyclePolicyPolicyDetailsElScheduleElRef> {
         ListRef::new(self.shared().clone(), format!("{}.schedule", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DlmLifecyclePolicyDynamic {
     policy_details: Option<DynamicBlock<DlmLifecyclePolicyPolicyDetailsEl>>,

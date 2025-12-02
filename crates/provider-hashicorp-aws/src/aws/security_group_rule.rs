@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SecurityGroupRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -39,47 +38,38 @@ struct SecurityGroupRuleData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<SecurityGroupRuleTimeoutsEl>,
 }
-
 struct SecurityGroupRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SecurityGroupRuleData>,
 }
-
 #[derive(Clone)]
 pub struct SecurityGroupRule(Rc<SecurityGroupRule_>);
-
 impl SecurityGroupRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -98,7 +88,6 @@ impl SecurityGroupRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -108,7 +97,6 @@ impl SecurityGroupRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -118,61 +106,51 @@ impl SecurityGroupRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `cidr_blocks`.\n"]
     pub fn set_cidr_blocks(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ipv6_cidr_blocks`.\n"]
     pub fn set_ipv6_cidr_blocks(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().ipv6_cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix_list_ids`.\n"]
     pub fn set_prefix_list_ids(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().prefix_list_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `self_`.\n"]
     pub fn set_self(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().self_ = Some(v.into());
         self
     }
-
     #[doc = "Set the field `source_security_group_id`.\n"]
     pub fn set_source_security_group_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().source_security_group_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<SecurityGroupRuleTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -180,7 +158,6 @@ impl SecurityGroupRule {
             format!("{}.cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +165,6 @@ impl SecurityGroupRule {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -196,12 +172,10 @@ impl SecurityGroupRule {
             format!("{}.from_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ipv6_cidr_blocks` after provisioning.\n"]
     pub fn ipv6_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -209,7 +183,6 @@ impl SecurityGroupRule {
             format!("{}.ipv6_cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_ids` after provisioning.\n"]
     pub fn prefix_list_ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -217,7 +190,6 @@ impl SecurityGroupRule {
             format!("{}.prefix_list_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -225,7 +197,6 @@ impl SecurityGroupRule {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -233,7 +204,6 @@ impl SecurityGroupRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -241,7 +211,6 @@ impl SecurityGroupRule {
             format!("{}.security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_rule_id` after provisioning.\n"]
     pub fn security_group_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -249,7 +218,6 @@ impl SecurityGroupRule {
             format!("{}.security_group_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `self_` after provisioning.\n"]
     pub fn self_(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -257,7 +225,6 @@ impl SecurityGroupRule {
             format!("{}.self", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_security_group_id` after provisioning.\n"]
     pub fn source_security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -265,7 +232,6 @@ impl SecurityGroupRule {
             format!("{}.source_security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -273,7 +239,6 @@ impl SecurityGroupRule {
             format!("{}.to_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -281,7 +246,6 @@ impl SecurityGroupRule {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecurityGroupRuleTimeoutsElRef {
         SecurityGroupRuleTimeoutsElRef::new(
@@ -290,7 +254,6 @@ impl SecurityGroupRule {
         )
     }
 }
-
 impl Referable for SecurityGroupRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -300,32 +263,25 @@ impl Referable for SecurityGroupRule {
         )
     }
 }
-
 impl Resource for SecurityGroupRule {}
-
 impl ToListMappable for SecurityGroupRule {
     type O = ListRef<SecurityGroupRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SecurityGroupRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_security_group_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSecurityGroupRule {
     pub tf_id: String,
     #[doc = ""]
@@ -339,7 +295,6 @@ pub struct BuildSecurityGroupRule {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildSecurityGroupRule {
     pub fn build(self, stack: &mut Stack) -> SecurityGroupRule {
         let out = SecurityGroupRule(Rc::new(SecurityGroupRule_ {
@@ -370,27 +325,22 @@ impl BuildSecurityGroupRule {
         out
     }
 }
-
 pub struct SecurityGroupRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityGroupRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SecurityGroupRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -398,7 +348,6 @@ impl SecurityGroupRuleRef {
             format!("{}.cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +355,6 @@ impl SecurityGroupRuleRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -414,12 +362,10 @@ impl SecurityGroupRuleRef {
             format!("{}.from_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ipv6_cidr_blocks` after provisioning.\n"]
     pub fn ipv6_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -427,7 +373,6 @@ impl SecurityGroupRuleRef {
             format!("{}.ipv6_cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_ids` after provisioning.\n"]
     pub fn prefix_list_ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -435,7 +380,6 @@ impl SecurityGroupRuleRef {
             format!("{}.prefix_list_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +387,6 @@ impl SecurityGroupRuleRef {
             format!("{}.protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +394,6 @@ impl SecurityGroupRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,7 +401,6 @@ impl SecurityGroupRuleRef {
             format!("{}.security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_rule_id` after provisioning.\n"]
     pub fn security_group_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -467,7 +408,6 @@ impl SecurityGroupRuleRef {
             format!("{}.security_group_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `self_` after provisioning.\n"]
     pub fn self_(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -475,7 +415,6 @@ impl SecurityGroupRuleRef {
             format!("{}.self", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_security_group_id` after provisioning.\n"]
     pub fn source_security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -483,7 +422,6 @@ impl SecurityGroupRuleRef {
             format!("{}.source_security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -491,7 +429,6 @@ impl SecurityGroupRuleRef {
             format!("{}.to_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -499,7 +436,6 @@ impl SecurityGroupRuleRef {
             format!("{}.type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> SecurityGroupRuleTimeoutsElRef {
         SecurityGroupRuleTimeoutsElRef::new(
@@ -508,13 +444,11 @@ impl SecurityGroupRuleRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SecurityGroupRuleTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     create: Option<PrimField<String>>,
 }
-
 impl SecurityGroupRuleTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -522,10 +456,8 @@ impl SecurityGroupRuleTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for SecurityGroupRuleTimeoutsEl {
     type O = BlockAssignable<SecurityGroupRuleTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -534,9 +466,7 @@ impl ToListMappable for SecurityGroupRuleTimeoutsEl {
         })
     }
 }
-
 pub struct BuildSecurityGroupRuleTimeoutsEl {}
-
 impl BuildSecurityGroupRuleTimeoutsEl {
     pub fn build(self) -> SecurityGroupRuleTimeoutsEl {
         SecurityGroupRuleTimeoutsEl {
@@ -544,12 +474,10 @@ impl BuildSecurityGroupRuleTimeoutsEl {
         }
     }
 }
-
 pub struct SecurityGroupRuleTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SecurityGroupRuleTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> SecurityGroupRuleTimeoutsElRef {
         SecurityGroupRuleTimeoutsElRef {
@@ -558,12 +486,10 @@ impl Ref for SecurityGroupRuleTimeoutsElRef {
         }
     }
 }
-
 impl SecurityGroupRuleTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))

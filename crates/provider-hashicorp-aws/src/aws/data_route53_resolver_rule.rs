@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataRoute53ResolverRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,84 +28,69 @@ struct DataRoute53ResolverRuleData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataRoute53ResolverRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataRoute53ResolverRuleData>,
 }
-
 #[derive(Clone)]
 pub struct DataRoute53ResolverRule(Rc<DataRoute53ResolverRule_>);
-
 impl DataRoute53ResolverRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `domain_name`.\n"]
     pub fn set_domain_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().domain_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resolver_endpoint_id`.\n"]
     pub fn set_resolver_endpoint_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resolver_endpoint_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `resolver_rule_id`.\n"]
     pub fn set_resolver_rule_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().resolver_rule_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule_type`.\n"]
     pub fn set_rule_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().rule_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -114,12 +98,10 @@ impl DataRoute53ResolverRule {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -127,7 +109,6 @@ impl DataRoute53ResolverRule {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -135,7 +116,6 @@ impl DataRoute53ResolverRule {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -143,7 +123,6 @@ impl DataRoute53ResolverRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resolver_endpoint_id` after provisioning.\n"]
     pub fn resolver_endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +130,6 @@ impl DataRoute53ResolverRule {
             format!("{}.resolver_endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resolver_rule_id` after provisioning.\n"]
     pub fn resolver_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -159,7 +137,6 @@ impl DataRoute53ResolverRule {
             format!("{}.resolver_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_type` after provisioning.\n"]
     pub fn rule_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +144,6 @@ impl DataRoute53ResolverRule {
             format!("{}.rule_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `share_status` after provisioning.\n"]
     pub fn share_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -175,7 +151,6 @@ impl DataRoute53ResolverRule {
             format!("{}.share_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -184,7 +159,6 @@ impl DataRoute53ResolverRule {
         )
     }
 }
-
 impl Referable for DataRoute53ResolverRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -194,36 +168,28 @@ impl Referable for DataRoute53ResolverRule {
         )
     }
 }
-
 impl Datasource for DataRoute53ResolverRule {}
-
 impl ToListMappable for DataRoute53ResolverRule {
     type O = ListRef<DataRoute53ResolverRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataRoute53ResolverRule_ {
     fn extract_datasource_type(&self) -> String {
         "aws_route53_resolver_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataRoute53ResolverRule {
     pub tf_id: String,
 }
-
 impl BuildDataRoute53ResolverRule {
     pub fn build(self, stack: &mut Stack) -> DataRoute53ResolverRule {
         let out = DataRoute53ResolverRule(Rc::new(DataRoute53ResolverRule_ {
@@ -247,32 +213,26 @@ impl BuildDataRoute53ResolverRule {
         out
     }
 }
-
 pub struct DataRoute53ResolverRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRoute53ResolverRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataRoute53ResolverRuleRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -280,12 +240,10 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -293,7 +251,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,7 +258,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -309,7 +265,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resolver_endpoint_id` after provisioning.\n"]
     pub fn resolver_endpoint_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -317,7 +272,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.resolver_endpoint_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resolver_rule_id` after provisioning.\n"]
     pub fn resolver_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -325,7 +279,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.resolver_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_type` after provisioning.\n"]
     pub fn rule_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,7 +286,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.rule_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `share_status` after provisioning.\n"]
     pub fn share_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -341,7 +293,6 @@ impl DataRoute53ResolverRuleRef {
             format!("{}.share_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

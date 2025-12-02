@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct IamServerCertificateData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -33,47 +32,38 @@ struct IamServerCertificateData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<IamServerCertificateTimeoutsEl>,
 }
-
 struct IamServerCertificate_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<IamServerCertificateData>,
 }
-
 #[derive(Clone)]
 pub struct IamServerCertificate(Rc<IamServerCertificate_>);
-
 impl IamServerCertificate {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -92,7 +82,6 @@ impl IamServerCertificate {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -102,7 +91,6 @@ impl IamServerCertificate {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -112,60 +100,50 @@ impl IamServerCertificate {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `certificate_chain`.\n"]
     pub fn set_certificate_chain(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().certificate_chain = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name_prefix`.\n"]
     pub fn set_name_prefix(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name_prefix = Some(v.into());
         self
     }
-
     #[doc = "Set the field `path`.\n"]
     pub fn set_path(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().path = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<IamServerCertificateTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate_body` after provisioning.\n"]
     pub fn certificate_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -173,7 +151,6 @@ impl IamServerCertificate {
             format!("{}.certificate_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +158,6 @@ impl IamServerCertificate {
             format!("{}.certificate_chain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
     pub fn expiration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,12 +165,10 @@ impl IamServerCertificate {
             format!("{}.expiration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -202,7 +176,6 @@ impl IamServerCertificate {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +183,6 @@ impl IamServerCertificate {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +190,6 @@ impl IamServerCertificate {
             format!("{}.path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +197,6 @@ impl IamServerCertificate {
             format!("{}.private_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -234,7 +204,6 @@ impl IamServerCertificate {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -242,7 +211,6 @@ impl IamServerCertificate {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upload_date` after provisioning.\n"]
     pub fn upload_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +218,6 @@ impl IamServerCertificate {
             format!("{}.upload_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IamServerCertificateTimeoutsElRef {
         IamServerCertificateTimeoutsElRef::new(
@@ -259,7 +226,6 @@ impl IamServerCertificate {
         )
     }
 }
-
 impl Referable for IamServerCertificate {
     fn extract_ref(&self) -> String {
         format!(
@@ -269,32 +235,25 @@ impl Referable for IamServerCertificate {
         )
     }
 }
-
 impl Resource for IamServerCertificate {}
-
 impl ToListMappable for IamServerCertificate {
     type O = ListRef<IamServerCertificateRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for IamServerCertificate_ {
     fn extract_resource_type(&self) -> String {
         "aws_iam_server_certificate".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildIamServerCertificate {
     pub tf_id: String,
     #[doc = ""]
@@ -302,7 +261,6 @@ pub struct BuildIamServerCertificate {
     #[doc = ""]
     pub private_key: PrimField<String>,
 }
-
 impl BuildIamServerCertificate {
     pub fn build(self, stack: &mut Stack) -> IamServerCertificate {
         let out = IamServerCertificate(Rc::new(IamServerCertificate_ {
@@ -329,32 +287,26 @@ impl BuildIamServerCertificate {
         out
     }
 }
-
 pub struct IamServerCertificateRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IamServerCertificateRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl IamServerCertificateRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate_body` after provisioning.\n"]
     pub fn certificate_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -362,7 +314,6 @@ impl IamServerCertificateRef {
             format!("{}.certificate_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `certificate_chain` after provisioning.\n"]
     pub fn certificate_chain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +321,6 @@ impl IamServerCertificateRef {
             format!("{}.certificate_chain", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `expiration` after provisioning.\n"]
     pub fn expiration(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,12 +328,10 @@ impl IamServerCertificateRef {
             format!("{}.expiration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -391,7 +339,6 @@ impl IamServerCertificateRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name_prefix` after provisioning.\n"]
     pub fn name_prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +346,6 @@ impl IamServerCertificateRef {
             format!("{}.name_prefix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `path` after provisioning.\n"]
     pub fn path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,7 +353,6 @@ impl IamServerCertificateRef {
             format!("{}.path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_key` after provisioning.\n"]
     pub fn private_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -415,7 +360,6 @@ impl IamServerCertificateRef {
             format!("{}.private_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -423,7 +367,6 @@ impl IamServerCertificateRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -431,7 +374,6 @@ impl IamServerCertificateRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upload_date` after provisioning.\n"]
     pub fn upload_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -439,7 +381,6 @@ impl IamServerCertificateRef {
             format!("{}.upload_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> IamServerCertificateTimeoutsElRef {
         IamServerCertificateTimeoutsElRef::new(
@@ -448,13 +389,11 @@ impl IamServerCertificateRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct IamServerCertificateTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl IamServerCertificateTimeoutsEl {
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -462,10 +401,8 @@ impl IamServerCertificateTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for IamServerCertificateTimeoutsEl {
     type O = BlockAssignable<IamServerCertificateTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -474,9 +411,7 @@ impl ToListMappable for IamServerCertificateTimeoutsEl {
         })
     }
 }
-
 pub struct BuildIamServerCertificateTimeoutsEl {}
-
 impl BuildIamServerCertificateTimeoutsEl {
     pub fn build(self) -> IamServerCertificateTimeoutsEl {
         IamServerCertificateTimeoutsEl {
@@ -484,12 +419,10 @@ impl BuildIamServerCertificateTimeoutsEl {
         }
     }
 }
-
 pub struct IamServerCertificateTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for IamServerCertificateTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> IamServerCertificateTimeoutsElRef {
         IamServerCertificateTimeoutsElRef {
@@ -498,12 +431,10 @@ impl Ref for IamServerCertificateTimeoutsElRef {
         }
     }
 }
-
 impl IamServerCertificateTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct RamResourceShareData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct RamResourceShareData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<RamResourceShareTimeoutsEl>,
 }
-
 struct RamResourceShare_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<RamResourceShareData>,
 }
-
 #[derive(Clone)]
 pub struct RamResourceShare(Rc<RamResourceShare_>);
-
 impl RamResourceShare {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl RamResourceShare {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl RamResourceShare {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,49 +97,41 @@ impl RamResourceShare {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `allow_external_principals`.\n"]
     pub fn set_allow_external_principals(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().allow_external_principals = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `permission_arns`.\n"]
     pub fn set_permission_arns(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().permission_arns = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<RamResourceShareTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `allow_external_principals` after provisioning.\n"]
     pub fn allow_external_principals(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -159,17 +139,14 @@ impl RamResourceShare {
             format!("{}.allow_external_principals", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +154,6 @@ impl RamResourceShare {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `permission_arns` after provisioning.\n"]
     pub fn permission_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -185,7 +161,6 @@ impl RamResourceShare {
             format!("{}.permission_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +168,6 @@ impl RamResourceShare {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -201,7 +175,6 @@ impl RamResourceShare {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -209,7 +182,6 @@ impl RamResourceShare {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RamResourceShareTimeoutsElRef {
         RamResourceShareTimeoutsElRef::new(
@@ -218,7 +190,6 @@ impl RamResourceShare {
         )
     }
 }
-
 impl Referable for RamResourceShare {
     fn extract_ref(&self) -> String {
         format!(
@@ -228,38 +199,30 @@ impl Referable for RamResourceShare {
         )
     }
 }
-
 impl Resource for RamResourceShare {}
-
 impl ToListMappable for RamResourceShare {
     type O = ListRef<RamResourceShareRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for RamResourceShare_ {
     fn extract_resource_type(&self) -> String {
         "aws_ram_resource_share".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildRamResourceShare {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildRamResourceShare {
     pub fn build(self, stack: &mut Stack) -> RamResourceShare {
         let out = RamResourceShare(Rc::new(RamResourceShare_ {
@@ -284,27 +247,22 @@ impl BuildRamResourceShare {
         out
     }
 }
-
 pub struct RamResourceShareRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for RamResourceShareRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl RamResourceShareRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allow_external_principals` after provisioning.\n"]
     pub fn allow_external_principals(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -312,17 +270,14 @@ impl RamResourceShareRef {
             format!("{}.allow_external_principals", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -330,7 +285,6 @@ impl RamResourceShareRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `permission_arns` after provisioning.\n"]
     pub fn permission_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -338,7 +292,6 @@ impl RamResourceShareRef {
             format!("{}.permission_arns", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +299,6 @@ impl RamResourceShareRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -354,7 +306,6 @@ impl RamResourceShareRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -362,7 +313,6 @@ impl RamResourceShareRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RamResourceShareTimeoutsElRef {
         RamResourceShareTimeoutsElRef::new(
@@ -371,7 +321,6 @@ impl RamResourceShareRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct RamResourceShareTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -379,24 +328,20 @@ pub struct RamResourceShareTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl RamResourceShareTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for RamResourceShareTimeoutsEl {
     type O = BlockAssignable<RamResourceShareTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -405,9 +350,7 @@ impl ToListMappable for RamResourceShareTimeoutsEl {
         })
     }
 }
-
 pub struct BuildRamResourceShareTimeoutsEl {}
-
 impl BuildRamResourceShareTimeoutsEl {
     pub fn build(self) -> RamResourceShareTimeoutsEl {
         RamResourceShareTimeoutsEl {
@@ -416,12 +359,10 @@ impl BuildRamResourceShareTimeoutsEl {
         }
     }
 }
-
 pub struct RamResourceShareTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for RamResourceShareTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> RamResourceShareTimeoutsElRef {
         RamResourceShareTimeoutsElRef {
@@ -430,17 +371,14 @@ impl Ref for RamResourceShareTimeoutsElRef {
         }
     }
 }
-
 impl RamResourceShareTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

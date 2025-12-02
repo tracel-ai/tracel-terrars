@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudwatchEventConnectionData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -31,47 +30,38 @@ struct CloudwatchEventConnectionData {
         Option<Vec<CloudwatchEventConnectionInvocationConnectivityParametersEl>>,
     dynamic: CloudwatchEventConnectionDynamic,
 }
-
 struct CloudwatchEventConnection_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudwatchEventConnectionData>,
 }
-
 #[derive(Clone)]
 pub struct CloudwatchEventConnection(Rc<CloudwatchEventConnection_>);
-
 impl CloudwatchEventConnection {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -90,7 +80,6 @@ impl CloudwatchEventConnection {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -100,7 +89,6 @@ impl CloudwatchEventConnection {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -110,31 +98,26 @@ impl CloudwatchEventConnection {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_identifier`.\n"]
     pub fn set_kms_key_identifier(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_identifier = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auth_parameters`.\n"]
     pub fn set_auth_parameters(
         self,
@@ -150,7 +133,6 @@ impl CloudwatchEventConnection {
         }
         self
     }
-
     #[doc = "Set the field `invocation_connectivity_parameters`.\n"]
     pub fn set_invocation_connectivity_parameters(
         self,
@@ -170,12 +152,10 @@ impl CloudwatchEventConnection {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +163,6 @@ impl CloudwatchEventConnection {
             format!("{}.authorization_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -191,12 +170,10 @@ impl CloudwatchEventConnection {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -204,7 +181,6 @@ impl CloudwatchEventConnection {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -212,7 +188,6 @@ impl CloudwatchEventConnection {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +195,6 @@ impl CloudwatchEventConnection {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,7 +202,6 @@ impl CloudwatchEventConnection {
             format!("{}.secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `auth_parameters` after provisioning.\n"]
     pub fn auth_parameters(&self) -> ListRef<CloudwatchEventConnectionAuthParametersElRef> {
         ListRef::new(
@@ -236,7 +209,6 @@ impl CloudwatchEventConnection {
             format!("{}.auth_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invocation_connectivity_parameters` after provisioning.\n"]
     pub fn invocation_connectivity_parameters(
         &self,
@@ -247,7 +219,6 @@ impl CloudwatchEventConnection {
         )
     }
 }
-
 impl Referable for CloudwatchEventConnection {
     fn extract_ref(&self) -> String {
         format!(
@@ -257,32 +228,25 @@ impl Referable for CloudwatchEventConnection {
         )
     }
 }
-
 impl Resource for CloudwatchEventConnection {}
-
 impl ToListMappable for CloudwatchEventConnection {
     type O = ListRef<CloudwatchEventConnectionRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudwatchEventConnection_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudwatch_event_connection".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudwatchEventConnection {
     pub tf_id: String,
     #[doc = ""]
@@ -290,7 +254,6 @@ pub struct BuildCloudwatchEventConnection {
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnection {
     pub fn build(self, stack: &mut Stack) -> CloudwatchEventConnection {
         let out = CloudwatchEventConnection(Rc::new(CloudwatchEventConnection_ {
@@ -316,32 +279,26 @@ impl BuildCloudwatchEventConnection {
         out
     }
 }
-
 pub struct CloudwatchEventConnectionRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudwatchEventConnectionRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `authorization_type` after provisioning.\n"]
     pub fn authorization_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -349,7 +306,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.authorization_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -357,12 +313,10 @@ impl CloudwatchEventConnectionRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_identifier` after provisioning.\n"]
     pub fn kms_key_identifier(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +324,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.kms_key_identifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +331,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -386,7 +338,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secret_arn` after provisioning.\n"]
     pub fn secret_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,7 +345,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.secret_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `auth_parameters` after provisioning.\n"]
     pub fn auth_parameters(&self) -> ListRef<CloudwatchEventConnectionAuthParametersElRef> {
         ListRef::new(
@@ -402,7 +352,6 @@ impl CloudwatchEventConnectionRef {
             format!("{}.auth_parameters", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `invocation_connectivity_parameters` after provisioning.\n"]
     pub fn invocation_connectivity_parameters(
         &self,
@@ -413,18 +362,14 @@ impl CloudwatchEventConnectionRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElApiKeyEl {
     key: PrimField<String>,
     value: PrimField<String>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElApiKeyEl {}
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElApiKeyEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElApiKeyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -433,14 +378,12 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElApiKeyEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElApiKeyEl {
     #[doc = ""]
     pub key: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnectionAuthParametersElApiKeyEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElApiKeyEl {
         CloudwatchEventConnectionAuthParametersElApiKeyEl {
@@ -449,12 +392,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElApiKeyEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElApiKeyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElApiKeyElRef {
     fn new(
         shared: StackShared,
@@ -466,34 +407,27 @@ impl Ref for CloudwatchEventConnectionAuthParametersElApiKeyElRef {
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElApiKeyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElBasicEl {
     password: PrimField<String>,
     username: PrimField<String>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElBasicEl {}
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElBasicEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElBasicEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -502,14 +436,12 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElBasicEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElBasicEl {
     #[doc = ""]
     pub password: PrimField<String>,
     #[doc = ""]
     pub username: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnectionAuthParametersElBasicEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElBasicEl {
         CloudwatchEventConnectionAuthParametersElBasicEl {
@@ -518,12 +450,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElBasicEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElBasicElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElBasicElRef {
     fn new(
         shared: StackShared,
@@ -535,23 +465,19 @@ impl Ref for CloudwatchEventConnectionAuthParametersElBasicElRef {
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElBasicElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.password", self.base))
     }
-
     #[doc = "Get a reference to the value of field `username` after provisioning.\n"]
     pub fn username(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.username", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -561,31 +487,26 @@ pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBo
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl {
     type O =
         BlockAssignable<CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -594,9 +515,7 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElInvocationHttpP
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyEl {
     pub fn build(
         self,
@@ -608,12 +527,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBod
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyElRef {
     fn new(
         shared: StackShared,
@@ -625,12 +542,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -638,18 +553,15 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyElRe
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -659,34 +571,29 @@ pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHe
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -695,9 +602,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl {
     pub fn build(
         self,
@@ -709,12 +614,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHea
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderElRef {
     fn new(
         shared: StackShared,
@@ -726,12 +629,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -739,18 +640,15 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElHeaderEl
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -760,34 +658,29 @@ pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQu
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -796,10 +689,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl {
 }
-
 impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringEl {
     pub fn build(
         self,
@@ -811,12 +702,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQue
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringElRef {
     fn new(
         shared: StackShared,
@@ -828,12 +717,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStringElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -841,18 +728,15 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElQueryStr
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElDynamic {
     body: Option<
@@ -867,7 +751,6 @@ struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElDynami
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -881,7 +764,6 @@ pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
     >,
     dynamic: CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElDynamic,
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
     #[doc = "Set the field `body`.\n"]
     pub fn set_body(
@@ -902,7 +784,6 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(
         mut self,
@@ -922,7 +803,6 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `query_string`.\n"]
     pub fn set_query_string(
         mut self,
@@ -943,10 +823,8 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -955,9 +833,7 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElInvocationHttpP
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
         CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
@@ -968,12 +844,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElRef {
     fn new(
         shared: StackShared,
@@ -985,19 +859,16 @@ impl Ref for CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `body` after provisioning.\n"]
     pub fn body(
         &self,
     ) -> ListRef<CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElBodyElRef> {
         ListRef::new(self.shared().clone(), format!("{}.body", self.base))
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(
         &self,
@@ -1005,7 +876,6 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
-
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(
         &self,
@@ -1014,18 +884,14 @@ impl CloudwatchEventConnectionAuthParametersElInvocationHttpParametersElRef {
         ListRef::new(self.shared().clone(), format!("{}.query_string", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
     client_id: PrimField<String>,
     client_secret: PrimField<String>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {}
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1034,14 +900,12 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthElClientPa
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
     #[doc = ""]
     pub client_id: PrimField<String>,
     #[doc = ""]
     pub client_secret: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
         CloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
@@ -1050,12 +914,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthElClientParametersEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElClientParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElClientParametersElRef {
     fn new(
         shared: StackShared,
@@ -1067,17 +929,14 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElClientParametersElR
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElClientParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `client_id` after provisioning.\n"]
     pub fn client_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.client_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `client_secret` after provisioning.\n"]
     pub fn client_secret(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1086,7 +945,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElClientParametersElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1096,34 +954,29 @@ pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1132,9 +985,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl {
     pub fn build(
         self,
@@ -1146,12 +997,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElB
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyElRef {
     fn new(
         shared: StackShared,
@@ -1163,12 +1012,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParameters
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1176,18 +1023,15 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElBodyEl
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1197,34 +1041,29 @@ pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1233,9 +1072,7 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderEl {
     pub fn build(
         self,
@@ -1247,12 +1084,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElH
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderElRef {
     fn new(
         shared: StackShared,
@@ -1264,12 +1099,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParameters
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeaderElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1277,18 +1110,15 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElHeader
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1298,34 +1128,29 @@ pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl
     #[serde(skip_serializing_if = "Option::is_none")]
     value: Option<PrimField<String>>,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl {
     #[doc = "Set the field `is_value_secret`.\n"]
     pub fn set_is_value_secret(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.is_value_secret = Some(v.into());
         self
     }
-
     #[doc = "Set the field `key`.\n"]
     pub fn set_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `value`.\n"]
     pub fn set_value(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.value = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1334,10 +1159,8 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl
 {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringEl {
     pub fn build(
         self,
@@ -1349,12 +1172,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQ
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringElRef {
     fn new(
         shared: StackShared,
@@ -1366,12 +1187,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParameters
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryStringElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `is_value_secret` after provisioning.\n"]
     pub fn is_value_secret(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1379,18 +1198,15 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElQueryS
             format!("{}.is_value_secret", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `key` after provisioning.\n"]
     pub fn key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElDynamic {
     body: Option<
@@ -1405,7 +1221,6 @@ struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElDyna
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1419,7 +1234,6 @@ pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl
     >,
     dynamic: CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElDynamic,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
     #[doc = "Set the field `body`.\n"]
     pub fn set_body(
@@ -1440,7 +1254,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(
         mut self,
@@ -1460,7 +1273,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `query_string`.\n"]
     pub fn set_query_string(
         mut self,
@@ -1481,10 +1293,8 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1493,9 +1303,7 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthElOauthHtt
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
         CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl {
@@ -1506,12 +1314,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl 
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
     fn new(
         shared: StackShared,
@@ -1523,12 +1329,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParameters
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `body` after provisioning.\n"]
     pub fn body(
         &self,
@@ -1536,7 +1340,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.body", self.base))
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(
         &self,
@@ -1544,7 +1347,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
     {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
-
     #[doc = "Get a reference to the value of field `query_string` after provisioning.\n"]
     pub fn query_string(
         &self,
@@ -1554,7 +1356,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersElRef {
         ListRef::new(self.shared().clone(), format!("{}.query_string", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionAuthParametersElOauthElDynamic {
     client_parameters:
@@ -1562,7 +1363,6 @@ struct CloudwatchEventConnectionAuthParametersElOauthElDynamic {
     oauth_http_parameters:
         Option<DynamicBlock<CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersElOauthEl {
     authorization_endpoint: PrimField<String>,
@@ -1575,7 +1375,6 @@ pub struct CloudwatchEventConnectionAuthParametersElOauthEl {
         Option<Vec<CloudwatchEventConnectionAuthParametersElOauthElOauthHttpParametersEl>>,
     dynamic: CloudwatchEventConnectionAuthParametersElOauthElDynamic,
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthEl {
     #[doc = "Set the field `client_parameters`.\n"]
     pub fn set_client_parameters(
@@ -1594,7 +1393,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthEl {
         }
         self
     }
-
     #[doc = "Set the field `oauth_http_parameters`.\n"]
     pub fn set_oauth_http_parameters(
         mut self,
@@ -1613,10 +1411,8 @@ impl CloudwatchEventConnectionAuthParametersElOauthEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersElOauthEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1625,14 +1421,12 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersElOauthEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersElOauthEl {
     #[doc = ""]
     pub authorization_endpoint: PrimField<String>,
     #[doc = ""]
     pub http_method: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnectionAuthParametersElOauthEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersElOauthEl {
         CloudwatchEventConnectionAuthParametersElOauthEl {
@@ -1644,12 +1438,10 @@ impl BuildCloudwatchEventConnectionAuthParametersElOauthEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElOauthElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElOauthElRef {
     fn new(
         shared: StackShared,
@@ -1661,12 +1453,10 @@ impl Ref for CloudwatchEventConnectionAuthParametersElOauthElRef {
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElOauthElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `authorization_endpoint` after provisioning.\n"]
     pub fn authorization_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1674,12 +1464,10 @@ impl CloudwatchEventConnectionAuthParametersElOauthElRef {
             format!("{}.authorization_endpoint", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_method` after provisioning.\n"]
     pub fn http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.http_method", self.base))
     }
-
     #[doc = "Get a reference to the value of field `client_parameters` after provisioning.\n"]
     pub fn client_parameters(
         &self,
@@ -1689,7 +1477,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElRef {
             format!("{}.client_parameters", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `oauth_http_parameters` after provisioning.\n"]
     pub fn oauth_http_parameters(
         &self,
@@ -1700,7 +1487,6 @@ impl CloudwatchEventConnectionAuthParametersElOauthElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionAuthParametersElDynamic {
     api_key: Option<DynamicBlock<CloudwatchEventConnectionAuthParametersElApiKeyEl>>,
@@ -1709,7 +1495,6 @@ struct CloudwatchEventConnectionAuthParametersElDynamic {
         Option<DynamicBlock<CloudwatchEventConnectionAuthParametersElInvocationHttpParametersEl>>,
     oauth: Option<DynamicBlock<CloudwatchEventConnectionAuthParametersElOauthEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionAuthParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1723,7 +1508,6 @@ pub struct CloudwatchEventConnectionAuthParametersEl {
     oauth: Option<Vec<CloudwatchEventConnectionAuthParametersElOauthEl>>,
     dynamic: CloudwatchEventConnectionAuthParametersElDynamic,
 }
-
 impl CloudwatchEventConnectionAuthParametersEl {
     #[doc = "Set the field `api_key`.\n"]
     pub fn set_api_key(
@@ -1740,7 +1524,6 @@ impl CloudwatchEventConnectionAuthParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `basic`.\n"]
     pub fn set_basic(
         mut self,
@@ -1756,7 +1539,6 @@ impl CloudwatchEventConnectionAuthParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `invocation_http_parameters`.\n"]
     pub fn set_invocation_http_parameters(
         mut self,
@@ -1774,7 +1556,6 @@ impl CloudwatchEventConnectionAuthParametersEl {
         }
         self
     }
-
     #[doc = "Set the field `oauth`.\n"]
     pub fn set_oauth(
         mut self,
@@ -1791,10 +1572,8 @@ impl CloudwatchEventConnectionAuthParametersEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionAuthParametersEl {
     type O = BlockAssignable<CloudwatchEventConnectionAuthParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1803,9 +1582,7 @@ impl ToListMappable for CloudwatchEventConnectionAuthParametersEl {
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionAuthParametersEl {}
-
 impl BuildCloudwatchEventConnectionAuthParametersEl {
     pub fn build(self) -> CloudwatchEventConnectionAuthParametersEl {
         CloudwatchEventConnectionAuthParametersEl {
@@ -1817,12 +1594,10 @@ impl BuildCloudwatchEventConnectionAuthParametersEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionAuthParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionAuthParametersElRef {
     fn new(shared: StackShared, base: String) -> CloudwatchEventConnectionAuthParametersElRef {
         CloudwatchEventConnectionAuthParametersElRef {
@@ -1831,22 +1606,18 @@ impl Ref for CloudwatchEventConnectionAuthParametersElRef {
         }
     }
 }
-
 impl CloudwatchEventConnectionAuthParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `api_key` after provisioning.\n"]
     pub fn api_key(&self) -> ListRef<CloudwatchEventConnectionAuthParametersElApiKeyElRef> {
         ListRef::new(self.shared().clone(), format!("{}.api_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `basic` after provisioning.\n"]
     pub fn basic(&self) -> ListRef<CloudwatchEventConnectionAuthParametersElBasicElRef> {
         ListRef::new(self.shared().clone(), format!("{}.basic", self.base))
     }
-
     #[doc = "Get a reference to the value of field `invocation_http_parameters` after provisioning.\n"]
     pub fn invocation_http_parameters(
         &self,
@@ -1856,27 +1627,22 @@ impl CloudwatchEventConnectionAuthParametersElRef {
             format!("{}.invocation_http_parameters", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `oauth` after provisioning.\n"]
     pub fn oauth(&self) -> ListRef<CloudwatchEventConnectionAuthParametersElOauthElRef> {
         ListRef::new(self.shared().clone(), format!("{}.oauth", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl {
     resource_configuration_arn: PrimField<String>,
 }
-
 impl CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl {}
-
 impl ToListMappable
     for CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl
 {
     type O = BlockAssignable<
         CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1885,12 +1651,10 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl {
     #[doc = ""]
     pub resource_configuration_arn: PrimField<String>,
 }
-
 impl BuildCloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersEl {
     pub fn build(
         self,
@@ -1900,12 +1664,10 @@ impl BuildCloudwatchEventConnectionInvocationConnectivityParametersElResourcePar
         }
     }
 }
-
 pub struct CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersElRef {
     fn new(
         shared: StackShared,
@@ -1917,12 +1679,10 @@ impl Ref for CloudwatchEventConnectionInvocationConnectivityParametersElResource
         }
     }
 }
-
 impl CloudwatchEventConnectionInvocationConnectivityParametersElResourceParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `resource_association_arn` after provisioning.\n"]
     pub fn resource_association_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1930,7 +1690,6 @@ impl CloudwatchEventConnectionInvocationConnectivityParametersElResourceParamete
             format!("{}.resource_association_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_configuration_arn` after provisioning.\n"]
     pub fn resource_configuration_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1939,7 +1698,6 @@ impl CloudwatchEventConnectionInvocationConnectivityParametersElResourceParamete
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionInvocationConnectivityParametersElDynamic {
     resource_parameters: Option<
@@ -1948,7 +1706,6 @@ struct CloudwatchEventConnectionInvocationConnectivityParametersElDynamic {
         >,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CloudwatchEventConnectionInvocationConnectivityParametersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1957,7 +1714,6 @@ pub struct CloudwatchEventConnectionInvocationConnectivityParametersEl {
     >,
     dynamic: CloudwatchEventConnectionInvocationConnectivityParametersElDynamic,
 }
-
 impl CloudwatchEventConnectionInvocationConnectivityParametersEl {
     #[doc = "Set the field `resource_parameters`.\n"]
     pub fn set_resource_parameters(
@@ -1979,10 +1735,8 @@ impl CloudwatchEventConnectionInvocationConnectivityParametersEl {
         self
     }
 }
-
 impl ToListMappable for CloudwatchEventConnectionInvocationConnectivityParametersEl {
     type O = BlockAssignable<CloudwatchEventConnectionInvocationConnectivityParametersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1991,9 +1745,7 @@ impl ToListMappable for CloudwatchEventConnectionInvocationConnectivityParameter
         })
     }
 }
-
 pub struct BuildCloudwatchEventConnectionInvocationConnectivityParametersEl {}
-
 impl BuildCloudwatchEventConnectionInvocationConnectivityParametersEl {
     pub fn build(self) -> CloudwatchEventConnectionInvocationConnectivityParametersEl {
         CloudwatchEventConnectionInvocationConnectivityParametersEl {
@@ -2002,12 +1754,10 @@ impl BuildCloudwatchEventConnectionInvocationConnectivityParametersEl {
         }
     }
 }
-
 pub struct CloudwatchEventConnectionInvocationConnectivityParametersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudwatchEventConnectionInvocationConnectivityParametersElRef {
     fn new(
         shared: StackShared,
@@ -2019,12 +1769,10 @@ impl Ref for CloudwatchEventConnectionInvocationConnectivityParametersElRef {
         }
     }
 }
-
 impl CloudwatchEventConnectionInvocationConnectivityParametersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `resource_parameters` after provisioning.\n"]
     pub fn resource_parameters(
         &self,
@@ -2036,7 +1784,6 @@ impl CloudwatchEventConnectionInvocationConnectivityParametersElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudwatchEventConnectionDynamic {
     auth_parameters: Option<DynamicBlock<CloudwatchEventConnectionAuthParametersEl>>,

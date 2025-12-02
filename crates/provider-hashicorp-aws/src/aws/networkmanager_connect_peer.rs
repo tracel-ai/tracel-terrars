@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct NetworkmanagerConnectPeerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -34,47 +33,38 @@ struct NetworkmanagerConnectPeerData {
     timeouts: Option<NetworkmanagerConnectPeerTimeoutsEl>,
     dynamic: NetworkmanagerConnectPeerDynamic,
 }
-
 struct NetworkmanagerConnectPeer_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<NetworkmanagerConnectPeerData>,
 }
-
 #[derive(Clone)]
 pub struct NetworkmanagerConnectPeer(Rc<NetworkmanagerConnectPeer_>);
-
 impl NetworkmanagerConnectPeer {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -93,7 +83,6 @@ impl NetworkmanagerConnectPeer {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -103,7 +92,6 @@ impl NetworkmanagerConnectPeer {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -113,43 +101,36 @@ impl NetworkmanagerConnectPeer {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `core_network_address`.\n"]
     pub fn set_core_network_address(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().core_network_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inside_cidr_blocks`.\n"]
     pub fn set_inside_cidr_blocks(self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().inside_cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_arn`.\n"]
     pub fn set_subnet_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().subnet_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bgp_options`.\n"]
     pub fn set_bgp_options(
         self,
@@ -165,18 +146,15 @@ impl NetworkmanagerConnectPeer {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<NetworkmanagerConnectPeerTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<NetworkmanagerConnectPeerConfigurationElRef> {
         ListRef::new(
@@ -184,7 +162,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connect_attachment_id` after provisioning.\n"]
     pub fn connect_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -192,7 +169,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.connect_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connect_peer_id` after provisioning.\n"]
     pub fn connect_peer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +176,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.connect_peer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_address` after provisioning.\n"]
     pub fn core_network_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +183,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.core_network_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -216,7 +190,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.core_network_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -224,7 +197,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,12 +204,10 @@ impl NetworkmanagerConnectPeer {
             format!("{}.edge_location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -245,7 +215,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.inside_cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +222,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.peer_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +229,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_arn` after provisioning.\n"]
     pub fn subnet_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -269,7 +236,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.subnet_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -277,7 +243,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -285,7 +250,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_options` after provisioning.\n"]
     pub fn bgp_options(&self) -> ListRef<NetworkmanagerConnectPeerBgpOptionsElRef> {
         ListRef::new(
@@ -293,7 +257,6 @@ impl NetworkmanagerConnectPeer {
             format!("{}.bgp_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NetworkmanagerConnectPeerTimeoutsElRef {
         NetworkmanagerConnectPeerTimeoutsElRef::new(
@@ -302,7 +265,6 @@ impl NetworkmanagerConnectPeer {
         )
     }
 }
-
 impl Referable for NetworkmanagerConnectPeer {
     fn extract_ref(&self) -> String {
         format!(
@@ -312,32 +274,25 @@ impl Referable for NetworkmanagerConnectPeer {
         )
     }
 }
-
 impl Resource for NetworkmanagerConnectPeer {}
-
 impl ToListMappable for NetworkmanagerConnectPeer {
     type O = ListRef<NetworkmanagerConnectPeerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for NetworkmanagerConnectPeer_ {
     fn extract_resource_type(&self) -> String {
         "aws_networkmanager_connect_peer".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildNetworkmanagerConnectPeer {
     pub tf_id: String,
     #[doc = ""]
@@ -345,7 +300,6 @@ pub struct BuildNetworkmanagerConnectPeer {
     #[doc = ""]
     pub peer_address: PrimField<String>,
 }
-
 impl BuildNetworkmanagerConnectPeer {
     pub fn build(self, stack: &mut Stack) -> NetworkmanagerConnectPeer {
         let out = NetworkmanagerConnectPeer(Rc::new(NetworkmanagerConnectPeer_ {
@@ -373,32 +327,26 @@ impl BuildNetworkmanagerConnectPeer {
         out
     }
 }
-
 pub struct NetworkmanagerConnectPeerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmanagerConnectPeerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl NetworkmanagerConnectPeerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `configuration` after provisioning.\n"]
     pub fn configuration(&self) -> ListRef<NetworkmanagerConnectPeerConfigurationElRef> {
         ListRef::new(
@@ -406,7 +354,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.configuration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connect_attachment_id` after provisioning.\n"]
     pub fn connect_attachment_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +361,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.connect_attachment_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connect_peer_id` after provisioning.\n"]
     pub fn connect_peer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,7 +368,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.connect_peer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_address` after provisioning.\n"]
     pub fn core_network_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -430,7 +375,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.core_network_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_id` after provisioning.\n"]
     pub fn core_network_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -438,7 +382,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.core_network_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -446,7 +389,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `edge_location` after provisioning.\n"]
     pub fn edge_location(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -454,12 +396,10 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.edge_location", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -467,7 +407,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.inside_cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,7 +414,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.peer_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -483,7 +421,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_arn` after provisioning.\n"]
     pub fn subnet_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -491,7 +428,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.subnet_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -499,7 +435,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -507,7 +442,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_options` after provisioning.\n"]
     pub fn bgp_options(&self) -> ListRef<NetworkmanagerConnectPeerBgpOptionsElRef> {
         ListRef::new(
@@ -515,7 +449,6 @@ impl NetworkmanagerConnectPeerRef {
             format!("{}.bgp_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> NetworkmanagerConnectPeerTimeoutsElRef {
         NetworkmanagerConnectPeerTimeoutsElRef::new(
@@ -524,7 +457,6 @@ impl NetworkmanagerConnectPeerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -536,36 +468,30 @@ pub struct NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     peer_asn: Option<PrimField<f64>>,
 }
-
 impl NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
     #[doc = "Set the field `core_network_address`.\n"]
     pub fn set_core_network_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.core_network_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `core_network_asn`.\n"]
     pub fn set_core_network_asn(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.core_network_asn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `peer_address`.\n"]
     pub fn set_peer_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.peer_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `peer_asn`.\n"]
     pub fn set_peer_asn(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.peer_asn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
     type O = BlockAssignable<NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -574,9 +500,7 @@ impl ToListMappable for NetworkmanagerConnectPeerConfigurationElBgpConfiguration
         })
     }
 }
-
 pub struct BuildNetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {}
-
 impl BuildNetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
     pub fn build(self) -> NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
         NetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
@@ -587,12 +511,10 @@ impl BuildNetworkmanagerConnectPeerConfigurationElBgpConfigurationsEl {
         }
     }
 }
-
 pub struct NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
     fn new(
         shared: StackShared,
@@ -604,12 +526,10 @@ impl Ref for NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
         }
     }
 }
-
 impl NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `core_network_address` after provisioning.\n"]
     pub fn core_network_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -617,7 +537,6 @@ impl NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
             format!("{}.core_network_address", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_asn` after provisioning.\n"]
     pub fn core_network_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -625,18 +544,15 @@ impl NetworkmanagerConnectPeerConfigurationElBgpConfigurationsElRef {
             format!("{}.core_network_asn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.peer_address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `peer_asn` after provisioning.\n"]
     pub fn peer_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.peer_asn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkmanagerConnectPeerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -651,7 +567,6 @@ pub struct NetworkmanagerConnectPeerConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     protocol: Option<PrimField<String>>,
 }
-
 impl NetworkmanagerConnectPeerConfigurationEl {
     #[doc = "Set the field `bgp_configurations`.\n"]
     pub fn set_bgp_configurations(
@@ -661,35 +576,29 @@ impl NetworkmanagerConnectPeerConfigurationEl {
         self.bgp_configurations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `core_network_address`.\n"]
     pub fn set_core_network_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.core_network_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `inside_cidr_blocks`.\n"]
     pub fn set_inside_cidr_blocks(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.inside_cidr_blocks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `peer_address`.\n"]
     pub fn set_peer_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.peer_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `protocol`.\n"]
     pub fn set_protocol(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.protocol = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkmanagerConnectPeerConfigurationEl {
     type O = BlockAssignable<NetworkmanagerConnectPeerConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -698,9 +607,7 @@ impl ToListMappable for NetworkmanagerConnectPeerConfigurationEl {
         })
     }
 }
-
 pub struct BuildNetworkmanagerConnectPeerConfigurationEl {}
-
 impl BuildNetworkmanagerConnectPeerConfigurationEl {
     pub fn build(self) -> NetworkmanagerConnectPeerConfigurationEl {
         NetworkmanagerConnectPeerConfigurationEl {
@@ -712,12 +619,10 @@ impl BuildNetworkmanagerConnectPeerConfigurationEl {
         }
     }
 }
-
 pub struct NetworkmanagerConnectPeerConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmanagerConnectPeerConfigurationElRef {
     fn new(shared: StackShared, base: String) -> NetworkmanagerConnectPeerConfigurationElRef {
         NetworkmanagerConnectPeerConfigurationElRef {
@@ -726,12 +631,10 @@ impl Ref for NetworkmanagerConnectPeerConfigurationElRef {
         }
     }
 }
-
 impl NetworkmanagerConnectPeerConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bgp_configurations` after provisioning.\n"]
     pub fn bgp_configurations(
         &self,
@@ -741,7 +644,6 @@ impl NetworkmanagerConnectPeerConfigurationElRef {
             format!("{}.bgp_configurations", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `core_network_address` after provisioning.\n"]
     pub fn core_network_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -749,7 +651,6 @@ impl NetworkmanagerConnectPeerConfigurationElRef {
             format!("{}.core_network_address", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `inside_cidr_blocks` after provisioning.\n"]
     pub fn inside_cidr_blocks(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -757,24 +658,20 @@ impl NetworkmanagerConnectPeerConfigurationElRef {
             format!("{}.inside_cidr_blocks", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `peer_address` after provisioning.\n"]
     pub fn peer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.peer_address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `protocol` after provisioning.\n"]
     pub fn protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.protocol", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkmanagerConnectPeerBgpOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     peer_asn: Option<PrimField<f64>>,
 }
-
 impl NetworkmanagerConnectPeerBgpOptionsEl {
     #[doc = "Set the field `peer_asn`.\n"]
     pub fn set_peer_asn(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -782,10 +679,8 @@ impl NetworkmanagerConnectPeerBgpOptionsEl {
         self
     }
 }
-
 impl ToListMappable for NetworkmanagerConnectPeerBgpOptionsEl {
     type O = BlockAssignable<NetworkmanagerConnectPeerBgpOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -794,9 +689,7 @@ impl ToListMappable for NetworkmanagerConnectPeerBgpOptionsEl {
         })
     }
 }
-
 pub struct BuildNetworkmanagerConnectPeerBgpOptionsEl {}
-
 impl BuildNetworkmanagerConnectPeerBgpOptionsEl {
     pub fn build(self) -> NetworkmanagerConnectPeerBgpOptionsEl {
         NetworkmanagerConnectPeerBgpOptionsEl {
@@ -804,12 +697,10 @@ impl BuildNetworkmanagerConnectPeerBgpOptionsEl {
         }
     }
 }
-
 pub struct NetworkmanagerConnectPeerBgpOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmanagerConnectPeerBgpOptionsElRef {
     fn new(shared: StackShared, base: String) -> NetworkmanagerConnectPeerBgpOptionsElRef {
         NetworkmanagerConnectPeerBgpOptionsElRef {
@@ -818,18 +709,15 @@ impl Ref for NetworkmanagerConnectPeerBgpOptionsElRef {
         }
     }
 }
-
 impl NetworkmanagerConnectPeerBgpOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `peer_asn` after provisioning.\n"]
     pub fn peer_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.peer_asn", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct NetworkmanagerConnectPeerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -837,24 +725,20 @@ pub struct NetworkmanagerConnectPeerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl NetworkmanagerConnectPeerTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for NetworkmanagerConnectPeerTimeoutsEl {
     type O = BlockAssignable<NetworkmanagerConnectPeerTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -863,9 +747,7 @@ impl ToListMappable for NetworkmanagerConnectPeerTimeoutsEl {
         })
     }
 }
-
 pub struct BuildNetworkmanagerConnectPeerTimeoutsEl {}
-
 impl BuildNetworkmanagerConnectPeerTimeoutsEl {
     pub fn build(self) -> NetworkmanagerConnectPeerTimeoutsEl {
         NetworkmanagerConnectPeerTimeoutsEl {
@@ -874,12 +756,10 @@ impl BuildNetworkmanagerConnectPeerTimeoutsEl {
         }
     }
 }
-
 pub struct NetworkmanagerConnectPeerTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for NetworkmanagerConnectPeerTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> NetworkmanagerConnectPeerTimeoutsElRef {
         NetworkmanagerConnectPeerTimeoutsElRef {
@@ -888,23 +768,19 @@ impl Ref for NetworkmanagerConnectPeerTimeoutsElRef {
         }
     }
 }
-
 impl NetworkmanagerConnectPeerTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct NetworkmanagerConnectPeerDynamic {
     bgp_options: Option<DynamicBlock<NetworkmanagerConnectPeerBgpOptionsEl>>,

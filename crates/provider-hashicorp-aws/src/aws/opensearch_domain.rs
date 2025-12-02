@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct OpensearchDomainData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -65,47 +64,38 @@ struct OpensearchDomainData {
     vpc_options: Option<Vec<OpensearchDomainVpcOptionsEl>>,
     dynamic: OpensearchDomainDynamic,
 }
-
 struct OpensearchDomain_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<OpensearchDomainData>,
 }
-
 #[derive(Clone)]
 pub struct OpensearchDomain(Rc<OpensearchDomain_>);
-
 impl OpensearchDomain {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -124,7 +114,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -134,7 +123,6 @@ impl OpensearchDomain {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -144,55 +132,46 @@ impl OpensearchDomain {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `access_policies`.\n"]
     pub fn set_access_policies(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().access_policies = Some(v.into());
         self
     }
-
     #[doc = "Set the field `advanced_options`.\n"]
     pub fn set_advanced_options(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().advanced_options = Some(v.into());
         self
     }
-
     #[doc = "Set the field `engine_version`.\n"]
     pub fn set_engine_version(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().engine_version = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_address_type`.\n"]
     pub fn set_ip_address_type(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().ip_address_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `advanced_security_options`.\n"]
     pub fn set_advanced_security_options(
         self,
@@ -208,7 +187,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `aiml_options`.\n"]
     pub fn set_aiml_options(
         self,
@@ -224,7 +202,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `auto_tune_options`.\n"]
     pub fn set_auto_tune_options(
         self,
@@ -240,7 +217,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `cluster_config`.\n"]
     pub fn set_cluster_config(
         self,
@@ -256,7 +232,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `cognito_options`.\n"]
     pub fn set_cognito_options(
         self,
@@ -272,7 +247,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `domain_endpoint_options`.\n"]
     pub fn set_domain_endpoint_options(
         self,
@@ -288,7 +262,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `ebs_options`.\n"]
     pub fn set_ebs_options(
         self,
@@ -304,7 +277,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `encrypt_at_rest`.\n"]
     pub fn set_encrypt_at_rest(
         self,
@@ -320,7 +292,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `identity_center_options`.\n"]
     pub fn set_identity_center_options(
         self,
@@ -336,7 +307,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `log_publishing_options`.\n"]
     pub fn set_log_publishing_options(
         self,
@@ -352,7 +322,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `node_to_node_encryption`.\n"]
     pub fn set_node_to_node_encryption(
         self,
@@ -368,7 +337,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `off_peak_window_options`.\n"]
     pub fn set_off_peak_window_options(
         self,
@@ -384,7 +352,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `snapshot_options`.\n"]
     pub fn set_snapshot_options(
         self,
@@ -400,7 +367,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `software_update_options`.\n"]
     pub fn set_software_update_options(
         self,
@@ -416,13 +382,11 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<OpensearchDomainTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_options`.\n"]
     pub fn set_vpc_options(
         self,
@@ -438,7 +402,6 @@ impl OpensearchDomain {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `access_policies` after provisioning.\n"]
     pub fn access_policies(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -446,7 +409,6 @@ impl OpensearchDomain {
             format!("{}.access_policies", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `advanced_options` after provisioning.\n"]
     pub fn advanced_options(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -454,12 +416,10 @@ impl OpensearchDomain {
             format!("{}.advanced_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint` after provisioning.\n"]
     pub fn dashboard_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -467,7 +427,6 @@ impl OpensearchDomain {
             format!("{}.dashboard_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint_v2` after provisioning.\n"]
     pub fn dashboard_endpoint_v2(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -475,7 +434,6 @@ impl OpensearchDomain {
             format!("{}.dashboard_endpoint_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_endpoint_v2_hosted_zone_id` after provisioning.\n"]
     pub fn domain_endpoint_v2_hosted_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -483,7 +441,6 @@ impl OpensearchDomain {
             format!("{}.domain_endpoint_v2_hosted_zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -491,7 +448,6 @@ impl OpensearchDomain {
             format!("{}.domain_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -499,7 +455,6 @@ impl OpensearchDomain {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -507,7 +462,6 @@ impl OpensearchDomain {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_v2` after provisioning.\n"]
     pub fn endpoint_v2(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -515,7 +469,6 @@ impl OpensearchDomain {
             format!("{}.endpoint_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,12 +476,10 @@ impl OpensearchDomain {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -536,7 +487,6 @@ impl OpensearchDomain {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -544,7 +494,6 @@ impl OpensearchDomain {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -552,7 +501,6 @@ impl OpensearchDomain {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -560,7 +508,6 @@ impl OpensearchDomain {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `advanced_security_options` after provisioning.\n"]
     pub fn advanced_security_options(
         &self,
@@ -570,7 +517,6 @@ impl OpensearchDomain {
             format!("{}.advanced_security_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aiml_options` after provisioning.\n"]
     pub fn aiml_options(&self) -> ListRef<OpensearchDomainAimlOptionsElRef> {
         ListRef::new(
@@ -578,7 +524,6 @@ impl OpensearchDomain {
             format!("{}.aiml_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `auto_tune_options` after provisioning.\n"]
     pub fn auto_tune_options(&self) -> ListRef<OpensearchDomainAutoTuneOptionsElRef> {
         ListRef::new(
@@ -586,7 +531,6 @@ impl OpensearchDomain {
             format!("{}.auto_tune_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_config` after provisioning.\n"]
     pub fn cluster_config(&self) -> ListRef<OpensearchDomainClusterConfigElRef> {
         ListRef::new(
@@ -594,7 +538,6 @@ impl OpensearchDomain {
             format!("{}.cluster_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cognito_options` after provisioning.\n"]
     pub fn cognito_options(&self) -> ListRef<OpensearchDomainCognitoOptionsElRef> {
         ListRef::new(
@@ -602,7 +545,6 @@ impl OpensearchDomain {
             format!("{}.cognito_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_endpoint_options` after provisioning.\n"]
     pub fn domain_endpoint_options(&self) -> ListRef<OpensearchDomainDomainEndpointOptionsElRef> {
         ListRef::new(
@@ -610,7 +552,6 @@ impl OpensearchDomain {
             format!("{}.domain_endpoint_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ebs_options` after provisioning.\n"]
     pub fn ebs_options(&self) -> ListRef<OpensearchDomainEbsOptionsElRef> {
         ListRef::new(
@@ -618,7 +559,6 @@ impl OpensearchDomain {
             format!("{}.ebs_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encrypt_at_rest` after provisioning.\n"]
     pub fn encrypt_at_rest(&self) -> ListRef<OpensearchDomainEncryptAtRestElRef> {
         ListRef::new(
@@ -626,7 +566,6 @@ impl OpensearchDomain {
             format!("{}.encrypt_at_rest", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_center_options` after provisioning.\n"]
     pub fn identity_center_options(&self) -> ListRef<OpensearchDomainIdentityCenterOptionsElRef> {
         ListRef::new(
@@ -634,7 +573,6 @@ impl OpensearchDomain {
             format!("{}.identity_center_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `node_to_node_encryption` after provisioning.\n"]
     pub fn node_to_node_encryption(&self) -> ListRef<OpensearchDomainNodeToNodeEncryptionElRef> {
         ListRef::new(
@@ -642,7 +580,6 @@ impl OpensearchDomain {
             format!("{}.node_to_node_encryption", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `off_peak_window_options` after provisioning.\n"]
     pub fn off_peak_window_options(&self) -> ListRef<OpensearchDomainOffPeakWindowOptionsElRef> {
         ListRef::new(
@@ -650,7 +587,6 @@ impl OpensearchDomain {
             format!("{}.off_peak_window_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_options` after provisioning.\n"]
     pub fn snapshot_options(&self) -> ListRef<OpensearchDomainSnapshotOptionsElRef> {
         ListRef::new(
@@ -658,7 +594,6 @@ impl OpensearchDomain {
             format!("{}.snapshot_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `software_update_options` after provisioning.\n"]
     pub fn software_update_options(&self) -> ListRef<OpensearchDomainSoftwareUpdateOptionsElRef> {
         ListRef::new(
@@ -666,7 +601,6 @@ impl OpensearchDomain {
             format!("{}.software_update_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchDomainTimeoutsElRef {
         OpensearchDomainTimeoutsElRef::new(
@@ -674,7 +608,6 @@ impl OpensearchDomain {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OpensearchDomainVpcOptionsElRef> {
         ListRef::new(
@@ -683,7 +616,6 @@ impl OpensearchDomain {
         )
     }
 }
-
 impl Referable for OpensearchDomain {
     fn extract_ref(&self) -> String {
         format!(
@@ -693,38 +625,30 @@ impl Referable for OpensearchDomain {
         )
     }
 }
-
 impl Resource for OpensearchDomain {}
-
 impl ToListMappable for OpensearchDomain {
     type O = ListRef<OpensearchDomainRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for OpensearchDomain_ {
     fn extract_resource_type(&self) -> String {
         "aws_opensearch_domain".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildOpensearchDomain {
     pub tf_id: String,
     #[doc = ""]
     pub domain_name: PrimField<String>,
 }
-
 impl BuildOpensearchDomain {
     pub fn build(self, stack: &mut Stack) -> OpensearchDomain {
         let out = OpensearchDomain(Rc::new(OpensearchDomain_ {
@@ -767,27 +691,22 @@ impl BuildOpensearchDomain {
         out
     }
 }
-
 pub struct OpensearchDomainRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl OpensearchDomainRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_policies` after provisioning.\n"]
     pub fn access_policies(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -795,7 +714,6 @@ impl OpensearchDomainRef {
             format!("{}.access_policies", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `advanced_options` after provisioning.\n"]
     pub fn advanced_options(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -803,12 +721,10 @@ impl OpensearchDomainRef {
             format!("{}.advanced_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint` after provisioning.\n"]
     pub fn dashboard_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -816,7 +732,6 @@ impl OpensearchDomainRef {
             format!("{}.dashboard_endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dashboard_endpoint_v2` after provisioning.\n"]
     pub fn dashboard_endpoint_v2(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -824,7 +739,6 @@ impl OpensearchDomainRef {
             format!("{}.dashboard_endpoint_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_endpoint_v2_hosted_zone_id` after provisioning.\n"]
     pub fn domain_endpoint_v2_hosted_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -832,7 +746,6 @@ impl OpensearchDomainRef {
             format!("{}.domain_endpoint_v2_hosted_zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_id` after provisioning.\n"]
     pub fn domain_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -840,7 +753,6 @@ impl OpensearchDomainRef {
             format!("{}.domain_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_name` after provisioning.\n"]
     pub fn domain_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -848,7 +760,6 @@ impl OpensearchDomainRef {
             format!("{}.domain_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -856,7 +767,6 @@ impl OpensearchDomainRef {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_v2` after provisioning.\n"]
     pub fn endpoint_v2(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -864,7 +774,6 @@ impl OpensearchDomainRef {
             format!("{}.endpoint_v2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `engine_version` after provisioning.\n"]
     pub fn engine_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -872,12 +781,10 @@ impl OpensearchDomainRef {
             format!("{}.engine_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -885,7 +792,6 @@ impl OpensearchDomainRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -893,7 +799,6 @@ impl OpensearchDomainRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -901,7 +806,6 @@ impl OpensearchDomainRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -909,7 +813,6 @@ impl OpensearchDomainRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `advanced_security_options` after provisioning.\n"]
     pub fn advanced_security_options(
         &self,
@@ -919,7 +822,6 @@ impl OpensearchDomainRef {
             format!("{}.advanced_security_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aiml_options` after provisioning.\n"]
     pub fn aiml_options(&self) -> ListRef<OpensearchDomainAimlOptionsElRef> {
         ListRef::new(
@@ -927,7 +829,6 @@ impl OpensearchDomainRef {
             format!("{}.aiml_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `auto_tune_options` after provisioning.\n"]
     pub fn auto_tune_options(&self) -> ListRef<OpensearchDomainAutoTuneOptionsElRef> {
         ListRef::new(
@@ -935,7 +836,6 @@ impl OpensearchDomainRef {
             format!("{}.auto_tune_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_config` after provisioning.\n"]
     pub fn cluster_config(&self) -> ListRef<OpensearchDomainClusterConfigElRef> {
         ListRef::new(
@@ -943,7 +843,6 @@ impl OpensearchDomainRef {
             format!("{}.cluster_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cognito_options` after provisioning.\n"]
     pub fn cognito_options(&self) -> ListRef<OpensearchDomainCognitoOptionsElRef> {
         ListRef::new(
@@ -951,7 +850,6 @@ impl OpensearchDomainRef {
             format!("{}.cognito_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `domain_endpoint_options` after provisioning.\n"]
     pub fn domain_endpoint_options(&self) -> ListRef<OpensearchDomainDomainEndpointOptionsElRef> {
         ListRef::new(
@@ -959,7 +857,6 @@ impl OpensearchDomainRef {
             format!("{}.domain_endpoint_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ebs_options` after provisioning.\n"]
     pub fn ebs_options(&self) -> ListRef<OpensearchDomainEbsOptionsElRef> {
         ListRef::new(
@@ -967,7 +864,6 @@ impl OpensearchDomainRef {
             format!("{}.ebs_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `encrypt_at_rest` after provisioning.\n"]
     pub fn encrypt_at_rest(&self) -> ListRef<OpensearchDomainEncryptAtRestElRef> {
         ListRef::new(
@@ -975,7 +871,6 @@ impl OpensearchDomainRef {
             format!("{}.encrypt_at_rest", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_center_options` after provisioning.\n"]
     pub fn identity_center_options(&self) -> ListRef<OpensearchDomainIdentityCenterOptionsElRef> {
         ListRef::new(
@@ -983,7 +878,6 @@ impl OpensearchDomainRef {
             format!("{}.identity_center_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `node_to_node_encryption` after provisioning.\n"]
     pub fn node_to_node_encryption(&self) -> ListRef<OpensearchDomainNodeToNodeEncryptionElRef> {
         ListRef::new(
@@ -991,7 +885,6 @@ impl OpensearchDomainRef {
             format!("{}.node_to_node_encryption", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `off_peak_window_options` after provisioning.\n"]
     pub fn off_peak_window_options(&self) -> ListRef<OpensearchDomainOffPeakWindowOptionsElRef> {
         ListRef::new(
@@ -999,7 +892,6 @@ impl OpensearchDomainRef {
             format!("{}.off_peak_window_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `snapshot_options` after provisioning.\n"]
     pub fn snapshot_options(&self) -> ListRef<OpensearchDomainSnapshotOptionsElRef> {
         ListRef::new(
@@ -1007,7 +899,6 @@ impl OpensearchDomainRef {
             format!("{}.snapshot_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `software_update_options` after provisioning.\n"]
     pub fn software_update_options(&self) -> ListRef<OpensearchDomainSoftwareUpdateOptionsElRef> {
         ListRef::new(
@@ -1015,7 +906,6 @@ impl OpensearchDomainRef {
             format!("{}.software_update_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> OpensearchDomainTimeoutsElRef {
         OpensearchDomainTimeoutsElRef::new(
@@ -1023,7 +913,6 @@ impl OpensearchDomainRef {
             format!("{}.timeouts", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_options` after provisioning.\n"]
     pub fn vpc_options(&self) -> ListRef<OpensearchDomainVpcOptionsElRef> {
         ListRef::new(
@@ -1032,7 +921,6 @@ impl OpensearchDomainRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1042,30 +930,25 @@ pub struct OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     master_user_password: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
     #[doc = "Set the field `master_user_arn`.\n"]
     pub fn set_master_user_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.master_user_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `master_user_name`.\n"]
     pub fn set_master_user_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.master_user_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `master_user_password`.\n"]
     pub fn set_master_user_password(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.master_user_password = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
     type O = BlockAssignable<OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1074,9 +957,7 @@ impl ToListMappable for OpensearchDomainAdvancedSecurityOptionsElMasterUserOptio
         })
     }
 }
-
 pub struct BuildOpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {}
-
 impl BuildOpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
     pub fn build(self) -> OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
         OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
@@ -1086,12 +967,10 @@ impl BuildOpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1103,12 +982,10 @@ impl Ref for OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `master_user_arn` after provisioning.\n"]
     pub fn master_user_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1116,7 +993,6 @@ impl OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
             format!("{}.master_user_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `master_user_name` after provisioning.\n"]
     pub fn master_user_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1124,7 +1000,6 @@ impl OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
             format!("{}.master_user_name", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `master_user_password` after provisioning.\n"]
     pub fn master_user_password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1133,13 +1008,11 @@ impl OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainAdvancedSecurityOptionsElDynamic {
     master_user_options:
         Option<DynamicBlock<OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAdvancedSecurityOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1151,20 +1024,17 @@ pub struct OpensearchDomainAdvancedSecurityOptionsEl {
     master_user_options: Option<Vec<OpensearchDomainAdvancedSecurityOptionsElMasterUserOptionsEl>>,
     dynamic: OpensearchDomainAdvancedSecurityOptionsElDynamic,
 }
-
 impl OpensearchDomainAdvancedSecurityOptionsEl {
     #[doc = "Set the field `anonymous_auth_enabled`.\n"]
     pub fn set_anonymous_auth_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.anonymous_auth_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `internal_user_database_enabled`.\n"]
     pub fn set_internal_user_database_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.internal_user_database_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `master_user_options`.\n"]
     pub fn set_master_user_options(
         mut self,
@@ -1181,10 +1051,8 @@ impl OpensearchDomainAdvancedSecurityOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAdvancedSecurityOptionsEl {
     type O = BlockAssignable<OpensearchDomainAdvancedSecurityOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1193,12 +1061,10 @@ impl ToListMappable for OpensearchDomainAdvancedSecurityOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainAdvancedSecurityOptionsEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildOpensearchDomainAdvancedSecurityOptionsEl {
     pub fn build(self) -> OpensearchDomainAdvancedSecurityOptionsEl {
         OpensearchDomainAdvancedSecurityOptionsEl {
@@ -1210,12 +1076,10 @@ impl BuildOpensearchDomainAdvancedSecurityOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainAdvancedSecurityOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAdvancedSecurityOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainAdvancedSecurityOptionsElRef {
         OpensearchDomainAdvancedSecurityOptionsElRef {
@@ -1224,12 +1088,10 @@ impl Ref for OpensearchDomainAdvancedSecurityOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainAdvancedSecurityOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `anonymous_auth_enabled` after provisioning.\n"]
     pub fn anonymous_auth_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1237,12 +1099,10 @@ impl OpensearchDomainAdvancedSecurityOptionsElRef {
             format!("{}.anonymous_auth_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `internal_user_database_enabled` after provisioning.\n"]
     pub fn internal_user_database_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1250,7 +1110,6 @@ impl OpensearchDomainAdvancedSecurityOptionsElRef {
             format!("{}.internal_user_database_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `master_user_options` after provisioning.\n"]
     pub fn master_user_options(
         &self,
@@ -1261,13 +1120,11 @@ impl OpensearchDomainAdvancedSecurityOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     desired_state: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
     #[doc = "Set the field `desired_state`.\n"]
     pub fn set_desired_state(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1275,10 +1132,8 @@ impl OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
     type O = BlockAssignable<OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1287,9 +1142,7 @@ impl ToListMappable for OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerat
         })
     }
 }
-
 pub struct BuildOpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {}
-
 impl BuildOpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
     pub fn build(self) -> OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
         OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
@@ -1297,12 +1150,10 @@ impl BuildOpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1314,12 +1165,10 @@ impl Ref for OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsE
         }
     }
 }
-
 impl OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `desired_state` after provisioning.\n"]
     pub fn desired_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1328,13 +1177,11 @@ impl OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAimlOptionsElS3VectorsEngineEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl OpensearchDomainAimlOptionsElS3VectorsEngineEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1342,10 +1189,8 @@ impl OpensearchDomainAimlOptionsElS3VectorsEngineEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAimlOptionsElS3VectorsEngineEl {
     type O = BlockAssignable<OpensearchDomainAimlOptionsElS3VectorsEngineEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1354,9 +1199,7 @@ impl ToListMappable for OpensearchDomainAimlOptionsElS3VectorsEngineEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainAimlOptionsElS3VectorsEngineEl {}
-
 impl BuildOpensearchDomainAimlOptionsElS3VectorsEngineEl {
     pub fn build(self) -> OpensearchDomainAimlOptionsElS3VectorsEngineEl {
         OpensearchDomainAimlOptionsElS3VectorsEngineEl {
@@ -1364,12 +1207,10 @@ impl BuildOpensearchDomainAimlOptionsElS3VectorsEngineEl {
         }
     }
 }
-
 pub struct OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
         OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
@@ -1378,25 +1219,21 @@ impl Ref for OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
         }
     }
 }
-
 impl OpensearchDomainAimlOptionsElS3VectorsEngineElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainAimlOptionsElDynamic {
     natural_language_query_generation_options:
         Option<DynamicBlock<OpensearchDomainAimlOptionsElNaturalLanguageQueryGenerationOptionsEl>>,
     s3_vectors_engine: Option<DynamicBlock<OpensearchDomainAimlOptionsElS3VectorsEngineEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAimlOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1406,7 +1243,6 @@ pub struct OpensearchDomainAimlOptionsEl {
     s3_vectors_engine: Option<Vec<OpensearchDomainAimlOptionsElS3VectorsEngineEl>>,
     dynamic: OpensearchDomainAimlOptionsElDynamic,
 }
-
 impl OpensearchDomainAimlOptionsEl {
     #[doc = "Set the field `natural_language_query_generation_options`.\n"]
     pub fn set_natural_language_query_generation_options(
@@ -1425,7 +1261,6 @@ impl OpensearchDomainAimlOptionsEl {
         }
         self
     }
-
     #[doc = "Set the field `s3_vectors_engine`.\n"]
     pub fn set_s3_vectors_engine(
         mut self,
@@ -1442,10 +1277,8 @@ impl OpensearchDomainAimlOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAimlOptionsEl {
     type O = BlockAssignable<OpensearchDomainAimlOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1454,9 +1287,7 @@ impl ToListMappable for OpensearchDomainAimlOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainAimlOptionsEl {}
-
 impl BuildOpensearchDomainAimlOptionsEl {
     pub fn build(self) -> OpensearchDomainAimlOptionsEl {
         OpensearchDomainAimlOptionsEl {
@@ -1466,12 +1297,10 @@ impl BuildOpensearchDomainAimlOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainAimlOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAimlOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainAimlOptionsElRef {
         OpensearchDomainAimlOptionsElRef {
@@ -1480,12 +1309,10 @@ impl Ref for OpensearchDomainAimlOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainAimlOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `natural_language_query_generation_options` after provisioning.\n"]
     pub fn natural_language_query_generation_options(
         &self,
@@ -1495,7 +1322,6 @@ impl OpensearchDomainAimlOptionsElRef {
             format!("{}.natural_language_query_generation_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `s3_vectors_engine` after provisioning.\n"]
     pub fn s3_vectors_engine(&self) -> ListRef<OpensearchDomainAimlOptionsElS3VectorsEngineElRef> {
         ListRef::new(
@@ -1504,18 +1330,14 @@ impl OpensearchDomainAimlOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
     unit: PrimField<String>,
     value: PrimField<f64>,
 }
-
 impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {}
-
 impl ToListMappable for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
     type O = BlockAssignable<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1524,14 +1346,12 @@ impl ToListMappable for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDu
         })
     }
 }
-
 pub struct BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
     #[doc = ""]
     pub unit: PrimField<String>,
     #[doc = ""]
     pub value: PrimField<f64>,
 }
-
 impl BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
     pub fn build(self) -> OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
         OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
@@ -1540,12 +1360,10 @@ impl BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl {
         }
     }
 }
-
 pub struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef {
     fn new(
         shared: StackShared,
@@ -1557,29 +1375,24 @@ impl Ref for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef
         }
     }
 }
-
 impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `unit` after provisioning.\n"]
     pub fn unit(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.unit", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDynamic {
     duration:
         Option<DynamicBlock<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     cron_expression_for_recurrence: PrimField<String>,
@@ -1588,7 +1401,6 @@ pub struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     duration: Option<Vec<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDurationEl>>,
     dynamic: OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElDynamic,
 }
-
 impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     #[doc = "Set the field `duration`.\n"]
     pub fn set_duration(
@@ -1606,10 +1418,8 @@ impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     type O = BlockAssignable<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1618,14 +1428,12 @@ impl ToListMappable for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     #[doc = ""]
     pub cron_expression_for_recurrence: PrimField<String>,
     #[doc = ""]
     pub start_at: PrimField<String>,
 }
-
 impl BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
     pub fn build(self) -> OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
         OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
@@ -1636,12 +1444,10 @@ impl BuildOpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl {
         }
     }
 }
-
 pub struct OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
     fn new(
         shared: StackShared,
@@ -1653,12 +1459,10 @@ impl Ref for OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
         }
     }
 }
-
 impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cron_expression_for_recurrence` after provisioning.\n"]
     pub fn cron_expression_for_recurrence(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1666,12 +1470,10 @@ impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
             format!("{}.cron_expression_for_recurrence", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_at` after provisioning.\n"]
     pub fn start_at(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.start_at", self.base))
     }
-
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(
         &self,
@@ -1679,13 +1481,11 @@ impl OpensearchDomainAutoTuneOptionsElMaintenanceScheduleElRef {
         ListRef::new(self.shared().clone(), format!("{}.duration", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainAutoTuneOptionsElDynamic {
     maintenance_schedule:
         Option<DynamicBlock<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainAutoTuneOptionsEl {
     desired_state: PrimField<String>,
@@ -1697,20 +1497,17 @@ pub struct OpensearchDomainAutoTuneOptionsEl {
     maintenance_schedule: Option<Vec<OpensearchDomainAutoTuneOptionsElMaintenanceScheduleEl>>,
     dynamic: OpensearchDomainAutoTuneOptionsElDynamic,
 }
-
 impl OpensearchDomainAutoTuneOptionsEl {
     #[doc = "Set the field `rollback_on_disable`.\n"]
     pub fn set_rollback_on_disable(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.rollback_on_disable = Some(v.into());
         self
     }
-
     #[doc = "Set the field `use_off_peak_window`.\n"]
     pub fn set_use_off_peak_window(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.use_off_peak_window = Some(v.into());
         self
     }
-
     #[doc = "Set the field `maintenance_schedule`.\n"]
     pub fn set_maintenance_schedule(
         mut self,
@@ -1727,10 +1524,8 @@ impl OpensearchDomainAutoTuneOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainAutoTuneOptionsEl {
     type O = BlockAssignable<OpensearchDomainAutoTuneOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1739,12 +1534,10 @@ impl ToListMappable for OpensearchDomainAutoTuneOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainAutoTuneOptionsEl {
     #[doc = ""]
     pub desired_state: PrimField<String>,
 }
-
 impl BuildOpensearchDomainAutoTuneOptionsEl {
     pub fn build(self) -> OpensearchDomainAutoTuneOptionsEl {
         OpensearchDomainAutoTuneOptionsEl {
@@ -1756,12 +1549,10 @@ impl BuildOpensearchDomainAutoTuneOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainAutoTuneOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainAutoTuneOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainAutoTuneOptionsElRef {
         OpensearchDomainAutoTuneOptionsElRef {
@@ -1770,12 +1561,10 @@ impl Ref for OpensearchDomainAutoTuneOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainAutoTuneOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `desired_state` after provisioning.\n"]
     pub fn desired_state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1783,7 +1572,6 @@ impl OpensearchDomainAutoTuneOptionsElRef {
             format!("{}.desired_state", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `rollback_on_disable` after provisioning.\n"]
     pub fn rollback_on_disable(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1791,7 +1579,6 @@ impl OpensearchDomainAutoTuneOptionsElRef {
             format!("{}.rollback_on_disable", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `use_off_peak_window` after provisioning.\n"]
     pub fn use_off_peak_window(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1800,13 +1587,11 @@ impl OpensearchDomainAutoTuneOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainClusterConfigElColdStorageOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl OpensearchDomainClusterConfigElColdStorageOptionsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1814,10 +1599,8 @@ impl OpensearchDomainClusterConfigElColdStorageOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainClusterConfigElColdStorageOptionsEl {
     type O = BlockAssignable<OpensearchDomainClusterConfigElColdStorageOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1826,9 +1609,7 @@ impl ToListMappable for OpensearchDomainClusterConfigElColdStorageOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainClusterConfigElColdStorageOptionsEl {}
-
 impl BuildOpensearchDomainClusterConfigElColdStorageOptionsEl {
     pub fn build(self) -> OpensearchDomainClusterConfigElColdStorageOptionsEl {
         OpensearchDomainClusterConfigElColdStorageOptionsEl {
@@ -1836,12 +1617,10 @@ impl BuildOpensearchDomainClusterConfigElColdStorageOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainClusterConfigElColdStorageOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainClusterConfigElColdStorageOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1853,18 +1632,15 @@ impl Ref for OpensearchDomainClusterConfigElColdStorageOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainClusterConfigElColdStorageOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1874,30 +1650,25 @@ pub struct OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
     #[doc = "Set the field `count`.\n"]
     pub fn set_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.type_ = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
     type O = BlockAssignable<OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1906,9 +1677,7 @@ impl ToListMappable for OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl
         })
     }
 }
-
 pub struct BuildOpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {}
-
 impl BuildOpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
     pub fn build(self) -> OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
         OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
@@ -1918,12 +1687,10 @@ impl BuildOpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl {
         }
     }
 }
-
 pub struct OpensearchDomainClusterConfigElNodeOptionsElNodeConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainClusterConfigElNodeOptionsElNodeConfigElRef {
     fn new(
         shared: StackShared,
@@ -1935,33 +1702,27 @@ impl Ref for OpensearchDomainClusterConfigElNodeOptionsElNodeConfigElRef {
         }
     }
 }
-
 impl OpensearchDomainClusterConfigElNodeOptionsElNodeConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `count` after provisioning.\n"]
     pub fn count(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.count", self.base))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainClusterConfigElNodeOptionsElDynamic {
     node_config: Option<DynamicBlock<OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainClusterConfigElNodeOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1970,14 +1731,12 @@ pub struct OpensearchDomainClusterConfigElNodeOptionsEl {
     node_config: Option<Vec<OpensearchDomainClusterConfigElNodeOptionsElNodeConfigEl>>,
     dynamic: OpensearchDomainClusterConfigElNodeOptionsElDynamic,
 }
-
 impl OpensearchDomainClusterConfigElNodeOptionsEl {
     #[doc = "Set the field `node_type`.\n"]
     pub fn set_node_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.node_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `node_config`.\n"]
     pub fn set_node_config(
         mut self,
@@ -1994,10 +1753,8 @@ impl OpensearchDomainClusterConfigElNodeOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainClusterConfigElNodeOptionsEl {
     type O = BlockAssignable<OpensearchDomainClusterConfigElNodeOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2006,9 +1763,7 @@ impl ToListMappable for OpensearchDomainClusterConfigElNodeOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainClusterConfigElNodeOptionsEl {}
-
 impl BuildOpensearchDomainClusterConfigElNodeOptionsEl {
     pub fn build(self) -> OpensearchDomainClusterConfigElNodeOptionsEl {
         OpensearchDomainClusterConfigElNodeOptionsEl {
@@ -2018,12 +1773,10 @@ impl BuildOpensearchDomainClusterConfigElNodeOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainClusterConfigElNodeOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainClusterConfigElNodeOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainClusterConfigElNodeOptionsElRef {
         OpensearchDomainClusterConfigElNodeOptionsElRef {
@@ -2032,17 +1785,14 @@ impl Ref for OpensearchDomainClusterConfigElNodeOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainClusterConfigElNodeOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `node_type` after provisioning.\n"]
     pub fn node_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.node_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `node_config` after provisioning.\n"]
     pub fn node_config(
         &self,
@@ -2050,13 +1800,11 @@ impl OpensearchDomainClusterConfigElNodeOptionsElRef {
         ListRef::new(self.shared().clone(), format!("{}.node_config", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     availability_zone_count: Option<PrimField<f64>>,
 }
-
 impl OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
     #[doc = "Set the field `availability_zone_count`.\n"]
     pub fn set_availability_zone_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
@@ -2064,10 +1812,8 @@ impl OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
     type O = BlockAssignable<OpensearchDomainClusterConfigElZoneAwarenessConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2076,9 +1822,7 @@ impl ToListMappable for OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainClusterConfigElZoneAwarenessConfigEl {}
-
 impl BuildOpensearchDomainClusterConfigElZoneAwarenessConfigEl {
     pub fn build(self) -> OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
         OpensearchDomainClusterConfigElZoneAwarenessConfigEl {
@@ -2086,12 +1830,10 @@ impl BuildOpensearchDomainClusterConfigElZoneAwarenessConfigEl {
         }
     }
 }
-
 pub struct OpensearchDomainClusterConfigElZoneAwarenessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainClusterConfigElZoneAwarenessConfigElRef {
     fn new(
         shared: StackShared,
@@ -2103,12 +1845,10 @@ impl Ref for OpensearchDomainClusterConfigElZoneAwarenessConfigElRef {
         }
     }
 }
-
 impl OpensearchDomainClusterConfigElZoneAwarenessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zone_count` after provisioning.\n"]
     pub fn availability_zone_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2117,7 +1857,6 @@ impl OpensearchDomainClusterConfigElZoneAwarenessConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainClusterConfigElDynamic {
     cold_storage_options: Option<DynamicBlock<OpensearchDomainClusterConfigElColdStorageOptionsEl>>,
@@ -2125,7 +1864,6 @@ struct OpensearchDomainClusterConfigElDynamic {
     zone_awareness_config:
         Option<DynamicBlock<OpensearchDomainClusterConfigElZoneAwarenessConfigEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainClusterConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2156,68 +1894,57 @@ pub struct OpensearchDomainClusterConfigEl {
     zone_awareness_config: Option<Vec<OpensearchDomainClusterConfigElZoneAwarenessConfigEl>>,
     dynamic: OpensearchDomainClusterConfigElDynamic,
 }
-
 impl OpensearchDomainClusterConfigEl {
     #[doc = "Set the field `dedicated_master_count`.\n"]
     pub fn set_dedicated_master_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.dedicated_master_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dedicated_master_enabled`.\n"]
     pub fn set_dedicated_master_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.dedicated_master_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `dedicated_master_type`.\n"]
     pub fn set_dedicated_master_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dedicated_master_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_count`.\n"]
     pub fn set_instance_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.instance_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `instance_type`.\n"]
     pub fn set_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `multi_az_with_standby_enabled`.\n"]
     pub fn set_multi_az_with_standby_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.multi_az_with_standby_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `warm_count`.\n"]
     pub fn set_warm_count(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.warm_count = Some(v.into());
         self
     }
-
     #[doc = "Set the field `warm_enabled`.\n"]
     pub fn set_warm_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.warm_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `warm_type`.\n"]
     pub fn set_warm_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.warm_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `zone_awareness_enabled`.\n"]
     pub fn set_zone_awareness_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.zone_awareness_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cold_storage_options`.\n"]
     pub fn set_cold_storage_options(
         mut self,
@@ -2233,7 +1960,6 @@ impl OpensearchDomainClusterConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `node_options`.\n"]
     pub fn set_node_options(
         mut self,
@@ -2249,7 +1975,6 @@ impl OpensearchDomainClusterConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `zone_awareness_config`.\n"]
     pub fn set_zone_awareness_config(
         mut self,
@@ -2266,10 +1991,8 @@ impl OpensearchDomainClusterConfigEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainClusterConfigEl {
     type O = BlockAssignable<OpensearchDomainClusterConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2278,9 +2001,7 @@ impl ToListMappable for OpensearchDomainClusterConfigEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainClusterConfigEl {}
-
 impl BuildOpensearchDomainClusterConfigEl {
     pub fn build(self) -> OpensearchDomainClusterConfigEl {
         OpensearchDomainClusterConfigEl {
@@ -2301,12 +2022,10 @@ impl BuildOpensearchDomainClusterConfigEl {
         }
     }
 }
-
 pub struct OpensearchDomainClusterConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainClusterConfigElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainClusterConfigElRef {
         OpensearchDomainClusterConfigElRef {
@@ -2315,12 +2034,10 @@ impl Ref for OpensearchDomainClusterConfigElRef {
         }
     }
 }
-
 impl OpensearchDomainClusterConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dedicated_master_count` after provisioning.\n"]
     pub fn dedicated_master_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2328,7 +2045,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.dedicated_master_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dedicated_master_enabled` after provisioning.\n"]
     pub fn dedicated_master_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2336,7 +2052,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.dedicated_master_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `dedicated_master_type` after provisioning.\n"]
     pub fn dedicated_master_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2344,7 +2059,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.dedicated_master_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_count` after provisioning.\n"]
     pub fn instance_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2352,7 +2066,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.instance_count", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `instance_type` after provisioning.\n"]
     pub fn instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2360,7 +2073,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `multi_az_with_standby_enabled` after provisioning.\n"]
     pub fn multi_az_with_standby_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2368,22 +2080,18 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.multi_az_with_standby_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `warm_count` after provisioning.\n"]
     pub fn warm_count(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.warm_count", self.base))
     }
-
     #[doc = "Get a reference to the value of field `warm_enabled` after provisioning.\n"]
     pub fn warm_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.warm_enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `warm_type` after provisioning.\n"]
     pub fn warm_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.warm_type", self.base))
     }
-
     #[doc = "Get a reference to the value of field `zone_awareness_enabled` after provisioning.\n"]
     pub fn zone_awareness_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2391,7 +2099,6 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.zone_awareness_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cold_storage_options` after provisioning.\n"]
     pub fn cold_storage_options(
         &self,
@@ -2401,12 +2108,10 @@ impl OpensearchDomainClusterConfigElRef {
             format!("{}.cold_storage_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `node_options` after provisioning.\n"]
     pub fn node_options(&self) -> ListRef<OpensearchDomainClusterConfigElNodeOptionsElRef> {
         ListRef::new(self.shared().clone(), format!("{}.node_options", self.base))
     }
-
     #[doc = "Get a reference to the value of field `zone_awareness_config` after provisioning.\n"]
     pub fn zone_awareness_config(
         &self,
@@ -2417,7 +2122,6 @@ impl OpensearchDomainClusterConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainCognitoOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2426,7 +2130,6 @@ pub struct OpensearchDomainCognitoOptionsEl {
     role_arn: PrimField<String>,
     user_pool_id: PrimField<String>,
 }
-
 impl OpensearchDomainCognitoOptionsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -2434,10 +2137,8 @@ impl OpensearchDomainCognitoOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainCognitoOptionsEl {
     type O = BlockAssignable<OpensearchDomainCognitoOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2446,7 +2147,6 @@ impl ToListMappable for OpensearchDomainCognitoOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainCognitoOptionsEl {
     #[doc = ""]
     pub identity_pool_id: PrimField<String>,
@@ -2455,7 +2155,6 @@ pub struct BuildOpensearchDomainCognitoOptionsEl {
     #[doc = ""]
     pub user_pool_id: PrimField<String>,
 }
-
 impl BuildOpensearchDomainCognitoOptionsEl {
     pub fn build(self) -> OpensearchDomainCognitoOptionsEl {
         OpensearchDomainCognitoOptionsEl {
@@ -2466,12 +2165,10 @@ impl BuildOpensearchDomainCognitoOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainCognitoOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainCognitoOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainCognitoOptionsElRef {
         OpensearchDomainCognitoOptionsElRef {
@@ -2480,17 +2177,14 @@ impl Ref for OpensearchDomainCognitoOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainCognitoOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `identity_pool_id` after provisioning.\n"]
     pub fn identity_pool_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2498,18 +2192,15 @@ impl OpensearchDomainCognitoOptionsElRef {
             format!("{}.identity_pool_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.role_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `user_pool_id` after provisioning.\n"]
     pub fn user_pool_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.user_pool_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainDomainEndpointOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2523,42 +2214,35 @@ pub struct OpensearchDomainDomainEndpointOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tls_security_policy: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainDomainEndpointOptionsEl {
     #[doc = "Set the field `custom_endpoint`.\n"]
     pub fn set_custom_endpoint(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.custom_endpoint = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_endpoint_certificate_arn`.\n"]
     pub fn set_custom_endpoint_certificate_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.custom_endpoint_certificate_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_endpoint_enabled`.\n"]
     pub fn set_custom_endpoint_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.custom_endpoint_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enforce_https`.\n"]
     pub fn set_enforce_https(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enforce_https = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tls_security_policy`.\n"]
     pub fn set_tls_security_policy(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.tls_security_policy = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainDomainEndpointOptionsEl {
     type O = BlockAssignable<OpensearchDomainDomainEndpointOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2567,9 +2251,7 @@ impl ToListMappable for OpensearchDomainDomainEndpointOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainDomainEndpointOptionsEl {}
-
 impl BuildOpensearchDomainDomainEndpointOptionsEl {
     pub fn build(self) -> OpensearchDomainDomainEndpointOptionsEl {
         OpensearchDomainDomainEndpointOptionsEl {
@@ -2581,12 +2263,10 @@ impl BuildOpensearchDomainDomainEndpointOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainDomainEndpointOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainDomainEndpointOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainDomainEndpointOptionsElRef {
         OpensearchDomainDomainEndpointOptionsElRef {
@@ -2595,12 +2275,10 @@ impl Ref for OpensearchDomainDomainEndpointOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainDomainEndpointOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_endpoint` after provisioning.\n"]
     pub fn custom_endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2608,7 +2286,6 @@ impl OpensearchDomainDomainEndpointOptionsElRef {
             format!("{}.custom_endpoint", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_endpoint_certificate_arn` after provisioning.\n"]
     pub fn custom_endpoint_certificate_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2616,7 +2293,6 @@ impl OpensearchDomainDomainEndpointOptionsElRef {
             format!("{}.custom_endpoint_certificate_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_endpoint_enabled` after provisioning.\n"]
     pub fn custom_endpoint_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2624,7 +2300,6 @@ impl OpensearchDomainDomainEndpointOptionsElRef {
             format!("{}.custom_endpoint_enabled", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enforce_https` after provisioning.\n"]
     pub fn enforce_https(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2632,7 +2307,6 @@ impl OpensearchDomainDomainEndpointOptionsElRef {
             format!("{}.enforce_https", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `tls_security_policy` after provisioning.\n"]
     pub fn tls_security_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2641,7 +2315,6 @@ impl OpensearchDomainDomainEndpointOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainEbsOptionsEl {
     ebs_enabled: PrimField<bool>,
@@ -2654,36 +2327,30 @@ pub struct OpensearchDomainEbsOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     volume_type: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainEbsOptionsEl {
     #[doc = "Set the field `iops`.\n"]
     pub fn set_iops(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.iops = Some(v.into());
         self
     }
-
     #[doc = "Set the field `throughput`.\n"]
     pub fn set_throughput(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.throughput = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_size`.\n"]
     pub fn set_volume_size(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.volume_size = Some(v.into());
         self
     }
-
     #[doc = "Set the field `volume_type`.\n"]
     pub fn set_volume_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.volume_type = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainEbsOptionsEl {
     type O = BlockAssignable<OpensearchDomainEbsOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2692,12 +2359,10 @@ impl ToListMappable for OpensearchDomainEbsOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainEbsOptionsEl {
     #[doc = ""]
     pub ebs_enabled: PrimField<bool>,
 }
-
 impl BuildOpensearchDomainEbsOptionsEl {
     pub fn build(self) -> OpensearchDomainEbsOptionsEl {
         OpensearchDomainEbsOptionsEl {
@@ -2709,12 +2374,10 @@ impl BuildOpensearchDomainEbsOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainEbsOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainEbsOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainEbsOptionsElRef {
         OpensearchDomainEbsOptionsElRef {
@@ -2723,45 +2386,37 @@ impl Ref for OpensearchDomainEbsOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainEbsOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ebs_enabled` after provisioning.\n"]
     pub fn ebs_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.ebs_enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `iops` after provisioning.\n"]
     pub fn iops(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.iops", self.base))
     }
-
     #[doc = "Get a reference to the value of field `throughput` after provisioning.\n"]
     pub fn throughput(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.throughput", self.base))
     }
-
     #[doc = "Get a reference to the value of field `volume_size` after provisioning.\n"]
     pub fn volume_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.volume_size", self.base))
     }
-
     #[doc = "Get a reference to the value of field `volume_type` after provisioning.\n"]
     pub fn volume_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.volume_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainEncryptAtRestEl {
     enabled: PrimField<bool>,
     #[serde(skip_serializing_if = "Option::is_none")]
     kms_key_id: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainEncryptAtRestEl {
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -2769,10 +2424,8 @@ impl OpensearchDomainEncryptAtRestEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainEncryptAtRestEl {
     type O = BlockAssignable<OpensearchDomainEncryptAtRestEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2781,12 +2434,10 @@ impl ToListMappable for OpensearchDomainEncryptAtRestEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainEncryptAtRestEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildOpensearchDomainEncryptAtRestEl {
     pub fn build(self) -> OpensearchDomainEncryptAtRestEl {
         OpensearchDomainEncryptAtRestEl {
@@ -2795,12 +2446,10 @@ impl BuildOpensearchDomainEncryptAtRestEl {
         }
     }
 }
-
 pub struct OpensearchDomainEncryptAtRestElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainEncryptAtRestElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainEncryptAtRestElRef {
         OpensearchDomainEncryptAtRestElRef {
@@ -2809,23 +2458,19 @@ impl Ref for OpensearchDomainEncryptAtRestElRef {
         }
     }
 }
-
 impl OpensearchDomainEncryptAtRestElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.kms_key_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainIdentityCenterOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2837,36 +2482,30 @@ pub struct OpensearchDomainIdentityCenterOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subject_key: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainIdentityCenterOptionsEl {
     #[doc = "Set the field `enabled_api_access`.\n"]
     pub fn set_enabled_api_access(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled_api_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `identity_center_instance_arn`.\n"]
     pub fn set_identity_center_instance_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.identity_center_instance_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `roles_key`.\n"]
     pub fn set_roles_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.roles_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subject_key`.\n"]
     pub fn set_subject_key(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.subject_key = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainIdentityCenterOptionsEl {
     type O = BlockAssignable<OpensearchDomainIdentityCenterOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2875,9 +2514,7 @@ impl ToListMappable for OpensearchDomainIdentityCenterOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainIdentityCenterOptionsEl {}
-
 impl BuildOpensearchDomainIdentityCenterOptionsEl {
     pub fn build(self) -> OpensearchDomainIdentityCenterOptionsEl {
         OpensearchDomainIdentityCenterOptionsEl {
@@ -2888,12 +2525,10 @@ impl BuildOpensearchDomainIdentityCenterOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainIdentityCenterOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainIdentityCenterOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainIdentityCenterOptionsElRef {
         OpensearchDomainIdentityCenterOptionsElRef {
@@ -2902,12 +2537,10 @@ impl Ref for OpensearchDomainIdentityCenterOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainIdentityCenterOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled_api_access` after provisioning.\n"]
     pub fn enabled_api_access(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -2915,7 +2548,6 @@ impl OpensearchDomainIdentityCenterOptionsElRef {
             format!("{}.enabled_api_access", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_center_instance_arn` after provisioning.\n"]
     pub fn identity_center_instance_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -2923,18 +2555,15 @@ impl OpensearchDomainIdentityCenterOptionsElRef {
             format!("{}.identity_center_instance_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `roles_key` after provisioning.\n"]
     pub fn roles_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.roles_key", self.base))
     }
-
     #[doc = "Get a reference to the value of field `subject_key` after provisioning.\n"]
     pub fn subject_key(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subject_key", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainLogPublishingOptionsEl {
     cloudwatch_log_group_arn: PrimField<String>,
@@ -2942,7 +2571,6 @@ pub struct OpensearchDomainLogPublishingOptionsEl {
     enabled: Option<PrimField<bool>>,
     log_type: PrimField<String>,
 }
-
 impl OpensearchDomainLogPublishingOptionsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -2950,10 +2578,8 @@ impl OpensearchDomainLogPublishingOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainLogPublishingOptionsEl {
     type O = BlockAssignable<OpensearchDomainLogPublishingOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2962,14 +2588,12 @@ impl ToListMappable for OpensearchDomainLogPublishingOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainLogPublishingOptionsEl {
     #[doc = ""]
     pub cloudwatch_log_group_arn: PrimField<String>,
     #[doc = ""]
     pub log_type: PrimField<String>,
 }
-
 impl BuildOpensearchDomainLogPublishingOptionsEl {
     pub fn build(self) -> OpensearchDomainLogPublishingOptionsEl {
         OpensearchDomainLogPublishingOptionsEl {
@@ -2979,12 +2603,10 @@ impl BuildOpensearchDomainLogPublishingOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainLogPublishingOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainLogPublishingOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainLogPublishingOptionsElRef {
         OpensearchDomainLogPublishingOptionsElRef {
@@ -2993,12 +2615,10 @@ impl Ref for OpensearchDomainLogPublishingOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainLogPublishingOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cloudwatch_log_group_arn` after provisioning.\n"]
     pub fn cloudwatch_log_group_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -3006,28 +2626,22 @@ impl OpensearchDomainLogPublishingOptionsElRef {
             format!("{}.cloudwatch_log_group_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `log_type` after provisioning.\n"]
     pub fn log_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.log_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainNodeToNodeEncryptionEl {
     enabled: PrimField<bool>,
 }
-
 impl OpensearchDomainNodeToNodeEncryptionEl {}
-
 impl ToListMappable for OpensearchDomainNodeToNodeEncryptionEl {
     type O = BlockAssignable<OpensearchDomainNodeToNodeEncryptionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3036,12 +2650,10 @@ impl ToListMappable for OpensearchDomainNodeToNodeEncryptionEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainNodeToNodeEncryptionEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
 }
-
 impl BuildOpensearchDomainNodeToNodeEncryptionEl {
     pub fn build(self) -> OpensearchDomainNodeToNodeEncryptionEl {
         OpensearchDomainNodeToNodeEncryptionEl {
@@ -3049,12 +2661,10 @@ impl BuildOpensearchDomainNodeToNodeEncryptionEl {
         }
     }
 }
-
 pub struct OpensearchDomainNodeToNodeEncryptionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainNodeToNodeEncryptionElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainNodeToNodeEncryptionElRef {
         OpensearchDomainNodeToNodeEncryptionElRef {
@@ -3063,18 +2673,15 @@ impl Ref for OpensearchDomainNodeToNodeEncryptionElRef {
         }
     }
 }
-
 impl OpensearchDomainNodeToNodeEncryptionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3082,25 +2689,21 @@ pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeE
     #[serde(skip_serializing_if = "Option::is_none")]
     minutes: Option<PrimField<f64>>,
 }
-
 impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
     #[doc = "Set the field `hours`.\n"]
     pub fn set_hours(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.hours = Some(v.into());
         self
     }
-
     #[doc = "Set the field `minutes`.\n"]
     pub fn set_minutes(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.minutes = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
     type O =
         BlockAssignable<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3109,9 +2712,7 @@ impl ToListMappable for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWin
         })
     }
 }
-
 pub struct BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {}
-
 impl BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
     pub fn build(self) -> OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
         OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl {
@@ -3120,12 +2721,10 @@ impl BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl
         }
     }
 }
-
 pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeElRef {
     fn new(
         shared: StackShared,
@@ -3137,30 +2736,25 @@ impl Ref for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTim
         }
     }
 }
-
 impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `hours` after provisioning.\n"]
     pub fn hours(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.hours", self.base))
     }
-
     #[doc = "Get a reference to the value of field `minutes` after provisioning.\n"]
     pub fn minutes(&self) -> PrimExpr<f64> {
         PrimExpr::new(self.shared().clone(), format!("{}.minutes", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElDynamic {
     window_start_time: Option<
         DynamicBlock<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3168,7 +2762,6 @@ pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
         Option<Vec<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElWindowStartTimeEl>>,
     dynamic: OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElDynamic,
 }
-
 impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
     #[doc = "Set the field `window_start_time`.\n"]
     pub fn set_window_start_time(
@@ -3188,10 +2781,8 @@ impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
     type O = BlockAssignable<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3200,9 +2791,7 @@ impl ToListMappable for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {}
-
 impl BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
     pub fn build(self) -> OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
         OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
@@ -3211,12 +2800,10 @@ impl BuildOpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl {
         }
     }
 }
-
 pub struct OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElRef {
     fn new(
         shared: StackShared,
@@ -3228,12 +2815,10 @@ impl Ref for OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElRef {
         }
     }
 }
-
 impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `window_start_time` after provisioning.\n"]
     pub fn window_start_time(
         &self,
@@ -3244,12 +2829,10 @@ impl OpensearchDomainOffPeakWindowOptionsElOffPeakWindowElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainOffPeakWindowOptionsElDynamic {
     off_peak_window: Option<DynamicBlock<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl>>,
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainOffPeakWindowOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3258,14 +2841,12 @@ pub struct OpensearchDomainOffPeakWindowOptionsEl {
     off_peak_window: Option<Vec<OpensearchDomainOffPeakWindowOptionsElOffPeakWindowEl>>,
     dynamic: OpensearchDomainOffPeakWindowOptionsElDynamic,
 }
-
 impl OpensearchDomainOffPeakWindowOptionsEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `off_peak_window`.\n"]
     pub fn set_off_peak_window(
         mut self,
@@ -3282,10 +2863,8 @@ impl OpensearchDomainOffPeakWindowOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainOffPeakWindowOptionsEl {
     type O = BlockAssignable<OpensearchDomainOffPeakWindowOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3294,9 +2873,7 @@ impl ToListMappable for OpensearchDomainOffPeakWindowOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainOffPeakWindowOptionsEl {}
-
 impl BuildOpensearchDomainOffPeakWindowOptionsEl {
     pub fn build(self) -> OpensearchDomainOffPeakWindowOptionsEl {
         OpensearchDomainOffPeakWindowOptionsEl {
@@ -3306,12 +2883,10 @@ impl BuildOpensearchDomainOffPeakWindowOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainOffPeakWindowOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainOffPeakWindowOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainOffPeakWindowOptionsElRef {
         OpensearchDomainOffPeakWindowOptionsElRef {
@@ -3320,17 +2895,14 @@ impl Ref for OpensearchDomainOffPeakWindowOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainOffPeakWindowOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `off_peak_window` after provisioning.\n"]
     pub fn off_peak_window(
         &self,
@@ -3341,17 +2913,13 @@ impl OpensearchDomainOffPeakWindowOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainSnapshotOptionsEl {
     automated_snapshot_start_hour: PrimField<f64>,
 }
-
 impl OpensearchDomainSnapshotOptionsEl {}
-
 impl ToListMappable for OpensearchDomainSnapshotOptionsEl {
     type O = BlockAssignable<OpensearchDomainSnapshotOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3360,12 +2928,10 @@ impl ToListMappable for OpensearchDomainSnapshotOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainSnapshotOptionsEl {
     #[doc = ""]
     pub automated_snapshot_start_hour: PrimField<f64>,
 }
-
 impl BuildOpensearchDomainSnapshotOptionsEl {
     pub fn build(self) -> OpensearchDomainSnapshotOptionsEl {
         OpensearchDomainSnapshotOptionsEl {
@@ -3373,12 +2939,10 @@ impl BuildOpensearchDomainSnapshotOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainSnapshotOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainSnapshotOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainSnapshotOptionsElRef {
         OpensearchDomainSnapshotOptionsElRef {
@@ -3387,12 +2951,10 @@ impl Ref for OpensearchDomainSnapshotOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainSnapshotOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `automated_snapshot_start_hour` after provisioning.\n"]
     pub fn automated_snapshot_start_hour(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -3401,13 +2963,11 @@ impl OpensearchDomainSnapshotOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainSoftwareUpdateOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     auto_software_update_enabled: Option<PrimField<bool>>,
 }
-
 impl OpensearchDomainSoftwareUpdateOptionsEl {
     #[doc = "Set the field `auto_software_update_enabled`.\n"]
     pub fn set_auto_software_update_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -3415,10 +2975,8 @@ impl OpensearchDomainSoftwareUpdateOptionsEl {
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainSoftwareUpdateOptionsEl {
     type O = BlockAssignable<OpensearchDomainSoftwareUpdateOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3427,9 +2985,7 @@ impl ToListMappable for OpensearchDomainSoftwareUpdateOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainSoftwareUpdateOptionsEl {}
-
 impl BuildOpensearchDomainSoftwareUpdateOptionsEl {
     pub fn build(self) -> OpensearchDomainSoftwareUpdateOptionsEl {
         OpensearchDomainSoftwareUpdateOptionsEl {
@@ -3437,12 +2993,10 @@ impl BuildOpensearchDomainSoftwareUpdateOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainSoftwareUpdateOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainSoftwareUpdateOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainSoftwareUpdateOptionsElRef {
         OpensearchDomainSoftwareUpdateOptionsElRef {
@@ -3451,12 +3005,10 @@ impl Ref for OpensearchDomainSoftwareUpdateOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainSoftwareUpdateOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `auto_software_update_enabled` after provisioning.\n"]
     pub fn auto_software_update_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -3465,7 +3017,6 @@ impl OpensearchDomainSoftwareUpdateOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3475,30 +3026,25 @@ pub struct OpensearchDomainTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl OpensearchDomainTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainTimeoutsEl {
     type O = BlockAssignable<OpensearchDomainTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3507,9 +3053,7 @@ impl ToListMappable for OpensearchDomainTimeoutsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainTimeoutsEl {}
-
 impl BuildOpensearchDomainTimeoutsEl {
     pub fn build(self) -> OpensearchDomainTimeoutsEl {
         OpensearchDomainTimeoutsEl {
@@ -3519,12 +3063,10 @@ impl BuildOpensearchDomainTimeoutsEl {
         }
     }
 }
-
 pub struct OpensearchDomainTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainTimeoutsElRef {
         OpensearchDomainTimeoutsElRef {
@@ -3533,28 +3075,23 @@ impl Ref for OpensearchDomainTimeoutsElRef {
         }
     }
 }
-
 impl OpensearchDomainTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct OpensearchDomainVpcOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -3562,24 +3099,20 @@ pub struct OpensearchDomainVpcOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet_ids: Option<SetField<PrimField<String>>>,
 }
-
 impl OpensearchDomainVpcOptionsEl {
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_ids`.\n"]
     pub fn set_subnet_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.subnet_ids = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for OpensearchDomainVpcOptionsEl {
     type O = BlockAssignable<OpensearchDomainVpcOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -3588,9 +3121,7 @@ impl ToListMappable for OpensearchDomainVpcOptionsEl {
         })
     }
 }
-
 pub struct BuildOpensearchDomainVpcOptionsEl {}
-
 impl BuildOpensearchDomainVpcOptionsEl {
     pub fn build(self) -> OpensearchDomainVpcOptionsEl {
         OpensearchDomainVpcOptionsEl {
@@ -3599,12 +3130,10 @@ impl BuildOpensearchDomainVpcOptionsEl {
         }
     }
 }
-
 pub struct OpensearchDomainVpcOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for OpensearchDomainVpcOptionsElRef {
     fn new(shared: StackShared, base: String) -> OpensearchDomainVpcOptionsElRef {
         OpensearchDomainVpcOptionsElRef {
@@ -3613,12 +3142,10 @@ impl Ref for OpensearchDomainVpcOptionsElRef {
         }
     }
 }
-
 impl OpensearchDomainVpcOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `availability_zones` after provisioning.\n"]
     pub fn availability_zones(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3626,7 +3153,6 @@ impl OpensearchDomainVpcOptionsElRef {
             format!("{}.availability_zones", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -3634,18 +3160,15 @@ impl OpensearchDomainVpcOptionsElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct OpensearchDomainDynamic {
     advanced_security_options: Option<DynamicBlock<OpensearchDomainAdvancedSecurityOptionsEl>>,

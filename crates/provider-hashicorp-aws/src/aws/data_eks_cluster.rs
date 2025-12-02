@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataEksClusterData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,49 +19,40 @@ struct DataEksClusterData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct DataEksCluster_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataEksClusterData>,
 }
-
 #[derive(Clone)]
 pub struct DataEksCluster(Rc<DataEksCluster_>);
-
 impl DataEksCluster {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `access_config` after provisioning.\n"]
     pub fn access_config(&self) -> ListRef<DataEksClusterAccessConfigElRef> {
         ListRef::new(
@@ -70,12 +60,10 @@ impl DataEksCluster {
             format!("{}.access_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate_authority` after provisioning.\n"]
     pub fn certificate_authority(&self) -> ListRef<DataEksClusterCertificateAuthorityElRef> {
         ListRef::new(
@@ -83,7 +71,6 @@ impl DataEksCluster {
             format!("{}.certificate_authority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -91,7 +78,6 @@ impl DataEksCluster {
             format!("{}.cluster_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_config` after provisioning.\n"]
     pub fn compute_config(&self) -> ListRef<DataEksClusterComputeConfigElRef> {
         ListRef::new(
@@ -99,7 +85,6 @@ impl DataEksCluster {
             format!("{}.compute_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -107,7 +92,6 @@ impl DataEksCluster {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -115,7 +99,6 @@ impl DataEksCluster {
             format!("{}.deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled_cluster_log_types` after provisioning.\n"]
     pub fn enabled_cluster_log_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -123,7 +106,6 @@ impl DataEksCluster {
             format!("{}.enabled_cluster_log_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -131,12 +113,10 @@ impl DataEksCluster {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity` after provisioning.\n"]
     pub fn identity(&self) -> ListRef<DataEksClusterIdentityElRef> {
         ListRef::new(
@@ -144,7 +124,6 @@ impl DataEksCluster {
             format!("{}.identity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kubernetes_network_config` after provisioning.\n"]
     pub fn kubernetes_network_config(&self) -> ListRef<DataEksClusterKubernetesNetworkConfigElRef> {
         ListRef::new(
@@ -152,7 +131,6 @@ impl DataEksCluster {
             format!("{}.kubernetes_network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -160,7 +138,6 @@ impl DataEksCluster {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `outpost_config` after provisioning.\n"]
     pub fn outpost_config(&self) -> ListRef<DataEksClusterOutpostConfigElRef> {
         ListRef::new(
@@ -168,7 +145,6 @@ impl DataEksCluster {
             format!("{}.outpost_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,7 +152,6 @@ impl DataEksCluster {
             format!("{}.platform_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -184,7 +159,6 @@ impl DataEksCluster {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `remote_network_config` after provisioning.\n"]
     pub fn remote_network_config(&self) -> ListRef<DataEksClusterRemoteNetworkConfigElRef> {
         ListRef::new(
@@ -192,7 +166,6 @@ impl DataEksCluster {
             format!("{}.remote_network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +173,6 @@ impl DataEksCluster {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -208,7 +180,6 @@ impl DataEksCluster {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_config` after provisioning.\n"]
     pub fn storage_config(&self) -> ListRef<DataEksClusterStorageConfigElRef> {
         ListRef::new(
@@ -216,7 +187,6 @@ impl DataEksCluster {
             format!("{}.storage_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -224,7 +194,6 @@ impl DataEksCluster {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upgrade_policy` after provisioning.\n"]
     pub fn upgrade_policy(&self) -> ListRef<DataEksClusterUpgradePolicyElRef> {
         ListRef::new(
@@ -232,7 +201,6 @@ impl DataEksCluster {
             format!("{}.upgrade_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -240,7 +208,6 @@ impl DataEksCluster {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<DataEksClusterVpcConfigElRef> {
         ListRef::new(
@@ -248,7 +215,6 @@ impl DataEksCluster {
             format!("{}.vpc_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `zonal_shift_config` after provisioning.\n"]
     pub fn zonal_shift_config(&self) -> ListRef<DataEksClusterZonalShiftConfigElRef> {
         ListRef::new(
@@ -257,7 +223,6 @@ impl DataEksCluster {
         )
     }
 }
-
 impl Referable for DataEksCluster {
     fn extract_ref(&self) -> String {
         format!(
@@ -267,38 +232,30 @@ impl Referable for DataEksCluster {
         )
     }
 }
-
 impl Datasource for DataEksCluster {}
-
 impl ToListMappable for DataEksCluster {
     type O = ListRef<DataEksClusterRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataEksCluster_ {
     fn extract_datasource_type(&self) -> String {
         "aws_eks_cluster".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataEksCluster {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildDataEksCluster {
     pub fn build(self, stack: &mut Stack) -> DataEksCluster {
         let out = DataEksCluster(Rc::new(DataEksCluster_ {
@@ -318,27 +275,22 @@ impl BuildDataEksCluster {
         out
     }
 }
-
 pub struct DataEksClusterRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataEksClusterRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `access_config` after provisioning.\n"]
     pub fn access_config(&self) -> ListRef<DataEksClusterAccessConfigElRef> {
         ListRef::new(
@@ -346,12 +298,10 @@ impl DataEksClusterRef {
             format!("{}.access_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `certificate_authority` after provisioning.\n"]
     pub fn certificate_authority(&self) -> ListRef<DataEksClusterCertificateAuthorityElRef> {
         ListRef::new(
@@ -359,7 +309,6 @@ impl DataEksClusterRef {
             format!("{}.certificate_authority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cluster_id` after provisioning.\n"]
     pub fn cluster_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -367,7 +316,6 @@ impl DataEksClusterRef {
             format!("{}.cluster_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `compute_config` after provisioning.\n"]
     pub fn compute_config(&self) -> ListRef<DataEksClusterComputeConfigElRef> {
         ListRef::new(
@@ -375,7 +323,6 @@ impl DataEksClusterRef {
             format!("{}.compute_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `created_at` after provisioning.\n"]
     pub fn created_at(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -383,7 +330,6 @@ impl DataEksClusterRef {
             format!("{}.created_at", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `deletion_protection` after provisioning.\n"]
     pub fn deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -391,7 +337,6 @@ impl DataEksClusterRef {
             format!("{}.deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled_cluster_log_types` after provisioning.\n"]
     pub fn enabled_cluster_log_types(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -399,7 +344,6 @@ impl DataEksClusterRef {
             format!("{}.enabled_cluster_log_types", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint` after provisioning.\n"]
     pub fn endpoint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,12 +351,10 @@ impl DataEksClusterRef {
             format!("{}.endpoint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `identity` after provisioning.\n"]
     pub fn identity(&self) -> ListRef<DataEksClusterIdentityElRef> {
         ListRef::new(
@@ -420,7 +362,6 @@ impl DataEksClusterRef {
             format!("{}.identity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kubernetes_network_config` after provisioning.\n"]
     pub fn kubernetes_network_config(&self) -> ListRef<DataEksClusterKubernetesNetworkConfigElRef> {
         ListRef::new(
@@ -428,7 +369,6 @@ impl DataEksClusterRef {
             format!("{}.kubernetes_network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -436,7 +376,6 @@ impl DataEksClusterRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `outpost_config` after provisioning.\n"]
     pub fn outpost_config(&self) -> ListRef<DataEksClusterOutpostConfigElRef> {
         ListRef::new(
@@ -444,7 +383,6 @@ impl DataEksClusterRef {
             format!("{}.outpost_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `platform_version` after provisioning.\n"]
     pub fn platform_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -452,7 +390,6 @@ impl DataEksClusterRef {
             format!("{}.platform_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -460,7 +397,6 @@ impl DataEksClusterRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `remote_network_config` after provisioning.\n"]
     pub fn remote_network_config(&self) -> ListRef<DataEksClusterRemoteNetworkConfigElRef> {
         ListRef::new(
@@ -468,7 +404,6 @@ impl DataEksClusterRef {
             format!("{}.remote_network_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `role_arn` after provisioning.\n"]
     pub fn role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -476,7 +411,6 @@ impl DataEksClusterRef {
             format!("{}.role_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -484,7 +418,6 @@ impl DataEksClusterRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_config` after provisioning.\n"]
     pub fn storage_config(&self) -> ListRef<DataEksClusterStorageConfigElRef> {
         ListRef::new(
@@ -492,7 +425,6 @@ impl DataEksClusterRef {
             format!("{}.storage_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -500,7 +432,6 @@ impl DataEksClusterRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `upgrade_policy` after provisioning.\n"]
     pub fn upgrade_policy(&self) -> ListRef<DataEksClusterUpgradePolicyElRef> {
         ListRef::new(
@@ -508,7 +439,6 @@ impl DataEksClusterRef {
             format!("{}.upgrade_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -516,7 +446,6 @@ impl DataEksClusterRef {
             format!("{}.version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_config` after provisioning.\n"]
     pub fn vpc_config(&self) -> ListRef<DataEksClusterVpcConfigElRef> {
         ListRef::new(
@@ -524,7 +453,6 @@ impl DataEksClusterRef {
             format!("{}.vpc_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `zonal_shift_config` after provisioning.\n"]
     pub fn zonal_shift_config(&self) -> ListRef<DataEksClusterZonalShiftConfigElRef> {
         ListRef::new(
@@ -533,7 +461,6 @@ impl DataEksClusterRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterAccessConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -541,14 +468,12 @@ pub struct DataEksClusterAccessConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     bootstrap_cluster_creator_admin_permissions: Option<PrimField<bool>>,
 }
-
 impl DataEksClusterAccessConfigEl {
     #[doc = "Set the field `authentication_mode`.\n"]
     pub fn set_authentication_mode(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.authentication_mode = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bootstrap_cluster_creator_admin_permissions`.\n"]
     pub fn set_bootstrap_cluster_creator_admin_permissions(
         mut self,
@@ -558,10 +483,8 @@ impl DataEksClusterAccessConfigEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterAccessConfigEl {
     type O = BlockAssignable<DataEksClusterAccessConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -570,9 +493,7 @@ impl ToListMappable for DataEksClusterAccessConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterAccessConfigEl {}
-
 impl BuildDataEksClusterAccessConfigEl {
     pub fn build(self) -> DataEksClusterAccessConfigEl {
         DataEksClusterAccessConfigEl {
@@ -581,12 +502,10 @@ impl BuildDataEksClusterAccessConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterAccessConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterAccessConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterAccessConfigElRef {
         DataEksClusterAccessConfigElRef {
@@ -595,12 +514,10 @@ impl Ref for DataEksClusterAccessConfigElRef {
         }
     }
 }
-
 impl DataEksClusterAccessConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `authentication_mode` after provisioning.\n"]
     pub fn authentication_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -608,7 +525,6 @@ impl DataEksClusterAccessConfigElRef {
             format!("{}.authentication_mode", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `bootstrap_cluster_creator_admin_permissions` after provisioning.\n"]
     pub fn bootstrap_cluster_creator_admin_permissions(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -617,13 +533,11 @@ impl DataEksClusterAccessConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterCertificateAuthorityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     data: Option<PrimField<String>>,
 }
-
 impl DataEksClusterCertificateAuthorityEl {
     #[doc = "Set the field `data`.\n"]
     pub fn set_data(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -631,10 +545,8 @@ impl DataEksClusterCertificateAuthorityEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterCertificateAuthorityEl {
     type O = BlockAssignable<DataEksClusterCertificateAuthorityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -643,9 +555,7 @@ impl ToListMappable for DataEksClusterCertificateAuthorityEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterCertificateAuthorityEl {}
-
 impl BuildDataEksClusterCertificateAuthorityEl {
     pub fn build(self) -> DataEksClusterCertificateAuthorityEl {
         DataEksClusterCertificateAuthorityEl {
@@ -653,12 +563,10 @@ impl BuildDataEksClusterCertificateAuthorityEl {
         }
     }
 }
-
 pub struct DataEksClusterCertificateAuthorityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterCertificateAuthorityElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterCertificateAuthorityElRef {
         DataEksClusterCertificateAuthorityElRef {
@@ -667,18 +575,15 @@ impl Ref for DataEksClusterCertificateAuthorityElRef {
         }
     }
 }
-
 impl DataEksClusterCertificateAuthorityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data` after provisioning.\n"]
     pub fn data(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterComputeConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -688,30 +593,25 @@ pub struct DataEksClusterComputeConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     node_role_arn: Option<PrimField<String>>,
 }
-
 impl DataEksClusterComputeConfigEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `node_pools`.\n"]
     pub fn set_node_pools(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.node_pools = Some(v.into());
         self
     }
-
     #[doc = "Set the field `node_role_arn`.\n"]
     pub fn set_node_role_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.node_role_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEksClusterComputeConfigEl {
     type O = BlockAssignable<DataEksClusterComputeConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -720,9 +620,7 @@ impl ToListMappable for DataEksClusterComputeConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterComputeConfigEl {}
-
 impl BuildDataEksClusterComputeConfigEl {
     pub fn build(self) -> DataEksClusterComputeConfigEl {
         DataEksClusterComputeConfigEl {
@@ -732,12 +630,10 @@ impl BuildDataEksClusterComputeConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterComputeConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterComputeConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterComputeConfigElRef {
         DataEksClusterComputeConfigElRef {
@@ -746,22 +642,18 @@ impl Ref for DataEksClusterComputeConfigElRef {
         }
     }
 }
-
 impl DataEksClusterComputeConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `node_pools` after provisioning.\n"]
     pub fn node_pools(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.node_pools", self.base))
     }
-
     #[doc = "Get a reference to the value of field `node_role_arn` after provisioning.\n"]
     pub fn node_role_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -770,13 +662,11 @@ impl DataEksClusterComputeConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterIdentityElOidcEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     issuer: Option<PrimField<String>>,
 }
-
 impl DataEksClusterIdentityElOidcEl {
     #[doc = "Set the field `issuer`.\n"]
     pub fn set_issuer(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -784,10 +674,8 @@ impl DataEksClusterIdentityElOidcEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterIdentityElOidcEl {
     type O = BlockAssignable<DataEksClusterIdentityElOidcEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -796,9 +684,7 @@ impl ToListMappable for DataEksClusterIdentityElOidcEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterIdentityElOidcEl {}
-
 impl BuildDataEksClusterIdentityElOidcEl {
     pub fn build(self) -> DataEksClusterIdentityElOidcEl {
         DataEksClusterIdentityElOidcEl {
@@ -806,12 +692,10 @@ impl BuildDataEksClusterIdentityElOidcEl {
         }
     }
 }
-
 pub struct DataEksClusterIdentityElOidcElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterIdentityElOidcElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterIdentityElOidcElRef {
         DataEksClusterIdentityElOidcElRef {
@@ -820,24 +704,20 @@ impl Ref for DataEksClusterIdentityElOidcElRef {
         }
     }
 }
-
 impl DataEksClusterIdentityElOidcElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `issuer` after provisioning.\n"]
     pub fn issuer(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.issuer", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterIdentityEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     oidc: Option<ListField<DataEksClusterIdentityElOidcEl>>,
 }
-
 impl DataEksClusterIdentityEl {
     #[doc = "Set the field `oidc`.\n"]
     pub fn set_oidc(mut self, v: impl Into<ListField<DataEksClusterIdentityElOidcEl>>) -> Self {
@@ -845,10 +725,8 @@ impl DataEksClusterIdentityEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterIdentityEl {
     type O = BlockAssignable<DataEksClusterIdentityEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -857,9 +735,7 @@ impl ToListMappable for DataEksClusterIdentityEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterIdentityEl {}
-
 impl BuildDataEksClusterIdentityEl {
     pub fn build(self) -> DataEksClusterIdentityEl {
         DataEksClusterIdentityEl {
@@ -867,12 +743,10 @@ impl BuildDataEksClusterIdentityEl {
         }
     }
 }
-
 pub struct DataEksClusterIdentityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterIdentityElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterIdentityElRef {
         DataEksClusterIdentityElRef {
@@ -881,24 +755,20 @@ impl Ref for DataEksClusterIdentityElRef {
         }
     }
 }
-
 impl DataEksClusterIdentityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `oidc` after provisioning.\n"]
     pub fn oidc(&self) -> ListRef<DataEksClusterIdentityElOidcElRef> {
         ListRef::new(self.shared().clone(), format!("{}.oidc", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -906,10 +776,8 @@ impl DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
     type O = BlockAssignable<DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -918,9 +786,7 @@ impl ToListMappable for DataEksClusterKubernetesNetworkConfigElElasticLoadBalanc
         })
     }
 }
-
 pub struct BuildDataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {}
-
 impl BuildDataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
     pub fn build(self) -> DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
         DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
@@ -928,12 +794,10 @@ impl BuildDataEksClusterKubernetesNetworkConfigElElasticLoadBalancingEl {
         }
     }
 }
-
 pub struct DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingElRef {
     fn new(
         shared: StackShared,
@@ -945,18 +809,15 @@ impl Ref for DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingElRef {
         }
     }
 }
-
 impl DataEksClusterKubernetesNetworkConfigElElasticLoadBalancingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterKubernetesNetworkConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -969,7 +830,6 @@ pub struct DataEksClusterKubernetesNetworkConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     service_ipv6_cidr: Option<PrimField<String>>,
 }
-
 impl DataEksClusterKubernetesNetworkConfigEl {
     #[doc = "Set the field `elastic_load_balancing`.\n"]
     pub fn set_elastic_load_balancing(
@@ -979,29 +839,24 @@ impl DataEksClusterKubernetesNetworkConfigEl {
         self.elastic_load_balancing = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ip_family`.\n"]
     pub fn set_ip_family(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ip_family = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_ipv4_cidr`.\n"]
     pub fn set_service_ipv4_cidr(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_ipv4_cidr = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_ipv6_cidr`.\n"]
     pub fn set_service_ipv6_cidr(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.service_ipv6_cidr = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEksClusterKubernetesNetworkConfigEl {
     type O = BlockAssignable<DataEksClusterKubernetesNetworkConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1010,9 +865,7 @@ impl ToListMappable for DataEksClusterKubernetesNetworkConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterKubernetesNetworkConfigEl {}
-
 impl BuildDataEksClusterKubernetesNetworkConfigEl {
     pub fn build(self) -> DataEksClusterKubernetesNetworkConfigEl {
         DataEksClusterKubernetesNetworkConfigEl {
@@ -1023,12 +876,10 @@ impl BuildDataEksClusterKubernetesNetworkConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterKubernetesNetworkConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterKubernetesNetworkConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterKubernetesNetworkConfigElRef {
         DataEksClusterKubernetesNetworkConfigElRef {
@@ -1037,12 +888,10 @@ impl Ref for DataEksClusterKubernetesNetworkConfigElRef {
         }
     }
 }
-
 impl DataEksClusterKubernetesNetworkConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `elastic_load_balancing` after provisioning.\n"]
     pub fn elastic_load_balancing(
         &self,
@@ -1052,12 +901,10 @@ impl DataEksClusterKubernetesNetworkConfigElRef {
             format!("{}.elastic_load_balancing", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_family` after provisioning.\n"]
     pub fn ip_family(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.ip_family", self.base))
     }
-
     #[doc = "Get a reference to the value of field `service_ipv4_cidr` after provisioning.\n"]
     pub fn service_ipv4_cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1065,7 +912,6 @@ impl DataEksClusterKubernetesNetworkConfigElRef {
             format!("{}.service_ipv4_cidr", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_ipv6_cidr` after provisioning.\n"]
     pub fn service_ipv6_cidr(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1074,13 +920,11 @@ impl DataEksClusterKubernetesNetworkConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterOutpostConfigElControlPlanePlacementEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     group_name: Option<PrimField<String>>,
 }
-
 impl DataEksClusterOutpostConfigElControlPlanePlacementEl {
     #[doc = "Set the field `group_name`.\n"]
     pub fn set_group_name(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1088,10 +932,8 @@ impl DataEksClusterOutpostConfigElControlPlanePlacementEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterOutpostConfigElControlPlanePlacementEl {
     type O = BlockAssignable<DataEksClusterOutpostConfigElControlPlanePlacementEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1100,9 +942,7 @@ impl ToListMappable for DataEksClusterOutpostConfigElControlPlanePlacementEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterOutpostConfigElControlPlanePlacementEl {}
-
 impl BuildDataEksClusterOutpostConfigElControlPlanePlacementEl {
     pub fn build(self) -> DataEksClusterOutpostConfigElControlPlanePlacementEl {
         DataEksClusterOutpostConfigElControlPlanePlacementEl {
@@ -1110,12 +950,10 @@ impl BuildDataEksClusterOutpostConfigElControlPlanePlacementEl {
         }
     }
 }
-
 pub struct DataEksClusterOutpostConfigElControlPlanePlacementElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterOutpostConfigElControlPlanePlacementElRef {
     fn new(
         shared: StackShared,
@@ -1127,18 +965,15 @@ impl Ref for DataEksClusterOutpostConfigElControlPlanePlacementElRef {
         }
     }
 }
-
 impl DataEksClusterOutpostConfigElControlPlanePlacementElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `group_name` after provisioning.\n"]
     pub fn group_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.group_name", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterOutpostConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1149,14 +984,12 @@ pub struct DataEksClusterOutpostConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     outpost_arns: Option<SetField<PrimField<String>>>,
 }
-
 impl DataEksClusterOutpostConfigEl {
     #[doc = "Set the field `control_plane_instance_type`.\n"]
     pub fn set_control_plane_instance_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.control_plane_instance_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `control_plane_placement`.\n"]
     pub fn set_control_plane_placement(
         mut self,
@@ -1165,17 +998,14 @@ impl DataEksClusterOutpostConfigEl {
         self.control_plane_placement = Some(v.into());
         self
     }
-
     #[doc = "Set the field `outpost_arns`.\n"]
     pub fn set_outpost_arns(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.outpost_arns = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEksClusterOutpostConfigEl {
     type O = BlockAssignable<DataEksClusterOutpostConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1184,9 +1014,7 @@ impl ToListMappable for DataEksClusterOutpostConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterOutpostConfigEl {}
-
 impl BuildDataEksClusterOutpostConfigEl {
     pub fn build(self) -> DataEksClusterOutpostConfigEl {
         DataEksClusterOutpostConfigEl {
@@ -1196,12 +1024,10 @@ impl BuildDataEksClusterOutpostConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterOutpostConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterOutpostConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterOutpostConfigElRef {
         DataEksClusterOutpostConfigElRef {
@@ -1210,12 +1036,10 @@ impl Ref for DataEksClusterOutpostConfigElRef {
         }
     }
 }
-
 impl DataEksClusterOutpostConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `control_plane_instance_type` after provisioning.\n"]
     pub fn control_plane_instance_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1223,7 +1047,6 @@ impl DataEksClusterOutpostConfigElRef {
             format!("{}.control_plane_instance_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `control_plane_placement` after provisioning.\n"]
     pub fn control_plane_placement(
         &self,
@@ -1233,19 +1056,16 @@ impl DataEksClusterOutpostConfigElRef {
             format!("{}.control_plane_placement", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `outpost_arns` after provisioning.\n"]
     pub fn outpost_arns(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.outpost_arns", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cidrs: Option<SetField<PrimField<String>>>,
 }
-
 impl DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
     #[doc = "Set the field `cidrs`.\n"]
     pub fn set_cidrs(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -1253,10 +1073,8 @@ impl DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
     type O = BlockAssignable<DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1265,9 +1083,7 @@ impl ToListMappable for DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl 
         })
     }
 }
-
 pub struct BuildDataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {}
-
 impl BuildDataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
     pub fn build(self) -> DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
         DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
@@ -1275,12 +1091,10 @@ impl BuildDataEksClusterRemoteNetworkConfigElRemoteNodeNetworksEl {
         }
     }
 }
-
 pub struct DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksElRef {
     fn new(
         shared: StackShared,
@@ -1292,24 +1106,20 @@ impl Ref for DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksElRef {
         }
     }
 }
-
 impl DataEksClusterRemoteNetworkConfigElRemoteNodeNetworksElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidrs` after provisioning.\n"]
     pub fn cidrs(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.cidrs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     cidrs: Option<SetField<PrimField<String>>>,
 }
-
 impl DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
     #[doc = "Set the field `cidrs`.\n"]
     pub fn set_cidrs(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -1317,10 +1127,8 @@ impl DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
     type O = BlockAssignable<DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1329,9 +1137,7 @@ impl ToListMappable for DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {}
-
 impl BuildDataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
     pub fn build(self) -> DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
         DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
@@ -1339,12 +1145,10 @@ impl BuildDataEksClusterRemoteNetworkConfigElRemotePodNetworksEl {
         }
     }
 }
-
 pub struct DataEksClusterRemoteNetworkConfigElRemotePodNetworksElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterRemoteNetworkConfigElRemotePodNetworksElRef {
     fn new(
         shared: StackShared,
@@ -1356,18 +1160,15 @@ impl Ref for DataEksClusterRemoteNetworkConfigElRemotePodNetworksElRef {
         }
     }
 }
-
 impl DataEksClusterRemoteNetworkConfigElRemotePodNetworksElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cidrs` after provisioning.\n"]
     pub fn cidrs(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.cidrs", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterRemoteNetworkConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1376,7 +1177,6 @@ pub struct DataEksClusterRemoteNetworkConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     remote_pod_networks: Option<ListField<DataEksClusterRemoteNetworkConfigElRemotePodNetworksEl>>,
 }
-
 impl DataEksClusterRemoteNetworkConfigEl {
     #[doc = "Set the field `remote_node_networks`.\n"]
     pub fn set_remote_node_networks(
@@ -1386,7 +1186,6 @@ impl DataEksClusterRemoteNetworkConfigEl {
         self.remote_node_networks = Some(v.into());
         self
     }
-
     #[doc = "Set the field `remote_pod_networks`.\n"]
     pub fn set_remote_pod_networks(
         mut self,
@@ -1396,10 +1195,8 @@ impl DataEksClusterRemoteNetworkConfigEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterRemoteNetworkConfigEl {
     type O = BlockAssignable<DataEksClusterRemoteNetworkConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1408,9 +1205,7 @@ impl ToListMappable for DataEksClusterRemoteNetworkConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterRemoteNetworkConfigEl {}
-
 impl BuildDataEksClusterRemoteNetworkConfigEl {
     pub fn build(self) -> DataEksClusterRemoteNetworkConfigEl {
         DataEksClusterRemoteNetworkConfigEl {
@@ -1419,12 +1214,10 @@ impl BuildDataEksClusterRemoteNetworkConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterRemoteNetworkConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterRemoteNetworkConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterRemoteNetworkConfigElRef {
         DataEksClusterRemoteNetworkConfigElRef {
@@ -1433,12 +1226,10 @@ impl Ref for DataEksClusterRemoteNetworkConfigElRef {
         }
     }
 }
-
 impl DataEksClusterRemoteNetworkConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `remote_node_networks` after provisioning.\n"]
     pub fn remote_node_networks(
         &self,
@@ -1448,7 +1239,6 @@ impl DataEksClusterRemoteNetworkConfigElRef {
             format!("{}.remote_node_networks", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `remote_pod_networks` after provisioning.\n"]
     pub fn remote_pod_networks(
         &self,
@@ -1459,13 +1249,11 @@ impl DataEksClusterRemoteNetworkConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterStorageConfigElBlockStorageEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl DataEksClusterStorageConfigElBlockStorageEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1473,10 +1261,8 @@ impl DataEksClusterStorageConfigElBlockStorageEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterStorageConfigElBlockStorageEl {
     type O = BlockAssignable<DataEksClusterStorageConfigElBlockStorageEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1485,9 +1271,7 @@ impl ToListMappable for DataEksClusterStorageConfigElBlockStorageEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterStorageConfigElBlockStorageEl {}
-
 impl BuildDataEksClusterStorageConfigElBlockStorageEl {
     pub fn build(self) -> DataEksClusterStorageConfigElBlockStorageEl {
         DataEksClusterStorageConfigElBlockStorageEl {
@@ -1495,12 +1279,10 @@ impl BuildDataEksClusterStorageConfigElBlockStorageEl {
         }
     }
 }
-
 pub struct DataEksClusterStorageConfigElBlockStorageElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterStorageConfigElBlockStorageElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterStorageConfigElBlockStorageElRef {
         DataEksClusterStorageConfigElBlockStorageElRef {
@@ -1509,24 +1291,20 @@ impl Ref for DataEksClusterStorageConfigElBlockStorageElRef {
         }
     }
 }
-
 impl DataEksClusterStorageConfigElBlockStorageElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterStorageConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     block_storage: Option<ListField<DataEksClusterStorageConfigElBlockStorageEl>>,
 }
-
 impl DataEksClusterStorageConfigEl {
     #[doc = "Set the field `block_storage`.\n"]
     pub fn set_block_storage(
@@ -1537,10 +1315,8 @@ impl DataEksClusterStorageConfigEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterStorageConfigEl {
     type O = BlockAssignable<DataEksClusterStorageConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1549,9 +1325,7 @@ impl ToListMappable for DataEksClusterStorageConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterStorageConfigEl {}
-
 impl BuildDataEksClusterStorageConfigEl {
     pub fn build(self) -> DataEksClusterStorageConfigEl {
         DataEksClusterStorageConfigEl {
@@ -1559,12 +1333,10 @@ impl BuildDataEksClusterStorageConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterStorageConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterStorageConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterStorageConfigElRef {
         DataEksClusterStorageConfigElRef {
@@ -1573,12 +1345,10 @@ impl Ref for DataEksClusterStorageConfigElRef {
         }
     }
 }
-
 impl DataEksClusterStorageConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `block_storage` after provisioning.\n"]
     pub fn block_storage(&self) -> ListRef<DataEksClusterStorageConfigElBlockStorageElRef> {
         ListRef::new(
@@ -1587,13 +1357,11 @@ impl DataEksClusterStorageConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterUpgradePolicyEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     support_type: Option<PrimField<String>>,
 }
-
 impl DataEksClusterUpgradePolicyEl {
     #[doc = "Set the field `support_type`.\n"]
     pub fn set_support_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1601,10 +1369,8 @@ impl DataEksClusterUpgradePolicyEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterUpgradePolicyEl {
     type O = BlockAssignable<DataEksClusterUpgradePolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1613,9 +1379,7 @@ impl ToListMappable for DataEksClusterUpgradePolicyEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterUpgradePolicyEl {}
-
 impl BuildDataEksClusterUpgradePolicyEl {
     pub fn build(self) -> DataEksClusterUpgradePolicyEl {
         DataEksClusterUpgradePolicyEl {
@@ -1623,12 +1387,10 @@ impl BuildDataEksClusterUpgradePolicyEl {
         }
     }
 }
-
 pub struct DataEksClusterUpgradePolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterUpgradePolicyElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterUpgradePolicyElRef {
         DataEksClusterUpgradePolicyElRef {
@@ -1637,18 +1399,15 @@ impl Ref for DataEksClusterUpgradePolicyElRef {
         }
     }
 }
-
 impl DataEksClusterUpgradePolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `support_type` after provisioning.\n"]
     pub fn support_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.support_type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1666,54 +1425,45 @@ pub struct DataEksClusterVpcConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     vpc_id: Option<PrimField<String>>,
 }
-
 impl DataEksClusterVpcConfigEl {
     #[doc = "Set the field `cluster_security_group_id`.\n"]
     pub fn set_cluster_security_group_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.cluster_security_group_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `endpoint_private_access`.\n"]
     pub fn set_endpoint_private_access(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.endpoint_private_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `endpoint_public_access`.\n"]
     pub fn set_endpoint_public_access(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.endpoint_public_access = Some(v.into());
         self
     }
-
     #[doc = "Set the field `public_access_cidrs`.\n"]
     pub fn set_public_access_cidrs(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.public_access_cidrs = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_ids`.\n"]
     pub fn set_subnet_ids(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.subnet_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.vpc_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataEksClusterVpcConfigEl {
     type O = BlockAssignable<DataEksClusterVpcConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1722,9 +1472,7 @@ impl ToListMappable for DataEksClusterVpcConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterVpcConfigEl {}
-
 impl BuildDataEksClusterVpcConfigEl {
     pub fn build(self) -> DataEksClusterVpcConfigEl {
         DataEksClusterVpcConfigEl {
@@ -1738,12 +1486,10 @@ impl BuildDataEksClusterVpcConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterVpcConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterVpcConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterVpcConfigElRef {
         DataEksClusterVpcConfigElRef {
@@ -1752,12 +1498,10 @@ impl Ref for DataEksClusterVpcConfigElRef {
         }
     }
 }
-
 impl DataEksClusterVpcConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cluster_security_group_id` after provisioning.\n"]
     pub fn cluster_security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1765,7 +1509,6 @@ impl DataEksClusterVpcConfigElRef {
             format!("{}.cluster_security_group_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_private_access` after provisioning.\n"]
     pub fn endpoint_private_access(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1773,7 +1516,6 @@ impl DataEksClusterVpcConfigElRef {
             format!("{}.endpoint_private_access", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `endpoint_public_access` after provisioning.\n"]
     pub fn endpoint_public_access(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1781,7 +1523,6 @@ impl DataEksClusterVpcConfigElRef {
             format!("{}.endpoint_public_access", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `public_access_cidrs` after provisioning.\n"]
     pub fn public_access_cidrs(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1789,7 +1530,6 @@ impl DataEksClusterVpcConfigElRef {
             format!("{}.public_access_cidrs", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -1797,24 +1537,20 @@ impl DataEksClusterVpcConfigElRef {
             format!("{}.security_group_ids", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.subnet_ids", self.base))
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.vpc_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataEksClusterZonalShiftConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     enabled: Option<PrimField<bool>>,
 }
-
 impl DataEksClusterZonalShiftConfigEl {
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
@@ -1822,10 +1558,8 @@ impl DataEksClusterZonalShiftConfigEl {
         self
     }
 }
-
 impl ToListMappable for DataEksClusterZonalShiftConfigEl {
     type O = BlockAssignable<DataEksClusterZonalShiftConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1834,9 +1568,7 @@ impl ToListMappable for DataEksClusterZonalShiftConfigEl {
         })
     }
 }
-
 pub struct BuildDataEksClusterZonalShiftConfigEl {}
-
 impl BuildDataEksClusterZonalShiftConfigEl {
     pub fn build(self) -> DataEksClusterZonalShiftConfigEl {
         DataEksClusterZonalShiftConfigEl {
@@ -1844,12 +1576,10 @@ impl BuildDataEksClusterZonalShiftConfigEl {
         }
     }
 }
-
 pub struct DataEksClusterZonalShiftConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataEksClusterZonalShiftConfigElRef {
     fn new(shared: StackShared, base: String) -> DataEksClusterZonalShiftConfigElRef {
         DataEksClusterZonalShiftConfigElRef {
@@ -1858,12 +1588,10 @@ impl Ref for DataEksClusterZonalShiftConfigElRef {
         }
     }
 }
-
 impl DataEksClusterZonalShiftConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))

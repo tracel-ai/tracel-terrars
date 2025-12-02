@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataAlbData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -25,67 +24,55 @@ struct DataAlbData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<DataAlbTimeoutsEl>,
 }
-
 struct DataAlb_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataAlbData>,
 }
-
 #[derive(Clone)]
 pub struct DataAlb(Rc<DataAlb_>);
-
 impl DataAlb {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `arn`.\n"]
     pub fn set_arn(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `name`.\n"]
     pub fn set_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataAlbTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `access_logs` after provisioning.\n"]
     pub fn access_logs(&self) -> ListRef<DataAlbAccessLogsElRef> {
         ListRef::new(
@@ -93,12 +80,10 @@ impl DataAlb {
             format!("{}.access_logs", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn_suffix` after provisioning.\n"]
     pub fn arn_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -106,7 +91,6 @@ impl DataAlb {
             format!("{}.arn_suffix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_keep_alive` after provisioning.\n"]
     pub fn client_keep_alive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -114,7 +98,6 @@ impl DataAlb {
             format!("{}.client_keep_alive", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_logs` after provisioning.\n"]
     pub fn connection_logs(&self) -> ListRef<DataAlbConnectionLogsElRef> {
         ListRef::new(
@@ -122,7 +105,6 @@ impl DataAlb {
             format!("{}.connection_logs", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_owned_ipv4_pool` after provisioning.\n"]
     pub fn customer_owned_ipv4_pool(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -130,7 +112,6 @@ impl DataAlb {
             format!("{}.customer_owned_ipv4_pool", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desync_mitigation_mode` after provisioning.\n"]
     pub fn desync_mitigation_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -138,7 +119,6 @@ impl DataAlb {
             format!("{}.desync_mitigation_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -146,7 +126,6 @@ impl DataAlb {
             format!("{}.dns_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_record_client_routing_policy` after provisioning.\n"]
     pub fn dns_record_client_routing_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -154,7 +133,6 @@ impl DataAlb {
             format!("{}.dns_record_client_routing_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `drop_invalid_header_fields` after provisioning.\n"]
     pub fn drop_invalid_header_fields(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -162,7 +140,6 @@ impl DataAlb {
             format!("{}.drop_invalid_header_fields", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_cross_zone_load_balancing` after provisioning.\n"]
     pub fn enable_cross_zone_load_balancing(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -170,7 +147,6 @@ impl DataAlb {
             format!("{}.enable_cross_zone_load_balancing", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_deletion_protection` after provisioning.\n"]
     pub fn enable_deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -178,7 +154,6 @@ impl DataAlb {
             format!("{}.enable_deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_http2` after provisioning.\n"]
     pub fn enable_http2(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -186,7 +161,6 @@ impl DataAlb {
             format!("{}.enable_http2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_tls_version_and_cipher_suite_headers` after provisioning.\n"]
     pub fn enable_tls_version_and_cipher_suite_headers(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -197,7 +171,6 @@ impl DataAlb {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_waf_fail_open` after provisioning.\n"]
     pub fn enable_waf_fail_open(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -205,7 +178,6 @@ impl DataAlb {
             format!("{}.enable_waf_fail_open", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_xff_client_port` after provisioning.\n"]
     pub fn enable_xff_client_port(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -213,7 +185,6 @@ impl DataAlb {
             format!("{}.enable_xff_client_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_zonal_shift` after provisioning.\n"]
     pub fn enable_zonal_shift(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -221,7 +192,6 @@ impl DataAlb {
             format!("{}.enable_zonal_shift", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enforce_security_group_inbound_rules_on_private_link_traffic` after provisioning.\n"]
     pub fn enforce_security_group_inbound_rules_on_private_link_traffic(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -232,12 +202,10 @@ impl DataAlb {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `idle_timeout` after provisioning.\n"]
     pub fn idle_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -245,7 +213,6 @@ impl DataAlb {
             format!("{}.idle_timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `internal` after provisioning.\n"]
     pub fn internal(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -253,7 +220,6 @@ impl DataAlb {
             format!("{}.internal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,7 +227,6 @@ impl DataAlb {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ipam_pools` after provisioning.\n"]
     pub fn ipam_pools(&self) -> ListRef<DataAlbIpamPoolsElRef> {
         ListRef::new(
@@ -269,7 +234,6 @@ impl DataAlb {
             format!("{}.ipam_pools", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_type` after provisioning.\n"]
     pub fn load_balancer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -277,7 +241,6 @@ impl DataAlb {
             format!("{}.load_balancer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -285,7 +248,6 @@ impl DataAlb {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_host_header` after provisioning.\n"]
     pub fn preserve_host_header(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -293,7 +255,6 @@ impl DataAlb {
             format!("{}.preserve_host_header", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -301,7 +262,6 @@ impl DataAlb {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secondary_ips_auto_assigned_per_subnet` after provisioning.\n"]
     pub fn secondary_ips_auto_assigned_per_subnet(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -312,7 +272,6 @@ impl DataAlb {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -320,7 +279,6 @@ impl DataAlb {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_mapping` after provisioning.\n"]
     pub fn subnet_mapping(&self) -> SetRef<DataAlbSubnetMappingElRef> {
         SetRef::new(
@@ -328,7 +286,6 @@ impl DataAlb {
             format!("{}.subnet_mapping", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -336,7 +293,6 @@ impl DataAlb {
             format!("{}.subnets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -344,7 +300,6 @@ impl DataAlb {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -352,7 +307,6 @@ impl DataAlb {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `xff_header_processing_mode` after provisioning.\n"]
     pub fn xff_header_processing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -360,7 +314,6 @@ impl DataAlb {
             format!("{}.xff_header_processing_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -368,7 +321,6 @@ impl DataAlb {
             format!("{}.zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataAlbTimeoutsElRef {
         DataAlbTimeoutsElRef::new(
@@ -377,7 +329,6 @@ impl DataAlb {
         )
     }
 }
-
 impl Referable for DataAlb {
     fn extract_ref(&self) -> String {
         format!(
@@ -387,36 +338,28 @@ impl Referable for DataAlb {
         )
     }
 }
-
 impl Datasource for DataAlb {}
-
 impl ToListMappable for DataAlb {
     type O = ListRef<DataAlbRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataAlb_ {
     fn extract_datasource_type(&self) -> String {
         "aws_alb".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataAlb {
     pub tf_id: String,
 }
-
 impl BuildDataAlb {
     pub fn build(self, stack: &mut Stack) -> DataAlb {
         let out = DataAlb(Rc::new(DataAlb_ {
@@ -438,27 +381,22 @@ impl BuildDataAlb {
         out
     }
 }
-
 pub struct DataAlbRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataAlbRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `access_logs` after provisioning.\n"]
     pub fn access_logs(&self) -> ListRef<DataAlbAccessLogsElRef> {
         ListRef::new(
@@ -466,12 +404,10 @@ impl DataAlbRef {
             format!("{}.access_logs", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `arn_suffix` after provisioning.\n"]
     pub fn arn_suffix(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -479,7 +415,6 @@ impl DataAlbRef {
             format!("{}.arn_suffix", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `client_keep_alive` after provisioning.\n"]
     pub fn client_keep_alive(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -487,7 +422,6 @@ impl DataAlbRef {
             format!("{}.client_keep_alive", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `connection_logs` after provisioning.\n"]
     pub fn connection_logs(&self) -> ListRef<DataAlbConnectionLogsElRef> {
         ListRef::new(
@@ -495,7 +429,6 @@ impl DataAlbRef {
             format!("{}.connection_logs", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_owned_ipv4_pool` after provisioning.\n"]
     pub fn customer_owned_ipv4_pool(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -503,7 +436,6 @@ impl DataAlbRef {
             format!("{}.customer_owned_ipv4_pool", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `desync_mitigation_mode` after provisioning.\n"]
     pub fn desync_mitigation_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -511,7 +443,6 @@ impl DataAlbRef {
             format!("{}.desync_mitigation_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -519,7 +450,6 @@ impl DataAlbRef {
             format!("{}.dns_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_record_client_routing_policy` after provisioning.\n"]
     pub fn dns_record_client_routing_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -527,7 +457,6 @@ impl DataAlbRef {
             format!("{}.dns_record_client_routing_policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `drop_invalid_header_fields` after provisioning.\n"]
     pub fn drop_invalid_header_fields(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -535,7 +464,6 @@ impl DataAlbRef {
             format!("{}.drop_invalid_header_fields", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_cross_zone_load_balancing` after provisioning.\n"]
     pub fn enable_cross_zone_load_balancing(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -543,7 +471,6 @@ impl DataAlbRef {
             format!("{}.enable_cross_zone_load_balancing", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_deletion_protection` after provisioning.\n"]
     pub fn enable_deletion_protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -551,7 +478,6 @@ impl DataAlbRef {
             format!("{}.enable_deletion_protection", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_http2` after provisioning.\n"]
     pub fn enable_http2(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -559,7 +485,6 @@ impl DataAlbRef {
             format!("{}.enable_http2", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_tls_version_and_cipher_suite_headers` after provisioning.\n"]
     pub fn enable_tls_version_and_cipher_suite_headers(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -570,7 +495,6 @@ impl DataAlbRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_waf_fail_open` after provisioning.\n"]
     pub fn enable_waf_fail_open(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -578,7 +502,6 @@ impl DataAlbRef {
             format!("{}.enable_waf_fail_open", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_xff_client_port` after provisioning.\n"]
     pub fn enable_xff_client_port(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -586,7 +509,6 @@ impl DataAlbRef {
             format!("{}.enable_xff_client_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enable_zonal_shift` after provisioning.\n"]
     pub fn enable_zonal_shift(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -594,7 +516,6 @@ impl DataAlbRef {
             format!("{}.enable_zonal_shift", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enforce_security_group_inbound_rules_on_private_link_traffic` after provisioning.\n"]
     pub fn enforce_security_group_inbound_rules_on_private_link_traffic(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -605,12 +526,10 @@ impl DataAlbRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `idle_timeout` after provisioning.\n"]
     pub fn idle_timeout(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -618,7 +537,6 @@ impl DataAlbRef {
             format!("{}.idle_timeout", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `internal` after provisioning.\n"]
     pub fn internal(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -626,7 +544,6 @@ impl DataAlbRef {
             format!("{}.internal", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -634,7 +551,6 @@ impl DataAlbRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `ipam_pools` after provisioning.\n"]
     pub fn ipam_pools(&self) -> ListRef<DataAlbIpamPoolsElRef> {
         ListRef::new(
@@ -642,7 +558,6 @@ impl DataAlbRef {
             format!("{}.ipam_pools", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `load_balancer_type` after provisioning.\n"]
     pub fn load_balancer_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -650,7 +565,6 @@ impl DataAlbRef {
             format!("{}.load_balancer_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -658,7 +572,6 @@ impl DataAlbRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `preserve_host_header` after provisioning.\n"]
     pub fn preserve_host_header(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -666,7 +579,6 @@ impl DataAlbRef {
             format!("{}.preserve_host_header", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -674,7 +586,6 @@ impl DataAlbRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `secondary_ips_auto_assigned_per_subnet` after provisioning.\n"]
     pub fn secondary_ips_auto_assigned_per_subnet(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -685,7 +596,6 @@ impl DataAlbRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_groups` after provisioning.\n"]
     pub fn security_groups(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -693,7 +603,6 @@ impl DataAlbRef {
             format!("{}.security_groups", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_mapping` after provisioning.\n"]
     pub fn subnet_mapping(&self) -> SetRef<DataAlbSubnetMappingElRef> {
         SetRef::new(
@@ -701,7 +610,6 @@ impl DataAlbRef {
             format!("{}.subnet_mapping", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnets` after provisioning.\n"]
     pub fn subnets(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -709,7 +617,6 @@ impl DataAlbRef {
             format!("{}.subnets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -717,7 +624,6 @@ impl DataAlbRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -725,7 +631,6 @@ impl DataAlbRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `xff_header_processing_mode` after provisioning.\n"]
     pub fn xff_header_processing_mode(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -733,7 +638,6 @@ impl DataAlbRef {
             format!("{}.xff_header_processing_mode", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `zone_id` after provisioning.\n"]
     pub fn zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -741,7 +645,6 @@ impl DataAlbRef {
             format!("{}.zone_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataAlbTimeoutsElRef {
         DataAlbTimeoutsElRef::new(
@@ -750,7 +653,6 @@ impl DataAlbRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataAlbAccessLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -760,30 +662,25 @@ pub struct DataAlbAccessLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix: Option<PrimField<String>>,
 }
-
 impl DataAlbAccessLogsEl {
     #[doc = "Set the field `bucket`.\n"]
     pub fn set_bucket(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix`.\n"]
     pub fn set_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.prefix = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataAlbAccessLogsEl {
     type O = BlockAssignable<DataAlbAccessLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -792,9 +689,7 @@ impl ToListMappable for DataAlbAccessLogsEl {
         })
     }
 }
-
 pub struct BuildDataAlbAccessLogsEl {}
-
 impl BuildDataAlbAccessLogsEl {
     pub fn build(self) -> DataAlbAccessLogsEl {
         DataAlbAccessLogsEl {
@@ -804,12 +699,10 @@ impl BuildDataAlbAccessLogsEl {
         }
     }
 }
-
 pub struct DataAlbAccessLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbAccessLogsElRef {
     fn new(shared: StackShared, base: String) -> DataAlbAccessLogsElRef {
         DataAlbAccessLogsElRef {
@@ -818,28 +711,23 @@ impl Ref for DataAlbAccessLogsElRef {
         }
     }
 }
-
 impl DataAlbAccessLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataAlbConnectionLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -849,30 +737,25 @@ pub struct DataAlbConnectionLogsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     prefix: Option<PrimField<String>>,
 }
-
 impl DataAlbConnectionLogsEl {
     #[doc = "Set the field `bucket`.\n"]
     pub fn set_bucket(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.bucket = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix`.\n"]
     pub fn set_prefix(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.prefix = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataAlbConnectionLogsEl {
     type O = BlockAssignable<DataAlbConnectionLogsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -881,9 +764,7 @@ impl ToListMappable for DataAlbConnectionLogsEl {
         })
     }
 }
-
 pub struct BuildDataAlbConnectionLogsEl {}
-
 impl BuildDataAlbConnectionLogsEl {
     pub fn build(self) -> DataAlbConnectionLogsEl {
         DataAlbConnectionLogsEl {
@@ -893,12 +774,10 @@ impl BuildDataAlbConnectionLogsEl {
         }
     }
 }
-
 pub struct DataAlbConnectionLogsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbConnectionLogsElRef {
     fn new(shared: StackShared, base: String) -> DataAlbConnectionLogsElRef {
         DataAlbConnectionLogsElRef {
@@ -907,34 +786,28 @@ impl Ref for DataAlbConnectionLogsElRef {
         }
     }
 }
-
 impl DataAlbConnectionLogsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `bucket` after provisioning.\n"]
     pub fn bucket(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.bucket", self.base))
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `prefix` after provisioning.\n"]
     pub fn prefix(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.prefix", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataAlbIpamPoolsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ipv4_ipam_pool_id: Option<PrimField<String>>,
 }
-
 impl DataAlbIpamPoolsEl {
     #[doc = "Set the field `ipv4_ipam_pool_id`.\n"]
     pub fn set_ipv4_ipam_pool_id(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -942,10 +815,8 @@ impl DataAlbIpamPoolsEl {
         self
     }
 }
-
 impl ToListMappable for DataAlbIpamPoolsEl {
     type O = BlockAssignable<DataAlbIpamPoolsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -954,9 +825,7 @@ impl ToListMappable for DataAlbIpamPoolsEl {
         })
     }
 }
-
 pub struct BuildDataAlbIpamPoolsEl {}
-
 impl BuildDataAlbIpamPoolsEl {
     pub fn build(self) -> DataAlbIpamPoolsEl {
         DataAlbIpamPoolsEl {
@@ -964,12 +833,10 @@ impl BuildDataAlbIpamPoolsEl {
         }
     }
 }
-
 pub struct DataAlbIpamPoolsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbIpamPoolsElRef {
     fn new(shared: StackShared, base: String) -> DataAlbIpamPoolsElRef {
         DataAlbIpamPoolsElRef {
@@ -978,12 +845,10 @@ impl Ref for DataAlbIpamPoolsElRef {
         }
     }
 }
-
 impl DataAlbIpamPoolsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ipv4_ipam_pool_id` after provisioning.\n"]
     pub fn ipv4_ipam_pool_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -992,7 +857,6 @@ impl DataAlbIpamPoolsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataAlbSubnetMappingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1006,42 +870,35 @@ pub struct DataAlbSubnetMappingEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     subnet_id: Option<PrimField<String>>,
 }
-
 impl DataAlbSubnetMappingEl {
     #[doc = "Set the field `allocation_id`.\n"]
     pub fn set_allocation_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.allocation_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `ipv6_address`.\n"]
     pub fn set_ipv6_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.ipv6_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `outpost_id`.\n"]
     pub fn set_outpost_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.outpost_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `private_ipv4_address`.\n"]
     pub fn set_private_ipv4_address(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.private_ipv4_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `subnet_id`.\n"]
     pub fn set_subnet_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.subnet_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataAlbSubnetMappingEl {
     type O = BlockAssignable<DataAlbSubnetMappingEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1050,9 +907,7 @@ impl ToListMappable for DataAlbSubnetMappingEl {
         })
     }
 }
-
 pub struct BuildDataAlbSubnetMappingEl {}
-
 impl BuildDataAlbSubnetMappingEl {
     pub fn build(self) -> DataAlbSubnetMappingEl {
         DataAlbSubnetMappingEl {
@@ -1064,12 +919,10 @@ impl BuildDataAlbSubnetMappingEl {
         }
     }
 }
-
 pub struct DataAlbSubnetMappingElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbSubnetMappingElRef {
     fn new(shared: StackShared, base: String) -> DataAlbSubnetMappingElRef {
         DataAlbSubnetMappingElRef {
@@ -1078,12 +931,10 @@ impl Ref for DataAlbSubnetMappingElRef {
         }
     }
 }
-
 impl DataAlbSubnetMappingElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allocation_id` after provisioning.\n"]
     pub fn allocation_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1091,17 +942,14 @@ impl DataAlbSubnetMappingElRef {
             format!("{}.allocation_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `ipv6_address` after provisioning.\n"]
     pub fn ipv6_address(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.ipv6_address", self.base))
     }
-
     #[doc = "Get a reference to the value of field `outpost_id` after provisioning.\n"]
     pub fn outpost_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.outpost_id", self.base))
     }
-
     #[doc = "Get a reference to the value of field `private_ipv4_address` after provisioning.\n"]
     pub fn private_ipv4_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1109,19 +957,16 @@ impl DataAlbSubnetMappingElRef {
             format!("{}.private_ipv4_address", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_id` after provisioning.\n"]
     pub fn subnet_id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.subnet_id", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataAlbTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataAlbTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -1129,10 +974,8 @@ impl DataAlbTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataAlbTimeoutsEl {
     type O = BlockAssignable<DataAlbTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1141,9 +984,7 @@ impl ToListMappable for DataAlbTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataAlbTimeoutsEl {}
-
 impl BuildDataAlbTimeoutsEl {
     pub fn build(self) -> DataAlbTimeoutsEl {
         DataAlbTimeoutsEl {
@@ -1151,12 +992,10 @@ impl BuildDataAlbTimeoutsEl {
         }
     }
 }
-
 pub struct DataAlbTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataAlbTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataAlbTimeoutsElRef {
         DataAlbTimeoutsElRef {
@@ -1165,12 +1004,10 @@ impl Ref for DataAlbTimeoutsElRef {
         }
     }
 }
-
 impl DataAlbTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))

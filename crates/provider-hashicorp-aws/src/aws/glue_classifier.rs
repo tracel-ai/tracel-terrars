@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct GlueClassifierData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct GlueClassifierData {
     xml_classifier: Option<Vec<GlueClassifierXmlClassifierEl>>,
     dynamic: GlueClassifierDynamic,
 }
-
 struct GlueClassifier_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<GlueClassifierData>,
 }
-
 #[derive(Clone)]
 pub struct GlueClassifier(Rc<GlueClassifier_>);
-
 impl GlueClassifier {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl GlueClassifier {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl GlueClassifier {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,19 +96,16 @@ impl GlueClassifier {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `csv_classifier`.\n"]
     pub fn set_csv_classifier(
         self,
@@ -136,7 +121,6 @@ impl GlueClassifier {
         }
         self
     }
-
     #[doc = "Set the field `grok_classifier`.\n"]
     pub fn set_grok_classifier(
         self,
@@ -152,7 +136,6 @@ impl GlueClassifier {
         }
         self
     }
-
     #[doc = "Set the field `json_classifier`.\n"]
     pub fn set_json_classifier(
         self,
@@ -168,7 +151,6 @@ impl GlueClassifier {
         }
         self
     }
-
     #[doc = "Set the field `xml_classifier`.\n"]
     pub fn set_xml_classifier(
         self,
@@ -184,12 +166,10 @@ impl GlueClassifier {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +177,6 @@ impl GlueClassifier {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +184,6 @@ impl GlueClassifier {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_classifier` after provisioning.\n"]
     pub fn csv_classifier(&self) -> ListRef<GlueClassifierCsvClassifierElRef> {
         ListRef::new(
@@ -213,7 +191,6 @@ impl GlueClassifier {
             format!("{}.csv_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `grok_classifier` after provisioning.\n"]
     pub fn grok_classifier(&self) -> ListRef<GlueClassifierGrokClassifierElRef> {
         ListRef::new(
@@ -221,7 +198,6 @@ impl GlueClassifier {
             format!("{}.grok_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `json_classifier` after provisioning.\n"]
     pub fn json_classifier(&self) -> ListRef<GlueClassifierJsonClassifierElRef> {
         ListRef::new(
@@ -229,7 +205,6 @@ impl GlueClassifier {
             format!("{}.json_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `xml_classifier` after provisioning.\n"]
     pub fn xml_classifier(&self) -> ListRef<GlueClassifierXmlClassifierElRef> {
         ListRef::new(
@@ -238,7 +213,6 @@ impl GlueClassifier {
         )
     }
 }
-
 impl Referable for GlueClassifier {
     fn extract_ref(&self) -> String {
         format!(
@@ -248,38 +222,30 @@ impl Referable for GlueClassifier {
         )
     }
 }
-
 impl Resource for GlueClassifier {}
-
 impl ToListMappable for GlueClassifier {
     type O = ListRef<GlueClassifierRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for GlueClassifier_ {
     fn extract_resource_type(&self) -> String {
         "aws_glue_classifier".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildGlueClassifier {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildGlueClassifier {
     pub fn build(self, stack: &mut Stack) -> GlueClassifier {
         let out = GlueClassifier(Rc::new(GlueClassifier_ {
@@ -304,32 +270,26 @@ impl BuildGlueClassifier {
         out
     }
 }
-
 pub struct GlueClassifierRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueClassifierRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl GlueClassifierRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +297,6 @@ impl GlueClassifierRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +304,6 @@ impl GlueClassifierRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `csv_classifier` after provisioning.\n"]
     pub fn csv_classifier(&self) -> ListRef<GlueClassifierCsvClassifierElRef> {
         ListRef::new(
@@ -353,7 +311,6 @@ impl GlueClassifierRef {
             format!("{}.csv_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `grok_classifier` after provisioning.\n"]
     pub fn grok_classifier(&self) -> ListRef<GlueClassifierGrokClassifierElRef> {
         ListRef::new(
@@ -361,7 +318,6 @@ impl GlueClassifierRef {
             format!("{}.grok_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `json_classifier` after provisioning.\n"]
     pub fn json_classifier(&self) -> ListRef<GlueClassifierJsonClassifierElRef> {
         ListRef::new(
@@ -369,7 +325,6 @@ impl GlueClassifierRef {
             format!("{}.json_classifier", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `xml_classifier` after provisioning.\n"]
     pub fn xml_classifier(&self) -> ListRef<GlueClassifierXmlClassifierElRef> {
         ListRef::new(
@@ -378,7 +333,6 @@ impl GlueClassifierRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueClassifierCsvClassifierEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -400,66 +354,55 @@ pub struct GlueClassifierCsvClassifierEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     serde: Option<PrimField<String>>,
 }
-
 impl GlueClassifierCsvClassifierEl {
     #[doc = "Set the field `allow_single_column`.\n"]
     pub fn set_allow_single_column(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.allow_single_column = Some(v.into());
         self
     }
-
     #[doc = "Set the field `contains_header`.\n"]
     pub fn set_contains_header(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.contains_header = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_datatype_configured`.\n"]
     pub fn set_custom_datatype_configured(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.custom_datatype_configured = Some(v.into());
         self
     }
-
     #[doc = "Set the field `custom_datatypes`.\n"]
     pub fn set_custom_datatypes(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.custom_datatypes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delimiter`.\n"]
     pub fn set_delimiter(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delimiter = Some(v.into());
         self
     }
-
     #[doc = "Set the field `disable_value_trimming`.\n"]
     pub fn set_disable_value_trimming(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.disable_value_trimming = Some(v.into());
         self
     }
-
     #[doc = "Set the field `header`.\n"]
     pub fn set_header(mut self, v: impl Into<ListField<PrimField<String>>>) -> Self {
         self.header = Some(v.into());
         self
     }
-
     #[doc = "Set the field `quote_symbol`.\n"]
     pub fn set_quote_symbol(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.quote_symbol = Some(v.into());
         self
     }
-
     #[doc = "Set the field `serde`.\n"]
     pub fn set_serde(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.serde = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for GlueClassifierCsvClassifierEl {
     type O = BlockAssignable<GlueClassifierCsvClassifierEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -468,9 +411,7 @@ impl ToListMappable for GlueClassifierCsvClassifierEl {
         })
     }
 }
-
 pub struct BuildGlueClassifierCsvClassifierEl {}
-
 impl BuildGlueClassifierCsvClassifierEl {
     pub fn build(self) -> GlueClassifierCsvClassifierEl {
         GlueClassifierCsvClassifierEl {
@@ -486,12 +427,10 @@ impl BuildGlueClassifierCsvClassifierEl {
         }
     }
 }
-
 pub struct GlueClassifierCsvClassifierElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueClassifierCsvClassifierElRef {
     fn new(shared: StackShared, base: String) -> GlueClassifierCsvClassifierElRef {
         GlueClassifierCsvClassifierElRef {
@@ -500,12 +439,10 @@ impl Ref for GlueClassifierCsvClassifierElRef {
         }
     }
 }
-
 impl GlueClassifierCsvClassifierElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allow_single_column` after provisioning.\n"]
     pub fn allow_single_column(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -513,7 +450,6 @@ impl GlueClassifierCsvClassifierElRef {
             format!("{}.allow_single_column", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `contains_header` after provisioning.\n"]
     pub fn contains_header(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -521,7 +457,6 @@ impl GlueClassifierCsvClassifierElRef {
             format!("{}.contains_header", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_datatype_configured` after provisioning.\n"]
     pub fn custom_datatype_configured(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -529,7 +464,6 @@ impl GlueClassifierCsvClassifierElRef {
             format!("{}.custom_datatype_configured", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_datatypes` after provisioning.\n"]
     pub fn custom_datatypes(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -537,12 +471,10 @@ impl GlueClassifierCsvClassifierElRef {
             format!("{}.custom_datatypes", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `delimiter` after provisioning.\n"]
     pub fn delimiter(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delimiter", self.base))
     }
-
     #[doc = "Get a reference to the value of field `disable_value_trimming` after provisioning.\n"]
     pub fn disable_value_trimming(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -550,23 +482,19 @@ impl GlueClassifierCsvClassifierElRef {
             format!("{}.disable_value_trimming", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(self.shared().clone(), format!("{}.header", self.base))
     }
-
     #[doc = "Get a reference to the value of field `quote_symbol` after provisioning.\n"]
     pub fn quote_symbol(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.quote_symbol", self.base))
     }
-
     #[doc = "Get a reference to the value of field `serde` after provisioning.\n"]
     pub fn serde(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.serde", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueClassifierGrokClassifierEl {
     classification: PrimField<String>,
@@ -574,7 +502,6 @@ pub struct GlueClassifierGrokClassifierEl {
     custom_patterns: Option<PrimField<String>>,
     grok_pattern: PrimField<String>,
 }
-
 impl GlueClassifierGrokClassifierEl {
     #[doc = "Set the field `custom_patterns`.\n"]
     pub fn set_custom_patterns(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -582,10 +509,8 @@ impl GlueClassifierGrokClassifierEl {
         self
     }
 }
-
 impl ToListMappable for GlueClassifierGrokClassifierEl {
     type O = BlockAssignable<GlueClassifierGrokClassifierEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -594,14 +519,12 @@ impl ToListMappable for GlueClassifierGrokClassifierEl {
         })
     }
 }
-
 pub struct BuildGlueClassifierGrokClassifierEl {
     #[doc = ""]
     pub classification: PrimField<String>,
     #[doc = ""]
     pub grok_pattern: PrimField<String>,
 }
-
 impl BuildGlueClassifierGrokClassifierEl {
     pub fn build(self) -> GlueClassifierGrokClassifierEl {
         GlueClassifierGrokClassifierEl {
@@ -611,12 +534,10 @@ impl BuildGlueClassifierGrokClassifierEl {
         }
     }
 }
-
 pub struct GlueClassifierGrokClassifierElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueClassifierGrokClassifierElRef {
     fn new(shared: StackShared, base: String) -> GlueClassifierGrokClassifierElRef {
         GlueClassifierGrokClassifierElRef {
@@ -625,12 +546,10 @@ impl Ref for GlueClassifierGrokClassifierElRef {
         }
     }
 }
-
 impl GlueClassifierGrokClassifierElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -638,7 +557,6 @@ impl GlueClassifierGrokClassifierElRef {
             format!("{}.classification", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_patterns` after provisioning.\n"]
     pub fn custom_patterns(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -646,23 +564,18 @@ impl GlueClassifierGrokClassifierElRef {
             format!("{}.custom_patterns", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `grok_pattern` after provisioning.\n"]
     pub fn grok_pattern(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.grok_pattern", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueClassifierJsonClassifierEl {
     json_path: PrimField<String>,
 }
-
 impl GlueClassifierJsonClassifierEl {}
-
 impl ToListMappable for GlueClassifierJsonClassifierEl {
     type O = BlockAssignable<GlueClassifierJsonClassifierEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -671,12 +584,10 @@ impl ToListMappable for GlueClassifierJsonClassifierEl {
         })
     }
 }
-
 pub struct BuildGlueClassifierJsonClassifierEl {
     #[doc = ""]
     pub json_path: PrimField<String>,
 }
-
 impl BuildGlueClassifierJsonClassifierEl {
     pub fn build(self) -> GlueClassifierJsonClassifierEl {
         GlueClassifierJsonClassifierEl {
@@ -684,12 +595,10 @@ impl BuildGlueClassifierJsonClassifierEl {
         }
     }
 }
-
 pub struct GlueClassifierJsonClassifierElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueClassifierJsonClassifierElRef {
     fn new(shared: StackShared, base: String) -> GlueClassifierJsonClassifierElRef {
         GlueClassifierJsonClassifierElRef {
@@ -698,29 +607,23 @@ impl Ref for GlueClassifierJsonClassifierElRef {
         }
     }
 }
-
 impl GlueClassifierJsonClassifierElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `json_path` after provisioning.\n"]
     pub fn json_path(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.json_path", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct GlueClassifierXmlClassifierEl {
     classification: PrimField<String>,
     row_tag: PrimField<String>,
 }
-
 impl GlueClassifierXmlClassifierEl {}
-
 impl ToListMappable for GlueClassifierXmlClassifierEl {
     type O = BlockAssignable<GlueClassifierXmlClassifierEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -729,14 +632,12 @@ impl ToListMappable for GlueClassifierXmlClassifierEl {
         })
     }
 }
-
 pub struct BuildGlueClassifierXmlClassifierEl {
     #[doc = ""]
     pub classification: PrimField<String>,
     #[doc = ""]
     pub row_tag: PrimField<String>,
 }
-
 impl BuildGlueClassifierXmlClassifierEl {
     pub fn build(self) -> GlueClassifierXmlClassifierEl {
         GlueClassifierXmlClassifierEl {
@@ -745,12 +646,10 @@ impl BuildGlueClassifierXmlClassifierEl {
         }
     }
 }
-
 pub struct GlueClassifierXmlClassifierElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for GlueClassifierXmlClassifierElRef {
     fn new(shared: StackShared, base: String) -> GlueClassifierXmlClassifierElRef {
         GlueClassifierXmlClassifierElRef {
@@ -759,12 +658,10 @@ impl Ref for GlueClassifierXmlClassifierElRef {
         }
     }
 }
-
 impl GlueClassifierXmlClassifierElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `classification` after provisioning.\n"]
     pub fn classification(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -772,13 +669,11 @@ impl GlueClassifierXmlClassifierElRef {
             format!("{}.classification", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `row_tag` after provisioning.\n"]
     pub fn row_tag(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.row_tag", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct GlueClassifierDynamic {
     csv_classifier: Option<DynamicBlock<GlueClassifierCsvClassifierEl>>,

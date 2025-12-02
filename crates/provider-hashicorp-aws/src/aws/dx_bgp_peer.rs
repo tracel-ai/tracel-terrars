@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DxBgpPeerData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct DxBgpPeerData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<DxBgpPeerTimeoutsEl>,
 }
-
 struct DxBgpPeer_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DxBgpPeerData>,
 }
-
 #[derive(Clone)]
 pub struct DxBgpPeer(Rc<DxBgpPeer_>);
-
 impl DxBgpPeer {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl DxBgpPeer {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl DxBgpPeer {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,43 +97,36 @@ impl DxBgpPeer {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `amazon_address`.\n"]
     pub fn set_amazon_address(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().amazon_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `bgp_auth_key`.\n"]
     pub fn set_bgp_auth_key(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().bgp_auth_key = Some(v.into());
         self
     }
-
     #[doc = "Set the field `customer_address`.\n"]
     pub fn set_customer_address(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().customer_address = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DxBgpPeerTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `address_family` after provisioning.\n"]
     pub fn address_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -153,7 +134,6 @@ impl DxBgpPeer {
             format!("{}.address_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `amazon_address` after provisioning.\n"]
     pub fn amazon_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -161,7 +141,6 @@ impl DxBgpPeer {
             format!("{}.amazon_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aws_device` after provisioning.\n"]
     pub fn aws_device(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +148,6 @@ impl DxBgpPeer {
             format!("{}.aws_device", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -177,7 +155,6 @@ impl DxBgpPeer {
             format!("{}.bgp_asn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_auth_key` after provisioning.\n"]
     pub fn bgp_auth_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +162,6 @@ impl DxBgpPeer {
             format!("{}.bgp_auth_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_peer_id` after provisioning.\n"]
     pub fn bgp_peer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +169,6 @@ impl DxBgpPeer {
             format!("{}.bgp_peer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_status` after provisioning.\n"]
     pub fn bgp_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +176,6 @@ impl DxBgpPeer {
             format!("{}.bgp_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_address` after provisioning.\n"]
     pub fn customer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,12 +183,10 @@ impl DxBgpPeer {
             format!("{}.customer_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +194,6 @@ impl DxBgpPeer {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `virtual_interface_id` after provisioning.\n"]
     pub fn virtual_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +201,6 @@ impl DxBgpPeer {
             format!("{}.virtual_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DxBgpPeerTimeoutsElRef {
         DxBgpPeerTimeoutsElRef::new(
@@ -239,7 +209,6 @@ impl DxBgpPeer {
         )
     }
 }
-
 impl Referable for DxBgpPeer {
     fn extract_ref(&self) -> String {
         format!(
@@ -249,32 +218,25 @@ impl Referable for DxBgpPeer {
         )
     }
 }
-
 impl Resource for DxBgpPeer {}
-
 impl ToListMappable for DxBgpPeer {
     type O = ListRef<DxBgpPeerRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DxBgpPeer_ {
     fn extract_resource_type(&self) -> String {
         "aws_dx_bgp_peer".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDxBgpPeer {
     pub tf_id: String,
     #[doc = ""]
@@ -284,7 +246,6 @@ pub struct BuildDxBgpPeer {
     #[doc = ""]
     pub virtual_interface_id: PrimField<String>,
 }
-
 impl BuildDxBgpPeer {
     pub fn build(self, stack: &mut Stack) -> DxBgpPeer {
         let out = DxBgpPeer(Rc::new(DxBgpPeer_ {
@@ -310,27 +271,22 @@ impl BuildDxBgpPeer {
         out
     }
 }
-
 pub struct DxBgpPeerRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DxBgpPeerRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DxBgpPeerRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `address_family` after provisioning.\n"]
     pub fn address_family(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -338,7 +294,6 @@ impl DxBgpPeerRef {
             format!("{}.address_family", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `amazon_address` after provisioning.\n"]
     pub fn amazon_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +301,6 @@ impl DxBgpPeerRef {
             format!("{}.amazon_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `aws_device` after provisioning.\n"]
     pub fn aws_device(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,7 +308,6 @@ impl DxBgpPeerRef {
             format!("{}.aws_device", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_asn` after provisioning.\n"]
     pub fn bgp_asn(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -362,7 +315,6 @@ impl DxBgpPeerRef {
             format!("{}.bgp_asn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_auth_key` after provisioning.\n"]
     pub fn bgp_auth_key(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +322,6 @@ impl DxBgpPeerRef {
             format!("{}.bgp_auth_key", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_peer_id` after provisioning.\n"]
     pub fn bgp_peer_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +329,6 @@ impl DxBgpPeerRef {
             format!("{}.bgp_peer_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `bgp_status` after provisioning.\n"]
     pub fn bgp_status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -386,7 +336,6 @@ impl DxBgpPeerRef {
             format!("{}.bgp_status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `customer_address` after provisioning.\n"]
     pub fn customer_address(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -394,12 +343,10 @@ impl DxBgpPeerRef {
             format!("{}.customer_address", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -407,7 +354,6 @@ impl DxBgpPeerRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `virtual_interface_id` after provisioning.\n"]
     pub fn virtual_interface_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -415,7 +361,6 @@ impl DxBgpPeerRef {
             format!("{}.virtual_interface_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DxBgpPeerTimeoutsElRef {
         DxBgpPeerTimeoutsElRef::new(
@@ -424,7 +369,6 @@ impl DxBgpPeerRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DxBgpPeerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -432,24 +376,20 @@ pub struct DxBgpPeerTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     delete: Option<PrimField<String>>,
 }
-
 impl DxBgpPeerTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DxBgpPeerTimeoutsEl {
     type O = BlockAssignable<DxBgpPeerTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -458,9 +398,7 @@ impl ToListMappable for DxBgpPeerTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDxBgpPeerTimeoutsEl {}
-
 impl BuildDxBgpPeerTimeoutsEl {
     pub fn build(self) -> DxBgpPeerTimeoutsEl {
         DxBgpPeerTimeoutsEl {
@@ -469,12 +407,10 @@ impl BuildDxBgpPeerTimeoutsEl {
         }
     }
 }
-
 pub struct DxBgpPeerTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DxBgpPeerTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DxBgpPeerTimeoutsElRef {
         DxBgpPeerTimeoutsElRef {
@@ -483,17 +419,14 @@ impl Ref for DxBgpPeerTimeoutsElRef {
         }
     }
 }
-
 impl DxBgpPeerTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))

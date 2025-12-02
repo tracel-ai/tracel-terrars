@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct WafXssMatchSetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -21,47 +20,38 @@ struct WafXssMatchSetData {
     xss_match_tuples: Option<Vec<WafXssMatchSetXssMatchTuplesEl>>,
     dynamic: WafXssMatchSetDynamic,
 }
-
 struct WafXssMatchSet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<WafXssMatchSetData>,
 }
-
 #[derive(Clone)]
 pub struct WafXssMatchSet(Rc<WafXssMatchSet_>);
-
 impl WafXssMatchSet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -80,7 +70,6 @@ impl WafXssMatchSet {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -90,7 +79,6 @@ impl WafXssMatchSet {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -100,13 +88,11 @@ impl WafXssMatchSet {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `xss_match_tuples`.\n"]
     pub fn set_xss_match_tuples(
         self,
@@ -122,17 +108,14 @@ impl WafXssMatchSet {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -141,7 +124,6 @@ impl WafXssMatchSet {
         )
     }
 }
-
 impl Referable for WafXssMatchSet {
     fn extract_ref(&self) -> String {
         format!(
@@ -151,38 +133,30 @@ impl Referable for WafXssMatchSet {
         )
     }
 }
-
 impl Resource for WafXssMatchSet {}
-
 impl ToListMappable for WafXssMatchSet {
     type O = ListRef<WafXssMatchSetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for WafXssMatchSet_ {
     fn extract_resource_type(&self) -> String {
         "aws_waf_xss_match_set".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildWafXssMatchSet {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildWafXssMatchSet {
     pub fn build(self, stack: &mut Stack) -> WafXssMatchSet {
         let out = WafXssMatchSet(Rc::new(WafXssMatchSet_ {
@@ -203,37 +177,30 @@ impl BuildWafXssMatchSet {
         out
     }
 }
-
 pub struct WafXssMatchSetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafXssMatchSetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl WafXssMatchSetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +209,6 @@ impl WafXssMatchSetRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -250,7 +216,6 @@ pub struct WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     #[serde(rename = "type")]
     type_: PrimField<String>,
 }
-
 impl WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     #[doc = "Set the field `data`.\n"]
     pub fn set_data(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -258,10 +223,8 @@ impl WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
         self
     }
 }
-
 impl ToListMappable for WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     type O = BlockAssignable<WafXssMatchSetXssMatchTuplesElFieldToMatchEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -270,12 +233,10 @@ impl ToListMappable for WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
         })
     }
 }
-
 pub struct BuildWafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     #[doc = ""]
     pub type_: PrimField<String>,
 }
-
 impl BuildWafXssMatchSetXssMatchTuplesElFieldToMatchEl {
     pub fn build(self) -> WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
         WafXssMatchSetXssMatchTuplesElFieldToMatchEl {
@@ -284,12 +245,10 @@ impl BuildWafXssMatchSetXssMatchTuplesElFieldToMatchEl {
         }
     }
 }
-
 pub struct WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
     fn new(shared: StackShared, base: String) -> WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
         WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
@@ -298,28 +257,23 @@ impl Ref for WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
         }
     }
 }
-
 impl WafXssMatchSetXssMatchTuplesElFieldToMatchElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data` after provisioning.\n"]
     pub fn data(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.data", self.base))
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafXssMatchSetXssMatchTuplesElDynamic {
     field_to_match: Option<DynamicBlock<WafXssMatchSetXssMatchTuplesElFieldToMatchEl>>,
 }
-
 #[derive(Serialize)]
 pub struct WafXssMatchSetXssMatchTuplesEl {
     text_transformation: PrimField<String>,
@@ -327,7 +281,6 @@ pub struct WafXssMatchSetXssMatchTuplesEl {
     field_to_match: Option<Vec<WafXssMatchSetXssMatchTuplesElFieldToMatchEl>>,
     dynamic: WafXssMatchSetXssMatchTuplesElDynamic,
 }
-
 impl WafXssMatchSetXssMatchTuplesEl {
     #[doc = "Set the field `field_to_match`.\n"]
     pub fn set_field_to_match(
@@ -345,10 +298,8 @@ impl WafXssMatchSetXssMatchTuplesEl {
         self
     }
 }
-
 impl ToListMappable for WafXssMatchSetXssMatchTuplesEl {
     type O = BlockAssignable<WafXssMatchSetXssMatchTuplesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -357,12 +308,10 @@ impl ToListMappable for WafXssMatchSetXssMatchTuplesEl {
         })
     }
 }
-
 pub struct BuildWafXssMatchSetXssMatchTuplesEl {
     #[doc = ""]
     pub text_transformation: PrimField<String>,
 }
-
 impl BuildWafXssMatchSetXssMatchTuplesEl {
     pub fn build(self) -> WafXssMatchSetXssMatchTuplesEl {
         WafXssMatchSetXssMatchTuplesEl {
@@ -372,12 +321,10 @@ impl BuildWafXssMatchSetXssMatchTuplesEl {
         }
     }
 }
-
 pub struct WafXssMatchSetXssMatchTuplesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for WafXssMatchSetXssMatchTuplesElRef {
     fn new(shared: StackShared, base: String) -> WafXssMatchSetXssMatchTuplesElRef {
         WafXssMatchSetXssMatchTuplesElRef {
@@ -386,12 +333,10 @@ impl Ref for WafXssMatchSetXssMatchTuplesElRef {
         }
     }
 }
-
 impl WafXssMatchSetXssMatchTuplesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `text_transformation` after provisioning.\n"]
     pub fn text_transformation(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -399,7 +344,6 @@ impl WafXssMatchSetXssMatchTuplesElRef {
             format!("{}.text_transformation", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `field_to_match` after provisioning.\n"]
     pub fn field_to_match(&self) -> ListRef<WafXssMatchSetXssMatchTuplesElFieldToMatchElRef> {
         ListRef::new(
@@ -408,7 +352,6 @@ impl WafXssMatchSetXssMatchTuplesElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct WafXssMatchSetDynamic {
     xss_match_tuples: Option<DynamicBlock<WafXssMatchSetXssMatchTuplesEl>>,

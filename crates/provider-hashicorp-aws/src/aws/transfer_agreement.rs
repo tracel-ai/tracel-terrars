@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct TransferAgreementData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct TransferAgreementData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
 }
-
 struct TransferAgreement_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<TransferAgreementData>,
 }
-
 #[derive(Clone)]
 pub struct TransferAgreement(Rc<TransferAgreement_>);
-
 impl TransferAgreement {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl TransferAgreement {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl TransferAgreement {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,37 +97,31 @@ impl TransferAgreement {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `access_role` after provisioning.\n"]
     pub fn access_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -147,7 +129,6 @@ impl TransferAgreement {
             format!("{}.access_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agreement_id` after provisioning.\n"]
     pub fn agreement_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -155,12 +136,10 @@ impl TransferAgreement {
             format!("{}.agreement_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `base_directory` after provisioning.\n"]
     pub fn base_directory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -168,7 +147,6 @@ impl TransferAgreement {
             format!("{}.base_directory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -176,12 +154,10 @@ impl TransferAgreement {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `local_profile_id` after provisioning.\n"]
     pub fn local_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +165,6 @@ impl TransferAgreement {
             format!("{}.local_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `partner_profile_id` after provisioning.\n"]
     pub fn partner_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +172,6 @@ impl TransferAgreement {
             format!("{}.partner_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -205,7 +179,6 @@ impl TransferAgreement {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -213,7 +186,6 @@ impl TransferAgreement {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -221,7 +193,6 @@ impl TransferAgreement {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -229,7 +200,6 @@ impl TransferAgreement {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -238,7 +208,6 @@ impl TransferAgreement {
         )
     }
 }
-
 impl Referable for TransferAgreement {
     fn extract_ref(&self) -> String {
         format!(
@@ -248,32 +217,25 @@ impl Referable for TransferAgreement {
         )
     }
 }
-
 impl Resource for TransferAgreement {}
-
 impl ToListMappable for TransferAgreement {
     type O = ListRef<TransferAgreementRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for TransferAgreement_ {
     fn extract_resource_type(&self) -> String {
         "aws_transfer_agreement".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildTransferAgreement {
     pub tf_id: String,
     #[doc = ""]
@@ -287,7 +249,6 @@ pub struct BuildTransferAgreement {
     #[doc = ""]
     pub server_id: PrimField<String>,
 }
-
 impl BuildTransferAgreement {
     pub fn build(self, stack: &mut Stack) -> TransferAgreement {
         let out = TransferAgreement(Rc::new(TransferAgreement_ {
@@ -314,27 +275,22 @@ impl BuildTransferAgreement {
         out
     }
 }
-
 pub struct TransferAgreementRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferAgreementRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl TransferAgreementRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_role` after provisioning.\n"]
     pub fn access_role(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -342,7 +298,6 @@ impl TransferAgreementRef {
             format!("{}.access_role", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `agreement_id` after provisioning.\n"]
     pub fn agreement_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,12 +305,10 @@ impl TransferAgreementRef {
             format!("{}.agreement_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `base_directory` after provisioning.\n"]
     pub fn base_directory(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -363,7 +316,6 @@ impl TransferAgreementRef {
             format!("{}.base_directory", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -371,12 +323,10 @@ impl TransferAgreementRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `local_profile_id` after provisioning.\n"]
     pub fn local_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -384,7 +334,6 @@ impl TransferAgreementRef {
             format!("{}.local_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `partner_profile_id` after provisioning.\n"]
     pub fn partner_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -392,7 +341,6 @@ impl TransferAgreementRef {
             format!("{}.partner_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -400,7 +348,6 @@ impl TransferAgreementRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -408,7 +355,6 @@ impl TransferAgreementRef {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -416,7 +362,6 @@ impl TransferAgreementRef {
             format!("{}.status", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -424,7 +369,6 @@ impl TransferAgreementRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

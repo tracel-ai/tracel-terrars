@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct RedshiftIntegrationData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,47 +29,38 @@ struct RedshiftIntegrationData {
     #[serde(skip_serializing_if = "Option::is_none")]
     timeouts: Option<RedshiftIntegrationTimeoutsEl>,
 }
-
 struct RedshiftIntegration_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<RedshiftIntegrationData>,
 }
-
 #[derive(Clone)]
 pub struct RedshiftIntegration(Rc<RedshiftIntegration_>);
-
 impl RedshiftIntegration {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -89,7 +79,6 @@ impl RedshiftIntegration {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -99,7 +88,6 @@ impl RedshiftIntegration {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -109,7 +97,6 @@ impl RedshiftIntegration {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `additional_encryption_context`.\n"]
     pub fn set_additional_encryption_context(
         self,
@@ -118,37 +105,31 @@ impl RedshiftIntegration {
         self.0.data.borrow_mut().additional_encryption_context = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<RedshiftIntegrationTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -156,12 +137,10 @@ impl RedshiftIntegration {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +148,6 @@ impl RedshiftIntegration {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `integration_name` after provisioning.\n"]
     pub fn integration_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +155,6 @@ impl RedshiftIntegration {
             format!("{}.integration_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +162,6 @@ impl RedshiftIntegration {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +169,6 @@ impl RedshiftIntegration {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +176,6 @@ impl RedshiftIntegration {
             format!("{}.source_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -209,7 +183,6 @@ impl RedshiftIntegration {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -217,7 +190,6 @@ impl RedshiftIntegration {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -225,7 +197,6 @@ impl RedshiftIntegration {
             format!("{}.target_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RedshiftIntegrationTimeoutsElRef {
         RedshiftIntegrationTimeoutsElRef::new(
@@ -234,7 +205,6 @@ impl RedshiftIntegration {
         )
     }
 }
-
 impl Referable for RedshiftIntegration {
     fn extract_ref(&self) -> String {
         format!(
@@ -244,32 +214,25 @@ impl Referable for RedshiftIntegration {
         )
     }
 }
-
 impl Resource for RedshiftIntegration {}
-
 impl ToListMappable for RedshiftIntegration {
     type O = ListRef<RedshiftIntegrationRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for RedshiftIntegration_ {
     fn extract_resource_type(&self) -> String {
         "aws_redshift_integration".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildRedshiftIntegration {
     pub tf_id: String,
     #[doc = ""]
@@ -279,7 +242,6 @@ pub struct BuildRedshiftIntegration {
     #[doc = ""]
     pub target_arn: PrimField<String>,
 }
-
 impl BuildRedshiftIntegration {
     pub fn build(self, stack: &mut Stack) -> RedshiftIntegration {
         let out = RedshiftIntegration(Rc::new(RedshiftIntegration_ {
@@ -305,27 +267,22 @@ impl BuildRedshiftIntegration {
         out
     }
 }
-
 pub struct RedshiftIntegrationRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for RedshiftIntegrationRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl RedshiftIntegrationRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `additional_encryption_context` after provisioning.\n"]
     pub fn additional_encryption_context(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -333,12 +290,10 @@ impl RedshiftIntegrationRef {
             format!("{}.additional_encryption_context", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +301,6 @@ impl RedshiftIntegrationRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `integration_name` after provisioning.\n"]
     pub fn integration_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -354,7 +308,6 @@ impl RedshiftIntegrationRef {
             format!("{}.integration_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -362,7 +315,6 @@ impl RedshiftIntegrationRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -370,7 +322,6 @@ impl RedshiftIntegrationRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `source_arn` after provisioning.\n"]
     pub fn source_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -378,7 +329,6 @@ impl RedshiftIntegrationRef {
             format!("{}.source_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -386,7 +336,6 @@ impl RedshiftIntegrationRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -394,7 +343,6 @@ impl RedshiftIntegrationRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `target_arn` after provisioning.\n"]
     pub fn target_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -402,7 +350,6 @@ impl RedshiftIntegrationRef {
             format!("{}.target_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> RedshiftIntegrationTimeoutsElRef {
         RedshiftIntegrationTimeoutsElRef::new(
@@ -411,7 +358,6 @@ impl RedshiftIntegrationRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct RedshiftIntegrationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -421,30 +367,25 @@ pub struct RedshiftIntegrationTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl RedshiftIntegrationTimeoutsEl {
     #[doc = "Set the field `create`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for RedshiftIntegrationTimeoutsEl {
     type O = BlockAssignable<RedshiftIntegrationTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -453,9 +394,7 @@ impl ToListMappable for RedshiftIntegrationTimeoutsEl {
         })
     }
 }
-
 pub struct BuildRedshiftIntegrationTimeoutsEl {}
-
 impl BuildRedshiftIntegrationTimeoutsEl {
     pub fn build(self) -> RedshiftIntegrationTimeoutsEl {
         RedshiftIntegrationTimeoutsEl {
@@ -465,12 +404,10 @@ impl BuildRedshiftIntegrationTimeoutsEl {
         }
     }
 }
-
 pub struct RedshiftIntegrationTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for RedshiftIntegrationTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> RedshiftIntegrationTimeoutsElRef {
         RedshiftIntegrationTimeoutsElRef {
@@ -479,22 +416,18 @@ impl Ref for RedshiftIntegrationTimeoutsElRef {
         }
     }
 }
-
 impl RedshiftIntegrationTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs."]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\nA string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours)."]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))

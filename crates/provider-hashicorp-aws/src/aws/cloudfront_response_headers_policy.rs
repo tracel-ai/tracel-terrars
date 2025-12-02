@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudfrontResponseHeadersPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -32,47 +31,38 @@ struct CloudfrontResponseHeadersPolicyData {
         Option<Vec<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>>,
     dynamic: CloudfrontResponseHeadersPolicyDynamic,
 }
-
 struct CloudfrontResponseHeadersPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudfrontResponseHeadersPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct CloudfrontResponseHeadersPolicy(Rc<CloudfrontResponseHeadersPolicy_>);
-
 impl CloudfrontResponseHeadersPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -91,7 +81,6 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -101,7 +90,6 @@ impl CloudfrontResponseHeadersPolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -111,19 +99,16 @@ impl CloudfrontResponseHeadersPolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `comment`.\n"]
     pub fn set_comment(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().comment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cors_config`.\n"]
     pub fn set_cors_config(
         self,
@@ -139,7 +124,6 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     #[doc = "Set the field `custom_headers_config`.\n"]
     pub fn set_custom_headers_config(
         self,
@@ -155,7 +139,6 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     #[doc = "Set the field `remove_headers_config`.\n"]
     pub fn set_remove_headers_config(
         self,
@@ -171,7 +154,6 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     #[doc = "Set the field `security_headers_config`.\n"]
     pub fn set_security_headers_config(
         self,
@@ -187,7 +169,6 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     #[doc = "Set the field `server_timing_headers_config`.\n"]
     pub fn set_server_timing_headers_config(
         self,
@@ -207,12 +188,10 @@ impl CloudfrontResponseHeadersPolicy {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -220,7 +199,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.comment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -228,12 +206,10 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.etag", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -241,7 +217,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElRef> {
         ListRef::new(
@@ -249,7 +224,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.cors_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
     pub fn custom_headers_config(
         &self,
@@ -259,7 +233,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.custom_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
     pub fn remove_headers_config(
         &self,
@@ -269,7 +242,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.remove_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
     pub fn security_headers_config(
         &self,
@@ -279,7 +251,6 @@ impl CloudfrontResponseHeadersPolicy {
             format!("{}.security_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
     pub fn server_timing_headers_config(
         &self,
@@ -290,7 +261,6 @@ impl CloudfrontResponseHeadersPolicy {
         )
     }
 }
-
 impl Referable for CloudfrontResponseHeadersPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -300,38 +270,30 @@ impl Referable for CloudfrontResponseHeadersPolicy {
         )
     }
 }
-
 impl Resource for CloudfrontResponseHeadersPolicy {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicy {
     type O = ListRef<CloudfrontResponseHeadersPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudfrontResponseHeadersPolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudfront_response_headers_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicy {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicy {
     pub fn build(self, stack: &mut Stack) -> CloudfrontResponseHeadersPolicy {
         let out = CloudfrontResponseHeadersPolicy(Rc::new(CloudfrontResponseHeadersPolicy_ {
@@ -357,32 +319,26 @@ impl BuildCloudfrontResponseHeadersPolicy {
         out
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -390,7 +346,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.comment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -398,12 +353,10 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.etag", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -411,7 +364,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cors_config` after provisioning.\n"]
     pub fn cors_config(&self) -> ListRef<CloudfrontResponseHeadersPolicyCorsConfigElRef> {
         ListRef::new(
@@ -419,7 +371,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.cors_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `custom_headers_config` after provisioning.\n"]
     pub fn custom_headers_config(
         &self,
@@ -429,7 +380,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.custom_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `remove_headers_config` after provisioning.\n"]
     pub fn remove_headers_config(
         &self,
@@ -439,7 +389,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.remove_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_headers_config` after provisioning.\n"]
     pub fn security_headers_config(
         &self,
@@ -449,7 +398,6 @@ impl CloudfrontResponseHeadersPolicyRef {
             format!("{}.security_headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_timing_headers_config` after provisioning.\n"]
     pub fn server_timing_headers_config(
         &self,
@@ -460,13 +408,11 @@ impl CloudfrontResponseHeadersPolicyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -474,11 +420,9 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -487,9 +431,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControl
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
         CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl {
@@ -497,12 +439,10 @@ impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersEl
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef {
     fn new(
         shared: StackShared,
@@ -514,24 +454,20 @@ impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeader
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowHeadersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -539,11 +475,9 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -552,9 +486,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControl
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
         CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl {
@@ -562,12 +494,10 @@ impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsEl
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef {
     fn new(
         shared: StackShared,
@@ -579,24 +509,20 @@ impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethod
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowMethodsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -604,11 +530,9 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -617,9 +541,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControl
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
         CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl {
@@ -627,12 +549,10 @@ impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsEl
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef {
     fn new(
         shared: StackShared,
@@ -644,24 +564,20 @@ impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOrigin
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlAllowOriginsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -669,11 +585,9 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -682,9 +596,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigElAccessControl
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
         CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl {
@@ -692,12 +604,10 @@ impl BuildCloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersE
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef {
     fn new(
         shared: StackShared,
@@ -709,18 +619,15 @@ impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeade
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicyCorsConfigElDynamic {
     access_control_allow_headers: Option<
@@ -736,7 +643,6 @@ struct CloudfrontResponseHeadersPolicyCorsConfigElDynamic {
         DynamicBlock<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>,
     >,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCorsConfigEl {
     access_control_allow_credentials: PrimField<bool>,
@@ -757,14 +663,12 @@ pub struct CloudfrontResponseHeadersPolicyCorsConfigEl {
         Option<Vec<CloudfrontResponseHeadersPolicyCorsConfigElAccessControlExposeHeadersEl>>,
     dynamic: CloudfrontResponseHeadersPolicyCorsConfigElDynamic,
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = "Set the field `access_control_max_age_sec`.\n"]
     pub fn set_access_control_max_age_sec(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.access_control_max_age_sec = Some(v.into());
         self
     }
-
     #[doc = "Set the field `access_control_allow_headers`.\n"]
     pub fn set_access_control_allow_headers(
         mut self,
@@ -782,7 +686,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `access_control_allow_methods`.\n"]
     pub fn set_access_control_allow_methods(
         mut self,
@@ -800,7 +703,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `access_control_allow_origins`.\n"]
     pub fn set_access_control_allow_origins(
         mut self,
@@ -818,7 +720,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `access_control_expose_headers`.\n"]
     pub fn set_access_control_expose_headers(
         mut self,
@@ -839,10 +740,8 @@ impl CloudfrontResponseHeadersPolicyCorsConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyCorsConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -851,14 +750,12 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCorsConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCorsConfigEl {
     #[doc = ""]
     pub access_control_allow_credentials: PrimField<bool>,
     #[doc = ""]
     pub origin_override: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicyCorsConfigEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCorsConfigEl {
         CloudfrontResponseHeadersPolicyCorsConfigEl {
@@ -873,12 +770,10 @@ impl BuildCloudfrontResponseHeadersPolicyCorsConfigEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCorsConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudfrontResponseHeadersPolicyCorsConfigElRef {
         CloudfrontResponseHeadersPolicyCorsConfigElRef {
@@ -887,12 +782,10 @@ impl Ref for CloudfrontResponseHeadersPolicyCorsConfigElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_control_allow_credentials` after provisioning.\n"]
     pub fn access_control_allow_credentials(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -900,7 +793,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.access_control_allow_credentials", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -908,7 +800,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.access_control_max_age_sec", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `origin_override` after provisioning.\n"]
     pub fn origin_override(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -916,7 +807,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.origin_override", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_allow_headers` after provisioning.\n"]
     pub fn access_control_allow_headers(
         &self,
@@ -926,7 +816,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.access_control_allow_headers", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_allow_methods` after provisioning.\n"]
     pub fn access_control_allow_methods(
         &self,
@@ -936,7 +825,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.access_control_allow_methods", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_allow_origins` after provisioning.\n"]
     pub fn access_control_allow_origins(
         &self,
@@ -946,7 +834,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
             format!("{}.access_control_allow_origins", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `access_control_expose_headers` after provisioning.\n"]
     pub fn access_control_expose_headers(
         &self,
@@ -957,7 +844,6 @@ impl CloudfrontResponseHeadersPolicyCorsConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     header: PrimField<String>,
@@ -965,12 +851,9 @@ pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     override_: PrimField<bool>,
     value: PrimField<String>,
 }
-
 impl CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -979,7 +862,6 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItem
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     #[doc = ""]
     pub header: PrimField<String>,
@@ -988,7 +870,6 @@ pub struct BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     #[doc = ""]
     pub value: PrimField<String>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
         CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
@@ -998,12 +879,10 @@ impl BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
     fn new(
         shared: StackShared,
@@ -1015,40 +894,33 @@ impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.header", self.base))
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
-
     #[doc = "Get a reference to the value of field `value` after provisioning.\n"]
     pub fn value(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.value", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElDynamic {
     items: Option<DynamicBlock<CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<Vec<CloudfrontResponseHeadersPolicyCustomHeadersConfigElItemsEl>>,
     dynamic: CloudfrontResponseHeadersPolicyCustomHeadersConfigElDynamic,
 }
-
 impl CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(
@@ -1066,10 +938,8 @@ impl CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyCustomHeadersConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1078,9 +948,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
         CloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
@@ -1089,12 +957,10 @@ impl BuildCloudfrontResponseHeadersPolicyCustomHeadersConfigEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
     fn new(
         shared: StackShared,
@@ -1106,23 +972,18 @@ impl Ref for CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyCustomHeadersConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     header: PrimField<String>,
 }
-
 impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1131,12 +992,10 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItem
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     #[doc = ""]
     pub header: PrimField<String>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
@@ -1144,12 +1003,10 @@ impl BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
     fn new(
         shared: StackShared,
@@ -1161,30 +1018,25 @@ impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `header` after provisioning.\n"]
     pub fn header(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.header", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElDynamic {
     items: Option<DynamicBlock<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<Vec<CloudfrontResponseHeadersPolicyRemoveHeadersConfigElItemsEl>>,
     dynamic: CloudfrontResponseHeadersPolicyRemoveHeadersConfigElDynamic,
 }
-
 impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(
@@ -1202,10 +1054,8 @@ impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1214,9 +1064,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {}
-
 impl BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
         CloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
@@ -1225,12 +1073,10 @@ impl BuildCloudfrontResponseHeadersPolicyRemoveHeadersConfigEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
     fn new(
         shared: StackShared,
@@ -1242,29 +1088,24 @@ impl Ref for CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyRemoveHeadersConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
     content_security_policy: PrimField<String>,
     #[serde(rename = "override")]
     override_: PrimField<bool>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {}
-
 impl ToListMappable
     for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl
 {
     type O = BlockAssignable<
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1273,14 +1114,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
     #[doc = ""]
     pub content_security_policy: PrimField<String>,
     #[doc = ""]
     pub override_: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyEl {
     pub fn build(
         self,
@@ -1291,12 +1130,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityP
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef {
     fn new(
         shared: StackShared,
@@ -1308,12 +1145,10 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecuri
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1321,25 +1156,20 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentSecurityPolicy
             format!("{}.content_security_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
     #[serde(rename = "override")]
     override_: PrimField<bool>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1348,12 +1178,10 @@ impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElCo
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
     #[doc = ""]
     pub override_: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsEl {
     pub fn build(
         self,
@@ -1363,12 +1191,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptio
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1380,30 +1206,24 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOp
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElContentTypeOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
     frame_option: PrimField<String>,
     #[serde(rename = "override")]
     override_: PrimField<bool>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1412,14 +1232,12 @@ impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElFr
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
     #[doc = ""]
     pub frame_option: PrimField<String>,
     #[doc = ""]
     pub override_: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
@@ -1428,12 +1246,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef {
     fn new(
         shared: StackShared,
@@ -1445,36 +1261,29 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsE
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElFrameOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `frame_option` after provisioning.\n"]
     pub fn frame_option(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.frame_option", self.base))
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
     #[serde(rename = "override")]
     override_: PrimField<bool>,
     referrer_policy: PrimField<String>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
     type O =
         BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1483,14 +1292,12 @@ impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElRe
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
     #[doc = ""]
     pub override_: PrimField<bool>,
     #[doc = ""]
     pub referrer_policy: PrimField<String>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl {
@@ -1499,12 +1306,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyEl
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef {
     fn new(
         shared: StackShared,
@@ -1516,17 +1321,14 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolic
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
-
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
     pub fn referrer_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1535,7 +1337,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElReferrerPolicyElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
     access_control_max_age_sec: PrimField<f64>,
@@ -1546,28 +1347,24 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransport
     #[serde(skip_serializing_if = "Option::is_none")]
     preload: Option<PrimField<bool>>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
     #[doc = "Set the field `include_subdomains`.\n"]
     pub fn set_include_subdomains(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.include_subdomains = Some(v.into());
         self
     }
-
     #[doc = "Set the field `preload`.\n"]
     pub fn set_preload(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.preload = Some(v.into());
         self
     }
 }
-
 impl ToListMappable
     for CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl
 {
     type O = BlockAssignable<
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl,
     >;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1576,14 +1373,12 @@ impl ToListMappable
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
     #[doc = ""]
     pub access_control_max_age_sec: PrimField<f64>,
     #[doc = ""]
     pub override_: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityEl {
     pub fn build(
         self,
@@ -1596,12 +1391,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportS
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
     fn new(
         shared: StackShared,
@@ -1613,12 +1406,10 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTranspo
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecurityElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `access_control_max_age_sec` after provisioning.\n"]
     pub fn access_control_max_age_sec(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1626,7 +1417,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecuri
             format!("{}.access_control_max_age_sec", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `include_subdomains` after provisioning.\n"]
     pub fn include_subdomains(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -1634,18 +1424,15 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElStrictTransportSecuri
             format!("{}.include_subdomains", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
-
     #[doc = "Get a reference to the value of field `preload` after provisioning.\n"]
     pub fn preload(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.preload", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1656,24 +1443,20 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl
     #[serde(skip_serializing_if = "Option::is_none")]
     report_uri: Option<PrimField<String>>,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
     #[doc = "Set the field `mode_block`.\n"]
     pub fn set_mode_block(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.mode_block = Some(v.into());
         self
     }
-
     #[doc = "Set the field `report_uri`.\n"]
     pub fn set_report_uri(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.report_uri = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1682,14 +1465,12 @@ impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigElXs
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
     #[doc = ""]
     pub override_: PrimField<bool>,
     #[doc = ""]
     pub protection: PrimField<bool>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl {
@@ -1700,12 +1481,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl 
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef {
     fn new(
         shared: StackShared,
@@ -1717,33 +1496,27 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtection
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `mode_block` after provisioning.\n"]
     pub fn mode_block(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.mode_block", self.base))
     }
-
     #[doc = "Get a reference to the value of field `override_` after provisioning.\n"]
     pub fn override_(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.override", self.base))
     }
-
     #[doc = "Get a reference to the value of field `protection` after provisioning.\n"]
     pub fn protection(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.protection", self.base))
     }
-
     #[doc = "Get a reference to the value of field `report_uri` after provisioning.\n"]
     pub fn report_uri(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.report_uri", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElDynamic {
     content_security_policy: Option<
@@ -1765,7 +1538,6 @@ struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElDynamic {
     xss_protection:
         Option<DynamicBlock<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1789,7 +1561,6 @@ pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         Option<Vec<CloudfrontResponseHeadersPolicySecurityHeadersConfigElXssProtectionEl>>,
     dynamic: CloudfrontResponseHeadersPolicySecurityHeadersConfigElDynamic,
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     #[doc = "Set the field `content_security_policy`.\n"]
     pub fn set_content_security_policy(
@@ -1810,7 +1581,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `content_type_options`.\n"]
     pub fn set_content_type_options(
         mut self,
@@ -1830,7 +1600,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `frame_options`.\n"]
     pub fn set_frame_options(
         mut self,
@@ -1848,7 +1617,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `referrer_policy`.\n"]
     pub fn set_referrer_policy(
         mut self,
@@ -1866,7 +1634,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `strict_transport_security`.\n"]
     pub fn set_strict_transport_security(
         mut self,
@@ -1886,7 +1653,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
         self
     }
-
     #[doc = "Set the field `xss_protection`.\n"]
     pub fn set_xss_protection(
         mut self,
@@ -1905,10 +1671,8 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicySecurityHeadersConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1917,9 +1681,7 @@ impl ToListMappable for CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {}
-
 impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         CloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
@@ -1933,12 +1695,10 @@ impl BuildCloudfrontResponseHeadersPolicySecurityHeadersConfigEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
     fn new(
         shared: StackShared,
@@ -1950,12 +1710,10 @@ impl Ref for CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `content_security_policy` after provisioning.\n"]
     pub fn content_security_policy(
         &self,
@@ -1966,7 +1724,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             format!("{}.content_security_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `content_type_options` after provisioning.\n"]
     pub fn content_type_options(
         &self,
@@ -1977,7 +1734,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             format!("{}.content_type_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `frame_options` after provisioning.\n"]
     pub fn frame_options(
         &self,
@@ -1987,7 +1743,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             format!("{}.frame_options", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `referrer_policy` after provisioning.\n"]
     pub fn referrer_policy(
         &self,
@@ -1997,7 +1752,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             format!("{}.referrer_policy", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `strict_transport_security` after provisioning.\n"]
     pub fn strict_transport_security(
         &self,
@@ -2008,7 +1762,6 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
             format!("{}.strict_transport_security", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `xss_protection` after provisioning.\n"]
     pub fn xss_protection(
         &self,
@@ -2019,18 +1772,14 @@ impl CloudfrontResponseHeadersPolicySecurityHeadersConfigElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     enabled: PrimField<bool>,
     sampling_rate: PrimField<f64>,
 }
-
 impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {}
-
 impl ToListMappable for CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     type O = BlockAssignable<CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -2039,14 +1788,12 @@ impl ToListMappable for CloudfrontResponseHeadersPolicyServerTimingHeadersConfig
         })
     }
 }
-
 pub struct BuildCloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     #[doc = ""]
     pub enabled: PrimField<bool>,
     #[doc = ""]
     pub sampling_rate: PrimField<f64>,
 }
-
 impl BuildCloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
     pub fn build(self) -> CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
         CloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
@@ -2055,12 +1802,10 @@ impl BuildCloudfrontResponseHeadersPolicyServerTimingHeadersConfigEl {
         }
     }
 }
-
 pub struct CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
     fn new(
         shared: StackShared,
@@ -2072,17 +1817,14 @@ impl Ref for CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
         }
     }
 }
-
 impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.enabled", self.base))
     }
-
     #[doc = "Get a reference to the value of field `sampling_rate` after provisioning.\n"]
     pub fn sampling_rate(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -2091,7 +1833,6 @@ impl CloudfrontResponseHeadersPolicyServerTimingHeadersConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontResponseHeadersPolicyDynamic {
     cors_config: Option<DynamicBlock<CloudfrontResponseHeadersPolicyCorsConfigEl>>,

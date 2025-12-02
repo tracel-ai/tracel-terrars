@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DevopsguruEventSourcesConfigData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -20,47 +19,38 @@ struct DevopsguruEventSourcesConfigData {
     event_sources: Option<Vec<DevopsguruEventSourcesConfigEventSourcesEl>>,
     dynamic: DevopsguruEventSourcesConfigDynamic,
 }
-
 struct DevopsguruEventSourcesConfig_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DevopsguruEventSourcesConfigData>,
 }
-
 #[derive(Clone)]
 pub struct DevopsguruEventSourcesConfig(Rc<DevopsguruEventSourcesConfig_>);
-
 impl DevopsguruEventSourcesConfig {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -79,7 +69,6 @@ impl DevopsguruEventSourcesConfig {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -89,7 +78,6 @@ impl DevopsguruEventSourcesConfig {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -99,13 +87,11 @@ impl DevopsguruEventSourcesConfig {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `event_sources`.\n"]
     pub fn set_event_sources(
         self,
@@ -121,12 +107,10 @@ impl DevopsguruEventSourcesConfig {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -134,7 +118,6 @@ impl DevopsguruEventSourcesConfig {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_sources` after provisioning.\n"]
     pub fn event_sources(&self) -> ListRef<DevopsguruEventSourcesConfigEventSourcesElRef> {
         ListRef::new(
@@ -143,7 +126,6 @@ impl DevopsguruEventSourcesConfig {
         )
     }
 }
-
 impl Referable for DevopsguruEventSourcesConfig {
     fn extract_ref(&self) -> String {
         format!(
@@ -153,36 +135,28 @@ impl Referable for DevopsguruEventSourcesConfig {
         )
     }
 }
-
 impl Resource for DevopsguruEventSourcesConfig {}
-
 impl ToListMappable for DevopsguruEventSourcesConfig {
     type O = ListRef<DevopsguruEventSourcesConfigRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for DevopsguruEventSourcesConfig_ {
     fn extract_resource_type(&self) -> String {
         "aws_devopsguru_event_sources_config".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDevopsguruEventSourcesConfig {
     pub tf_id: String,
 }
-
 impl BuildDevopsguruEventSourcesConfig {
     pub fn build(self, stack: &mut Stack) -> DevopsguruEventSourcesConfig {
         let out = DevopsguruEventSourcesConfig(Rc::new(DevopsguruEventSourcesConfig_ {
@@ -202,32 +176,26 @@ impl BuildDevopsguruEventSourcesConfig {
         out
     }
 }
-
 pub struct DevopsguruEventSourcesConfigRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DevopsguruEventSourcesConfigRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DevopsguruEventSourcesConfigRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -235,7 +203,6 @@ impl DevopsguruEventSourcesConfigRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `event_sources` after provisioning.\n"]
     pub fn event_sources(&self) -> ListRef<DevopsguruEventSourcesConfigEventSourcesElRef> {
         ListRef::new(
@@ -244,17 +211,13 @@ impl DevopsguruEventSourcesConfigRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
     status: PrimField<String>,
 }
-
 impl DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {}
-
 impl ToListMappable for DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
     type O = BlockAssignable<DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -263,12 +226,10 @@ impl ToListMappable for DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuru
         })
     }
 }
-
 pub struct BuildDevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
     #[doc = ""]
     pub status: PrimField<String>,
 }
-
 impl BuildDevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
     pub fn build(self) -> DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
         DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
@@ -276,12 +237,10 @@ impl BuildDevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl {
         }
     }
 }
-
 pub struct DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerElRef {
     fn new(
         shared: StackShared,
@@ -293,24 +252,20 @@ impl Ref for DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerElR
         }
     }
 }
-
 impl DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `status` after provisioning.\n"]
     pub fn status(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.status", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DevopsguruEventSourcesConfigEventSourcesElDynamic {
     amazon_code_guru_profiler:
         Option<DynamicBlock<DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl>>,
 }
-
 #[derive(Serialize)]
 pub struct DevopsguruEventSourcesConfigEventSourcesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -318,7 +273,6 @@ pub struct DevopsguruEventSourcesConfigEventSourcesEl {
         Option<Vec<DevopsguruEventSourcesConfigEventSourcesElAmazonCodeGuruProfilerEl>>,
     dynamic: DevopsguruEventSourcesConfigEventSourcesElDynamic,
 }
-
 impl DevopsguruEventSourcesConfigEventSourcesEl {
     #[doc = "Set the field `amazon_code_guru_profiler`.\n"]
     pub fn set_amazon_code_guru_profiler(
@@ -338,10 +292,8 @@ impl DevopsguruEventSourcesConfigEventSourcesEl {
         self
     }
 }
-
 impl ToListMappable for DevopsguruEventSourcesConfigEventSourcesEl {
     type O = BlockAssignable<DevopsguruEventSourcesConfigEventSourcesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -350,9 +302,7 @@ impl ToListMappable for DevopsguruEventSourcesConfigEventSourcesEl {
         })
     }
 }
-
 pub struct BuildDevopsguruEventSourcesConfigEventSourcesEl {}
-
 impl BuildDevopsguruEventSourcesConfigEventSourcesEl {
     pub fn build(self) -> DevopsguruEventSourcesConfigEventSourcesEl {
         DevopsguruEventSourcesConfigEventSourcesEl {
@@ -361,12 +311,10 @@ impl BuildDevopsguruEventSourcesConfigEventSourcesEl {
         }
     }
 }
-
 pub struct DevopsguruEventSourcesConfigEventSourcesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DevopsguruEventSourcesConfigEventSourcesElRef {
     fn new(shared: StackShared, base: String) -> DevopsguruEventSourcesConfigEventSourcesElRef {
         DevopsguruEventSourcesConfigEventSourcesElRef {
@@ -375,12 +323,10 @@ impl Ref for DevopsguruEventSourcesConfigEventSourcesElRef {
         }
     }
 }
-
 impl DevopsguruEventSourcesConfigEventSourcesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `amazon_code_guru_profiler` after provisioning.\n"]
     pub fn amazon_code_guru_profiler(
         &self,
@@ -391,7 +337,6 @@ impl DevopsguruEventSourcesConfigEventSourcesElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct DevopsguruEventSourcesConfigDynamic {
     event_sources: Option<DynamicBlock<DevopsguruEventSourcesConfigEventSourcesEl>>,

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SesConfigurationSetData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -29,47 +28,38 @@ struct SesConfigurationSetData {
     tracking_options: Option<Vec<SesConfigurationSetTrackingOptionsEl>>,
     dynamic: SesConfigurationSetDynamic,
 }
-
 struct SesConfigurationSet_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SesConfigurationSetData>,
 }
-
 #[derive(Clone)]
 pub struct SesConfigurationSet(Rc<SesConfigurationSet_>);
-
 impl SesConfigurationSet {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -88,7 +78,6 @@ impl SesConfigurationSet {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -98,7 +87,6 @@ impl SesConfigurationSet {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -108,31 +96,26 @@ impl SesConfigurationSet {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `reputation_metrics_enabled`.\n"]
     pub fn set_reputation_metrics_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().reputation_metrics_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `sending_enabled`.\n"]
     pub fn set_sending_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().sending_enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delivery_options`.\n"]
     pub fn set_delivery_options(
         self,
@@ -148,7 +131,6 @@ impl SesConfigurationSet {
         }
         self
     }
-
     #[doc = "Set the field `tracking_options`.\n"]
     pub fn set_tracking_options(
         self,
@@ -164,17 +146,14 @@ impl SesConfigurationSet {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_fresh_start` after provisioning.\n"]
     pub fn last_fresh_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -182,7 +161,6 @@ impl SesConfigurationSet {
             format!("{}.last_fresh_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -190,7 +168,6 @@ impl SesConfigurationSet {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -198,7 +175,6 @@ impl SesConfigurationSet {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reputation_metrics_enabled` after provisioning.\n"]
     pub fn reputation_metrics_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -206,7 +182,6 @@ impl SesConfigurationSet {
             format!("{}.reputation_metrics_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sending_enabled` after provisioning.\n"]
     pub fn sending_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -214,7 +189,6 @@ impl SesConfigurationSet {
             format!("{}.sending_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delivery_options` after provisioning.\n"]
     pub fn delivery_options(&self) -> ListRef<SesConfigurationSetDeliveryOptionsElRef> {
         ListRef::new(
@@ -222,7 +196,6 @@ impl SesConfigurationSet {
             format!("{}.delivery_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracking_options` after provisioning.\n"]
     pub fn tracking_options(&self) -> ListRef<SesConfigurationSetTrackingOptionsElRef> {
         ListRef::new(
@@ -231,7 +204,6 @@ impl SesConfigurationSet {
         )
     }
 }
-
 impl Referable for SesConfigurationSet {
     fn extract_ref(&self) -> String {
         format!(
@@ -241,38 +213,30 @@ impl Referable for SesConfigurationSet {
         )
     }
 }
-
 impl Resource for SesConfigurationSet {}
-
 impl ToListMappable for SesConfigurationSet {
     type O = ListRef<SesConfigurationSetRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SesConfigurationSet_ {
     fn extract_resource_type(&self) -> String {
         "aws_ses_configuration_set".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSesConfigurationSet {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildSesConfigurationSet {
     pub fn build(self, stack: &mut Stack) -> SesConfigurationSet {
         let out = SesConfigurationSet(Rc::new(SesConfigurationSet_ {
@@ -297,37 +261,30 @@ impl BuildSesConfigurationSet {
         out
     }
 }
-
 pub struct SesConfigurationSetRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesConfigurationSetRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SesConfigurationSetRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_fresh_start` after provisioning.\n"]
     pub fn last_fresh_start(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -335,7 +292,6 @@ impl SesConfigurationSetRef {
             format!("{}.last_fresh_start", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -343,7 +299,6 @@ impl SesConfigurationSetRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -351,7 +306,6 @@ impl SesConfigurationSetRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reputation_metrics_enabled` after provisioning.\n"]
     pub fn reputation_metrics_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -359,7 +313,6 @@ impl SesConfigurationSetRef {
             format!("{}.reputation_metrics_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `sending_enabled` after provisioning.\n"]
     pub fn sending_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -367,7 +320,6 @@ impl SesConfigurationSetRef {
             format!("{}.sending_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `delivery_options` after provisioning.\n"]
     pub fn delivery_options(&self) -> ListRef<SesConfigurationSetDeliveryOptionsElRef> {
         ListRef::new(
@@ -375,7 +327,6 @@ impl SesConfigurationSetRef {
             format!("{}.delivery_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tracking_options` after provisioning.\n"]
     pub fn tracking_options(&self) -> ListRef<SesConfigurationSetTrackingOptionsElRef> {
         ListRef::new(
@@ -384,13 +335,11 @@ impl SesConfigurationSetRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct SesConfigurationSetDeliveryOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     tls_policy: Option<PrimField<String>>,
 }
-
 impl SesConfigurationSetDeliveryOptionsEl {
     #[doc = "Set the field `tls_policy`.\n"]
     pub fn set_tls_policy(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -398,10 +347,8 @@ impl SesConfigurationSetDeliveryOptionsEl {
         self
     }
 }
-
 impl ToListMappable for SesConfigurationSetDeliveryOptionsEl {
     type O = BlockAssignable<SesConfigurationSetDeliveryOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -410,9 +357,7 @@ impl ToListMappable for SesConfigurationSetDeliveryOptionsEl {
         })
     }
 }
-
 pub struct BuildSesConfigurationSetDeliveryOptionsEl {}
-
 impl BuildSesConfigurationSetDeliveryOptionsEl {
     pub fn build(self) -> SesConfigurationSetDeliveryOptionsEl {
         SesConfigurationSetDeliveryOptionsEl {
@@ -420,12 +365,10 @@ impl BuildSesConfigurationSetDeliveryOptionsEl {
         }
     }
 }
-
 pub struct SesConfigurationSetDeliveryOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesConfigurationSetDeliveryOptionsElRef {
     fn new(shared: StackShared, base: String) -> SesConfigurationSetDeliveryOptionsElRef {
         SesConfigurationSetDeliveryOptionsElRef {
@@ -434,24 +377,20 @@ impl Ref for SesConfigurationSetDeliveryOptionsElRef {
         }
     }
 }
-
 impl SesConfigurationSetDeliveryOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `tls_policy` after provisioning.\n"]
     pub fn tls_policy(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.tls_policy", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct SesConfigurationSetTrackingOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     custom_redirect_domain: Option<PrimField<String>>,
 }
-
 impl SesConfigurationSetTrackingOptionsEl {
     #[doc = "Set the field `custom_redirect_domain`.\n"]
     pub fn set_custom_redirect_domain(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -459,10 +398,8 @@ impl SesConfigurationSetTrackingOptionsEl {
         self
     }
 }
-
 impl ToListMappable for SesConfigurationSetTrackingOptionsEl {
     type O = BlockAssignable<SesConfigurationSetTrackingOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -471,9 +408,7 @@ impl ToListMappable for SesConfigurationSetTrackingOptionsEl {
         })
     }
 }
-
 pub struct BuildSesConfigurationSetTrackingOptionsEl {}
-
 impl BuildSesConfigurationSetTrackingOptionsEl {
     pub fn build(self) -> SesConfigurationSetTrackingOptionsEl {
         SesConfigurationSetTrackingOptionsEl {
@@ -481,12 +416,10 @@ impl BuildSesConfigurationSetTrackingOptionsEl {
         }
     }
 }
-
 pub struct SesConfigurationSetTrackingOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SesConfigurationSetTrackingOptionsElRef {
     fn new(shared: StackShared, base: String) -> SesConfigurationSetTrackingOptionsElRef {
         SesConfigurationSetTrackingOptionsElRef {
@@ -495,12 +428,10 @@ impl Ref for SesConfigurationSetTrackingOptionsElRef {
         }
     }
 }
-
 impl SesConfigurationSetTrackingOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `custom_redirect_domain` after provisioning.\n"]
     pub fn custom_redirect_domain(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -509,7 +440,6 @@ impl SesConfigurationSetTrackingOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct SesConfigurationSetDynamic {
     delivery_options: Option<DynamicBlock<SesConfigurationSetDeliveryOptionsEl>>,

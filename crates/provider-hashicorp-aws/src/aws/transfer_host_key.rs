@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct TransferHostKeyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -26,47 +25,38 @@ struct TransferHostKeyData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags: Option<RecField<PrimField<String>>>,
 }
-
 struct TransferHostKey_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<TransferHostKeyData>,
 }
-
 #[derive(Clone)]
 pub struct TransferHostKey(Rc<TransferHostKey_>);
-
 impl TransferHostKey {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -85,7 +75,6 @@ impl TransferHostKey {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -95,7 +84,6 @@ impl TransferHostKey {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -105,42 +93,35 @@ impl TransferHostKey {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_key_body`.\n"]
     pub fn set_host_key_body(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().host_key_body = Some(v.into());
         self
     }
-
     #[doc = "Set the field `host_key_body_wo`.\n"]
     pub fn set_host_key_body_wo(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().host_key_body_wo = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -148,7 +129,6 @@ impl TransferHostKey {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_body` after provisioning.\n"]
     pub fn host_key_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,7 +136,6 @@ impl TransferHostKey {
             format!("{}.host_key_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_body_wo` after provisioning.\n"]
     pub fn host_key_body_wo(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -164,7 +143,6 @@ impl TransferHostKey {
             format!("{}.host_key_body_wo", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_fingerprint` after provisioning.\n"]
     pub fn host_key_fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -172,7 +150,6 @@ impl TransferHostKey {
             format!("{}.host_key_fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_id` after provisioning.\n"]
     pub fn host_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -180,7 +157,6 @@ impl TransferHostKey {
             format!("{}.host_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -188,7 +164,6 @@ impl TransferHostKey {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -196,7 +171,6 @@ impl TransferHostKey {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -204,7 +178,6 @@ impl TransferHostKey {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -213,7 +186,6 @@ impl TransferHostKey {
         )
     }
 }
-
 impl Referable for TransferHostKey {
     fn extract_ref(&self) -> String {
         format!(
@@ -223,38 +195,30 @@ impl Referable for TransferHostKey {
         )
     }
 }
-
 impl Resource for TransferHostKey {}
-
 impl ToListMappable for TransferHostKey {
     type O = ListRef<TransferHostKeyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for TransferHostKey_ {
     fn extract_resource_type(&self) -> String {
         "aws_transfer_host_key".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildTransferHostKey {
     pub tf_id: String,
     #[doc = ""]
     pub server_id: PrimField<String>,
 }
-
 impl BuildTransferHostKey {
     pub fn build(self, stack: &mut Stack) -> TransferHostKey {
         let out = TransferHostKey(Rc::new(TransferHostKey_ {
@@ -277,32 +241,26 @@ impl BuildTransferHostKey {
         out
     }
 }
-
 pub struct TransferHostKeyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for TransferHostKeyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl TransferHostKeyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -310,7 +268,6 @@ impl TransferHostKeyRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_body` after provisioning.\n"]
     pub fn host_key_body(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -318,7 +275,6 @@ impl TransferHostKeyRef {
             format!("{}.host_key_body", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_body_wo` after provisioning.\n"]
     pub fn host_key_body_wo(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -326,7 +282,6 @@ impl TransferHostKeyRef {
             format!("{}.host_key_body_wo", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_fingerprint` after provisioning.\n"]
     pub fn host_key_fingerprint(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -334,7 +289,6 @@ impl TransferHostKeyRef {
             format!("{}.host_key_fingerprint", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host_key_id` after provisioning.\n"]
     pub fn host_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -342,7 +296,6 @@ impl TransferHostKeyRef {
             format!("{}.host_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -350,7 +303,6 @@ impl TransferHostKeyRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `server_id` after provisioning.\n"]
     pub fn server_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -358,7 +310,6 @@ impl TransferHostKeyRef {
             format!("{}.server_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -366,7 +317,6 @@ impl TransferHostKeyRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

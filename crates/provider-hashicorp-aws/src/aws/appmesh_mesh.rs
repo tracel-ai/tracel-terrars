@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct AppmeshMeshData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct AppmeshMeshData {
     spec: Option<Vec<AppmeshMeshSpecEl>>,
     dynamic: AppmeshMeshDynamic,
 }
-
 struct AppmeshMesh_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<AppmeshMeshData>,
 }
-
 #[derive(Clone)]
 pub struct AppmeshMesh(Rc<AppmeshMesh_>);
-
 impl AppmeshMesh {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl AppmeshMesh {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl AppmeshMesh {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,31 +94,26 @@ impl AppmeshMesh {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `spec`.\n"]
     pub fn set_spec(self, v: impl Into<BlockAssignable<AppmeshMeshSpecEl>>) -> Self {
         match v.into() {
@@ -143,12 +126,10 @@ impl AppmeshMesh {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -156,12 +137,10 @@ impl AppmeshMesh {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -169,7 +148,6 @@ impl AppmeshMesh {
             format!("{}.last_updated_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -177,7 +155,6 @@ impl AppmeshMesh {
             format!("{}.mesh_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -185,7 +162,6 @@ impl AppmeshMesh {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -193,7 +169,6 @@ impl AppmeshMesh {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +176,6 @@ impl AppmeshMesh {
             format!("{}.resource_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -209,7 +183,6 @@ impl AppmeshMesh {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -217,7 +190,6 @@ impl AppmeshMesh {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<AppmeshMeshSpecElRef> {
         ListRef::new(
@@ -226,7 +198,6 @@ impl AppmeshMesh {
         )
     }
 }
-
 impl Referable for AppmeshMesh {
     fn extract_ref(&self) -> String {
         format!(
@@ -236,38 +207,30 @@ impl Referable for AppmeshMesh {
         )
     }
 }
-
 impl Resource for AppmeshMesh {}
-
 impl ToListMappable for AppmeshMesh {
     type O = ListRef<AppmeshMeshRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for AppmeshMesh_ {
     fn extract_resource_type(&self) -> String {
         "aws_appmesh_mesh".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildAppmeshMesh {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildAppmeshMesh {
     pub fn build(self, stack: &mut Stack) -> AppmeshMesh {
         let out = AppmeshMesh(Rc::new(AppmeshMesh_ {
@@ -291,32 +254,26 @@ impl BuildAppmeshMesh {
         out
     }
 }
-
 pub struct AppmeshMeshRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppmeshMeshRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl AppmeshMeshRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `created_date` after provisioning.\n"]
     pub fn created_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -324,12 +281,10 @@ impl AppmeshMeshRef {
             format!("{}.created_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `last_updated_date` after provisioning.\n"]
     pub fn last_updated_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -337,7 +292,6 @@ impl AppmeshMeshRef {
             format!("{}.last_updated_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `mesh_owner` after provisioning.\n"]
     pub fn mesh_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -345,7 +299,6 @@ impl AppmeshMeshRef {
             format!("{}.mesh_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -353,7 +306,6 @@ impl AppmeshMeshRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -361,7 +313,6 @@ impl AppmeshMeshRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_owner` after provisioning.\n"]
     pub fn resource_owner(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -369,7 +320,6 @@ impl AppmeshMeshRef {
             format!("{}.resource_owner", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -377,7 +327,6 @@ impl AppmeshMeshRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -385,7 +334,6 @@ impl AppmeshMeshRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `spec` after provisioning.\n"]
     pub fn spec(&self) -> ListRef<AppmeshMeshSpecElRef> {
         ListRef::new(
@@ -394,13 +342,11 @@ impl AppmeshMeshRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct AppmeshMeshSpecElEgressFilterEl {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     type_: Option<PrimField<String>>,
 }
-
 impl AppmeshMeshSpecElEgressFilterEl {
     #[doc = "Set the field `type_`.\n"]
     pub fn set_type(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -408,10 +354,8 @@ impl AppmeshMeshSpecElEgressFilterEl {
         self
     }
 }
-
 impl ToListMappable for AppmeshMeshSpecElEgressFilterEl {
     type O = BlockAssignable<AppmeshMeshSpecElEgressFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -420,9 +364,7 @@ impl ToListMappable for AppmeshMeshSpecElEgressFilterEl {
         })
     }
 }
-
 pub struct BuildAppmeshMeshSpecElEgressFilterEl {}
-
 impl BuildAppmeshMeshSpecElEgressFilterEl {
     pub fn build(self) -> AppmeshMeshSpecElEgressFilterEl {
         AppmeshMeshSpecElEgressFilterEl {
@@ -430,12 +372,10 @@ impl BuildAppmeshMeshSpecElEgressFilterEl {
         }
     }
 }
-
 pub struct AppmeshMeshSpecElEgressFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppmeshMeshSpecElEgressFilterElRef {
     fn new(shared: StackShared, base: String) -> AppmeshMeshSpecElEgressFilterElRef {
         AppmeshMeshSpecElEgressFilterElRef {
@@ -444,24 +384,20 @@ impl Ref for AppmeshMeshSpecElEgressFilterElRef {
         }
     }
 }
-
 impl AppmeshMeshSpecElEgressFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `type_` after provisioning.\n"]
     pub fn type_(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.type", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct AppmeshMeshSpecElServiceDiscoveryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     ip_preference: Option<PrimField<String>>,
 }
-
 impl AppmeshMeshSpecElServiceDiscoveryEl {
     #[doc = "Set the field `ip_preference`.\n"]
     pub fn set_ip_preference(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -469,10 +405,8 @@ impl AppmeshMeshSpecElServiceDiscoveryEl {
         self
     }
 }
-
 impl ToListMappable for AppmeshMeshSpecElServiceDiscoveryEl {
     type O = BlockAssignable<AppmeshMeshSpecElServiceDiscoveryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -481,9 +415,7 @@ impl ToListMappable for AppmeshMeshSpecElServiceDiscoveryEl {
         })
     }
 }
-
 pub struct BuildAppmeshMeshSpecElServiceDiscoveryEl {}
-
 impl BuildAppmeshMeshSpecElServiceDiscoveryEl {
     pub fn build(self) -> AppmeshMeshSpecElServiceDiscoveryEl {
         AppmeshMeshSpecElServiceDiscoveryEl {
@@ -491,12 +423,10 @@ impl BuildAppmeshMeshSpecElServiceDiscoveryEl {
         }
     }
 }
-
 pub struct AppmeshMeshSpecElServiceDiscoveryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppmeshMeshSpecElServiceDiscoveryElRef {
     fn new(shared: StackShared, base: String) -> AppmeshMeshSpecElServiceDiscoveryElRef {
         AppmeshMeshSpecElServiceDiscoveryElRef {
@@ -505,12 +435,10 @@ impl Ref for AppmeshMeshSpecElServiceDiscoveryElRef {
         }
     }
 }
-
 impl AppmeshMeshSpecElServiceDiscoveryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `ip_preference` after provisioning.\n"]
     pub fn ip_preference(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -519,13 +447,11 @@ impl AppmeshMeshSpecElServiceDiscoveryElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppmeshMeshSpecElDynamic {
     egress_filter: Option<DynamicBlock<AppmeshMeshSpecElEgressFilterEl>>,
     service_discovery: Option<DynamicBlock<AppmeshMeshSpecElServiceDiscoveryEl>>,
 }
-
 #[derive(Serialize)]
 pub struct AppmeshMeshSpecEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -534,7 +460,6 @@ pub struct AppmeshMeshSpecEl {
     service_discovery: Option<Vec<AppmeshMeshSpecElServiceDiscoveryEl>>,
     dynamic: AppmeshMeshSpecElDynamic,
 }
-
 impl AppmeshMeshSpecEl {
     #[doc = "Set the field `egress_filter`.\n"]
     pub fn set_egress_filter(
@@ -551,7 +476,6 @@ impl AppmeshMeshSpecEl {
         }
         self
     }
-
     #[doc = "Set the field `service_discovery`.\n"]
     pub fn set_service_discovery(
         mut self,
@@ -568,10 +492,8 @@ impl AppmeshMeshSpecEl {
         self
     }
 }
-
 impl ToListMappable for AppmeshMeshSpecEl {
     type O = BlockAssignable<AppmeshMeshSpecEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -580,9 +502,7 @@ impl ToListMappable for AppmeshMeshSpecEl {
         })
     }
 }
-
 pub struct BuildAppmeshMeshSpecEl {}
-
 impl BuildAppmeshMeshSpecEl {
     pub fn build(self) -> AppmeshMeshSpecEl {
         AppmeshMeshSpecEl {
@@ -592,12 +512,10 @@ impl BuildAppmeshMeshSpecEl {
         }
     }
 }
-
 pub struct AppmeshMeshSpecElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for AppmeshMeshSpecElRef {
     fn new(shared: StackShared, base: String) -> AppmeshMeshSpecElRef {
         AppmeshMeshSpecElRef {
@@ -606,12 +524,10 @@ impl Ref for AppmeshMeshSpecElRef {
         }
     }
 }
-
 impl AppmeshMeshSpecElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `egress_filter` after provisioning.\n"]
     pub fn egress_filter(&self) -> ListRef<AppmeshMeshSpecElEgressFilterElRef> {
         ListRef::new(
@@ -619,7 +535,6 @@ impl AppmeshMeshSpecElRef {
             format!("{}.egress_filter", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_discovery` after provisioning.\n"]
     pub fn service_discovery(&self) -> ListRef<AppmeshMeshSpecElServiceDiscoveryElRef> {
         ListRef::new(
@@ -628,7 +543,6 @@ impl AppmeshMeshSpecElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct AppmeshMeshDynamic {
     spec: Option<DynamicBlock<AppmeshMeshSpecEl>>,

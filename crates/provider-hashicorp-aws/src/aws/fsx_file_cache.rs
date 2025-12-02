@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct FsxFileCacheData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -40,47 +39,38 @@ struct FsxFileCacheData {
     timeouts: Option<FsxFileCacheTimeoutsEl>,
     dynamic: FsxFileCacheDynamic,
 }
-
 struct FsxFileCache_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<FsxFileCacheData>,
 }
-
 #[derive(Clone)]
 pub struct FsxFileCache(Rc<FsxFileCache_>);
-
 impl FsxFileCache {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -99,7 +89,6 @@ impl FsxFileCache {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -109,7 +98,6 @@ impl FsxFileCache {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -119,7 +107,6 @@ impl FsxFileCache {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `copy_tags_to_data_repository_associations`.\n"]
     pub fn set_copy_tags_to_data_repository_associations(
         self,
@@ -131,43 +118,36 @@ impl FsxFileCache {
             .copy_tags_to_data_repository_associations = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `kms_key_id`.\n"]
     pub fn set_kms_key_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().kms_key_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `security_group_ids`.\n"]
     pub fn set_security_group_ids(self, v: impl Into<SetField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().security_group_ids = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `data_repository_association`.\n"]
     pub fn set_data_repository_association(
         self,
@@ -183,7 +163,6 @@ impl FsxFileCache {
         }
         self
     }
-
     #[doc = "Set the field `lustre_configuration`.\n"]
     pub fn set_lustre_configuration(
         self,
@@ -199,18 +178,15 @@ impl FsxFileCache {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<FsxFileCacheTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `copy_tags_to_data_repository_associations` after provisioning.\n"]
     pub fn copy_tags_to_data_repository_associations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -221,7 +197,6 @@ impl FsxFileCache {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_repository_association_ids` after provisioning.\n"]
     pub fn data_repository_association_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -229,7 +204,6 @@ impl FsxFileCache {
             format!("{}.data_repository_association_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -237,7 +211,6 @@ impl FsxFileCache {
             format!("{}.dns_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_id` after provisioning.\n"]
     pub fn file_cache_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -245,7 +218,6 @@ impl FsxFileCache {
             format!("{}.file_cache_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_type` after provisioning.\n"]
     pub fn file_cache_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -253,7 +225,6 @@ impl FsxFileCache {
             format!("{}.file_cache_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_type_version` after provisioning.\n"]
     pub fn file_cache_type_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -261,12 +232,10 @@ impl FsxFileCache {
             format!("{}.file_cache_type_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +243,6 @@ impl FsxFileCache {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_ids` after provisioning.\n"]
     pub fn network_interface_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -282,7 +250,6 @@ impl FsxFileCache {
             format!("{}.network_interface_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -290,7 +257,6 @@ impl FsxFileCache {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -298,7 +264,6 @@ impl FsxFileCache {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -306,7 +271,6 @@ impl FsxFileCache {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_capacity` after provisioning.\n"]
     pub fn storage_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -314,7 +278,6 @@ impl FsxFileCache {
             format!("{}.storage_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -322,7 +285,6 @@ impl FsxFileCache {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -330,7 +292,6 @@ impl FsxFileCache {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -338,7 +299,6 @@ impl FsxFileCache {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +306,6 @@ impl FsxFileCache {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FsxFileCacheTimeoutsElRef {
         FsxFileCacheTimeoutsElRef::new(
@@ -355,7 +314,6 @@ impl FsxFileCache {
         )
     }
 }
-
 impl Referable for FsxFileCache {
     fn extract_ref(&self) -> String {
         format!(
@@ -365,32 +323,25 @@ impl Referable for FsxFileCache {
         )
     }
 }
-
 impl Resource for FsxFileCache {}
-
 impl ToListMappable for FsxFileCache {
     type O = ListRef<FsxFileCacheRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for FsxFileCache_ {
     fn extract_resource_type(&self) -> String {
         "aws_fsx_file_cache".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildFsxFileCache {
     pub tf_id: String,
     #[doc = ""]
@@ -402,7 +353,6 @@ pub struct BuildFsxFileCache {
     #[doc = ""]
     pub subnet_ids: ListField<PrimField<String>>,
 }
-
 impl BuildFsxFileCache {
     pub fn build(self, stack: &mut Stack) -> FsxFileCache {
         let out = FsxFileCache(Rc::new(FsxFileCache_ {
@@ -434,32 +384,26 @@ impl BuildFsxFileCache {
         out
     }
 }
-
 pub struct FsxFileCacheRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl FsxFileCacheRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `copy_tags_to_data_repository_associations` after provisioning.\n"]
     pub fn copy_tags_to_data_repository_associations(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -470,7 +414,6 @@ impl FsxFileCacheRef {
             ),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_repository_association_ids` after provisioning.\n"]
     pub fn data_repository_association_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -478,7 +421,6 @@ impl FsxFileCacheRef {
             format!("{}.data_repository_association_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +428,6 @@ impl FsxFileCacheRef {
             format!("{}.dns_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_id` after provisioning.\n"]
     pub fn file_cache_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +435,6 @@ impl FsxFileCacheRef {
             format!("{}.file_cache_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_type` after provisioning.\n"]
     pub fn file_cache_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -502,7 +442,6 @@ impl FsxFileCacheRef {
             format!("{}.file_cache_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_type_version` after provisioning.\n"]
     pub fn file_cache_type_version(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -510,12 +449,10 @@ impl FsxFileCacheRef {
             format!("{}.file_cache_type_version", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `kms_key_id` after provisioning.\n"]
     pub fn kms_key_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -523,7 +460,6 @@ impl FsxFileCacheRef {
             format!("{}.kms_key_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_ids` after provisioning.\n"]
     pub fn network_interface_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -531,7 +467,6 @@ impl FsxFileCacheRef {
             format!("{}.network_interface_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -539,7 +474,6 @@ impl FsxFileCacheRef {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -547,7 +481,6 @@ impl FsxFileCacheRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -555,7 +488,6 @@ impl FsxFileCacheRef {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `storage_capacity` after provisioning.\n"]
     pub fn storage_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -563,7 +495,6 @@ impl FsxFileCacheRef {
             format!("{}.storage_capacity", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -571,7 +502,6 @@ impl FsxFileCacheRef {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -579,7 +509,6 @@ impl FsxFileCacheRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -587,7 +516,6 @@ impl FsxFileCacheRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -595,7 +523,6 @@ impl FsxFileCacheRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> FsxFileCacheTimeoutsElRef {
         FsxFileCacheTimeoutsElRef::new(
@@ -604,14 +531,12 @@ impl FsxFileCacheRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheDataRepositoryAssociationElNfsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     dns_ips: Option<SetField<PrimField<String>>>,
     version: PrimField<String>,
 }
-
 impl FsxFileCacheDataRepositoryAssociationElNfsEl {
     #[doc = "Set the field `dns_ips`.\n"]
     pub fn set_dns_ips(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -619,10 +544,8 @@ impl FsxFileCacheDataRepositoryAssociationElNfsEl {
         self
     }
 }
-
 impl ToListMappable for FsxFileCacheDataRepositoryAssociationElNfsEl {
     type O = BlockAssignable<FsxFileCacheDataRepositoryAssociationElNfsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -631,12 +554,10 @@ impl ToListMappable for FsxFileCacheDataRepositoryAssociationElNfsEl {
         })
     }
 }
-
 pub struct BuildFsxFileCacheDataRepositoryAssociationElNfsEl {
     #[doc = ""]
     pub version: PrimField<String>,
 }
-
 impl BuildFsxFileCacheDataRepositoryAssociationElNfsEl {
     pub fn build(self) -> FsxFileCacheDataRepositoryAssociationElNfsEl {
         FsxFileCacheDataRepositoryAssociationElNfsEl {
@@ -645,12 +566,10 @@ impl BuildFsxFileCacheDataRepositoryAssociationElNfsEl {
         }
     }
 }
-
 pub struct FsxFileCacheDataRepositoryAssociationElNfsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheDataRepositoryAssociationElNfsElRef {
     fn new(shared: StackShared, base: String) -> FsxFileCacheDataRepositoryAssociationElNfsElRef {
         FsxFileCacheDataRepositoryAssociationElNfsElRef {
@@ -659,28 +578,23 @@ impl Ref for FsxFileCacheDataRepositoryAssociationElNfsElRef {
         }
     }
 }
-
 impl FsxFileCacheDataRepositoryAssociationElNfsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dns_ips` after provisioning.\n"]
     pub fn dns_ips(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.dns_ips", self.base))
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.version", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxFileCacheDataRepositoryAssociationElDynamic {
     nfs: Option<DynamicBlock<FsxFileCacheDataRepositoryAssociationElNfsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheDataRepositoryAssociationEl {
     data_repository_path: PrimField<String>,
@@ -693,7 +607,6 @@ pub struct FsxFileCacheDataRepositoryAssociationEl {
     nfs: Option<Vec<FsxFileCacheDataRepositoryAssociationElNfsEl>>,
     dynamic: FsxFileCacheDataRepositoryAssociationElDynamic,
 }
-
 impl FsxFileCacheDataRepositoryAssociationEl {
     #[doc = "Set the field `data_repository_subdirectories`.\n"]
     pub fn set_data_repository_subdirectories(
@@ -703,13 +616,11 @@ impl FsxFileCacheDataRepositoryAssociationEl {
         self.data_repository_subdirectories = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(mut self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `nfs`.\n"]
     pub fn set_nfs(
         mut self,
@@ -726,10 +637,8 @@ impl FsxFileCacheDataRepositoryAssociationEl {
         self
     }
 }
-
 impl ToListMappable for FsxFileCacheDataRepositoryAssociationEl {
     type O = BlockAssignable<FsxFileCacheDataRepositoryAssociationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -738,14 +647,12 @@ impl ToListMappable for FsxFileCacheDataRepositoryAssociationEl {
         })
     }
 }
-
 pub struct BuildFsxFileCacheDataRepositoryAssociationEl {
     #[doc = ""]
     pub data_repository_path: PrimField<String>,
     #[doc = ""]
     pub file_cache_path: PrimField<String>,
 }
-
 impl BuildFsxFileCacheDataRepositoryAssociationEl {
     pub fn build(self) -> FsxFileCacheDataRepositoryAssociationEl {
         FsxFileCacheDataRepositoryAssociationEl {
@@ -758,12 +665,10 @@ impl BuildFsxFileCacheDataRepositoryAssociationEl {
         }
     }
 }
-
 pub struct FsxFileCacheDataRepositoryAssociationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheDataRepositoryAssociationElRef {
     fn new(shared: StackShared, base: String) -> FsxFileCacheDataRepositoryAssociationElRef {
         FsxFileCacheDataRepositoryAssociationElRef {
@@ -772,12 +677,10 @@ impl Ref for FsxFileCacheDataRepositoryAssociationElRef {
         }
     }
 }
-
 impl FsxFileCacheDataRepositoryAssociationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `association_id` after provisioning.\n"]
     pub fn association_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -785,7 +688,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.association_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_repository_path` after provisioning.\n"]
     pub fn data_repository_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -793,7 +695,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.data_repository_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `data_repository_subdirectories` after provisioning.\n"]
     pub fn data_repository_subdirectories(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -801,7 +702,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.data_repository_subdirectories", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_id` after provisioning.\n"]
     pub fn file_cache_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -809,7 +709,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.file_cache_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_cache_path` after provisioning.\n"]
     pub fn file_cache_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -817,7 +716,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.file_cache_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_id` after provisioning.\n"]
     pub fn file_system_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -825,7 +723,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.file_system_id", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `file_system_path` after provisioning.\n"]
     pub fn file_system_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -833,7 +730,6 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.file_system_path", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `imported_file_chunk_size` after provisioning.\n"]
     pub fn imported_file_chunk_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -841,18 +737,15 @@ impl FsxFileCacheDataRepositoryAssociationElRef {
             format!("{}.imported_file_chunk_size", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.resource_arn", self.base))
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(self.shared().clone(), format!("{}.tags", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheLustreConfigurationElLogConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -860,24 +753,20 @@ pub struct FsxFileCacheLustreConfigurationElLogConfigurationEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     level: Option<PrimField<String>>,
 }
-
 impl FsxFileCacheLustreConfigurationElLogConfigurationEl {
     #[doc = "Set the field `destination`.\n"]
     pub fn set_destination(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.destination = Some(v.into());
         self
     }
-
     #[doc = "Set the field `level`.\n"]
     pub fn set_level(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.level = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxFileCacheLustreConfigurationElLogConfigurationEl {
     type O = BlockAssignable<FsxFileCacheLustreConfigurationElLogConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -886,9 +775,7 @@ impl ToListMappable for FsxFileCacheLustreConfigurationElLogConfigurationEl {
         })
     }
 }
-
 pub struct BuildFsxFileCacheLustreConfigurationElLogConfigurationEl {}
-
 impl BuildFsxFileCacheLustreConfigurationElLogConfigurationEl {
     pub fn build(self) -> FsxFileCacheLustreConfigurationElLogConfigurationEl {
         FsxFileCacheLustreConfigurationElLogConfigurationEl {
@@ -897,12 +784,10 @@ impl BuildFsxFileCacheLustreConfigurationElLogConfigurationEl {
         }
     }
 }
-
 pub struct FsxFileCacheLustreConfigurationElLogConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheLustreConfigurationElLogConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -914,33 +799,26 @@ impl Ref for FsxFileCacheLustreConfigurationElLogConfigurationElRef {
         }
     }
 }
-
 impl FsxFileCacheLustreConfigurationElLogConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `destination` after provisioning.\n"]
     pub fn destination(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.destination", self.base))
     }
-
     #[doc = "Get a reference to the value of field `level` after provisioning.\n"]
     pub fn level(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.level", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheLustreConfigurationElMetadataConfigurationEl {
     storage_capacity: PrimField<f64>,
 }
-
 impl FsxFileCacheLustreConfigurationElMetadataConfigurationEl {}
-
 impl ToListMappable for FsxFileCacheLustreConfigurationElMetadataConfigurationEl {
     type O = BlockAssignable<FsxFileCacheLustreConfigurationElMetadataConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -949,12 +827,10 @@ impl ToListMappable for FsxFileCacheLustreConfigurationElMetadataConfigurationEl
         })
     }
 }
-
 pub struct BuildFsxFileCacheLustreConfigurationElMetadataConfigurationEl {
     #[doc = ""]
     pub storage_capacity: PrimField<f64>,
 }
-
 impl BuildFsxFileCacheLustreConfigurationElMetadataConfigurationEl {
     pub fn build(self) -> FsxFileCacheLustreConfigurationElMetadataConfigurationEl {
         FsxFileCacheLustreConfigurationElMetadataConfigurationEl {
@@ -962,12 +838,10 @@ impl BuildFsxFileCacheLustreConfigurationElMetadataConfigurationEl {
         }
     }
 }
-
 pub struct FsxFileCacheLustreConfigurationElMetadataConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheLustreConfigurationElMetadataConfigurationElRef {
     fn new(
         shared: StackShared,
@@ -979,12 +853,10 @@ impl Ref for FsxFileCacheLustreConfigurationElMetadataConfigurationElRef {
         }
     }
 }
-
 impl FsxFileCacheLustreConfigurationElMetadataConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `storage_capacity` after provisioning.\n"]
     pub fn storage_capacity(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -993,13 +865,11 @@ impl FsxFileCacheLustreConfigurationElMetadataConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxFileCacheLustreConfigurationElDynamic {
     metadata_configuration:
         Option<DynamicBlock<FsxFileCacheLustreConfigurationElMetadataConfigurationEl>>,
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheLustreConfigurationEl {
     deployment_type: PrimField<String>,
@@ -1010,14 +880,12 @@ pub struct FsxFileCacheLustreConfigurationEl {
     metadata_configuration: Option<Vec<FsxFileCacheLustreConfigurationElMetadataConfigurationEl>>,
     dynamic: FsxFileCacheLustreConfigurationElDynamic,
 }
-
 impl FsxFileCacheLustreConfigurationEl {
     #[doc = "Set the field `weekly_maintenance_start_time`.\n"]
     pub fn set_weekly_maintenance_start_time(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.weekly_maintenance_start_time = Some(v.into());
         self
     }
-
     #[doc = "Set the field `metadata_configuration`.\n"]
     pub fn set_metadata_configuration(
         mut self,
@@ -1034,10 +902,8 @@ impl FsxFileCacheLustreConfigurationEl {
         self
     }
 }
-
 impl ToListMappable for FsxFileCacheLustreConfigurationEl {
     type O = BlockAssignable<FsxFileCacheLustreConfigurationEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1046,14 +912,12 @@ impl ToListMappable for FsxFileCacheLustreConfigurationEl {
         })
     }
 }
-
 pub struct BuildFsxFileCacheLustreConfigurationEl {
     #[doc = ""]
     pub deployment_type: PrimField<String>,
     #[doc = ""]
     pub per_unit_storage_throughput: PrimField<f64>,
 }
-
 impl BuildFsxFileCacheLustreConfigurationEl {
     pub fn build(self) -> FsxFileCacheLustreConfigurationEl {
         FsxFileCacheLustreConfigurationEl {
@@ -1065,12 +929,10 @@ impl BuildFsxFileCacheLustreConfigurationEl {
         }
     }
 }
-
 pub struct FsxFileCacheLustreConfigurationElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheLustreConfigurationElRef {
     fn new(shared: StackShared, base: String) -> FsxFileCacheLustreConfigurationElRef {
         FsxFileCacheLustreConfigurationElRef {
@@ -1079,12 +941,10 @@ impl Ref for FsxFileCacheLustreConfigurationElRef {
         }
     }
 }
-
 impl FsxFileCacheLustreConfigurationElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `deployment_type` after provisioning.\n"]
     pub fn deployment_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1092,7 +952,6 @@ impl FsxFileCacheLustreConfigurationElRef {
             format!("{}.deployment_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `log_configuration` after provisioning.\n"]
     pub fn log_configuration(
         &self,
@@ -1102,12 +961,10 @@ impl FsxFileCacheLustreConfigurationElRef {
             format!("{}.log_configuration", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `mount_name` after provisioning.\n"]
     pub fn mount_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.mount_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `per_unit_storage_throughput` after provisioning.\n"]
     pub fn per_unit_storage_throughput(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -1115,7 +972,6 @@ impl FsxFileCacheLustreConfigurationElRef {
             format!("{}.per_unit_storage_throughput", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `weekly_maintenance_start_time` after provisioning.\n"]
     pub fn weekly_maintenance_start_time(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -1124,7 +980,6 @@ impl FsxFileCacheLustreConfigurationElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct FsxFileCacheTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -1134,30 +989,25 @@ pub struct FsxFileCacheTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     update: Option<PrimField<String>>,
 }
-
 impl FsxFileCacheTimeoutsEl {
     #[doc = "Set the field `create`.\n"]
     pub fn set_create(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.create = Some(v.into());
         self
     }
-
     #[doc = "Set the field `delete`.\n"]
     pub fn set_delete(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.delete = Some(v.into());
         self
     }
-
     #[doc = "Set the field `update`.\n"]
     pub fn set_update(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.update = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for FsxFileCacheTimeoutsEl {
     type O = BlockAssignable<FsxFileCacheTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -1166,9 +1016,7 @@ impl ToListMappable for FsxFileCacheTimeoutsEl {
         })
     }
 }
-
 pub struct BuildFsxFileCacheTimeoutsEl {}
-
 impl BuildFsxFileCacheTimeoutsEl {
     pub fn build(self) -> FsxFileCacheTimeoutsEl {
         FsxFileCacheTimeoutsEl {
@@ -1178,12 +1026,10 @@ impl BuildFsxFileCacheTimeoutsEl {
         }
     }
 }
-
 pub struct FsxFileCacheTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for FsxFileCacheTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> FsxFileCacheTimeoutsElRef {
         FsxFileCacheTimeoutsElRef {
@@ -1192,28 +1038,23 @@ impl Ref for FsxFileCacheTimeoutsElRef {
         }
     }
 }
-
 impl FsxFileCacheTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `create` after provisioning.\n"]
     pub fn create(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.create", self.base))
     }
-
     #[doc = "Get a reference to the value of field `delete` after provisioning.\n"]
     pub fn delete(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.delete", self.base))
     }
-
     #[doc = "Get a reference to the value of field `update` after provisioning.\n"]
     pub fn update(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.update", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct FsxFileCacheDynamic {
     data_repository_association: Option<DynamicBlock<FsxFileCacheDataRepositoryAssociationEl>>,

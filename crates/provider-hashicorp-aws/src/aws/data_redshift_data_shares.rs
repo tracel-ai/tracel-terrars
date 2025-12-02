@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataRedshiftDataSharesData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -15,37 +14,30 @@ struct DataRedshiftDataSharesData {
     #[serde(skip_serializing_if = "Option::is_none")]
     region: Option<PrimField<String>>,
 }
-
 struct DataRedshiftDataShares_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataRedshiftDataSharesData>,
 }
-
 #[derive(Clone)]
 pub struct DataRedshiftDataShares(Rc<DataRedshiftDataShares_>);
-
 impl DataRedshiftDataShares {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `data_shares` after provisioning.\n"]
     pub fn data_shares(&self) -> ListRef<DataRedshiftDataSharesDataSharesElRef> {
         ListRef::new(
@@ -53,12 +45,10 @@ impl DataRedshiftDataShares {
             format!("{}.data_shares", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -67,7 +57,6 @@ impl DataRedshiftDataShares {
         )
     }
 }
-
 impl Referable for DataRedshiftDataShares {
     fn extract_ref(&self) -> String {
         format!(
@@ -77,36 +66,28 @@ impl Referable for DataRedshiftDataShares {
         )
     }
 }
-
 impl Datasource for DataRedshiftDataShares {}
-
 impl ToListMappable for DataRedshiftDataShares {
     type O = ListRef<DataRedshiftDataSharesRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataRedshiftDataShares_ {
     fn extract_datasource_type(&self) -> String {
         "aws_redshift_data_shares".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataRedshiftDataShares {
     pub tf_id: String,
 }
-
 impl BuildDataRedshiftDataShares {
     pub fn build(self, stack: &mut Stack) -> DataRedshiftDataShares {
         let out = DataRedshiftDataShares(Rc::new(DataRedshiftDataShares_ {
@@ -123,27 +104,22 @@ impl BuildDataRedshiftDataShares {
         out
     }
 }
-
 pub struct DataRedshiftDataSharesRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRedshiftDataSharesRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataRedshiftDataSharesRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `data_shares` after provisioning.\n"]
     pub fn data_shares(&self) -> ListRef<DataRedshiftDataSharesDataSharesElRef> {
         ListRef::new(
@@ -151,12 +127,10 @@ impl DataRedshiftDataSharesRef {
             format!("{}.data_shares", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -165,7 +139,6 @@ impl DataRedshiftDataSharesRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataRedshiftDataSharesDataSharesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -175,30 +148,25 @@ pub struct DataRedshiftDataSharesDataSharesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     producer_arn: Option<PrimField<String>>,
 }
-
 impl DataRedshiftDataSharesDataSharesEl {
     #[doc = "Set the field `data_share_arn`.\n"]
     pub fn set_data_share_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.data_share_arn = Some(v.into());
         self
     }
-
     #[doc = "Set the field `managed_by`.\n"]
     pub fn set_managed_by(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.managed_by = Some(v.into());
         self
     }
-
     #[doc = "Set the field `producer_arn`.\n"]
     pub fn set_producer_arn(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.producer_arn = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataRedshiftDataSharesDataSharesEl {
     type O = BlockAssignable<DataRedshiftDataSharesDataSharesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -207,9 +175,7 @@ impl ToListMappable for DataRedshiftDataSharesDataSharesEl {
         })
     }
 }
-
 pub struct BuildDataRedshiftDataSharesDataSharesEl {}
-
 impl BuildDataRedshiftDataSharesDataSharesEl {
     pub fn build(self) -> DataRedshiftDataSharesDataSharesEl {
         DataRedshiftDataSharesDataSharesEl {
@@ -219,12 +185,10 @@ impl BuildDataRedshiftDataSharesDataSharesEl {
         }
     }
 }
-
 pub struct DataRedshiftDataSharesDataSharesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataRedshiftDataSharesDataSharesElRef {
     fn new(shared: StackShared, base: String) -> DataRedshiftDataSharesDataSharesElRef {
         DataRedshiftDataSharesDataSharesElRef {
@@ -233,12 +197,10 @@ impl Ref for DataRedshiftDataSharesDataSharesElRef {
         }
     }
 }
-
 impl DataRedshiftDataSharesDataSharesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `data_share_arn` after provisioning.\n"]
     pub fn data_share_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -246,12 +208,10 @@ impl DataRedshiftDataSharesDataSharesElRef {
             format!("{}.data_share_arn", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `managed_by` after provisioning.\n"]
     pub fn managed_by(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.managed_by", self.base))
     }
-
     #[doc = "Get a reference to the value of field `producer_arn` after provisioning.\n"]
     pub fn producer_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.producer_arn", self.base))

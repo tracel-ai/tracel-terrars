@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct XraySamplingRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -37,47 +36,38 @@ struct XraySamplingRuleData {
     url_path: PrimField<String>,
     version: PrimField<f64>,
 }
-
 struct XraySamplingRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<XraySamplingRuleData>,
 }
-
 #[derive(Clone)]
 pub struct XraySamplingRule(Rc<XraySamplingRule_>);
-
 impl XraySamplingRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -96,7 +86,6 @@ impl XraySamplingRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -106,7 +95,6 @@ impl XraySamplingRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -116,48 +104,40 @@ impl XraySamplingRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `attributes`.\n"]
     pub fn set_attributes(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().attributes = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `rule_name`.\n"]
     pub fn set_rule_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().rule_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -165,7 +145,6 @@ impl XraySamplingRule {
             format!("{}.attributes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fixed_rate` after provisioning.\n"]
     pub fn fixed_rate(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -173,7 +152,6 @@ impl XraySamplingRule {
             format!("{}.fixed_rate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host` after provisioning.\n"]
     pub fn host(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +159,6 @@ impl XraySamplingRule {
             format!("{}.host", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_method` after provisioning.\n"]
     pub fn http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,12 +166,10 @@ impl XraySamplingRule {
             format!("{}.http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -202,7 +177,6 @@ impl XraySamplingRule {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +184,6 @@ impl XraySamplingRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reservoir_size` after provisioning.\n"]
     pub fn reservoir_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -218,7 +191,6 @@ impl XraySamplingRule {
             format!("{}.reservoir_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +198,6 @@ impl XraySamplingRule {
             format!("{}.resource_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +205,6 @@ impl XraySamplingRule {
             format!("{}.rule_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +212,6 @@ impl XraySamplingRule {
             format!("{}.service_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +219,6 @@ impl XraySamplingRule {
             format!("{}.service_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -258,7 +226,6 @@ impl XraySamplingRule {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -266,7 +233,6 @@ impl XraySamplingRule {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url_path` after provisioning.\n"]
     pub fn url_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -274,7 +240,6 @@ impl XraySamplingRule {
             format!("{}.url_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -283,7 +248,6 @@ impl XraySamplingRule {
         )
     }
 }
-
 impl Referable for XraySamplingRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -293,32 +257,25 @@ impl Referable for XraySamplingRule {
         )
     }
 }
-
 impl Resource for XraySamplingRule {}
-
 impl ToListMappable for XraySamplingRule {
     type O = ListRef<XraySamplingRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for XraySamplingRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_xray_sampling_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildXraySamplingRule {
     pub tf_id: String,
     #[doc = ""]
@@ -342,7 +299,6 @@ pub struct BuildXraySamplingRule {
     #[doc = ""]
     pub version: PrimField<f64>,
 }
-
 impl BuildXraySamplingRule {
     pub fn build(self, stack: &mut Stack) -> XraySamplingRule {
         let out = XraySamplingRule(Rc::new(XraySamplingRule_ {
@@ -375,32 +331,26 @@ impl BuildXraySamplingRule {
         out
     }
 }
-
 pub struct XraySamplingRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for XraySamplingRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl XraySamplingRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `attributes` after provisioning.\n"]
     pub fn attributes(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -408,7 +358,6 @@ impl XraySamplingRuleRef {
             format!("{}.attributes", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `fixed_rate` after provisioning.\n"]
     pub fn fixed_rate(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -416,7 +365,6 @@ impl XraySamplingRuleRef {
             format!("{}.fixed_rate", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `host` after provisioning.\n"]
     pub fn host(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -424,7 +372,6 @@ impl XraySamplingRuleRef {
             format!("{}.host", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `http_method` after provisioning.\n"]
     pub fn http_method(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -432,12 +379,10 @@ impl XraySamplingRuleRef {
             format!("{}.http_method", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `priority` after provisioning.\n"]
     pub fn priority(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -445,7 +390,6 @@ impl XraySamplingRuleRef {
             format!("{}.priority", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -453,7 +397,6 @@ impl XraySamplingRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `reservoir_size` after provisioning.\n"]
     pub fn reservoir_size(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -461,7 +404,6 @@ impl XraySamplingRuleRef {
             format!("{}.reservoir_size", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `resource_arn` after provisioning.\n"]
     pub fn resource_arn(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -469,7 +411,6 @@ impl XraySamplingRuleRef {
             format!("{}.resource_arn", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `rule_name` after provisioning.\n"]
     pub fn rule_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -477,7 +418,6 @@ impl XraySamplingRuleRef {
             format!("{}.rule_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -485,7 +425,6 @@ impl XraySamplingRuleRef {
             format!("{}.service_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_type` after provisioning.\n"]
     pub fn service_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -493,7 +432,6 @@ impl XraySamplingRuleRef {
             format!("{}.service_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -501,7 +439,6 @@ impl XraySamplingRuleRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -509,7 +446,6 @@ impl XraySamplingRuleRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `url_path` after provisioning.\n"]
     pub fn url_path(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -517,7 +453,6 @@ impl XraySamplingRuleRef {
             format!("{}.url_path", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `version` after provisioning.\n"]
     pub fn version(&self) -> PrimExpr<f64> {
         PrimExpr::new(

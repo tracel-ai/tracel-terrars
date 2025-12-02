@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct ConnectUserData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -38,47 +37,38 @@ struct ConnectUserData {
     phone_config: Option<Vec<ConnectUserPhoneConfigEl>>,
     dynamic: ConnectUserDynamic,
 }
-
 struct ConnectUser_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<ConnectUserData>,
 }
-
 #[derive(Clone)]
 pub struct ConnectUser(Rc<ConnectUser_>);
-
 impl ConnectUser {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -97,7 +87,6 @@ impl ConnectUser {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -107,7 +96,6 @@ impl ConnectUser {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -117,49 +105,41 @@ impl ConnectUser {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `directory_user_id`.\n"]
     pub fn set_directory_user_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().directory_user_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `hierarchy_group_id`.\n"]
     pub fn set_hierarchy_group_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().hierarchy_group_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `password`.\n"]
     pub fn set_password(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().password = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Set the field `identity_info`.\n"]
     pub fn set_identity_info(
         self,
@@ -175,7 +155,6 @@ impl ConnectUser {
         }
         self
     }
-
     #[doc = "Set the field `phone_config`.\n"]
     pub fn set_phone_config(self, v: impl Into<BlockAssignable<ConnectUserPhoneConfigEl>>) -> Self {
         match v.into() {
@@ -188,12 +167,10 @@ impl ConnectUser {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `directory_user_id` after provisioning.\n"]
     pub fn directory_user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -201,7 +178,6 @@ impl ConnectUser {
             format!("{}.directory_user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hierarchy_group_id` after provisioning.\n"]
     pub fn hierarchy_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -209,12 +185,10 @@ impl ConnectUser {
             format!("{}.hierarchy_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -222,7 +196,6 @@ impl ConnectUser {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -230,7 +203,6 @@ impl ConnectUser {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -238,7 +210,6 @@ impl ConnectUser {
             format!("{}.password", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -246,7 +217,6 @@ impl ConnectUser {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_profile_id` after provisioning.\n"]
     pub fn routing_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -254,7 +224,6 @@ impl ConnectUser {
             format!("{}.routing_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_profile_ids` after provisioning.\n"]
     pub fn security_profile_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -262,7 +231,6 @@ impl ConnectUser {
             format!("{}.security_profile_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -270,7 +238,6 @@ impl ConnectUser {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -278,7 +245,6 @@ impl ConnectUser {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -286,7 +252,6 @@ impl ConnectUser {
             format!("{}.user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_info` after provisioning.\n"]
     pub fn identity_info(&self) -> ListRef<ConnectUserIdentityInfoElRef> {
         ListRef::new(
@@ -294,7 +259,6 @@ impl ConnectUser {
             format!("{}.identity_info", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_config` after provisioning.\n"]
     pub fn phone_config(&self) -> ListRef<ConnectUserPhoneConfigElRef> {
         ListRef::new(
@@ -303,7 +267,6 @@ impl ConnectUser {
         )
     }
 }
-
 impl Referable for ConnectUser {
     fn extract_ref(&self) -> String {
         format!(
@@ -313,32 +276,25 @@ impl Referable for ConnectUser {
         )
     }
 }
-
 impl Resource for ConnectUser {}
-
 impl ToListMappable for ConnectUser {
     type O = ListRef<ConnectUserRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for ConnectUser_ {
     fn extract_resource_type(&self) -> String {
         "aws_connect_user".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildConnectUser {
     pub tf_id: String,
     #[doc = ""]
@@ -350,7 +306,6 @@ pub struct BuildConnectUser {
     #[doc = ""]
     pub security_profile_ids: SetField<PrimField<String>>,
 }
-
 impl BuildConnectUser {
     pub fn build(self, stack: &mut Stack) -> ConnectUser {
         let out = ConnectUser(Rc::new(ConnectUser_ {
@@ -381,32 +336,26 @@ impl BuildConnectUser {
         out
     }
 }
-
 pub struct ConnectUserRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl ConnectUserRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `directory_user_id` after provisioning.\n"]
     pub fn directory_user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -414,7 +363,6 @@ impl ConnectUserRef {
             format!("{}.directory_user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `hierarchy_group_id` after provisioning.\n"]
     pub fn hierarchy_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,12 +370,10 @@ impl ConnectUserRef {
             format!("{}.hierarchy_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `instance_id` after provisioning.\n"]
     pub fn instance_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -435,7 +381,6 @@ impl ConnectUserRef {
             format!("{}.instance_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -443,7 +388,6 @@ impl ConnectUserRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `password` after provisioning.\n"]
     pub fn password(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,7 +395,6 @@ impl ConnectUserRef {
             format!("{}.password", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -459,7 +402,6 @@ impl ConnectUserRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `routing_profile_id` after provisioning.\n"]
     pub fn routing_profile_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -467,7 +409,6 @@ impl ConnectUserRef {
             format!("{}.routing_profile_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_profile_ids` after provisioning.\n"]
     pub fn security_profile_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -475,7 +416,6 @@ impl ConnectUserRef {
             format!("{}.security_profile_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -483,7 +423,6 @@ impl ConnectUserRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -491,7 +430,6 @@ impl ConnectUserRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `user_id` after provisioning.\n"]
     pub fn user_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -499,7 +437,6 @@ impl ConnectUserRef {
             format!("{}.user_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `identity_info` after provisioning.\n"]
     pub fn identity_info(&self) -> ListRef<ConnectUserIdentityInfoElRef> {
         ListRef::new(
@@ -507,7 +444,6 @@ impl ConnectUserRef {
             format!("{}.identity_info", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_config` after provisioning.\n"]
     pub fn phone_config(&self) -> ListRef<ConnectUserPhoneConfigElRef> {
         ListRef::new(
@@ -516,7 +452,6 @@ impl ConnectUserRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserIdentityInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -528,36 +463,30 @@ pub struct ConnectUserIdentityInfoEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     secondary_email: Option<PrimField<String>>,
 }
-
 impl ConnectUserIdentityInfoEl {
     #[doc = "Set the field `email`.\n"]
     pub fn set_email(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.email = Some(v.into());
         self
     }
-
     #[doc = "Set the field `first_name`.\n"]
     pub fn set_first_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.first_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `last_name`.\n"]
     pub fn set_last_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.last_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `secondary_email`.\n"]
     pub fn set_secondary_email(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.secondary_email = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ConnectUserIdentityInfoEl {
     type O = BlockAssignable<ConnectUserIdentityInfoEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -566,9 +495,7 @@ impl ToListMappable for ConnectUserIdentityInfoEl {
         })
     }
 }
-
 pub struct BuildConnectUserIdentityInfoEl {}
-
 impl BuildConnectUserIdentityInfoEl {
     pub fn build(self) -> ConnectUserIdentityInfoEl {
         ConnectUserIdentityInfoEl {
@@ -579,12 +506,10 @@ impl BuildConnectUserIdentityInfoEl {
         }
     }
 }
-
 pub struct ConnectUserIdentityInfoElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserIdentityInfoElRef {
     fn new(shared: StackShared, base: String) -> ConnectUserIdentityInfoElRef {
         ConnectUserIdentityInfoElRef {
@@ -593,27 +518,22 @@ impl Ref for ConnectUserIdentityInfoElRef {
         }
     }
 }
-
 impl ConnectUserIdentityInfoElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `email` after provisioning.\n"]
     pub fn email(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.email", self.base))
     }
-
     #[doc = "Get a reference to the value of field `first_name` after provisioning.\n"]
     pub fn first_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.first_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `last_name` after provisioning.\n"]
     pub fn last_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.last_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `secondary_email` after provisioning.\n"]
     pub fn secondary_email(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -622,7 +542,6 @@ impl ConnectUserIdentityInfoElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct ConnectUserPhoneConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -633,30 +552,25 @@ pub struct ConnectUserPhoneConfigEl {
     desk_phone_number: Option<PrimField<String>>,
     phone_type: PrimField<String>,
 }
-
 impl ConnectUserPhoneConfigEl {
     #[doc = "Set the field `after_contact_work_time_limit`.\n"]
     pub fn set_after_contact_work_time_limit(mut self, v: impl Into<PrimField<f64>>) -> Self {
         self.after_contact_work_time_limit = Some(v.into());
         self
     }
-
     #[doc = "Set the field `auto_accept`.\n"]
     pub fn set_auto_accept(mut self, v: impl Into<PrimField<bool>>) -> Self {
         self.auto_accept = Some(v.into());
         self
     }
-
     #[doc = "Set the field `desk_phone_number`.\n"]
     pub fn set_desk_phone_number(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.desk_phone_number = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for ConnectUserPhoneConfigEl {
     type O = BlockAssignable<ConnectUserPhoneConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -665,12 +579,10 @@ impl ToListMappable for ConnectUserPhoneConfigEl {
         })
     }
 }
-
 pub struct BuildConnectUserPhoneConfigEl {
     #[doc = ""]
     pub phone_type: PrimField<String>,
 }
-
 impl BuildConnectUserPhoneConfigEl {
     pub fn build(self) -> ConnectUserPhoneConfigEl {
         ConnectUserPhoneConfigEl {
@@ -681,12 +593,10 @@ impl BuildConnectUserPhoneConfigEl {
         }
     }
 }
-
 pub struct ConnectUserPhoneConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for ConnectUserPhoneConfigElRef {
     fn new(shared: StackShared, base: String) -> ConnectUserPhoneConfigElRef {
         ConnectUserPhoneConfigElRef {
@@ -695,12 +605,10 @@ impl Ref for ConnectUserPhoneConfigElRef {
         }
     }
 }
-
 impl ConnectUserPhoneConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `after_contact_work_time_limit` after provisioning.\n"]
     pub fn after_contact_work_time_limit(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -708,12 +616,10 @@ impl ConnectUserPhoneConfigElRef {
             format!("{}.after_contact_work_time_limit", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `auto_accept` after provisioning.\n"]
     pub fn auto_accept(&self) -> PrimExpr<bool> {
         PrimExpr::new(self.shared().clone(), format!("{}.auto_accept", self.base))
     }
-
     #[doc = "Get a reference to the value of field `desk_phone_number` after provisioning.\n"]
     pub fn desk_phone_number(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -721,13 +627,11 @@ impl ConnectUserPhoneConfigElRef {
             format!("{}.desk_phone_number", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `phone_type` after provisioning.\n"]
     pub fn phone_type(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.phone_type", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct ConnectUserDynamic {
     identity_info: Option<DynamicBlock<ConnectUserIdentityInfoEl>>,

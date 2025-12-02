@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct SsmMaintenanceWindowData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -41,47 +40,38 @@ struct SsmMaintenanceWindowData {
     #[serde(skip_serializing_if = "Option::is_none")]
     tags_all: Option<RecField<PrimField<String>>>,
 }
-
 struct SsmMaintenanceWindow_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<SsmMaintenanceWindowData>,
 }
-
 #[derive(Clone)]
 pub struct SsmMaintenanceWindow(Rc<SsmMaintenanceWindow_>);
-
 impl SsmMaintenanceWindow {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -100,7 +90,6 @@ impl SsmMaintenanceWindow {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -110,7 +99,6 @@ impl SsmMaintenanceWindow {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -120,73 +108,61 @@ impl SsmMaintenanceWindow {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `allow_unassociated_targets`.\n"]
     pub fn set_allow_unassociated_targets(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().allow_unassociated_targets = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `enabled`.\n"]
     pub fn set_enabled(self, v: impl Into<PrimField<bool>>) -> Self {
         self.0.data.borrow_mut().enabled = Some(v.into());
         self
     }
-
     #[doc = "Set the field `end_date`.\n"]
     pub fn set_end_date(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().end_date = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule_offset`.\n"]
     pub fn set_schedule_offset(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().schedule_offset = Some(v.into());
         self
     }
-
     #[doc = "Set the field `schedule_timezone`.\n"]
     pub fn set_schedule_timezone(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().schedule_timezone = Some(v.into());
         self
     }
-
     #[doc = "Set the field `start_date`.\n"]
     pub fn set_start_date(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().start_date = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags_all`.\n"]
     pub fn set_tags_all(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags_all = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `allow_unassociated_targets` after provisioning.\n"]
     pub fn allow_unassociated_targets(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -194,7 +170,6 @@ impl SsmMaintenanceWindow {
             format!("{}.allow_unassociated_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cutoff` after provisioning.\n"]
     pub fn cutoff(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -202,7 +177,6 @@ impl SsmMaintenanceWindow {
             format!("{}.cutoff", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -210,7 +184,6 @@ impl SsmMaintenanceWindow {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -218,7 +191,6 @@ impl SsmMaintenanceWindow {
             format!("{}.duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -226,7 +198,6 @@ impl SsmMaintenanceWindow {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_date` after provisioning.\n"]
     pub fn end_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,12 +205,10 @@ impl SsmMaintenanceWindow {
             format!("{}.end_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -247,7 +216,6 @@ impl SsmMaintenanceWindow {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -255,7 +223,6 @@ impl SsmMaintenanceWindow {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +230,6 @@ impl SsmMaintenanceWindow {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_offset` after provisioning.\n"]
     pub fn schedule_offset(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -271,7 +237,6 @@ impl SsmMaintenanceWindow {
             format!("{}.schedule_offset", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_timezone` after provisioning.\n"]
     pub fn schedule_timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -279,7 +244,6 @@ impl SsmMaintenanceWindow {
             format!("{}.schedule_timezone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -287,7 +251,6 @@ impl SsmMaintenanceWindow {
             format!("{}.start_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -295,7 +258,6 @@ impl SsmMaintenanceWindow {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -304,7 +266,6 @@ impl SsmMaintenanceWindow {
         )
     }
 }
-
 impl Referable for SsmMaintenanceWindow {
     fn extract_ref(&self) -> String {
         format!(
@@ -314,32 +275,25 @@ impl Referable for SsmMaintenanceWindow {
         )
     }
 }
-
 impl Resource for SsmMaintenanceWindow {}
-
 impl ToListMappable for SsmMaintenanceWindow {
     type O = ListRef<SsmMaintenanceWindowRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for SsmMaintenanceWindow_ {
     fn extract_resource_type(&self) -> String {
         "aws_ssm_maintenance_window".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildSsmMaintenanceWindow {
     pub tf_id: String,
     #[doc = ""]
@@ -351,7 +305,6 @@ pub struct BuildSsmMaintenanceWindow {
     #[doc = ""]
     pub schedule: PrimField<String>,
 }
-
 impl BuildSsmMaintenanceWindow {
     pub fn build(self, stack: &mut Stack) -> SsmMaintenanceWindow {
         let out = SsmMaintenanceWindow(Rc::new(SsmMaintenanceWindow_ {
@@ -383,27 +336,22 @@ impl BuildSsmMaintenanceWindow {
         out
     }
 }
-
 pub struct SsmMaintenanceWindowRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for SsmMaintenanceWindowRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl SsmMaintenanceWindowRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `allow_unassociated_targets` after provisioning.\n"]
     pub fn allow_unassociated_targets(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -411,7 +359,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.allow_unassociated_targets", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cutoff` after provisioning.\n"]
     pub fn cutoff(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -419,7 +366,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.cutoff", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -427,7 +373,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `duration` after provisioning.\n"]
     pub fn duration(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -435,7 +380,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.duration", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `enabled` after provisioning.\n"]
     pub fn enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -443,7 +387,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `end_date` after provisioning.\n"]
     pub fn end_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -451,12 +394,10 @@ impl SsmMaintenanceWindowRef {
             format!("{}.end_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +405,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -472,7 +412,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule` after provisioning.\n"]
     pub fn schedule(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -480,7 +419,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.schedule", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_offset` after provisioning.\n"]
     pub fn schedule_offset(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -488,7 +426,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.schedule_offset", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `schedule_timezone` after provisioning.\n"]
     pub fn schedule_timezone(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -496,7 +433,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.schedule_timezone", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `start_date` after provisioning.\n"]
     pub fn start_date(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -504,7 +440,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.start_date", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -512,7 +447,6 @@ impl SsmMaintenanceWindowRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(

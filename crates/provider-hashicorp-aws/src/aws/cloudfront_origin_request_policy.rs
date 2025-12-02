@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct CloudfrontOriginRequestPolicyData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -27,47 +26,38 @@ struct CloudfrontOriginRequestPolicyData {
     query_strings_config: Option<Vec<CloudfrontOriginRequestPolicyQueryStringsConfigEl>>,
     dynamic: CloudfrontOriginRequestPolicyDynamic,
 }
-
 struct CloudfrontOriginRequestPolicy_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<CloudfrontOriginRequestPolicyData>,
 }
-
 #[derive(Clone)]
 pub struct CloudfrontOriginRequestPolicy(Rc<CloudfrontOriginRequestPolicy_>);
-
 impl CloudfrontOriginRequestPolicy {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -86,7 +76,6 @@ impl CloudfrontOriginRequestPolicy {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -96,7 +85,6 @@ impl CloudfrontOriginRequestPolicy {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -106,19 +94,16 @@ impl CloudfrontOriginRequestPolicy {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `comment`.\n"]
     pub fn set_comment(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().comment = Some(v.into());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cookies_config`.\n"]
     pub fn set_cookies_config(
         self,
@@ -134,7 +119,6 @@ impl CloudfrontOriginRequestPolicy {
         }
         self
     }
-
     #[doc = "Set the field `headers_config`.\n"]
     pub fn set_headers_config(
         self,
@@ -150,7 +134,6 @@ impl CloudfrontOriginRequestPolicy {
         }
         self
     }
-
     #[doc = "Set the field `query_strings_config`.\n"]
     pub fn set_query_strings_config(
         self,
@@ -166,12 +149,10 @@ impl CloudfrontOriginRequestPolicy {
         }
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -179,7 +160,6 @@ impl CloudfrontOriginRequestPolicy {
             format!("{}.comment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -187,12 +167,10 @@ impl CloudfrontOriginRequestPolicy {
             format!("{}.etag", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -200,7 +178,6 @@ impl CloudfrontOriginRequestPolicy {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookies_config` after provisioning.\n"]
     pub fn cookies_config(&self) -> ListRef<CloudfrontOriginRequestPolicyCookiesConfigElRef> {
         ListRef::new(
@@ -208,7 +185,6 @@ impl CloudfrontOriginRequestPolicy {
             format!("{}.cookies_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `headers_config` after provisioning.\n"]
     pub fn headers_config(&self) -> ListRef<CloudfrontOriginRequestPolicyHeadersConfigElRef> {
         ListRef::new(
@@ -216,7 +192,6 @@ impl CloudfrontOriginRequestPolicy {
             format!("{}.headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `query_strings_config` after provisioning.\n"]
     pub fn query_strings_config(
         &self,
@@ -227,7 +202,6 @@ impl CloudfrontOriginRequestPolicy {
         )
     }
 }
-
 impl Referable for CloudfrontOriginRequestPolicy {
     fn extract_ref(&self) -> String {
         format!(
@@ -237,38 +211,30 @@ impl Referable for CloudfrontOriginRequestPolicy {
         )
     }
 }
-
 impl Resource for CloudfrontOriginRequestPolicy {}
-
 impl ToListMappable for CloudfrontOriginRequestPolicy {
     type O = ListRef<CloudfrontOriginRequestPolicyRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for CloudfrontOriginRequestPolicy_ {
     fn extract_resource_type(&self) -> String {
         "aws_cloudfront_origin_request_policy".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicy {
     pub tf_id: String,
     #[doc = ""]
     pub name: PrimField<String>,
 }
-
 impl BuildCloudfrontOriginRequestPolicy {
     pub fn build(self, stack: &mut Stack) -> CloudfrontOriginRequestPolicy {
         let out = CloudfrontOriginRequestPolicy(Rc::new(CloudfrontOriginRequestPolicy_ {
@@ -292,32 +258,26 @@ impl BuildCloudfrontOriginRequestPolicy {
         out
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl CloudfrontOriginRequestPolicyRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `comment` after provisioning.\n"]
     pub fn comment(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -325,7 +285,6 @@ impl CloudfrontOriginRequestPolicyRef {
             format!("{}.comment", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `etag` after provisioning.\n"]
     pub fn etag(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -333,12 +292,10 @@ impl CloudfrontOriginRequestPolicyRef {
             format!("{}.etag", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -346,7 +303,6 @@ impl CloudfrontOriginRequestPolicyRef {
             format!("{}.name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookies_config` after provisioning.\n"]
     pub fn cookies_config(&self) -> ListRef<CloudfrontOriginRequestPolicyCookiesConfigElRef> {
         ListRef::new(
@@ -354,7 +310,6 @@ impl CloudfrontOriginRequestPolicyRef {
             format!("{}.cookies_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `headers_config` after provisioning.\n"]
     pub fn headers_config(&self) -> ListRef<CloudfrontOriginRequestPolicyHeadersConfigElRef> {
         ListRef::new(
@@ -362,7 +317,6 @@ impl CloudfrontOriginRequestPolicyRef {
             format!("{}.headers_config", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `query_strings_config` after provisioning.\n"]
     pub fn query_strings_config(
         &self,
@@ -373,13 +327,11 @@ impl CloudfrontOriginRequestPolicyRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -387,10 +339,8 @@ impl CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -399,9 +349,7 @@ impl ToListMappable for CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {}
-
 impl BuildCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
         CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
@@ -409,12 +357,10 @@ impl BuildCloudfrontOriginRequestPolicyCookiesConfigElCookiesEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
     fn new(
         shared: StackShared,
@@ -426,23 +372,19 @@ impl Ref for CloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontOriginRequestPolicyCookiesConfigElDynamic {
     cookies: Option<DynamicBlock<CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyCookiesConfigEl {
     cookie_behavior: PrimField<String>,
@@ -450,7 +392,6 @@ pub struct CloudfrontOriginRequestPolicyCookiesConfigEl {
     cookies: Option<Vec<CloudfrontOriginRequestPolicyCookiesConfigElCookiesEl>>,
     dynamic: CloudfrontOriginRequestPolicyCookiesConfigElDynamic,
 }
-
 impl CloudfrontOriginRequestPolicyCookiesConfigEl {
     #[doc = "Set the field `cookies`.\n"]
     pub fn set_cookies(
@@ -468,10 +409,8 @@ impl CloudfrontOriginRequestPolicyCookiesConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyCookiesConfigEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyCookiesConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -480,12 +419,10 @@ impl ToListMappable for CloudfrontOriginRequestPolicyCookiesConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyCookiesConfigEl {
     #[doc = ""]
     pub cookie_behavior: PrimField<String>,
 }
-
 impl BuildCloudfrontOriginRequestPolicyCookiesConfigEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyCookiesConfigEl {
         CloudfrontOriginRequestPolicyCookiesConfigEl {
@@ -495,12 +432,10 @@ impl BuildCloudfrontOriginRequestPolicyCookiesConfigEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyCookiesConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyCookiesConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudfrontOriginRequestPolicyCookiesConfigElRef {
         CloudfrontOriginRequestPolicyCookiesConfigElRef {
@@ -509,12 +444,10 @@ impl Ref for CloudfrontOriginRequestPolicyCookiesConfigElRef {
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyCookiesConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `cookie_behavior` after provisioning.\n"]
     pub fn cookie_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -522,19 +455,16 @@ impl CloudfrontOriginRequestPolicyCookiesConfigElRef {
             format!("{}.cookie_behavior", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `cookies` after provisioning.\n"]
     pub fn cookies(&self) -> ListRef<CloudfrontOriginRequestPolicyCookiesConfigElCookiesElRef> {
         ListRef::new(self.shared().clone(), format!("{}.cookies", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -542,10 +472,8 @@ impl CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -554,9 +482,7 @@ impl ToListMappable for CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {}
-
 impl BuildCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
         CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
@@ -564,12 +490,10 @@ impl BuildCloudfrontOriginRequestPolicyHeadersConfigElHeadersEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
     fn new(
         shared: StackShared,
@@ -581,23 +505,19 @@ impl Ref for CloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontOriginRequestPolicyHeadersConfigElDynamic {
     headers: Option<DynamicBlock<CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyHeadersConfigEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -606,14 +526,12 @@ pub struct CloudfrontOriginRequestPolicyHeadersConfigEl {
     headers: Option<Vec<CloudfrontOriginRequestPolicyHeadersConfigElHeadersEl>>,
     dynamic: CloudfrontOriginRequestPolicyHeadersConfigElDynamic,
 }
-
 impl CloudfrontOriginRequestPolicyHeadersConfigEl {
     #[doc = "Set the field `header_behavior`.\n"]
     pub fn set_header_behavior(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.header_behavior = Some(v.into());
         self
     }
-
     #[doc = "Set the field `headers`.\n"]
     pub fn set_headers(
         mut self,
@@ -630,10 +548,8 @@ impl CloudfrontOriginRequestPolicyHeadersConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyHeadersConfigEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyHeadersConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -642,9 +558,7 @@ impl ToListMappable for CloudfrontOriginRequestPolicyHeadersConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyHeadersConfigEl {}
-
 impl BuildCloudfrontOriginRequestPolicyHeadersConfigEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyHeadersConfigEl {
         CloudfrontOriginRequestPolicyHeadersConfigEl {
@@ -654,12 +568,10 @@ impl BuildCloudfrontOriginRequestPolicyHeadersConfigEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyHeadersConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyHeadersConfigElRef {
     fn new(shared: StackShared, base: String) -> CloudfrontOriginRequestPolicyHeadersConfigElRef {
         CloudfrontOriginRequestPolicyHeadersConfigElRef {
@@ -668,12 +580,10 @@ impl Ref for CloudfrontOriginRequestPolicyHeadersConfigElRef {
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyHeadersConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `header_behavior` after provisioning.\n"]
     pub fn header_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -681,19 +591,16 @@ impl CloudfrontOriginRequestPolicyHeadersConfigElRef {
             format!("{}.header_behavior", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `headers` after provisioning.\n"]
     pub fn headers(&self) -> ListRef<CloudfrontOriginRequestPolicyHeadersConfigElHeadersElRef> {
         ListRef::new(self.shared().clone(), format!("{}.headers", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     items: Option<SetField<PrimField<String>>>,
 }
-
 impl CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
     #[doc = "Set the field `items`.\n"]
     pub fn set_items(mut self, v: impl Into<SetField<PrimField<String>>>) -> Self {
@@ -701,10 +608,8 @@ impl CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -713,9 +618,7 @@ impl ToListMappable for CloudfrontOriginRequestPolicyQueryStringsConfigElQuerySt
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {}
-
 impl BuildCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
         CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
@@ -723,12 +626,10 @@ impl BuildCloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef {
     fn new(
         shared: StackShared,
@@ -740,24 +641,20 @@ impl Ref for CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef 
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `items` after provisioning.\n"]
     pub fn items(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.items", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontOriginRequestPolicyQueryStringsConfigElDynamic {
     query_strings:
         Option<DynamicBlock<CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl>>,
 }
-
 #[derive(Serialize)]
 pub struct CloudfrontOriginRequestPolicyQueryStringsConfigEl {
     query_string_behavior: PrimField<String>,
@@ -765,7 +662,6 @@ pub struct CloudfrontOriginRequestPolicyQueryStringsConfigEl {
     query_strings: Option<Vec<CloudfrontOriginRequestPolicyQueryStringsConfigElQueryStringsEl>>,
     dynamic: CloudfrontOriginRequestPolicyQueryStringsConfigElDynamic,
 }
-
 impl CloudfrontOriginRequestPolicyQueryStringsConfigEl {
     #[doc = "Set the field `query_strings`.\n"]
     pub fn set_query_strings(
@@ -783,10 +679,8 @@ impl CloudfrontOriginRequestPolicyQueryStringsConfigEl {
         self
     }
 }
-
 impl ToListMappable for CloudfrontOriginRequestPolicyQueryStringsConfigEl {
     type O = BlockAssignable<CloudfrontOriginRequestPolicyQueryStringsConfigEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -795,12 +689,10 @@ impl ToListMappable for CloudfrontOriginRequestPolicyQueryStringsConfigEl {
         })
     }
 }
-
 pub struct BuildCloudfrontOriginRequestPolicyQueryStringsConfigEl {
     #[doc = ""]
     pub query_string_behavior: PrimField<String>,
 }
-
 impl BuildCloudfrontOriginRequestPolicyQueryStringsConfigEl {
     pub fn build(self) -> CloudfrontOriginRequestPolicyQueryStringsConfigEl {
         CloudfrontOriginRequestPolicyQueryStringsConfigEl {
@@ -810,12 +702,10 @@ impl BuildCloudfrontOriginRequestPolicyQueryStringsConfigEl {
         }
     }
 }
-
 pub struct CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
     fn new(
         shared: StackShared,
@@ -827,12 +717,10 @@ impl Ref for CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
         }
     }
 }
-
 impl CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `query_string_behavior` after provisioning.\n"]
     pub fn query_string_behavior(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -840,7 +728,6 @@ impl CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
             format!("{}.query_string_behavior", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `query_strings` after provisioning.\n"]
     pub fn query_strings(
         &self,
@@ -851,7 +738,6 @@ impl CloudfrontOriginRequestPolicyQueryStringsConfigElRef {
         )
     }
 }
-
 #[derive(Serialize, Default)]
 struct CloudfrontOriginRequestPolicyDynamic {
     cookies_config: Option<DynamicBlock<CloudfrontOriginRequestPolicyCookiesConfigEl>>,

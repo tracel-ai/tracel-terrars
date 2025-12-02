@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct VpcSecurityGroupEgressRuleData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -35,47 +34,38 @@ struct VpcSecurityGroupEgressRuleData {
     #[serde(skip_serializing_if = "Option::is_none")]
     to_port: Option<PrimField<f64>>,
 }
-
 struct VpcSecurityGroupEgressRule_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<VpcSecurityGroupEgressRuleData>,
 }
-
 #[derive(Clone)]
 pub struct VpcSecurityGroupEgressRule(Rc<VpcSecurityGroupEgressRule_>);
-
 impl VpcSecurityGroupEgressRule {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(self, provider: &ProviderAws) -> Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     pub fn set_create_before_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.create_before_destroy = v;
         self
     }
-
     pub fn set_prevent_destroy(self, v: bool) -> Self {
         self.0.data.borrow_mut().lifecycle.prevent_destroy = v;
         self
     }
-
     pub fn ignore_changes_to_all(self) -> Self {
         self.0.data.borrow_mut().lifecycle.ignore_changes =
             Some(IgnoreChanges::All(IgnoreChangesAll::All));
         self
     }
-
     pub fn ignore_changes_to_attr(self, attr: impl ToString) -> Self {
         {
             let mut d = self.0.data.borrow_mut();
@@ -94,7 +84,6 @@ impl VpcSecurityGroupEgressRule {
         }
         self
     }
-
     pub fn replace_triggered_by_resource(self, r: &impl Resource) -> Self {
         self.0
             .data
@@ -104,7 +93,6 @@ impl VpcSecurityGroupEgressRule {
             .push(r.extract_ref());
         self
     }
-
     pub fn replace_triggered_by_attr(self, attr: impl ToString) -> Self {
         self.0
             .data
@@ -114,66 +102,55 @@ impl VpcSecurityGroupEgressRule {
             .push(attr.to_string());
         self
     }
-
     #[doc = "Set the field `cidr_ipv4`.\n"]
     pub fn set_cidr_ipv4(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cidr_ipv4 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `cidr_ipv6`.\n"]
     pub fn set_cidr_ipv6(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().cidr_ipv6 = Some(v.into());
         self
     }
-
     #[doc = "Set the field `description`.\n"]
     pub fn set_description(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().description = Some(v.into());
         self
     }
-
     #[doc = "Set the field `from_port`.\n"]
     pub fn set_from_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().from_port = Some(v.into());
         self
     }
-
     #[doc = "Set the field `prefix_list_id`.\n"]
     pub fn set_prefix_list_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().prefix_list_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `referenced_security_group_id`.\n"]
     pub fn set_referenced_security_group_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().referenced_security_group_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `to_port`.\n"]
     pub fn set_to_port(self, v: impl Into<PrimField<f64>>) -> Self {
         self.0.data.borrow_mut().to_port = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cidr_ipv4` after provisioning.\n"]
     pub fn cidr_ipv4(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -181,7 +158,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.cidr_ipv4", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cidr_ipv6` after provisioning.\n"]
     pub fn cidr_ipv6(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -189,7 +165,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.cidr_ipv6", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -197,7 +172,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -205,12 +179,10 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.from_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_protocol` after provisioning.\n"]
     pub fn ip_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -218,7 +190,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.ip_protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -226,7 +197,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `referenced_security_group_id` after provisioning.\n"]
     pub fn referenced_security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -234,7 +204,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.referenced_security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -242,7 +211,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -250,7 +218,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_rule_id` after provisioning.\n"]
     pub fn security_group_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -258,7 +225,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.security_group_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -266,7 +232,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -274,7 +239,6 @@ impl VpcSecurityGroupEgressRule {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -283,7 +247,6 @@ impl VpcSecurityGroupEgressRule {
         )
     }
 }
-
 impl Referable for VpcSecurityGroupEgressRule {
     fn extract_ref(&self) -> String {
         format!(
@@ -293,32 +256,25 @@ impl Referable for VpcSecurityGroupEgressRule {
         )
     }
 }
-
 impl Resource for VpcSecurityGroupEgressRule {}
-
 impl ToListMappable for VpcSecurityGroupEgressRule {
     type O = ListRef<VpcSecurityGroupEgressRuleRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Resource_ for VpcSecurityGroupEgressRule_ {
     fn extract_resource_type(&self) -> String {
         "aws_vpc_security_group_egress_rule".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildVpcSecurityGroupEgressRule {
     pub tf_id: String,
     #[doc = ""]
@@ -326,7 +282,6 @@ pub struct BuildVpcSecurityGroupEgressRule {
     #[doc = ""]
     pub security_group_id: PrimField<String>,
 }
-
 impl BuildVpcSecurityGroupEgressRule {
     pub fn build(self, stack: &mut Stack) -> VpcSecurityGroupEgressRule {
         let out = VpcSecurityGroupEgressRule(Rc::new(VpcSecurityGroupEgressRule_ {
@@ -354,32 +309,26 @@ impl BuildVpcSecurityGroupEgressRule {
         out
     }
 }
-
 pub struct VpcSecurityGroupEgressRuleRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for VpcSecurityGroupEgressRuleRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl VpcSecurityGroupEgressRuleRef {
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cidr_ipv4` after provisioning.\n"]
     pub fn cidr_ipv4(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -387,7 +336,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.cidr_ipv4", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `cidr_ipv6` after provisioning.\n"]
     pub fn cidr_ipv6(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -395,7 +343,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.cidr_ipv6", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `description` after provisioning.\n"]
     pub fn description(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -403,7 +350,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.description", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `from_port` after provisioning.\n"]
     pub fn from_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(
@@ -411,12 +357,10 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.from_port", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_protocol` after provisioning.\n"]
     pub fn ip_protocol(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -424,7 +368,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.ip_protocol", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -432,7 +375,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `referenced_security_group_id` after provisioning.\n"]
     pub fn referenced_security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -440,7 +382,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.referenced_security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -448,7 +389,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_id` after provisioning.\n"]
     pub fn security_group_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -456,7 +396,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.security_group_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_rule_id` after provisioning.\n"]
     pub fn security_group_rule_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -464,7 +403,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.security_group_rule_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -472,7 +410,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags_all` after provisioning.\n"]
     pub fn tags_all(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -480,7 +417,6 @@ impl VpcSecurityGroupEgressRuleRef {
             format!("{}.tags_all", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `to_port` after provisioning.\n"]
     pub fn to_port(&self) -> PrimExpr<f64> {
         PrimExpr::new(

@@ -3,7 +3,6 @@ use serde::Serialize;
 use std::cell::RefCell;
 use std::rc::Rc;
 use terrars::*;
-
 #[derive(Serialize)]
 struct DataVpcEndpointData {
     #[serde(skip_serializing_if = "Vec::is_empty")]
@@ -30,67 +29,55 @@ struct DataVpcEndpointData {
     timeouts: Option<DataVpcEndpointTimeoutsEl>,
     dynamic: DataVpcEndpointDynamic,
 }
-
 struct DataVpcEndpoint_ {
     shared: StackShared,
     tf_id: String,
     data: RefCell<DataVpcEndpointData>,
 }
-
 #[derive(Clone)]
 pub struct DataVpcEndpoint(Rc<DataVpcEndpoint_>);
-
 impl DataVpcEndpoint {
     fn shared(&self) -> &StackShared {
         &self.0.shared
     }
-
     pub fn depends_on(self, dep: &impl Referable) -> Self {
         self.0.data.borrow_mut().depends_on.push(dep.extract_ref());
         self
     }
-
     pub fn set_provider(&self, provider: &ProviderAws) -> &Self {
         self.0.data.borrow_mut().provider = Some(provider.provider_ref());
         self
     }
-
     #[doc = "Set the field `id`.\n"]
     pub fn set_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `region`.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn set_region(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().region = Some(v.into());
         self
     }
-
     #[doc = "Set the field `service_name`.\n"]
     pub fn set_service_name(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().service_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `state`.\n"]
     pub fn set_state(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().state = Some(v.into());
         self
     }
-
     #[doc = "Set the field `tags`.\n"]
     pub fn set_tags(self, v: impl Into<RecField<PrimField<String>>>) -> Self {
         self.0.data.borrow_mut().tags = Some(v.into());
         self
     }
-
     #[doc = "Set the field `vpc_id`.\n"]
     pub fn set_vpc_id(self, v: impl Into<PrimField<String>>) -> Self {
         self.0.data.borrow_mut().vpc_id = Some(v.into());
         self
     }
-
     #[doc = "Set the field `filter`.\n"]
     pub fn set_filter(self, v: impl Into<BlockAssignable<DataVpcEndpointFilterEl>>) -> Self {
         match v.into() {
@@ -103,18 +90,15 @@ impl DataVpcEndpoint {
         }
         self
     }
-
     #[doc = "Set the field `timeouts`.\n"]
     pub fn set_timeouts(self, v: impl Into<DataVpcEndpointTimeoutsEl>) -> Self {
         self.0.data.borrow_mut().timeouts = Some(v.into());
         self
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -122,7 +106,6 @@ impl DataVpcEndpoint {
             format!("{}.cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_entry` after provisioning.\n"]
     pub fn dns_entry(&self) -> ListRef<DataVpcEndpointDnsEntryElRef> {
         ListRef::new(
@@ -130,7 +113,6 @@ impl DataVpcEndpoint {
             format!("{}.dns_entry", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_options` after provisioning.\n"]
     pub fn dns_options(&self) -> ListRef<DataVpcEndpointDnsOptionsElRef> {
         ListRef::new(
@@ -138,12 +120,10 @@ impl DataVpcEndpoint {
             format!("{}.dns_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -151,7 +131,6 @@ impl DataVpcEndpoint {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_ids` after provisioning.\n"]
     pub fn network_interface_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -159,7 +138,6 @@ impl DataVpcEndpoint {
             format!("{}.network_interface_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -167,7 +145,6 @@ impl DataVpcEndpoint {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -175,7 +152,6 @@ impl DataVpcEndpoint {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -183,7 +159,6 @@ impl DataVpcEndpoint {
             format!("{}.prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_dns_enabled` after provisioning.\n"]
     pub fn private_dns_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -191,7 +166,6 @@ impl DataVpcEndpoint {
             format!("{}.private_dns_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -199,7 +173,6 @@ impl DataVpcEndpoint {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requester_managed` after provisioning.\n"]
     pub fn requester_managed(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -207,7 +180,6 @@ impl DataVpcEndpoint {
             format!("{}.requester_managed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_ids` after provisioning.\n"]
     pub fn route_table_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -215,7 +187,6 @@ impl DataVpcEndpoint {
             format!("{}.route_table_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -223,7 +194,6 @@ impl DataVpcEndpoint {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -231,7 +201,6 @@ impl DataVpcEndpoint {
             format!("{}.service_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -239,7 +208,6 @@ impl DataVpcEndpoint {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -247,7 +215,6 @@ impl DataVpcEndpoint {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -255,7 +222,6 @@ impl DataVpcEndpoint {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_endpoint_type` after provisioning.\n"]
     pub fn vpc_endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -263,7 +229,6 @@ impl DataVpcEndpoint {
             format!("{}.vpc_endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -271,7 +236,6 @@ impl DataVpcEndpoint {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcEndpointTimeoutsElRef {
         DataVpcEndpointTimeoutsElRef::new(
@@ -280,7 +244,6 @@ impl DataVpcEndpoint {
         )
     }
 }
-
 impl Referable for DataVpcEndpoint {
     fn extract_ref(&self) -> String {
         format!(
@@ -290,36 +253,28 @@ impl Referable for DataVpcEndpoint {
         )
     }
 }
-
 impl Datasource for DataVpcEndpoint {}
-
 impl ToListMappable for DataVpcEndpoint {
     type O = ListRef<DataVpcEndpointRef>;
-
     fn do_map(self, base: String) -> Self::O {
         self.0.data.borrow_mut().for_each = Some(format!("${{{}}}", base));
         ListRef::new(self.0.shared.clone(), self.extract_ref())
     }
 }
-
 impl Datasource_ for DataVpcEndpoint_ {
     fn extract_datasource_type(&self) -> String {
         "aws_vpc_endpoint".into()
     }
-
     fn extract_tf_id(&self) -> String {
         self.tf_id.clone()
     }
-
     fn extract_value(&self) -> serde_json::Value {
         serde_json::to_value(&self.data).unwrap()
     }
 }
-
 pub struct BuildDataVpcEndpoint {
     pub tf_id: String,
 }
-
 impl BuildDataVpcEndpoint {
     pub fn build(self, stack: &mut Stack) -> DataVpcEndpoint {
         let out = DataVpcEndpoint(Rc::new(DataVpcEndpoint_ {
@@ -344,32 +299,26 @@ impl BuildDataVpcEndpoint {
         out
     }
 }
-
 pub struct DataVpcEndpointRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataVpcEndpointRef {
     fn new(shared: StackShared, base: String) -> Self {
         Self { shared, base }
     }
 }
-
 impl DataVpcEndpointRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     fn extract_ref(&self) -> String {
         self.base.clone()
     }
-
     #[doc = "Get a reference to the value of field `arn` after provisioning.\n"]
     pub fn arn(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.arn", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `cidr_blocks` after provisioning.\n"]
     pub fn cidr_blocks(&self) -> ListRef<PrimExpr<String>> {
         ListRef::new(
@@ -377,7 +326,6 @@ impl DataVpcEndpointRef {
             format!("{}.cidr_blocks", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_entry` after provisioning.\n"]
     pub fn dns_entry(&self) -> ListRef<DataVpcEndpointDnsEntryElRef> {
         ListRef::new(
@@ -385,7 +333,6 @@ impl DataVpcEndpointRef {
             format!("{}.dns_entry", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `dns_options` after provisioning.\n"]
     pub fn dns_options(&self) -> ListRef<DataVpcEndpointDnsOptionsElRef> {
         ListRef::new(
@@ -393,12 +340,10 @@ impl DataVpcEndpointRef {
             format!("{}.dns_options", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `id` after provisioning.\n"]
     pub fn id(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.id", self.extract_ref()))
     }
-
     #[doc = "Get a reference to the value of field `ip_address_type` after provisioning.\n"]
     pub fn ip_address_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -406,7 +351,6 @@ impl DataVpcEndpointRef {
             format!("{}.ip_address_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `network_interface_ids` after provisioning.\n"]
     pub fn network_interface_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -414,7 +358,6 @@ impl DataVpcEndpointRef {
             format!("{}.network_interface_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `owner_id` after provisioning.\n"]
     pub fn owner_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -422,7 +365,6 @@ impl DataVpcEndpointRef {
             format!("{}.owner_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `policy` after provisioning.\n"]
     pub fn policy(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -430,7 +372,6 @@ impl DataVpcEndpointRef {
             format!("{}.policy", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `prefix_list_id` after provisioning.\n"]
     pub fn prefix_list_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -438,7 +379,6 @@ impl DataVpcEndpointRef {
             format!("{}.prefix_list_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_dns_enabled` after provisioning.\n"]
     pub fn private_dns_enabled(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -446,7 +386,6 @@ impl DataVpcEndpointRef {
             format!("{}.private_dns_enabled", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `region` after provisioning.\nRegion where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference)."]
     pub fn region(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -454,7 +393,6 @@ impl DataVpcEndpointRef {
             format!("{}.region", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `requester_managed` after provisioning.\n"]
     pub fn requester_managed(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -462,7 +400,6 @@ impl DataVpcEndpointRef {
             format!("{}.requester_managed", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `route_table_ids` after provisioning.\n"]
     pub fn route_table_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -470,7 +407,6 @@ impl DataVpcEndpointRef {
             format!("{}.route_table_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `security_group_ids` after provisioning.\n"]
     pub fn security_group_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -478,7 +414,6 @@ impl DataVpcEndpointRef {
             format!("{}.security_group_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `service_name` after provisioning.\n"]
     pub fn service_name(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -486,7 +421,6 @@ impl DataVpcEndpointRef {
             format!("{}.service_name", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `state` after provisioning.\n"]
     pub fn state(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -494,7 +428,6 @@ impl DataVpcEndpointRef {
             format!("{}.state", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `subnet_ids` after provisioning.\n"]
     pub fn subnet_ids(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(
@@ -502,7 +435,6 @@ impl DataVpcEndpointRef {
             format!("{}.subnet_ids", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `tags` after provisioning.\n"]
     pub fn tags(&self) -> RecRef<PrimExpr<String>> {
         RecRef::new(
@@ -510,7 +442,6 @@ impl DataVpcEndpointRef {
             format!("{}.tags", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_endpoint_type` after provisioning.\n"]
     pub fn vpc_endpoint_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -518,7 +449,6 @@ impl DataVpcEndpointRef {
             format!("{}.vpc_endpoint_type", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `vpc_id` after provisioning.\n"]
     pub fn vpc_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -526,7 +456,6 @@ impl DataVpcEndpointRef {
             format!("{}.vpc_id", self.extract_ref()),
         )
     }
-
     #[doc = "Get a reference to the value of field `timeouts` after provisioning.\n"]
     pub fn timeouts(&self) -> DataVpcEndpointTimeoutsElRef {
         DataVpcEndpointTimeoutsElRef::new(
@@ -535,7 +464,6 @@ impl DataVpcEndpointRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataVpcEndpointDnsEntryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -543,24 +471,20 @@ pub struct DataVpcEndpointDnsEntryEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     hosted_zone_id: Option<PrimField<String>>,
 }
-
 impl DataVpcEndpointDnsEntryEl {
     #[doc = "Set the field `dns_name`.\n"]
     pub fn set_dns_name(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dns_name = Some(v.into());
         self
     }
-
     #[doc = "Set the field `hosted_zone_id`.\n"]
     pub fn set_hosted_zone_id(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.hosted_zone_id = Some(v.into());
         self
     }
 }
-
 impl ToListMappable for DataVpcEndpointDnsEntryEl {
     type O = BlockAssignable<DataVpcEndpointDnsEntryEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -569,9 +493,7 @@ impl ToListMappable for DataVpcEndpointDnsEntryEl {
         })
     }
 }
-
 pub struct BuildDataVpcEndpointDnsEntryEl {}
-
 impl BuildDataVpcEndpointDnsEntryEl {
     pub fn build(self) -> DataVpcEndpointDnsEntryEl {
         DataVpcEndpointDnsEntryEl {
@@ -580,12 +502,10 @@ impl BuildDataVpcEndpointDnsEntryEl {
         }
     }
 }
-
 pub struct DataVpcEndpointDnsEntryElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataVpcEndpointDnsEntryElRef {
     fn new(shared: StackShared, base: String) -> DataVpcEndpointDnsEntryElRef {
         DataVpcEndpointDnsEntryElRef {
@@ -594,17 +514,14 @@ impl Ref for DataVpcEndpointDnsEntryElRef {
         }
     }
 }
-
 impl DataVpcEndpointDnsEntryElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dns_name` after provisioning.\n"]
     pub fn dns_name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.dns_name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `hosted_zone_id` after provisioning.\n"]
     pub fn hosted_zone_id(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -613,7 +530,6 @@ impl DataVpcEndpointDnsEntryElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataVpcEndpointDnsOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -621,14 +537,12 @@ pub struct DataVpcEndpointDnsOptionsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     private_dns_only_for_inbound_resolver_endpoint: Option<PrimField<bool>>,
 }
-
 impl DataVpcEndpointDnsOptionsEl {
     #[doc = "Set the field `dns_record_ip_type`.\n"]
     pub fn set_dns_record_ip_type(mut self, v: impl Into<PrimField<String>>) -> Self {
         self.dns_record_ip_type = Some(v.into());
         self
     }
-
     #[doc = "Set the field `private_dns_only_for_inbound_resolver_endpoint`.\n"]
     pub fn set_private_dns_only_for_inbound_resolver_endpoint(
         mut self,
@@ -638,10 +552,8 @@ impl DataVpcEndpointDnsOptionsEl {
         self
     }
 }
-
 impl ToListMappable for DataVpcEndpointDnsOptionsEl {
     type O = BlockAssignable<DataVpcEndpointDnsOptionsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -650,9 +562,7 @@ impl ToListMappable for DataVpcEndpointDnsOptionsEl {
         })
     }
 }
-
 pub struct BuildDataVpcEndpointDnsOptionsEl {}
-
 impl BuildDataVpcEndpointDnsOptionsEl {
     pub fn build(self) -> DataVpcEndpointDnsOptionsEl {
         DataVpcEndpointDnsOptionsEl {
@@ -661,12 +571,10 @@ impl BuildDataVpcEndpointDnsOptionsEl {
         }
     }
 }
-
 pub struct DataVpcEndpointDnsOptionsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataVpcEndpointDnsOptionsElRef {
     fn new(shared: StackShared, base: String) -> DataVpcEndpointDnsOptionsElRef {
         DataVpcEndpointDnsOptionsElRef {
@@ -675,12 +583,10 @@ impl Ref for DataVpcEndpointDnsOptionsElRef {
         }
     }
 }
-
 impl DataVpcEndpointDnsOptionsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `dns_record_ip_type` after provisioning.\n"]
     pub fn dns_record_ip_type(&self) -> PrimExpr<String> {
         PrimExpr::new(
@@ -688,7 +594,6 @@ impl DataVpcEndpointDnsOptionsElRef {
             format!("{}.dns_record_ip_type", self.base),
         )
     }
-
     #[doc = "Get a reference to the value of field `private_dns_only_for_inbound_resolver_endpoint` after provisioning.\n"]
     pub fn private_dns_only_for_inbound_resolver_endpoint(&self) -> PrimExpr<bool> {
         PrimExpr::new(
@@ -700,18 +605,14 @@ impl DataVpcEndpointDnsOptionsElRef {
         )
     }
 }
-
 #[derive(Serialize)]
 pub struct DataVpcEndpointFilterEl {
     name: PrimField<String>,
     values: SetField<PrimField<String>>,
 }
-
 impl DataVpcEndpointFilterEl {}
-
 impl ToListMappable for DataVpcEndpointFilterEl {
     type O = BlockAssignable<DataVpcEndpointFilterEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -720,14 +621,12 @@ impl ToListMappable for DataVpcEndpointFilterEl {
         })
     }
 }
-
 pub struct BuildDataVpcEndpointFilterEl {
     #[doc = ""]
     pub name: PrimField<String>,
     #[doc = ""]
     pub values: SetField<PrimField<String>>,
 }
-
 impl BuildDataVpcEndpointFilterEl {
     pub fn build(self) -> DataVpcEndpointFilterEl {
         DataVpcEndpointFilterEl {
@@ -736,12 +635,10 @@ impl BuildDataVpcEndpointFilterEl {
         }
     }
 }
-
 pub struct DataVpcEndpointFilterElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataVpcEndpointFilterElRef {
     fn new(shared: StackShared, base: String) -> DataVpcEndpointFilterElRef {
         DataVpcEndpointFilterElRef {
@@ -750,29 +647,24 @@ impl Ref for DataVpcEndpointFilterElRef {
         }
     }
 }
-
 impl DataVpcEndpointFilterElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `name` after provisioning.\n"]
     pub fn name(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.name", self.base))
     }
-
     #[doc = "Get a reference to the value of field `values` after provisioning.\n"]
     pub fn values(&self) -> SetRef<PrimExpr<String>> {
         SetRef::new(self.shared().clone(), format!("{}.values", self.base))
     }
 }
-
 #[derive(Serialize)]
 pub struct DataVpcEndpointTimeoutsEl {
     #[serde(skip_serializing_if = "Option::is_none")]
     read: Option<PrimField<String>>,
 }
-
 impl DataVpcEndpointTimeoutsEl {
     #[doc = "Set the field `read`.\n"]
     pub fn set_read(mut self, v: impl Into<PrimField<String>>) -> Self {
@@ -780,10 +672,8 @@ impl DataVpcEndpointTimeoutsEl {
         self
     }
 }
-
 impl ToListMappable for DataVpcEndpointTimeoutsEl {
     type O = BlockAssignable<DataVpcEndpointTimeoutsEl>;
-
     fn do_map(self, base: String) -> Self::O {
         BlockAssignable::Dynamic(DynamicBlock {
             for_each: format!("${{{}}}", base),
@@ -792,9 +682,7 @@ impl ToListMappable for DataVpcEndpointTimeoutsEl {
         })
     }
 }
-
 pub struct BuildDataVpcEndpointTimeoutsEl {}
-
 impl BuildDataVpcEndpointTimeoutsEl {
     pub fn build(self) -> DataVpcEndpointTimeoutsEl {
         DataVpcEndpointTimeoutsEl {
@@ -802,12 +690,10 @@ impl BuildDataVpcEndpointTimeoutsEl {
         }
     }
 }
-
 pub struct DataVpcEndpointTimeoutsElRef {
     shared: StackShared,
     base: String,
 }
-
 impl Ref for DataVpcEndpointTimeoutsElRef {
     fn new(shared: StackShared, base: String) -> DataVpcEndpointTimeoutsElRef {
         DataVpcEndpointTimeoutsElRef {
@@ -816,18 +702,15 @@ impl Ref for DataVpcEndpointTimeoutsElRef {
         }
     }
 }
-
 impl DataVpcEndpointTimeoutsElRef {
     fn shared(&self) -> &StackShared {
         &self.shared
     }
-
     #[doc = "Get a reference to the value of field `read` after provisioning.\n"]
     pub fn read(&self) -> PrimExpr<String> {
         PrimExpr::new(self.shared().clone(), format!("{}.read", self.base))
     }
 }
-
 #[derive(Serialize, Default)]
 struct DataVpcEndpointDynamic {
     filter: Option<DynamicBlock<DataVpcEndpointFilterEl>>,
