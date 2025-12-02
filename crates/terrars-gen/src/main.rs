@@ -4,7 +4,7 @@ use crate::generatelib::{
     },
     sourceschema::ProviderSchemas,
 };
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{bail, Context, Result};
 use clap::Parser;
 use proc_macro2::{Ident, TokenStream};
 use quote::{format_ident, quote};
@@ -214,32 +214,22 @@ fn run() -> Result<()> {
 
         // Generate
         fn write_file(path: &Path, contents: Vec<TokenStream>) -> Result<()> {
-            let formatted = genemichaels_lib::format_ast(
-                syn::parse2::<syn::File>(quote!(#(#contents)*)).with_context(|| {
-                    let context = contents
-                        .iter()
-                        .map(|s| s.to_string())
-                        .collect::<Vec<String>>()
-                        .join("\n");
-                    let numbered = context
-                        .lines()
-                        .enumerate()
-                        .map(|(ln, l)| format!("{:0>4} {}", ln + 1, l))
-                        .collect::<Vec<String>>()
-                        .join("\n");
-                    format!(
-                        "Failed to parse generated code AST for formatting\n{}",
-                        numbered
-                    )
-                })?,
-                &genemichaels_lib::FormatConfig::default(),
-                Default::default(),
-            )
-            .map_err(|e| anyhow!("Error formatting generated code: {e}"))?;
+            // let approx_len: usize = contents
+            //     .iter()
+            //     .map(|t| t.to_string().len())
+            //     .sum();
+            // eprintln!(
+            //     "📄 Writing {} (~{} bytes of tokens before formatting)",
+            //     path.to_string_lossy(),
+            //     approx_len,
+            // );
+
+            let file_tokens = quote!(#(#contents)*);
+            let code = file_tokens.to_string();
 
             File::create(path)
                 .with_context(|| format!("Failed to create rust file {}", path.to_string_lossy()))?
-                .write_all(formatted.rendered.as_bytes())
+                .write_all(code.as_bytes())
                 .with_context(|| format!("Failed to write rust file {}", path.to_string_lossy()))?;
 
             Ok(())

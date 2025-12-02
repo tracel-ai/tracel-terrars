@@ -2,5 +2,5 @@
 .dir-locals.el
 
 **/target
-
+crates/provider-hashicorp-aws/test/src/
 
