@@ -299,11 +299,11 @@ fn generate_agg_type_coll(
         AggCollTypeKey::Rec => {
             let (element_type, element_ref_type) = match &at.1 {
                 ValueSchema::Simple(t) => generate_simple_type(t),
-                ValueSchema::AggColl(_) => {
-                    panic!("supposedly not supported by terraform")
+                ValueSchema::AggColl(a) => {
+                    generate_agg_type_coll(extra_types, &add_path(path, "el"), a.as_ref())
                 }
-                ValueSchema::AggObj(_) => {
-                    panic!("supposedly not supported by terraform")
+                ValueSchema::AggObj(a) => {
+                    generate_agg_type_obj(extra_types, &add_path(path, "el"), a.as_ref())
                 }
             };
             (
