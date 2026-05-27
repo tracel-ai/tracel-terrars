@@ -16,6 +16,8 @@ pub struct GenerateCmdArgs {
 pub enum Provider {
     /// Hashicorp AWS Provider
     Aws,
+    /// Hashicorp GCP Provider
+    Google,
 }
 
 impl Provider {
@@ -26,6 +28,13 @@ impl Provider {
                     PathBuf::from("crates/provider-hashicorp-aws/terrars-test.json")
                 } else {
                     PathBuf::from("crates/provider-hashicorp-aws/terrars.json")
+                }
+            }
+            Provider::Google => {
+                if test {
+                    PathBuf::from("crates/provider-hashicorp-google/terrars-test.json")
+                } else {
+                    PathBuf::from("crates/provider-hashicorp-google/terrars.json")
                 }
             }
         }

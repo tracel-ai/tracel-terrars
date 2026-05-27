@@ -640,6 +640,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "provider-hashicorp-google"
+version = "7.33.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "terrars",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.42"
 source = "registry+https://github.com/rust-lang/crates.io-index"
