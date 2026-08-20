@@ -2,7 +2,7 @@ use tracel_xtask::prelude::*;
 
 mod commands;
 
-#[macros::base_commands(Build, Bump, Check, Fix, Infra, Test)]
+#[macros::base_commands]
 enum Command {
     /// Generate provider bindings
     Generate(commands::generate::GenerateCmdArgs),
