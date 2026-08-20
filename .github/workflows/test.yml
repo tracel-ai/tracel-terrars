@@ -10,8 +10,11 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Rust
-        uses: tracel-ai/github-actions/setup-rust@v6
+      - name: Checkout
+        uses: actions/checkout@v6
+      # --------------------------------------------------------------------------------
+      - name: Install Rust
+        uses: tracel-ai/github-actions/install-rust@v11
         with:
           rust-toolchain: stable
           cache-key: stable-linux
@@ -31,14 +34,17 @@ jobs:
         run: cargo xtask check lint
       # --------------------------------------------------------------------------------
       - name: Typos
-        uses: tracel-ai/github-actions/check-typos@v6
+        uses: tracel-ai/github-actions/check-typos@v11
 
   tests:
     runs-on: ubuntu-latest
     # needs: checks
     steps:
-      - name: Setup Rust
-        uses: tracel-ai/github-actions/setup-rust@v6
+      - name: Checkout
+        uses: actions/checkout@v6
+      # --------------------------------------------------------------------------------
+      - name: Install Rust
+        uses: tracel-ai/github-actions/install-rust@v11
         with:
           rust-toolchain: stable
           cache-key: stable-linux
@@ -48,4 +54,3 @@ jobs:
       # --------------------------------------------------------------------------------
       - name: Test generation of bindings
         run: cargo xtask generate aws --test
-
