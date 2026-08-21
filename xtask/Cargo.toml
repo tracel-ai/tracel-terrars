@@ -7,6 +7,6 @@ edition = "2024"
 log = "0.4.28"
 strum = "0.27.2"
 
-tracel-xtask = "=4.4.1"
+tracel-xtask = { version = "=5.0.0", features = ["build", "bump", "check", "fix", "infra", "test"] }
 # ### For local development. ###
 # tracel-xtask = { path = "../../xtask/crates/tracel-xtask", default-features = false }

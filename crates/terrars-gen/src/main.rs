@@ -182,9 +182,9 @@ fn run() -> Result<()> {
             .args([
                 "xtask",
                 "infra",
-                "init",
                 "--path",
                 &dir.path().to_string_lossy(),
+                "init",
             ])
             .run()
             .context("Error initializing terraform in export dir")?;
@@ -194,10 +194,10 @@ fn run() -> Result<()> {
             .args([
                 "xtask",
                 "infra",
-                "providers",
-                "schema",
                 "--path",
                 &dir.path().to_string_lossy(),
+                "providers",
+                "schema",
             ])
             .output()
             .context("Error outputting terraform provider schema")?
