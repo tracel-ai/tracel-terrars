@@ -1,0 +1,12 @@
+{
+    "provider": "grafana/grafana",
+    "version": "4.47.0",
+    "include_resources": [
+        "fleet_management_pipeline"
+    ],
+    "exclude_resources": [],
+    "include_datasources": [],
+    "exclude_datasources": [],
+    "dest": "crates/provider-grafana-grafana/src/grafana",
+    "feature_gate": "crates/provider-grafana-grafana/Cargo.toml"
+}
