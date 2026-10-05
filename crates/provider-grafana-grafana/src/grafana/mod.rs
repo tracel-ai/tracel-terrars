@@ -8,6 +8,10 @@ pub use cloud_access_policy::*;
 pub mod cloud_access_policy_token;
 #[cfg(feature = "cloud_access_policy_token")]
 pub use cloud_access_policy_token::*;
+#[cfg(feature = "contact_point")]
+pub mod contact_point;
+#[cfg(feature = "contact_point")]
+pub use contact_point::*;
 #[cfg(feature = "dashboard")]
 pub mod dashboard;
 #[cfg(feature = "dashboard")]
@@ -28,6 +32,10 @@ pub use folder::*;
 pub mod playlist;
 #[cfg(feature = "playlist")]
 pub use playlist::*;
+#[cfg(feature = "rule_group")]
+pub mod rule_group;
+#[cfg(feature = "rule_group")]
+pub use rule_group::*;
 #[cfg(feature = "data_cloud_stack")]
 pub mod data_cloud_stack;
 #[cfg(feature = "data_cloud_stack")]
