@@ -5,6 +5,7 @@
         "cloud_access_policy",
         "cloud_access_policy_token",
         "dashboard",
+        "data_source",
         "fleet_management_pipeline",
         "folder"
     ],

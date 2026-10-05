@@ -12,6 +12,10 @@ pub use cloud_access_policy_token::*;
 pub mod dashboard;
 #[cfg(feature = "dashboard")]
 pub use dashboard::*;
+#[cfg(feature = "data_source")]
+pub mod data_source;
+#[cfg(feature = "data_source")]
+pub use data_source::*;
 #[cfg(feature = "fleet_management_pipeline")]
 pub mod fleet_management_pipeline;
 #[cfg(feature = "fleet_management_pipeline")]
