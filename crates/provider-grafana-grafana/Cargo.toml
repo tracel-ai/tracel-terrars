@@ -17,4 +17,9 @@ workspace = true
 workspace = true
 
 [features]
+cloud_access_policy = []
+cloud_access_policy_token = []
+dashboard = []
+data_cloud_stack = []
 fleet_management_pipeline = []
+folder = []
