@@ -653,8 +653,10 @@ fn run() -> Result<()> {
             if !log_triage(&nice_datasource_name, was_included, is_excluded) {
                 continue;
             }
-            let datasource: SchemaItem = serde_json::from_value(datasource.clone())
-                .with_context(|| format!("Error parsing the schema of data source {datasource_name}"))?;
+            let datasource: SchemaItem =
+                serde_json::from_value(datasource.clone()).with_context(|| {
+                    format!("Error parsing the schema of data source {datasource_name}")
+                })?;
 
             let camel_name = to_camel(&use_name_parts);
             let mut raw_fields = TopLevelFields::default();
