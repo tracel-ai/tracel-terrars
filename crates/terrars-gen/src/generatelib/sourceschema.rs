@@ -11,9 +11,9 @@ pub struct ProviderSchemas {
 pub struct ProviderSchema {
     pub provider: Provider,
     #[serde(default)]
-    pub data_source_schemas: BTreeMap<String, SchemaItem>,
+    pub data_source_schemas: BTreeMap<String, serde_json::Value>,
     #[serde(default)]
-    pub resource_schemas: BTreeMap<String, SchemaItem>,
+    pub resource_schemas: BTreeMap<String, serde_json::Value>,
 }
 
 #[derive(Deserialize)]

@@ -18,6 +18,8 @@ pub enum Provider {
     Aws,
     /// Hashicorp GCP Provider
     Google,
+    /// Grafana Provider
+    Grafana,
 }
 
 impl Provider {
@@ -37,6 +39,7 @@ impl Provider {
                     PathBuf::from("crates/provider-hashicorp-google/terrars.json")
                 }
             }
+            Provider::Grafana => PathBuf::from("crates/provider-grafana-grafana/terrars.json"),
         }
     }
 }

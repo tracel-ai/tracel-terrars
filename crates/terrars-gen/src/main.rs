@@ -2,7 +2,7 @@ use crate::generatelib::{
     generate::{
         generate_block_fields, generate_fields_from_value_map, to_camel, to_snake, TopLevelFields,
     },
-    sourceschema::ProviderSchemas,
+    sourceschema::{ProviderSchemas, SchemaItem},
 };
 use anyhow::{bail, Context, Result};
 use clap::Parser;
@@ -396,6 +396,8 @@ fn run() -> Result<()> {
             if !log_triage(&nice_resource_name, was_included, is_excluded) {
                 continue;
             }
+            let resource: SchemaItem = serde_json::from_value(resource.clone())
+                .with_context(|| format!("Error parsing the schema of resource {resource_name}"))?;
 
             let camel_name = to_camel(&use_name_parts);
             let mut raw_fields = TopLevelFields::default();
@@ -651,6 +653,8 @@ fn run() -> Result<()> {
             if !log_triage(&nice_datasource_name, was_included, is_excluded) {
                 continue;
             }
+            let datasource: SchemaItem = serde_json::from_value(datasource.clone())
+                .with_context(|| format!("Error parsing the schema of data source {datasource_name}"))?;
 
             let camel_name = to_camel(&use_name_parts);
             let mut raw_fields = TopLevelFields::default();
