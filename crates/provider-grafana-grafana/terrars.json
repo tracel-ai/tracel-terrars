@@ -2,10 +2,16 @@
     "provider": "grafana/grafana",
     "version": "4.47.0",
     "include_resources": [
-        "fleet_management_pipeline"
+        "cloud_access_policy",
+        "cloud_access_policy_token",
+        "dashboard",
+        "fleet_management_pipeline",
+        "folder"
     ],
     "exclude_resources": [],
-    "include_datasources": [],
+    "include_datasources": [
+        "data_cloud_stack"
+    ],
     "exclude_datasources": [],
     "dest": "crates/provider-grafana-grafana/src/grafana",
     "feature_gate": "crates/provider-grafana-grafana/Cargo.toml"
