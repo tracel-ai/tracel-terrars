@@ -24,6 +24,10 @@ pub use fleet_management_pipeline::*;
 pub mod folder;
 #[cfg(feature = "folder")]
 pub use folder::*;
+#[cfg(feature = "playlist")]
+pub mod playlist;
+#[cfg(feature = "playlist")]
+pub use playlist::*;
 #[cfg(feature = "data_cloud_stack")]
 pub mod data_cloud_stack;
 #[cfg(feature = "data_cloud_stack")]
